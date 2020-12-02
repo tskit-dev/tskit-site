@@ -1,0 +1,37 @@
+<div class="software-categories">
+    <div class="software-category">
+        <div class="software-category-header">
+            <h1>Simulate</h1>
+            <h2>Create tree sequences from models of biological processes</h2>
+        </div>
+        <div class="software-list">
+            {% assign sims = site.software | where: "category","simulate" %}
+            {% for app in sims %}
+            {% include software-summary.html app=app %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="software-category">
+        <div class="software-category-header">
+            <h1>Infer</h1>
+            <h2>Create tree sequences from variation data</h2>
+        </div>
+        <div class="software-list">
+            {% assign infs = site.software | where: "category","infer" %}
+            {% for app in infs %}
+            {% include software-summary.html app=app %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="software-category">
+        <div class="software-category-header">
+            <h1>Analyse</h1>
+            <h2>Measure key statistics, manipulate tree sequences and their underlying tables</h2>
+        </div>
+        <div class="software-list">
+            {% assign anas = site.software | where: "category","analyse" %}
+            {% for app in anas %}
+            {% include software-summary.html app=app %}
+            {% endfor %}
+        </div>
+    </div>

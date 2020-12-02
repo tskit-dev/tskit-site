@@ -1,0 +1,71 @@
+---
+layout: content-page
+---
+<img class="software-logo" src="{{ page.logo }}"/>
+<h1 class="mono"> {{ page.name }} </h1>
+<h3> {{ page.description | default: page.github.repo.description | markdownify }} </h3>
+<div class="software-page-content">
+    <div>
+        <i class="fab fa-github fa-fw"></i>
+        <a href="{{ page.repo_url | default: page.github.repo.html_url }}">{{page.repo_url | default:
+            page.github.repo.html_url }}</a>
+    </div>
+    <div>
+        <i class="fas fa-book fa-fw"></i>
+        <a href="{{page.docs_url}}">Documentation</a>
+    </div>
+    {% if page.github.releases[0] %}
+    <div>
+        <i class="fas fa-box-open fa-fw"></i>
+        Latest release: <a href="{{page.github.releases[0].html_url}}">{{page.github.releases[0].name}}</a>
+        {{page.github.releases[0].published_at | timeago}}
+    </div>
+    {% endif %}
+    {% if page.python_package %}
+    <div>
+        <i class="fab fa-python fa-fw"></i>
+        <a href="https://pypi.org/project/{{page.python_package}}/">Python Package</a>
+    </div>
+    {% endif %}
+    <h3>Overview:</h3>
+    <div class="software-page-content">
+        {{ content }}
+    </div>
+    {% assign tutorials = site.tutorials | where_exp:"item", "item.software contains page.name" %}
+    {% if tutorials %}
+    <h3>Tutorials:</h3>
+    {% for tutorial in site.tutorials %}
+    <div class="tutorial">
+        <a href="{{ tutorial.url }}">
+            <h4>
+                {{ tutorial.title }}
+            </h4>
+        </a>
+        <div class="tutorial-description">{{ tutorial.description }}</div>
+        <div class="tutorial-software mono">
+            Featured Software:
+            {% for software in tutorial.software %}
+            <a href="software/{{ software }}">{{ software }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <h3>Contributors:</h3>
+    <div class="contributors">
+        {% for contributor in page.github.contributors %}
+        {% if contributor.login contains "[bot]" %}
+        {% else %}
+        <div class="contributor">
+            <a href="{{ contributor.html_url}}">
+                <img class="avatar" src="{{ contributor.avatar_url}}"/>
+                <span>@{{ contributor.login }}</span>
+            </a>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+
+
+</div>

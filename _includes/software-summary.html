@@ -1,0 +1,39 @@
+<div class="software-summary">
+    <div>
+        <img class="software-summary-logo" src="{{ app.logo }}"/>
+        <h2 class="mono software-name">
+            <a href="{{ app.url }}">
+                {{ app.name }}
+            </a>
+        </h2>
+    </div>
+    <div class="software-description">{{ app.description | default: app.github.repo.description | markdownify }}</div>
+    <span>
+        {% highlight python %}{{ app.code_snippet }}{% endhighlight %}
+    </span>
+    <div>
+        <i class="fab fa-github fa-fw"></i>
+        <a href="{{ app.repo_url | default: app.github.repo.html_url }}">{{app.repo_url | default: app.github.repo.html_url }}</a>
+    </div>
+    <div>
+        <i class="fas fa-book fa-fw"></i>
+        <a href="{{app.docs_url}}">Documentation</a>
+    </div>
+    {% if app.github.releases[0] %}
+    <div>
+        <i class="fas fa-box-open fa-fw"></i>
+        Latest release: <a href="{{app.github.releases[0].html_url}}">{{app.github.releases[0].name}}</a>
+        {{app.github.releases[0].published_at | timeago}}
+    </div>
+    {% endif %}
+    {% if app.python_package %}
+    <div>
+        <i class="fab fa-python fa-fw"></i>
+        <a href="https://pypi.org/project/{{app.python_package}}/">Python package</a>
+    </div>
+    {% endif %}
+    <div>
+        <i class="fas fa-user-friends fa-fw"></i>
+        {{ app.github.contributors | size}} contributors
+    </div>
+</div>

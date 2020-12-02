@@ -32,4 +32,12 @@ end
 # Performance-booster for watching directories on Windows
 gem "wdm", "~> 0.1.0", :install_if => Gem.win_platform?
 
-gem "github-pages", group: :jekyll_plugins
+group :jekyll_plugins do
+  gem "jekyll-theme-cayman"
+  gem 'jekyll-timeago'
+end
+
+gem 'font-awesome-sass', '~> 5.15.1'
+gem 'jekyll-font-awesome-sass'
+gem "hash-joiner"
+gem "open-uri-cached"

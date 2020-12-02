@@ -1,0 +1,84 @@
+---
+layout: page
+---
+<header class="page-header" role="banner">
+    <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+    <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline
+        }}</h2>
+    {% if site.github.is_project_page %}
+    <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+    {% endif %}
+    {% if site.show_downloads %}
+    <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
+    <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
+    {% endif %}
+</header>
+
+<main id="content" role="main">
+    <div class="home-item">
+        <a class="unstyle-anchor overlay-link" href="{% link learn.html %}"></a>
+        <img src="assets/images/3d-ts.png">
+        <div class="home-case">
+            <div class="home-case-title">Learn about tree-sequences</div>
+            <div class="home-sublink">
+                <a href="{% link learn.html %}#what"><i class="fas fa-fw fa-question"></i><span>What is a tree sequence?</span></a>
+            </div>
+            <div class="home-sublink">
+                <a href="{% link learn.html %}#tutorials"><i class="fas fa-fw fa-graduation-cap"></i><span>Tutorials</span></a>
+            </div>
+            <div class="home-sublink">
+                <a href="{% link learn.html %}#talks"><i class="fas fa-fw fa-chalkboard-teacher"></i><span>Talks</span></a>
+            </div>
+            <div class="home-sublink">
+                <a href="{% link learn.html %}#publications"><i class="fas fa-fw fa-file-alt"></i><span>Publications</span></a>
+            </div>
+        </div>
+        <div class="home-action mono">LEARN</div>
+        <i class="arrow fas fa-angle-right"></i>
+    </div>
+    <div class="home-item">
+        <a class="unstyle-anchor overlay-link" href="{% link software.md %}"></a>
+            <img style="background-color: black" src="assets/images/gears.svg">
+        <div class="home-case">
+            <div class="home-case-title">Software powered by tree-sequences</div>
+            <div class="home-sublink-categories">
+                <div class="home-sublink-category">
+                    Simulate
+                    {% assign sims = site.software | where: "category","simulate" %}
+                    {% for app in sims %}
+                    {% include software-sublink.html app=app %}
+                    {% endfor %}
+                </div>
+                <div class="home-sublink-category">
+                    Infer
+                    {% assign sims = site.software | where: "category","infer" %}
+                    {% for app in sims %}
+                    {% include software-sublink.html app=app %}
+                    {% endfor %}
+                </div>
+                <div class="home-sublink-category">
+                    Analyse
+                    {% assign sims = site.software | where: "category","analyse" %}
+                    {% for app in sims %}
+                    {% include software-sublink.html app=app %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="home-action mono">SOFTWARE</div>
+        <i class="arrow fas fa-angle-right"></i>
+    </div>
+    <div class="home-item">
+        <a class="unstyle-anchor overlay-link" href="{% link community.md %}"></a>
+        <img src="assets/images/community.svg">
+        <div class="home-case">
+            <div class="home-case-title">
+                Get support or contribute with the open community building and using tree-sequences
+            </div>
+        </div>
+        <div class="home-action mono">COMMUNITY</div>
+        <i class="arrow fas fa-angle-right"></i>
+    </div>
+
+</main>
