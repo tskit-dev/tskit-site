@@ -1,0 +1,146 @@
+name: Build and deploy site
+
+on:
+  repository_dispatch:
+  schedule:
+    - cron: '29 11 * * *'
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  cancel-superseeded:
+    name: Cancel superseeded
+    runs-on: ubuntu-latest
+    steps:
+        - name: Cancel Previous Runs
+          uses: styfle/cancel-workflow-action@0.6.0
+          with:
+            access_token: ${{ github.token }}
+
+  build-core-site:
+    needs: cancel-superseeded
+    name: Build core site
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.6.0
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby 2.7
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+
+      - uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/Ruby/2.7.2/x64/lib/ruby/gems
+          key: ${{ runner.os }}-gems-v2-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-v2
+
+      - name: Install deps
+        run: |
+          gem install bundler jekyll
+          bundle install
+
+      - name: Build site
+        run: |
+          bundle exec jekyll build -d dist
+
+      - name: Debug
+        run: |
+          cat Gemfile.lock
+          bundle info jekyll
+          bundle info jekyll-theme-cayman
+          ls
+          cat dist/index.html
+
+      - name: Upload built site
+        uses: actions/upload-artifact@v2
+        with:
+          name: core-site
+          path: dist/*
+
+  build-msprime-docs:
+    name: Build msprime
+    if: github.ref == 'refs/heads/main'
+    needs: cancel-superseeded
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+          repository: tskit-dev/msprime
+          submodules: true
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: venv
+          key: msprime-docs-venv-v2-${{ hashFiles('requirements/CI-docs/requirements.txt') }}
+
+      - name: Build virtualenv
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: python -m venv venv
+
+      - name: Install deps
+        run: venv/bin/activate && pip install -r requirements/CI-docs/requirements.txt
+
+      - name: Install GSL
+        run: sudo apt-get install -y libgsl0-dev
+
+      - name: Build C module
+        run: venv/bin/activate && make $MAKE_TARGET
+
+      - name: Build Docs
+        run: venv/bin/activate && make -C docs
+
+      - name: Upload built site
+        uses: actions/upload-artifact@v2
+        with:
+          name: msprime-docs
+          path: docs/_build/html
+
+  deploy:
+    name: Deploy 🚀
+    needs: [build-core-site, build-msprime-docs]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Download core site
+        uses: actions/download-artifact@v2
+        with:
+          name: core-site
+          path: site
+
+      - name: Download msprime-docs
+        uses: actions/download-artifact@v2
+        with:
+          name: msprime-docs
+          path: site/msprime/docs
+
+      - name: Pages config
+        run: |
+          touch site/.nojekyll
+          echo "tskit.dev" > site/CNAME
+
+      - name: debug
+        run: |
+          ls -R
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.ADMINBOT_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: site
+          SINGLE_COMMIT: true
