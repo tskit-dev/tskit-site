@@ -9,17 +9,17 @@ on:
     branches: [main]
 
 jobs:
-  cancel-superseeded:
-    name: Cancel superseeded
-    runs-on: ubuntu-latest
+  cancel-superseded:
+    name: Cancel superseded
+    runs-on: ubuntu-20.04
     steps:
         - name: Cancel Previous Runs
-          uses: styfle/cancel-workflow-action@0.6.0
+          uses: styfle/cancel-workflow-action@0.7.0
           with:
             access_token: ${{ github.token }}
 
   build-core-site:
-    needs: cancel-superseeded
+    needs: cancel-superseded
     name: Build core site
     runs-on: ubuntu-20.04
     steps:
@@ -49,8 +49,7 @@ jobs:
           bundle install
 
       - name: Build site
-        run: |
-          bundle exec jekyll build -d dist
+        run: bundle exec jekyll build -d dist
 
       - name: Debug
         run: |
@@ -67,53 +66,219 @@ jobs:
           path: dist/*
 
   build-msprime-docs:
-    name: Build msprime
-    if: github.ref == 'refs/heads/main'
-    needs: cancel-superseeded
+    name: Build msprime docs
+    needs: cancel-superseded
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+        name: Checkout msprime
         with:
           ref: main
           repository: tskit-dev/msprime
           submodules: true
 
+      - name: Get commit SHA1 for cache
+        run: git rev-parse HEAD > SHA1
+
+      - uses: actions/cache@v2
+        id: docs-cache
+        name: Docs cache
+        with:
+          path: docs/_build/html
+          key: msprime-docs-${{ hashFiles('SHA1') }}
+
       - uses: actions/setup-python@v2
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Setup Pyton
         with:
           python-version: 3.8
 
       - uses: actions/cache@v2
-        id: cache
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Virtualenv cache - latest
+        id: cache-latest
         with:
-          path: venv
-          key: msprime-docs-venv-v2-${{ hashFiles('requirements/CI-docs/requirements.txt') }}
+          path: venv-latest
+          key: msprime-docs-venv-v3-${{ hashFiles('requirements/CI-docs/requirements.txt') }}
 
       - name: Build virtualenv
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: python -m venv venv
+        if: steps.cache-latest.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
+        run: python -m venv venv-latest
 
       - name: Install deps
-        run: venv/bin/activate && pip install -r requirements/CI-docs/requirements.txt
-
-      - name: Install GSL
-        run: sudo apt-get install -y libgsl0-dev
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          venv-latest/bin/activate && pip install -r requirements/CI-docs/requirements.txt
 
       - name: Build C module
-        run: venv/bin/activate && make $MAKE_TARGET
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: venv-latest/bin/activate && make
 
       - name: Build Docs
-        run: venv/bin/activate && make -C docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: venv-latest/bin/activate && make -C docs
 
-      - name: Upload built site
+      - name: Upload msprime latest docs
         uses: actions/upload-artifact@v2
         with:
-          name: msprime-docs
+          name: msprime-docs-latest
           path: docs/_build/html
 
+      - name: Checkout latest stable tag
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
+
+      - uses: actions/cache@v2
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Virtualenv cache - stable
+        id: cache
+        with:
+          path: venv-stable
+          key: msprime-docs-venv-v3-${{ hashFiles('requirements/CI-docs/requirements.txt') }}
+
+      - name: Build virtualenv
+        if: steps.cache-stable.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
+        run: python -m venv venv-stable
+
+      - name: Install deps
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: venv-stable/bin/activate && pip install -r python/requirements/CI-docs/requirements.txt
+
+      - name: Build C module
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: venv-stable/bin/activate && make
+
+      - name: Build Docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: venv-stable/bin/activate && make -C docs
+
+      - name: Upload msprime stable docs
+        uses: actions/upload-artifact@v2
+        with:
+          name: msprime-docs-stable
+          path: docs/_build/html
+
+  build-tskit-docs:
+    name: Build tskit docs
+    needs: cancel-superseded
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout tskit
+        with:
+          ref: main
+          repository: tskit-dev/tskit
+          submodules: true
+
+      - name: Get commit SHA1 for cache
+        run: git rev-parse HEAD > SHA1
+
+      - uses: actions/cache@v2
+        id: docs-cache
+        name: Docs cache
+        with:
+          path: docs/_build/html
+          key: tskit-docs-${{ hashFiles('SHA1') }}
+
+      - uses: actions/setup-python@v2
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Setup Pyton
+        with:
+          python-version: 3.8
+
+      - uses: actions/cache@v2
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Virtualenv cache - latest
+        id: cache-latest
+        with:
+          path: venv-latest
+          key: tskit-docs-venv-v3-${{ hashFiles('python/requirements/CI-docs/requirements.txt') }}
+
+      - name: Build virtualenv
+        if: steps.cache-latest.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
+        run: python -m venv venv-latest
+
+      - name: Install deps
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get install doxygen
+          venv-latest/bin/activate && pip install -r python/requirements/CI-docs/requirements.txt
+
+      - name: Build C module
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: venv-latest/bin/activate && make -C python
+
+      - name: Build Docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: venv-latest/bin/activate && make -C docs
+
+      - name: Upload tskit latest docs
+        uses: actions/upload-artifact@v2
+        with:
+          name: tskit-docs-latest
+          path: docs/_build/html
+
+      - name: Checkout latest stable tag
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
+
+      - uses: actions/cache@v2
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Virtualenv cache - stable
+        id: cache
+        with:
+          path: venv-stable
+          key: tskit-docs-venv-v3-${{ hashFiles('python/requirements/CI-docs/requirements.txt') }}
+
+      - name: Build virtualenv
+        if: steps.cache-stable.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
+        run: python -m venv venv-stable
+
+      - name: Install deps
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: venv-stable/bin/activate && pip install -r python/requirements/CI-docs/requirements.txt
+
+      - name: Build C module
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: venv-stable/bin/activate && make -C python
+
+      - name: Build Docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: venv-stable/bin/activate && make -C docs
+
+      - name: Upload tskit stable docs
+        uses: actions/upload-artifact@v2
+        with:
+          name: tskit-docs-stable
+          path: docs/_build/html
+
+
+  import-tutorials:
+    name: Import tutorials
+    needs: cancel-superseded
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout tutorials
+        with:
+          ref: gh-pages
+          repository: tskit-dev/tutorials
+
+      - name: Upload tutorials
+        uses: actions/upload-artifact@v2
+        with:
+          name: tutorials
+          path: .
+
   deploy:
-    name: Deploy 🚀
-    needs: [build-core-site, build-msprime-docs]
-    if: github.ref == 'refs/heads/main'
+    name: Deploy 🚀 (if on main branch)
+    needs:
+      - build-core-site
+      - build-msprime-docs
+      - build-tskit-docs
+      - import-tutorials
     runs-on: ubuntu-20.04
     steps:
       - name: Download core site
@@ -122,22 +287,55 @@ jobs:
           name: core-site
           path: site
 
-      - name: Download msprime-docs
+      - name: Download msprime-docs latest
         uses: actions/download-artifact@v2
         with:
-          name: msprime-docs
-          path: site/msprime/docs
+          name: msprime-docs-latest
+          path: site/msprime/docs/latest
 
-      - name: Pages config
+      - name: Download msprime-docs stable
+        uses: actions/download-artifact@v2
+        with:
+          name: msprime-docs-stable
+          path: site/mprime/docs/stable
+
+      - name: Download tskit-docs latest
+        uses: actions/download-artifact@v2
+        with:
+          name: tskit-docs-latest
+          path: site/tskit/docs/latest
+
+      - name: Download tskit-docs stable
+        uses: actions/download-artifact@v2
+        with:
+          name: tskit-docs-stable
+          path: site/tskit/docs/stable
+
+      - name: Download tutorials
+        uses: actions/download-artifact@v2
+        with:
+          name: tutorials
+          path: site/tutorials
+
+      - name: Pages config and tweaks
         run: |
           touch site/.nojekyll
           echo "tskit.dev" > site/CNAME
+          echo "<meta http-equiv="Refresh" content="0; url=/msprime/docs/stable" />" > site/msprime/docs/index.html
+          echo "<meta http-equiv="Refresh" content="0; url=/tskit/docs/stable" />" > site/tskit/docs/index.html
 
-      - name: debug
+      - name: List site contents
         run: |
           ls -R
 
+      - name: Upload site (for PR inspection)
+        uses: actions/upload-artifact@v2
+        with:
+          name: site
+          path: .
+
       - name: Deploy
+        if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.ADMINBOT_TOKEN }}
