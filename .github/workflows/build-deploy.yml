@@ -85,7 +85,7 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: msprime-docs-v2-${{ hashFiles('SHA1') }}
+          key: msprime-docs-v3-${{ hashFiles('SHA1') }}
 
       - name: Install GSL
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -132,6 +132,8 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
+          git submodule update --recursive
+          git status
 
       - uses: actions/cache@v2
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -190,7 +192,7 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: tskit-docs-v2-${{ hashFiles('SHA1') }}
+          key: tskit-docs-v3-${{ hashFiles('SHA1') }}
 
       - uses: actions/setup-python@v2
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -234,6 +236,8 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
+          git submodule update --recursive
+          git status
 
       - uses: actions/cache@v2
         if: steps.docs-cache.outputs.cache-hit != 'true'
