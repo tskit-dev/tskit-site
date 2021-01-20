@@ -4,15 +4,15 @@ This repo is the source code for http://tskit.dev
 
 The site is made with [jekyll](https://jekyllrb.com/)
 
-## Dependancies
+## Dependencies
 
 ```
-sudo gem install bundler jekyll
-sudo bundle install 
+gem install --user-install bundler jekyll
+bundle install 
 ```
 
 ## Previewing the site
-`bundle exec jekyll build`
+`bundle exec jekyll serve`
 
 ## Data sources
 Publications, tutorials and videos are listed in `_config.yml`. Publication data is scraped, but can be overriden with
