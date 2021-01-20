@@ -131,6 +131,7 @@ jobs:
       - name: Checkout latest stable tag
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
+          git fetch --tags
           git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
           git submodule update --recursive
           git status
@@ -235,6 +236,7 @@ jobs:
       - name: Checkout latest stable tag
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
+          git fetch --tags
           git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
           git submodule update --recursive
           git status
