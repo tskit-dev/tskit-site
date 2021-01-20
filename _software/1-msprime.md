@@ -6,7 +6,8 @@ name: msprime
 #description: 
 #repo_url: 
 gh_org: tskit-dev
-docs_url: https://msprime.readthedocs.io
+#For now - ultimately we'd like this to be https://tskit-dev/msprime/docs/stable
+docs_url: https://tskit-dev.github.io/msprime-docs/main/
 category: simulate
 permalink: /msprime
 python_package: msprime
