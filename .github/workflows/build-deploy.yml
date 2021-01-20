@@ -84,8 +84,12 @@ jobs:
         id: docs-cache
         name: Docs cache
         with:
-          path: docs/_build/html
-          key: msprime-docs-${{ hashFiles('SHA1') }}
+          path: dist
+          key: msprime-docs-v2-${{ hashFiles('SHA1') }}
+
+      - name: Install GSL
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: sudo apt-get install -y libgsl0-dev
 
       - uses: actions/setup-python@v2
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -118,11 +122,11 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-latest/bin/activate && make -C docs
 
-      - name: Upload msprime latest docs
-        uses: actions/upload-artifact@v2
-        with:
-          name: msprime-docs-latest
-          path: docs/_build/html
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p dist
+          cp -r docs/_build/html dist/latest
 
       - name: Checkout latest stable tag
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -143,7 +147,7 @@ jobs:
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: venv-stable/bin/activate && pip install -r python/requirements/CI-docs/requirements.txt
+        run: venv-stable/bin/activate && pip install -r requirements/CI-docs/requirements.txt
 
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -153,11 +157,16 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-stable/bin/activate && make -C docs
 
-      - name: Upload msprime stable docs
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run:
+          cp -r docs/_build/html dist/stable
+
+      - name: Upload msprime docs
         uses: actions/upload-artifact@v2
         with:
-          name: msprime-docs-stable
-          path: docs/_build/html
+          name: msprime-docs
+          path: dist/*
 
   build-tskit-docs:
     name: Build tskit docs
@@ -178,8 +187,8 @@ jobs:
         id: docs-cache
         name: Docs cache
         with:
-          path: docs/_build/html
-          key: tskit-docs-${{ hashFiles('SHA1') }}
+          path: dist
+          key: tskit-docs-v2-${{ hashFiles('SHA1') }}
 
       - uses: actions/setup-python@v2
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -213,11 +222,11 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-latest/bin/activate && make -C docs
 
-      - name: Upload tskit latest docs
-        uses: actions/upload-artifact@v2
-        with:
-          name: tskit-docs-latest
-          path: docs/_build/html
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p dist
+          cp -r docs/_build/html dist/latest
 
       - name: Checkout latest stable tag
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -248,11 +257,16 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-stable/bin/activate && make -C docs
 
-      - name: Upload tskit stable docs
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          cp -r docs/_build/html dist/stable
+
+      - name: Upload tskit docs
         uses: actions/upload-artifact@v2
         with:
-          name: tskit-docs-stable
-          path: docs/_build/html
+          name: tskit-docs
+          path: dist/*
 
 
   import-tutorials:
@@ -287,29 +301,17 @@ jobs:
           name: core-site
           path: site
 
-      - name: Download msprime-docs latest
+      - name: Download msprime-docs
         uses: actions/download-artifact@v2
         with:
-          name: msprime-docs-latest
-          path: site/msprime/docs/latest
+          name: msprime-docs
+          path: site/msprime/docs
 
-      - name: Download msprime-docs stable
+      - name: Download tskit-docs
         uses: actions/download-artifact@v2
         with:
-          name: msprime-docs-stable
-          path: site/mprime/docs/stable
-
-      - name: Download tskit-docs latest
-        uses: actions/download-artifact@v2
-        with:
-          name: tskit-docs-latest
-          path: site/tskit/docs/latest
-
-      - name: Download tskit-docs stable
-        uses: actions/download-artifact@v2
-        with:
-          name: tskit-docs-stable
-          path: site/tskit/docs/stable
+          name: tskit-docs
+          path: site/tskit/docs
 
       - name: Download tutorials
         uses: actions/download-artifact@v2
@@ -321,8 +323,8 @@ jobs:
         run: |
           touch site/.nojekyll
           echo "tskit.dev" > site/CNAME
-          echo "<meta http-equiv="Refresh" content="0; url=/msprime/docs/stable" />" > site/msprime/docs/index.html
-          echo "<meta http-equiv="Refresh" content="0; url=/tskit/docs/stable" />" > site/tskit/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/msprime/docs/stable\" />" > site/msprime/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tskit/docs/stable\" />" > site/tskit/docs/index.html
 
       - name: List site contents
         run: |
