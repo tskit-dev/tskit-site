@@ -85,7 +85,7 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: msprime-docs-v3-${{ hashFiles('SHA1') }}
+          key: msprime-docs-v4-${{ hashFiles('SHA1') }}
 
       - name: Install GSL
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -193,7 +193,7 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: tskit-docs-v3-${{ hashFiles('SHA1') }}
+          key: tskit-docs-v4-${{ hashFiles('SHA1') }}
 
       - uses: actions/setup-python@v2
         if: steps.docs-cache.outputs.cache-hit != 'true'
