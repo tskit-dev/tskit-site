@@ -7,12 +7,65 @@ permalink: /learn.html
 ---
 <h1><a id="what"></a>What is a tree-sequence</h1>
 <div>
-    <p>A <em>tree sequence</em> represents the relationships between a set of DNA
-    sequences, and is used for efficient storage and analysis of genetic data.</p>
-    <p>Tree sequences can be created by <a href="software#simulate">simulation</a> or by
-    <a href="software#infer">inferring relationships from genetic variation</a>.
-    In both cases, the efficiency provided by the tree sequence format makes it
-    possible to deal with millions of whole genomes at a time.</p>
+    <p>A <em>succinct tree sequence</em>, or tree sequence for short, represents the
+    relationships between a set of DNA sequences. Tree sequences can be used to store
+    genetic data efficiently, and enable powerful and rapid analysis of millions of
+    whole genomes at a time. They can be created by
+    <a href="software#simulate">simulation</a> or by <a href="software#infer">inferring
+    relationships from genetic variation</a>.</p>
+    
+    The key things a tree sequence can provide are:
+    <dl>
+        <dt>A record of full genetic ancestry</dt>
+        <dd>Tree sequences efficiently store the full genetic history of a set of genomes, by sharing
+        <em>edges</em> (branches) between adjacent trees. <a href="#ancestry">Read more ...</a></dd>
+        <dt>An encoding of DNA data</dt>
+        <dd>Placing mutations on a tree sequence allows lossless representation and compression of
+    DNA datasets. <a href="#mutations">Read more ...</a></dd>
+        <dt>An efficient analysis framework</dt>
+        <dd>Analyses of genetic variation can be reformulated as measurements on trees;
+    applying this to trees with shared structure can (massively?) speed up genome-wide statistical calculations. <a href="#analysis">Read more ...</a></dd>
+    </dl>
+    
+    <h3 id="ancestry">A record of full genetic ancestry</h3>
+    <p>Two basic principles underpin the tree sequence concept:
+    <ol>
+        <li>At a given position along a chromosome, the relationship between a set of
+        genomes can be represented by a single evolutionary tree.</li>
+        <li>Trees near to each other on the chromosome look similar, that is they 
+        <em>share structure</em>.</li>
+    </ol>
+    A visualization of a short tree sequence is shown below, focussing on the first 1000
+    letters (base pairs) of 20 simulated genomes. These genomes are represented as blue
+    dots at the tips of each tree; the position of the trees along the chromosome is
+    indicated underneath.
+    <figure>
+    {% include assets/images/basic_ts.svg %}
+      <figcaption>A tree sequence of the first 1000 base pairs of a
+      simulated chromosome. Branches, or <em>edges</em>, shared between trees are highlighted</figcaption>
+</figure>
+    The relationship, or genealogy, linking the 20 genomes is the same between positions
+    0 and 383, and is shown by the first tree. This is slightly different from the genealogy
+    between positions 384 and 874 (the second tree), which is again slightly different
+    from the genealogy between positions 875 and 999 (the third tree). Nevertheless the
+    three trees are almost identical, as highlighted by the shared, coloured branches.</p>
+    <p>A tree sequence captures the shared structure between trees by allowing <em>edges</em>
+    (the branches or lines in the trees) to persist from one tree to another. This is
+    equivalent to storing the difference between adjacent trees. Differences between
+    adjacent trees are usually very small, even for huge trees, which explains why tree
+    sequences are so efficient.</p>
+
+    <h3 id="mutations">An encoding of DNA data</h3>
+    <p>Knowing the full ancestry of all the parts of the genome can be incredibly
+    informative, but how does this translate into the actual letters of a DNA sequence?
+    The key is that differences between genomes are caused by mutations, and once you
+    know the tree, usually only a few mutations are needed to explain the pattern of
+    variation.</p>
+    <p>This is essentially an <em>evolutionary encoding</em> of the data.</p>
+    
+    <h3 id="analysis">An efficient analysis framework</h3>
+
+    Stuff here about incremental statistics
 </div>
 <h1><a id="tutorials"></a>Tree-sequence tutorials</h1>
 {% for tutorial in site.tutorials %}
