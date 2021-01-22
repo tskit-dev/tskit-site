@@ -29,6 +29,17 @@ $border-color: #045167 !default;
 $table-border-color: #e9ebec !default;
 $hr-border-color: #eff0f1 !default;
 
+// Define as CSS variables so we can use e.g. in SVGs
+:root {
+    --body-bg-color:#{$body-bg-color};
+    --hilight-bg-color:#{$hilight-bg-color};
+    --hover-color:#{$hover-color};
+    --section-headings-color:#{$section-headings-color};
+    --body-text-color:#{$body-text-color};
+    --body-link-color:#{$body-link-color};
+    --blockquote-text-color:#{$blockquote-text-color};
+}
+
 @import "{{ site.theme }}";
 
 $fa-font-path: "../fonts/font-awesome/";
