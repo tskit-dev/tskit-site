@@ -1,9 +1,9 @@
 ---
 ---
 
-$body-bg-color: black;
-$hilight-bg-color: #181a1b;
-$hover-color: #41484a;
+$body-bg-color: white;
+$hilight-bg-color: #eeeeee;
+$hover-color: #b7b7b7;
 
 // Breakpoints
 $large-breakpoint: 64em !default;
@@ -11,12 +11,12 @@ $medium-breakpoint: 42em !default;
 
 // Headers
 $header-heading-color: #fff !default;
-$header-bg-color: #12e3a8 !default;
-$header-bg-color-secondary: #045167 !default;
+$header-bg-color: #045167 !default;
+$header-bg-color-secondary: #12e3a8 !default;
 
 // Text
-$section-headings-color: #12e3a8 !default;
-$body-text-color: #8d9ba2 !default;
+$section-headings-color: #045167 !default;
+$body-text-color: #565e62 !default;
 $body-link-color: #046f8f !default;
 $blockquote-text-color: #819198 !default;
 
@@ -218,7 +218,7 @@ body {
   background-color: $hilight-bg-color;
   width: 550px;
   padding: 15px;
-  border: 5px solid black;
+  border: 5px solid $body-bg-color;
 
   .software-description {
     flex: 1;
