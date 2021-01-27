@@ -107,7 +107,7 @@ jobs:
 
       - name: Build virtualenv
         if: steps.cache-latest.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
-        run: python -m venv venv-latest
+        run: /usr/bin/python3 -m venv venv-latest
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -146,11 +146,11 @@ jobs:
         with:
           path: venv-stable
           # TODO: This line should only have the docs requirements, not dev, but we need to wait till the stable docs are post 1.0
-          key: msprime-docs-venv-v3-${{ hashFiles('requirements/CI-docs/requirements.txt') }}-${{ hashFiles('requirements/development.txt')  }}
+          key: msprime-docs-venv-v4-${{ hashFiles('requirements/CI-docs/requirements.txt') }}-${{ hashFiles('requirements/development.txt')  }}
 
       - name: Build virtualenv
         if: steps.cache-stable.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
-        run: python -m venv venv-stable
+        run: /usr/bin/python3 -m venv venv-stable
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -219,7 +219,7 @@ jobs:
 
       - name: Build virtualenv
         if: steps.cache-latest.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
-        run: python -m venv venv-latest
+        run: /usr/bin/python3 -m venv venv-latest
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -258,11 +258,11 @@ jobs:
         id: cache
         with:
           path: venv-stable
-          key: tskit-docs-venv-v3-${{ hashFiles('python/requirements/CI-docs/requirements.txt') }}
+          key: tskit-docs-venv-v4-${{ hashFiles('python/requirements/CI-docs/requirements.txt') }}
 
       - name: Build virtualenv
         if: steps.cache-stable.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
-        run: python -m venv venv-stable
+        run: /usr/bin/python3 -m venv venv-stable
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
