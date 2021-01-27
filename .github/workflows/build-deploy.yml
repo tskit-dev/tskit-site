@@ -107,7 +107,7 @@ jobs:
 
       - name: Build virtualenv
         if: steps.cache-latest.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
-        run: /usr/bin/python3 -m venv venv-latest
+        run: python3 -m venv venv-latest
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -150,7 +150,7 @@ jobs:
 
       - name: Build virtualenv
         if: steps.cache-stable.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
-        run: /usr/bin/python3 -m venv venv-stable
+        run: python3 -m venv venv-stable
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -219,7 +219,7 @@ jobs:
 
       - name: Build virtualenv
         if: steps.cache-latest.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
-        run: /usr/bin/python3 -m venv venv-latest
+        run: python3 -m venv venv-latest
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -262,7 +262,7 @@ jobs:
 
       - name: Build virtualenv
         if: steps.cache-stable.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
-        run: /usr/bin/python3 -m venv venv-stable
+        run: python3 -m venv venv-stable
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
