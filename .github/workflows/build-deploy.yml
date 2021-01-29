@@ -76,6 +76,7 @@ jobs:
           ref: main
           repository: tskit-dev/msprime
           submodules: true
+          fetch-depth: 0 # Needed for setuptools_scm to work correctly
 
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
@@ -85,7 +86,7 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: msprime-docs-v5-${{ hashFiles('SHA1') }}
+          key: msprime-docs-v6-${{ hashFiles('SHA1') }}
 
       - name: Install GSL
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -93,7 +94,7 @@ jobs:
 
       - uses: actions/setup-python@v2
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        name: Setup Pyton
+        name: Setup Python
         with:
           python-version: 3.8
 
@@ -123,7 +124,9 @@ jobs:
         run: |
           venv-latest/bin/activate
           cd docs
-          make
+          make dist
+          # make dist changes the _conf.yml file to write the version number, so drop the change
+          git checkout .
 
       - name: Copy docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -192,6 +195,7 @@ jobs:
           ref: main
           repository: tskit-dev/tskit
           submodules: true
+          fetch-depth: 0 # Needed for setuptools_scm to work correctly
 
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
