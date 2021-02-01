@@ -17,7 +17,7 @@ layout: content-page
     {% if page.github.releases[0] %}
     <div>
         <i class="fas fa-box-open fa-fw"></i>
-        Latest release: <a href="{{page.github.releases[0].html_url}}">{{page.github.releases[0].name}}</a>
+        Latest release: <a href="{{page.github.releases[0].html_url}}">{{page.github.releases[0].tag_name}}</a>
         {{page.github.releases[0].published_at | timeago}}
     </div>
     {% endif %}
