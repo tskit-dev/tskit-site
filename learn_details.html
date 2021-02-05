@@ -1,0 +1,73 @@
+---
+layout: page
+title: More tree sequence details
+permalink: /learn_details.html
+
+
+---
+<h1>A detailed introduction to tree sequences</h1>
+<div>
+By recording the full genetic ancestry, tree sequences capture the complete genalogical
+history of a set of genomes. This allows the development of maximally powerful analyses,
+efficient DNA data compression, and highly scalable algorithms.
+</div>
+<h3 id="ancestry">Tree sequences: a record of full genetic ancestry</h3>
+<div>
+    <p>The power of tree sequences comes from the fact that they can store the full genetic
+ancestry of a sample of genomes. This full ancestry, or genealogy, is useful in many
+ways **Extra sentence from Peter?**</p>
+    <p>Two basic principles explain how tree sequences work:</p>
+    <ol>
+        <li>At a given position along a chromosome, the relationship between a set of
+        genomes can be represented by a single genetic tree.</li>
+        <li>Trees near to each other on the chromosome look similar, that is they 
+        <em>share structure</em>.</li>
+    </ol>
+    <p>Both of these principles reflect underlying biological truths. The reason that a
+    tree is a good representation is that each bit of DNA we see is the result of
+    many duplications in the past. Each bifurcation in the tree represents a historical
+    event when a single ancestral piece of DNA was duplicated to create two essentially
+    identical copies. The reason that nearby trees are similar is that adjacent letters
+    on a chromosome are nearly always inherited together; they only have different
+    histories because of <em>genetic recombination</em>, and the closer two positions on
+    the genome, the less likely it is that recombination will split them apart. 
+    <p>A visualization of a short tree sequence is shown below, focussing on the first 1000
+    letters (base pairs) of 20 simulated genomes. These genomes are represented as blue
+    dots at the tips of each tree; the position of the trees along the chromosome is
+    indicated underneath.</p>
+    <figure>
+    {% include assets/images/basic_ts.svg %}
+      <figcaption>A tree sequence of the first 1000 base pairs of a
+      simulated chromosome. Branches, or <em>edges</em>, shared between trees are highlighted</figcaption>
+</figure>
+    For the 20 genomes, the first tree shows the ancestral relationships at the start of
+    the chromosome. These relationships stay exactly the same up to position 384,
+    but then change slightly, as shown by the second tree. They change yet again,
+    forming a third tree, as we move to position 875. However, the three
+    trees still remain almost identical, as highlighted by the shared, coloured branches.</p>
+    <p>The normal process of inheritance in The reason that trees differ along the genome is because they have
+    different ancestries. The main cause of this this is <em>genetic recombination</em>,
+    which has the effect of hence the full genetic genealogy is sometimes known as the Ancestral Recombination Graph: it is possible to ) In principle, each recombination event trees should differ from each other by one SPR</aside>
+    <p>A tree sequence captures the shared structure between these sorts of trees by
+    allowing <em>edges</em> (the branches or lines in the trees) to persist from one tree
+    to another. This is equivalent to storing the difference between adjacent trees.
+    Differences between adjacent trees are usually very small
+, even for huge trees,
+    which explains why tree sequences are so efficient.</p>
+    <p>Note that this ancestry is biologically meaningful, e.g. the MRCA nodes represent real ancestors **expand**</p>
+
+</div>
+<h3 id="mutations">Tree sequences: an encoding of DNA data</h3>
+<div>
+    <p>Knowing the full ancestry of all the parts of the genome can be incredibly
+    informative, but how does this translate into the actual letters of a DNA sequence?
+    The key is that differences between genomes are caused by inherited mutations. So
+    once you know the ancestry, only one or two mutations are needed to explain the
+    pattern of variation at a site on the genome</p>
+    <p>This is essentially an <em>evolutionary encoding</em> of the data.</p>
+    
+</div>
+<h3 id="analysis">Tree sequences: an efficient analysis framework</h3>
+<div>
+    Stuff here about incremental statistics **expand**
+</div>
