@@ -243,6 +243,14 @@ body {
   }
 }
 
+.tree-sequence { // style any SVG tree sequence figures to match the site style
+    .background polygon {fill: #FFFFFF33}
+    .node .sym {fill: $body-link-color}
+    .axis line {stroke: $body-text-color}
+    .axis text {fill: $body-text-color}
+    .edge {stroke: $body-text-color}
+}
+
 .software-logo {
   float: right;
   width: 200px;
