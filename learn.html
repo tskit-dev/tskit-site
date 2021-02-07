@@ -31,29 +31,45 @@ permalink: /learn.html
             <a href="learn_details.html#analysis">Read more ...</a></dd>
     </dl>
 </div>
-<h1><a id="tutorials"></a>Tree-sequence tutorials</h1>
-{% for tutorial in site.tutorials %}
-<div class="tutorial">
-    <a href="{{ tutorial.url }}">
-        <h2>
-            {{ tutorial.title }}
-        </h2>
-    </a>
-    <div class="tutorial-description">{{ tutorial.description }}</div>
-    <div class="tutorial-software mono">
-        Featured Software:
-        {% for software in tutorial.software %}
-        <a href="software/{{ software }}">{{ software }}</a>
-        {% endfor %}
-    </div>
-</div>
-{% endfor %}
 
-<h1><a id="talks"></a>Tree-sequence talks</h1>
-{% for video in site.videos %}
-{% include video.html %}
-{% endfor %}
+<!-- <h1><a id="tutorials"></a>Tree-sequence tutorials</h1> -->
+<!-- {% for tutorial in site.tutorials %} -->
+<!-- <div class="tutorial"> -->
+<!--     <a href="{{ tutorial.url }}"> -->
+<!--         <h2> -->
+<!--             {{ tutorial.title }} -->
+<!--         </h2> -->
+<!--     </a> -->
+<!--     <div class="tutorial-description">{{ tutorial.description }}</div> -->
+<!--     <div class="tutorial-software mono"> -->
+<!--         Featured Software: -->
+<!--         {% for software in tutorial.software %} -->
+<!--         <a href="software/{{ software }}">{{ software }}</a> -->
+<!--         {% endfor %} -->
+<!--     </div> -->
+<!-- </div> -->
+<!-- {% endfor %} -->
 
+<h1><a id="talks"></a>Videos</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Who</th><th>Year</th><th>Where</th><th>Video</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for video in site.videos %}
+    <tr>
+      <td>{{ video.who }}</td>
+      <td>{{ video.year }}</td>
+      <td>{{ video.where }}</td>
+      <td><a href="https://www.youtube.com/watch?v={{ video.youtube-id }}">
+          {{ video.title }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<!-- <p> -->
 
 <h1><a id="publications"></a>Tree-sequence publications</h1>
 
