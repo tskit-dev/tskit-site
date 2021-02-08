@@ -1,0 +1,18 @@
+---
+layout: page
+title: Learn
+permalink: /videos.html
+
+---
+
+<p>
+TODO: it's not clear we need this page. If we had more videos we could
+split these up by category. Having the embedded viewers could be useful
+then to allow people to find the content they are looking for.
+</p>
+
+<h1><a id="talks"></a>Videos</h1>
+{% for video in site.videos %}
+{% include video.html %}
+{% endfor %}
+
