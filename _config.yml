@@ -55,16 +55,62 @@ tutorials:
       - tskit
 
 pubs:
+  # TODO update the categories. We may want to remove this entirely.
   categories:
     - key: core
       title: Core tree-sequence
+
   pubs:
     - doi: 10.1038/s41588-019-0483-y
       category: core
-      abstract: Inferring the full genealogical history of a set of DNA sequences is a core problem in evolutionary biology, because this history encodes information about the events and forces that have influenced a species. However, current methods are limited, and the most accurate techniques are able to process no more than a hundred samples. As datasets that consist of millions of genomes are now being collected, there is a need for scalable and efficient inference methods to fully utilize these resources. Here we introduce an algorithm that is able to not only infer whole-genome histories with comparable accuracy to the state-of-the-art but also process four orders of magnitude more sequences. The approach also provides an ‘evolutionary encoding’ of the data, enabling efficient calculation of relevant statistics. We apply the method to human data from the 1000 Genomes Project, Simons Genome Diversity Project and UK Biobank, showing that the inferred genealogies are rich in biological signal and efficient to process.
+      notes: |
+        Start here if you're new to tree sequences. This paper introduces
+        <a href="/tsinfer.html">tsinfer</a>, the method to infer tree sequence
+        topologies from genetic variation data.
+        Please see the
+        <a href="https://www.biorxiv.org/content/10.1101/458067v1">preprint</a>
+        if you cannot access the Nature Genetics paper.
+
+    - doi: 10.1534/genetics.120.303253
+      category: core
+      notes: |
+        This paper shows that we can think about any statistic that works on
+        sequence data in an equivalent (and more powerful) way in terms of the
+        underlying trees, and that we can compute these statistics very efficiently.
+        Read this paper if you would like more technical details on how the
+        underlying data structures work and an introduction to incremental
+        tree sequence algorithms.
+
+    - doi: 10.1371/journal.pcbi.1006581
+      category: core
+      notes: |
+        Forwards-in-time simulations are very flexible but also usually very CPU
+        intensive. This paper shows how we used tree sequences to make
+        forwards-in-time simulations both more efficient and even more flexible.
+
+    - doi: 10.1111/1755-0998.12968
+      category: core
+      notes: |
+        Continuing on from the 2018 PLOS Computational Biology paper,
+        we discuss here how the tree
+        sequence recording method was implemented in the powerful
+        <a href="https://messerlab.org/slim/">SLiM</a> simulator. We
+        show how some simulations are orders of magnitude more efficient
+        and examples of the new possibilities that keeping a full
+        record of the genetic ancestry makes available.
+
     - doi: 10.1371/journal.pcbi.1004842
       category: core
-      abstract: A central challenge in the analysis of genetic variation is to provide realistic genome simulation across millions of samples. Present day coalescent simulations do not scale well, or use approximations that fail to capture important long-range linkage properties. Analysing the results of simulations also presents a substantial challenge, as current methods to store genealogies consume a great deal of space, are slow to parse and do not take advantage of shared structure in correlated trees. We solve these problems by introducing sparse trees and coalescence records as the key units of genealogical analysis. Using these tools, exact simulation of the coalescent with recombination for chromosome-sized regions over hundreds of thousands of samples is possible, and substantially faster than present-day approximate methods. We can also analyse the results orders of magnitude more quickly than with existing methods.
+      notes: |
+        This is where it all started. Here we introduce the
+        <a href="/msprime.html">msprime</a> coalescent simulator and
+        the core algorithms and data structures that would later
+        be separated out into <a href="/tskit.html">tskit</a>.
+        Read this paper if you would like to find out more about
+        coalescent simulation, or to understand the core tree sequence
+        algorithms and theoretical results. <b>Note:</b> much
+        of the terminology has been updated since this original publication
+        as the models were generalised.
 
 videos:
 

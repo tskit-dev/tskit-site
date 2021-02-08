@@ -71,27 +71,20 @@ permalink: /learn.html
 </table>
 <!-- <p> -->
 
-<h1><a id="publications"></a>Tree-sequence publications</h1>
-
-TODO - Complete the list, add pre-print to data fetcher
+<h1><a id="publications"></a>Key publications</h1>
 
 {% for cat in site.pubs.categories %}
 
 <div>
-    <h2>{{ cat.title }}</h2>
-
     {% assign pubs = site.pubs.pubs | where: "category",cat.key %}
     {% for pub in pubs %}
     <div class="publication">
-        <span class="publication-title">{{ pub.title }}"</span>
-        <span class="publication-author">{{ pub.author | map: "family" | join: ", " }}</span>
-        <span class="publication-year">({{ pub.published-online.date-parts | first | first }})</span>
-        <br/>
-        <span class="publication-pub">{{ pub.container-title }}</span>
-        <span class="publication-vol">{{ pub.volume }}</span>
-        <span class="publication-page">{{ pub.page }}</span>
-        <div> doi:<a href="https://doi.org/{{ pub.doi }}">{{ pub.doi }}</a></div>
-        <div class="publication-abstract">{{ pub.abstract }}</div>
+        <span class="publication-title">{{ pub.title }}, </span>
+        <span class="publication-pub">{{ pub.journal }} </span>
+        <span class="publication-year">({{ pub.year }}). </span>
+        <span class="publication-author">{{ pub.author }}.</span>
+        doi:<a href="https://doi.org/{{ pub.doi }}">{{ pub.doi }}</a>
+        <div class="publication-abstract">{{ pub.notes }}</div>
     </div>
     {% endfor %}
     {% endfor %}
