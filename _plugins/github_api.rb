@@ -11,13 +11,13 @@ module Jekyll_Get_Github
       site.collections['software'].docs.each do |d|
         d.data['github'] = {}
         d.data['github']['releases'] = JSON.load(
-          open("https://api.github.com/repos/#{d['gh_org']}/#{d['name']}/releases")
+          URI("https://api.github.com/repos/#{d['gh_org']}/#{d['name']}/releases").open()
         )
         d.data['github']['repo'] = JSON.load(
-          open("https://api.github.com/repos/#{d['gh_org']}/#{d['name']}")
+          URI("https://api.github.com/repos/#{d['gh_org']}/#{d['name']}").open()
         )
         d.data['github']['contributors'] = JSON.load(
-          open("https://api.github.com/repos/#{d['gh_org']}/#{d['name']}/contributors")
+          URI("https://api.github.com/repos/#{d['gh_org']}/#{d['name']}/contributors").open()
         )
       end
     end

@@ -11,9 +11,8 @@ module Jekyll_Get_DOI
     def generate(site)
       site.config['pubs']['pubs'].each do |p|
         target = p
-        source = JSON.load(
-          open("http://api.crossref.org/works/#{p['doi']}")
-        )["message"]
+        doc = JSON.load(URI("http://api.crossref.org/works/#{p['doi']}").open())
+        source = doc["message"]
         if target
           HashJoiner.deep_merge target, source
         else
