@@ -40,20 +40,6 @@ collections:
   software:
     output: true
 
-tutorials:
-  - url: http://www.example.com
-    title: TODO Example tutorial
-    description: This is the example tutorial
-    software:
-      - msprime
-      - tskit
-  - url: http://www.example.com
-    title: TODO Example tutorial 2
-    description: This is the second example tutorial
-    software:
-      - msprime
-      - tskit
-
 pubs:
   # TODO update the categories. We may want to remove this entirely.
   categories:

@@ -3,8 +3,8 @@ layout: page
 title: Learn
 permalink: /learn.html
 
-
 ---
+
 <h1><a id="what"></a>What is a tree-sequence?</h1>
 <div>
     <p>A <em>succinct tree sequence</em>, or tree sequence for short, represents the
@@ -19,36 +19,23 @@ permalink: /learn.html
         <dt>A record of full genetic ancestry</dt>
         <dd>A tree sequence concisely captures the full history of a set of genomes by sharing
         common branches between adjacent genetic trees. <br/>
-            <a href="learn_details.html#ancestry">Read more ...</a></dd>
+        <a href="tutorials/what_is.html#a-record-of-genetic-ancestry">Read more ...</a>
+        </dd>
         <dt>An encoding of DNA data</dt>
-        <dd>Placing mutations on a tree sequence allows lossless representation and compression of
-    DNA datasets. <br/>
-            <a href="learn_details.html#mutations">Read more ...</a></dd>
+        <dd>Placing mutations on a tree sequence allows lossless representation 
+        and compression of DNA datasets. <br/>
+        <a href="what_is.html#an-encoding-of-dna-data">Read more ...</a></dd>
         <dt>An efficient analysis framework</dt>
-        <dd>Analyses of genetic variation can be reformulated as measurements on trees;
-    applying this to trees with shared structure can massively speed up genome-wide
-    statistical calculations. <br/>
-            <a href="learn_details.html#analysis">Read more ...</a></dd>
+        <dd>Many of the analyses we perform on DNA data can be 
+        expressed naturally as operations on the ancestral trees, leading 
+        to highly efficient algorithms. <br/>
+        <a href="what_is.html#an-efficient-analysis-framework">Read more ...</a></dd>
     </dl>
-</div>
 
-<!-- <h1><a id="tutorials"></a>Tree-sequence tutorials</h1> -->
-<!-- {% for tutorial in site.tutorials %} -->
-<!-- <div class="tutorial"> -->
-<!--     <a href="{{ tutorial.url }}"> -->
-<!--         <h2> -->
-<!--             {{ tutorial.title }} -->
-<!--         </h2> -->
-<!--     </a> -->
-<!--     <div class="tutorial-description">{{ tutorial.description }}</div> -->
-<!--     <div class="tutorial-software mono"> -->
-<!--         Featured Software: -->
-<!--         {% for software in tutorial.software %} -->
-<!--         <a href="software/{{ software }}">{{ software }}</a> -->
-<!--         {% endfor %} -->
-<!--     </div> -->
-<!-- </div> -->
-<!-- {% endfor %} -->
+    </p> See the <a href="tutorials/">tutorials</a> for more details
+    and extensive examples on how to generate and process tree sequences.
+    </p>
+</div>
 
 <h1><a id="talks"></a>Videos</h1>
 <table>
