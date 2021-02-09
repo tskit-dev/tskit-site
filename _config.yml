@@ -13,11 +13,10 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: tskit.dev <br/>The Open-Source Tree-Sequence Community
+title: tskit.dev
 email: 	admin@tskit.dev
-description: >- # this means to ignore newlines until "baseurl:"
-  Tree sequences are a highly efficient way of storing and
-  analysing related DNA sequences.
+description: The open source tree sequence community
+
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
@@ -44,7 +43,7 @@ pubs:
   # TODO update the categories. We may want to remove this entirely.
   categories:
     - key: core
-      title: Core tree-sequence
+      title: Core tree sequence
 
   pubs:
     - doi: 10.1038/s41588-019-0483-y
