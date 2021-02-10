@@ -8,8 +8,7 @@ permalink: /community/
 The software projects listed on this site are all open-source and built by contributors,
 most of whom are users and researchers in the field.
 
-New contributors are always welcome! The community's aim is to recognise contributions by
-inclusion on the author list of periodic publications, usually covering major releases. 
+New contributors are always welcome! 
 
 ## Questions, bugs and suggestions
 

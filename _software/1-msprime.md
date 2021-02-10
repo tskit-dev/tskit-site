@@ -6,8 +6,8 @@ name: msprime
 #description: 
 #repo_url: 
 gh_org: tskit-dev
-#For now - ultimately we'd like this to be https://tskit-dev/msprime/docs/stable
-docs_url: https://tskit-dev.github.io/msprime-docs/main/
+# TODO change to stable once msprime 1.0 is shipped.
+docs_url: https://tskit.dev/msprime/docs/latest
 category: simulate
 permalink: /msprime
 python_package: msprime
@@ -21,5 +21,7 @@ code_snippet: |2
   ts = msprime.mutate(ts, rate=1e-6)
 ---
 
-
-TODO Here is some content that is on the full page about msprime
+Msprime is a Python package that simulates ancestral histories and 
+DNA sequence data. Msprime uses backwards-in-time "coalescent" models
+which allows it to simulate data very efficiently; however, it 
+is not as flexible as forwards-in-time simulators like SLiM or fwdpy11.
