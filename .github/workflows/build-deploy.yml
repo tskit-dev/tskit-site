@@ -86,7 +86,7 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: msprime-docs-v6-${{ hashFiles('SHA1') }}
+          key: msprime-docs-v7-${{ hashFiles('SHA1') }}
 
       - name: Install GSL
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -104,11 +104,11 @@ jobs:
         id: cache-latest
         with:
           path: venv-latest
-          key: msprime-docs-venv-v3-${{ hashFiles('requirements/CI-docs/requirements.txt') }}
+          key: msprime-docs-venv-v4-${{ hashFiles('requirements/CI-docs/requirements.txt') }}
 
       - name: Build virtualenv
         if: steps.cache-latest.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
-        run: python3 -m venv venv-latest
+        run: python -m venv venv-latest
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -149,11 +149,11 @@ jobs:
         with:
           path: venv-stable
           # TODO: This line should only have the docs requirements, not dev, but we need to wait till the stable docs are post 1.0
-          key: msprime-docs-venv-v4-${{ hashFiles('requirements/CI-docs/requirements.txt') }}-${{ hashFiles('requirements/development.txt')  }}
+          key: msprime-docs-venv-v5-${{ hashFiles('requirements/CI-docs/requirements.txt') }}-${{ hashFiles('requirements/development.txt')  }}
 
       - name: Build virtualenv
         if: steps.cache-stable.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
-        run: python3 -m venv venv-stable
+        run: python -m venv venv-stable
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -205,7 +205,7 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: tskit-docs-v5-${{ hashFiles('SHA1') }}
+          key: tskit-docs-v6-${{ hashFiles('SHA1') }}
 
       - uses: actions/setup-python@v2
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -219,11 +219,11 @@ jobs:
         id: cache-latest
         with:
           path: venv-latest
-          key: tskit-docs-venv-v3-${{ hashFiles('python/requirements/CI-docs/requirements.txt') }}
+          key: tskit-docs-venv-v4-${{ hashFiles('python/requirements/CI-docs/requirements.txt') }}
 
       - name: Build virtualenv
         if: steps.cache-latest.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
-        run: python3 -m venv venv-latest
+        run: python -m venv venv-latest
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -262,11 +262,11 @@ jobs:
         id: cache
         with:
           path: venv-stable
-          key: tskit-docs-venv-v4-${{ hashFiles('python/requirements/CI-docs/requirements.txt') }}
+          key: tskit-docs-venv-v5-${{ hashFiles('python/requirements/CI-docs/requirements.txt') }}
 
       - name: Build virtualenv
         if: steps.cache-stable.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
-        run: python3 -m venv venv-stable
+        run: python -m venv venv-stable
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
