@@ -170,6 +170,7 @@ jobs:
         run: |
           rm -rf docs/_build
           venv-stable/bin/activate
+          cd docs
           make dist
           # make dist changes the _conf.yml file to write the version number, so drop the change
           git checkout .
