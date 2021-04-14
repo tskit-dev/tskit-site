@@ -86,7 +86,7 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: msprime-docs-v8-${{ hashFiles('SHA1') }}
+          key: msprime-docs-v9-${{ hashFiles('SHA1') }}
 
       - name: Install GSL
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -104,7 +104,7 @@ jobs:
         id: cache-latest
         with:
           path: venv-latest
-          key: msprime-docs-venv-v6-${{ hashFiles('requirements/CI-docs/requirements.txt') }}
+          key: msprime-docs-venv-v7-${{ hashFiles('requirements/CI-docs/requirements.txt') }}
 
       - name: Build virtualenv
         if: steps.cache-latest.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
@@ -149,7 +149,7 @@ jobs:
         with:
           path: venv-stable
           # TODO: This line should only have the docs requirements, not dev, but we need to wait till the stable docs are post 1.0
-          key: msprime-docs-venv-v6-${{ hashFiles('requirements/CI-docs/requirements.txt') }}-${{ hashFiles('requirements/development.txt')  }}
+          key: msprime-docs-venv-v7-${{ hashFiles('requirements/CI-docs/requirements.txt') }}-${{ hashFiles('requirements/development.txt')  }}
 
       - name: Build virtualenv
         if: steps.cache-stable.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
