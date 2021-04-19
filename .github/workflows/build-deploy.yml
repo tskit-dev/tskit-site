@@ -98,16 +98,8 @@ jobs:
         with:
           python-version: 3.8
 
-      - uses: actions/cache@v2
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        name: Virtualenv cache - latest
-        id: cache-latest
-        with:
-          path: venv-latest
-          key: msprime-docs-venv-v8-${{ hashFiles('requirements/CI-docs/requirements.txt') }}
-
       - name: Build virtualenv
-        if: steps.cache-latest.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
+        if: steps.docs-cache.outputs.cache-hit != 'true'
         run: python -m venv venv-latest
 
       - name: Install deps
@@ -142,17 +134,8 @@ jobs:
           git submodule update --recursive
           git status
 
-      - uses: actions/cache@v2
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        name: Virtualenv cache - stable
-        id: cache
-        with:
-          path: venv-stable
-          # TODO: This line should only have the docs requirements, not dev, but we need to wait till the stable docs are post 1.0
-          key: msprime-docs-venv-v8-${{ hashFiles('requirements/CI-docs/requirements.txt') }}-${{ hashFiles('requirements/development.txt')  }}
-
       - name: Build virtualenv
-        if: steps.cache-stable.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
+        if: steps.docs-cache.outputs.cache-hit != 'true'
         run: python -m venv venv-stable
 
       - name: Install deps
@@ -215,16 +198,8 @@ jobs:
         with:
           python-version: 3.8
 
-      - uses: actions/cache@v2
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        name: Virtualenv cache - latest
-        id: cache-latest
-        with:
-          path: venv-latest
-          key: tskit-docs-venv-v4-${{ hashFiles('python/requirements/CI-docs/requirements.txt') }}
-
       - name: Build virtualenv
-        if: steps.cache-latest.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
+        if: steps.docs-cache.outputs.cache-hit != 'true'
         run: python -m venv venv-latest
 
       - name: Install deps
@@ -258,16 +233,8 @@ jobs:
           git submodule update --recursive
           git status
 
-      - uses: actions/cache@v2
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        name: Virtualenv cache - stable
-        id: cache
-        with:
-          path: venv-stable
-          key: tskit-docs-venv-v5-${{ hashFiles('python/requirements/CI-docs/requirements.txt') }}
-
       - name: Build virtualenv
-        if: steps.cache-stable.outputs.cache-hit != 'true' && steps.docs-cache.outputs.cache-hit != 'true'
+        if: steps.docs-cache.outputs.cache-hit != 'true'
         run: python -m venv venv-stable
 
       - name: Install deps
