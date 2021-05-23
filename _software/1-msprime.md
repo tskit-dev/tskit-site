@@ -18,7 +18,7 @@ code_snippet: |2
       recombination_rate=1e-4, 
       sequence_length=1e6
   )
-  ts = msprime.mutate(ts, rate=1e-6)
+  ts = msprime.sim_mutations(ts, rate=1e-6)
 ---
 
 Msprime is a Python package that simulates ancestral histories and 
