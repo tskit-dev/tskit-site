@@ -14,5 +14,5 @@ code_snippet: |2
 ---
 ``Tsinfer`` is a Python package to infer a tree sequence from large
 quantities of phased DNA sequence data, for example in a VCF file
-(see the[tutorial](https://tsinfer.readthedocs.io/en/latest/tutorial.html#reading-a-vcf)
+(see the [tutorial](https://tsinfer.readthedocs.io/en/latest/tutorial.html#reading-a-vcf)
 for how to convert data from a VCF into a suitable input format).

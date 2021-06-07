@@ -9,7 +9,11 @@ permalink: /tskit
 python_package: tskit
 logo: https://raw.githubusercontent.com/tskit-dev/administrative/main/tskit_logo.svg
 code_snippet: |2
-  ##TODO##
+  ts = tskit.load("example.ts")
+  afs = ts.allele_frequency_spectrum()
 
 ---
-TODO Here is some content that is on the full page about tskit
+The tskit library provides the underlying functionality used to load, examine, and
+manipulate tree sequences, including efficient methods for calculating genetic statistics.
+It often forms part of an installation of other software packages such as 
+msprime, SLiM, fwdpp, and tsinfer.

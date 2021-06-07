@@ -9,6 +9,6 @@ permalink: /tsdate
 python_package: tsdate
 logo: https://raw.githubusercontent.com/tskit-dev/tsdate/master/docs/_static/tsdate_logo.svg                                       
 code_snippet: |2
-  ##TODO##
+  dated_ts = tsdate.date(inferred_ts)
 ---
-TODO Here is some content that is on the full page about tsdate
+Tsdate is a scalable method for estimating the age of ancestral nodes in a tree sequence. 
