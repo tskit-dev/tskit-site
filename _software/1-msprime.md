@@ -11,7 +11,7 @@ docs_url: https://tskit.dev/msprime/docs/latest
 category: simulate
 permalink: /msprime
 python_package: msprime
-logo: https://user-images.githubusercontent.com/8552/101000815-4837ad00-3556-11eb-8597-490e44f53f41.png
+logo: https://raw.githubusercontent.com/tskit-dev/msprime/main/msprime_logo.svg
 code_snippet: |2
   ts = msprime.sim_ancestry(
       samples=10, 
