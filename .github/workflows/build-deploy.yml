@@ -286,7 +286,7 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: pyslim-docs-v3-${{ hashFiles('SHA1') }}
+          key: pyslim-docs-v4-${{ hashFiles('SHA1') }}
 
       - uses: actions/setup-python@v2
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -419,6 +419,12 @@ jobs:
         with:
           name: tskit-docs
           path: site/tskit/docs
+
+      - name: Download pyslim-docs
+        uses: actions/download-artifact@v2
+        with:
+          name: pyslim-docs
+          path: site/pyslim/docs
 
       - name: Download tutorials
         uses: actions/download-artifact@v2
