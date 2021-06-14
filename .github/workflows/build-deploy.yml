@@ -265,6 +265,117 @@ jobs:
           path: dist/*
 
 
+  build-pyslim-docs:
+    name: Build pyslim docs
+    needs: cancel-superseded
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout pyslim
+        with:
+          ref: main
+          repository: tskit-dev/pyslim
+          submodules: true
+          fetch-depth: 0 # Needed for setuptools_scm to work correctly
+
+      - name: Get commit SHA1 for cache
+        run: git rev-parse HEAD > SHA1
+
+      - uses: actions/cache@v2
+        id: docs-cache
+        name: Docs cache
+        with:
+          path: dist
+          key: pyslim-docs-v3-${{ hashFiles('SHA1') }}
+
+      - uses: actions/setup-python@v2
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Setup Python
+        with:
+          python-version: 3.8
+
+      - name: Build SLiM
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          git clone https://github.com/messerlab/SLiM.git
+          mkdir -p SLiM/Release
+          cd SLiM/Release
+          cmake -D CMAKE_BUILD_TYPE=Release ..
+          make -j 2
+
+      - name: Build virtualenv
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: python -m venv venv-latest
+
+      - name: Install deps
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          venv-latest/bin/activate
+          pip install -r requirements/CI-docs/requirements.txt
+
+      - name: Build Docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          venv-latest/bin/activate
+          export PATH=$PATH:$PWD/SLiM/Release
+          cd docs
+          # don't re-generate these which require tricky prerequisites (inkscape, xmlstarlet)
+          touch _static/{pedigree0.svg,pedigree1.svg,pedigree2.svg,pedigree_recapitate.svg,pedigree_simplify.svg,pedigree_mutate.svg}
+          touch _static/{pedigree01.png,pedigree0.png,pedigree1.png,pedigree2.png,pedigree_recapitate.png,pedigree_simplify.png,pedigree_mutate.png}
+          make dist
+          # make dist changes the _conf.yml file to write the version number, so drop the change
+          git checkout .
+
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p dist
+          cp -r docs/_build/html dist/latest
+
+#      - name: Checkout latest stable tag
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run: |
+#          git fetch --tags --recurse-submodules=no
+#          git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
+#          git submodule update --recursive
+#          git status
+#
+#      - name: Build virtualenv
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run: python -m venv venv-stable
+#
+#      - name: Install deps
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run: |
+#          venv-stable/bin/activate
+#          pip install -r requirements/CI-docs/requirements.txt
+#
+#      - name: Build Docs
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run: |
+#          rm -rf docs/_build
+#          venv-stable/bin/activate
+#          cd docs
+#          # don't re-generate these which require tricky prerequisites (inkscape, xmlstarlet)
+#          touch _static/{pedigree0.svg,pedigree1.svg,pedigree2.svg,pedigree_recapitate.svg,pedigree_simplify.svg,pedigree_mutate.svg}
+#          touch _static/{pedigree01.png,pedigree0.png,pedigree1.png,pedigree2.png,pedigree_recapitate.png,pedigree_simplify.png,pedigree_mutate.png}
+#          # TODO: at next release change this to `make dist`
+#          make
+#          # make dist changes the _conf.yml file to write the version number, so drop the change
+#          git checkout .
+#
+#      - name: Copy docs
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run:
+#          cp -r docs/_build/html dist/stable
+
+      - name: Upload pyslim docs
+        uses: actions/upload-artifact@v2
+        with:
+          name: pyslim-docs
+          path: dist/*
+
+
   import-tutorials:
     name: Import tutorials
     needs: cancel-superseded
