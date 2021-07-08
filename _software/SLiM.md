@@ -18,4 +18,10 @@ code_snippet: |2
   1 { sim.addSubpop("p1", 500); }
   2000 late() { sim.treeSeqOutput("out.trees"); }
 ---
-Here is some content that is on the full page about SLiM
+SLiM is an evolutionary simulation framework that combines a powerful engine
+for population genetic simulations with the capability of modeling arbitrarily
+complex evolutionary scenarios. The underlying individual-based simulation
+engine is highly optimized to enable modeling of entire chromosomes in
+large populations. There is also a graphical user interface on macOS and Linux
+for easy simulation set-up, interactive runtime control, and dynamical
+visualization of simulation output.
