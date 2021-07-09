@@ -22,6 +22,6 @@ SLiM is an evolutionary simulation framework that combines a powerful engine
 for population genetic simulations with the capability of modeling arbitrarily
 complex evolutionary scenarios. The underlying individual-based simulation
 engine is highly optimized to enable modeling of entire chromosomes in
-large populations. There is also a graphical user interface on macOS and Linux
+large populations. There is also a graphical user interface
 for easy simulation set-up, interactive runtime control, and dynamical
 visualization of simulation output.
