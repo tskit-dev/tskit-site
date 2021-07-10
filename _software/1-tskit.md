@@ -9,7 +9,7 @@ permalink: /tskit
 python_package: tskit
 logo: https://raw.githubusercontent.com/tskit-dev/administrative/main/tskit_logo.svg
 code_snippet: |2
-  ts = tskit.load("example.ts")
+  ts = tskit.load("example.trees")
   afs = ts.allele_frequency_spectrum()
 ---
 The tskit library provides the underlying functionality used to load, examine, and
