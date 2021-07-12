@@ -31,8 +31,10 @@ permalink: /learn.html
         to highly efficient algorithms. <br/>
         <a href="tutorials/what_is.html#sec-what-is-analysis">Read more ...</a></dd>
     </dl>
+</div>
 
 <h1><a id="tutorials"></a>Tutorials</h1>
+<div>
     <p>If you like learning by example, then head over to the
     <a href="tutorials/">tutorials</a> section of this site, which provides some
     general introductory material, followed by a number of more focussed tutorials
@@ -44,26 +46,28 @@ permalink: /learn.html
 </div>
 
 <h1><a id="talks"></a>Videos</h1>
+<div>
     <p>If you want to learn about tree sequences by following a talk,
     then you might like to watch one or more of the videos listed below:</p>
-<table>
-  <thead>
-    <tr>
-      <th>Who</th><th>Year</th><th>Where</th><th>Video</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for video in site.videos %}
-    <tr>
-      <td>{{ video.who }}</td>
-      <td>{{ video.year }}</td>
-      <td>{{ video.where }}</td>
-      <td><a href="https://www.youtube.com/watch?v={{ video.youtube-id }}">
-          {{ video.title }}</a></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    <table>
+      <thead>
+        <tr>
+          <th>Who</th><th>Year</th><th>Where</th><th>Video</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for video in site.videos %}
+        <tr>
+          <td>{{ video.who }}</td>
+          <td>{{ video.year }}</td>
+          <td>{{ video.where }}</td>
+          <td><a href="https://www.youtube.com/watch?v={{ video.youtube-id }}">
+              {{ video.title }}</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
 <!-- <p> -->
 
 <h1><a id="publications"></a>Key publications</h1>
