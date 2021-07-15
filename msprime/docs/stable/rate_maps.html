@@ -1,0 +1,938 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rate Maps &#8212; Msprime manual</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Computing likelihoods" href="likelihoods.html" />
+    <link rel="prev" title="Command line interface" href="cli.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Msprime manual</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="quickstart.html">
+   Quickstart
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="installation.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Running simulations
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ancestry.html">
+   Ancestry simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mutations.html">
+   Mutation simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demography.html">
+   Demographic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="replication.html">
+   Randomness and replication
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Interfaces
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api.html">
+   API Reference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cli.html">
+   Command line interface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Utilities
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Rate Maps
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="likelihoods.html">
+   Computing likelihoods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logging.html">
+   Logging
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="legacy.html">
+   Legacy (version 0.x) APIs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="switch_from_other_simulators.html">
+   Switching from other simulators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="development.html">
+   Development
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CITATION.html">
+   Citing msprime
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CHANGELOG.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  msprime 1.0.1
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/rate_maps.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/rate_maps.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/tskit-dev/msprime"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/tskit-dev/msprime/issues/new?title=Issue%20on%20page%20%2Frate_maps.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/tskit-dev/msprime/edit/main/docs/rate_maps.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-reference">
+   Quick reference
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-ratemaps">
+   Working with RateMaps
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapping-interface">
+     Mapping interface
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#array-interface">
+     Array interface
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-rate-maps">
+   Creating rate maps
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uniform-rate-maps">
+     Uniform rate maps
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-from-a-text-file">
+     Reading from a text file
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hotspots">
+     Hotspots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#missing-data">
+   Missing data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Array interface
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapping-interace">
+     Mapping interace
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#slicing">
+     Slicing
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simulation-example">
+       Simulation example
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="rate-maps">
+<span id="sec-rate-maps"></span><h1>Rate Maps<a class="headerlink" href="#rate-maps" title="Permalink to this headline">¶</a></h1>
+<p>It is often useful to express a variable rate of some sort along the chromosome.
+For example, most organisms have mutation rates and recombination rates which vary
+depending on genomic position. Rates of this sort can be stored as an instance
+of a <a class="reference internal" href="api.html#msprime.RateMap" title="msprime.RateMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateMap</span></code></a>, and then passed as a parameter to the relevant <code class="docutils literal notranslate"><span class="pre">msprime</span></code>
+method. For instance, <a class="reference internal" href="api.html#msprime.sim_ancestry" title="msprime.sim_ancestry"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_ancestry()</span></code></a> accepts a <a class="reference internal" href="api.html#msprime.RateMap" title="msprime.RateMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateMap</span></code></a>
+for the <a class="reference internal" href="ancestry.html#sec-ancestry-recombination"><span class="std std-ref">recombination_rate</span></a>
+parameter and <a class="reference internal" href="api.html#msprime.sim_mutations" title="msprime.sim_mutations"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_mutations()</span></code></a> accepts a <a class="reference internal" href="api.html#msprime.RateMap" title="msprime.RateMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateMap</span></code></a>
+for the <a class="reference internal" href="mutations.html#sec-mutations-rate"><span class="std std-ref">rate</span></a> parameter.</p>
+<p>A rate map is defined as a set of constant rates which apply piecewise
+over contiguous regions of the genome.
+For example, here we create a simple rate map over a 30kb genome:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rate_map</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">RateMap</span><span class="p">(</span>
+    <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">9000</span><span class="p">,</span> <span class="mi">11000</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">],</span>
+    <span class="n">rate</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">rate_map</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style scoped="">
+            .tskit-table thead tr th:only-of-type {vertical-align: middle;}
+            .tskit-table thead tr th {text-align: center;vertical-align: top;}
+            .tskit-table tbody td {text-align: right;padding: 0.5em 0.5em;}
+            .tskit-table tbody th {padding: 0.5em 0.5em;}
+        </style><b></b><table border="1" class="tskit-table"><thead><tr><th>left</th><th>right</th><th>mid</th><th>span</th><th>rate</th></tr></thead><tbody><tr><td>0</td><td>4000</td><td>2000</td><td>4000</td><td>0.00</td></tr><tr><td>4000</td><td>9000</td><td>6500</td><td>5000</td><td>0.10</td></tr><tr><td>9000</td><td>11000</td><td>10000</td><td>2000</td><td>0.60</td></tr><tr><td>11000</td><td>20000</td><td>15500</td><td>9000</td><td>0.20</td></tr><tr><td>20000</td><td>30000</td><td>25000</td><td>10000</td><td>0.10</td></tr></tbody></table></div></div></div>
+</div>
+<p>See the <a class="reference internal" href="#sec-rate-maps-basics"><span class="std std-ref">Working with RateMaps</span></a> section for details on these columns.
+We can see how these rates vary along the genome by plotting:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stairs</span><span class="p">(</span><span class="n">rate_map</span><span class="o">.</span><span class="n">rate</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Example RateMap with 5 rates, and a hotspot around position 10000&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Genome position&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Rate&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/rate_maps_4_0.png" src="_images/rate_maps_4_0.png" />
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="quick-reference">
+<span id="sec-rate-maps-quickref"></span><h2>Quick reference<a class="headerlink" href="#quick-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="simple myst">
+<dt><a class="reference internal" href="api.html#msprime.RateMap" title="msprime.RateMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateMap</span></code></a></dt><dd><p>Represent the varying rate of processes along the genome as a piecewise function.</p>
+</dd>
+</dl>
+<p><strong>Creating rate maps</strong></p>
+<dl class="simple myst">
+<dt><a class="reference internal" href="api.html#msprime.RateMap.uniform" title="msprime.RateMap.uniform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">RateMap.uniform()</span></code></a></dt><dd><p>Create a RateMap with a single rate over the entire chromosome</p>
+</dd>
+<dt><a class="reference internal" href="api.html#msprime.RateMap.read_hapmap" title="msprime.RateMap.read_hapmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">RateMap.read_hapmap()</span></code></a></dt><dd><p>Read in a RateMap from a file in “HapMap” format (common in recombination maps)</p>
+</dd>
+<dt><a class="reference internal" href="api.html#msprime.RateMap.slice" title="msprime.RateMap.slice"><code class="xref py py-meth docutils literal notranslate"><span class="pre">RateMap.slice()</span></code></a></dt><dd><p>Create a new RateMap by slicing out a portion of an existing RateMap</p>
+</dd>
+</dl>
+<p><strong>Computing rates</strong></p>
+<dl class="simple myst">
+<dt><a class="reference internal" href="api.html#msprime.RateMap.mean_rate" title="msprime.RateMap.mean_rate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RateMap.mean_rate</span></code></a></dt><dd><p>The weighted average rate</p>
+</dd>
+<dt><a class="reference internal" href="api.html#msprime.RateMap.total_mass" title="msprime.RateMap.total_mass"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RateMap.total_mass</span></code></a></dt><dd><p>The cumulative sum of rates over the entire map</p>
+</dd>
+<dt><a class="reference internal" href="api.html#msprime.RateMap.get_rate" title="msprime.RateMap.get_rate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">RateMap.get_rate()</span></code></a></dt><dd><p>Compute rate at a set of positions</p>
+</dd>
+<dt><a class="reference internal" href="api.html#msprime.RateMap.get_cumulative_mass" title="msprime.RateMap.get_cumulative_mass"><code class="xref py py-meth docutils literal notranslate"><span class="pre">RateMap.get_cumulative_mass()</span></code></a></dt><dd><p>Compute the cumulative rate at a set of positions</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="working-with-ratemaps">
+<span id="sec-rate-maps-basics"></span><h2>Working with RateMaps<a class="headerlink" href="#working-with-ratemaps" title="Permalink to this headline">¶</a></h2>
+<p>In this section we illustrate the ways in which we can interact
+with a <a class="reference internal" href="api.html#msprime.RateMap" title="msprime.RateMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateMap</span></code></a> object. Throughout we’ll use the example
+map from the introduction, defined over a 30kb genome:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rate_map</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">RateMap</span><span class="p">(</span>
+    <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">9000</span><span class="p">,</span> <span class="mi">11000</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">],</span>
+    <span class="n">rate</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">rate_map</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style scoped="">
+            .tskit-table thead tr th:only-of-type {vertical-align: middle;}
+            .tskit-table thead tr th {text-align: center;vertical-align: top;}
+            .tskit-table tbody td {text-align: right;padding: 0.5em 0.5em;}
+            .tskit-table tbody th {padding: 0.5em 0.5em;}
+        </style><b></b><table border="1" class="tskit-table"><thead><tr><th>left</th><th>right</th><th>mid</th><th>span</th><th>rate</th></tr></thead><tbody><tr><td>0</td><td>4000</td><td>2000</td><td>4000</td><td>0.00</td></tr><tr><td>4000</td><td>9000</td><td>6500</td><td>5000</td><td>0.10</td></tr><tr><td>9000</td><td>11000</td><td>10000</td><td>2000</td><td>0.60</td></tr><tr><td>11000</td><td>20000</td><td>15500</td><td>9000</td><td>0.20</td></tr><tr><td>20000</td><td>30000</td><td>25000</td><td>10000</td><td>0.10</td></tr></tbody></table></div></div></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the <a class="reference internal" href="#sec-rate-maps-creating"><span class="std std-ref">Creating rate maps</span></a> section for different ways of
+creating <a class="reference internal" href="api.html#msprime.RateMap" title="msprime.RateMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateMap</span></code></a> instances with various properties.</p>
+</div>
+<p>To create the <a class="reference internal" href="api.html#msprime.RateMap" title="msprime.RateMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateMap</span></code></a> instance we called the constructor
+with two lists, <code class="docutils literal notranslate"><span class="pre">position</span></code> and <code class="docutils literal notranslate"><span class="pre">rate</span></code>. These define the
+intervals along the genome and the rates in each interval. Because
+we are interested in nonoverlapping contiguous intervals, we can
+define all the <span class="math notranslate nohighlight">\(n\)</span> intervals with <span class="math notranslate nohighlight">\(n + 1\)</span> positions
+and corresponding <span class="math notranslate nohighlight">\(n\)</span> rate values.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>All intervals are <strong>open-closed</strong>; that is, the left coordinate
+is inclusive and the right coordinate exclusive.</p>
+</div>
+<p>Information about each of the intervals is shown in the summary
+table above, one interval per row. So, the last interval has a
+<code class="docutils literal notranslate"><span class="pre">left</span></code> coordinate of 20000, a <code class="docutils literal notranslate"><span class="pre">right</span></code> coordinate of 30000,
+a midpoint of 25000 (<code class="docutils literal notranslate"><span class="pre">mid</span></code>), has a <code class="docutils literal notranslate"><span class="pre">span</span></code> of 10000 base pairs
+and maps to a rate of 0.1.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the <a class="reference internal" href="#sec-rate-maps-basics-array"><span class="std std-ref">Array interface</span></a> for examples of how to
+access the columns efficiently as numpy arrays.</p>
+</div>
+<div class="section" id="mapping-interface">
+<span id="sec-rate-maps-basics-mapping"></span><h3>Mapping interface<a class="headerlink" href="#mapping-interface" title="Permalink to this headline">¶</a></h3>
+<p>The easiest way to access the rate information from a rate map is
+via the <em>mapping interface</em>. We can use the Python square bracket
+notation to get the rate at a particular point:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rate at position 4500 = &quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="p">[</span><span class="mi">4500</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rate at position 4500 =  0.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="api.html#msprime.RateMap.get_rate" title="msprime.RateMap.get_rate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">RateMap.get_rate()</span></code></a> method is a more efficient way to
+compute the rate values at an array of locations along the genome.</p>
+</div>
+<p>We can also iterate over the intervals in the map, much
+as if it was a Python dictionary:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">midpoint</span><span class="p">,</span> <span class="n">rate</span> <span class="ow">in</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">midpoint</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2000.0	0.0
+6500.0	0.1
+10000.0	0.6
+15500.0	0.2
+25000.0	0.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the key here is the <strong>midpoint</strong> of each interval.</p>
+<p>Operations such as <code class="docutils literal notranslate"><span class="pre">in</span></code> tell us whether the a give position is
+in the rate map:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is position 10000 in the map?&quot;</span><span class="p">,</span> <span class="mi">10000</span> <span class="ow">in</span> <span class="n">rate_map</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is position -1 in the map?&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">rate_map</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Is position 10000 in the map? True
+Is position -1 in the map? False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the <a class="reference internal" href="#sec-rate-maps-missing"><span class="std std-ref">Missing data</span></a> section for information on
+how missing data is handled using this interface.</p>
+</div>
+</div>
+<div class="section" id="array-interface">
+<span id="sec-rate-maps-basics-array"></span><h3>Array interface<a class="headerlink" href="#array-interface" title="Permalink to this headline">¶</a></h3>
+<p>We can also access the information from the rate map using numpy
+arrays. This is usually the preferred option when working with
+rate maps, since they can be quite large.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;interval left position :&quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;interval right position:&quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;interval midpoint      :&quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">mid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;interval span          :&quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">span</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;interval rate          :&quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">rate</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>interval left position : [    0.  4000.  9000. 11000. 20000.]
+interval right position: [ 4000.  9000. 11000. 20000. 30000.]
+interval midpoint      : [ 2000.  6500. 10000. 15500. 25000.]
+interval span          : [ 4000.  5000.  2000.  9000. 10000.]
+interval rate          : [0.  0.1 0.6 0.2 0.1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Please see the documentation for
+<a class="reference internal" href="api.html#msprime.RateMap.left" title="msprime.RateMap.left"><code class="xref py py-attr docutils literal notranslate"><span class="pre">left</span></code></a>,
+<a class="reference internal" href="api.html#msprime.RateMap.right" title="msprime.RateMap.right"><code class="xref py py-attr docutils literal notranslate"><span class="pre">right</span></code></a>,
+<a class="reference internal" href="api.html#msprime.RateMap.mid" title="msprime.RateMap.mid"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mid</span></code></a>,
+<a class="reference internal" href="api.html#msprime.RateMap.span" title="msprime.RateMap.span"><code class="xref py py-attr docutils literal notranslate"><span class="pre">span</span></code></a>,
+and <a class="reference internal" href="api.html#msprime.RateMap.rate" title="msprime.RateMap.rate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">rate</span></code></a> for more information.</p>
+<p>The <a class="reference internal" href="api.html#msprime.RateMap.position" title="msprime.RateMap.position"><code class="xref py py-attr docutils literal notranslate"><span class="pre">position</span></code></a> array is also defined, which is
+equal to the <code class="docutils literal notranslate"><span class="pre">left</span></code> array with last element of the <code class="docutils literal notranslate"><span class="pre">right</span></code>
+array (i.e., the <a class="reference internal" href="api.html#msprime.RateMap.sequence_length" title="msprime.RateMap.sequence_length"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sequence_length</span></code></a>) appended to
+it.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the <a class="reference internal" href="#sec-rate-maps-missing"><span class="std std-ref">Missing data</span></a> section for information on
+how missing data is handled using this interface.</p>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Give an example of how we might do something useful with these
+arrays, like plotting something, e.g.</p>
+</div>
+</div>
+</div>
+<div class="section" id="creating-rate-maps">
+<span id="sec-rate-maps-creating"></span><h2>Creating rate maps<a class="headerlink" href="#creating-rate-maps" title="Permalink to this headline">¶</a></h2>
+<p>A rate map can be created by initializing an instance of the <a class="reference internal" href="api.html#msprime.RateMap" title="msprime.RateMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateMap</span></code></a> class
+with a list of <em>n+1</em> positions and <em>n</em> rates. Alternatively, uniform rate maps can be
+created as described below, or rates read in from a text file. The last position of a
+rate map is taken as the sequence length: it is your responsibility to ensure that this
+is the same length as the simulated chromosome to which the rate is applied.</p>
+<div class="section" id="uniform-rate-maps">
+<span id="sec-rate-maps-creating-uniform"></span><h3>Uniform rate maps<a class="headerlink" href="#uniform-rate-maps" title="Permalink to this headline">¶</a></h3>
+<p>The most basic rate map is a uniform rate over the entire sequence. This can simply be
+generated by <a class="reference internal" href="api.html#msprime.RateMap.uniform" title="msprime.RateMap.uniform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">RateMap.uniform()</span></code></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">msprime</span><span class="o">.</span><span class="n">RateMap</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">sequence_length</span><span class="o">=</span><span class="mf">1e8</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style scoped="">
+            .tskit-table thead tr th:only-of-type {vertical-align: middle;}
+            .tskit-table thead tr th {text-align: center;vertical-align: top;}
+            .tskit-table tbody td {text-align: right;padding: 0.5em 0.5em;}
+            .tskit-table tbody th {padding: 0.5em 0.5em;}
+        </style><b></b><table border="1" class="tskit-table"><thead><tr><th>left</th><th>right</th><th>mid</th><th>span</th><th>rate</th></tr></thead><tbody><tr><td>0</td><td>100000000</td><td>50000000</td><td>100000000</td><td>0.50</td></tr></tbody></table></div></div></div>
+</div>
+</div>
+<div class="section" id="reading-from-a-text-file">
+<h3>Reading from a text file<a class="headerlink" href="#reading-from-a-text-file" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>Give an example of working with the <a class="reference internal" href="api.html#msprime.RateMap.read_hapmap" title="msprime.RateMap.read_hapmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">RateMap.read_hapmap()</span></code></a> method</p>
+</div>
+</div>
+<div class="section" id="hotspots">
+<span id="sec-rate-maps-creating-hotspots"></span><h3>Hotspots<a class="headerlink" href="#hotspots" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<p>Give an example of making a RateMap with some recurrent hotspots.</p>
+</div>
+</div>
+</div>
+<div class="section" id="missing-data">
+<span id="sec-rate-maps-missing"></span><h2>Missing data<a class="headerlink" href="#missing-data" title="Permalink to this headline">¶</a></h2>
+<p>There are often times when we do not know what the rate of a particular
+process is along the genome. For example, in telomeric regions, we don’t
+really know what the rate of recombination is, and we need some way
+of encoding this information.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the <a class="reference internal" href="ancestry.html#sec-ancestry-missing-data"><span class="std std-ref">Missing data</span></a> section for an example
+of running an ancestry simulation with unknown recombination rates,
+and the properties of the resulting tree sequence.</p>
+</div>
+<p>Following the standard convention in Python numerical libraries,
+we encode missing data using <a class="reference external" href="https://en.wikipedia.org/wiki/NaN">NaN values</a>.
+Here, for example we create a rate map in which we have a
+uniform rate except for the 10 base pairs at either end,
+which are unknown:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rate_map</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">RateMap</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">rate</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
+<span class="n">rate_map</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style scoped="">
+            .tskit-table thead tr th:only-of-type {vertical-align: middle;}
+            .tskit-table thead tr th {text-align: center;vertical-align: top;}
+            .tskit-table tbody td {text-align: right;padding: 0.5em 0.5em;}
+            .tskit-table tbody th {padding: 0.5em 0.5em;}
+        </style><b></b><table border="1" class="tskit-table"><thead><tr><th>left</th><th>right</th><th>mid</th><th>span</th><th>rate</th></tr></thead><tbody><tr><td>0</td><td>10</td><td>5</td><td>10</td><td>nan</td></tr><tr><td>10</td><td>90</td><td>50</td><td>80</td><td>0.10</td></tr><tr><td>90</td><td>100</td><td>95</td><td>10</td><td>nan</td></tr></tbody></table></div></div></div>
+</div>
+<p>Values that we compute such as <a class="reference internal" href="api.html#msprime.RateMap.mean_rate" title="msprime.RateMap.mean_rate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mean_rate</span></code></a> correctly ignore
+the regions of missing data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean rate = &quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">mean_rate</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mean rate =  0.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <a class="reference internal" href="#sec-rate-maps-basics-mapping"><span class="std std-ref">Mapping interface</span></a> and <a class="reference internal" href="#sec-rate-maps-basics-array"><span class="std std-ref">Array interface</span></a> have
+different semantics for dealing with missing data: the mapping interface
+filters out intervals that are missing, whereas the array interface
+leaves them in.</p>
+<div class="section" id="id4">
+<h3>Array interface<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>The array interface in the <a class="reference internal" href="api.html#msprime.RateMap" title="msprime.RateMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateMap</span></code></a> is an efficient way of directly
+accessing the underlying array data. To give the user the maximum flexibility,
+the per-interval arrays like <a class="reference internal" href="api.html#msprime.RateMap.left" title="msprime.RateMap.left"><code class="xref py py-attr docutils literal notranslate"><span class="pre">left</span></code></a> are always defined
+over both missing <strong>and</strong> non-missing intervals:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;left  = &quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;right = &quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mid   = &quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">mid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;span  = &quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">span</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>left  =  [ 0. 10. 90.]
+right =  [ 10.  90. 100.]
+mid   =  [ 5. 50. 95.]
+span  =  [10. 80. 10.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use the <a class="reference internal" href="api.html#msprime.RateMap.missing" title="msprime.RateMap.missing"><code class="xref py py-attr docutils literal notranslate"><span class="pre">missing</span></code></a> and <a class="reference internal" href="api.html#msprime.RateMap.non_missing" title="msprime.RateMap.non_missing"><code class="xref py py-attr docutils literal notranslate"><span class="pre">non_missing</span></code></a>
+arrays to get access to the missing and non-missing portions of the map.
+These are numpy boolean arrays, which we can use to index into the other
+per-interval arrays. For example, we can compare the total span of
+missing and non-missing intervals:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total missing span      = &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rate_map</span><span class="o">.</span><span class="n">span</span><span class="p">[</span><span class="n">rate_map</span><span class="o">.</span><span class="n">missing</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total non-missing span  = &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rate_map</span><span class="o">.</span><span class="n">span</span><span class="p">[</span><span class="n">rate_map</span><span class="o">.</span><span class="n">non_missing</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total missing span      =  20.0
+Total non-missing span  =  80.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mapping-interace">
+<h3>Mapping interace<a class="headerlink" href="#mapping-interace" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="#sec-rate-maps-basics-mapping"><span class="std std-ref">Mapping interface</span></a> takes the opposite
+approach to missing data to the <a class="reference internal" href="#sec-rate-maps-basics-array"><span class="std std-ref">Array interface</span></a>: missing
+intervals are automatically <strong>filtered</strong> out. Consider what we get when
+we iterate over the <code class="docutils literal notranslate"><span class="pre">items()</span></code> in the map:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50.0 -&gt; 0.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>As far as the mapping interface is concerned, we have <strong>one</strong> interval
+in this map, <strong>not three</strong>. This logic is reflected by the <code class="docutils literal notranslate"><span class="pre">in</span></code> operation:
+we only consider a position to be “in” the map if it’s in a non-missing
+interval:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is position 5 in the map? &quot;</span><span class="p">,</span> <span class="mi">5</span> <span class="ow">in</span> <span class="n">rate_map</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is position 50 in the map? &quot;</span><span class="p">,</span> <span class="mi">50</span> <span class="ow">in</span> <span class="n">rate_map</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Is position 5 in the map?  False
+Is position 50 in the map?  True
+</pre></div>
+</div>
+</div>
+</div>
+<p>An important consequence of this definition is that the <code class="docutils literal notranslate"><span class="pre">len()</span></code> of a
+<a class="reference internal" href="api.html#msprime.RateMap" title="msprime.RateMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateMap</span></code></a> is the <strong>number of non-empty intervals</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;len                       = &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rate_map</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;num_intervals             = &quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">num_intervals</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;num_non_missing_intervals = &quot;</span><span class="p">,</span> <span class="n">rate_map</span><span class="o">.</span><span class="n">num_non_missing_intervals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>len                       =  1
+num_intervals             =  3
+num_non_missing_intervals =  1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Because the <code class="docutils literal notranslate"><span class="pre">len()</span></code> of a RateMap is defined as the number of
+non-empty intervals we recommend using the <a class="reference internal" href="api.html#msprime.RateMap.num_intervals" title="msprime.RateMap.num_intervals"><code class="xref py py-attr docutils literal notranslate"><span class="pre">num_intervals</span></code></a>
+and <a class="reference internal" href="api.html#msprime.RateMap.num_non_missing_intervals" title="msprime.RateMap.num_non_missing_intervals"><code class="xref py py-attr docutils literal notranslate"><span class="pre">num_non_missing_intervals</span></code></a> for clarity.</p>
+</div>
+</div>
+<div class="section" id="slicing">
+<span id="sec-rate-maps-masking-and-slicing"></span><h3>Slicing<a class="headerlink" href="#slicing" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes we are interested in running a simulation for a small portion
+of a map, for example when we want to focus on a small region of a much
+larger chromosome. We can do this using the
+<a class="reference internal" href="api.html#msprime.RateMap.slice" title="msprime.RateMap.slice"><code class="xref py py-meth docutils literal notranslate"><span class="pre">slice()</span></code></a> method, which extracts a target region from a
+given map and marks the flanking regions as <a class="reference internal" href="#sec-rate-maps-missing"><span class="std std-ref">missing data</span></a>,
+so that the original coordinate system is maintained.</p>
+<div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">Todo</p>
+<p>Example of the slice method and slice notation on small maps
+so we can illustrate them.</p>
+</div>
+<div class="section" id="simulation-example">
+<h4>Simulation example<a class="headerlink" href="#simulation-example" title="Permalink to this headline">¶</a></h4>
+<p>For example, if you wish to simulate a 40 kb section of human chromosome
+1 from position 0.7Mb, but keep the standard chromosome 1 genomic coordinates, you could
+do this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
+<span class="c1"># First and last sections of human chr 1 build 36 genetic map taken from</span>
+<span class="c1"># https://ftp.ncbi.nlm.nih.gov/hapmap/recombination/latest/rates/</span>
+<span class="n">hapmap_chr1_snippet</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">chr position COMBINED_rate(cM/Mb) Genetic_Map(cM)</span>
+<span class="s2">1 72434 0.0015000000 0</span>
+<span class="s2">1 78032 0.0015000000 0.0000083970</span>
+<span class="s2">1 554461 0.0015000000 0.0007230405</span>
+<span class="s2">1 554484 0.0015000000 0.0007230750</span>
+<span class="s2">1 555296 0.0015000000 0.0007242930</span>
+<span class="s2">1 558185 0.0015000000 0.0007286265</span>
+<span class="s2">1 558390 0.0010000000 0.0007289340</span>
+<span class="s2">1 711153 1.9757156611 0.0008816970</span>
+<span class="s2">1 713682 2.0415081787 0.0058782819</span>
+<span class="s2">1 713754 2.1264889217 0.0060252705</span>
+<span class="s2">1 718105 2.1260252999 0.0152776238</span>
+<span class="s2">1 719811 2.1911540342 0.0189046230</span>
+<span class="s2">1 728873 2.1938678585 0.0387608608</span>
+<span class="s2">1 730720 2.1951341342 0.0428129347</span>
+<span class="s2">1 740098 1.3377804252 0.0633989027</span>
+<span class="s2">1 742429 0.9035885389 0.0665172688</span>
+<span class="s2">1 743132 0.9037201735 0.0671524916  # Next 256440 lines snipped</span>
+<span class="s2">1 247184904 0.6238867396 278.0908415443</span>
+<span class="s2">1 247185273 0 278.0910717585&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="n">large_ratemap</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">RateMap</span><span class="o">.</span><span class="n">read_hapmap</span><span class="p">(</span><span class="n">hapmap_chr1_snippet</span><span class="p">)</span>
+<span class="n">sliced_ratemap</span> <span class="o">=</span> <span class="n">large_ratemap</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mf">700e3</span><span class="p">,</span> <span class="mf">740e3</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_ancestry</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">recombination_rate</span><span class="o">=</span><span class="n">sliced_ratemap</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because the recombination rate is marked as unknown in regions below
+position 700 000 and above position
+740 000, <code class="docutils literal notranslate"><span class="pre">msprime</span></code> has not had to put effort into simulating recombination (and its
+effect on ancestry) in these regions, so the simulation completes very quickly, even
+though the resulting tree sequence has a <code class="docutils literal notranslate"><span class="pre">sequence_length</span></code> of 247 megabases.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the <a class="reference internal" href="ancestry.html#sec-ancestry-missing-data"><span class="std std-ref">Missing data</span></a> section for more information
+about how ancestry simulations with missing rate data are performed.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="cli.html" title="previous page">Command line interface</a>
+    <a class='right-next' id="next-link" href="likelihoods.html" title="next page">Computing likelihoods</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Tskit Developers<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            msprime 1.0.1
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

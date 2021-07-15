@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Welcome to tskit’s documentation! &mdash; tskit 0.3.7 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> tskit
+          
+
+          
+            
+            <img src="_static/tskit_logo_pale.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python-api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-api.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combinatorics.html">Combinatorics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="provenance.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelogs.html">Changelogs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">tskit</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Welcome to tskit’s documentation!</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/tskit-dev/tskit/blob/main/docs/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="welcome-to-tskit-s-documentation">
+<h1>Welcome to tskit’s documentation!<a class="headerlink" href="#welcome-to-tskit-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#conda">conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#pip">pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#development-versions">Development versions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python-api.html">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="python-api.html#trees-and-tree-sequences">Trees and tree sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-api.html#tables-and-table-collections">Tables and Table Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-api.html#constants">Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-api.html#metadata-api">Metadata API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-api.html#combinatorics-api">Combinatorics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-api.html#linkage-disequilibrium">Linkage disequilibrium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-api.html#provenance">Provenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-api.html#utility-functions">Utility functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">Statistics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stats.html#available-statistics">Available statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html#interface">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html#general-api">General API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="c-api.html">C API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="c-api.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-api.html#basic-types">Basic Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-api.html#common-options">Common options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-api.html#tables-api">Tables API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-api.html#table-indexes">Table indexes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-api.html#tree-sequences">Tree sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-api.html#trees">Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-api.html#low-level-sorting">Low-level sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-api.html#miscellaneous-functions">Miscellaneous functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-api.html#constants">Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-api.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#Named Arguments">Named Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#Sub-commands:">Sub-commands:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data-model.html">Data model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data-model.html#definitions">Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-model.html#table-definitions">Table definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-model.html#tree-structure">Tree structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-model.html#missing-data">Missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-model.html#text-file-formats">Text file formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-model.html#binary-interchange">Binary interchange</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-model.html#tree-sequence-file-format">Tree sequence file format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Metadata</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html#codecs">Codecs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html#python-metadata-api-overview">Python Metadata API Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html#full-metaschema">Full metaschema</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="combinatorics.html">Combinatorics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="combinatorics.html#interpreting-tree-ranks">Interpreting Tree Ranks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combinatorics.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combinatorics.html#enumerating-topologies">Enumerating Topologies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="provenance.html">Provenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="provenance.html#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="provenance.html#software">Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="provenance.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="provenance.html#environment">Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="provenance.html#full-schema">Full schema</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development.html#project-structure">Project structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#workflow">Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#python-library">Python library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#c-library">C Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#python-c-interface">Python C Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#continuous-integration-tests">Continuous Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#best-practices-for-development">Best Practices for Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#id11">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#releasing-a-new-version">Releasing a new version</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#computing-statistics">Computing statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#allele-frequency-spectra">Allele frequency spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#calculating-ld">Calculating LD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#working-with-threads">Working with threads</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelogs.html">Changelogs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelogs.html#python">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelogs.html#c-api">C API</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2018-2021, Tskit developers.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

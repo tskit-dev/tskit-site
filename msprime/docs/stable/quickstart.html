@@ -1,0 +1,761 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quickstart &#8212; Msprime manual</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Introduction" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Msprime manual</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Quickstart
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="installation.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Running simulations
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ancestry.html">
+   Ancestry simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mutations.html">
+   Mutation simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demography.html">
+   Demographic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="replication.html">
+   Randomness and replication
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Interfaces
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api.html">
+   API Reference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cli.html">
+   Command line interface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Utilities
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="rate_maps.html">
+   Rate Maps
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="likelihoods.html">
+   Computing likelihoods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logging.html">
+   Logging
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="legacy.html">
+   Legacy (version 0.x) APIs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="switch_from_other_simulators.html">
+   Switching from other simulators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="development.html">
+   Development
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CITATION.html">
+   Citing msprime
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CHANGELOG.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  msprime 1.0.1
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/quickstart.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/quickstart.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/tskit-dev/msprime"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/tskit-dev/msprime/issues/new?title=Issue%20on%20page%20%2Fquickstart.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/tskit-dev/msprime/edit/main/docs/quickstart.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ancestry">
+   Ancestry
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mutations">
+   Mutations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#demography">
+   Demography
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="quickstart">
+<span id="sec-quickstart"></span><h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<p>This page gives some simple examples of how to use the major features
+of <strong class="program">msprime</strong>, with links to more detailed documentation
+and tutorial content.</p>
+<p>See the <a class="reference internal" href="installation.html#sec-installation"><span class="std std-ref">Installation</span></a> page for instructions on installing
+<strong class="program">msprime</strong> (short version: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">msprime</span></code> or
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">msprime</span></code> will work for most users).</p>
+<div class="section" id="ancestry">
+<span id="sec-quickstart-ancestry"></span><h2>Ancestry<a class="headerlink" href="#ancestry" title="Permalink to this headline">¶</a></h2>
+<p>Msprime simulates ancestral histories for a set of sample genomes
+using backwards-in-time population genetic models.
+Here we run a simple simulation of a short recombining sequence under
+human-like parameters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>    <span class="kn">import</span> <span class="nn">msprime</span>
+    <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">SVG</span><span class="p">,</span> <span class="n">display</span>
+
+    <span class="c1"># Simulate an ancestral history for 3 diploid samples under the coalescent</span>
+    <span class="c1"># with recombination on a 5kb region with human-like parameters.</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_ancestry</span><span class="p">(</span>
+        <span class="n">samples</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">recombination_rate</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span>
+        <span class="n">sequence_length</span><span class="o">=</span><span class="mi">5_000</span><span class="p">,</span>
+        <span class="n">population_size</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
+        <span class="n">random_seed</span><span class="o">=</span><span class="mi">123456</span><span class="p">)</span>
+    <span class="c1"># Visualise the simulated ancestral history.</span>
+    <span class="n">SVG</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">draw_svg</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/quickstart_1_0.svg" src="_images/quickstart_1_0.svg" /></div>
+</div>
+<p>In this example we simulate the ancestral history of three diploid
+individuals (see <a class="reference internal" href="ancestry.html#sec-ancestry-samples"><span class="std std-ref">Specifying samples</span></a> and <a class="reference internal" href="ancestry.html#sec-ancestry-ploidy"><span class="std std-ref">Ploidy</span></a>)
+for a 5kb sequence with a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Genetic_recombination">recombination</a>
+rate of <span class="math notranslate nohighlight">\(10^{-8}\)</span>
+(see <a class="reference internal" href="ancestry.html#sec-ancestry-genome-properties"><span class="std std-ref">Genome properties</span></a>)
+from a population with a constant size of 10,000 (see
+the <a class="reference internal" href="#sec-quickstart-demography"><span class="std std-ref">Demography</span></a> section below)
+under the default
+<a class="reference external" href="https://en.wikipedia.org/wiki/Coalescent_theory">coalescent</a>
+ancestry model (see the <a class="reference internal" href="ancestry.html#sec-ancestry-models"><span class="std std-ref">Models</span></a> for details on
+other available models).
+To ensure that
+the output of this example is predictable, we set a random seed
+(see <a class="reference internal" href="replication.html#sec-randomness-seeds"><span class="std std-ref">Random seeds</span></a>).</p>
+<p>When recombination is present, the ancestry of a sample of DNA sequences
+cannot be represented by a single genealogical tree relating the
+samples to their genetic ancestors; there is instead
+a <em>sequence</em> of highly correlated trees along the genome.
+The result of our simulation is therefore a <a class="reference external" href="https://tskit.dev">tree sequence</a>
+object from the <a class="reference external" href="https://tskit.dev/tskit/docs/stable/introduction.html#sec-introduction" title="(in tskit v0.3)"><span class="xref std std-ref">tskit</span></a> library,
+which provides a rich suite of operations for
+analysing these genealogical histories: see the
+<a class="reference external" href="https://tskit.dev/tutorials/getting_started.html#sec-tskit-getting-started" title="(in Python)"><span>Getting started with tskit</span></a> tutorial for help.
+In this example we show a visualisation
+of the four different trees along the 5kb region
+(see the <a class="reference external" href="https://tskit.dev/tutorials/viz.html#sec-tskit-viz" title="(in Python)"><span>Visualization</span></a> tutorial for more
+examples).  Because we have specified three diploid sample
+<em>individuals</em>, each of these trees has 6 “sample” nodes
+(the “leaves” or “tips”), because each diploid individual
+has two monoploid genomes (see <a class="reference internal" href="ancestry.html#sec-ancestry-samples"><span class="std std-ref">Specifying samples</span></a>).</p>
+<p>See the <a class="reference internal" href="ancestry.html#sec-ancestry"><span class="std std-ref">Ancestry simulations</span></a> section for more details on
+ancestry simulations.</p>
+</div>
+<div class="section" id="mutations">
+<h2>Mutations<a class="headerlink" href="#mutations" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="api.html#msprime.sim_ancestry" title="msprime.sim_ancestry"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_ancestry()</span></code></a> function generates a simulated ancestral
+history for some samples.
+If we want <a class="reference external" href="https://en.wikipedia.org/wiki/Genome">genome sequence</a>
+we must also simulate some
+<a class="reference external" href="https://en.wikipedia.org/wiki/Mutation">mutations</a> on these trees.
+However, it’s important to note that it’s not always necessary to
+simulate mutations in order to use the simulations; often, it’s
+better <em>not to</em>; see the <a class="reference external" href="https://tskit.dev/tutorials/no_mutations.html#sec-tskit-no-mutations" title="(in Python)"><span>Do you really need mutations?</span></a>
+tutorial for more information.</p>
+<p>Given an input tree sequence (which may be generated by msprime
+or any other simulator that supports <a class="reference external" href="https://tskit.dev">tskit</a>
+output), we can superimpose mutations on that ancestral history
+using the <a class="reference internal" href="api.html#msprime.sim_mutations" title="msprime.sim_mutations"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_mutations()</span></code></a> function under a number
+of different <a class="reference internal" href="mutations.html#sec-mutations-models"><span class="std std-ref">models</span></a> of sequence
+evolution. For example,
+here we generate some mutations for the tree sequence simulated
+in the previous section under the <a class="reference internal" href="api.html#msprime.JC69" title="msprime.JC69"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jukes-Cantor</span></code></a>
+model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mutated_ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_mutations</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">54321</span><span class="p">)</span>
+<span class="n">SVG</span><span class="p">(</span><span class="n">mutated_ts</span><span class="o">.</span><span class="n">draw_svg</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/quickstart_3_0.svg" src="_images/quickstart_3_0.svg" /></div>
+</div>
+<p>This visualisation shows us where the mutations occurred both in terms
+of position along the genome (the tick marks with red chevrons on the
+x-axis) and the branches of trees that they occurred on (the red crosses).
+This information is stored in the tskit
+<a class="reference external" href="https://tskit.dev/tskit/docs/stable/data-model.html#sec-site-table-definition" title="(in tskit v0.3)"><span class="xref std std-ref">site</span></a>
+and
+<a class="reference external" href="https://tskit.dev/tskit/docs/stable/data-model.html#sec-mutation-table-definition" title="(in tskit v0.3)"><span class="xref std std-ref">mutation</span></a> tables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mutated_ts</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">sites</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <div>
+                <style scoped="">
+                    .tskit-table tbody tr th:only-of-type {vertical-align: middle;}
+                    .tskit-table tbody tr th {vertical-align: top;}
+                    .tskit-table tbody td {text-align: right;padding: 0.5em 0.5em;}
+                    .tskit-table tbody th {padding: 0.5em 0.5em;}
+                </style>
+                <table border="1" class="tskit-table">
+                    <thead>
+                        <tr>
+                            <th>id</th><th>position</th><th>ancestral_state</th><th>metadata</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0</td><td>90.00000000</td><td>T</td><td></td></tr>
+<tr><td>1</td><td>333.00000000</td><td>G</td><td></td></tr>
+<tr><td>2</td><td>819.00000000</td><td>T</td><td></td></tr>
+<tr><td>3</td><td>3204.00000000</td><td>A</td><td></td></tr>
+
+                    </tbody>
+                </table>
+            </div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mutated_ts</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">mutations</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <div>
+                <style scoped="">
+                    .tskit-table tbody tr th:only-of-type {vertical-align: middle;}
+                    .tskit-table tbody tr th {vertical-align: top;}
+                    .tskit-table tbody td {text-align: right;padding: 0.5em 0.5em;}
+                    .tskit-table tbody th {padding: 0.5em 0.5em;}
+                </style>
+                <table border="1" class="tskit-table">
+                    <thead>
+                        <tr>
+                            <th>id</th><th>site</th><th>node</th><th>time</th><th>derived_state</th><th>parent</th><th>metadata</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0</td><td>0</td><td>10</td><td>12191.4064954057</td><td>G</td><td>-1</td><td></td></tr>
+<tr><td>1</td><td>1</td><td>10</td><td>44173.26473294006</td><td>C</td><td>-1</td><td></td></tr>
+<tr><td>2</td><td>2</td><td>9</td><td>9597.219523507081</td><td>G</td><td>-1</td><td></td></tr>
+<tr><td>3</td><td>3</td><td>3</td><td>1158.4291490099815</td><td>C</td><td>-1</td><td></td></tr>
+
+                    </tbody>
+                </table>
+            </div>
+</div></div>
+</div>
+<p>The combination of sites and mutations on a given ancestry then
+defines the variants, which we can access using the
+<a class="reference external" href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.variants" title="(in tskit v0.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">variants()</span></code></a> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">variant</span> <span class="ow">in</span> <span class="n">mutated_ts</span><span class="o">.</span><span class="n">variants</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">variant</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;site&#39;: {&#39;id&#39;: 0, &#39;position&#39;: 90.0, &#39;ancestral_state&#39;: &#39;T&#39;, &#39;mutations&#39;: [{&#39;id&#39;: 0, &#39;site&#39;: 0, &#39;node&#39;: 10, &#39;time&#39;: 12191.4064954057, &#39;derived_state&#39;: &#39;G&#39;, &#39;parent&#39;: -1, &#39;metadata&#39;: b&#39;&#39;}], &#39;metadata&#39;: b&#39;&#39;}, &#39;alleles&#39;: (&#39;T&#39;, &#39;G&#39;), &#39;has_missing_data&#39;: False, &#39;num_alleles&#39;: 2, &#39;genotypes&#39;: array([1, 1, 1, 0, 1, 1], dtype=int8), &#39;position&#39;: 90.0, &#39;index&#39;: 0}
+{&#39;site&#39;: {&#39;id&#39;: 1, &#39;position&#39;: 333.0, &#39;ancestral_state&#39;: &#39;G&#39;, &#39;mutations&#39;: [{&#39;id&#39;: 1, &#39;site&#39;: 1, &#39;node&#39;: 10, &#39;time&#39;: 44173.26473294006, &#39;derived_state&#39;: &#39;C&#39;, &#39;parent&#39;: -1, &#39;metadata&#39;: b&#39;&#39;}], &#39;metadata&#39;: b&#39;&#39;}, &#39;alleles&#39;: (&#39;G&#39;, &#39;C&#39;), &#39;has_missing_data&#39;: False, &#39;num_alleles&#39;: 2, &#39;genotypes&#39;: array([1, 1, 1, 0, 1, 1], dtype=int8), &#39;position&#39;: 333.0, &#39;index&#39;: 1}
+{&#39;site&#39;: {&#39;id&#39;: 2, &#39;position&#39;: 819.0, &#39;ancestral_state&#39;: &#39;T&#39;, &#39;mutations&#39;: [{&#39;id&#39;: 2, &#39;site&#39;: 2, &#39;node&#39;: 9, &#39;time&#39;: 9597.219523507081, &#39;derived_state&#39;: &#39;G&#39;, &#39;parent&#39;: -1, &#39;metadata&#39;: b&#39;&#39;}], &#39;metadata&#39;: b&#39;&#39;}, &#39;alleles&#39;: (&#39;T&#39;, &#39;G&#39;), &#39;has_missing_data&#39;: False, &#39;num_alleles&#39;: 2, &#39;genotypes&#39;: array([1, 0, 1, 0, 1, 0], dtype=int8), &#39;position&#39;: 819.0, &#39;index&#39;: 2}
+{&#39;site&#39;: {&#39;id&#39;: 3, &#39;position&#39;: 3204.0, &#39;ancestral_state&#39;: &#39;A&#39;, &#39;mutations&#39;: [{&#39;id&#39;: 3, &#39;site&#39;: 3, &#39;node&#39;: 3, &#39;time&#39;: 1158.4291490099815, &#39;derived_state&#39;: &#39;C&#39;, &#39;parent&#39;: -1, &#39;metadata&#39;: b&#39;&#39;}], &#39;metadata&#39;: b&#39;&#39;}, &#39;alleles&#39;: (&#39;A&#39;, &#39;C&#39;), &#39;has_missing_data&#39;: False, &#39;num_alleles&#39;: 2, &#39;genotypes&#39;: array([0, 0, 0, 1, 0, 0], dtype=int8), &#39;position&#39;: 3204.0, &#39;index&#39;: 3}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See <a class="reference external" href="https://tskit.dev/tutorials/getting_started.html#sec-tskit-getting-started" title="(in Python)"><span>Getting started with tskit</span></a> tutorial for more
+information on how to use tree sequences to efficiently store
+and analyse data.</p>
+</div>
+</div>
+<div class="section" id="demography">
+<span id="sec-quickstart-demography"></span><h2>Demography<a class="headerlink" href="#demography" title="Permalink to this headline">¶</a></h2>
+<p>By default ancestry simulations assume an extremely simple
+population structure in which a single randomly mating population
+of a fixed size exists for all time. For most simulations this
+is an unrealistic assumption, and so msprime provides a way
+to describe more complex demographic models using the
+<a class="reference internal" href="demography.html#sec-demography"><span class="std std-ref">demography API</span></a>.</p>
+<p>For example, here we define a simple three population model
+in which populations “A” and “B” split from “C” 500 generations ago:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">demography</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">Demography</span><span class="p">()</span>
+<span class="n">demography</span><span class="o">.</span><span class="n">add_population</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">initial_size</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+<span class="n">demography</span><span class="o">.</span><span class="n">add_population</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">initial_size</span><span class="o">=</span><span class="mi">5_000</span><span class="p">)</span>
+<span class="n">demography</span><span class="o">.</span><span class="n">add_population</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">initial_size</span><span class="o">=</span><span class="mi">1_000</span><span class="p">)</span>
+<span class="n">demography</span><span class="o">.</span><span class="n">add_population_split</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">derived</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">],</span> <span class="n">ancestral</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
+<span class="n">demography</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="margin-left:20px"><div><style scoped="">
+            .tskit-table thead tr th:only-of-type {vertical-align: middle;}
+            .tskit-table thead tr th {text-align: center;vertical-align: top;}
+            .tskit-table tbody td {text-align: right;padding: 0.5em 0.5em;}
+            .tskit-table tbody th {padding: 0.5em 0.5em;}
+        </style><b>Populations (3)</b><table border="1" class="tskit-table"><thead><tr><th>id</th><th>name</th><th>description</th><th>initial_size</th><th>growth_rate</th><th>default_sampling_time</th><th>extra_metadata</th></tr></thead><tbody><tr><td>0</td><td>A</td><td></td><td>10000.0</td><td>0</td><td>0</td><td>{}</td></tr><tr><td>1</td><td>B</td><td></td><td>5000.0</td><td>0</td><td>0</td><td>{}</td></tr><tr><td>2</td><td>C</td><td></td><td>1000.0</td><td>0</td><td>5e+02</td><td>{}</td></tr></tbody></table></div><div><style scoped="">
+            .tskit-table thead tr th:only-of-type {vertical-align: middle;}
+            .tskit-table thead tr th {text-align: center;vertical-align: top;}
+            .tskit-table tbody td {text-align: right;padding: 0.5em 0.5em;}
+            .tskit-table tbody th {padding: 0.5em 0.5em;}
+        </style><b>Migration matrix (all zero)</b><table border="1" class="tskit-table"><thead><tr></tr></thead><tbody></tbody></table></div><div><style scoped="">
+            .tskit-table thead tr th:only-of-type {vertical-align: middle;}
+            .tskit-table thead tr th {text-align: center;vertical-align: top;}
+            .tskit-table tbody td {text-align: right;padding: 0.5em 0.5em;}
+            .tskit-table tbody th {padding: 0.5em 0.5em;}
+        </style><b>Events (1)</b><table border="1" class="tskit-table"><thead><tr><th>time</th><th>type</th><th>parameters</th><th>effect</th></tr></thead><tbody><tr><td>500</td><td><a href='https://tskit.dev/msprime/docs/latest/api.html#msprime.Demography.add_population_split'>Population Split</a></td><td>derived=[A, B], ancestral=C</td><td>Moves all lineages from derived populations &#x27;A&#x27; and &#x27;B&#x27; to the ancestral &#x27;C&#x27; population. Also set the derived populations to inactive, and all migration rates to and from the derived populations to zero.</td></tr></tbody></table></div></div></div></div>
+</div>
+<p>The demography API provides
+<a class="reference internal" href="demography.html#sec-demography-debugging-tools"><span class="std std-ref">debugging tools</span></a> to help understand
+and visualise the demographic models we define, as well as some
+<a class="reference internal" href="demography.html#sec-demography-numerical"><span class="std std-ref">numerical methods</span></a> to provide analytical
+predictions about these models.</p>
+<p>We can then simulate ancestral histories conditioned on these
+models using <a class="reference internal" href="api.html#msprime.sim_ancestry" title="msprime.sim_ancestry"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_ancestry()</span></code></a>. For example, here we simulate
+5 diploid sample individuals from populations “A” and “B”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_ancestry</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> <span class="n">demography</span><span class="o">=</span><span class="n">demography</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">ts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<div>
+  <style>
+    .tskit-table thead tr th {text-align: left;padding: 0.5em 0.5em;}
+    .tskit-table tbody tr td {padding: 0.5em 0.5em;}
+    .tskit-table tbody tr td:first-of-type {text-align: left;}
+    .tskit-details-label {vertical-align: top; padding-right:5px;}
+    .tskit-table-set {display: inline-flex;flex-wrap: wrap;margin: -12px 0 0 -12px;width: calc(100% + 12px);}
+    .tskit-table-set-table {margin: 12px 0 0 12px;}
+    details {display: inline-block;}
+    summary {cursor: pointer; outline: 0; display: list-item;}
+  </style>
+  <div class="tskit-table-set">
+    <div class="tskit-table-set-table">
+      <table class="tskit-table">
+        <thead>
+          <tr>
+            <th style="padding:0;line-height:21px;">
+              <img style="height: 32px;display: inline-block;padding: 3px 5px 3px 0;"src="https://raw.githubusercontent.com/tskit-dev/administrative/main/tskit_logo.svg"/>
+              <a target="_blank" href="https://tskit.readthedocs.io/en/latest/python-api.html#the-treesequence-class"> Tree Sequence
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Trees</td><td>1</td></tr>
+          <tr><td>Sequence Length</td><td>1.0</td></tr>
+          <tr><td>Sample Nodes</td><td>20</td></tr>
+          <tr><td>Total Size</td><td>4.3 KiB</td></tr>
+          <tr>
+            <td>Metadata</td><td style="text-align: left;">No Metadata</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tskit-table-set-table">
+      <table class="tskit-table">
+        <thead>
+          <tr>
+            <th style="line-height:21px;">Table</th>
+            <th>Rows</th>
+            <th>Size</th>
+            <th>Has Metadata</th>
+          </tr>
+        </thead>
+        <tbody>
+
+      <tr>
+        <td>Edges</td>
+          <td>38</td>
+          <td>1.0 KiB</td>
+          <td style="text-align: center;">
+
+          </td>
+        </tr>
+
+      <tr>
+        <td>Individuals</td>
+          <td>10</td>
+          <td>172 Bytes</td>
+          <td style="text-align: center;">
+
+          </td>
+        </tr>
+
+      <tr>
+        <td>Migrations</td>
+          <td>0</td>
+          <td>4 Bytes</td>
+          <td style="text-align: center;">
+
+          </td>
+        </tr>
+
+      <tr>
+        <td>Mutations</td>
+          <td>0</td>
+          <td>8 Bytes</td>
+          <td style="text-align: center;">
+
+          </td>
+        </tr>
+
+      <tr>
+        <td>Nodes</td>
+          <td>39</td>
+          <td>940 Bytes</td>
+          <td style="text-align: center;">
+
+          </td>
+        </tr>
+
+      <tr>
+        <td>Populations</td>
+          <td>3</td>
+          <td>278 Bytes</td>
+          <td style="text-align: center;">
+            ✅
+          </td>
+        </tr>
+
+      <tr>
+        <td>Provenances</td>
+          <td>1</td>
+          <td>1.6 KiB</td>
+          <td style="text-align: center;">
+
+          </td>
+        </tr>
+
+      <tr>
+        <td>Sites</td>
+          <td>0</td>
+          <td>8 Bytes</td>
+          <td style="text-align: center;">
+
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>See the <a class="reference internal" href="demography.html#sec-demography"><span class="std std-ref">Demographic models</span></a> section for more details on defining
+demographic models, and the <a class="reference internal" href="ancestry.html#sec-ancestry-samples"><span class="std std-ref">Specifying samples</span></a> section for more details
+on how to specify samples under these models in ancestry simulations.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">Introduction</a>
+    <a class='right-next' id="next-link" href="installation.html" title="next page">Installation</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Tskit Developers<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            msprime 1.0.1
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

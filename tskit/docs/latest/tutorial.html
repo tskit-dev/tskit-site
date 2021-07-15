@@ -1,0 +1,719 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Tutorial &mdash; tskit 0.3.7 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelogs" href="changelogs.html" />
+    <link rel="prev" title="Development" href="development.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> tskit
+          
+
+          
+            
+            <img src="_static/tskit_logo_pale.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python-api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-api.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combinatorics.html">Combinatorics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="provenance.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#computing-statistics">Computing statistics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#one-way-statistics">One-way statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-way-statistics">Multi-way statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#allele-frequency-spectra">Allele frequency spectra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#joint-spectra">Joint spectra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#branch-length-spectra">Branch length spectra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zeroth-and-final-entries-in-the-afs">Zeroth and final entries in the AFS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#calculating-ld">Calculating LD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-threads">Working with threads</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelogs.html">Changelogs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tskit</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Tutorial</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/tskit-dev/tskit/blob/main/docs/tutorial.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="tutorial">
+<span id="sec-tutorial"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Most tutorial material is now at
+<a class="reference external" href="http://tskit.dev/tutorials/intro.html">http://tskit.dev/tutorials/intro.html</a>.</p>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>The content is due to be moved into <a class="reference external" href="https://tskit.dev/tutorials/analysing_tree_sequences.html">https://tskit.dev/tutorials/analysing_tree_sequences.html</a>
+and made more coherent, at which time this page will be removed.</p>
+</div>
+<section id="computing-statistics">
+<span id="sec-tutorial-stats"></span><h2>Computing statistics<a class="headerlink" href="#computing-statistics" title="Permalink to this headline">¶</a></h2>
+<p>Tskit provides an extensive and flexible interface for computing population
+genetic statistics, which is documented in detail in the <a class="reference internal" href="stats.html#sec-stats"><span class="std std-ref">general statistics</span></a> section. This tutorial aims to give a quick overview of
+how the APIs work how to use them effectively.</p>
+<p>First, lets simulate a tree sequence to work with which has roughly human
+parameters for 10 thousand samples and 10Mb chromosomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span>
+    <span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="n">Ne</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="n">recombination_rate</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We end up with 36K trees 39K segregating sites. We’d now like to compute some statistics on
+this dataset.</p>
+<section id="one-way-statistics">
+<h3>One-way statistics<a class="headerlink" href="#one-way-statistics" title="Permalink to this headline">¶</a></h3>
+<p>We refer to statistics that are defined with respect to a single set of
+samples as “one-way”. An example of such a statistic is diversity, which
+is computed using the <a class="reference internal" href="python-api.html#tskit.TreeSequence.diversity" title="tskit.TreeSequence.diversity"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.diversity()</span></code></a> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diversity</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average diversity per unit sequence length = </span><span class="si">{:.3G}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="p">[</span><span class="n">Output</span><span class="p">]</span>
+
+<span class="n">Average</span> <span class="n">diversity</span> <span class="n">per</span> <span class="n">unit</span> <span class="n">sequence</span> <span class="n">length</span> <span class="o">=</span> <span class="mf">0.000401</span>
+</pre></div>
+</div>
+<p>This tells the average diversity across the whole sequence and returns a single
+number. We’ll usually want to compute statistics in
+<a class="reference internal" href="stats.html#sec-stats-windows"><span class="std std-ref">windows</span></a> along the genome and we
+use the <code class="docutils literal notranslate"><span class="pre">windows</span></code> argument to do this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">windows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diversity</span><span class="p">(</span><span class="n">windows</span><span class="o">=</span><span class="n">windows</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">windows</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">Output</span><span class="p">]</span>
+
+<span class="p">[</span>       <span class="mf">0.</span>  <span class="mf">2500000.</span>  <span class="mf">5000000.</span>  <span class="mf">7500000.</span> <span class="mf">10000000.</span><span class="p">]</span>
+<span class="p">[</span><span class="mf">0.00041602</span> <span class="mf">0.00039112</span> <span class="mf">0.00041554</span> <span class="mf">0.00038329</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">windows</span></code> argument takes a numpy array specifying the breakpoints
+along the genome. Here, we use numpy to create four equally spaced windows
+of size 2.5 megabases (the windows array contains k + 1 elements to define
+k windows). Because we have asked for values in windows, tskit now returns
+a numpy array rather than a single value. (See
+<a class="reference internal" href="stats.html#sec-stats-output-dimensions"><span class="std std-ref">Output dimensions</span></a> for a full description of how the output
+dimensions of statistics are determined by the <code class="docutils literal notranslate"><span class="pre">windows</span></code> argument.)</p>
+<p>Suppose we wanted to compute diversity within a specific subset of samples.
+We can do this using the <code class="docutils literal notranslate"><span class="pre">sample_sets</span></code> argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">()[:</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diversity</span><span class="p">(</span><span class="n">sample_sets</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">Output</span><span class="p">]</span>
+
+<span class="mf">0.00040166573737371227</span>
+</pre></div>
+</div>
+<p>Here, we’ve computed the average diversity within the first hundred samples across
+the whole genome. As we’ve not specified any windows, this is again a single value.</p>
+<p>We can also compute diversity in <em>multiple</em> sample sets at the same time by providing
+a list of sample sets as an argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">()[:</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">()[</span><span class="mi">100</span><span class="p">:</span><span class="mi">200</span><span class="p">]</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">()[</span><span class="mi">200</span><span class="p">:</span><span class="mi">300</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diversity</span><span class="p">(</span><span class="n">sample_sets</span><span class="o">=</span><span class="p">[</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">Output</span><span class="p">]</span>
+
+<span class="p">[</span><span class="mf">0.00040167</span> <span class="mf">0.00040008</span> <span class="mf">0.00040103</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Because we’ve computed multiple statistics concurrently, tskit returns a numpy array
+of these statistics. We have asked for diversity within three different sample sets,
+and tskit therefore returns an array with three values. (In general, the
+dimensions of the input determines the dimensions of the output: see
+<a class="reference internal" href="stats.html#sec-stats-output-dimensions"><span class="std std-ref">Output dimensions</span></a> for a detailed description of the rules.)</p>
+<p>We can also compute multiple statistics in multiple windows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diversity</span><span class="p">(</span><span class="n">sample_sets</span><span class="o">=</span><span class="p">[</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">],</span> <span class="n">windows</span><span class="o">=</span><span class="n">windows</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shape = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">Output</span><span class="p">]</span>
+
+<span class="n">shape</span> <span class="o">=</span>  <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">[[</span><span class="mf">0.0004139</span>  <span class="mf">0.00041567</span> <span class="mf">0.00041774</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.00039148</span> <span class="mf">0.00039152</span> <span class="mf">0.00038997</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.00042019</span> <span class="mf">0.00041039</span> <span class="mf">0.00041475</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.0003811</span>  <span class="mf">0.00038274</span> <span class="mf">0.00038166</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>We have computed diversity within three different sample sets across four
+genomic windows, and our output is therefore a 2D numpy array with four
+rows and three columns: each row contains the diversity values within
+A, B and C for a particular window.</p>
+</section>
+<section id="multi-way-statistics">
+<h3>Multi-way statistics<a class="headerlink" href="#multi-way-statistics" title="Permalink to this headline">¶</a></h3>
+<p>Many population genetic statistics compare multiple sets of samples to
+each other. For example, the <a class="reference internal" href="python-api.html#tskit.TreeSequence.divergence" title="tskit.TreeSequence.divergence"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.divergence()</span></code></a> method computes
+the divergence between two subsets of samples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">()[:</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">()[:</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">divergence</span><span class="p">([</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">Output</span><span class="p">]</span>
+
+<span class="mf">0.00039764908000000676</span>
+</pre></div>
+</div>
+<p>The divergence between two sets of samples A and B is a single number,
+and we we again return a single floating point value as the result. We can also
+compute this in windows along the genome, as before:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">divergence</span><span class="p">([</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">],</span> <span class="n">windows</span><span class="o">=</span><span class="n">windows</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">Output</span><span class="p">]</span>
+
+<span class="p">[</span><span class="mf">0.00040976</span> <span class="mf">0.00038756</span> <span class="mf">0.00041599</span> <span class="mf">0.00037728</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Again, as we have defined four genomic windows along the sequence, the result is
+numpy array with four values.</p>
+<p>A powerful feature of tskit’s stats API is that we can compute the divergences
+between multiple sets of samples simultaneously using the <code class="docutils literal notranslate"><span class="pre">indexes</span></code> argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">divergence</span><span class="p">([</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">],</span> <span class="n">indexes</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">Output</span><span class="p">]</span>
+
+<span class="p">[</span><span class="mf">0.00039765</span> <span class="mf">0.00040181</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Here, we’ve specified three sample sets A, B and C and we’ve computed the
+divergences between A and B,  and between A and C. The <code class="docutils literal notranslate"><span class="pre">indexes</span></code> argument is used
+to specify which pairs of sets we are interested in. In this example
+we’ve computed two different divergence values and the output is therefore
+a numpy array of length 2.</p>
+<p>As before, we can combine computing multiple statistics in multiple windows
+to return a 2D numpy array:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">windows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">divergence</span><span class="p">([</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">],</span> <span class="n">indexes</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">windows</span><span class="o">=</span><span class="n">windows</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">Output</span><span class="p">]</span>
+
+<span class="p">[[</span><span class="mf">0.00040976</span> <span class="mf">0.0004161</span> <span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.00038756</span> <span class="mf">0.00039025</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.00041599</span> <span class="mf">0.00041847</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.00037728</span> <span class="mf">0.0003824</span> <span class="p">]]</span>
+</pre></div>
+</div>
+<p>Each row again corresponds to a window, which contains the average divergence
+values between the chosen sets.</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">indexes</span></code> parameter is 1D array, we interpret this as specifying
+a single statistic and remove the empty outer dimension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">divergence</span><span class="p">([</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">],</span> <span class="n">indexes</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">Output</span><span class="p">]</span>
+
+<span class="mf">0.00039764908000000676</span>
+</pre></div>
+</div>
+<p>It’s important to note that we don’t <strong>have</strong> to remove empty dimensions: tskit
+will only do this if you explicitly ask it to. Here, for example, we can keep the
+output as an array with one value if we wish:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">divergence</span><span class="p">([</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">],</span> <span class="n">indexes</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">Output</span><span class="p">]</span>
+
+<span class="p">[</span><span class="mf">0.00039765</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Please see <a class="reference internal" href="stats.html#sec-stats-sample-sets"><span class="std std-ref">Sample sets and indexes</span></a> for a
+full description of the <code class="docutils literal notranslate"><span class="pre">sample_sets</span></code> and <code class="docutils literal notranslate"><span class="pre">indexes</span></code> arguments.</p>
+</section>
+</section>
+<section id="allele-frequency-spectra">
+<span id="sec-tutorial-afs"></span><h2>Allele frequency spectra<a class="headerlink" href="#allele-frequency-spectra" title="Permalink to this headline">¶</a></h2>
+<p>The allele frequency spectrum is a fundamental tool in population genetics, and
+tskit provides a flexible and powerful approach to computing such spectra.
+Suppose we have simulated the following tree and site table:</p>
+<img alt="_images/afs1.svg" src="_images/afs1.svg" /><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span>      <span class="n">position</span>        <span class="n">ancestral_state</span> <span class="n">metadata</span>
+<span class="mi">0</span>       <span class="mf">0.30043643</span>      <span class="mi">0</span>
+<span class="mi">1</span>       <span class="mf">0.32220794</span>      <span class="mi">0</span>
+<span class="mi">2</span>       <span class="mf">0.36507027</span>      <span class="mi">0</span>
+<span class="mi">3</span>       <span class="mf">0.50940255</span>      <span class="mi">0</span>
+<span class="mi">4</span>       <span class="mf">0.51327137</span>      <span class="mi">0</span>
+<span class="mi">5</span>       <span class="mf">0.51400861</span>      <span class="mi">0</span>
+<span class="mi">6</span>       <span class="mf">0.54796110</span>      <span class="mi">0</span>
+<span class="mi">7</span>       <span class="mf">0.75929404</span>      <span class="mi">0</span>
+<span class="mi">8</span>       <span class="mf">0.80591800</span>      <span class="mi">0</span>
+<span class="mi">9</span>       <span class="mf">0.92324208</span>      <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Computing the allele frequency spectrum is then easy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">afs</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">allele_frequency_spectrum</span><span class="p">(</span><span class="n">polarised</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">span_normalise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mf">0.</span> <span class="mf">2.</span> <span class="mf">6.</span> <span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">0.</span> <span class="mf">0.</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>This tells us that we have two singletons, six doubletons and one 3-ton and
+one 4-ton. Note
+that the first element of the returned AFS array does <em>not</em> correspond to
+the singletons (see below for why). Because we have simulated these mutations,
+we know the ancestral and derived states we have set <code class="docutils literal notranslate"><span class="pre">polarised</span></code> to True. We
+can get the “folded” AFS by setting polarised to False. Because we want simple
+counts here and not averaged values, we set <code class="docutils literal notranslate"><span class="pre">span_normalise=False</span></code>: by
+default, windowed statistics are divided by the sequence length, so they are
+comparable between windows.</p>
+<p>The returned value here is actually a 2D array, and this is because we can
+also perform these computations in windows along the genome:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">afs</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">allele_frequency_spectrum</span><span class="p">(</span>
+    <span class="n">windows</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">span_normalise</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">polarised</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">afs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>giving:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mf">0.</span> <span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.</span> <span class="mf">1.</span> <span class="mf">5.</span> <span class="mf">0.</span> <span class="mf">1.</span> <span class="mf">0.</span> <span class="mf">0.</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>This time, we’ve asked for the number of sites at each frequency in two
+equal windows. Now we can see that in the first half of the sequence we
+have three sites (compare with the site table above): one singleton,
+one doubleton and one tripleton.</p>
+<section id="joint-spectra">
+<h3>Joint spectra<a class="headerlink" href="#joint-spectra" title="Permalink to this headline">¶</a></h3>
+<p>We can also compute allele frequencies within multiple sets of samples,
+the <em>joint allele frequency spectra</em>.</p>
+<img alt="_images/afs2.svg" src="_images/afs2.svg" /><p>Here we’ve marked the samples as either blue or green (we can imagine
+these belonging to different populations, for example). We can then compute
+the joint AFS based on these two sets:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">afs</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">allele_frequency_spectrum</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="n">polarised</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">afs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>giving:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[[</span><span class="mf">0.</span> <span class="mf">2.</span> <span class="mf">0.</span> <span class="mf">0.</span><span class="p">]</span>
+  <span class="p">[</span><span class="mf">0.</span> <span class="mf">6.</span> <span class="mf">0.</span> <span class="mf">0.</span><span class="p">]</span>
+  <span class="p">[</span><span class="mf">0.</span> <span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">0.</span><span class="p">]</span>
+  <span class="p">[</span><span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span><span class="p">]]]</span>
+</pre></div>
+</div>
+<p>Now, each window in our AFS is a 2D numpy array, where each dimension
+corresponds to frequencies within the different sets. So, we see for example
+that there are six sites that are singletons in both sets, 1 site
+that is a doubleton in both sets, and 2 sites that singletons in [1, 4, 5]
+and not present in the other sample set.</p>
+</section>
+<section id="branch-length-spectra">
+<h3>Branch length spectra<a class="headerlink" href="#branch-length-spectra" title="Permalink to this headline">¶</a></h3>
+<p>Up to now we’ve used the <a class="reference internal" href="python-api.html#tskit.TreeSequence.allele_frequency_spectrum" title="tskit.TreeSequence.allele_frequency_spectrum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.allele_frequency_spectrum()</span></code></a> method
+to summarise the number of sites that occur at different frequencies. We can also
+use this approach to compute the total branch lengths subtending a given
+number of samples by setting <code class="docutils literal notranslate"><span class="pre">mode=&quot;branch&quot;</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">afs</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">allele_frequency_spectrum</span><span class="p">(</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="n">polarised</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">span_normalise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">afs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>giving:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mf">0.</span> <span class="mf">4.86089166</span> <span class="mf">5.39638988</span> <span class="mf">2.55239269</span> <span class="mf">2.07444286</span> <span class="mf">0.</span> <span class="mf">0.</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Thus, the total branch length over example one sample is 4.86, over two is
+5.39, and so on.</p>
+</section>
+<section id="zeroth-and-final-entries-in-the-afs">
+<span id="sec-tutorial-afs-zeroth-entry"></span><h3>Zeroth and final entries in the AFS<a class="headerlink" href="#zeroth-and-final-entries-in-the-afs" title="Permalink to this headline">¶</a></h3>
+<p>The zeroth element of the AFS is significant when we are working with
+sample sets that are a subset of all samples in the tree sequence.
+For example, in the following we compute the AFS within the sample set
+[0, 1, 2]:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">afs</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">allele_frequency_spectrum</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="n">polarised</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">afs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>getting:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mf">4.33184862</span> <span class="mf">5.30022646</span> <span class="mf">5.252042</span>   <span class="mf">0.</span>        <span class="p">]]</span>
+</pre></div>
+</div>
+<p>Thus, the total branch length over 0, 1 and 2 is 5.3, and over pairs from this set
+is 5.25. What does the zeroth value of 4.33 signify? This is the total branch length
+over all samples that are <strong>not</strong> in this sample set. By including this value, we
+maintain the property that for each tree, the sum of the AFS for any sample set
+is always equal to the total branch length. For example, here we compute:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sum afs          = &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">afs</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;total branch len = &quot;</span><span class="p">,</span> <span class="n">tree</span><span class="o">.</span><span class="n">total_branch_length</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>getting:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span> <span class="n">afs</span>          <span class="o">=</span>  <span class="mf">14.884117086717392</span>
+<span class="n">total</span> <span class="n">branch</span> <span class="nb">len</span> <span class="o">=</span>  <span class="mf">14.884117086717396</span>
+</pre></div>
+</div>
+<p>The final entry of the AFS is similar: it counts alleles (for mode=”site”) or
+branches (for mode=”branch”) that are ancestral to all of the given sample set,
+but are still polymorphic in the entire set of samples of the tree sequence.
+Note, however, that alleles fixed among all the samples, e.g., ones above
+the root of the tree, will not be included.</p>
+</section>
+</section>
+<section id="calculating-ld">
+<span id="sec-tutorial-ld"></span><h2>Calculating LD<a class="headerlink" href="#calculating-ld" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">tskit</span></code> API provides methods to efficiently calculate
+population genetics statistics. For example, the <a class="reference internal" href="python-api.html#tskit.LdCalculator" title="tskit.LdCalculator"><code class="xref py py-class docutils literal notranslate"><span class="pre">LdCalculator</span></code></a>
+class allows us to compute pairwise <a class="reference external" href="https://en.wikipedia.org/wiki/Linkage_disequilibrium">linkage disequilibrium</a> coefficients.
+Here we use the <a class="reference internal" href="python-api.html#tskit.LdCalculator.r2_matrix" title="tskit.LdCalculator.r2_matrix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LdCalculator.r2_matrix()</span></code></a> method to easily make an
+LD plot using <a class="reference external" href="http://matplotlib.org/">matplotlib</a>. (Thanks to
+the excellent <a class="reference external" href="http://scikit-allel.readthedocs.io/en/latest/index.html">scikit-allel</a>
+for the basic <a class="reference external" href="http://scikit-allel.readthedocs.io/en/latest/_modules/allel/stats/ld.html#plot_pairwise_ld">plotting code</a>
+used here.)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">msprime</span>
+<span class="kn">import</span> <span class="nn">tskit</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">pyplot</span>
+
+
+<span class="k">def</span> <span class="nf">ld_matrix_example</span><span class="p">():</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">recombination_rate</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ld_calc</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">LdCalculator</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">ld_calc</span><span class="o">.</span><span class="n">r2_matrix</span><span class="p">()</span>
+    <span class="c1"># Now plot this matrix.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.dpi&quot;</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;ld.svg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/ld.svg"><img alt="An example LD matrix plot." src="_images/ld.svg" width="800px" /></a>
+</section>
+<section id="working-with-threads">
+<span id="sec-tutorial-threads"></span><h2>Working with threads<a class="headerlink" href="#working-with-threads" title="Permalink to this headline">¶</a></h2>
+<p>When performing large calculations it’s often useful to split the
+work over multiple processes or threads. The <code class="docutils literal notranslate"><span class="pre">tskit</span></code> API can
+be used without issues across multiple processes, and the Python
+<a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing" title="(in Python v3.9)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> module often provides a very effective way to
+work with many replicate simulations in parallel.</p>
+<p>When we wish to work with a single very large dataset, however, threads can
+offer better resource usage because of the shared memory space. The Python
+<a class="reference external" href="https://docs.python.org/3/library/threading.html#module-threading" title="(in Python v3.9)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">threading</span></code></a> library gives a very simple interface to lightweight CPU
+threads and allows us to perform several CPU intensive tasks in parallel. The
+<code class="docutils literal notranslate"><span class="pre">tskit</span></code> API is designed to allow multiple threads to work in parallel when
+CPU intensive tasks are being undertaken.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the CPython implementation the <a class="reference external" href="https://wiki.python.org/moin/GlobalInterpreterLock">Global Interpreter Lock</a> ensures that
+only one thread executes Python bytecode at one time. This means that
+Python code does not parallelise well across threads, but avoids a large
+number of nasty pitfalls associated with multiple threads updating
+data structures in parallel. Native C extensions like <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">tskit</span></code>
+release the GIL while expensive tasks are being performed, therefore
+allowing these calculations to proceed in parallel.</p>
+</div>
+<p>In the following example we wish to find all mutations that are in approximate
+LD (<span class="math notranslate nohighlight">\(r^2 \geq 0.5\)</span>) with a given set of mutations. We parallelise this
+by splitting the input array between a number of threads, and use the
+<a class="reference internal" href="python-api.html#tskit.LdCalculator.r2_array" title="tskit.LdCalculator.r2_array"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LdCalculator.r2_array()</span></code></a> method to compute the <span class="math notranslate nohighlight">\(r^2\)</span> value
+both up and downstream of each focal mutation, filter out those that
+exceed our threshold, and store the results in a dictionary. We also
+use the very cool <a class="reference external" href="https://pypi.python.org/pypi/tqdm">tqdm</a> module to give us a
+progress bar on this computation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tqdm</span>
+<span class="kn">import</span> <span class="nn">msprime</span>
+<span class="kn">import</span> <span class="nn">tskit</span>
+
+
+<span class="k">def</span> <span class="nf">find_ld_sites</span><span class="p">(</span>
+    <span class="n">tree_sequence</span><span class="p">,</span> <span class="n">focal_mutations</span><span class="p">,</span> <span class="n">max_distance</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">r2_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="mi">8</span>
+<span class="p">):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">progress_bar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">focal_mutations</span><span class="p">))</span>
+    <span class="n">num_threads</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">num_threads</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">focal_mutations</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">thread_worker</span><span class="p">(</span><span class="n">thread_index</span><span class="p">):</span>
+        <span class="n">ld_calc</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">LdCalculator</span><span class="p">(</span><span class="n">tree_sequence</span><span class="p">)</span>
+        <span class="n">chunk_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">focal_mutations</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_threads</span><span class="p">))</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">thread_index</span> <span class="o">*</span> <span class="n">chunk_size</span>
+        <span class="k">for</span> <span class="n">focal_mutation</span> <span class="ow">in</span> <span class="n">focal_mutations</span><span class="p">[</span><span class="n">start</span> <span class="p">:</span> <span class="n">start</span> <span class="o">+</span> <span class="n">chunk_size</span><span class="p">]:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">ld_calc</span><span class="o">.</span><span class="n">r2_array</span><span class="p">(</span>
+                <span class="n">focal_mutation</span><span class="p">,</span> <span class="n">max_distance</span><span class="o">=</span><span class="n">max_distance</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">tskit</span><span class="o">.</span><span class="n">REVERSE</span>
+            <span class="p">)</span>
+            <span class="n">rev_indexes</span> <span class="o">=</span> <span class="n">focal_mutation</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">r2_threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">ld_calc</span><span class="o">.</span><span class="n">r2_array</span><span class="p">(</span>
+                <span class="n">focal_mutation</span><span class="p">,</span> <span class="n">max_distance</span><span class="o">=</span><span class="n">max_distance</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">tskit</span><span class="o">.</span><span class="n">FORWARD</span>
+            <span class="p">)</span>
+            <span class="n">fwd_indexes</span> <span class="o">=</span> <span class="n">focal_mutation</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">r2_threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">rev_indexes</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">fwd_indexes</span><span class="p">))</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">focal_mutation</span><span class="p">]</span> <span class="o">=</span> <span class="n">indexes</span>
+            <span class="n">progress_bar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+    <span class="n">threads</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">j</span><span class="p">,))</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_threads</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="n">progress_bar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">results</span>
+
+
+<span class="k">def</span> <span class="nf">threads_example</span><span class="p">():</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span>
+        <span class="n">sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="n">Ne</span><span class="o">=</span><span class="mf">1e4</span><span class="p">,</span>
+        <span class="n">length</span><span class="o">=</span><span class="mf">1e7</span><span class="p">,</span>
+        <span class="n">recombination_rate</span><span class="o">=</span><span class="mf">2e-8</span><span class="p">,</span>
+        <span class="n">mutation_rate</span><span class="o">=</span><span class="mf">2e-8</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_sites</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">ts</span><span class="o">.</span><span class="n">trees</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">site</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">sites</span><span class="p">():</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">site</span><span class="o">.</span><span class="n">mutations</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="n">mutation</span> <span class="o">=</span> <span class="n">site</span><span class="o">.</span><span class="n">mutations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">site</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">num_samples</span><span class="p">(</span><span class="n">mutation</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">doubletons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">counts</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">find_ld_sites</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">doubletons</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found LD sites for&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">),</span> <span class="s2">&quot;doubleton sites out of&quot;</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">num_sites</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this example, we first simulate 1000 samples of 10 megabases and find all
+doubleton mutations in the resulting tree sequence. We then call the
+<code class="docutils literal notranslate"><span class="pre">find_ld_sites()</span></code> function to find all mutations that are within 1 megabase
+of these doubletons and have an <span class="math notranslate nohighlight">\(r^2\)</span> statistic of greater than 0.5.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">find_ld_sites()</span></code> function performs these calculations in parallel using
+8 threads. The real work is done in the nested <code class="docutils literal notranslate"><span class="pre">thread_worker()</span></code> function,
+which is called once by each thread. In the thread worker, we first allocate an
+instance of the <a class="reference internal" href="python-api.html#tskit.LdCalculator" title="tskit.LdCalculator"><code class="xref py py-class docutils literal notranslate"><span class="pre">LdCalculator</span></code></a> class. (It is <strong>critically important</strong>
+that each thread has its own instance of <a class="reference internal" href="python-api.html#tskit.LdCalculator" title="tskit.LdCalculator"><code class="xref py py-class docutils literal notranslate"><span class="pre">LdCalculator</span></code></a>, as the threads
+will not work efficiently otherwise.) After this, each thread works out the
+slice of the input array that it is responsible for, and then iterates over
+each focal mutation in turn. After the <span class="math notranslate nohighlight">\(r^2\)</span> values have been calculated,
+we then find the indexes of the mutations corresponding to values greater than
+0.5 using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.nonzero.html#numpy.nonzero" title="(in NumPy v1.21)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.nonzero()</span></code></a>. Finally, the thread stores the resulting array
+of mutation indexes in the <code class="docutils literal notranslate"><span class="pre">results</span></code> dictionary, and moves on to the next
+focal mutation.</p>
+<p>Running this example we get:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">threads_example</span><span class="p">()</span>
+<span class="go">100%|████████████████████████████████████████████████| 4045/4045 [00:09&lt;00:00, 440.29it/s]</span>
+<span class="go">Found LD sites for 4045 doubleton mutations out of 60100</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="changelogs.html" class="btn btn-neutral float-right" title="Changelogs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="development.html" class="btn btn-neutral float-left" title="Development" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2018-2021, Tskit developers.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

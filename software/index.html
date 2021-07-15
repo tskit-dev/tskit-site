@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+
+    
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Software | tskit.dev</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Software" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The open source tree sequence community" />
+<meta property="og:description" content="The open source tree sequence community" />
+<link rel="canonical" href="/software/" />
+<meta property="og:url" content="/software/" />
+<meta property="og:site_name" content="tskit.dev" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Software" />
+<script type="application/ld+json">
+{"description":"The open source tree sequence community","url":"/software/","@type":"WebPage","headline":"Software","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+</head>
+<body>
+ <div class="topnav clearfix">
+    <a href="/" class="logo mono">tskit.dev</a>
+    <input class="menu-btn" type="checkbox" id="menu-btn"/>
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+    <ul class="menu mono">
+        <li><a href="/learn.html">Learn</a></li>
+        <li><a href="/software/">Software</a></li>
+        <li><a href="/community/">Community</a></li>
+    </ul>
+</div>
+<div class="main-content">
+    <h2 id="these-software-packages-all-produce-or-consume-tree-sequences-in-the-trees-file-format">These software packages all produce or consume tree sequences in the <code class="highlighter-rouge">.trees</code> file format.</h2>
+<div class="software-categories">
+    <div class="software-category">
+        <div class="software-category-header">
+            <h1 id="simulate">Simulate</h1>
+            <h2>Create tree sequences from models of biological processes</h2>
+        </div>
+        <div class="software-list">
+            
+            
+            <div class="software-summary">
+    <div>
+        <img class="software-summary-logo" src="https://raw.githubusercontent.com/tskit-dev/msprime/main/msprime_logo.svg" />
+        <h2 class="mono software-name">
+            <a href="/msprime">
+                msprime
+            </a>
+        </h2>
+    </div>
+    <div class="software-description"><p>Simulate genealogical trees and genomic sequence data using population genetic models</p>
+</div>
+    <span>
+        
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="p">.</span><span class="n">sim_ancestry</span><span class="p">(</span>
+    <span class="n">samples</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+    <span class="n">recombination_rate</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> 
+    <span class="n">sequence_length</span><span class="o">=</span><span class="mf">1e6</span>
+<span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="p">.</span><span class="n">sim_mutations</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span></code></pre></figure>
+
+    </span>
+    <div>
+        <i class="fab fa-github fa-fw"></i>
+        <a href="https://github.com/tskit-dev/msprime">https://github.com/tskit-dev/msprime</a>
+    </div>
+    <div>
+        <i class="fas fa-book fa-fw"></i>
+        <a href="https://tskit.dev/msprime/docs/latest">Documentation</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-box-open fa-fw"></i>
+        Latest release: <a href="https://github.com/tskit-dev/msprime/releases/tag/1.0.1">1.0.1</a>
+        2 months and 6 days ago
+    </div>
+    
+    
+    <div>
+        <i class="fab fa-python fa-fw"></i>
+        <a href="https://pypi.org/project/msprime/">Python package</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-user-friends fa-fw"></i>
+        30 contributors
+    </div>
+</div>
+
+            
+            <div class="software-summary">
+    <div>
+        <img class="software-summary-logo" src="" />
+        <h2 class="mono software-name">
+            <a href="/SLiM">
+                SLiM
+            </a>
+        </h2>
+    </div>
+    <div class="software-description"><p>SLiM is a genetically explicit forward simulation software package for population genetics and evolutionary biology.  It is highly flexible, with a built-in scripting language, and has a cross-platform graphical modeling environment called SLiMgui.</p>
+</div>
+    <span>
+        
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">initialize</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">initializeTreeSeq</span><span class="p">();</span>
+    <span class="n">initializeMutationRate</span><span class="p">(</span><span class="mf">1e-8</span><span class="p">);</span>
+    <span class="n">initializeMutationType</span><span class="p">(</span><span class="s">"m1"</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s">"e"</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">);</span>
+    <span class="n">initializeGenomicElementType</span><span class="p">(</span><span class="s">"g1"</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+    <span class="n">initializeGenomicElement</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">999999</span><span class="p">);</span>
+    <span class="n">initializeRecombinationRate</span><span class="p">(</span><span class="mf">1e-8</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="mi">1</span> <span class="p">{</span> <span class="n">sim</span><span class="p">.</span><span class="n">addSubpop</span><span class="p">(</span><span class="s">"p1"</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span> <span class="p">}</span>
+<span class="mi">2000</span> <span class="n">late</span><span class="p">()</span> <span class="p">{</span> <span class="n">sim</span><span class="p">.</span><span class="n">treeSeqOutput</span><span class="p">(</span><span class="s">"out.trees"</span><span class="p">);</span> <span class="p">}</span></code></pre></figure>
+
+    </span>
+    <div>
+        <i class="fab fa-github fa-fw"></i>
+        <a href="https://github.com/MesserLab/SLiM">https://github.com/MesserLab/SLiM</a>
+    </div>
+    <div>
+        <i class="fas fa-book fa-fw"></i>
+        <a href="https://messerlab.org/slim/">Documentation</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-box-open fa-fw"></i>
+        Latest release: <a href="https://github.com/MesserLab/SLiM/releases/tag/v3.6">v3.6</a>
+        4 months and 2 weeks ago
+    </div>
+    
+    
+    <div>
+        <i class="fas fa-user-friends fa-fw"></i>
+        11 contributors
+    </div>
+</div>
+
+            
+            <div class="software-summary">
+    <div>
+        <img class="software-summary-logo" src="" />
+        <h2 class="mono software-name">
+            <a href="/fwdpy11">
+                fwdpy11
+            </a>
+        </h2>
+    </div>
+    <div class="software-description"><p>Forward-time simulation in Python using fwdpp</p>
+</div>
+    <span>
+        
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">##TODO##</span></code></pre></figure>
+
+    </span>
+    <div>
+        <i class="fab fa-github fa-fw"></i>
+        <a href="https://github.com/molpopgen/fwdpy11">https://github.com/molpopgen/fwdpy11</a>
+    </div>
+    <div>
+        <i class="fas fa-book fa-fw"></i>
+        <a href="https://fwdpy11.readthedocs.io">Documentation</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-box-open fa-fw"></i>
+        Latest release: <a href="https://github.com/molpopgen/fwdpy11/releases/tag/0.15.2">0.15.2</a>
+        1 week and 3 days ago
+    </div>
+    
+    
+    <div>
+        <i class="fab fa-python fa-fw"></i>
+        <a href="https://pypi.org/project/fwdpy11/">Python package</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-user-friends fa-fw"></i>
+        4 contributors
+    </div>
+</div>
+
+            
+        </div>
+    </div>
+    <div class="software-category">
+        <div class="software-category-header">
+            <h1 id="infer">Infer</h1>
+            <h2>Create tree sequences from variation data</h2>
+        </div>
+        <div class="software-list">
+            
+            
+            <div class="software-summary">
+    <div>
+        <img class="software-summary-logo" src="" />
+        <h2 class="mono software-name">
+            <a href="/tsinfer">
+                tsinfer
+            </a>
+        </h2>
+    </div>
+    <div class="software-description"><p>Infer a tree sequence from genetic variation data.</p>
+</div>
+    <span>
+        
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">sample_data</span> <span class="o">=</span> <span class="n">tsinfer</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">"phased_sequence_data.samples"</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tsinfer</span><span class="p">.</span><span class="n">infer</span><span class="p">(</span><span class="n">sample_data</span><span class="p">)</span></code></pre></figure>
+
+    </span>
+    <div>
+        <i class="fab fa-github fa-fw"></i>
+        <a href="https://github.com/tskit-dev/tsinfer">https://github.com/tskit-dev/tsinfer</a>
+    </div>
+    <div>
+        <i class="fas fa-book fa-fw"></i>
+        <a href="https://tsinfer.readthedocs.io">Documentation</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-box-open fa-fw"></i>
+        Latest release: <a href="https://github.com/tskit-dev/tsinfer/releases/tag/0.2.1">0.2.1</a>
+        1 month and 2 weeks ago
+    </div>
+    
+    
+    <div>
+        <i class="fab fa-python fa-fw"></i>
+        <a href="https://pypi.org/project/tsinfer/">Python package</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-user-friends fa-fw"></i>
+        9 contributors
+    </div>
+</div>
+
+            
+            <div class="software-summary">
+    <div>
+        <img class="software-summary-logo" src="https://raw.githubusercontent.com/tskit-dev/tsdate/master/docs/_static/tsdate_logo.svg" />
+        <h2 class="mono software-name">
+            <a href="/tsdate">
+                tsdate
+            </a>
+        </h2>
+    </div>
+    <div class="software-description"><p>Infer the age of ancestral nodes in a tree sequence.</p>
+</div>
+    <span>
+        
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">dated_ts</span> <span class="o">=</span> <span class="n">tsdate</span><span class="p">.</span><span class="n">date</span><span class="p">(</span><span class="n">inferred_ts</span><span class="p">)</span></code></pre></figure>
+
+    </span>
+    <div>
+        <i class="fab fa-github fa-fw"></i>
+        <a href="https://github.com/tskit-dev/tsdate">https://github.com/tskit-dev/tsdate</a>
+    </div>
+    <div>
+        <i class="fas fa-book fa-fw"></i>
+        <a href="https://tsdate.readthedocs.io">Documentation</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-box-open fa-fw"></i>
+        Latest release: <a href="https://github.com/tskit-dev/tsdate/releases/tag/0.1.4">0.1.4</a>
+        2 weeks and 1 day ago
+    </div>
+    
+    
+    <div>
+        <i class="fab fa-python fa-fw"></i>
+        <a href="https://pypi.org/project/tsdate/">Python package</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-user-friends fa-fw"></i>
+        3 contributors
+    </div>
+</div>
+
+            
+        </div>
+    </div>
+    <div class="software-category">
+        <div class="software-category-header">
+            <h1 id="analyse">Analyse</h1>
+            <h2>Measure key statistics, manipulate tree sequences and their underlying tables</h2>
+        </div>
+        <div class="software-list">
+            
+            
+            <div class="software-summary">
+    <div>
+        <img class="software-summary-logo" src="https://raw.githubusercontent.com/tskit-dev/administrative/main/tskit_logo.svg" />
+        <h2 class="mono software-name">
+            <a href="/tskit">
+                tskit
+            </a>
+        </h2>
+    </div>
+    <div class="software-description"><p>Analyse, create and manipulate tree sequences.</p>
+</div>
+    <span>
+        
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">ts</span> <span class="o">=</span> <span class="n">tskit</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">"example.trees"</span><span class="p">)</span>
+<span class="n">afs</span> <span class="o">=</span> <span class="n">ts</span><span class="p">.</span><span class="n">allele_frequency_spectrum</span><span class="p">()</span></code></pre></figure>
+
+    </span>
+    <div>
+        <i class="fab fa-github fa-fw"></i>
+        <a href="https://github.com/tskit-dev/tskit">https://github.com/tskit-dev/tskit</a>
+    </div>
+    <div>
+        <i class="fas fa-book fa-fw"></i>
+        <a href="https://tskit.readthedocs.io">Documentation</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-box-open fa-fw"></i>
+        Latest release: <a href="https://github.com/tskit-dev/tskit/releases/tag/0.3.7">0.3.7</a>
+        6 days ago
+    </div>
+    
+    
+    <div>
+        <i class="fab fa-python fa-fw"></i>
+        <a href="https://pypi.org/project/tskit/">Python package</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-user-friends fa-fw"></i>
+        26 contributors
+    </div>
+</div>
+
+            
+            <div class="software-summary">
+    <div>
+        <img class="software-summary-logo" src="" />
+        <h2 class="mono software-name">
+            <a href="/pyslim">
+                pyslim
+            </a>
+        </h2>
+    </div>
+    <div class="software-description"><p>Tools for dealing with tree sequences coming to and from SLiM.</p>
+</div>
+    <span>
+        
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="n">rts</span> <span class="o">=</span> <span class="n">pyslim</span><span class="p">.</span><span class="n">recapitate</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">ancestral_Ne</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span></code></pre></figure>
+
+    </span>
+    <div>
+        <i class="fab fa-github fa-fw"></i>
+        <a href="https://github.com/tskit-dev/pyslim">https://github.com/tskit-dev/pyslim</a>
+    </div>
+    <div>
+        <i class="fas fa-book fa-fw"></i>
+        <a href="https://tskit.dev/pyslim/docs/latest">Documentation</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-box-open fa-fw"></i>
+        Latest release: <a href="https://github.com/tskit-dev/pyslim/releases/tag/v0.314">v0.314</a>
+        1 year and 7 months ago
+    </div>
+    
+    
+    <div>
+        <i class="fab fa-python fa-fw"></i>
+        <a href="https://pypi.org/project/pyslim/">Python package</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-user-friends fa-fw"></i>
+        7 contributors
+    </div>
+</div>
+
+            
+            <div class="software-summary">
+    <div>
+        <img class="software-summary-logo" src="https://raw.githubusercontent.com/tskit-dev/administrative/main/tskit_logo.svg" />
+        <h2 class="mono software-name">
+            <a href="/tskit_rust">
+                tskit-rust
+            </a>
+        </h2>
+    </div>
+    <div class="software-description"><p>rust bindings for tskit!</p>
+</div>
+    <span>
+        
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">##TODO##</span></code></pre></figure>
+
+    </span>
+    <div>
+        <i class="fab fa-github fa-fw"></i>
+        <a href="https://github.com/tskit-dev/tskit-rust">https://github.com/tskit-dev/tskit-rust</a>
+    </div>
+    <div>
+        <i class="fas fa-book fa-fw"></i>
+        <a href="https://docs.rs/tskit">Documentation</a>
+    </div>
+    
+    <div>
+        <i class="fas fa-box-open fa-fw"></i>
+        Latest release: <a href="https://github.com/tskit-dev/tskit-rust/releases/tag/0.3.0">0.3.0</a>
+        1 month and 3 weeks ago
+    </div>
+    
+    
+    <div>
+        <i class="fas fa-user-friends fa-fw"></i>
+        3 contributors
+    </div>
+</div>
+
+            
+        </div>
+    </div>
+</div>
+
+</div>
+
+    s
+</body>
+</html>
