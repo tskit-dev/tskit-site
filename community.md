@@ -17,7 +17,7 @@ on the github repo for each project, see the links on the [software page]({% lin
 Please open an issue if you have a concrete bug report or feature.
 
 For support using the software, or for more general questions, please use the
-[discussions](https://github.com/tskit-dev/tskit/discussions) feature github.
+[discussions](https://github.com/tskit-dev/tskit/discussions) feature on github.
 
 ## Discussion and meetings
 
