@@ -399,6 +399,7 @@ jobs:
       - build-core-site
       - build-msprime-docs
       - build-tskit-docs
+      - build-pyslim-docs
       - import-tutorials
     runs-on: ubuntu-20.04
     steps:
