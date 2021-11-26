@@ -3,7 +3,7 @@ layout: software-page
 title: tskit
 name: tskit
 gh_org: tskit-dev
-docs_url: https://tskit.readthedocs.io
+docs_url: https://tskit.dev/tskit/docs/
 category: analyse
 permalink: /tskit
 python_package: tskit
