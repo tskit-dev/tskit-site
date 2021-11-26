@@ -6,8 +6,7 @@ name: msprime
 #description: 
 #repo_url: 
 gh_org: tskit-dev
-# TODO change to stable once msprime 1.0 is shipped.
-docs_url: https://tskit.dev/msprime/docs/latest
+docs_url: https://tskit.dev/msprime/docs/
 category: simulate
 permalink: /msprime
 python_package: msprime
