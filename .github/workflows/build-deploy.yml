@@ -230,7 +230,7 @@ jobs:
         run: |
           git fetch --tags --recurse-submodules=no
           git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
-          git submodule update --recursive
+          git submodule update --init --recursive
           git status
 
       - name: Build virtualenv
