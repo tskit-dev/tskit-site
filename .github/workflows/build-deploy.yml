@@ -217,7 +217,7 @@ jobs:
         run: |
           venv-latest/bin/activate
           cd docs
-          make
+          make dist
 
       - name: Copy docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -228,6 +228,7 @@ jobs:
       - name: Checkout latest stable tag
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
+          git stash
           git fetch --tags --recurse-submodules=no
           git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
           git submodule update --init --recursive
@@ -251,7 +252,7 @@ jobs:
           rm -rf docs/_build
           venv-stable/bin/activate
           cd docs
-          make
+          make dist
 
       - name: Copy docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
