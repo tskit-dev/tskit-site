@@ -252,7 +252,7 @@ jobs:
           rm -rf docs/_build
           venv-stable/bin/activate
           cd docs
-          make dist
+          make dist || make
 
       - name: Copy docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
