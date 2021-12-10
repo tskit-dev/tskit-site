@@ -38,6 +38,8 @@ plugins:
 collections:
   software:
     output: true
+  news:
+    output: true
 
 pubs:
   # TODO update the categories. We may want to remove this entirely.

@@ -232,16 +232,20 @@ body {
     float: right;
     width: 100px;
   }
+}
 
-  .highlight {
-    font-size: smaller;
-    background-color: #303437;
+.highlight {
+  font-size: smaller;
+  background-color: #303437;
 
-    .o {
-      color: #b8c9d2;
-    }
+  .o,.kn,.k{
+    color: #b8c9d2 !important;
+  }
+  .s {
+        color: #518823 !important;
   }
 }
+
 
 .tree-sequence { // style any SVG tree sequence figures to match the site style
     .background polygon {fill: #FFFFFF33}
@@ -531,6 +535,10 @@ html[xmlns] .clearfix {
   //max-width: 100% !important;
   padding: 20px !important;
   max-width: 1200px;
+}
+.blog{
+  display: inherit;
+  padding: inherit;
 }
 
 .page-header {
