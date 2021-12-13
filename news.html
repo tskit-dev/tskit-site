@@ -1,0 +1,12 @@
+---
+layout: page
+title: News
+permalink: /news/
+---
+<h2>Latest updates from the tskit ecosystem</h2>
+{% for b in site.news %}
+     <p>
+          {{b.timestring}}<br/><a href="{{b.url}}">{{b.name}}</a></br>
+     {{b.summary}}
+     </p>
+{% endfor %}
