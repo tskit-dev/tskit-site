@@ -131,7 +131,7 @@ jobs:
         run: |
           git fetch --tags --recurse-submodules=no
           git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
-          git submodule update --recursive
+          git submodule update --init --recursive
           git status
 
       - name: Build virtualenv
@@ -313,6 +313,10 @@ jobs:
         run: |
           venv-latest/bin/activate
           pip install -r requirements/CI-docs/requirements.txt
+          #TEMP FIX
+          pip install git+https://github.com/tskit-dev/msprime.git
+          pip install --upgrade tskit
+
 
       - name: Build Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -338,7 +342,7 @@ jobs:
 #        run: |
 #          git fetch --tags --recurse-submodules=no
 #          git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
-#          git submodule update --recursive
+#          git submodule update --init --recursive
 #          git status
 #
 #      - name: Build virtualenv
