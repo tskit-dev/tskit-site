@@ -6,7 +6,7 @@ name: pyslim
 #description: 
 #repo_url: 
 gh_org: tskit-dev
-docs_url: https://tskit.dev/pyslim/docs/latest
+docs_url: https://tskit.dev/pyslim/docs/stable
 category: analyse
 permalink: /pyslim
 python_package: pyslim
