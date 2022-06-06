@@ -295,10 +295,10 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Build SLiM
+      - name: Build latest SLiM
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
-          git clone https://github.com/messerlab/SLiM.git
+          git clone -b multispecies https://github.com/messerlab/SLiM.git
           mkdir -p SLiM/Release
           cd SLiM/Release
           cmake -D CMAKE_BUILD_TYPE=Release ..
@@ -313,9 +313,6 @@ jobs:
         run: |
           venv-latest/bin/activate
           pip install -r requirements/CI-docs/requirements.txt
-          #TEMP FIX
-          pip install git+https://github.com/tskit-dev/msprime.git
-          pip install --upgrade tskit
 
 
       - name: Build Docs
@@ -336,6 +333,17 @@ jobs:
         run: |
           mkdir -p dist
           cp -r docs/_build/html dist/latest
+
+      - name: Build stable SLiM
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p SLiM/Stable
+          cd SLiM/Stable
+          git fetch --tags --recurse-submodules=no
+          git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
+          git status
+          cmake -D CMAKE_BUILD_TYPE=Release ..
+          make -j 2
 
       - name: Checkout latest stable tag
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -360,7 +368,7 @@ jobs:
         run: |
           rm -rf docs/_build
           venv-stable/bin/activate
-          export PATH=$PATH:$PWD/SLiM/Release
+          export PATH=$PWD/SLiM/Stable:$PATH
           cd docs
           # don't re-generate these which require tricky prerequisites (inkscape, xmlstarlet)
           touch _static/{pedigree0.svg,pedigree1.svg,pedigree2.svg,pedigree_recapitate.svg,pedigree_simplify.svg,pedigree_mutate.svg}
