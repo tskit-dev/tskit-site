@@ -48,8 +48,16 @@ jobs:
           gem install bundler jekyll
           bundle install
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
       - name: Build site
-        run: bundle exec jekyll build -d dist
+        run: GITHUB_TOKEN=${{ github.token }} grunt build
 
       - name: Debug
         run: |

@@ -1,17 +1,64 @@
 ---
 layout: default
 ---
-<div class="topnav clearfix">
-    <a href="/" class="logo mono">tskit.dev</a>
-    <input class="menu-btn" type="checkbox" id="menu-btn"/>
-    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-    <ul class="menu mono">
-        <li><a href="{% link news.html %}">News</a></li>
-        <li><a href="{% link learn.html %}">Learn</a></li>
-        <li><a href="{% link software.md %}">Software</a></li>
-        <li><a href="{% link community.md %}">Community</a></li>
-    </ul>
-</div>
-<div class="main-content">
-    {{ content }}
+<div class="page-wrapper">
+    <!-- START: header -->
+    <header class="header">
+        <!-- START: navbar -->
+        {% include navbar.html %}
+        <!-- END: navbar -->
+
+        <!-- START: heading -->
+        {% if page.layout != "software-page" and page.layout != "news" and page.title != "Community" and page.title %}
+        <div class="page-heading page-heading--type-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h1 class="page-heading__text">
+                            {{page.title}}
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <!-- END: heading -->
+    </header>
+    <!-- END: header -->
+
+    <!-- START: content -->
+    <main class="page-content" id="content">
+        {{ content }}
+    </main>
+    <!-- END: content -->
+
+    <!-- START: footer -->
+        {% include footer.html %}
+    <!-- END: footer -->
+    <!-- START: global modal -->
+    <div class="modal fade"
+         id="globalModal"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="globalModalLabel"
+         aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <button class="navbar-toggler modal-close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="modal-header visually-hidden">
+                    <h5 class="modal-title" id="globalModalLabel">
+                        Modal content
+                    </h5>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END: global modal -->
+
 </div>

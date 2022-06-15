@@ -4,19 +4,24 @@ title: SLiM
 name: SLiM
 gh_org: MesserLab
 docs_url: https://messerlab.org/slim/
+publication: https://doi.org/10.1093/molbev/msy228
+logo: https://i.imgur.com/x54xJoK.jpg
+priority: 10
+force_show_title: true
 category: simulate
-permalink: /SLiM
 code_snippet: |2
   initialize() {
       initializeTreeSeq();
       initializeMutationRate(1e-8);
-      initializeMutationType("m1", 0.5, "e", 0.001);
-      initializeGenomicElementType("g1", m1, 1.0);
-      initializeGenomicElement(g1, 0, 999999);
+      initializeMutationType(
+          "m1", 0.5, "e", 0.001
+      );
       initializeRecombinationRate(1e-8);
   }
-  1 { sim.addSubpop("p1", 500); }
-  2000 late() { sim.treeSeqOutput("out.trees"); }
+  1 early() { sim.addSubpop("p1", 500); }
+  2000 late() { 
+      sim.treeSeqOutput("out.trees");
+  }
 ---
 SLiM is a forwards-time population genetics simulator capable of simulating arbitrarily
 complex evolutionary scenarios. The underlying individual-based simulation
