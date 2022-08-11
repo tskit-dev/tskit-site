@@ -298,7 +298,7 @@ jobs:
       - name: Build latest SLiM
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
-          git clone -b multispecies https://github.com/messerlab/SLiM.git
+          git clone https://github.com/messerlab/SLiM.git
           mkdir -p SLiM/Release
           cd SLiM/Release
           cmake -D CMAKE_BUILD_TYPE=Release ..
@@ -340,7 +340,9 @@ jobs:
           mkdir -p SLiM/Stable
           cd SLiM/Stable
           git fetch --tags --recurse-submodules=no
-          git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
+          # TODO: put this back the way it was after the next pyslim release
+          # git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
+          git checkout v3.7.1
           git status
           cmake -D CMAKE_BUILD_TYPE=Release ..
           make -j 2
