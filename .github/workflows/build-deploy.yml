@@ -130,7 +130,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           git fetch --tags --recurse-submodules=no
-          git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
+          git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
           git submodule update --init --recursive
           git status
 
@@ -230,7 +230,7 @@ jobs:
         run: |
           git stash
           git fetch --tags --recurse-submodules=no
-          git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
+          git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
           git submodule update --init --recursive
           git status
 
@@ -340,9 +340,7 @@ jobs:
           mkdir -p SLiM/Stable
           cd SLiM/Stable
           git fetch --tags --recurse-submodules=no
-          # TODO: put this back the way it was after the next pyslim release
-          # git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
-          git checkout v3.7.1
+          git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
           git status
           cmake -D CMAKE_BUILD_TYPE=Release ..
           make -j 2
@@ -351,7 +349,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           git fetch --tags --recurse-submodules=no
-          git checkout `git tag --list --sort=taggerdate | grep -vi "[baC]" | tail -n1`
+          git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
           git submodule update --init --recursive
           git status
 
