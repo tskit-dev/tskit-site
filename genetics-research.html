@@ -13,12 +13,22 @@ permalink: /genetics-research/
                 </h1>
                 <div class="hero__content wysiwyg">
                     <p>
-                        The tskit ecosystem can be used for a wide range of genetic research purposes. The tree sequence
-                        file format is not only an efficient, scalable way to store and analyse genotype data, but as
-                        its underlying structure is a set of one or more trees it can be used to store and analyse phylogenetic data.
+                        Tskit enables rapid and principled genomic analysis. The tree
+                        sequence file format provides an optimised, scalable way to
+                        store genetic variation data, and underlies modern whole-genome
+                        simulation software such as
+                        <a href="software/msprime.html">msprime</a>. This is achieved
+                        by focussing on the evolutionary trees that underlie DNA
+                        sequence data, and providing efficent methods to analyse them.
+                        Tskit therefore provides a common software framework that can be
+                        used across the
+                        fields of <a href="#popgen">population genetics</a>,
+                        <a href="#statgen">statistical genetics</a>, and
+                        <a href="#phylogen">phylogenetics</a>.
                     </p>
                     <p>
-                        Below we summarise some of the key features of the tskit ecosystem for use in four key areas:
+                        Below we summarise the application and advantages of the tskit
+                        ecosystem in four key areas:
                     </p>
                 </div>
             </div>
@@ -42,15 +52,30 @@ permalink: /genetics-research/
                             </h2>
                             <div class="wysiwyg">
                                 <p>
-                                    The tree sequence file format stores population genetic data in a fraction of the
-                                    space required by table-based methods. The tskit library itself then
-                                    provides a number of methods for efficient calculation of population genetic
-                                    statistics.
+                                    The tskit file format can store
+                                    DNA sequence data from millions of individuals
+                                    in a fraction of the space required by conventional
+                                    matrix-based methods.
+                                    Genetic variation data in tree sequence form
+                                    can be generated using a number of
+                                    simulation tools or inferred from existing data. 
+                                </p>
+                                <p>
+                                    Once in tree sequence form, the tskit library
+                                    can be used for rapid analysis: there are
+                                    built-in functions that efficiently calculate many
+                                    standard population genetic statistics. Because
+                                    tree sequences capture the full genetic relationships
+                                    between a set of genomes (and can encode the full
+                                    ancestral recombination graph, or ARG), they also
+                                    enable novel genealogy-based approaches to
+                                    population genetic analysis.
                                 </p>
                             </div>
-                            <a href="#" class="link link--type-1 link--type-1--size-1">
+                            <a href="tutorials" class="link link--type-1 link--type-1--size-1">
                                         <span class="link__text">
-                                            Tutorial coming soon
+                                            View tutorials
+                                            <!-- link to popgen tutorial -->
                                         </span>
                             </a>
                         </div>
@@ -126,8 +151,33 @@ permalink: /genetics-research/
                             </h2>
                             <div class="wysiwyg">
                                 <p>
-                                    In addition to providing many common statistics tskit provides a generic
-                                    framework for defining custom statistics.
+                                    <!-- Incremental approaches mean we avoid lots of recalculation -->
+                                    Succinct tree sequences are designed to allow
+                                    efficient statistical genetic calculation when
+                                    scanning along entire genomes. This is done by
+                                    removing the need for complete recalculation
+                                    of statistics when moving between adjacent regions
+                                    of the genome. In this way, processing of
+                                    millions of multi-megabase genomes can take a few
+                                    seconds or less.
+                                </p>
+                                <p>
+                                    <!--We can use trees to do things like efficient
+                                        matching via L/S HMMs (Duncan) or storing LD matrices
+                                        as graphical models (https://www.biorxiv.org/content/10.1101/2022.09.06.506858v1) -->
+                                    Storing genetic variation as tree or graph structures
+                                    allows further algorithmic efficiencies to be
+                                    exploited. This leads to scalable approaches to a
+                                    number of statistical genetic problems, for example
+                                    matching genetic sequences against each other, and
+                                    accounting for correlations along the genome.
+
+                                    <!-- E.g. ancestry-aware GWAS-->
+                                    Moreover, tree sequences encode the genetic genealogy
+                                    or ancestry that underlies a set of genomes, which
+                                    can be statistically useful in itself. For example
+                                    accounting for ancestry is often necessary in
+                                    genome-wide association studies (GWAS). 
                                 </p>
                             </div>
                             <a href="#" class="link link--type-1 link--type-1--size-1">
@@ -252,9 +302,38 @@ permalink: /genetics-research/
                             </h2>
                             <div class="wysiwyg">
                                 <p>
-                                    Along with the tree sequence format that can store phylogenetic trees, tskit
-                                    also has methods to generate and compare topologies. Efficient access to the trees'
-                                    structure is provided by the quintuply linked tree arrays.
+                                    Tskit can be used as a phylogenetic computing library
+                                    for fast processing of very large evolutionary
+                                    trees. Methods exist to query features of trees
+                                    and traverse through their nodes, and efficient access
+                                    is also possible via arrays that provide direct
+                                    memory access to the underlying tree structure.
+                                    
+                                    Arbitrary structured or unstructured metadata can be
+                                    associated with nodes, edges, and other entities
+                                    (e.g. mutations, populations) in a tree sequence.
+                                    This provides a flexible way to associate data such
+                                    as names, geographical locations, and phenotypes
+                                    with sample genomes and their ancestors in the tree.
+                                    <!-- Add in stuff about reading in trees, when we have it --> 
+
+                                    <!-- Other tree-based methods in tskit--> 
+                                    Tskit also provides generalizable methods to
+                                    calculate statistics based on tree branch lengths,
+                                    as well as topological methods that generate,
+                                    classify, and compare tree shapes. Optimised methods
+                                    are provided that map genetic variation
+                                    parsimoniously onto a tree, and other efficient
+                                    phylogenetic algorithms can be developed in Python
+                                    using <a href="https://numba.pydata.org">numba</a> to
+                                    achieve near-native speeds.
+                                    
+                                    <!-- Easy extension to recombinant genealogies --> 
+                                    Unlike other phylogenetic libraries, tree
+                                    sequences are explicitly designed for storage
+                                    and processing of large numbers of related trees.
+                                    This make it easy, for example, to allow for genetic
+                                    recombination within an evolutionary genealogy.
                                 </p>
                             </div>
                             <a href="#" class="link link--type-1 link--type-1--size-1">
@@ -331,15 +410,18 @@ permalink: /genetics-research/
                             </h2>
                             <div class="wysiwyg">
                                 <p>
-                                    tskit provides both a Python and C API for reading, writing and manipulating
-                                    tree sequences. This can be used by simulations and inference tools to write tree
-                                    sequences to disk via their table representation, and by analysis tools to read
-                                    them, decode their genotypes or perform statistical measurements using the
-                                    tree sequence structure for efficiency.
-                                    Examples of using the tskit C API can be found
-                                    <a href="https://github.com/tskit-dev/tskit/tree/main/c/examples">here</a>
-                                    and extensive Python API usage is found in the
-                                    <a href="https://tskit.dev/tutorials/tables_and_editing.html">tskit tutorials</a>.
+                                    Tskit is a lightweight library that provides both a
+                                    Python and C API for reading, writing
+                                    and manipulating succinct tree sequences. These APIs
+                                    can be used by simulation and inference tools to
+                                    write tree sequences to disk, and by analysis tools
+                                    to read them, decode their nucleotide sequences, perform efficient
+                                    statistical calculations, or rapidly develop new
+                                    algorithms. Examples of using the tskit C API can be
+                                    found
+                                    <a href="https://github.com/tskit-dev/tskit/tree/main/c/examples">here</a>,
+                                    while use of the Python API
+                                    is extensively described in the tutorials below:
                                 </p>
                             </div>
                             <a href="https://tskit.dev/tutorials/tables_and_editing.html"
