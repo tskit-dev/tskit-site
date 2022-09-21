@@ -5,10 +5,22 @@ name: fwdpy11
 gh_org: molpopgen
 docs_url: https://fwdpy11.readthedocs.io
 category: simulate
-permalink: /fwdpy11
 python_package: fwdpy11
+priority: 11
 code_snippet: |2
-  ##TODO##
-
+  pop = fwdpy11.DiploidPopulation(
+    100, 1000.0
+  )
+  p = {
+    "nregions": [],
+    "rates": (0.0, 1e-3, None),
+    "prune_selected": False,
+    "demography": 
+      fwdpy11.DiscreteDemography(),
+    "simlen": 10 * pop.N + 200,
+    ...
+  }
+  params = fwdpy11.ModelParams(**p)
+  fwdpy11.evolvets(rng, pop, params)
 ---
-TODO Here is some content that is on the full page about fwdpy11
+`fwdpy11` is a Python package for individual-based, forward-time simulations of population genetic processes.

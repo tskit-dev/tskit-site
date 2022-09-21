@@ -5,8 +5,8 @@ name: tskit-rust
 gh_org: tskit-dev
 docs_url: https://docs.rs/tskit
 category: analyse
-permalink: /tskit_rust
-logo: https://raw.githubusercontent.com/tskit-dev/administrative/main/tskit_logo.svg
+logo: https://raw.githubusercontent.com/tskit-dev/administrative/main/logos/svg/tskit-rust/Tskit_rust_logo_white.eps.svg
+priority: 13
 code_snippet: |2
   ##TODO##
 

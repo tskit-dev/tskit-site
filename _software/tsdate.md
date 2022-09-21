@@ -4,10 +4,11 @@ title: tsdate
 name: tsdate
 gh_org: tskit-dev
 docs_url: https://tsdate.readthedocs.io
+publication: https://doi.org/10.1126/science.abi8264
 category: infer
-permalink: /tsdate
 python_package: tsdate
-logo: https://raw.githubusercontent.com/tskit-dev/tsdate/master/docs/_static/tsdate_logo.svg                                       
+logo: https://raw.githubusercontent.com/tskit-dev/administrative/main/logos/svg/tsdate/Tskit_tsdate_logo_on_black_no_background.eps.svg                                       
+priority: 4
 code_snippet: |2
   dated_ts = tsdate.date(inferred_ts)
 ---
