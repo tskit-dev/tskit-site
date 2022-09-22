@@ -1,6 +1,6 @@
 ---
 type: tutorial
-id: tables_and_editing
+tutorial_id: tables_and_editing
 title: Tables and Editing
 timestamp: 2021-06-19
 ---

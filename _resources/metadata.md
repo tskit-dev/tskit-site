@@ -1,6 +1,6 @@
 ---
 type: tutorial
-id: metadata
+tutorial_id: metadata
 title: Working with Metadata
 timestamp: 2021-06-16
 ---

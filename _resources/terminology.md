@@ -1,6 +1,6 @@
 ---
 type: tutorial
-id: terminology_and_concepts
+tutorial_id: terminology_and_concepts
 title: Tskit Terminology and Concepts
 timestamp: 2021-06-21
 ---

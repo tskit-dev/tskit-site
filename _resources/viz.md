@@ -1,6 +1,6 @@
 ---
 type: tutorial
-id: viz
+tutorial_id: viz
 title: Visualization
 timestamp: 2021-05-29
 ---

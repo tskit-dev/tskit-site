@@ -1,6 +1,6 @@
 ---
 type: tutorial
-id: tskitr
+tutorial_id: tskitr
 title: Tskit and R
 timestamp: 2021-05-11
 ---
