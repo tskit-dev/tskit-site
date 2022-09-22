@@ -1,6 +1,6 @@
 ---
 type: tutorial
-id: no_mutations
+tutorial_id: no_mutations
 title: Do you really need mutations?
 timestamp: 2021-06-06
 ---

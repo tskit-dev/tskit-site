@@ -1,6 +1,6 @@
 ---
 type: tutorial
-id: analysing_tree_sequences
+tutorial_id: analysing_tree_sequences
 title: Analysing Tree Sequences
 timestamp: 2021-06-21
 ---

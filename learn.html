@@ -192,7 +192,7 @@ permalink: /learn/
                             </p>
                             <p> {{ r.content }} </p>
                         </div>
-                        <a href="/tutorials/{{r.id}}.html" class="list__item__link link link--type-1 link--type-1--external"
+                        <a href={{ '/tutorials/' | append: r.tutorial_id | append: '.html' | relative_url }} class="list__item__link link link--type-1 link--type-1--external"
                            target="_blank"
                            rel="noopener noreferrer">
                                     <span class="link__text">

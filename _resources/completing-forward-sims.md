@@ -1,6 +1,6 @@
 ---
 type: tutorial
-id: completing-forward-sims
+tutorial_id: completing-forward-sims
 title: Completing forwards simulations
 timestamp: 2021-01-20
 ---

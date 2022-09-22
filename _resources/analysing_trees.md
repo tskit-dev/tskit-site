@@ -1,6 +1,6 @@
 ---
 type: tutorial
-id: analysing_trees
+tutorial_id: analysing_trees
 title: Analysing Trees
 timestamp: 2021-06-19
 ---
