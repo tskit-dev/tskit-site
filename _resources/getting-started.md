@@ -1,6 +1,6 @@
 ---
 type: tutorial
-tutorial_id: getting-started
+tutorial_id: getting_started
 title: Getting started with tskit
 timestamp: 2021-06-21
 ---
