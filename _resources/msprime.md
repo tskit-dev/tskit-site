@@ -1,6 +1,6 @@
 ---
 type: tutorial
-tutorial_id: msprime
+tutorial_id: advanced_msprime
 title: msprime tutorials
 timestamp: 2021-01-19
 ---
