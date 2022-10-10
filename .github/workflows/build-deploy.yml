@@ -181,6 +181,114 @@ jobs:
           name: msprime-docs
           path: dist/*
 
+  build-tsinfer-docs:
+    name: Build tsinfer docs
+    needs: cancel-superseded
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout tsinfer
+        with:
+          ref: main
+          repository: tskit-dev/tsinfer
+          submodules: true
+          fetch-depth: 0 # Needed for setuptools_scm to work correctly
+
+      - name: Get commit SHA1 for cache
+        run: git rev-parse HEAD > SHA1
+
+      - uses: actions/cache@v2
+        id: docs-cache
+        name: Docs cache
+        with:
+          path: dist
+          key: tsinfer-docs-v1-${{ hashFiles('SHA1') }}
+
+      - uses: actions/setup-python@v2
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Setup Python
+        with:
+          python-version: 3.8
+
+      - name: Build virtualenv
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: python -m venv venv-latest
+
+      - name: Install deps
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          venv-latest/bin/activate && pip install -r requirements/CI-docs/requirements.txt
+
+      - name: Build C module
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: venv-latest/bin/activate && make
+
+      - name: Build Docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          venv-latest/bin/activate
+          cd docs
+          make dist
+          # make dist changes the _conf.yml file to write the version number, so drop the change
+          git checkout .
+
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p dist
+          cp -r docs/_build/html dist/latest
+
+      - name: Checkout latest stable tag
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          git fetch --tags --recurse-submodules=no
+          git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
+          git submodule update --init --recursive
+          git status
+
+      - name: Build virtualenv
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: python -m venv venv-stable
+
+      #THIS STEP CAN BE REMOVED AFTER A STABLE RELEASE OF THE JUPYTERBOOK DOCS
+      - name: Install deps needed for RTD build
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: sudo apt-get install -y libcap-dev libnuma-dev
+
+      - name: Install deps
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        #THE development.txt LINE CAN BE REMOVED AFTER A STABLE RELEASE OF THE JUPYTERBOOK DOCS
+        run: |
+          venv-stable/bin/activate
+          [ -f requirements/CI-docs/requirements.txt ] && pip install -r requirements/CI-docs/requirements.txt
+          [ -f requirements/development.txt ] && pip install -r requirements/development.txt
+      - name: Build C module
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: venv-stable/bin/activate && make
+
+      - name: Build Docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        #MAKE LINE CAN BE JUST `MAKE DIST` AFTER STABLE RELEASE OF JUPYTERBOOK DOCS
+        run: |
+          rm -rf docs/_build
+          venv-stable/bin/activate
+          cd docs
+          make dist || make
+          # make dist changes the _conf.yml file to write the version number, so drop the change
+          git checkout .
+
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run:
+          cp -r docs/_build/html dist/stable
+
+      - name: Upload tsinfer docs
+        uses: actions/upload-artifact@v2
+        with:
+          name: tsinfer-docs
+          path: dist/*
+
+
   build-tskit-docs:
     name: Build tskit docs
     needs: cancel-superseded
@@ -431,6 +539,7 @@ jobs:
     needs:
       - build-core-site
       - build-msprime-docs
+      - build-tsinfer-docs
       - build-tskit-docs
       - build-pyslim-docs
       - import-tutorials
@@ -447,6 +556,12 @@ jobs:
         with:
           name: msprime-docs
           path: site/msprime/docs
+
+      - name: Download tsinfer-docs
+        uses: actions/download-artifact@v2
+        with:
+          name: tsinfer-docs
+          path: site/tsinfer/docs
 
       - name: Download tskit-docs
         uses: actions/download-artifact@v2
@@ -471,6 +586,7 @@ jobs:
           touch site/.nojekyll
           echo "tskit.dev" > site/CNAME
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/msprime/docs/stable\" />" > site/msprime/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tsinfer/docs/stable\" />" > site/tsinfer/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tskit/docs/stable\" />" > site/tskit/docs/index.html
 
       - name: List site contents
