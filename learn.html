@@ -170,8 +170,10 @@ permalink: /learn/
                                 {{ r.timestamp | date: "%d %B, %Y" }}
                             </p>
                             <p>
-                                {{ r.who }} at {{ r.where }}
+                                {{ r.who }} at {{ r.where }}</br>
+                                {{ r.content }}
                             </p>
+
                         </div>
                         <a href="https://www.youtube.com/watch?v={{r.youtube-id}}" class="video-trigger"
                            data-bs-toggle="modal" data-bs-target="#globalModal" data-video-id="{{r.youtube-id}}"
