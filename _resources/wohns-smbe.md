@@ -6,6 +6,7 @@ where: SMBE Everywhere
 title: The ARG revolution in population and statistical genetics
 year: 2022
 timestamp: 2022-09-30
+thumbnail: https://i.imgur.com/pOF8gGY.png
 ---
 In this video, Wilder Wohns gives examples of how ancestral recombination graphs (ARGs)
 stored in `tskit` format have the potential to revolutionise population and statistical
