@@ -250,30 +250,22 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: python -m venv venv-stable
 
-      #THIS STEP CAN BE REMOVED AFTER A STABLE RELEASE OF THE JUPYTERBOOK DOCS
-      - name: Install deps needed for RTD build
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: sudo apt-get install -y libcap-dev libnuma-dev
-
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        #THE development.txt LINE CAN BE REMOVED AFTER A STABLE RELEASE OF THE JUPYTERBOOK DOCS
         run: |
           venv-stable/bin/activate
           [ -f requirements/CI-docs/requirements.txt ] && pip install -r requirements/CI-docs/requirements.txt
-          [ -f requirements/development.txt ] && pip install -r requirements/development.txt
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-stable/bin/activate && make
 
       - name: Build Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        #MAKE LINE CAN BE JUST `MAKE DIST` AFTER STABLE RELEASE OF JUPYTERBOOK DOCS
         run: |
           rm -rf docs/_build
           venv-stable/bin/activate
           cd docs
-          make dist || make
+          make dist
           # make dist changes the _conf.yml file to write the version number, so drop the change
           git checkout .
 
@@ -437,7 +429,6 @@ jobs:
         run: |
           venv-latest/bin/activate
           pip install -r requirements/CI-docs/requirements.txt
-
 
       - name: Build Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
