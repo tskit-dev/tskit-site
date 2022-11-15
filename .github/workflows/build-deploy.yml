@@ -534,6 +534,24 @@ jobs:
           name: tutorials
           path: .
 
+  import-rust-tutorial:
+    name: Import rust tutorials
+    needs: cancel-superseded
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout tutorials
+        with:
+          ref: gh-pages
+          repository: tskit-dev/tskit-rust
+
+      - name: Upload tutorials
+        uses: actions/upload-artifact@v2
+        with:
+          name: rust-tutorials
+          path: .
+
+
   deploy:
     name: Deploy 🚀 (if on main branch)
     needs:
@@ -543,6 +561,7 @@ jobs:
       - build-tskit-docs
       - build-pyslim-docs
       - import-tutorials
+      - import-rust-tutorial
     runs-on: ubuntu-20.04
     steps:
       - name: Download core site
@@ -580,6 +599,12 @@ jobs:
         with:
           name: tutorials
           path: site/tutorials
+
+      - name: Download rust tutorial
+        uses: actions/download-artifact@v2
+        with:
+          name: rust-tutorials
+          path: site/tutorials/rust
 
       - name: Pages config and tweaks
         run: |
