@@ -175,17 +175,30 @@ permalink: /learn/
                             </p>
 
                         </div>
-                        <a href="https://www.youtube.com/watch?v={{r.youtube-id}}" class="video-trigger"
-                           data-bs-toggle="modal" data-bs-target="#globalModal" data-video-id="{{r.youtube-id}}"
-                           data-video-aspect-ratio="16x9">
-                                    <span class="visually-hidden">
-                                        Play video
-                                    </span>
+                        {% if r.youtube-id %}
+                            <a href="https://www.youtube.com/watch?v={{r.youtube-id}}" class="video-trigger"
+                               data-bs-toggle="modal" data-bs-target="#globalModal" data-youtube-id="{{r.youtube-id}}"
+                               data-video-aspect-ratio="16x9">
+                                <span class="visually-hidden">
+                                    Play video
+                                </span>
+                                <div class="video-trigger__image-wrapper">
+                                    <img alt="video thumbnail" class="img-fluid"
+                                         src="https://img.youtube.com/vi/{{r.youtube-id | split: "&" | first }}/maxresdefault.jpg">
+                                </div>
+                            </a>
+                        {% elsif r.vimeo-id %}
+<!--                            Vimeo embeds don't work with out a code from the video creator, so just link-->
+                            <a href="https://www.vimeo.com/{{r.vimeo-id}}" class="video-trigger">
+                                <span class="visually-hidden">
+                                    Play video
+                                </span>
                             <div class="video-trigger__image-wrapper">
                                 <img alt="video thumbnail" class="img-fluid"
-                                     src="https://img.youtube.com/vi/{{r.youtube-id | split: "&" | first }}/maxresdefault.jpg">
+                                     src="{{r.thumbnail}}">
                             </div>
-                        </a>
+                            </a>
+                        {% endif %}
                     {% endif %}
                     {% if r.type == "tutorial" %}
                         <div class="wysiwyg">
