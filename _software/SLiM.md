@@ -3,7 +3,8 @@ layout: software-page
 title: SLiM
 name: SLiM
 gh_org: MesserLab
-docs_url: https://messerlab.org/slim/
+homepage: https://messerlab.org/slim/
+docs_url: http://benhaller.com/slim/SLiM_Manual.pdf
 publication: https://doi.org/10.1093/molbev/msy228
 logo: https://i.imgur.com/x54xJoK.jpg
 priority: 10

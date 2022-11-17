@@ -21,6 +21,16 @@ layout: page
                             </span>
                         </a>
                     </li>
+                    {% if page.homepage %}
+                    <li class="list__item">
+                        <a href="{{page.homepage}}" class="list__item__link link link--type-2 link--type-2--size-1">
+                            {% include assets/icons/icon-documentation.svg %}
+                            <span class="link__text">
+                                Website
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
                     <li class="list__item">
                         <a href="{{page.docs_url}}" class="list__item__link link link--type-2 link--type-2--size-1">
                             <!-- START: icon-documentation -->
