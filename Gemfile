@@ -42,3 +42,4 @@ gem 'jekyll-font-awesome-sass'
 gem "hash-joiner"
 gem "open-uri-cached"
 gem "httparty"
+gem 'jekyll-redirect-from'

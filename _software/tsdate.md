@@ -11,5 +11,7 @@ logo: https://raw.githubusercontent.com/tskit-dev/administrative/main/logos/svg/
 priority: 4
 code_snippet: |2
   dated_ts = tsdate.date(inferred_ts)
+redirect_from:
+  - /tsdate/
 ---
 Tsdate is a scalable method for estimating the age of ancestral nodes in a tree sequence. 
