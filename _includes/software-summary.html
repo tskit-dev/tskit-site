@@ -14,6 +14,14 @@
             {% endif %}
         </a>
     </h5>
+    {% if app.homepage %}
+    <a href="{{app.homepage}}" class="list__item__link link link--type-2">
+        {% include assets/icons/icon-documentation.svg %}
+        <span class="link__text">
+            Website
+        </span>
+    </a>
+    {% endif %}
     <a href="{{app.docs_url}}" class="list__item__link link link--type-2">
         {% include assets/icons/icon-documentation.svg %}
         <span class="link__text">
@@ -27,7 +35,6 @@
             Publication
         </span>
     </a>
-
     {% endif %}
     <a href="{{ app.repo_url | default: app.github.repo.html_url }}" class="list__item__link link link--type-2">
         {% include assets/icons/icon-github.svg %}
