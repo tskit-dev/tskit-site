@@ -15,6 +15,8 @@ code_snippet: |2
       ts, 
       ancestral_Ne=10000
   )
+redirect_from:
+  - /pyslim/
 ---
 
 pyslim is a small python package to help analyse and manipulate tree sequences

@@ -19,6 +19,8 @@ code_snippet: |2
       sequence_length=1e6
   )
   ts = msprime.sim_mutations(ts, rate=1e-6)
+redirect_from:
+  - /msprime/
 ---
 
 Msprime is a Python package that simulates ancestral histories and 

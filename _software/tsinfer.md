@@ -14,7 +14,8 @@ code_snippet: |2
       "phased_sequence_data.samples"
   )
   ts = tsinfer.infer(sample_data)
-
+redirect_from:
+  - /tsinfer/
 ---
 ``Tsinfer`` is a Python package to infer a tree sequence from large
 quantities of phased DNA sequence data, for example in a VCF file

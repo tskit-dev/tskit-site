@@ -11,6 +11,8 @@ priority: 1
 code_snippet: |2
   ts = tskit.load("example.trees")
   afs = ts.allele_frequency_spectrum()
+redirect_from:
+  - /tskit/
 ---
 The tskit library provides the underlying functionality used to load, examine, and
 manipulate tree sequences, including efficient methods for calculating genetic statistics.

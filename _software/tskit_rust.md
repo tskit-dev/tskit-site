@@ -19,6 +19,8 @@ code_snippet: |2
     tree_iterator.next() {
       ...
     }
+redirect_from:
+  - /tskit-rust/
 ---
 `tskit-rust` provides [rust](https://www.rust-lang.org/) bindings to the [tskit](https://tskit.dev/tskit) C library.
 
