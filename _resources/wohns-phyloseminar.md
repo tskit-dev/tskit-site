@@ -3,7 +3,7 @@ type: video
 youtube-id: YrZTKjLzZY0
 who: Wilder Wohns
 year: 2020
-where: Phyloseminar
+where: Phyloseminar.org
 title: Tree sequence fundamentals
 timestamp: 2020-04-08
 ---
