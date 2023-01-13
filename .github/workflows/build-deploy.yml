@@ -319,6 +319,9 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: python -m venv venv-latest
 
+      - name: Downgrade pip (for conflicting dependencies)
+        run: venv-latest/bin/activate && pip install pip==20.0.2
+
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
@@ -355,6 +358,9 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: python -m venv venv-stable
 
+      - name: Downgrade pip (for conflicting dependencies)
+        run: venv-stable/bin/activate && pip install pip==20.0.2
+
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-stable/bin/activate && pip install -r python/requirements/CI-docs/requirements.txt
@@ -368,6 +374,8 @@ jobs:
         run: |
           rm -rf docs/_build
           venv-stable/bin/activate
+          # Install jsonschema for bugfix
+          pip install jsonschema[format-nongpl]==4.17.3
           cd docs
           ### Temp changes for theme
           pip install tskit-book-theme
