@@ -207,11 +207,11 @@ jobs:
           path: dist
           key: tsinfer-docs-v1-${{ hashFiles('SHA1') }}
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
-          python-version: 3.8
+          python-version: "3.10"
 
       - name: Build virtualenv
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -220,7 +220,7 @@ jobs:
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
-          venv-latest/bin/activate && pip install -r requirements/CI-docs/requirements.txt
+          venv-latest/bin/activate && cat requirements/CI-docs/requirements.txt | sed -e '/^\s*#.*$/d' -e '/^\s*$/d' | xargs -n 1 pip install --no-dependencies
 
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -249,6 +249,12 @@ jobs:
           git submodule update --init --recursive
           git status
 
+      - uses: actions/setup-python@v4
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Setup Python
+        with:
+          python-version: "3.8"
+
       - name: Build virtualenv
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: python -m venv venv-stable
@@ -258,6 +264,9 @@ jobs:
         run: |
           venv-stable/bin/activate
           [ -f requirements/CI-docs/requirements.txt ] && pip install -r requirements/CI-docs/requirements.txt
+          # Remove this line after 0.4.0
+          pip install jsonschema[format-nongpl]==4.17.3
+
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-stable/bin/activate && make
@@ -309,24 +318,21 @@ jobs:
           path: dist
           key: tskit-docs-v7-${{ hashFiles('SHA1') }}
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        name: Setup Pyton
+        name: Setup Python
         with:
-          python-version: 3.8
+          python-version: "3.10"
 
       - name: Build virtualenv
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: python -m venv venv-latest
 
-      - name: Downgrade pip (for conflicting dependencies)
-        run: venv-latest/bin/activate && pip install pip==20.0.2
-
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           sudo apt-get install doxygen
-          venv-latest/bin/activate && pip install -r python/requirements/CI-docs/requirements.txt
+          venv-latest/bin/activate && cat python/requirements/CI-docs/requirements.txt | sed -e '/^\s*#.*$/d' -e '/^\s*$/d' | xargs -n 1 pip install --no-dependencies
 
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -354,6 +360,12 @@ jobs:
           git submodule update --init --recursive
           git status
 
+      - uses: actions/setup-python@v4
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Setup Python
+        with:
+          python-version: 3.8
+
       - name: Build virtualenv
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: python -m venv venv-stable
@@ -363,7 +375,10 @@ jobs:
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: venv-stable/bin/activate && pip install -r python/requirements/CI-docs/requirements.txt
+        # Remove this second line after next release of tskit
+        run: |
+          venv-stable/bin/activate && pip install -r python/requirements/CI-docs/requirements.txt
+          venv-stable/bin/activate && pip install nbclient==0.5.13
 
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
