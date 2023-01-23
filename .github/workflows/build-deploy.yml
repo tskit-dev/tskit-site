@@ -371,6 +371,7 @@ jobs:
         run: python -m venv venv-stable
 
       - name: Downgrade pip (for conflicting dependencies)
+        if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-stable/bin/activate && pip install pip==20.0.2
 
       - name: Install deps
