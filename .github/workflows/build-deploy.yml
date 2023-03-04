@@ -465,6 +465,8 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           venv-latest/bin/activate
+          # Install jsonschema for bugfix
+          pip install jsonschema[format-nongpl]==4.17.3
           export PATH=$PATH:$PWD/SLiM/Release
           cd docs
           # don't re-generate these which require tricky prerequisites (inkscape, xmlstarlet)
@@ -514,6 +516,8 @@ jobs:
         run: |
           rm -rf docs/_build
           venv-stable/bin/activate
+          # Install jsonschema for bugfix
+          pip install jsonschema[format-nongpl]==4.17.3
           export PATH=$PWD/SLiM/Stable:$PATH
           cd docs
           # don't re-generate these which require tricky prerequisites (inkscape, xmlstarlet)
