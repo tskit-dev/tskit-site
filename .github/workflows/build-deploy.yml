@@ -251,33 +251,39 @@ jobs:
           git submodule update --init --recursive
           git status
 
-      - uses: actions/setup-python@v4
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        name: Setup Python
-        with:
-          python-version: "3.8"
+#      - uses: actions/setup-python@v4
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        name: Setup Python
+#        with:
+#          python-version: "3.8"
+#
+#      - name: Build virtualenv
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run: python -m venv venv-stable
 
-      - name: Build virtualenv
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: python -m venv venv-stable
-
-      - name: Install deps
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: |
-          venv-stable/bin/activate
-          [ -f requirements/CI-docs/requirements.txt ] && pip install -r requirements/CI-docs/requirements.txt
-          # Remove this line after 0.4.0
-          pip install jsonschema[format-nongpl]==4.17.3
-
+# Changes have meant that the stable version docs won't build - so use the venv-latest instead for now. #
+#      - name: Install deps
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run: |
+#          venv-stable/bin/activate
+#          [ -f requirements/CI-docs/requirements.txt ] && pip install -r requirements/CI-docs/requirements.txt
+#          # Remove this line after 0.4.0
+#          pip install jsonschema[format-nongpl]==4.17.3
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: venv-stable/bin/activate && make
+#        run: venv-stable/bin/activate && make
+        run: |
+          venv-latest/bin/activate
+          venv-latest/bin/activate && which python
+          venv-latest/bin/activate && python -c "import numpy;print(numpy.__file__)"
+          venv-latest/bin/activate && make
 
       - name: Build Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           rm -rf docs/_build
-          venv-stable/bin/activate
+          #venv-stable/bin/activate
+          venv-latest/bin/activate
           cd docs
           ### Temp fix for unpinned dependency change (#156)
           sed -i 's/sphinxarg.ext/sphinxarg.ext\n    - IPython.sphinxext.ipython_console_highlighting/g' _config.yml
