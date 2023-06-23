@@ -440,7 +440,7 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: pyslim-docs-v5-${{ hashFiles('SHA1') }}
+          key: pyslim-docs-v6-${{ hashFiles('SHA1') }}
 
       - uses: actions/setup-python@v2
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -507,32 +507,27 @@ jobs:
           git submodule update --init --recursive
           git status
 
-      - name: Build virtualenv
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: python -m venv venv-stable
-
-      - name: Install deps
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: |
-          venv-stable/bin/activate
-          pip install -r requirements/CI-docs/requirements.txt
+# As docs build has had issues with dependancies, just use venv-latest for now
+#      - name: Build virtualenv
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run: python -m venv venv-stable
+#
+#      - name: Install deps
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run: |
+#          venv-stable/bin/activate
+#          pip install -r requirements/CI-docs/requirements.txt
 
       - name: Build Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           rm -rf docs/_build
-          venv-stable/bin/activate
-          # Install jsonschema for bugfix
-          pip install jsonschema[format-nongpl]==4.17.3
+          venv-latest/bin/activate
           export PATH=$PWD/SLiM/Stable:$PATH
           cd docs
           # don't re-generate these which require tricky prerequisites (inkscape, xmlstarlet)
           touch _static/{pedigree0.svg,pedigree1.svg,pedigree2.svg,pedigree_recapitate.svg,pedigree_simplify.svg,pedigree_mutate.svg}
           touch _static/{pedigree01.png,pedigree0.png,pedigree1.png,pedigree2.png,pedigree_recapitate.png,pedigree_simplify.png,pedigree_mutate.png}
-          ### Temp changes for theme
-          pip install tskit-book-theme
-          sed -i 's/    config:/    config:\n      html_theme: tskit_book_theme\n      pygments_style: monokai/g' _config.yml 
-          ### Temp changes for theme
           make dist
           # make dist changes the _conf.yml file to write the version number, so drop the change
           git checkout .
