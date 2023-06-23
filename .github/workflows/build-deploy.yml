@@ -440,7 +440,7 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: pyslim-docs-v5-${{ hashFiles('SHA1') }}
+          key: pyslim-docs-v6-${{ hashFiles('SHA1') }}
 
       - uses: actions/setup-python@v2
         if: steps.docs-cache.outputs.cache-hit != 'true'
