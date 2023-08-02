@@ -24,12 +24,12 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.6.0
+        uses: styfle/cancel-workflow-action@0.11.0
         with:
           access_token: ${{ github.token }}
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -114,7 +114,7 @@ jobs:
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
-          venv-latest/bin/activate && cat requirements/CI-docs/requirements.txt | sed -e '/^\s*#.*$/d' -e '/^\s*$/d' | xargs -n 1 pip install --no-dependencies
+          venv-latest/bin/activate && pip install -r requirements/CI-docs/requirements.txt
 
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -143,37 +143,45 @@ jobs:
           git submodule update --init --recursive
           git status
 
-      - name: Build virtualenv
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: python -m venv venv-stable
-
-      - name: Install deps
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: |
-          venv-stable/bin/activate
-          [ -f requirements/CI-docs/requirements.txt ] && pip install -r requirements/CI-docs/requirements.txt
-          [ -f requirements/development.txt ] && pip install -r requirements/development.txt
+#      - name: Build virtualenv
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run: python -m venv venv-stable
+#
+#      - name: Install deps
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run: |
+#          venv-stable/bin/activate
+#          [ -f requirements/CI-docs/requirements.txt ] && pip install -r requirements/CI-docs/requirements.txt
+#          [ -f requirements/development.txt ] && pip install -r requirements/development.txt
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: venv-stable/bin/activate && make
+#        run: venv-stable/bin/activate && make
+        run: venv-latest/bin/activate && make
 
       - name: Build Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           rm -rf docs/_build
-          venv-stable/bin/activate
+          venv-latest/bin/activate
           cd docs
-          ### Temp fix for unpinned dependency change (#156)
-          sed -i 's/sphinxarg.ext/sphinxarg.ext\n    - IPython.sphinxext.ipython_console_highlighting/g' _config.yml
-          # Install jsonschema for bugfix
-          pip install jsonschema[format-nongpl]==4.17.3
-          ### Temp changes for theme
-          pip install tskit-book-theme
-          sed -i 's/    config:/    config:\n      html_theme: tskit_book_theme\n      pygments_style: monokai/g' _config.yml 
-          ### Temp changes for theme
           make dist
           # make dist changes the _conf.yml file to write the version number, so drop the change
           git checkout .
+#        run: |
+#          rm -rf docs/_build
+#          venv-stable/bin/activate
+#          cd docs
+#          ### Temp fix for unpinned dependency change (#156)
+#          sed -i 's/sphinxarg.ext/sphinxarg.ext\n    - IPython.sphinxext.ipython_console_highlighting/g' _config.yml
+#          # Install jsonschema for bugfix
+#          pip install jsonschema[format-nongpl]==4.17.3
+#          ### Temp changes for theme
+#          pip install tskit-book-theme
+#          sed -i 's/    config:/    config:\n      html_theme: tskit_book_theme\n      pygments_style: monokai/g' _config.yml
+#          ### Temp changes for theme
+#          make dist
+#          # make dist changes the _conf.yml file to write the version number, so drop the change
+#          git checkout .
 
       - name: Copy docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -222,7 +230,7 @@ jobs:
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
-          venv-latest/bin/activate && cat requirements/CI-docs/requirements.txt | sed -e '/^\s*#.*$/d' -e '/^\s*$/d' | xargs -n 1 pip install --no-dependencies
+          venv-latest/bin/activate && pip install -r requirements/CI-docs/requirements.txt
 
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -340,7 +348,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           sudo apt-get install doxygen
-          venv-latest/bin/activate && cat python/requirements/CI-docs/requirements.txt | sed -e '/^\s*#.*$/d' -e '/^\s*$/d' | xargs -n 1 pip install --no-dependencies
+          venv-latest/bin/activate && pip install -r python/requirements/CI-docs/requirements.txt
 
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -471,8 +479,6 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           venv-latest/bin/activate
-          # Install jsonschema for bugfix
-          pip install jsonschema[format-nongpl]==4.17.3
           export PATH=$PATH:$PWD/SLiM/Release
           cd docs
           # don't re-generate these which require tricky prerequisites (inkscape, xmlstarlet)
