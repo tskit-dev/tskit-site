@@ -600,33 +600,34 @@ jobs:
           mkdir -p dist
           cp -r docs/_build/html dist/latest
 
-      - name: Checkout latest stable tag
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: |
-          git fetch --tags --recurse-submodules=no
-          git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
-          git status
+      # FIXME disabling the stable branch here as it's broken for 0.0.1a1
+      # - name: Checkout latest stable tag
+      #   if: steps.docs-cache.outputs.cache-hit != 'true'
+      #   run: |
+      #     git fetch --tags --recurse-submodules=no
+      #     git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
+      #     git status
 
-      - name: Build Docs
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: |
-          rm -rf docs/_build
-          venv-latest/bin/activate
-          cd docs
-          make dist
-          # make dist changes the _conf.yml file to write the version number, so drop the change
-          git checkout .
+      # - name: Build Docs
+      #   if: steps.docs-cache.outputs.cache-hit != 'true'
+      #   run: |
+      #     rm -rf docs/_build
+      #     venv-latest/bin/activate
+      #     cd docs
+      #     make dist
+      #     # make dist changes the _conf.yml file to write the version number, so drop the change
+      #     git checkout .
 
-      - name: Copy docs
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run:
-          cp -r docs/_build/html dist/stable
+      # - name: Copy docs
+      #   if: steps.docs-cache.outputs.cache-hit != 'true'
+      #   run:
+      #     cp -r docs/_build/html dist/stable
 
-      - name: Upload tstrait docs
-        uses: actions/upload-artifact@v2
-        with:
-          name: tstrait-docs
-          path: dist/*
+      # - name: Upload tstrait docs
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: tstrait-docs
+      #     path: dist/*
 
   import-tutorials:
     name: Import tutorials
