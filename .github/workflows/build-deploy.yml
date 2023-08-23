@@ -411,7 +411,7 @@ jobs:
           cd docs
           ### Temp changes for theme
           pip install tskit-book-theme
-          sed -i 's/    config:/    config:\n      html_theme: tskit_book_theme\n      pygments_style: monokai/g' _config.yml 
+          sed -i 's/    config:/    config:\n      html_theme: tskit_book_theme\n      pygments_style: monokai/g' _config.yml
           ### Temp changes for theme
           make dist || make
 
@@ -549,6 +549,85 @@ jobs:
           name: pyslim-docs
           path: dist/*
 
+  build-tstrait-docs:
+    name: Build tstrait docs
+    needs: cancel-superseded
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout tstrait
+        with:
+          ref: main
+          repository: tskit-dev/tstrait
+
+      - name: Get commit SHA1 for cache
+        run: git rev-parse HEAD > SHA1
+
+      - uses: actions/cache@v2
+        id: docs-cache
+        name: Docs cache
+        with:
+          path: dist
+          key: tstrait-docs-v1-${{ hashFiles('SHA1') }}
+
+      - uses: actions/setup-python@v2
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Setup Python
+        with:
+          python-version: "3.10"
+
+      - name: Build virtualenv
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: python -m venv venv-latest
+
+      - name: Install deps
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          venv-latest/bin/activate && pip install -r requirements/CI-docs/requirements.txt
+
+      - name: Build Docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          venv-latest/bin/activate
+          cd docs
+          make dist
+          # make dist changes the _conf.yml file to write the version number, so drop the change
+          git checkout .
+
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p dist
+          cp -r docs/_build/html dist/latest
+
+      # FIXME disabling the stable branch here as it's broken for 0.0.1a1
+      # - name: Checkout latest stable tag
+      #   if: steps.docs-cache.outputs.cache-hit != 'true'
+      #   run: |
+      #     git fetch --tags --recurse-submodules=no
+      #     git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
+      #     git status
+
+      # - name: Build Docs
+      #   if: steps.docs-cache.outputs.cache-hit != 'true'
+      #   run: |
+      #     rm -rf docs/_build
+      #     venv-latest/bin/activate
+      #     cd docs
+      #     make dist
+      #     # make dist changes the _conf.yml file to write the version number, so drop the change
+      #     git checkout .
+
+      # - name: Copy docs
+      #   if: steps.docs-cache.outputs.cache-hit != 'true'
+      #   run:
+      #     cp -r docs/_build/html dist/stable
+
+      # - name: Upload tstrait docs
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: tstrait-docs
+      #     path: dist/*
 
   import-tutorials:
     name: Import tutorials
