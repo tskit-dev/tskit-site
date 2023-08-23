@@ -623,11 +623,11 @@ jobs:
       #   run:
       #     cp -r docs/_build/html dist/stable
 
-      # - name: Upload tstrait docs
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: tstrait-docs
-      #     path: dist/*
+      - name: Upload tstrait docs
+        uses: actions/upload-artifact@v2
+        with:
+          name: tstrait-docs
+          path: dist/*
 
   import-tutorials:
     name: Import tutorials
@@ -699,6 +699,12 @@ jobs:
         with:
           name: tskit-docs
           path: site/tskit/docs
+
+      - name: Download tstrait-docs
+        uses: actions/download-artifact@v2
+        with:
+          name: tstrait-docs
+          path: site/tstrait/docs    
 
       - name: Download pyslim-docs
         uses: actions/download-artifact@v2
