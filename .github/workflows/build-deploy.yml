@@ -700,6 +700,12 @@ jobs:
           name: tskit-docs
           path: site/tskit/docs
 
+      - name: Download tstrait-docs
+        uses: actions/download-artifact@v2
+        with:
+          name: tstrait-docs
+          path: site/tstrait/docs    
+
       - name: Download pyslim-docs
         uses: actions/download-artifact@v2
         with:
