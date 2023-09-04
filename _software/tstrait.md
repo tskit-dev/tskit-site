@@ -15,7 +15,8 @@ code_snippet: |2
     distribution="normal", mean=0, var=1
   )
   sim_result = tstrait.sim_phenotype(
-      ts=ts, num_causal=100, model=model, h2=0.3, random_seed=1
+      ts=ts, num_causal=100, model=model,
+      h2=0.3, random_seed=1
   )
 redirect_from:
   - /tstrait/
