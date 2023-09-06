@@ -731,7 +731,7 @@ jobs:
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tsinfer/docs/stable\" />" > site/tsinfer/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tskit/docs/stable\" />" > site/tskit/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/pyslim/docs/stable\" />" > site/pyslim/docs/index.html
-
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tstrait/docs/stable\" />" > site/tstrait/docs/index.html
       - name: List site contents
         run: |
           ls -R
