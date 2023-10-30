@@ -11,20 +11,20 @@ on:
 jobs:
   cancel-superseded:
     name: Cancel superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
         - name: Cancel Previous Runs
-          uses: styfle/cancel-workflow-action@0.7.0
+          uses: styfle/cancel-workflow-action@0.12.0
           with:
             access_token: ${{ github.token }}
 
   build-core-site:
     needs: cancel-superseded
     name: Build core site
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.11.0
+        uses: styfle/cancel-workflow-action@0.12.0
         with:
           access_token: ${{ github.token }}
 
@@ -77,7 +77,7 @@ jobs:
   build-msprime-docs:
     name: Build msprime docs
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout msprime
@@ -90,7 +90,7 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: docs-cache
         name: Docs cache
         with:
@@ -101,7 +101,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: sudo apt-get install -y libgsl0-dev
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
@@ -197,7 +197,7 @@ jobs:
   build-tsinfer-docs:
     name: Build tsinfer docs
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout tsinfer
@@ -210,7 +210,7 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: docs-cache
         name: Docs cache
         with:
@@ -263,7 +263,7 @@ jobs:
 #        if: steps.docs-cache.outputs.cache-hit != 'true'
 #        name: Setup Python
 #        with:
-#          python-version: "3.8"
+#          python-version: "3.10"
 #
 #      - name: Build virtualenv
 #        if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -314,7 +314,7 @@ jobs:
   build-tskit-docs:
     name: Build tskit docs
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout tskit
@@ -327,7 +327,7 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: docs-cache
         name: Docs cache
         with:
@@ -380,7 +380,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
-          python-version: 3.8
+          python-version: "3.10"
 
       - name: Build virtualenv
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -430,7 +430,7 @@ jobs:
   build-pyslim-docs:
     name: Build pyslim docs
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout pyslim
@@ -443,18 +443,18 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: docs-cache
         name: Docs cache
         with:
           path: dist
           key: pyslim-docs-v6-${{ hashFiles('SHA1') }}
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
-          python-version: 3.8
+          python-version: "3.10"
 
       - name: Build latest SLiM
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -552,7 +552,7 @@ jobs:
   build-tstrait-docs:
     name: Build tstrait docs
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout tstrait
@@ -563,14 +563,14 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: docs-cache
         name: Docs cache
         with:
           path: dist
           key: tstrait-docs-v2-${{ hashFiles('SHA1') }}
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
@@ -631,7 +631,7 @@ jobs:
   import-tutorials:
     name: Import tutorials
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout tutorials
@@ -648,7 +648,7 @@ jobs:
   import-rust-tutorial:
     name: Import rust tutorials
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout tutorials
@@ -673,7 +673,7 @@ jobs:
       - build-pyslim-docs
       - import-tutorials
       - import-rust-tutorial
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Download core site
         uses: actions/download-artifact@v2
