@@ -11,7 +11,7 @@ on:
 jobs:
   cancel-superseded:
     name: Cancel superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
         - name: Cancel Previous Runs
           uses: styfle/cancel-workflow-action@0.7.0
@@ -77,7 +77,7 @@ jobs:
   build-msprime-docs:
     name: Build msprime docs
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout msprime
@@ -120,7 +120,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-latest/bin/activate && make
 
-      - name: Build Docs
+      - name: Build Latest Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           venv-latest/bin/activate
@@ -158,12 +158,14 @@ jobs:
 #        run: venv-stable/bin/activate && make
         run: venv-latest/bin/activate && make
 
-      - name: Build Docs
+      - name: Build Stable Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           rm -rf docs/_build
           venv-latest/bin/activate
           cd docs
+          # A sphinx-book-theme breaking change needs this
+          sed -i '/html_theme_options:/a\ \ \ \ \ navigation_with_keys: False' _config.yml
           make dist
           # make dist changes the _conf.yml file to write the version number, so drop the change
           git checkout .
@@ -197,7 +199,7 @@ jobs:
   build-tsinfer-docs:
     name: Build tsinfer docs
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout tsinfer
@@ -236,7 +238,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-latest/bin/activate && make
 
-      - name: Build Docs
+      - name: Build Latest Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           venv-latest/bin/activate
@@ -263,7 +265,7 @@ jobs:
 #        if: steps.docs-cache.outputs.cache-hit != 'true'
 #        name: Setup Python
 #        with:
-#          python-version: "3.8"
+#          python-version: "3.10"
 #
 #      - name: Build virtualenv
 #        if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -286,15 +288,21 @@ jobs:
           venv-latest/bin/activate && python -c "import numpy;print(numpy.__file__)"
           venv-latest/bin/activate && make
 
-      - name: Build Docs
+      - name: Build Stable Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           rm -rf docs/_build
           #venv-stable/bin/activate
           venv-latest/bin/activate
           cd docs
+          
+          # A sphinx-book-theme breaking change needs this
+          sed -i '/html_theme_options:/a\ \ \ \ \ navigation_with_keys: False' _config.yml
+          
+          # Use the new theme for old docs
           sed -i 's/html_theme: tskit_book_theme/html_theme: sphinx_book_theme/g' _config.yml
           sed -i 's/pygment_light_style: monokai//g' _config.yml
+          
           make dist
           # make dist changes the _conf.yml file to write the version number, so drop the change
           git checkout .
@@ -314,7 +322,7 @@ jobs:
   build-tskit-docs:
     name: Build tskit docs
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout tskit
@@ -354,7 +362,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-latest/bin/activate && make -C python
 
-      - name: Build Docs
+      - name: Build Latest Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           venv-latest/bin/activate
@@ -380,7 +388,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
-          python-version: 3.8
+          python-version: "3.10"
 
       - name: Build virtualenv
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -401,7 +409,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-stable/bin/activate && make -C python
 
-      - name: Build Docs
+      - name: Build Stable Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           rm -rf docs/_build
@@ -409,10 +417,8 @@ jobs:
           # Install jsonschema for bugfix
           pip install jsonschema[format-nongpl]==4.17.3
           cd docs
-          ### Temp changes for theme
-          pip install tskit-book-theme
-          sed -i 's/    config:/    config:\n      html_theme: tskit_book_theme\n      pygments_style: monokai/g' _config.yml
-          ### Temp changes for theme
+          # A sphinx-book-theme breaking change needs this
+          sed -i '/html_theme_options:/a\ \ \ \ \ \ \ \ navigation_with_keys: False' _config.yml
           make dist || make
 
       - name: Copy docs
@@ -430,7 +436,7 @@ jobs:
   build-pyslim-docs:
     name: Build pyslim docs
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout pyslim
@@ -454,7 +460,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
-          python-version: 3.8
+          python-version: "3.10"
 
       - name: Build latest SLiM
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -475,7 +481,7 @@ jobs:
           venv-latest/bin/activate
           pip install -r requirements/CI-docs/requirements.txt
 
-      - name: Build Docs
+      - name: Build Latest Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           venv-latest/bin/activate
@@ -524,13 +530,16 @@ jobs:
 #          venv-stable/bin/activate
 #          pip install -r requirements/CI-docs/requirements.txt
 
-      - name: Build Docs
+      - name: Build Stable Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           rm -rf docs/_build
           venv-latest/bin/activate
           export PATH=$PWD/SLiM/Stable:$PATH
           cd docs
+          # A sphinx-book-theme breaking change needs this
+          sed -i '/html_theme_options:/a\ \ \ \ \ navigation_with_keys: False' _config.yml
+          
           # don't re-generate these which require tricky prerequisites (inkscape, xmlstarlet)
           touch _static/{pedigree0.svg,pedigree1.svg,pedigree2.svg,pedigree_recapitate.svg,pedigree_simplify.svg,pedigree_mutate.svg}
           touch _static/{pedigree01.png,pedigree0.png,pedigree1.png,pedigree2.png,pedigree_recapitate.png,pedigree_simplify.png,pedigree_mutate.png}
@@ -552,7 +561,7 @@ jobs:
   build-tstrait-docs:
     name: Build tstrait docs
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout tstrait
@@ -585,7 +594,7 @@ jobs:
         run: |
           venv-latest/bin/activate && pip install -r requirements/CI-docs/requirements.txt
 
-      - name: Build Docs
+      - name: Build Latest Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           venv-latest/bin/activate
@@ -607,7 +616,7 @@ jobs:
           git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
           git status
 
-      - name: Build Docs
+      - name: Build Stable Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           rm -rf docs/_build
@@ -631,7 +640,7 @@ jobs:
   import-tutorials:
     name: Import tutorials
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout tutorials
@@ -648,7 +657,7 @@ jobs:
   import-rust-tutorial:
     name: Import rust tutorials
     needs: cancel-superseded
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout tutorials
@@ -673,7 +682,7 @@ jobs:
       - build-pyslim-docs
       - import-tutorials
       - import-rust-tutorial
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Download core site
         uses: actions/download-artifact@v2
