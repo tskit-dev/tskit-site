@@ -637,6 +637,87 @@ jobs:
           name: tstrait-docs
           path: dist/*
 
+  build-tsdate-docs:
+    name: Build tsdate docs
+    needs: cancel-superseded
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout tsdate
+        with:
+          ref: main
+          repository: tskit-dev/tsdate
+
+      - name: Get commit SHA1 for cache
+        run: git rev-parse HEAD > SHA1
+
+      - uses: actions/cache@v2
+        id: docs-cache
+        name: Docs cache
+        with:
+          path: dist
+          key: tsdate-docs-v2-${{ hashFiles('SHA1') }}
+
+      - uses: actions/setup-python@v2
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Setup Python
+        with:
+          python-version: "3.10"
+
+      - name: Build virtualenv
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: python -m venv venv-latest
+
+      - name: Install deps
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          venv-latest/bin/activate && pip install -r docs/requirements.txt
+
+      - name: Build Latest Docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          venv-latest/bin/activate
+          cd docs
+          make dist
+          # make dist changes the _conf.yml file to write the version number, so drop the change
+          git checkout .
+
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p dist
+          cp -r docs/_build/html dist/latest
+
+# Disabled until next tsdate release
+#      - name: Checkout latest stable tag
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run: |
+#          git fetch --tags --recurse-submodules=no
+#          git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
+#          git status
+#
+#      - name: Build Stable Docs
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run: |
+#          rm -rf docs/_build
+#          venv-latest/bin/activate
+#          cd docs
+#          make dist
+#          # make dist changes the _conf.yml file to write the version number, so drop the change
+#          git checkout .
+#
+#      - name: Copy docs
+#        if: steps.docs-cache.outputs.cache-hit != 'true'
+#        run:
+#          cp -r docs/_build/html dist/stable
+
+      - name: Upload tsdate docs
+        uses: actions/upload-artifact@v2
+        with:
+          name: tsdate-docs
+          path: dist/*
+
+
   import-tutorials:
     name: Import tutorials
     needs: cancel-superseded
@@ -680,6 +761,7 @@ jobs:
       - build-tsinfer-docs
       - build-tskit-docs
       - build-pyslim-docs
+      - build-tsdate-docs
       - import-tutorials
       - import-rust-tutorial
     runs-on: ubuntu-latest
@@ -720,6 +802,12 @@ jobs:
           name: pyslim-docs
           path: site/pyslim/docs
 
+      - name: Download tsdate-docs
+        uses: actions/download-artifact@v2
+        with:
+          name: tsdate-docs
+          path: site/tsdate/docs
+
       - name: Download tutorials
         uses: actions/download-artifact@v2
         with:
@@ -741,6 +829,7 @@ jobs:
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tskit/docs/stable\" />" > site/tskit/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/pyslim/docs/stable\" />" > site/pyslim/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tstrait/docs/stable\" />" > site/tstrait/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tsdate/docs/stable\" />" > site/tsdate/docs/index.html
       - name: List site contents
         run: |
           ls -R
