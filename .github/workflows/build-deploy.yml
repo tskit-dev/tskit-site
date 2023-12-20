@@ -46,7 +46,8 @@ jobs:
       - name: Install deps
         run: |
           gem install "rubygems-update:<3.2" --no-document && update_rubygems
-          gem install bundler jekyll
+          gem install sass-embedded -v 1.63.6
+          gem install jekyll
           bundle install
 
       - uses: actions/setup-node@v3
