@@ -47,6 +47,7 @@ jobs:
         run: |
           gem install "rubygems-update:<3.2" --no-document && update_rubygems
           gem update --system --no-document
+          gem install sass-embedded -v 1.63.6
           gem install jekyll
           bundle install
 
