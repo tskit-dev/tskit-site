@@ -45,7 +45,7 @@ jobs:
 
       - name: Install deps
         run: |
-          gem update --system --no-document
+          gem install "rubygems-update:<3.2" --no-document && update_rubygems
           gem install bundler jekyll
           bundle install
 
