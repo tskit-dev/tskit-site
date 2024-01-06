@@ -658,28 +658,27 @@ jobs:
           mkdir -p dist
           cp -r docs/_build/html dist/latest
 
-# Disabled until next tsdate release- also reinstate redirect on line 917
-#      - name: Checkout latest stable tag
-#        if: steps.docs-cache.outputs.cache-hit != 'true'
-#        run: |
-#          git fetch --tags --recurse-submodules=no
-#          git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
-#          git status
-#
-#      - name: Build Stable Docs
-#        if: steps.docs-cache.outputs.cache-hit != 'true'
-#        run: |
-#          rm -rf docs/_build
-#          venv-latest/bin/activate
-#          cd docs
-#          make dist
-#          # make dist changes the _conf.yml file to write the version number, so drop the change
-#          git checkout .
-#
-#      - name: Copy docs
-#        if: steps.docs-cache.outputs.cache-hit != 'true'
-#        run:
-#          cp -r docs/_build/html dist/stable
+      - name: Checkout latest stable tag
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          git fetch --tags --recurse-submodules=no
+          git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
+          git status
+
+      - name: Build Stable Docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          rm -rf docs/_build
+          venv-latest/bin/activate
+          cd docs
+          make dist
+          # make dist changes the _conf.yml file to write the version number, so drop the change
+          git checkout .
+
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run:
+          cp -r docs/_build/html dist/stable
 
       - name: Upload tsdate docs
         uses: actions/upload-artifact@v2
@@ -885,8 +884,7 @@ jobs:
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tskit/docs/stable\" />" > site/tskit/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/pyslim/docs/stable\" />" > site/pyslim/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tstrait/docs/stable\" />" > site/tstrait/docs/index.html
-          # Temp point to latest till these release
-          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tsdate/docs/latest\" />" > site/tsdate/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tsdate/docs/stable\" />" > site/tsdate/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tszip/docs/latest\" />" > site/tszip/docs/index.html
       - name: List site contents
         run: |
