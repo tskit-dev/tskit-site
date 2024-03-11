@@ -547,7 +547,7 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: tstrait-docs-v2-${{ hashFiles('SHA1') }}
+          key: tstrait-docs-v3-${{ hashFiles('SHA1') }}
 
       - uses: actions/setup-python@v2
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -811,6 +811,7 @@ jobs:
       - build-pyslim-docs
       - build-tsdate-docs
       - build-tszip-docs
+      - build-tstrait-docs
       - import-tutorials
       - import-rust-tutorial
     runs-on: ubuntu-latest
