@@ -1,0 +1,519 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction &#8212; Tsdate manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'introduction';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Welcome to tsdate" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/tsdate_logo.svg" class="logo__image only-light" alt="Tsdate manual - Home"/>
+    <script>document.write(`<img src="_static/tsdate_logo.svg" class="logo__image only-dark" alt="Tsdate manual - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="usage.html">Usage</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="priors.html">Specifying a Prior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="historical_samples.html">Historical (Ancient) Samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable_popsize.html">Variable population sizes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">APIs</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="python-api.html">Python API</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command line interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/introduction.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-of-genealogies">Sources of genealogies</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<span id="sec-introduction"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">tsdate</span></code> <span id="id1">[<a class="reference internal" href="bibliography.html#id3" title="Anthony Wilder Wohns, Yan Wong, Ben Jeffery, Ali Akbari, Swapan Mallick, Ron Pinhasi, Nick Patterson, David Reich, Jerome Kelleher, and Gil McVean. A unified genealogy of modern and ancient genomes. Science, 375(6583):eabi8264, 2022. doi:10.1126/science.abi8264.">Wohns <em>et al.</em>, 2022</a>]</span> infers dates for nodes in a genetic genealogy,
+sometimes loosely known as an ancestral recombination graph or ARG
+<span id="id2">[<a class="reference internal" href="bibliography.html#id6" title="Yan Wong, Anastasia Ignatieva, Jere Koskela, Gregor Gorjanc, Anthony W. Wohns, and Jerome Kelleher. A general and efficient representation of ancestral recombination graphs. bioRxiv, 2023. doi:10.1101/2023.11.03.565466.">Wong <em>et al.</em>, 2023</a>]</span>. More precisely, it takes a genealogy in
+<a class="reference external" href="https://tskit.dev/tutorials/what_is.html">tree sequence</a> format as an input
+and returns a copy of that tree sequence with altered node times. These
+times have been estimated on the basis of the number of mutations
+along the edges connecting genomes in the genealogy (i.e. using the “molecular clock”).</p>
+<section id="technical-details">
+<h2>Technical details<a class="headerlink" href="#technical-details" title="Permalink to this heading">#</a></h2>
+<p>Methodologically, the genealogy is treated as a interconnected graph, and a
+Bayesian network approach is used to update the probability distribution
+of times for each node, given the time distribution on connected nodes and
+the mutations on connected edges. This results in a posterior distribution of
+times (which can be <a class="reference internal" href="usage.html#sec-usage-posterior"><span class="std std-ref">output separately</span></a>). This
+<a class="reference internal" href="usage.html#sec-usage-real-data-scaling"><span class="std std-ref">scales well</span></a> to large genetic genealogies.
+The input tree sequence can come from any source: e.g. from simulation or from
+a variety of inference programs, such as <a class="reference external" href="https://tskit.dev/">tsinfer</a>.</p>
+<p>As the approach is Bayesian, it requires a
+<a class="reference internal" href="priors.html#sec-priors"><span class="std std-ref">prior distribution</span></a> to be defined
+for each of the nodes to date. By default, <code class="docutils literal notranslate"><span class="pre">tsdate</span></code> calculates priors from the
+<a class="reference external" href="http://dx.doi.org/10.1006/tpbi.1998.1411">conditional coalescent</a>, although
+alternative prior distributions can also be specified.</p>
+<p><code class="docutils literal notranslate"><span class="pre">tsdate</span></code> provides several methods for assigning probabilities to different times,
+and updating information through the genealogy. These include discrete-time and
+continuous-time methods, see <a class="reference internal" href="methods.html#sec-methods"><span class="std std-ref">Methods</span></a> for more details.</p>
+<p>The output of tsdate is a new tree sequence with altered
+<a class="reference external" href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.nodes_time" title="(in Python)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">node</span> <span class="pre">times</span></code></a>, extra node <a class="reference external" href="https://tskit.dev/tskit/docs/stable/metadata.html#sec-metadata" title="(in Python)"><span>Metadata</span></a>, and
+(optionally) a posterior distribution of node times
+(see <a class="reference internal" href="usage.html#sec-usage-posterior"><span class="std std-ref">Posterior time distributions</span></a>).</p>
+<p>The ultimate source of technical detail for <code class="docutils literal notranslate"><span class="pre">tsdate</span></code> is the source code on our
+<a class="reference external" href="http://github.com/tskit-dev/tsdate">GitHub repository</a>.</p>
+</section>
+<section id="sources-of-genealogies">
+<h2>Sources of genealogies<a class="headerlink" href="#sources-of-genealogies" title="Permalink to this heading">#</a></h2>
+<p>The input genealogies to date can come from any source,
+but <code class="docutils literal notranslate"><span class="pre">tsdate</span></code> is often coupled with <a class="reference external" href="https://tskit.dev/software/tsinfer.html">tsinfer</a>
+<span id="id3">[<a class="reference internal" href="bibliography.html#id2" title="Jerome Kelleher, Yan Wong, Anthony W. Wohns, Chaimaa Fadil, Patrick K. Albers, and Gil McVean. Inferring whole-genome histories in large population datasets. Nature Genetics, 51(9):1330–1338, 2019. doi:10.1038/s41588-019-0483-y.">Kelleher <em>et al.</em>, 2019</a>]</span>, which estimates the tree sequence topology but
+not the tree sequence node times.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <caption style="padding: 0 4em">An example of using `tsinfer` followed by `tsdate` on some DNA sequence data.
+    You can see that tsdate sets a timescale and changes node times so that mutations (red crosses)
+    are more evenly distributed over edges of the genealogy. This results in more realistic local trees
+    (with coalescences clustered, as expected from theory, at recent times)</caption>
+    <t style=""><td style="text-align: center; padding: 0.5em 0"><div style="font-size: 0.6em">CCGTATTACCGAGGTCAGATGATCAGGCTATAAAC<br>AGGTAGTATCGAGGAAATATGATGAGGCTATCGAC<br>CCGTAGTTCCAAGGTAAGATGATGAGGCTATCAAC<br>CCGCCGTACAGACGAAATGAATTGGGCTTTACGAT<br>CCGTAGTACCGTGCTAAGATGAAGAGGCTATCATC<br>CCGTATTACCGAGGTAAGATGATCACGCTATAAAC<br>CCGCCGTACAGACGAAATGAATTGGGGTATACGAT<br>CCGTATTACCGAGGTAAGATGATCAGGCTATAAAC<br>CCACCGGACAGACGAACTGAATTGGGGTTTACGAT<br>CCGTAGTTCCAAGGTAAGATGATGAGGCTATCAAC</div></td><td></td><td style="text-align: center; padding: 0.5em 0" width="300"><svg baseProfile="full" height="300" version="1.1" width="260" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"><![CDATA[.background path {fill: #808080; fill-opacity: 0}.background path:nth-child(odd) {fill-opacity: .1}.axes {font-size: 14px}.x-axis .tick .lab {font-weight: bold; dominant-baseline: hanging}.axes, .tree {font-size: 14px; text-anchor: middle}.axes line, .edge {stroke: black; fill: none}.axes .ax-skip {stroke-dasharray: 4}.y-axis .grid {stroke: #FAFAFA}.node > .sym {fill: black; stroke: none}.site > .sym {stroke: black}.mut text {fill: red; font-style: italic}.mut.extra text {fill: hotpink}.mut line {fill: none; stroke: none}.mut .sym {fill: none; stroke: red}.mut.extra .sym {stroke: hotpink}.node .mut .sym {stroke-width: 1.5px}.tree text, .tree-sequence text {dominant-baseline: central}.plotbox .lab.lft {text-anchor: end}.plotbox .lab.rgt {text-anchor: start}.x-axis .ticks .lab {font-size: 0.7em} .y-axis .ticks .lab {text-anchor: middle; transform: rotate(-90deg) translateY(-10px)}]]></style></defs><g class="tree-sequence"><g class="background"><path d="M56.8,0 l91.6,0 l0,238.2 l-70.7557,25 l0,5 l-20.8443,0 l0,-5 l0,-25 l0,-238.2z" /><path d="M148.4,0 l91.6,0 l0,238.2 l0,25 l0,5 l-162.356,0 l0,-5 l70.7557,-25 l0,-238.2z" /></g><g class="axes"><g class="x-axis"><g class="title" transform="translate(148.4 300)"><text class="lab" text-anchor="middle" transform="translate(0 -11)">Genome position</text></g><line class="ax-line" x1="56.8" x2="240" y1="263.2" y2="263.2" /><g class="ticks"><g class="tick" transform="translate(56.8 263.2)"><line x1="0" x2="0" y1="0" y2="5" /><g transform="translate(0 6)"><text class="lab">30</text></g></g><g class="tick" transform="translate(77.6443 263.2)"><line x1="0" x2="0" y1="0" y2="5" /><g transform="translate(0 6)"><text class="lab">139</text></g></g><g class="tick" transform="translate(240 263.2)"><line x1="0" x2="0" y1="0" y2="5" /><g transform="translate(0 6)"><text class="lab">988</text></g></g></g><g class="site s0" transform="translate(56.8 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m0"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s1" transform="translate(70.3775 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m1"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s2" transform="translate(70.5687 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m2"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s3" transform="translate(77.453 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m3"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s4" transform="translate(77.6443 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m4"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s5" transform="translate(79.1741 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m5"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s6" transform="translate(90.4568 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m6"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s7" transform="translate(100.21 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m7"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s8" transform="translate(102.696 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m8"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s9" transform="translate(109.771 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m9"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s10" transform="translate(110.536 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m10"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s11" transform="translate(116.464 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m11"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s12" transform="translate(122.01 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m12"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s13" transform="translate(122.775 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m13"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s14" transform="translate(122.966 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m14"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s15" transform="translate(124.305 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m15"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s16" transform="translate(144.193 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m16"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s17" transform="translate(145.723 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m17"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s18" transform="translate(156.623 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m18"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s19" transform="translate(168.097 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m19"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s20" transform="translate(172.304 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m20"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s21" transform="translate(172.878 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m21"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s22" transform="translate(178.041 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m22"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s23" transform="translate(190.089 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m23"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s24" transform="translate(195.061 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m24"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s25" transform="translate(197.738 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m25"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s26" transform="translate(203.666 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m26"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s27" transform="translate(209.977 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m27"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s28" transform="translate(211.889 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m28"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s29" transform="translate(212.654 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m29"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s30" transform="translate(212.845 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m30"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s31" transform="translate(222.98 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m31"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s32" transform="translate(229.1 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m32"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s33" transform="translate(232.351 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m33"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s34" transform="translate(239.809 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m34"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g></g><g class="y-axis"><g class="title" transform="translate(0 115.7)"><text class="lab" text-anchor="middle" transform="translate(11) rotate(-90)">Time (uncalibrated)</text></g><line class="ax-line" x1="56.8" x2="56.8" y1="221.4" y2="10" /><g class="ticks"><g class="tick" transform="translate(56.8 221.4)"><line x1="0" x2="-5" y1="0" y2="0" /><g transform="translate(-6 0)"><text class="lab" text-anchor="end">0</text></g></g><g class="tick" transform="translate(56.8 41.2148)"><line x1="0" x2="-5" y1="0" y2="0" /><g transform="translate(-6 0)"><text class="lab" text-anchor="end">1</text></g></g></g></g></g><g class="plotbox trees"><g class="tree t1" transform="translate(56.8 0)"><g class="plotbox"><g class="c2 node n16 root" transform="translate(61.28 26.8)"><g class="a16 i4 leaf node n8 p0 sample" transform="translate(7.74 194.6)"><path class="edge" d="M 0 0 V -194.6 H -7.74" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a16 c2 m2 node n15 s2" transform="translate(-7.74 32.4333)"><g class="a15 c2 node n11" transform="translate(7.74 108.111)"><g class="a11 i1 leaf node n3 p0 sample" transform="translate(-2.58 54.0556)"><path class="edge" d="M 0 0 V -54.0556 H 2.58" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a11 i3 leaf node n6 p0 sample" transform="translate(2.58 54.0556)"><path class="edge" d="M 0 0 V -54.0556 H -2.58" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><path class="edge" d="M 0 0 V -108.111 H -7.74" /><circle class="sym" cx="0" cy="0" r="2" /><text class="lab rgt" transform="translate(3 -7.0)" /></g><g class="a15 c2 m3 node n14 s3" transform="translate(-7.74 36.037)"><g class="a14 i0 leaf m0 m1 node n1 p0 s0 s1 sample" transform="translate(7.74 126.13)"><path class="edge" d="M 0 0 V -126.13 H -7.74" /><g class="mut m0 s0 unknown_time" transform="translate(0 -84.0864)"><line x1="0" x2="0" y1="0" y2="84.0864" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m1 s1 unknown_time" transform="translate(0 -42.0432)"><line x1="0" x2="0" y1="0" y2="42.0432" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a14 c3 node n13" transform="translate(-7.74 18.0185)"><g class="a13 i2 leaf node n4 p0 sample" transform="translate(10.32 108.111)"><path class="edge" d="M 0 0 V -108.111 H -10.32" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a13 c2 node n10" transform="translate(2.58 72.0741)"><g class="a10 i1 leaf node n2 p0 sample" transform="translate(-2.58 36.037)"><path class="edge" d="M 0 0 V -36.037 H 2.58" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a10 i4 leaf node n9 p0 sample" transform="translate(2.58 36.037)"><path class="edge" d="M 0 0 V -36.037 H -2.58" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><path class="edge" d="M 0 0 V -72.0741 H -2.58" /><circle class="sym" cx="0" cy="0" r="2" /><text class="lab rgt" transform="translate(3 -7.0)" /></g><g class="a13 c3 node n12" transform="translate(-10.32 54.0556)"><g class="a12 i0 leaf node n0 p0 sample" transform="translate(-5.16 54.0556)"><path class="edge" d="M 0 0 V -54.0556 H 5.16" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a12 i2 leaf node n5 p0 sample" transform="translate(0.0 54.0556)"><path class="edge" d="M 0 0 V -54.0556 H 0.0" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a12 i3 leaf node n7 p0 sample" transform="translate(5.16 54.0556)"><path class="edge" d="M 0 0 V -54.0556 H -5.16" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><path class="edge" d="M 0 0 V -54.0556 H 10.32" /><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><path class="edge" d="M 0 0 V -18.0185 H 7.74" /><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><path class="edge" d="M 0 0 V -36.037 H 7.74" /><g class="mut m3 s3 unknown_time" transform="translate(0 -18.0185)"><line x1="0" x2="0" y1="0" y2="18.0185" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><path class="edge" d="M 0 0 V -32.4333 H 7.74" /><g class="mut m2 s2 unknown_time" transform="translate(0 -16.2167)"><line x1="0" x2="0" y1="0" y2="16.2167" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab" transform="translate(0 -11)" /></g></g></g><g class="tree t2" transform="translate(148.4 0)"><g class="plotbox"><g class="c2 node n15 root" transform="translate(54.83 59.2333)"><g class="a15 c3 m19 m24 m27 m34 m4 m9 node n11 s19 s24 s27 s34 s4 s9" transform="translate(9.03 108.111)"><g class="a11 i1 leaf m26 node n3 p0 s26 sample" transform="translate(-5.16 54.0556)"><path class="edge" d="M 0 0 V -54.0556 H 5.16" /><g class="mut m26 s26 unknown_time" transform="translate(0 -27.0278)"><line x1="0" x2="0" y1="0" y2="27.0278" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a11 i3 leaf m28 node n6 p0 s28 sample" transform="translate(-7.10543e-15 54.0556)"><path class="edge" d="M 0 0 V -54.0556 H 7.10543e-15" /><g class="mut m28 s28 unknown_time" transform="translate(0 -27.0278)"><line x1="0" x2="0" y1="0" y2="27.0278" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a11 i4 leaf m16 m6 node n8 p0 s16 s6 sample" transform="translate(5.16 54.0556)"><path class="edge" d="M 0 0 V -54.0556 H -5.16" /><g class="mut m6 s6 unknown_time" transform="translate(0 -36.037)"><line x1="0" x2="0" y1="0" y2="36.037" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m16 s16 unknown_time" transform="translate(0 -18.0185)"><line x1="0" x2="0" y1="0" y2="18.0185" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><path class="edge" d="M 0 0 V -108.111 H -9.03" /><g class="mut m4 s4 unknown_time" transform="translate(0 -92.6667)"><line x1="0" x2="0" y1="0" y2="92.6667" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m9 s9 unknown_time" transform="translate(0 -77.2222)"><line x1="0" x2="0" y1="0" y2="77.2222" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m19 s19 unknown_time" transform="translate(0 -61.7778)"><line x1="0" x2="0" y1="0" y2="61.7778" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m24 s24 unknown_time" transform="translate(0 -46.3333)"><line x1="0" x2="0" y1="0" y2="46.3333" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m27 s27 unknown_time" transform="translate(0 -30.8889)"><line x1="0" x2="0" y1="0" y2="30.8889" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m34 s34 unknown_time" transform="translate(0 -15.4444)"><line x1="0" x2="0" y1="0" y2="15.4444" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab rgt" transform="translate(3 -7.0)" /></g><g class="a15 c2 m12 m18 m20 m21 m29 m30 node n14 s12 s18 s20 s21 s29 s30" transform="translate(-9.03 36.037)"><g class="a14 i0 leaf m8 node n1 p0 s8 sample" transform="translate(7.74 126.13)"><path class="edge" d="M 0 0 V -126.13 H -7.74" /><g class="mut m8 s8 unknown_time" transform="translate(0 -63.0648)"><line x1="0" x2="0" y1="0" y2="63.0648" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a14 c3 m14 m17 m32 node n13 s14 s17 s32" transform="translate(-7.74 18.0185)"><g class="a13 i2 leaf m11 m13 m22 m33 node n4 p0 s11 s13 s22 s33 sample" transform="translate(10.32 108.111)"><path class="edge" d="M 0 0 V -108.111 H -10.32" /><g class="mut m11 s11 unknown_time" transform="translate(0 -86.4889)"><line x1="0" x2="0" y1="0" y2="86.4889" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m13 s13 unknown_time" transform="translate(0 -64.8667)"><line x1="0" x2="0" y1="0" y2="64.8667" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m22 s22 unknown_time" transform="translate(0 -43.2444)"><line x1="0" x2="0" y1="0" y2="43.2444" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m33 s33 unknown_time" transform="translate(0 -21.6222)"><line x1="0" x2="0" y1="0" y2="21.6222" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a13 c2 m10 m7 node n10 s10 s7" transform="translate(2.58 72.0741)"><g class="a10 i1 leaf node n2 p0 sample" transform="translate(-2.58 36.037)"><path class="edge" d="M 0 0 V -36.037 H 2.58" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a10 i4 leaf node n9 p0 sample" transform="translate(2.58 36.037)"><path class="edge" d="M 0 0 V -36.037 H -2.58" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><path class="edge" d="M 0 0 V -72.0741 H -2.58" /><g class="mut m7 s7 unknown_time" transform="translate(0 -48.0494)"><line x1="0" x2="0" y1="0" y2="48.0494" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m10 s10 unknown_time" transform="translate(0 -24.0247)"><line x1="0" x2="0" y1="0" y2="24.0247" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab rgt" transform="translate(3 -7.0)" /></g><g class="a13 c3 m23 m31 m5 node n12 s23 s31 s5" transform="translate(-10.32 54.0556)"><g class="a12 i0 leaf m15 node n0 p0 s15 sample" transform="translate(-5.16 54.0556)"><path class="edge" d="M 0 0 V -54.0556 H 5.16" /><g class="mut m15 s15 unknown_time" transform="translate(0 -27.0278)"><line x1="0" x2="0" y1="0" y2="27.0278" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a12 i2 leaf m25 node n5 p0 s25 sample" transform="translate(0.0 54.0556)"><path class="edge" d="M 0 0 V -54.0556 H 0.0" /><g class="mut m25 s25 unknown_time" transform="translate(0 -27.0278)"><line x1="0" x2="0" y1="0" y2="27.0278" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a12 i3 leaf node n7 p0 sample" transform="translate(5.16 54.0556)"><path class="edge" d="M 0 0 V -54.0556 H -5.16" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><path class="edge" d="M 0 0 V -54.0556 H 10.32" /><g class="mut m5 s5 unknown_time" transform="translate(0 -40.5417)"><line x1="0" x2="0" y1="0" y2="40.5417" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m23 s23 unknown_time" transform="translate(0 -27.0278)"><line x1="0" x2="0" y1="0" y2="27.0278" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m31 s31 unknown_time" transform="translate(0 -13.5139)"><line x1="0" x2="0" y1="0" y2="13.5139" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><path class="edge" d="M 0 0 V -18.0185 H 7.74" /><g class="mut m14 s14 unknown_time" transform="translate(0 -13.5139)"><line x1="0" x2="0" y1="0" y2="13.5139" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m17 s17 unknown_time" transform="translate(0 -9.00926)"><line x1="0" x2="0" y1="0" y2="9.00926" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m32 s32 unknown_time" transform="translate(0 -4.50463)"><line x1="0" x2="0" y1="0" y2="4.50463" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><path class="edge" d="M 0 0 V -36.037 H 9.03" /><g class="mut m12 s12 unknown_time" transform="translate(0 -30.8889)"><line x1="0" x2="0" y1="0" y2="30.8889" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m18 s18 unknown_time" transform="translate(0 -25.7407)"><line x1="0" x2="0" y1="0" y2="25.7407" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m20 s20 unknown_time" transform="translate(0 -20.5926)"><line x1="0" x2="0" y1="0" y2="20.5926" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m21 s21 unknown_time" transform="translate(0 -15.4444)"><line x1="0" x2="0" y1="0" y2="15.4444" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m29 s29 unknown_time" transform="translate(0 -10.2963)"><line x1="0" x2="0" y1="0" y2="10.2963" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m30 s30 unknown_time" transform="translate(0 -5.14815)"><line x1="0" x2="0" y1="0" y2="5.14815" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab" transform="translate(0 -11)" /></g></g></g></g></g></svg></td><td></td><td style="text-align: center; padding: 0.5em 0" width="300"><svg baseProfile="full" height="300" version="1.1" width="260" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"><![CDATA[.background path {fill: #808080; fill-opacity: 0}.background path:nth-child(odd) {fill-opacity: .1}.axes {font-size: 14px}.x-axis .tick .lab {font-weight: bold; dominant-baseline: hanging}.axes, .tree {font-size: 14px; text-anchor: middle}.axes line, .edge {stroke: black; fill: none}.axes .ax-skip {stroke-dasharray: 4}.y-axis .grid {stroke: #FAFAFA}.node > .sym {fill: black; stroke: none}.site > .sym {stroke: black}.mut text {fill: red; font-style: italic}.mut.extra text {fill: hotpink}.mut line {fill: none; stroke: none}.mut .sym {fill: none; stroke: red}.mut.extra .sym {stroke: hotpink}.node .mut .sym {stroke-width: 1.5px}.tree text, .tree-sequence text {dominant-baseline: central}.plotbox .lab.lft {text-anchor: end}.plotbox .lab.rgt {text-anchor: start}.x-axis .ticks .lab {font-size: 0.7em} .y-axis .ticks .lab {text-anchor: middle; transform: rotate(-90deg) translateY(-10px)}]]></style></defs><g class="tree-sequence"><g class="background"><path d="M56.8,0 l91.6,0 l0,238.2 l-70.7557,25 l0,5 l-20.8443,0 l0,-5 l0,-25 l0,-238.2z" /><path d="M148.4,0 l91.6,0 l0,238.2 l0,25 l0,5 l-162.356,0 l0,-5 l70.7557,-25 l0,-238.2z" /></g><g class="axes"><g class="x-axis"><g class="title" transform="translate(148.4 300)"><text class="lab" text-anchor="middle" transform="translate(0 -11)">Genome position</text></g><line class="ax-line" x1="56.8" x2="240" y1="263.2" y2="263.2" /><g class="ticks"><g class="tick" transform="translate(56.8 263.2)"><line x1="0" x2="0" y1="0" y2="5" /><g transform="translate(0 6)"><text class="lab">30</text></g></g><g class="tick" transform="translate(77.6443 263.2)"><line x1="0" x2="0" y1="0" y2="5" /><g transform="translate(0 6)"><text class="lab">139</text></g></g><g class="tick" transform="translate(240 263.2)"><line x1="0" x2="0" y1="0" y2="5" /><g transform="translate(0 6)"><text class="lab">988</text></g></g></g><g class="site s0" transform="translate(56.8 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m0"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s1" transform="translate(70.3775 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m1"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s2" transform="translate(70.5687 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m2"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s3" transform="translate(77.453 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m3"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s4" transform="translate(77.6443 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m4"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s5" transform="translate(79.1741 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m5"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s6" transform="translate(90.4568 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m6"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s7" transform="translate(100.21 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m7"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s8" transform="translate(102.696 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m8"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s9" transform="translate(109.771 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m9"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s10" transform="translate(110.536 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m10"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s11" transform="translate(116.464 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m11"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s12" transform="translate(122.01 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m12"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s13" transform="translate(122.775 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m13"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s14" transform="translate(122.966 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m14"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s15" transform="translate(124.305 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m15"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s16" transform="translate(144.193 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m16"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s17" transform="translate(145.723 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m17"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s18" transform="translate(156.623 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m18"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s19" transform="translate(168.097 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m19"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s20" transform="translate(172.304 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m20"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s21" transform="translate(172.878 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m21"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s22" transform="translate(178.041 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m22"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s23" transform="translate(190.089 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m23"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s24" transform="translate(195.061 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m24"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s25" transform="translate(197.738 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m25"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s26" transform="translate(203.666 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m26"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s27" transform="translate(209.977 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m27"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s28" transform="translate(211.889 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m28"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s29" transform="translate(212.654 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m29"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s30" transform="translate(212.845 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m30"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s31" transform="translate(222.98 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m31"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s32" transform="translate(229.1 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m32"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s33" transform="translate(232.351 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m33"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g><g class="site s34" transform="translate(239.809 263.2)"><line class="sym" x1="0" x2="0" y1="0" y2="-10" /><g class="mut m34"><polyline class="sym" points="2.5,-6.5 0,-1.5 -2.5,-6.5" /></g></g></g><g class="y-axis"><g class="title" transform="translate(0 115.7)"><text class="lab" text-anchor="middle" transform="translate(11) rotate(-90)">Time (generations)</text></g><line class="ax-line" x1="56.8" x2="56.8" y1="221.4" y2="10" /><g class="ticks"><g class="tick" transform="translate(56.8 221.4)"><line x1="0" x2="-5" y1="0" y2="0" /><g transform="translate(-6 0)"><text class="lab" text-anchor="end">0</text></g></g><g class="tick" transform="translate(56.8 166.669)"><line x1="0" x2="-5" y1="0" y2="0" /><g transform="translate(-6 0)"><text class="lab" text-anchor="end">1000</text></g></g><g class="tick" transform="translate(56.8 111.937)"><line x1="0" x2="-5" y1="0" y2="0" /><g transform="translate(-6 0)"><text class="lab" text-anchor="end">2000</text></g></g><g class="tick" transform="translate(56.8 57.2058)"><line x1="0" x2="-5" y1="0" y2="0" /><g transform="translate(-6 0)"><text class="lab" text-anchor="end">3000</text></g></g></g></g></g><g class="plotbox trees"><g class="tree t1" transform="translate(56.8 0)"><g class="plotbox"><g class="c2 node n16 root" transform="translate(61.28 26.8)"><g class="a16 i4 leaf node n8 p0 sample" transform="translate(7.74 194.6)"><path class="edge" d="M 0 0 V -194.6 H -7.74" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a16 c2 m2 node n15 s2" transform="translate(-7.74 50.5537)"><g class="a15 c2 node n11" transform="translate(7.74 123.632)"><g class="a11 i1 leaf node n3 p0 sample" transform="translate(-2.58 20.414)"><path class="edge" d="M 0 0 V -20.414 H 2.58" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a11 i3 leaf node n6 p0 sample" transform="translate(2.58 20.414)"><path class="edge" d="M 0 0 V -20.414 H -2.58" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><path class="edge" d="M 0 0 V -123.632 H -7.74" /><circle class="sym" cx="0" cy="0" r="2" /><text class="lab rgt" transform="translate(3 -7.0)" /></g><g class="a15 c2 m3 node n14 s3" transform="translate(-7.74 77.7258)"><g class="a14 i0 leaf m0 m1 node n1 p0 s0 s1 sample" transform="translate(7.74 66.3205)"><path class="edge" d="M 0 0 V -66.3205 H -7.74" /><g class="mut m0 s0 unknown_time" transform="translate(0 -44.2137)"><line x1="0" x2="0" y1="0" y2="44.2137" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m1 s1 unknown_time" transform="translate(0 -22.1068)"><line x1="0" x2="0" y1="0" y2="22.1068" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a14 c3 node n13" transform="translate(-7.74 26.7447)"><g class="a13 i2 leaf node n4 p0 sample" transform="translate(10.32 39.5759)"><path class="edge" d="M 0 0 V -39.5759 H -10.32" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a13 c2 node n10" transform="translate(2.58 34.8157)"><g class="a10 i1 leaf node n2 p0 sample" transform="translate(-2.58 4.76014)"><path class="edge" d="M 0 0 V -4.76014 H 2.58" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a10 i4 leaf node n9 p0 sample" transform="translate(2.58 4.76014)"><path class="edge" d="M 0 0 V -4.76014 H -2.58" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><path class="edge" d="M 0 0 V -34.8157 H -2.58" /><circle class="sym" cx="0" cy="0" r="2" /><text class="lab rgt" transform="translate(3 -7.0)" /></g><g class="a13 c3 node n12" transform="translate(-10.32 29.0972)"><g class="a12 i0 leaf node n0 p0 sample" transform="translate(-5.16 10.4787)"><path class="edge" d="M 0 0 V -10.4787 H 5.16" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a12 i2 leaf node n5 p0 sample" transform="translate(0.0 10.4787)"><path class="edge" d="M 0 0 V -10.4787 H 0.0" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a12 i3 leaf node n7 p0 sample" transform="translate(5.16 10.4787)"><path class="edge" d="M 0 0 V -10.4787 H -5.16" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><path class="edge" d="M 0 0 V -29.0972 H 10.32" /><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><path class="edge" d="M 0 0 V -26.7447 H 7.74" /><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><path class="edge" d="M 0 0 V -77.7258 H 7.74" /><g class="mut m3 s3 unknown_time" transform="translate(0 -38.8629)"><line x1="0" x2="0" y1="0" y2="38.8629" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><path class="edge" d="M 0 0 V -50.5537 H 7.74" /><g class="mut m2 s2 unknown_time" transform="translate(0 -25.2768)"><line x1="0" x2="0" y1="0" y2="25.2768" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab" transform="translate(0 -11)" /></g></g></g><g class="tree t2" transform="translate(148.4 0)"><g class="plotbox"><g class="c2 node n15 root" transform="translate(54.83 77.3537)"><g class="a15 c3 m19 m24 m27 m34 m4 m9 node n11 s19 s24 s27 s34 s4 s9" transform="translate(9.03 123.632)"><g class="a11 i1 leaf m26 node n3 p0 s26 sample" transform="translate(-5.16 20.414)"><path class="edge" d="M 0 0 V -20.414 H 5.16" /><g class="mut m26 s26 unknown_time" transform="translate(0 -10.207)"><line x1="0" x2="0" y1="0" y2="10.207" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a11 i3 leaf m28 node n6 p0 s28 sample" transform="translate(-7.10543e-15 20.414)"><path class="edge" d="M 0 0 V -20.414 H 7.10543e-15" /><g class="mut m28 s28 unknown_time" transform="translate(0 -10.207)"><line x1="0" x2="0" y1="0" y2="10.207" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a11 i4 leaf m16 m6 node n8 p0 s16 s6 sample" transform="translate(5.16 20.414)"><path class="edge" d="M 0 0 V -20.414 H -5.16" /><g class="mut m6 s6 unknown_time" transform="translate(0 -13.6093)"><line x1="0" x2="0" y1="0" y2="13.6093" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m16 s16 unknown_time" transform="translate(0 -6.80466)"><line x1="0" x2="0" y1="0" y2="6.80466" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><path class="edge" d="M 0 0 V -123.632 H -9.03" /><g class="mut m4 s4 unknown_time" transform="translate(0 -105.971)"><line x1="0" x2="0" y1="0" y2="105.971" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m9 s9 unknown_time" transform="translate(0 -88.3088)"><line x1="0" x2="0" y1="0" y2="88.3088" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m19 s19 unknown_time" transform="translate(0 -70.647)"><line x1="0" x2="0" y1="0" y2="70.647" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m24 s24 unknown_time" transform="translate(0 -52.9853)"><line x1="0" x2="0" y1="0" y2="52.9853" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m27 s27 unknown_time" transform="translate(0 -35.3235)"><line x1="0" x2="0" y1="0" y2="35.3235" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m34 s34 unknown_time" transform="translate(0 -17.6618)"><line x1="0" x2="0" y1="0" y2="17.6618" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab rgt" transform="translate(3 -7.0)" /></g><g class="a15 c2 m12 m18 m20 m21 m29 m30 node n14 s12 s18 s20 s21 s29 s30" transform="translate(-9.03 77.7258)"><g class="a14 i0 leaf m8 node n1 p0 s8 sample" transform="translate(7.74 66.3205)"><path class="edge" d="M 0 0 V -66.3205 H -7.74" /><g class="mut m8 s8 unknown_time" transform="translate(0 -33.1603)"><line x1="0" x2="0" y1="0" y2="33.1603" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a14 c3 m14 m17 m32 node n13 s14 s17 s32" transform="translate(-7.74 26.7447)"><g class="a13 i2 leaf m11 m13 m22 m33 node n4 p0 s11 s13 s22 s33 sample" transform="translate(10.32 39.5759)"><path class="edge" d="M 0 0 V -39.5759 H -10.32" /><g class="mut m11 s11 unknown_time" transform="translate(0 -31.6607)"><line x1="0" x2="0" y1="0" y2="31.6607" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m13 s13 unknown_time" transform="translate(0 -23.7455)"><line x1="0" x2="0" y1="0" y2="23.7455" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m22 s22 unknown_time" transform="translate(0 -15.8304)"><line x1="0" x2="0" y1="0" y2="15.8304" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m33 s33 unknown_time" transform="translate(0 -7.91518)"><line x1="0" x2="0" y1="0" y2="7.91518" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a13 c2 m10 m7 node n10 s10 s7" transform="translate(2.58 34.8157)"><g class="a10 i1 leaf node n2 p0 sample" transform="translate(-2.58 4.76014)"><path class="edge" d="M 0 0 V -4.76014 H 2.58" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a10 i4 leaf node n9 p0 sample" transform="translate(2.58 4.76014)"><path class="edge" d="M 0 0 V -4.76014 H -2.58" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><path class="edge" d="M 0 0 V -34.8157 H -2.58" /><g class="mut m7 s7 unknown_time" transform="translate(0 -23.2105)"><line x1="0" x2="0" y1="0" y2="23.2105" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><g class="mut m10 s10 unknown_time" transform="translate(0 -11.6052)"><line x1="0" x2="0" y1="0" y2="11.6052" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab rgt" transform="translate(3 -7.0)" /></g><g class="a13 c3 m23 m31 m5 node n12 s23 s31 s5" transform="translate(-10.32 29.0972)"><g class="a12 i0 leaf m15 node n0 p0 s15 sample" transform="translate(-5.16 10.4787)"><path class="edge" d="M 0 0 V -10.4787 H 5.16" /><g class="mut m15 s15 unknown_time" transform="translate(0 -5.23936)"><line x1="0" x2="0" y1="0" y2="5.23936" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a12 i2 leaf m25 node n5 p0 s25 sample" transform="translate(0.0 10.4787)"><path class="edge" d="M 0 0 V -10.4787 H 0.0" /><g class="mut m25 s25 unknown_time" transform="translate(0 -5.23936)"><line x1="0" x2="0" y1="0" y2="5.23936" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab rgt" transform="translate(4 0)" /></g><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><g class="a12 i3 leaf node n7 p0 sample" transform="translate(5.16 10.4787)"><path class="edge" d="M 0 0 V -10.4787 H -5.16" /><rect class="sym" height="4" width="4" x="-2" y="-2" /><text class="lab" transform="translate(0 11)" /></g><path class="edge" d="M 0 0 V -29.0972 H 10.32" /><g class="mut m5 s5 unknown_time" transform="translate(0 -21.8229)"><line x1="0" x2="0" y1="0" y2="21.8229" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m23 s23 unknown_time" transform="translate(0 -14.5486)"><line x1="0" x2="0" y1="0" y2="14.5486" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m31 s31 unknown_time" transform="translate(0 -7.27429)"><line x1="0" x2="0" y1="0" y2="7.27429" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><path class="edge" d="M 0 0 V -26.7447 H 7.74" /><g class="mut m14 s14 unknown_time" transform="translate(0 -20.0585)"><line x1="0" x2="0" y1="0" y2="20.0585" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m17 s17 unknown_time" transform="translate(0 -13.3723)"><line x1="0" x2="0" y1="0" y2="13.3723" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m32 s32 unknown_time" transform="translate(0 -6.68616)"><line x1="0" x2="0" y1="0" y2="6.68616" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><path class="edge" d="M 0 0 V -77.7258 H 9.03" /><g class="mut m12 s12 unknown_time" transform="translate(0 -66.6221)"><line x1="0" x2="0" y1="0" y2="66.6221" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m18 s18 unknown_time" transform="translate(0 -55.5184)"><line x1="0" x2="0" y1="0" y2="55.5184" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m20 s20 unknown_time" transform="translate(0 -44.4147)"><line x1="0" x2="0" y1="0" y2="44.4147" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m21 s21 unknown_time" transform="translate(0 -33.311)"><line x1="0" x2="0" y1="0" y2="33.311" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m29 s29 unknown_time" transform="translate(0 -22.2074)"><line x1="0" x2="0" y1="0" y2="22.2074" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><g class="mut m30 s30 unknown_time" transform="translate(0 -11.1037)"><line x1="0" x2="0" y1="0" y2="11.1037" /><path class="sym" d="M -2,-2 l 4,4 M -2,2 l 4,-4" /><text class="lab lft" transform="translate(-4 0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab lft" transform="translate(-3 -7.0)" /></g><circle class="sym" cx="0" cy="0" r="2" /><text class="lab" transform="translate(0 -11)" /></g></g></g></g></g></svg></td></tr>
+    <tr style="font-size: 2em"><td style="text-align: center; padding: 0.5em 0"">DNA sequence</td><td style="text-align: center; padding: 0.5em 0">→</td><td style="text-align: center; padding: 0.5em 0">tsinfer</td><td style="text-align: center; padding: 0.5em 0">→</td><td style="text-align: center; padding: 0.5em 0">tsdate</td></tr>
+    </table></div></div>
+</div>
+<p>Together, <code class="docutils literal notranslate"><span class="pre">tsdate</span></code> and  <code class="docutils literal notranslate"><span class="pre">tsinfer</span></code> scale to analyses of millions of genomes, the largest genomic datasets currently available.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to tsdate</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="installation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Installation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-of-genealogies">Sources of genealogies</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
