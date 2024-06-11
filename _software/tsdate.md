@@ -10,7 +10,7 @@ python_package: tsdate
 logo: https://raw.githubusercontent.com/tskit-dev/administrative/main/logos/svg/tsdate/Tskit_tsdate_logo_on_black_no_background.eps.svg                                       
 priority: 4
 code_snippet: |2
-  dated_ts = tsdate.date(inferred_ts)
+  dated_ts = tsdate.date(inferred_ts, mutation_rate=1e-8)
 redirect_from:
   - /tsdate/
 ---
