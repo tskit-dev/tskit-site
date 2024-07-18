@@ -6,6 +6,7 @@ gh_org: tskit-dev
 docs_url: https://tskit.dev/tszip/docs/
 category: analyse
 python_package: tszip
+priority: 14
 code_snippet: |2
   $ tszip 1kg_chr20.trees
   $ tsunzip 1kg_chr20.trees.tsz  
