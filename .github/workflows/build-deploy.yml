@@ -203,6 +203,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
           venv-latest/bin/activate && pip install -r requirements/CI-docs/requirements.txt
+          sudo apt-get install tabix
 
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
