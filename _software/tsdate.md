@@ -3,7 +3,7 @@ layout: software-page
 title: tsdate
 name: tsdate
 gh_org: tskit-dev
-docs_url: https://tsdate.readthedocs.io
+docs_url: https://tskit.dev/tsdate/docs/stable/
 publication: https://doi.org/10.1126/science.abi8264
 category: infer
 python_package: tsdate
