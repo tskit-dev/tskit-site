@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Cancel Previous Runs
-          uses: styfle/cancel-workflow-action@0.7.0
+          uses: styfle/cancel-workflow-action@0.12.0
           with:
             access_token: ${{ github.token }}
 
@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.11.0
+        uses: styfle/cancel-workflow-action@0.12.0
         with:
           access_token: ${{ github.token }}
 
@@ -57,7 +57,7 @@ jobs:
           cat dist/index.html
 
       - name: Upload built site
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: core-site
           path: dist/*
@@ -161,7 +161,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload msprime docs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: msprime-docs
           path: dist/*
@@ -269,7 +269,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload tsinfer docs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: tsinfer-docs
           path: dist/*
@@ -383,7 +383,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload tskit docs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: tskit-docs
           path: dist/*
@@ -509,7 +509,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload pyslim docs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: pyslim-docs
           path: dist/*
@@ -588,7 +588,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload tstrait docs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: tstrait-docs
           path: dist/*
@@ -668,7 +668,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload tsdate docs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: tsdate-docs
           path: dist/*
@@ -748,7 +748,7 @@ jobs:
 #          cp -r docs/_build/html dist/stable
 
       - name: Upload tszip docs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: tszip-docs
           path: dist/*
@@ -765,7 +765,7 @@ jobs:
           repository: tskit-dev/tutorials
 
       - name: Upload tutorials
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: tutorials
           path: .
@@ -782,7 +782,7 @@ jobs:
           repository: tskit-dev/tskit-rust
 
       - name: Upload tutorials
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: rust-tutorials
           path: .
@@ -804,61 +804,61 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download core site
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: core-site
           path: site
 
       - name: Download msprime-docs
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: msprime-docs
           path: site/msprime/docs
 
       - name: Download tsinfer-docs
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: tsinfer-docs
           path: site/tsinfer/docs
 
       - name: Download tskit-docs
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: tskit-docs
           path: site/tskit/docs
 
       - name: Download tstrait-docs
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: tstrait-docs
           path: site/tstrait/docs
 
       - name: Download pyslim-docs
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: pyslim-docs
           path: site/pyslim/docs
 
       - name: Download tsdate-docs
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: tsdate-docs
           path: site/tsdate/docs
 
       - name: Download tszaip-docs
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: tszip-docs
           path: site/tszip/docs
 
       - name: Download tutorials
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: tutorials
           path: site/tutorials
 
       - name: Download rust tutorial
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: rust-tutorials
           path: site/tutorials/rust
@@ -879,7 +879,7 @@ jobs:
           ls -R
 
       - name: Upload site (for PR inspection)
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: site
           path: .
