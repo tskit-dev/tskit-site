@@ -5,4 +5,5 @@ dist
 .bundle
 .DS_Store
 _site
+GITHUB_TOKEN
 .*.swp
