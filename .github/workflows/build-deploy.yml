@@ -917,7 +917,7 @@ jobs:
       - name: Download tsbrowse-docs
         uses: actions/download-artifact@v4
         with:
-          name: tstrait-docs
+          name: tsbrowse-docs
           path: site/tsbrowse/docs
 
       - name: Download pyslim-docs
