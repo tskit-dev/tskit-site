@@ -22,7 +22,7 @@ module Jekyll_Get_DOI
             authors = source["author"].map {|x| x["family"]}
             p.data["author"] = authors[0]
             if authors.length > 1 then
-                p.data["author"] = "#{authors[0]} et al"
+                p.data["author"] = "#{authors[0]} <em>et al.</em>"
             end
             p.data["url"] = "https://doi.org/#{p.data['doi']}"
         end
