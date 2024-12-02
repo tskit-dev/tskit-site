@@ -7,6 +7,7 @@ name: tstrait
 #repo_url: 
 gh_org: tskit-dev
 docs_url: https://tskit.dev/tstrait/docs/
+publication: https://doi.org/10.1093/bioinformatics/btae334
 category: simulate
 python_package: tstrait
 priority: 13
