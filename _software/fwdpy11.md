@@ -3,7 +3,7 @@ layout: software-page
 title: fwdpy11
 name: fwdpy11
 gh_org: molpopgen
-docs_url: https://fwdpy11.readthedocs.io
+docs_url: https://molpopgen.github.io/fwdpy11
 category: simulate
 python_package: fwdpy11
 priority: 11
