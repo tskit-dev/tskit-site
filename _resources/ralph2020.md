@@ -9,4 +9,3 @@ underlying trees, and that we can compute these statistics very efficiently.
 Read this paper if you would like more technical details on how the
 underlying data structures work and an introduction to incremental
 tree sequence algorithms.
----
