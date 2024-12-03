@@ -28,3 +28,15 @@ Refer to the existing files for the required YAML keys in the front matter. Any 
 should be places in the `assets/images` folder and referred to with this template:
 `{{ '/assets/images/PATH/TO/file.svg' |  relative_url}}` this will cause the file to be added to
 the build.
+
+## Testing a PR
+It can be tedious to get a site build running locally, e.g. for testing changes.
+The easiest way to see the effect of a change to the site is to make a PR, which
+runs CI checks. As part of those checks, a copy of the site is made available for
+download as a GitHub "artifact". To locate the URL for download, click "Show all checks"
+link in the PR merge box, click on the "details" link for the penultimate item:
+"Build and deploy site / Deploy 🚀 (if on main branch)".  At the bottom of the resulting
+actions, under "Upload site (for PR inspection)" you should find an "Artefact download URL".
+An easy way to inspect the downloaded site is then to run `python -m http.server` from within
+the downloaded directory, and then point a browser at the resulting server, usually at
+http://localhost:8000.
