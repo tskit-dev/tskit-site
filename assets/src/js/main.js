@@ -34,3 +34,9 @@ window.switch_filter = (category) => {
     $('[data-r-type="'+category+'"]').show()
   }
 }
+
+/* allow a url like learn/?filter=paper#tutorials-publications-videos to show papers only */
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('filter')) {
+  window.switch_filter(urlParams.get('filter'));
+}
