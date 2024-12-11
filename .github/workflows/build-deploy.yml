@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Cancel Previous Runs
-          uses: styfle/cancel-workflow-action@0.12.0
+          uses: styfle/cancel-workflow-action@0.12.1
           with:
             access_token: ${{ github.token }}
 
@@ -24,20 +24,20 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.12.0
+        uses: styfle/cancel-workflow-action@0.12.1
         with:
           access_token: ${{ github.token }}
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.2.2
 
       - name: Set up Ruby 2.7
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v1.203.0
         with:
           ruby-version: '2.7'
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4.1.0
         with:
           node-version: 14
           cache: 'npm'
@@ -57,7 +57,7 @@ jobs:
           cat dist/index.html
 
       - name: Upload built site
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: core-site
           path: dist/*
@@ -67,7 +67,7 @@ jobs:
     needs: cancel-superseded
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.2
         name: Checkout msprime
         with:
           ref: main
@@ -78,7 +78,7 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4.2.0
         id: docs-cache
         name: Docs cache
         with:
@@ -89,7 +89,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: sudo apt-get install -y libgsl0-dev
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5.3.0
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
@@ -161,7 +161,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload msprime docs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: msprime-docs
           path: dist/*
@@ -171,7 +171,7 @@ jobs:
     needs: cancel-superseded
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.2
         name: Checkout tsinfer
         with:
           ref: main
@@ -182,14 +182,14 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4.2.0
         id: docs-cache
         name: Docs cache
         with:
           path: dist
           key: tsinfer-docs-v1-${{ hashFiles('SHA1') }}
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5.3.0
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
@@ -232,7 +232,7 @@ jobs:
           git submodule update --init --recursive
           git status
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5.3.0
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
@@ -269,7 +269,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload tsinfer docs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: tsinfer-docs
           path: dist/*
@@ -280,7 +280,7 @@ jobs:
     needs: cancel-superseded
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.2
         name: Checkout tskit
         with:
           ref: main
@@ -291,14 +291,14 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4.2.0
         id: docs-cache
         name: Docs cache
         with:
           path: dist
           key: tskit-docs-v7-${{ hashFiles('SHA1') }}
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5.3.0
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
@@ -340,7 +340,7 @@ jobs:
           git submodule update --init --recursive
           git status
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5.3.0
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
@@ -383,7 +383,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload tskit docs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: tskit-docs
           path: dist/*
@@ -394,7 +394,7 @@ jobs:
     needs: cancel-superseded
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.2
         name: Checkout pyslim
         with:
           ref: main
@@ -405,14 +405,14 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4.2.0
         id: docs-cache
         name: Docs cache
         with:
           path: dist
           key: pyslim-docs-v6-${{ hashFiles('SHA1') }}
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5.3.0
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
@@ -509,7 +509,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload pyslim docs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: pyslim-docs
           path: dist/*
@@ -519,7 +519,7 @@ jobs:
     needs: cancel-superseded
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.2
         name: Checkout tstrait
         with:
           ref: main
@@ -528,14 +528,14 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4.2.0
         id: docs-cache
         name: Docs cache
         with:
           path: dist
           key: tstrait-docs-v3-${{ hashFiles('SHA1') }}
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5.3.0
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
@@ -588,7 +588,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload tstrait docs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: tstrait-docs
           path: dist/*
@@ -598,7 +598,7 @@ jobs:
     needs: cancel-superseded
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.2
         name: Checkout tsdate
         with:
           ref: main
@@ -607,14 +607,14 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4.2.0
         id: docs-cache
         name: Docs cache
         with:
           path: dist
           key: tsdate-docs-v2-${{ hashFiles('SHA1') }}
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5.3.0
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
@@ -668,7 +668,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload tsdate docs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: tsdate-docs
           path: dist/*
@@ -678,7 +678,7 @@ jobs:
     needs: cancel-superseded
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.2
         name: Checkout tszip
         with:
           ref: main
@@ -687,14 +687,14 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4.2.0
         id: docs-cache
         name: Docs cache
         with:
           path: dist
           key: tszip-docs-v2-${{ hashFiles('SHA1') }}
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5.3.0
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
@@ -748,7 +748,7 @@ jobs:
 #          cp -r docs/_build/html dist/stable
 
       - name: Upload tszip docs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: tszip-docs
           path: dist/*
@@ -758,7 +758,7 @@ jobs:
     needs: cancel-superseded
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.2
         name: Checkout tsbrowse
         with:
           ref: main
@@ -767,14 +767,14 @@ jobs:
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4.2.0
         id: docs-cache
         name: Docs cache
         with:
           path: dist
           key: tsbrowse-docs-v3-${{ hashFiles('SHA1') }}
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5.3.0
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
@@ -827,7 +827,7 @@ jobs:
           cp -r docs/_build/html dist/stable
 
       - name: Upload tsbrowse docs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: tsbrowse-docs
           path: dist/*
@@ -838,14 +838,14 @@ jobs:
     needs: cancel-superseded
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.2
         name: Checkout tutorials
         with:
           ref: gh-pages
           repository: tskit-dev/tutorials
 
       - name: Upload tutorials
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: tutorials
           path: .
@@ -855,14 +855,14 @@ jobs:
     needs: cancel-superseded
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.2
         name: Checkout tutorials
         with:
           ref: gh-pages
           repository: tskit-dev/tskit-rust
 
       - name: Upload tutorials
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: rust-tutorials
           path: .
@@ -885,67 +885,67 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download core site
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: core-site
           path: site
 
       - name: Download msprime-docs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: msprime-docs
           path: site/msprime/docs
 
       - name: Download tsinfer-docs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: tsinfer-docs
           path: site/tsinfer/docs
 
       - name: Download tskit-docs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: tskit-docs
           path: site/tskit/docs
 
       - name: Download tstrait-docs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: tstrait-docs
           path: site/tstrait/docs
 
       - name: Download tsbrowse-docs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: tsbrowse-docs
           path: site/tsbrowse/docs
 
       - name: Download pyslim-docs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: pyslim-docs
           path: site/pyslim/docs
 
       - name: Download tsdate-docs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: tsdate-docs
           path: site/tsdate/docs
 
       - name: Download tszip-docs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: tszip-docs
           path: site/tszip/docs
 
       - name: Download tutorials
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: tutorials
           path: site/tutorials
 
       - name: Download rust tutorial
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: rust-tutorials
           path: site/tutorials/rust
@@ -967,14 +967,14 @@ jobs:
           ls -R
 
       - name: Upload site (for PR inspection)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: site
           path: .
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@v4.7.2
         with:
           GITHUB_TOKEN: ${{ secrets.ADMINBOT_TOKEN }}
           BRANCH: gh-pages
