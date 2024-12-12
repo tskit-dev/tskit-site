@@ -976,7 +976,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@v4.7.2
         with:
-          GITHUB_TOKEN: ${{ secrets.ADMINBOT_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: site
-          SINGLE_COMMIT: true
+          token: ${{ secrets.ADMINBOT_TOKEN }}
+          branch: gh-pages
+          folder: site
+          single_commit: true
