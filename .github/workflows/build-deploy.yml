@@ -11,7 +11,7 @@ on:
 jobs:
   cancel-superseded:
     name: Cancel superseded
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
         - name: Cancel Previous Runs
           uses: styfle/cancel-workflow-action@0.12.1
@@ -21,7 +21,7 @@ jobs:
   build-core-site:
     needs: cancel-superseded
     name: Build core site
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.12.1
@@ -65,7 +65,7 @@ jobs:
   build-msprime-docs:
     name: Build msprime docs
     needs: cancel-superseded
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.2.2
         name: Checkout msprime
@@ -169,7 +169,7 @@ jobs:
   build-tsinfer-docs:
     name: Build tsinfer docs
     needs: cancel-superseded
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.2.2
         name: Checkout tsinfer
@@ -278,7 +278,7 @@ jobs:
   build-tskit-docs:
     name: Build tskit docs
     needs: cancel-superseded
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.2.2
         name: Checkout tskit
@@ -392,7 +392,7 @@ jobs:
   build-pyslim-docs:
     name: Build pyslim docs
     needs: cancel-superseded
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.2.2
         name: Checkout pyslim
@@ -517,7 +517,7 @@ jobs:
   build-tstrait-docs:
     name: Build tstrait docs
     needs: cancel-superseded
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.2.2
         name: Checkout tstrait
@@ -596,7 +596,7 @@ jobs:
   build-tsdate-docs:
     name: Build tsdate docs
     needs: cancel-superseded
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.2.2
         name: Checkout tsdate
@@ -676,7 +676,7 @@ jobs:
   build-tszip-docs:
     name: Build tszip docs
     needs: cancel-superseded
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.2.2
         name: Checkout tszip
@@ -756,7 +756,7 @@ jobs:
   build-tsbrowse-docs:
     name: Build tsbrowse docs
     needs: cancel-superseded
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.2.2
         name: Checkout tsbrowse
@@ -836,7 +836,7 @@ jobs:
   import-tutorials:
     name: Import tutorials
     needs: cancel-superseded
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.2.2
         name: Checkout tutorials
@@ -853,7 +853,7 @@ jobs:
   import-rust-tutorial:
     name: Import rust tutorials
     needs: cancel-superseded
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.2.2
         name: Checkout tutorials
@@ -882,7 +882,7 @@ jobs:
       - build-tsbrowse-docs
       - import-tutorials
       - import-rust-tutorial
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Download core site
         uses: actions/download-artifact@v4.1.8
