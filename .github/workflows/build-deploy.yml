@@ -884,6 +884,8 @@ jobs:
       - import-rust-tutorial
     runs-on: ubuntu-24.04
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
       - name: Download core site
         uses: actions/download-artifact@v4.1.8
         with:
@@ -979,4 +981,4 @@ jobs:
           token: ${{ secrets.ADMINBOT_TOKEN }}
           branch: gh-pages
           folder: site
-          single_commit: true
+          single-commit: true
