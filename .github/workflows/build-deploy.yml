@@ -593,6 +593,86 @@ jobs:
           name: tstrait-docs
           path: dist/*
 
+  build-tscompare-docs:
+    name: Build tscompare docs
+    needs: cancel-superseded
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4.2.2
+        name: Checkout tscompare
+        with:
+          ref: main
+          repository: tskit-dev/tscompare
+
+      - name: Get commit SHA1 for cache
+        run: git rev-parse HEAD > SHA1
+
+      - uses: actions/cache@v4.2.0
+        id: docs-cache
+        name: Docs cache
+        with:
+          path: dist
+          key: tscompare-docs-v3-${{ hashFiles('SHA1') }}
+
+      - uses: actions/setup-python@v5.3.0
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Setup Python
+        with:
+          python-version: "3.10"
+
+      - name: Build virtualenv
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: python -m venv venv-latest
+
+      - name: Install deps
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          venv-latest/bin/activate && pip install -r requirements/CI-docs-pip/requirements.txt
+
+      - name: Build Latest Docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          venv-latest/bin/activate
+          cd docs
+          make dist
+          # make dist changes the _conf.yml file to write the version number, so drop the change
+          git checkout .
+
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p dist
+          cp -r docs/_build/html dist/latest
+
+      - name: Checkout latest stable tag
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          git fetch --tags --recurse-submodules=no
+          git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
+          git status
+
+      - name: Build Stable Docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          rm -rf docs/_build
+          venv-latest/bin/activate
+          cd docs
+          make dist
+          # make dist changes the _conf.yml file to write the version number, so drop the change
+          git checkout .
+
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run:
+          cp -r docs/_build/html dist/stable
+
+      - name: Upload tscompare docs
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: tscompare-docs
+          path: dist/*
+
+
   build-tsdate-docs:
     name: Build tsdate docs
     needs: cancel-superseded
@@ -879,6 +959,7 @@ jobs:
       - build-tsdate-docs
       - build-tszip-docs
       - build-tstrait-docs
+      - build-tscompare-docs
       - build-tsbrowse-docs
       - import-tutorials
       - import-rust-tutorial
@@ -915,6 +996,12 @@ jobs:
         with:
           name: tstrait-docs
           path: site/tstrait/docs
+
+      - name: Download tscompare-docs
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: tscompare-docs
+          path: site/tscompare/docs
 
       - name: Download tsbrowse-docs
         uses: actions/download-artifact@v4.1.8
@@ -961,6 +1048,7 @@ jobs:
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tskit/docs/stable\" />" > site/tskit/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/pyslim/docs/stable\" />" > site/pyslim/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tstrait/docs/stable\" />" > site/tstrait/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tscompare/docs/stable\" />" > site/tscompare/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tsbrowse/docs/stable\" />" > site/tsbrowse/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tsdate/docs/stable\" />" > site/tsdate/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tszip/docs/latest\" />" > site/tszip/docs/index.html
