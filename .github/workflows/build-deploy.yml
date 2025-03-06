@@ -259,6 +259,7 @@ jobs:
           rm -rf docs/_build
           venv-latest/bin/activate
           cd docs
+          make clean
           make dist
           # make dist changes the _conf.yml file to write the version number, so drop the change
           git checkout .
