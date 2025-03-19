@@ -151,6 +151,10 @@ jobs:
           rm -rf docs/_build
           venv-latest/bin/activate
           cd docs
+          # Fix section reference in demography.md
+          if [ -f demography.md ]; then
+            sed -i 's/sec_catalog_homsap_models_americanadmixture_4b11/sec_catalog_homsap_models_americanadmixture_4b18/g' demography.md
+          fi
           make dist
           # make dist changes the _conf.yml file to write the version number, so drop the change
           git checkout .
