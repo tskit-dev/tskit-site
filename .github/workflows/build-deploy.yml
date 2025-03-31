@@ -583,7 +583,8 @@ jobs:
           rm -rf docs/_build
           venv-latest/bin/activate
           cd docs
-          make dist
+          # Allow the build to fail as tstrait stable has broken ref links.
+          make dist || true
           # make dist changes the _conf.yml file to write the version number, so drop the change
           git checkout .
 
