@@ -429,7 +429,7 @@ jobs:
           git clone https://github.com/messerlab/SLiM.git
           mkdir -p SLiM/Release
           cd SLiM/Release
-          cmake -D CMAKE_BUILD_TYPE=Release ..
+          cmake -D CMAKE_POLICY_VERSION_MINIMUM=3.5 -D CMAKE_BUILD_TYPE=Release ..
           make -j 2
 
       - name: Build virtualenv
