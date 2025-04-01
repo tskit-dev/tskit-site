@@ -469,7 +469,7 @@ jobs:
           git fetch --tags --recurse-submodules=no
           git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
           git status
-          cmake -D CMAKE_BUILD_TYPE=Release ..
+          cmake -D CMAKE_POLICY_VERSION_MINIMUM=3.5 -D CMAKE_BUILD_TYPE=Release ..
           make -j 2
 
       - name: Checkout latest stable tag
