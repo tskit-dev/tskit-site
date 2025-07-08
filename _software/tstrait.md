@@ -3,8 +3,8 @@ layout: software-page
 title: tstrait
 name: tstrait
 #Uncomment to override automatic values
-#description: 
-#repo_url: 
+#description:
+#repo_url:
 gh_org: tskit-dev
 docs_url: https://tskit.dev/tstrait/docs/
 publication: https://doi.org/10.1093/bioinformatics/btae334
@@ -21,6 +21,8 @@ code_snippet: |2
   )
 redirect_from:
   - /tstrait/
+citation_url: https://tskit.dev/tstrait/docs/stable/citation.html
+citation_md: https://raw.githubusercontent.com/tskit-dev/tstrait/refs/heads/main/docs/citation.md
 ---
 
 tstrait is a Python package to simulate quantitative traits from a given
