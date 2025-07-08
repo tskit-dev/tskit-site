@@ -1,0 +1,17 @@
+<div class="col-md-12">
+  <details style="border-radius: 6px; padding: 0.5em; background-color: #03303E; margin-bottom: 0.5em;">
+    <summary style="cursor: pointer; font-family: 'rothwood'">{{ app.title }}</summary>
+
+    {% if app.citation_md %}
+      {% capture citation_md %}
+        {% remote_include app.citation_md %}
+      {% endcapture %}
+      <div style="margin-top: 1em; font-size: 13px;">
+        {{ citation_md | replace: "(sec_citation)=", "" | replace: "(citation)=", "" | markdownify }}
+      </div>
+    {% endif %}
+
+    <p>Citation details for {{ app.title }} can be found at: <a href="{{ app.citation_url }}">{{ app.citation_url }}</a></p>
+  </details>
+</div>
+

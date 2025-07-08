@@ -1,0 +1,23 @@
+---
+layout: page
+title: Citation
+description: A list of the citation resources for different tskit ecosystem software.
+permalink: /citation/
+---
+
+{% assign sorted_apps = site.software | sort: "priority" %}
+{% assign filtered_apps = sorted_apps | where: "gh_org", "tskit-dev" %}
+
+{% assign page_apps = filtered_apps %}
+<section class="section section--cards section--cards--type-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="section__heading">How to cite tskit-dev software</h2>
+      </div>
+    </div>
+    {% for app in page_apps %}
+        {% include software-citation.html app=app %}
+    {% endfor %}
+  </div>
+</section>
