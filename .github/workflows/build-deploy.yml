@@ -954,6 +954,32 @@ jobs:
           name: rust-tutorials
           path: .
 
+  build-tskit-explore:
+    name: Build tskit-explore JupyterLite site
+    needs: cancel-superseded
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4.2.2
+        name: Checkout tskit-explore
+        with:
+          ref: main
+          repository: tskit-dev/tskit-explore
+      - name: Setup Python
+        uses: actions/setup-python@v5.4.0
+        with:
+          python-version: '3.11'
+      - name: Install the dependencies
+        run: |
+          python -m pip install -r requirements.txt
+      - name: Build the JupyterLite site
+        run: |
+          cp README.md content
+          jupyter lite build --contents content --output-dir dist
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: tskit-explore
+          path: ./dist
 
   deploy:
     name: Deploy 🚀 (if on main branch)
@@ -970,6 +996,7 @@ jobs:
       - build-tsbrowse-docs
       - import-tutorials
       - import-rust-tutorial
+      - build-tskit-explore
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -1045,6 +1072,12 @@ jobs:
         with:
           name: rust-tutorials
           path: site/tutorials/rust
+      
+      - name: Download tskit-explore
+        uses: actions/download-artifact@v4.2.0
+        with:
+          name: tskit-explore
+          path: site/explore
 
       - name: Pages config and tweaks
         run: |
