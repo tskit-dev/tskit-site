@@ -1,0 +1,30 @@
+---
+layout: page
+title: citation
+description: A list of the citation resources for different tskit echosystem software.
+permalink: /citation/
+---
+
+</section>
+<!-- END: filters -->
+
+<!-- START: cards-type-3 -->
+{% assign tskit = site.software | where: "name", "tskit" | first %}
+
+<section class="section section--cards section--cards--type-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="section__heading">How to cite tskit</h2>
+        <p>Permanent link: <a href="{{ tskit.citation_url }}">{{ tskit.citation_url }}</a></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        {% remote_include https://raw.githubusercontent.com/tskit-dev/tskit/main/docs/citation.md %}
+      </div>
+    </div>
+  </div>
+</section>
+
