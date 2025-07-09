@@ -974,6 +974,11 @@ jobs:
       - name: Build the JupyterLite site
         run: |
           cp README.md content
+          cd tskit-launcher
+          jlpm install
+          jlpm run build
+          pip install .
+          cd ..
           jupyter lite build --contents content --output-dir dist
       - name: Upload artifact
         uses: actions/upload-artifact@v4.6.1
