@@ -9,21 +9,37 @@ permalink: /citation/
 <!-- END: filters -->
 
 <!-- START: cards-type-3 -->
-{% assign tskit = site.software | where: "name", "tskit" | first %}
-
 <section class="section section--cards section--cards--type-3">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2 class="section__heading">How to cite tskit</h2>
-        <p>Permanent link: <a href="{{ tskit.citation_url }}">{{ tskit.citation_url }}</a></p>
+        <h2 class="section__heading">How to cite tskit-dev software</h2>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-12">
-        {% remote_include https://raw.githubusercontent.com/tskit-dev/tskit/main/docs/citation.md %}
-      </div>
+      {% assign sims = site.software | sort: "priority" %}
+      {% for app in sims %}
+        {% if app.gh_org == "tskit-dev" %}
+          {%if app.citation_url %}
+            <div class="col-md-12">
+                <details style="border-radius: 6px; padding: 0.5em; background-color: #03303E;margin-bottom: 0.25em;">
+                  <summary style="cursor: pointer; font-weight: bold;">{{app.title}}</summary>
+                  {%if app.citation_md %}
+                    {% capture citation_md %}
+                        {% remote_include app.citation_md %}
+                    {% endcapture %}
+                    <div style="margin-top: 1em; font-size: 13px;">
+                      {{ citation_md | replace: "(sec_citation)=", "" | replace: "(citation)=", "" | markdownify }}
+                    </div>
+                  {%endif%}
+                  <p>Citation details for {{app.title}} found at: <a href="{{ app.citation_url }}">{{ app.citation_url }}</a></p>
+
+              </details>
+            </div>
+          {%endif%}
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 </section>
