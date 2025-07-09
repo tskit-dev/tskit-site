@@ -14,7 +14,7 @@ code_snippet: |2
 redirect_from:
   - /tskit/
 citation_url: https://tskit.dev/tskit/docs/stable/citation.html
-citation_md: https://github.com/tskit-dev/tskit/blob/main/docs/citation.md
+citation_md: https://raw.githubusercontent.com/tskit-dev/tskit/refs/heads/main/docs/citation.md
 ---
 The tskit library provides the underlying functionality used to load, examine, and
 manipulate tree sequences, including efficient methods for calculating genetic statistics.
