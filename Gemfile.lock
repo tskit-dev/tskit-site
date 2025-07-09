@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/netrics/jekyll-remote-include.git
+  revision: 39ae1a1744c8837d5ee64b11c5f982304ea940e5
+  specs:
+    jekyll-remote-include (1.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -103,6 +109,7 @@ DEPENDENCIES
   jekyll-feed (~> 0.6)
   jekyll-font-awesome-sass
   jekyll-redirect-from
+  jekyll-remote-include!
   jekyll-theme-cayman
   jekyll-timeago
   minima (~> 2.0)
