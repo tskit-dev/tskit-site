@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-07-12T11:33:19.029789Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-07-12T11:32:13.151524Z",
+      "mimetype": null,
+      "name": "demo.arg",
+      "path": "data/demo.arg",
+      "size": 382004,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-07-12T11:33:19.029789Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-07-12T11:33:19.029789Z",
+  "mimetype": null,
+  "name": "data",
+  "path": "data",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}
