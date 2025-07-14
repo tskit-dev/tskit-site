@@ -17,7 +17,9 @@ permalink: /citation/
       </div>
     </div>
     {% for app in page_apps %}
+      {% if app.citation_url %}
         {% include software-citation.html app=app %}
+      {% endif %}
     {% endfor %}
   </div>
 </section>
