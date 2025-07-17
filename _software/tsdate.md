@@ -14,5 +14,6 @@ code_snippet: |2
 redirect_from:
   - /tsdate/
 citation_url: https://tskit.dev/tsdate/docs/stable/#citing
+citation_md: https://raw.githubusercontent.com/tskit-dev/tsdate/refs/heads/main/docs/citation.md
 ---
 Tsdate is a scalable method for estimating the age of ancestral nodes in a tree sequence.
