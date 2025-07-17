@@ -7,7 +7,7 @@
         {% remote_include app.citation_md %}
       {% endcapture %}
       <div style="margin-top: 1em; font-size: 13px;">
-        {{ citation_md | replace: "(sec_citation)=", "" | replace: "(citation)=", "" | markdownify }}
+        {{ citation_md | split: "(sec_citation)=" | last | markdownify }}
       </div>
     {% endif %}
 
