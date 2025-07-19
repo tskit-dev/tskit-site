@@ -1,0 +1,57 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.10.17/x64/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.10.17/x64/lib/python3.10/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.10.17/x64/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/opt/hostedtoolcache/Python/3.10.17/x64/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.10.17/x64/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.10.17/x64/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.10.17/x64/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import subprocess
+msg = subprocess.check_output(
+     ["slim", "-d", f"L={int(ots.sequence_length - 1)}",
+      "-s", "5", "reload_annotated.slim"])
+print(msg.decode())
+------------------
+
+----- stderr -----
+ERROR (Species::ReadTreeSequenceMetadata): the version of this file appears to be too old to be read, or the file is corrupted; you can try using pyslim to bring an old file version forward to the current version, or generate a new file with the current version of SLiM or pyslim.
+
+Error on script line 16, character 8:
+
+    sim.readFromPopulationFile("vignette_annotated.init.trees");
+        ^^^^^^^^^^^^^^^^^^^^^^
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mCalledProcessError[0m                        Traceback (most recent call last)
+Cell [0;32mIn[9], line 2[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01msubprocess[39;00m
+[0;32m----> 2[0m msg [38;5;241m=[39m [43msubprocess[49m[38;5;241;43m.[39;49m[43mcheck_output[49m[43m([49m
+[1;32m      3[0m [43m     [49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mslim[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43m-d[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43mf[39;49m[38;5;124;43m"[39;49m[38;5;124;43mL=[39;49m[38;5;132;43;01m{[39;49;00m[38;5;28;43mint[39;49m[43m([49m[43mots[49m[38;5;241;43m.[39;49m[43msequence_length[49m[38;5;250;43m [39;49m[38;5;241;43m-[39;49m[38;5;250;43m [39;49m[38;5;241;43m1[39;49m[43m)[49m[38;5;132;43;01m}[39;49;00m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m      4[0m [43m      [49m[38;5;124;43m"[39;49m[38;5;124;43m-s[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43m5[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mreload_annotated.slim[39;49m[38;5;124;43m"[39;49m[43m][49m[43m)[49m
+[1;32m      5[0m [38;5;28mprint[39m(msg[38;5;241m.[39mdecode())
+
+File [0;32m/opt/hostedtoolcache/Python/3.10.17/x64/lib/python3.10/subprocess.py:421[0m, in [0;36mcheck_output[0;34m(timeout, *popenargs, **kwargs)[0m
+[1;32m    418[0m         empty [38;5;241m=[39m [38;5;124mb[39m[38;5;124m'[39m[38;5;124m'[39m
+[1;32m    419[0m     kwargs[[38;5;124m'[39m[38;5;124minput[39m[38;5;124m'[39m] [38;5;241m=[39m empty
+[0;32m--> 421[0m [38;5;28;01mreturn[39;00m [43mrun[49m[43m([49m[38;5;241;43m*[39;49m[43mpopenargs[49m[43m,[49m[43m [49m[43mstdout[49m[38;5;241;43m=[39;49m[43mPIPE[49m[43m,[49m[43m [49m[43mtimeout[49m[38;5;241;43m=[39;49m[43mtimeout[49m[43m,[49m[43m [49m[43mcheck[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m
+[1;32m    422[0m [43m           [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m[38;5;241m.[39mstdout
+
+File [0;32m/opt/hostedtoolcache/Python/3.10.17/x64/lib/python3.10/subprocess.py:526[0m, in [0;36mrun[0;34m(input, capture_output, timeout, check, *popenargs, **kwargs)[0m
+[1;32m    524[0m     retcode [38;5;241m=[39m process[38;5;241m.[39mpoll()
+[1;32m    525[0m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[0;32m--> 526[0m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process[38;5;241m.[39margs,
+[1;32m    527[0m                                  output[38;5;241m=[39mstdout, stderr[38;5;241m=[39mstderr)
+[1;32m    528[0m [38;5;28;01mreturn[39;00m CompletedProcess(process[38;5;241m.[39margs, retcode, stdout, stderr)
+
+[0;31mCalledProcessError[0m: Command '['slim', '-d', 'L=8999999', '-s', '5', 'reload_annotated.slim']' returned non-zero exit status 1.
+
