@@ -93,7 +93,7 @@ jobs:
         if: steps.docs-cache.outputs.cache-hit != 'true'
         name: Setup Python
         with:
-          python-version: "3.10"
+          python-version: "3.12"
 
       - name: Build virtualenv
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -131,16 +131,16 @@ jobs:
           git submodule update --init --recursive
           git status
 
-#      - name: Build virtualenv
-#        if: steps.docs-cache.outputs.cache-hit != 'true'
-#        run: python -m venv venv-stable
-#
-#      - name: Install deps
-#        if: steps.docs-cache.outputs.cache-hit != 'true'
-#        run: |
-#          venv-stable/bin/activate
-#          [ -f requirements/CI-docs/requirements.txt ] && pip install -r requirements/CI-docs/requirements.txt
-#          [ -f requirements/development.txt ] && pip install -r requirements/development.txt
+      - name: Build virtualenv
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: python -m venv venv-stable
+
+      - name: Install deps
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          venv-stable/bin/activate
+          [ -f requirements/CI-docs/requirements.txt ] && pip install -r requirements/CI-docs/requirements.txt
+
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: venv-latest/bin/activate && make
@@ -150,6 +150,8 @@ jobs:
         run: |
           rm -rf docs/_build
           venv-latest/bin/activate
+          # Fix ipython error
+          pip install ipython==8.37.0
           cd docs
           # Fix section reference in demography.md
           if [ -f demography.md ]; then
