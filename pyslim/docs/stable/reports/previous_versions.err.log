@@ -1,0 +1,227 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+  File "/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+metadata = [ {'slim_id': k, 'is_null': False, 'genome_type': 0}
+            for k in range(tables.nodes.num_rows) ]
+nms = tables.nodes.metadata_schema
+tables.nodes.packset_metadata(
+  [nms.validate_and_encode_row(r) for r in metadata]
+)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValidationError[0m                           Traceback (most recent call last)
+File [0;32m/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/tskit/metadata.py:857[0m, in [0;36mMetadataSchema.validate_and_encode_row[0;34m(self, row)[0m
+[1;32m    856[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 857[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_validate_row[49m[43m([49m[43mrow[49m[43m)[49m
+[1;32m    858[0m [38;5;28;01mexcept[39;00m jsonschema[38;5;241m.[39mexceptions[38;5;241m.[39mValidationError [38;5;28;01mas[39;00m ve:
+
+File [0;32m/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/jsonschema/validators.py:451[0m, in [0;36mcreate.<locals>.Validator.validate[0;34m(self, *args, **kwargs)[0m
+[1;32m    450[0m [38;5;28;01mfor[39;00m error [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39miter_errors([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[0;32m--> 451[0m     [38;5;28;01mraise[39;00m error
+
+[0;31mValidationError[0m: Additional properties are not allowed ('genome_type', 'is_null' were unexpected)
+
+Failed validating 'additionalProperties' in schema:
+    {'$schema': 'http://json-schema.org/schema#',
+     'additionalProperties': False,
+     'codec': 'struct',
+     'description': 'SLiM schema for node metadata.',
+     'examples': [{'slim_id': 123, 'is_vacant': 0}],
+     'properties': OrderedDict([('slim_id',
+                                 {'binaryFormat': 'q',
+                                  'description': "The 'pedigree ID' of the "
+                                                 'haplosomes associated '
+                                                 'with this node in SLiM.',
+                                  'index': 0,
+                                  'type': 'integer'}),
+                                ('is_vacant',
+                                 {'description': 'A vector of byte '
+                                                 '(uint8_t) values, with '
+                                                 'each bit representing '
+                                                 'whether the node '
+                                                 'represents a vacant '
+                                                 'position, either unused '
+                                                 'or a null haplosome (1), '
+                                                 'or a non-null haplosome '
+                                                 '(0), in the '
+                                                 'corresponding '
+                                                 'chromosome. This field '
+                                                 'encodes vacancy for all '
+                                                 'of the chromosomes in '
+                                                 'the model, not just the '
+                                                 'chromosome represented '
+                                                 'in this file (so that '
+                                                 'the node table is '
+                                                 'identical across all '
+                                                 'chromosomes for a '
+                                                 'multi-chromosome model). '
+                                                 'Each chromosome receives '
+                                                 'one bit here; there are '
+                                                 'two node table entries '
+                                                 'per individual, used for '
+                                                 'the two haplosomes of '
+                                                 'every chromosome, so '
+                                                 'only one bit is needed '
+                                                 'in each entry (making '
+                                                 'two bits total per '
+                                                 'chromosome, across the '
+                                                 'two node table entries). '
+                                                 'The least significant '
+                                                 'bit of the first byte is '
+                                                 'used first (for one '
+                                                 'haplosome of the first '
+                                                 'chromosome); the most '
+                                                 'significant bit of the '
+                                                 'last byte is used last. '
+                                                 'The number of bytes '
+                                                 'present in this field is '
+                                                 'indicated by this '
+                                                 "schema's 'binaryFormat' "
+                                                 'field, which is variable '
+                                                 '(!), and can also be '
+                                                 'deduced from the number '
+                                                 'of chromosomes in the '
+                                                 'model as given in the '
+                                                 "top-level 'chromosomes' "
+                                                 'metadata key, which '
+                                                 'should always be present '
+                                                 'if this metadata is '
+                                                 'present.',
+                                  'index': 1,
+                                  'type': 'array',
+                                  'length': 1,
+                                  'items': {'type': 'number',
+                                            'binaryFormat': 'B'}})]),
+     'required': ['slim_id', 'is_vacant'],
+     'type': ['object', 'null']}
+
+On instance:
+    {'slim_id': 0, 'is_null': False, 'genome_type': 0}
+
+The above exception was the direct cause of the following exception:
+
+[0;31mMetadataValidationError[0m                   Traceback (most recent call last)
+Cell [0;32mIn[2], line 5[0m
+[1;32m      1[0m metadata [38;5;241m=[39m [ {[38;5;124m'[39m[38;5;124mslim_id[39m[38;5;124m'[39m: k, [38;5;124m'[39m[38;5;124mis_null[39m[38;5;124m'[39m: [38;5;28;01mFalse[39;00m, [38;5;124m'[39m[38;5;124mgenome_type[39m[38;5;124m'[39m: [38;5;241m0[39m}
+[1;32m      2[0m             [38;5;28;01mfor[39;00m k [38;5;129;01min[39;00m [38;5;28mrange[39m(tables[38;5;241m.[39mnodes[38;5;241m.[39mnum_rows) ]
+[1;32m      3[0m nms [38;5;241m=[39m tables[38;5;241m.[39mnodes[38;5;241m.[39mmetadata_schema
+[1;32m      4[0m tables[38;5;241m.[39mnodes[38;5;241m.[39mpackset_metadata(
+[0;32m----> 5[0m   [nms[38;5;241m.[39mvalidate_and_encode_row(r) [38;5;28;01mfor[39;00m r [38;5;129;01min[39;00m metadata]
+[1;32m      6[0m )
+
+Cell [0;32mIn[2], line 5[0m, in [0;36m<listcomp>[0;34m(.0)[0m
+[1;32m      1[0m metadata [38;5;241m=[39m [ {[38;5;124m'[39m[38;5;124mslim_id[39m[38;5;124m'[39m: k, [38;5;124m'[39m[38;5;124mis_null[39m[38;5;124m'[39m: [38;5;28;01mFalse[39;00m, [38;5;124m'[39m[38;5;124mgenome_type[39m[38;5;124m'[39m: [38;5;241m0[39m}
+[1;32m      2[0m             [38;5;28;01mfor[39;00m k [38;5;129;01min[39;00m [38;5;28mrange[39m(tables[38;5;241m.[39mnodes[38;5;241m.[39mnum_rows) ]
+[1;32m      3[0m nms [38;5;241m=[39m tables[38;5;241m.[39mnodes[38;5;241m.[39mmetadata_schema
+[1;32m      4[0m tables[38;5;241m.[39mnodes[38;5;241m.[39mpackset_metadata(
+[0;32m----> 5[0m   [[43mnms[49m[38;5;241;43m.[39;49m[43mvalidate_and_encode_row[49m[43m([49m[43mr[49m[43m)[49m [38;5;28;01mfor[39;00m r [38;5;129;01min[39;00m metadata]
+[1;32m      6[0m )
+
+File [0;32m/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/tskit/metadata.py:859[0m, in [0;36mMetadataSchema.validate_and_encode_row[0;34m(self, row)[0m
+[1;32m    857[0m         [38;5;28mself[39m[38;5;241m.[39m_validate_row(row)
+[1;32m    858[0m     [38;5;28;01mexcept[39;00m jsonschema[38;5;241m.[39mexceptions[38;5;241m.[39mValidationError [38;5;28;01mas[39;00m ve:
+[0;32m--> 859[0m         [38;5;28;01mraise[39;00m exceptions[38;5;241m.[39mMetadataValidationError([38;5;28mstr[39m(ve)) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mve[39;00m
+[1;32m    860[0m [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39mencode_row(row)
+
+[0;31mMetadataValidationError[0m: Additional properties are not allowed ('genome_type', 'is_null' were unexpected)
+
+Failed validating 'additionalProperties' in schema:
+    {'$schema': 'http://json-schema.org/schema#',
+     'additionalProperties': False,
+     'codec': 'struct',
+     'description': 'SLiM schema for node metadata.',
+     'examples': [{'slim_id': 123, 'is_vacant': 0}],
+     'properties': OrderedDict([('slim_id',
+                                 {'binaryFormat': 'q',
+                                  'description': "The 'pedigree ID' of the "
+                                                 'haplosomes associated '
+                                                 'with this node in SLiM.',
+                                  'index': 0,
+                                  'type': 'integer'}),
+                                ('is_vacant',
+                                 {'description': 'A vector of byte '
+                                                 '(uint8_t) values, with '
+                                                 'each bit representing '
+                                                 'whether the node '
+                                                 'represents a vacant '
+                                                 'position, either unused '
+                                                 'or a null haplosome (1), '
+                                                 'or a non-null haplosome '
+                                                 '(0), in the '
+                                                 'corresponding '
+                                                 'chromosome. This field '
+                                                 'encodes vacancy for all '
+                                                 'of the chromosomes in '
+                                                 'the model, not just the '
+                                                 'chromosome represented '
+                                                 'in this file (so that '
+                                                 'the node table is '
+                                                 'identical across all '
+                                                 'chromosomes for a '
+                                                 'multi-chromosome model). '
+                                                 'Each chromosome receives '
+                                                 'one bit here; there are '
+                                                 'two node table entries '
+                                                 'per individual, used for '
+                                                 'the two haplosomes of '
+                                                 'every chromosome, so '
+                                                 'only one bit is needed '
+                                                 'in each entry (making '
+                                                 'two bits total per '
+                                                 'chromosome, across the '
+                                                 'two node table entries). '
+                                                 'The least significant '
+                                                 'bit of the first byte is '
+                                                 'used first (for one '
+                                                 'haplosome of the first '
+                                                 'chromosome); the most '
+                                                 'significant bit of the '
+                                                 'last byte is used last. '
+                                                 'The number of bytes '
+                                                 'present in this field is '
+                                                 'indicated by this '
+                                                 "schema's 'binaryFormat' "
+                                                 'field, which is variable '
+                                                 '(!), and can also be '
+                                                 'deduced from the number '
+                                                 'of chromosomes in the '
+                                                 'model as given in the '
+                                                 "top-level 'chromosomes' "
+                                                 'metadata key, which '
+                                                 'should always be present '
+                                                 'if this metadata is '
+                                                 'present.',
+                                  'index': 1,
+                                  'type': 'array',
+                                  'length': 1,
+                                  'items': {'type': 'number',
+                                            'binaryFormat': 'B'}})]),
+     'required': ['slim_id', 'is_vacant'],
+     'type': ['object', 'null']}
+
+On instance:
+    {'slim_id': 0, 'is_null': False, 'genome_type': 0}
+

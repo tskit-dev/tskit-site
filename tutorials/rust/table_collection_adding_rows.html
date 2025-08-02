@@ -1,0 +1,370 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Adding rows - The tskit (rust) book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="working_with_table_collections.html"><strong aria-hidden="true">1.</strong> Working with table collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="table_collection_creation.html"><strong aria-hidden="true">1.1.</strong> Creation</a></li><li class="chapter-item expanded "><a href="table_collection_adding_rows.html" class="active"><strong aria-hidden="true">1.2.</strong> Adding rows</a></li><li class="chapter-item expanded "><a href="table_collection_column_access.html"><strong aria-hidden="true">1.3.</strong> Accessing table columns</a></li><li class="chapter-item expanded "><a href="table_collection_row_access.html"><strong aria-hidden="true">1.4.</strong> Accessing table rows</a></li><li class="chapter-item expanded "><a href="table_collection_validation.html"><strong aria-hidden="true">1.5.</strong> Validating table collection contents</a></li></ol></li><li class="chapter-item expanded "><a href="working_with_tree_sequences.html"><strong aria-hidden="true">2.</strong> Working with tree sequences</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tree_sequence_from_table_collection.html"><strong aria-hidden="true">2.1.</strong> Initialization from a table collection</a></li><li class="chapter-item expanded "><a href="tree_sequence_iterate_trees.html"><strong aria-hidden="true">2.2.</strong> Iterating over trees</a></li><li class="chapter-item expanded "><a href="tree_sequence_tree.html"><strong aria-hidden="true">2.3.</strong> Working with trees</a></li><li class="chapter-item expanded "><a href="tree_sequence_edge_diffs.html"><strong aria-hidden="true">2.4.</strong> Edge differences</a></li><li class="chapter-item expanded "><a href="tree_sequence_miscellaneous.html"><strong aria-hidden="true">2.5.</strong> Miscellaneous operations</a></li></ol></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">3.</strong> Metadata</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="metadata_derive.html"><strong aria-hidden="true">3.1.</strong> Defining metadata types in rust</a></li><li class="chapter-item expanded "><a href="metadata_tables.html"><strong aria-hidden="true">3.2.</strong> Metadata and tables</a></li><li class="chapter-item expanded "><a href="metadata_schema.html"><strong aria-hidden="true">3.3.</strong> Metadata schema</a></li><li class="chapter-item expanded "><a href="metadata_advanced.html"><strong aria-hidden="true">3.4.</strong> Advanced topics</a></li></ol></li><li class="chapter-item expanded "><a href="error_handling.html"><strong aria-hidden="true">4.</strong> Error handling</a></li><li class="chapter-item expanded "><a href="examples.html"><strong aria-hidden="true">5.</strong> Example programs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples_haploid_wright_fisher.html"><strong aria-hidden="true">5.1.</strong> Haploid Wright-Fisher simulation</a></li></ol></li><li class="chapter-item expanded "><a href="prelude.html">Crate prelude</a></li><li class="chapter-item expanded affix "><a href="changelog.html">Changelog</a></li><li class="chapter-item expanded affix "><a href="migration_guide.html">Migration Guide</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The tskit (rust) book</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="adding-rows-to-tables"><a class="header" href="#adding-rows-to-tables">Adding rows to tables</a></h2>
+<ul>
+<li>For each table type (node, edge., etc.), we have a function to add a row.</li>
+<li>We can only add rows to tables in mutable <code>TableCollection</code> instances.</li>
+</ul>
+<p>For example, to add a node:</p>
+<pre><code class="language-rust  noplaygound  ignore">        let mut tables = tskit::TableCollection::new(100.0).unwrap();
+        if let Ok(node_id) = tables.add_node(
+            0,                         // Node flags
+            tskit::Time::from(0.0),    // Birth time
+            tskit::PopulationId::NULL, // Population id
+            tskit::IndividualId::NULL, // Individual id
+        ) {
+            assert_eq!(node_id, 0);
+        }</code></pre>
+<p>We see from the <code>if let</code> pattern that functions adding rows return
+<a href="https://doc.rust-lang.org/std/result/enum.Result.html"><code>Result</code></a>.
+In general, errors only occur when the C back-end fails to allocate memory
+to expand the table columns.
+If we add a row with invalid data, no error is returned!
+To catch such errors, we must explicitly check table integrity (see <a href="table_collection_validation.html#checking-table-integrity">below</a>).</p>
+<p>Again, we can take advantage of being able to pass in any type that is <code>Into&lt;_&gt;</code> the required newtype:</p>
+<pre><code class="language-rust  noplaygound  ignore">        let node_id = tables.add_node(0, 0.0, -1, -1).unwrap();</code></pre>
+<p>See the <a href="https://docs.rs/tskit">API docs</a> for more details and examples.</p>
+<h3 id="adding-nodes-using-default-values"><a class="header" href="#adding-nodes-using-default-values">Adding nodes using default values</a></h3>
+<p>This section is more advanced and may be skipped during a first read.</p>
+<p>For some tables it may be common to input the same values over and over for some fields when adding rows.
+Let's take a look at how to use default values when adding rows to a node table.</p>
+<p>Default instances of <code>NodeDefaults</code> contain default values for the <code>flags</code>, <code>individual</code>, and <code>population</code> fields:</p>
+<pre><code class="language-rust  noplaygound  ignore">    let defaults = tskit::NodeDefaults::default();</code></pre>
+<p>Add a node with these values and a given birth time:</p>
+<pre><code class="language-rust  noplaygound  ignore">    let node = tables.add_node_with_defaults(0.0, &amp;defaults).unwrap();</code></pre>
+<p>We can use struct update syntax to create a new node marked as a sample while re-using our other defaults:</p>
+<pre><code class="language-rust  noplaygound  ignore">    let node = tables
+        .add_node_with_defaults(
+            0.0,
+            // Create a new, temporary defaults instance
+            &amp;tskit::NodeDefaults {
+                // Mark the new node as a sample
+                flags: tskit::NodeFlags::new_sample(),
+                // Use remaining values from our current defaults
+                ..defaults
+            },
+        )
+        .unwrap();</code></pre>
+<p>See the <a href="https://docs.rs/tskit/latest/tskit/struct.NodeDefaults.html"><code>NodeDefaults</code></a> section of the API reference for more.</p>
+<h4 id="metadata"><a class="header" href="#metadata">Metadata</a></h4>
+<p><a href="metadata.html#Metadata">Metadata</a> can complicate the picture a bit:</p>
+<ul>
+<li>Metadata types are defined by the client and are thus a generic in the <code>tskit</code> API.</li>
+<li>We do not want to impose too many trait bounds on the client-defined types.</li>
+<li>Metadata is optional on a per-row basis for any given table.</li>
+</ul>
+<p><a href="https://docs.rs/tskit/latest/tskit/struct.NodeDefaultsWithMetadata.html"><code>NodeDefaultsWithMetadata</code></a> handles the case where rows may or may not have metadata.
+The metadata type is generic with trait bound <a href="https://docs.rs/tskit/latest/tskit/metadata/trait.NodeMetadata.html"><code>tskit::NodeMetadata</code></a>.
+Because metadata are optional per-row, any metadata defaults are stored as an <a href="https://doc.rust-lang.org/std/option/"><code>Option</code></a>.</p>
+<p>For the following examples, this will be our metadata type:</p>
+<pre><code class="language-rust  noplaygound  ignore">    pub struct NodeMetadata {
+        pub value: i32,
+    }</code></pre>
+<h5 id="case-1-no-default-metadata"><a class="header" href="#case-1-no-default-metadata">Case 1: no default metadata</a></h5>
+<p>A common use case is that the metadata differs for every row.
+For this case, it makes sense for the default value to be the <code>None</code> variant of the <code>Option</code>.</p>
+<p>This case is straightforward:</p>
+<pre><code class="language-rust  noplaygound  ignore">
+    // Create a type alias for brevity
+    type DefaultsWithMetadata = tskit::NodeDefaultsWithMetadata&lt;NodeMetadata&gt;;
+    // Default metadata is None
+    let defaults = DefaultsWithMetadata::default();
+
+    // A row with no metadata
+    let n0 = tables.add_node_with_defaults(0.0, &amp;defaults).unwrap();
+
+    // A row with metadata
+    let n1 = tables
+        .add_node_with_defaults(
+            0.0,
+            &amp;DefaultsWithMetadata {
+                population: 3.into(),
+                metadata: Some(NodeMetadata { value: 42 }),
+                ..defaults
+            },
+        )
+        .unwrap();
+
+    // Another row with metadata, different from the last.
+    let n2 = tables
+        .add_node_with_defaults(
+            0.0,
+            &amp;DefaultsWithMetadata {
+                population: 1.into(),
+                metadata: Some(NodeMetadata { value: 1234 }),
+                ..defaults
+            },
+        )
+        .unwrap();</code></pre>
+<h5 id="case-2-default-metadata"><a class="header" href="#case-2-default-metadata">Case 2: default metadata</a></h5>
+<p>TL;DR:</p>
+<ul>
+<li>If table row defaults <em>include</em> metadata, you can run into use-after-move issues.
+Fortunately, the compiler will catch this as an error.</li>
+<li>The solution is for your metadata type to implement <code>Clone</code>.</li>
+</ul>
+<p>Consider the following case:</p>
+<pre><code class="language-rust  noplaygound  ignore">    // What if there is default metadata for all rows?
+    let defaults = DefaultsWithMetadata {
+        metadata: Some(NodeMetadata { value: 42 }),
+        ..Default::default()
+    };</code></pre>
+<p>Imagine that the first row we add uses different metadata but all the other default values:</p>
+<pre><code class="language-rust  noplaygound  ignore">    let n0 = tables
+        .add_node_with_defaults(
+            0.0,
+            &amp;DefaultsWithMetadata {
+                metadata: Some(NodeMetadata { value: 2 * 42 }),
+                ..defaults
+            },
+        )
+        .unwrap();</code></pre>
+<p>Nothing interesting has happened.
+However, let's take a look at what we need to do if our next row uses a non-default <code>population</code> field and the default metadata:</p>
+<pre><code class="language-rust  noplaygound  ignore">    let n1 = tables
+        .add_node_with_defaults(
+            0.0,
+            &amp;DefaultsWithMetadata {
+                population: 6.into(),
+                ..defaults.clone()
+            },
+        )
+        .unwrap();</code></pre>
+<p>Note the call to <code>..defaults.clone()</code>.
+(For that call to compile, <code>NodeMetadata</code> must implement <code>Clone</code>!.)
+Without that, our <code>defaults</code> instance would have <em>moved</em>, leading to a move-after-use compiler error when we add a third row:</p>
+<pre><code class="language-rust  noplaygound  ignore">    let n2 = tables
+        .add_node_with_defaults(
+            0.0,
+            &amp;DefaultsWithMetadata {
+                individual: 7.into(),
+                ..defaults
+            },
+        )
+        .unwrap();</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="table_collection_creation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="table_collection_column_access.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="table_collection_creation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="table_collection_column_access.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
