@@ -1,0 +1,792 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Changelog - The tskit (rust) book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="working_with_table_collections.html"><strong aria-hidden="true">1.</strong> Working with table collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="table_collection_creation.html"><strong aria-hidden="true">1.1.</strong> Creation</a></li><li class="chapter-item expanded "><a href="table_collection_adding_rows.html"><strong aria-hidden="true">1.2.</strong> Adding rows</a></li><li class="chapter-item expanded "><a href="table_collection_column_access.html"><strong aria-hidden="true">1.3.</strong> Accessing table columns</a></li><li class="chapter-item expanded "><a href="table_collection_row_access.html"><strong aria-hidden="true">1.4.</strong> Accessing table rows</a></li><li class="chapter-item expanded "><a href="table_collection_validation.html"><strong aria-hidden="true">1.5.</strong> Validating table collection contents</a></li></ol></li><li class="chapter-item expanded "><a href="working_with_tree_sequences.html"><strong aria-hidden="true">2.</strong> Working with tree sequences</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tree_sequence_from_table_collection.html"><strong aria-hidden="true">2.1.</strong> Initialization from a table collection</a></li><li class="chapter-item expanded "><a href="tree_sequence_iterate_trees.html"><strong aria-hidden="true">2.2.</strong> Iterating over trees</a></li><li class="chapter-item expanded "><a href="tree_sequence_tree.html"><strong aria-hidden="true">2.3.</strong> Working with trees</a></li><li class="chapter-item expanded "><a href="tree_sequence_edge_diffs.html"><strong aria-hidden="true">2.4.</strong> Edge differences</a></li><li class="chapter-item expanded "><a href="tree_sequence_miscellaneous.html"><strong aria-hidden="true">2.5.</strong> Miscellaneous operations</a></li></ol></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">3.</strong> Metadata</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="metadata_derive.html"><strong aria-hidden="true">3.1.</strong> Defining metadata types in rust</a></li><li class="chapter-item expanded "><a href="metadata_tables.html"><strong aria-hidden="true">3.2.</strong> Metadata and tables</a></li><li class="chapter-item expanded "><a href="metadata_schema.html"><strong aria-hidden="true">3.3.</strong> Metadata schema</a></li><li class="chapter-item expanded "><a href="metadata_advanced.html"><strong aria-hidden="true">3.4.</strong> Advanced topics</a></li></ol></li><li class="chapter-item expanded "><a href="error_handling.html"><strong aria-hidden="true">4.</strong> Error handling</a></li><li class="chapter-item expanded "><a href="examples.html"><strong aria-hidden="true">5.</strong> Example programs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples_haploid_wright_fisher.html"><strong aria-hidden="true">5.1.</strong> Haploid Wright-Fisher simulation</a></li></ol></li><li class="chapter-item expanded "><a href="prelude.html">Crate prelude</a></li><li class="chapter-item expanded affix "><a href="changelog.html" class="active">Changelog</a></li><li class="chapter-item expanded affix "><a href="migration_guide.html">Migration Guide</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The tskit (rust) book</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="changelog"><a class="header" href="#changelog">Changelog</a></h1>
+<p>All notable changes to this project will be documented in this file.</p>
+<h2 id="0141---2023-04-16"><a class="header" href="#0141---2023-04-16">[0.14.1] - 2023-04-16</a></h2>
+<h3 id="bug-fixes"><a class="header" href="#bug-fixes">Bug Fixes</a></h3>
+<ul>
+<li>Tree now tied to TreeSequence lifetime (<a href="https://github.com/tskit-dev/tskit-rust/pull/497">#497</a>)</li>
+</ul>
+<h3 id="miscellaneous-tasks"><a class="header" href="#miscellaneous-tasks">Miscellaneous Tasks</a></h3>
+<ul>
+<li>Update delegate requirement from 0.8.0 to 0.9.0 (<a href="https://github.com/tskit-dev/tskit-rust/pull/494">#494</a>)</li>
+</ul>
+<h2 id="0140---2023-03-17"><a class="header" href="#0140---2023-03-17">[0.14.0] - 2023-03-17</a></h2>
+<h3 id="documentation"><a class="header" href="#documentation">Documentation</a></h3>
+<ul>
+<li>Book section on node defaults (<a href="https://github.com/tskit-dev/tskit-rust/pull/491">#491</a>)</li>
+</ul>
+<h3 id="features"><a class="header" href="#features">Features</a></h3>
+<ul>
+<li>Allow use of bookmark in examples/haploid_wright_fisher (<a href="https://github.com/tskit-dev/tskit-rust/pull/479">#479</a>)</li>
+<li>Impl Default for row id types (<a href="https://github.com/tskit-dev/tskit-rust/pull/484">#484</a>)</li>
+<li>Impl Default for Bookmark (<a href="https://github.com/tskit-dev/tskit-rust/pull/486">#486</a>)</li>
+<li>Implement Builder pattern for flags (<a href="https://github.com/tskit-dev/tskit-rust/pull/487">#487</a>)</li>
+<li>Support adding nodes with defaults (<a href="https://github.com/tskit-dev/tskit-rust/pull/488">#488</a>)</li>
+</ul>
+<h3 id="miscellaneous-tasks-1"><a class="header" href="#miscellaneous-tasks-1">Miscellaneous Tasks</a></h3>
+<ul>
+<li>[<strong>breaking</strong>] Bump MSRV to 1.60.0 (<a href="https://github.com/tskit-dev/tskit-rust/pull/478">#478</a>)</li>
+</ul>
+<h3 id="refactor"><a class="header" href="#refactor">Refactor</a></h3>
+<ul>
+<li>Remove internal impl Deref/DerefMut for edge diff iterator. (<a href="https://github.com/tskit-dev/tskit-rust/pull/482">#482</a>)</li>
+<li>Mod table_view is no longer pub (<a href="https://github.com/tskit-dev/tskit-rust/pull/483">#483</a>)</li>
+<li>[<strong>breaking</strong>] TableCollection::simplify now takes &amp;[NodeId] (<a href="https://github.com/tskit-dev/tskit-rust/pull/485">#485</a>)</li>
+<li>Replace macros with fn for adding node table rows (<a href="https://github.com/tskit-dev/tskit-rust/pull/489">#489</a>)</li>
+<li>Manually impl Default for NodeDefaultsWithMetadata (<a href="https://github.com/tskit-dev/tskit-rust/pull/490">#490</a>)</li>
+</ul>
+<h2 id="0120---2022-12-23"><a class="header" href="#0120---2022-12-23">[0.12.0] - 2022-12-23</a></h2>
+<h3 id="documentation-1"><a class="header" href="#documentation-1">Documentation</a></h3>
+<ul>
+<li>Book section on lending row iterators (<a href="https://github.com/tskit-dev/tskit-rust/pull/406">#406</a>)</li>
+<li>Advanced metadata topics in book (<a href="https://github.com/tskit-dev/tskit-rust/pull/407">#407</a>)</li>
+<li>Book chapter on edge differences (<a href="https://github.com/tskit-dev/tskit-rust/pull/417">#417</a>)</li>
+</ul>
+<h3 id="features-1"><a class="header" href="#features-1">Features</a></h3>
+<ul>
+<li>TreeSequence::edge_differences_iter (<a href="https://github.com/tskit-dev/tskit-rust/pull/410">#410</a>)</li>
+<li>Add convience functions to get usize from row ids. (<a href="https://github.com/tskit-dev/tskit-rust/pull/413">#413</a>)</li>
+<li>Tree::total_branch_length now works. (<a href="https://github.com/tskit-dev/tskit-rust/pull/429">#429</a>)</li>
+<li>Add getters/setters for Bookmark. (<a href="https://github.com/tskit-dev/tskit-rust/pull/437">#437</a>)</li>
+</ul>
+<h3 id="miscellaneous-tasks-2"><a class="header" href="#miscellaneous-tasks-2">Miscellaneous Tasks</a></h3>
+<ul>
+<li>Update bindgen requirement from 0.61.0 to 0.63.0 (<a href="https://github.com/tskit-dev/tskit-rust/pull/415">#415</a>)</li>
+</ul>
+<h3 id="refactor-1"><a class="header" href="#refactor-1">Refactor</a></h3>
+<ul>
+<li>[<strong>breaking</strong>] Replace Deref with delegation of TableViews API (<a href="https://github.com/tskit-dev/tskit-rust/pull/409">#409</a>)</li>
+<li>[<strong>breaking</strong>] Remove TskitTypeAccess trait (<a href="https://github.com/tskit-dev/tskit-rust/pull/411">#411</a>)</li>
+<li>Allow TreeSequence::edge_differences_iter to Err. (<a href="https://github.com/tskit-dev/tskit-rust/pull/412">#412</a>)</li>
+<li>[<strong>breaking</strong>] Usize to SizeType conversion is now fallible. (<a href="https://github.com/tskit-dev/tskit-rust/pull/419">#419</a>)</li>
+<li>Macros only use newtype public API. (<a href="https://github.com/tskit-dev/tskit-rust/pull/420">#420</a>)</li>
+<li>Move newtypes into module (<a href="https://github.com/tskit-dev/tskit-rust/pull/421">#421</a>)</li>
+<li>The raw_metadata fn for tables now takes Into<row id>. (<a href="https://github.com/tskit-dev/tskit-rust/pull/425">#425</a>)</li>
+<li>Add low-level table wrappers to sys (<a href="https://github.com/tskit-dev/tskit-rust/pull/426">#426</a>)</li>
+<li>Generalize slice building in sys (<a href="https://github.com/tskit-dev/tskit-rust/pull/427">#427</a>)</li>
+<li>Remove many unsafe calls from tree_interface.rs (<a href="https://github.com/tskit-dev/tskit-rust/pull/428">#428</a>)</li>
+<li>Add sys::LLTreeSeq. (<a href="https://github.com/tskit-dev/tskit-rust/pull/430">#430</a>)</li>
+<li>Sys module no longer depends on TskitError (<a href="https://github.com/tskit-dev/tskit-rust/pull/431">#431</a>)</li>
+<li>Move Drop details for TreeSequence to sys. (<a href="https://github.com/tskit-dev/tskit-rust/pull/432">#432</a>)</li>
+<li>Add low level owning tables to sys (<a href="https://github.com/tskit-dev/tskit-rust/pull/433">#433</a>)</li>
+<li>Tidy up table definitions (<a href="https://github.com/tskit-dev/tskit-rust/pull/434">#434</a>)</li>
+</ul>
+<h3 id="styling"><a class="header" href="#styling">Styling</a></h3>
+<ul>
+<li>[<strong>breaking</strong>] Rename all OwnedX tables to OwningX. (<a href="https://github.com/tskit-dev/tskit-rust/pull/408">#408</a>)</li>
+<li>Replace column access macro with generic fn (<a href="https://github.com/tskit-dev/tskit-rust/pull/422">#422</a>)</li>
+<li>Generic fns for ragged column access (<a href="https://github.com/tskit-dev/tskit-rust/pull/423">#423</a>)</li>
+<li>Use fn to get array slices from Trees. (<a href="https://github.com/tskit-dev/tskit-rust/pull/424">#424</a>)</li>
+</ul>
+<h2 id="0120-alpha1---2022-11-09"><a class="header" href="#0120-alpha1---2022-11-09">[0.12.0-alpha.1] - 2022-11-09</a></h2>
+<h3 id="bug-fixes-1"><a class="header" href="#bug-fixes-1">Bug Fixes</a></h3>
+<ul>
+<li>[<strong>breaking</strong>] MetadataError::RoundtripError now requires Send + Sync (<a href="https://github.com/tskit-dev/tskit-rust/pull/396">#396</a>)</li>
+</ul>
+<h3 id="documentation-2"><a class="header" href="#documentation-2">Documentation</a></h3>
+<ul>
+<li>Add haploid WF example to book (<a href="https://github.com/tskit-dev/tskit-rust/pull/397">#397</a>)</li>
+</ul>
+<h3 id="features-2"><a class="header" href="#features-2">Features</a></h3>
+<ul>
+<li>Add examples/haploid_wright_fisher.rs (<a href="https://github.com/tskit-dev/tskit-rust/pull/394">#394</a>)</li>
+<li>Add lending iterators over table row "views" (<a href="https://github.com/tskit-dev/tskit-rust/pull/398">#398</a>)</li>
+<li>Impl PartialEq for table row views. (<a href="https://github.com/tskit-dev/tskit-rust/pull/400">#400</a>)</li>
+<li>Add ProvenenceTableRowView (<a href="https://github.com/tskit-dev/tskit-rust/pull/401">#401</a>)</li>
+<li>Add row_view() for tables (<a href="https://github.com/tskit-dev/tskit-rust/pull/402">#402</a>)</li>
+<li>Add row_view() for tables (<a href="https://github.com/tskit-dev/tskit-rust/pull/402">#402</a>)</li>
+<li>Column slice getters for tables (<a href="https://github.com/tskit-dev/tskit-rust/pull/404">#404</a>)</li>
+</ul>
+<h3 id="refactor-2"><a class="header" href="#refactor-2">Refactor</a></h3>
+<ul>
+<li>[<strong>breaking</strong>] Return &amp;str from provenance table getters (<a href="https://github.com/tskit-dev/tskit-rust/pull/403">#403</a>)</li>
+<li>Deprecate NodeTable::flags_array_mut and NodeTable::time_array_mut (<a href="https://github.com/tskit-dev/tskit-rust/pull/405">#405</a>)</li>
+</ul>
+<h2 id="0120-alpha0---2022-11-06"><a class="header" href="#0120-alpha0---2022-11-06">[0.12.0-alpha.0] - 2022-11-06</a></h2>
+<h3 id="documentation-3"><a class="header" href="#documentation-3">Documentation</a></h3>
+<ul>
+<li>Add book sections on table data access (<a href="https://github.com/tskit-dev/tskit-rust/pull/379">#379</a>)</li>
+<li>Remove chapter number from book intro (<a href="https://github.com/tskit-dev/tskit-rust/pull/380">#380</a>)</li>
+<li>Start book sections on tree sequences (<a href="https://github.com/tskit-dev/tskit-rust/pull/381">#381</a>)</li>
+<li>Book section on the tree API. (<a href="https://github.com/tskit-dev/tskit-rust/pull/382">#382</a>)</li>
+<li>Add book section on misc. ops on treeseqs (<a href="https://github.com/tskit-dev/tskit-rust/pull/385">#385</a>)</li>
+<li>Appendix material for book (<a href="https://github.com/tskit-dev/tskit-rust/pull/386">#386</a>)</li>
+<li>Rewrite book intro (<a href="https://github.com/tskit-dev/tskit-rust/pull/389">#389</a>)</li>
+<li>Show prelude contents as book appendix (<a href="https://github.com/tskit-dev/tskit-rust/pull/390">#390</a>)</li>
+<li>Book sections on metadata (<a href="https://github.com/tskit-dev/tskit-rust/pull/391">#391</a>)</li>
+<li>Book section on error handling (<a href="https://github.com/tskit-dev/tskit-rust/pull/393">#393</a>)</li>
+</ul>
+<h3 id="refactor-3"><a class="header" href="#refactor-3">Refactor</a></h3>
+<ul>
+<li>[<strong>breaking</strong>] Improve Tree iterator ergonomics (<a href="https://github.com/tskit-dev/tskit-rust/pull/384">#384</a>)</li>
+<li>[<strong>breaking</strong>] Improve Tree interface ergonomics (<a href="https://github.com/tskit-dev/tskit-rust/pull/388">#388</a>)</li>
+</ul>
+<h2 id="0111---2022-11-04"><a class="header" href="#0111---2022-11-04">[0.11.1] - 2022-11-04</a></h2>
+<h3 id="documentation-4"><a class="header" href="#documentation-4">Documentation</a></h3>
+<ul>
+<li>Add mdbook (<a href="https://github.com/tskit-dev/tskit-rust/pull/378">#378</a>)</li>
+</ul>
+<h3 id="refactor-4"><a class="header" href="#refactor-4">Refactor</a></h3>
+<ul>
+<li>Apply functional style for NodeTable fns (<a href="https://github.com/tskit-dev/tskit-rust/pull/377">#377</a>)</li>
+</ul>
+<h2 id="0110---2022-11-04"><a class="header" href="#0110---2022-11-04">[0.11.0] - 2022-11-04</a></h2>
+<h3 id="bug-fixes-2"><a class="header" href="#bug-fixes-2">Bug Fixes</a></h3>
+<ul>
+<li>Derive Debug for all table row types (<a href="https://github.com/tskit-dev/tskit-rust/pull/361">#361</a>)</li>
+<li>[<strong>breaking</strong>] Update generic bounds on metadata getters (<a href="https://github.com/tskit-dev/tskit-rust/pull/370">#370</a>)</li>
+<li>Impl DerefMut for "owned" tables. (<a href="https://github.com/tskit-dev/tskit-rust/pull/371">#371</a>)</li>
+</ul>
+<h3 id="documentation-5"><a class="header" href="#documentation-5">Documentation</a></h3>
+<ul>
+<li>Add migration guide (<a href="https://github.com/tskit-dev/tskit-rust/pull/376">#376</a>)</li>
+</ul>
+<h3 id="features-3"><a class="header" href="#features-3">Features</a></h3>
+<ul>
+<li>[<strong>breaking</strong>] Add TskitError::LibraryError (<a href="https://github.com/tskit-dev/tskit-rust/pull/342">#342</a>)</li>
+</ul>
+<h3 id="refactor-5"><a class="header" href="#refactor-5">Refactor</a></h3>
+<ul>
+<li>Streamline code for generating table rows. (<a href="https://github.com/tskit-dev/tskit-rust/pull/340">#340</a>)</li>
+<li>Replace unwrap with expect in _macros.rs (<a href="https://github.com/tskit-dev/tskit-rust/pull/341">#341</a>)</li>
+<li>Replace unwrap with errors in table_collection.rs (<a href="https://github.com/tskit-dev/tskit-rust/pull/343">#343</a>)</li>
+<li>Remove unwraps in trees source files. (<a href="https://github.com/tskit-dev/tskit-rust/pull/344">#344</a>)</li>
+<li>Streamline building individual table rows (<a href="https://github.com/tskit-dev/tskit-rust/pull/345">#345</a>)</li>
+<li>Remove unwraps from node_table.rs (<a href="https://github.com/tskit-dev/tskit-rust/pull/346">#346</a>)</li>
+<li>Unwrap to expect in error.rs (<a href="https://github.com/tskit-dev/tskit-rust/pull/347">#347</a>)</li>
+<li>Remove type info from Display for newtypes. (<a href="https://github.com/tskit-dev/tskit-rust/pull/349">#349</a>)</li>
+<li>[<strong>breaking</strong>] Return None for out-of-range row indexes. (<a href="https://github.com/tskit-dev/tskit-rust/pull/350">#350</a>)</li>
+<li>[<strong>breaking</strong>] Return None for out-of-range row indexes, part II. (<a href="https://github.com/tskit-dev/tskit-rust/pull/351">#351</a>)</li>
+<li>[<strong>breaking</strong>] Return None for out-of-range row indexes, part III. (<a href="https://github.com/tskit-dev/tskit-rust/pull/355">#355</a>)</li>
+<li>Improve safety of tsk array access (<a href="https://github.com/tskit-dev/tskit-rust/pull/362">#362</a>)</li>
+<li>Tree now stores <code>tsk_tree_t</code> in <code>MBox</code>. (<a href="https://github.com/tskit-dev/tskit-rust/pull/367">#367</a>)</li>
+<li>[<strong>breaking</strong>] Provenance table getters now return Option (<a href="https://github.com/tskit-dev/tskit-rust/pull/369">#369</a>)</li>
+<li>[<strong>breaking</strong>] Remove lifetime annotation from table types (<a href="https://github.com/tskit-dev/tskit-rust/pull/373">#373</a>)</li>
+</ul>
+<h3 id="styling-1"><a class="header" href="#styling-1">Styling</a></h3>
+<ul>
+<li>Fix lints from rust 1.65.0 (<a href="https://github.com/tskit-dev/tskit-rust/pull/374">#374</a>)</li>
+<li>Fix lints from nightly (<a href="https://github.com/tskit-dev/tskit-rust/pull/375">#375</a>)</li>
+</ul>
+<h3 id="testing"><a class="header" href="#testing">Testing</a></h3>
+<ul>
+<li>Rewrite table API tests (<a href="https://github.com/tskit-dev/tskit-rust/pull/356">#356</a>)</li>
+<li>Add doc tests for node table (<a href="https://github.com/tskit-dev/tskit-rust/pull/359">#359</a>)</li>
+</ul>
+<h2 id="0100---2022-10-28"><a class="header" href="#0100---2022-10-28">[0.10.0] - 2022-10-28</a></h2>
+<h3 id="documentation-6"><a class="header" href="#documentation-6">Documentation</a></h3>
+<ul>
+<li>Display feature flags in docs.rs (<a href="https://github.com/tskit-dev/tskit-rust/pull/338">#338</a>)</li>
+</ul>
+<h3 id="miscellaneous-tasks-3"><a class="header" href="#miscellaneous-tasks-3">Miscellaneous Tasks</a></h3>
+<ul>
+<li>Set msrv to 1.57.0 (result of cargo msrv) (<a href="https://github.com/tskit-dev/tskit-rust/pull/322">#322</a>)</li>
+<li>Fix tag_pattern in cliff.toml (<a href="https://github.com/tskit-dev/tskit-rust/pull/330">#330</a>)</li>
+<li>Update github actions (<a href="https://github.com/tskit-dev/tskit-rust/pull/332">#332</a>)</li>
+<li>Add github actions to monthly dependabot (<a href="https://github.com/tskit-dev/tskit-rust/pull/333">#333</a>)</li>
+<li>Update bindgen requirement from 0.60.1 to 0.61.0 (<a href="https://github.com/tskit-dev/tskit-rust/pull/336">#336</a>)</li>
+<li>Bump styfle/cancel-workflow-action from 0.6.0 to 0.11.0 (<a href="https://github.com/tskit-dev/tskit-rust/pull/334">#334</a>)</li>
+</ul>
+<h3 id="performance"><a class="header" href="#performance">Performance</a></h3>
+<ul>
+<li>Use Bookmark in forward simulation example (<a href="https://github.com/tskit-dev/tskit-rust/pull/318">#318</a>)</li>
+</ul>
+<h3 id="refactor-6"><a class="header" href="#refactor-6">Refactor</a></h3>
+<ul>
+<li>Streamline internal macros for adding nodes (<a href="https://github.com/tskit-dev/tskit-rust/pull/309">#309</a>)</li>
+<li>Remove internal ffi module (<a href="https://github.com/tskit-dev/tskit-rust/pull/310">#310</a>)</li>
+<li>Panics compatible with earlier rustc (<a href="https://github.com/tskit-dev/tskit-rust/pull/311">#311</a>)</li>
+<li>Remove type name from SizeType Display output. (<a href="https://github.com/tskit-dev/tskit-rust/pull/315">#315</a>)</li>
+<li>[<strong>breaking</strong>] TableCollection::simplify returns Option&lt;&amp;[NodeId]&gt; (<a href="https://github.com/tskit-dev/tskit-rust/pull/316">#316</a>)</li>
+<li>[<strong>breaking</strong>] Conversion from row id to usize is now fallible. (<a href="https://github.com/tskit-dev/tskit-rust/pull/319">#319</a>)</li>
+<li>Use clap::Parser in example program. (<a href="https://github.com/tskit-dev/tskit-rust/pull/320">#320</a>)</li>
+<li>Remove pontential panic! when instantiating table rows. (<a href="https://github.com/tskit-dev/tskit-rust/pull/329">#329</a>)</li>
+<li>Examples/tree_traversals.rs now uses clap derive (<a href="https://github.com/tskit-dev/tskit-rust/pull/337">#337</a>)</li>
+</ul>
+<h3 id="styling-2"><a class="header" href="#styling-2">Styling</a></h3>
+<ul>
+<li>Remove unneeded ( ) from match. (<a href="https://github.com/tskit-dev/tskit-rust/pull/323">#323</a>)</li>
+<li>Use auto-deref for pointer deref. (<a href="https://github.com/tskit-dev/tskit-rust/pull/325">#325</a>)</li>
+<li>Fix +nightly clippy lints for all targets/features. (<a href="https://github.com/tskit-dev/tskit-rust/pull/326">#326</a>)</li>
+</ul>
+<h3 id="testing-1"><a class="header" href="#testing-1">Testing</a></h3>
+<ul>
+<li>Improve test work flow (<a href="https://github.com/tskit-dev/tskit-rust/pull/331">#331</a>)</li>
+</ul>
+<h2 id="0100-alpha1---2022-07-31"><a class="header" href="#0100-alpha1---2022-07-31">[0.10.0-alpha.1] - 2022-07-31</a></h2>
+<h3 id="bug-fixes-3"><a class="header" href="#bug-fixes-3">Bug Fixes</a></h3>
+<ul>
+<li>Replace crate with $crate in macros (<a href="https://github.com/tskit-dev/tskit-rust/pull/287">#287</a>)</li>
+</ul>
+<h3 id="features-4"><a class="header" href="#features-4">Features</a></h3>
+<ul>
+<li>Add tskit::OwnedMutationTable (<a href="https://github.com/tskit-dev/tskit-rust/pull/281">#281</a>)</li>
+<li>Add tskit::OwnedSiteTable (<a href="https://github.com/tskit-dev/tskit-rust/pull/283">#283</a>)</li>
+<li>Add tskit::OwnedIndividualTable (<a href="https://github.com/tskit-dev/tskit-rust/pull/284">#284</a>)</li>
+<li>Add tskit::OwnedMigrationTable (<a href="https://github.com/tskit-dev/tskit-rust/pull/285">#285</a>)</li>
+<li>Add tskit::provenance::OwnedProvenanceTable (<a href="https://github.com/tskit-dev/tskit-rust/pull/286">#286</a>)</li>
+<li>Set tables in collection from owned tables. (<a href="https://github.com/tskit-dev/tskit-rust/pull/288">#288</a>)</li>
+<li>[<strong>breaking</strong>] Impl Send/Sync for TreeSequence (<a href="https://github.com/tskit-dev/tskit-rust/pull/297">#297</a>)</li>
+</ul>
+<h3 id="miscellaneous-tasks-4"><a class="header" href="#miscellaneous-tasks-4">Miscellaneous Tasks</a></h3>
+<ul>
+<li>Update to C API 1.1.1 (<a href="https://github.com/tskit-dev/tskit-rust/pull/304">#304</a>)</li>
+</ul>
+<h3 id="performance-1"><a class="header" href="#performance-1">Performance</a></h3>
+<ul>
+<li>[<strong>breaking</strong>] Implement slice access to individual data (<a href="https://github.com/tskit-dev/tskit-rust/pull/292">#292</a>)</li>
+<li>[<strong>breaking</strong>] Eliminate several copies from C to rust (<a href="https://github.com/tskit-dev/tskit-rust/pull/293">#293</a>)</li>
+</ul>
+<h3 id="refactor-7"><a class="header" href="#refactor-7">Refactor</a></h3>
+<ul>
+<li>Deduplicate code for adding node table rows. (<a href="https://github.com/tskit-dev/tskit-rust/pull/278">#278</a>)</li>
+<li>Use macros to implement adding table rows. (<a href="https://github.com/tskit-dev/tskit-rust/pull/279">#279</a>)</li>
+<li>Add new macro to build owned tables (<a href="https://github.com/tskit-dev/tskit-rust/pull/282">#282</a>)</li>
+<li>Separate tree ownership from API. (<a href="https://github.com/tskit-dev/tskit-rust/pull/300">#300</a>)</li>
+<li>Bring back generic syntax for adding node table rows. (<a href="https://github.com/tskit-dev/tskit-rust/pull/302">#302</a>)</li>
+<li>[<strong>breaking</strong>] Display for new types now omits type name. (<a href="https://github.com/tskit-dev/tskit-rust/pull/305">#305</a>)</li>
+<li>Remove MBox for tsk_treeseq_t storage (<a href="https://github.com/tskit-dev/tskit-rust/pull/306">#306</a>)</li>
+</ul>
+<h2 id="0100-alpha0---2022-07-19"><a class="header" href="#0100-alpha0---2022-07-19">[0.10.0-alpha.0] - 2022-07-19</a></h2>
+<h3 id="bug-fixes-4"><a class="header" href="#bug-fixes-4">Bug Fixes</a></h3>
+<ul>
+<li>Fix memory leak in TreeSequence::simplify (<a href="https://github.com/tskit-dev/tskit-rust/pull/274">#274</a>)</li>
+<li>Fix leak in TableCollection::deepcopy (<a href="https://github.com/tskit-dev/tskit-rust/pull/275">#275</a>)</li>
+<li>Fix leak in TreeSequence::dump_tables (<a href="https://github.com/tskit-dev/tskit-rust/pull/276">#276</a>)</li>
+</ul>
+<h3 id="documentation-7"><a class="header" href="#documentation-7">Documentation</a></h3>
+<ul>
+<li>Fix warnings from "cargo doc" (<a href="https://github.com/tskit-dev/tskit-rust/pull/255">#255</a>)</li>
+</ul>
+<h3 id="features-5"><a class="header" href="#features-5">Features</a></h3>
+<ul>
+<li>Make load from file generic over AsRef<str> (<a href="https://github.com/tskit-dev/tskit-rust/pull/254">#254</a>)</li>
+<li>Add tskit::OwnedPopulationTable (<a href="https://github.com/tskit-dev/tskit-rust/pull/267">#267</a>)</li>
+<li>Add tskit::OwnedEdgeTable (<a href="https://github.com/tskit-dev/tskit-rust/pull/268">#268</a>)</li>
+<li>Add tskit::OwnedNodeTable (<a href="https://github.com/tskit-dev/tskit-rust/pull/273">#273</a>)</li>
+</ul>
+<h3 id="miscellaneous-tasks-5"><a class="header" href="#miscellaneous-tasks-5">Miscellaneous Tasks</a></h3>
+<ul>
+<li>Add cliff.toml (config file for git-cliff) (<a href="https://github.com/tskit-dev/tskit-rust/pull/257">#257</a>)</li>
+<li>Prefix "chore: " to dependabot.yml (<a href="https://github.com/tskit-dev/tskit-rust/pull/258">#258</a>)</li>
+<li>Use cargo-hack to streamline CI. (<a href="https://github.com/tskit-dev/tskit-rust/pull/259">#259</a>)</li>
+<li>Add cargo-valgrind CI workflow (<a href="https://github.com/tskit-dev/tskit-rust/pull/277">#277</a>)</li>
+</ul>
+<h3 id="refactor-8"><a class="header" href="#refactor-8">Refactor</a></h3>
+<ul>
+<li>Macro metadata_to_vector intputs changed. (<a href="https://github.com/tskit-dev/tskit-rust/pull/263">#263</a>)</li>
+<li>Add macros to implement owned tables. (<a href="https://github.com/tskit-dev/tskit-rust/pull/269">#269</a>)</li>
+</ul>
+<h3 id="testing-2"><a class="header" href="#testing-2">Testing</a></h3>
+<ul>
+<li>Add another experimental trait idea for metadata. (<a href="https://github.com/tskit-dev/tskit-rust/pull/261">#261</a>)</li>
+<li>Redo doctest: TableCollection::new_from_file (<a href="https://github.com/tskit-dev/tskit-rust/pull/272">#272</a>)</li>
+</ul>
+<!-- generated by git-cliff -->
+<h2 id="2022-06-20-version-090"><a class="header" href="#2022-06-20-version-090">2022-06-20, Version 0.9.0</a></h2>
+<h3 id="commits"><a class="header" href="#commits">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/068fdccdeabcb7c5df7898f4f020918817bbdbc2"><code>068fdccdea</code></a>] Bump version to 0.9.0 (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/d700af729404fef6674ddade97288b354d7b3429"><code>d700af7294</code></a>] doc sorting requirements (#243) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/6114d2bd6566676e1fdce800f12d3c2941cbc67d"><code>6114d2bd65</code></a>] Change ffi to private visibility. (#241) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/b53105112a694ce6e83637ec6bd3015fbef1ff34"><code>b53105112a</code></a>] Add new_sample and is_sample to NodeFlags public API. (#238) (Kevin R. Thornton)</li>
+</ul>
+<h2 id="2022-05-26-version-081"><a class="header" href="#2022-05-26-version-081">2022-05-26, Version 0.8.1</a></h2>
+<h3 id="commits-1"><a class="header" href="#commits-1">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/bd72b689ac5a81d1f2522666c9b25908ba56b79b"><code>bd72b689ac</code></a>] Bump version to 0.8.1 (molpopgen)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/b0abdfad5cb0f964583aec4056a512b9d3935c2b"><code>b0abdfad5c</code></a>] impl TryFrom<TableCollection> for TreeSequence (#236) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/71e927a9bb221309afa72cb601038e3232e3e180"><code>71e927a9bb</code></a>] TreeSequence::new now takes ownership of the TableCollection. (#235) (Kevin R. Thornton)</li>
+</ul>
+<h2 id="2022-05-24-version-080"><a class="header" href="#2022-05-24-version-080">2022-05-24, Version 0.8.0</a></h2>
+<h3 id="commits-2"><a class="header" href="#commits-2">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/e463302cedb4f7b622e296fa92f7e1b36b51087f"><code>e463302ced</code></a>] Bump package version to 0.8.0 (molpopgen)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/deffc58127134b964686bd34b8fe2df53c857b14"><code>deffc58127</code></a>] Replace From<SizeType> for usize with TryFrom. (#234) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/a7c04213a14d39ac5826b299f4ea88ae54a728ab"><code>a7c04213a1</code></a>] update to CAPI 1.0.0 (#229) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/7c0b6169a3a9e50ad17d48cb8f9cfa66fb5ea0c1"><code>7c0b6169a3</code></a>] Add CI for 32 bit Linux builds (#232) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/7458d851637d0cd674a8f96b85763b4f31888e14"><code>7458d85163</code></a>] Invoke rust dependency caching after setting up rustc (#233) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/203a43a0e8611a949e8e87012180ff556fe7a726"><code>203a43a0e8</code></a>] Only run CI for rust/stable. (#231) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/fb2128c0a54f2fe3bc54c17c77b6c3124e167621"><code>fb2128c0a5</code></a>] Add dependency caching for CI. (#230) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/aff053c786b5e0294d90d053be2b538c82105f3f"><code>aff053c786</code></a>] Improvements to handling of tsk_flags_t: (#227) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/5f558cb0514af85573de9425c1b9bdd7b42bdf3d"><code>5f558cb051</code></a>] Audit pedantic lints re: integer casts (#223) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/609546185c8e69def5d82116fc9c28ee8d53a070"><code>609546185c</code></a>] Fix several "pedantic" lints from clippy: (#222) (Kevin R. Thornton)</li>
+</ul>
+<h2 id="2022-03-24-version-070"><a class="header" href="#2022-03-24-version-070">2022-03-24, Version 0.7.0</a></h2>
+<h3 id="commits-3"><a class="header" href="#commits-3">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/8427c2fea78a045cea9ad2927b783a4a5bf423b4"><code>8427c2fea7</code></a>] Change order of generics to match argument order for all "add" (#221) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/6ef040673171f1c69d549f09d67b8b393b72769d"><code>6ef0406731</code></a>] Fix typo in docstring for TableCollection::full_sort. (#219) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/a1a7e1220878182f22b2a46b3a189e7dfdbe6218"><code>a1a7e12208</code></a>] Add TableCollection::topological_sort_individuals. (#218) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/4c17ca62a25ded88e1205e6321178529d3c5120a"><code>4c17ca62a2</code></a>] Update clap requirement from ~3.0.0 to ~3.1.3 (#215) (dependabot[bot])</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/f40562a56aaf9eb8e6e42e4cd1bdf7579ea15cfe"><code>f40562a56a</code></a>] Fix lint found by clippy. (#216) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/4efddb6f5d62b57292304fb6aec88708343a5cfa"><code>4efddb6f5d</code></a>] Update clap requirement from ~2.34.0 to ~3.0.0 (#214) (dependabot[bot])</li>
+</ul>
+<h2 id="2021-12-15-version-070-alpha1"><a class="header" href="#2021-12-15-version-070-alpha1">2021-12-15, Version 0.7.0-alpha.1</a></h2>
+<p>Fixes various minor issues with the first alpha.</p>
+<h3 id="commits-4"><a class="header" href="#commits-4">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/44965969c04be8fa963bcaa01f11869b61d37547"><code>44965969c0</code></a>] Bump version to 0.7.0.alpha.1 (molpopgen)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/5d6a28949087bad1632bcac41dfaefa984800113"><code>5d6a289490</code></a>] Fix issues with Time, Position, Location newtypes (#212) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/99930e8bb013af2fc38d915b7fa3d3637bb4c847"><code>99930e8bb0</code></a>] Add explicit tests of tree roots. (#211) (Kevin R. Thornton)</li>
+</ul>
+<h2 id="2021-12-15-version-070-alpha0"><a class="header" href="#2021-12-15-version-070-alpha0">2021-12-15, Version 0.7.0-alpha.0</a></h2>
+<p>Breaking changes:</p>
+<ul>
+<li>Update to tskit C API 0.99.15.</li>
+<li>Add newtypes for Time, Position, and Location.</li>
+<li>Add newtype SizeType, which wraps tsk_size_t.</li>
+<li>tsk_id_t and tsk_size_t removed from library prelude.</li>
+<li>The Provenance trait is removed and all "provenance stuff"
+is now a first-class table API supported by the TableAccess trait.</li>
+</ul>
+<p>New features:</p>
+<ul>
+<li>Update to tskit C API 0.99.15.</li>
+<li>tskit C structs are now managed by MBox.</li>
+<li>Support for virtual tree roots.</li>
+<li>Add postorder node iterator for Tree</li>
+</ul>
+<h3 id="commits-5"><a class="header" href="#commits-5">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/272d0736e2ace79d6c4bb880977396e748b7a6a0"><code>272d0736e2</code></a>] bump package version to 0.7.0-alpha.0 (molpopgen)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/b5946a4cc4aec32cbdda6081a1bd188568178436"><code>b5946a4cc4</code></a>] Redesign provenance feature: (#207) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/5699aab37f31b25b0fdbcdb48a5f87774b624bb7"><code>5699aab37f</code></a>] Change return time of Tree::num_tracked_samples. (#206) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/2391c9e587a52638d63137017dbbd241cb5d8d8f"><code>2391c9e587</code></a>] Add support for virtual roots (#205) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/4cf3496d8237c8115cd36b896a8b3e9096644e5d"><code>4cf3496d82</code></a>] Fix metadata links in lib.rs (#204) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/d7f70a7cfdb92d60d9522e7da95b2c3d0bc8b51e"><code>d7f70a7cfd</code></a>] Use MBox<T> to manage lifetimes of tskit C structs. (#203) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/034204ed8832744806063dfd3848c66f3283632c"><code>034204ed88</code></a>] Add newtypes for Time, Position, and for Location. (#199) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/4ba44ef0c5d69f660fb804194e463eb7a2db34f0"><code>4ba44ef0c5</code></a>] Bump editions to 2021. (#198) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/c4cc6e875ae403963bf95ea239b6b156a62e888c"><code>c4cc6e875a</code></a>] Add tskit::SizeType (#192) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/8429cc37d24fb13b7bc6e297d42794a11c5dbb8b"><code>8429cc37d2</code></a>] Use type erasure for all table row iteration functions. (#189) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/f4cb6350e0b33deae70a2eedce26ee2403053eea"><code>f4cb6350e0</code></a>] Add TableCollection::check_integrity. (#188) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/562014b04f24565c696088cf762f416a40335413"><code>562014b04f</code></a>] Add preorder node traversal using latest tskit C API. (#186) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/db8550f6d759f464203c32a32f59f4db3b118864"><code>db8550f6d7</code></a>] Replace Box with malloc'd raw pointer for tskit types. (#184) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/90a2d84a9da1a5c59689863fdda029776fefcc44"><code>90a2d84a9d</code></a>] Update to C API 0.99.15 (breaking) (#183) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/58e7c5ed73557b1001e808d2dc5c596ebaaf60f1"><code>58e7c5ed73</code></a>] Update clap requirement from ~2.33.3 to ~2.34.0 (#176) (dependabot[bot])</li>
+</ul>
+<h2 id="2021-11-29-version-061"><a class="header" href="#2021-11-29-version-061">2021-11-29, Version 0.6.1</a></h2>
+<h3 id="commits-6"><a class="header" href="#commits-6">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/3eadcb161eb419dd01a4592ccc7d40bed791ceee"><code>3eadcb161e</code></a>] Replace chrono with humantime in provenance doc tests. (#175) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/4def777ddf03a7a35e6300f5d955f2350dc7441f"><code>4def777ddf</code></a>] Add security audit work flow. (#172) (Kevin R. Thornton)</li>
+</ul>
+<h2 id="2021-11-23-version-060"><a class="header" href="#2021-11-23-version-060">2021-11-23, Version 0.6.0</a></h2>
+<h3 id="commits-7"><a class="header" href="#commits-7">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/b07c0350771b2812788dba59c5314108bf65e37c"><code>b07c035077</code></a>] bump version to 0.6.0 (molpopgen)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/8bb08be83d2c5a60f6aaf377b78d1cdee1d1c7e8"><code>8bb08be83d</code></a>] Replace chrono dependency with humantime to avoid RUSTSEC-2020-0071 and RUSTSEC-2020-0159 (#171) (Momo Langenstein)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/896b5891e05da7f7658bd0c950ff8150c85e607c"><code>896b5891e0</code></a>] Implement Display for Id newtypes. (#168) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/d2c6383ae91889d1a85033e60018548503552d12"><code>d2c6383ae9</code></a>] Update to C API 0.99.14 (#165) (Kevin R. Thornton)</li>
+</ul>
+<h2 id="2021-09-03-version-050"><a class="header" href="#2021-09-03-version-050">2021-09-03, Version 0.5.0</a></h2>
+<h3 id="commits-8"><a class="header" href="#commits-8">Commits</a></h3>
+<p>Derive macros for table metadata.</p>
+<ul>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/41633b60ed1ccb401a1a2794beb518ee1bc0f4ad"><code>41633b60ed</code></a>] Add metadata type registration via derive macros. (#163) (Kevin R. Thornton)</li>
+</ul>
+<h2 id="2021-08-31-version-040"><a class="header" href="#2021-08-31-version-040">2021-08-31, Version 0.4.0</a></h2>
+<p>The theme of this release is "type safety".
+This release breaks API due to use of newtypes for row IDs and new metadata marker traits.</p>
+<h3 id="commits-9"><a class="header" href="#commits-9">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/a7d78b16aa0605b0fe07749a7cfbcbb83924010e"><code>a7d78b16aa</code></a>] Bump version to 0.4.0 (molpopogen)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/b5e2c265ddfefac6ff46273a0c588a35750d5138"><code>b5e2c265dd</code></a>] Add newtype row IDs to prelude. (#161) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/3dbe8c4b5eee90f0d56b096d32f48b92618e19c6"><code>3dbe8c4b5e</code></a>] Fix implementation of tree preorder stacking. (#160) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/fafd45703365188cc3771cb56bb50ead220c6958"><code>fafd457033</code></a>] Refactor metadata encoding: (#158) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/258b4ee5f039d643a4a6fb56ff4a8cf56919b996"><code>258b4ee5f0</code></a>] replace IdIsNull trait with associated fn (#156) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/9987fc0472b1f912569cdf898faa2bba9d3c5d38"><code>9987fc0472</code></a>] Release build optimizations: (#155) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/58ac4a92d77b7428e926c3ff942b6bf9d5872959"><code>58ac4a92d7</code></a>] Refine what "NULL"-ness means for an Id type: (#154) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/ad4975fc7076057534d85e927bc39fd6e303dfb6"><code>ad4975fc70</code></a>] Update bindgen requirement from 0.58.1 to 0.59.1 (#152) (dependabot[bot])</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/8a553eaa80d7872ccae3faf54a5717777bcf7e9f"><code>8a553eaa80</code></a>] fix clippy warnings that showed up in rust 1.54 (#153) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/bef4bb6c7acf9f054f62f2a746de1d9ed5805445"><code>bef4bb6c7a</code></a>] Allow empty provenance records. (#151) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/86df7020407df7165d2bb2ae9bcff28d2abd3274"><code>86df702040</code></a>] Improve test coverage of "adding rows to table collections" (#143): (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/036680050bdca732f3be4db439dfcfafd144d79c"><code>036680050b</code></a>] * Update trees API to use NodeId (#145) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/7a716bbe76860fcb06d0c724e987420bd3d5048f"><code>7a716bbe76</code></a>] Add additional member functions to TableCollection to (#141) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/baf6f1743015741e6438f63dc2a5122ae0739c2b"><code>baf6f17430</code></a>] Fix Into&lt; &gt; type for TableCollection::add_individual_* (#142) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/689938eee7e07635fe07d92744c0cd24ff0bc042"><code>689938eee7</code></a>] fix link from ProvenanceId to ProvenanceTable in docs (#140) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/1203a5d5235300782cbaeb44f32265a6ebc3340e"><code>1203a5d523</code></a>] strong id type cleanup (#139) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/6bae100e614984e2ef26e7b6b57560557a484515"><code>6bae100e61</code></a>] Add EdgeId (#138) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/9baff077b5f6dd247b6e8c01905a391ad23e5650"><code>9baff077b5</code></a>] Add MigrationId and ProvenanceId (#137) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/7713ef669e4c4e32dfb7f84f44891794a11d667b"><code>7713ef669e</code></a>] Add SiteId and MutationId (#136) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/de006a1f0e0e0608040c344aea2e5f435f52abcd"><code>de006a1f0e</code></a>] Add PopulationId (#135) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/630ccd5f5e9839b7fca9d3e694be01ea0b075ee2"><code>630ccd5f5e</code></a>] Add IndividualId. (#133) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/8bf7d4b9549bf0db4403e0051d43469c6a7c05d3"><code>8bf7d4b954</code></a>] NodeTable::metadata now uses Into<NodeId>. (#134) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/3ac3d50f7b33ded239f4c19b88f3cc9a31bafe14"><code>3ac3d50f7b</code></a>] * Establish a pattern for stronger ID types (#129) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/e19095d9a9af035a0e91a04e8b1d9597e14f764f"><code>e19095d9a9</code></a>] clippy vs bindgen (#130) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/tskit-dev/tskit-rust/commit/d9abda5bb601b72841fc8e8e5a651f861e8e01f3"><code>d9abda5bb6</code></a>] Change links in Cargo.toml to tskit-dev (#127) (Kevin R. Thornton)</li>
+</ul>
+<h2 id="2021-05-19-version-030"><a class="header" href="#2021-05-19-version-030">2021-05-19, Version 0.3.0</a></h2>
+<p>This release has a few API changes, etc., that streamline the public interface.</p>
+<p>The C code is updated to 0.99.12.</p>
+<h3 id="commits-10"><a class="header" href="#commits-10">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/ec0adc36ae974846f61c01b4394e35017e7e4354"><code>ec0adc36ae</code></a>] streamline API for creating table row objects (#126) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/edd36fa886839b5328b6349799b763abfd0b6ae1"><code>edd36fa886</code></a>] Add mutable access to NodeTable flag and time arrays. (#125) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/634df568afac7a16fa319351b2d27739cb02d52d"><code>634df568af</code></a>] Fix docs for Tree::total_branch_length.  Fixes #114. (#124) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/202bcded3f9c2bc430f51ada2b050d85877c3599"><code>202bcded3f</code></a>] Give access to TableCollection edge indexes. (#123) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/3888fe5f1090b753c4efcf57331b6d058e53f4d1"><code>3888fe5f10</code></a>] update C code to version 0.99.12 (#122) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/6fa2057af6102fe35b2ae6ebd96aef7e3cf5da49"><code>6fa2057af6</code></a>] Add prelude.rs (#119) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/a59212659413892415df7e51d7c6fa0f03845828"><code>a592126594</code></a>] replace crate with $crate for all macros (#113) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/b618d75e5bdc64620c27f0929111ba315080962c"><code>b618d75e5b</code></a>] Add macro to aid returning from MetadataRoundtrip functions. (#110) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/79adaa1a4a398b536d8b0fb6148703b50492aaaa"><code>79adaa1a4a</code></a>] Add macro to remove code duplication (#111) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/159bbfe926a3efb19805ad3eabdd4a3b40cf3cec"><code>159bbfe926</code></a>] Add convenience macro to use all public traits. (#106) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/e912f7b2c844df985b06956673432437a3264433"><code>e912f7b2c8</code></a>] Bump bindgen version. (#109) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/15fae9327bd9adf404789d8dcdadcf32cbc4eadd"><code>15fae9327b</code></a>] Update clap requirement from ~2.27.0 to ~2.33.3 (#107) (dependabot[bot])</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/55f18a1a4f7bab301835893e8a23b01d4c01f014"><code>55f18a1a4f</code></a>] Refactor MetadataError: (#105) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/fbce6ca8941b4b3976d0a71b7776e2efa1fcd12a"><code>fbce6ca894</code></a>] API fixes. (#104) (Kevin R. Thornton)</li>
+</ul>
+<h2 id="2021-04-27-version-022"><a class="header" href="#2021-04-27-version-022">2021-04-27, Version 0.2.2</a></h2>
+<p>This release fixes issues with the lifetime relationships of <code>Tree</code> and the raw <code>C</code> arrays.
+Technically, this is an API change, but only with respect to return type and the integer type used to index that return type.</p>
+<h3 id="commits-11"><a class="header" href="#commits-11">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/89d234f674e8363ca6edf76f223746ae18afd283"><code>89d234f674</code></a>] Replace WrappedTskArray with idiomatic slices. Closes #99 (#101) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/ed8329b89ec633cc32150f98c1b79eaf75ee1d83"><code>ed8329b89e</code></a>] Completely hide NodeIterator from public name spaces. (#100) (Kevin R. Thornton)</li>
+</ul>
+<h2 id="2021-04-26-version-021"><a class="header" href="#2021-04-26-version-021">2021-04-26, Version 0.2.1</a></h2>
+<ul>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/ff1c7ced8260091d6fe8930ebbda3a361dac0246"><code>ff1c7ced82</code></a>] Add Provenance trait as optional feature (#98). (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/0fdd30067e172f91a0974bbda5e2f00f1c20efe8"><code>0fdd30067e</code></a>] Fix error in transmitting nodes. Closes #96 (#97) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/299c83ae35516297592b61681e00e57b10de4ad4"><code>299c83ae35</code></a>] Update repo/homepage name in Cargo.toml (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit-rust/commit/35ecf29933506e4ee2d02b98bfc9d3d6f21d7254"><code>35ecf29933</code></a>] Remove re-exports that are part of existing bitflags types. (#95) (Kevin R. Thornton)</li>
+</ul>
+<h2 id="2021-04-21-version-020"><a class="header" href="#2021-04-21-version-020">2021-04-21, Version 0.2.0</a></h2>
+<h3 id="commits-12"><a class="header" href="#commits-12">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/daffeda43eeee3f2c7abe684ab6f503c943c0874"><code>daffeda43e</code></a>] bump version to 0.2.0 (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/0dad5e39d2142285bac8260874a8adcb716e2e72"><code>0dad5e39d2</code></a>] Update docs (#93) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/f905b9c3848237b53b14d45b03f19840fe62762e"><code>f905b9c384</code></a>] Add reverse tree iteration. (#92) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/a1a033f901d48ee583e91b73ff30bd0797d119f2"><code>a1a033f901</code></a>] Add development documentation. (#91) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/ce3d8f4849875650c9f3ba23522228f566bbbe2c"><code>ce3d8f4849</code></a>] Refine forward sim example (#90) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/b1022e1f5954dd7f1dd7caa62d7cb0ad431a32b1"><code>b1022e1f59</code></a>] Refactor how tskit flags are handled. (#89) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/56e43cb0ff045a0fb99a4ddd282b87219fde7d5d"><code>56e43cb0ff</code></a>] Add forward simulation example.  Closes #71. (#86) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/5530d7b234fd623810a1ba717a729f228239fd9a"><code>5530d7b234</code></a>] Refactor all examples into examples/ (#85) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/651e4edcac13dbc2282242fe0659d343095b5e58"><code>651e4edcac</code></a>] Collect public traits in traits.rs.  Closes #81. (#84) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/11ad49f0e156008ae1318003dab97b84b951fc42"><code>11ad49f0e1</code></a>] Remove mention of use NodeIterator.  Closes #68. (#83) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/df28231d9aba33a24e52279991e15a6c4f753196"><code>df28231d9a</code></a>] Add test fixtures module. Closes #73 (#80) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/3a8a82637e63d14c3e73b427ea82f4385241e320"><code>3a8a82637e</code></a>] Rename Tree::nodes to Tree::traverse_nodes. (#79) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/4e7af98ac55e3d735693c70ae41da44be8721337"><code>4e7af98ac5</code></a>] Update GitHub actions. (#78) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/43e14bb8a6ebf948ba0ae386743cd9958f120d91"><code>43e14bb8a6</code></a>] Add NodeListGenerator trait bound to TableAccess.  Closes #67. (#75) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/ae203769f404468588aac1f5043ddc79e9feaad9"><code>ae203769f4</code></a>] add id field to table row types. Closes #76 (#77) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/346c804be87ffa857acf22525dd6def71c6a9b38"><code>346c804be8</code></a>] Make tree arrays public.  Closes #70 (#74) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/a2dfcfe8f6e0a42f075a94529ae4d0d77f332229"><code>a2dfcfe8f6</code></a>] Add TableCollection and TreeSequence simplification (#64) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/c62ccd21aadf32a23a8600c78431e8a6c861defb"><code>c62ccd21aa</code></a>] Add TableAccess trait and implement for TableCollection and TreeSequence. (#66) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/167209466ae371a1de671f802b1f7fef5cf0fcfe"><code>167209466a</code></a>] Remove duplication of entire table collection when creating a tree sequence. (#65) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/df258ad8d143aec9450e236c6ebea6f487cb249e"><code>df258ad8d1</code></a>] Fix useless conversion in lib::c_api_version (#63) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/fcca8bb6826f27b50de8cda397dd5584afabdc94"><code>fcca8bb682</code></a>] remove unnecessary function from util (#62) (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/0ee9f86db47bbf2968e8888a7f47b791a6327c41"><code>0ee9f86db4</code></a>] Merge pull request #61 from molpopgen/add_individual_and_migration_tables (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/8f072c47d1ece61dd55892fb64c5fa4ab2827710"><code>8f072c47d1</code></a>] Add migrations and individuals tables. (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/b2c891300b9543cbd402525a263ad5c538978289"><code>b2c891300b</code></a>] Merge pull request #60 from molpopgen/tskit_C_version (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/f48b2fed575d5b08cd9cc412d9be3f9c2c490be3"><code>f48b2fed57</code></a>] Add functions to return C API version info (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/87593d4bdc8eadd1732c20dfb3fdbff3ef370b91"><code>87593d4bdc</code></a>] Merge pull request #59 from molpopgen/add_test_metadata_some_columns_only (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/5ab8e8c9d04c7b6f2696d0a1364c4e2f50398516"><code>5ab8e8c9d0</code></a>] Add test of metadata decoding when not all rows have metadata. (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/adcc321cc84d065b2e8eb0a79e88d47b9512c048"><code>adcc321cc8</code></a>] Merge pull request #58 from molpopgen/table_row_access (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/860a647bf30eb35f60b055ac48337b83319882f9"><code>860a647bf3</code></a>] * Add ::row for all tables (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/6b0a77e1060b6e3a43cc06f7f6016953003e02cb"><code>6b0a77e106</code></a>] Add util.rs (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/6b9631e1f1d7dcd554f3b0a920101bdad54945ea"><code>6b9631e1f1</code></a>] Merge pull request #57 from molpopgen/unify_table_iteration (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/3d79f8bbfaf7b555c61c68fd6c3421473022a512"><code>3d79f8bbfa</code></a>] Add ability to iterate tables from a TableCollection: (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/392ce57e0a5ea26ede7788b55e2e0b0b120ccbd4"><code>392ce57e0a</code></a>] Merge pull request #52 from molpopgen/table_iteration (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/2fe5912c341617c4d18caecebd65c9f5127fed17"><code>2fe5912c34</code></a>] Add table iteration w/optional handling of metadata. (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/9a59a148f74810a9c906dea5f227e07b7fac69ac"><code>9a59a148f7</code></a>] Merge pull request #55 from molpopgen/wrapped_tsk_array_iter_adapter (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/84b0b496c11eedf7d1ee11b1d9315ace8662ce4b"><code>84b0b496c1</code></a>] Replace built-in iteration with iterator adapter for WrappedTskArray (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/18234998ea493cea7119338f176a520e16f16425"><code>18234998ea</code></a>] Merge pull request #56 from molpopgen/metadata_macro_fixes (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/49bbd0f2f4439a6b13d62f05c120d762bb06e5d2"><code>49bbd0f2f4</code></a>] metadata_to_vector macro is now a simple return (no ? operator). (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/6e293acf14a652996be45eced13f9a165c19b212"><code>6e293acf14</code></a>] Remove unused paramter to metadata_to_vector.  Fixes #54. (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/45347a576c36b15acd653efd21c8a8b3116de59b"><code>45347a576c</code></a>] Change log for 0.1.2 (molpopgen)</li>
+</ul>
+<h2 id="2021-04-12-version-012"><a class="header" href="#2021-04-12-version-012">2021-04-12, Version 0.1.2</a></h2>
+<h3 id="commits-13"><a class="header" href="#commits-13">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/f475a5c6241b39690a5b18a8f2fc3af22606ad28"><code>f475a5c624</code></a>] Bump version to 0.1.2 (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/f1887d55e0c77c3d0cd647817cc7843711638ba2"><code>f1887d55e0</code></a>] Merge pull request #46 from molpopgen/add_important_missing_functions (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/f5598256dd70bac04167c1eaea7f26711477036e"><code>f5598256dd</code></a>] Merge pull request #47 from molpopgen/add_changelog (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/fb85ba9606258484c24f394254a0cd3d5694bd78"><code>fb85ba9606</code></a>] Add Tree::num_tracked_samples and Tree::kc_distance. (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/08febd50625407a3fb0e37475180840bfd176772"><code>08febd5062</code></a>] Add change log (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/e6495a959a9392e01febaf8c592727432fac2609"><code>e6495a959a</code></a>] Merge pull request #51 from molpopgen/test_beta_instead_of_nightly (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/fa7cca91a5e503200e99321608257310a7d35289"><code>fa7cca91a5</code></a>] Test beta instead of nightly. (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/bd7185eef2ff6cd4f45f9ccb220c0c32c0f7e394"><code>bd7185eef2</code></a>] Merge pull request #45 from molpopgen/documentation (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/24009067621b02c88547a0d6d19641e095b5d477"><code>2400906762</code></a>] Add documentation related to Tree/TreeSequence (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/550aa76597515b76de42d705f8bfcf1b3a3f23a4"><code>550aa76597</code></a>] Fix typo in function name. (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/56eaf875b6844fd21c07bb360f437638d1b28bdf"><code>56eaf875b6</code></a>] Merge pull request #44 from molpopgen/fix_clippy_warnings (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/20ffe557ca1834d158151bc3a46e947f1e40a9ed"><code>20ffe557ca</code></a>] Fix warnings from clippy (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/0bf1dada4d8a9be5b35c04936b1b13bf423e6899"><code>0bf1dada4d</code></a>] Merge pull request #43 from molpopgen/kc_distance (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/2e8b4c1cfc3ab543453904f0ab9606d6e8becd15"><code>2e8b4c1cfc</code></a>] Add TreeSequence::kc_distance (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/efe5ce2b0b65a81dd8d45c6eb2005b3f2b2a2b3f"><code>efe5ce2b0b</code></a>] Merge pull request #42 from molpopgen/fix_tskit_array_access_macro (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/82bb6ec6a12ed080d9e9e0ebc5c4cd42fe14c61f"><code>82bb6ec6a1</code></a>] Modify unsafe_tsk_column_access to support idiomatic fall-through. (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/40e898910df0e11dcb4a433c360bfc7790e260c9"><code>40e898910d</code></a>] Merge pull request #41 from molpopgen/sample_list_traversal (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/cb0e9a435505a9f7bd7981e5a634edfcfd6ea1a6"><code>cb0e9a4355</code></a>] Add support for samples iteration: (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/f1acfb06f2e81c81c3012eacb44da5ddce4764d4"><code>f1acfb06f2</code></a>] Merge pull request #40 from molpopgen/more_node_iteration (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/22684248d10a8ad959af054f3ecb07b6a9277739"><code>22684248d1</code></a>] * Rename NodeIteration to NodeIterator (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/faa105d5777158963af1a47ec6c8e5caa8b8384f"><code>faa105d577</code></a>] Merge pull request #38 from molpopgen/Tree_API (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/896f921e912a59dd5d66a9f251c9c6b5e6af8a76"><code>896f921e91</code></a>] Several changes to Tree and TreeSequence: (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/683ba84b1033c5a16a74faaaa080ecae5ff62949"><code>683ba84b10</code></a>] Merge pull request #39 from molpopgen/ffi_array_wrapper (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/dd3df03ca34858ee14db429bbfd2c01922509149"><code>dd3df03ca3</code></a>] Add non-owning wrappers to C arrays. (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/85cc4a591f09760d9f86ebd5cd5b4b1030254eac"><code>85cc4a591f</code></a>] Merge pull request #37 from molpopgen/add_tree (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/be97490641125290e6da3372a58b1d9f4bf03b11"><code>be97490641</code></a>] Add minimial Tree interface. (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/4b6257ed2ca52596ee8ad2f5e355ea24c3ff02bc"><code>4b6257ed2c</code></a>] Merge pull request #36 from molpopgen/streamline_macros (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/238f652d249953d1449075983dd5fc5e3866dfda"><code>238f652d24</code></a>] Remove macro redundancy. (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/85505887e16d273d46cdc4715a1f23dc331eb706"><code>85505887e1</code></a>] Merge pull request #35 from molpopgen/refine_ffi (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/2cb4993f07217fcc8ddce1472a935b594ab43f70"><code>2cb4993f07</code></a>] Refactor the ffi module: (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/1b9a054ff0a356d556d7719623404ab542b5f393"><code>1b9a054ff0</code></a>] Merge pull request #34 from molpopgen/improve_error_handling_macro (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/20a5486132bc79e7aab9eb0e3481e8e7afbc9e73"><code>20a5486132</code></a>] Add overload of handle_tsk_return_value. (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/eae11b4c8abe3ccde66acb06ddc14856f27cd83a"><code>eae11b4c8a</code></a>] Merge pull request #33 from molpopgen/add_tree_sequence (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/a57b9473522f2052a0160e0936a39986f64514c1"><code>a57b947352</code></a>] Add TskitConsumingType, macro to build one, and convert TreeSequence (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/dcb5a02f3c998ecff7f3a05e1d1cc16d9bd3ecf8"><code>dcb5a02f3c</code></a>] change dependabot to monthly (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/4eb407ac6142658984b6fc065a959c6dddbb797b"><code>4eb407ac61</code></a>] Merge pull request #31 from molpopgen/dependabot/add-v2-config-file (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/a759e0441b2d50bd4515ff8ce3c1d7a71c681f2f"><code>a759e0441b</code></a>] Merge pull request #32 from molpopgen/dependabot/cargo/bindgen-0.57.0 (dependabot-preview[bot])</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/fb2a56c868192c1a4249cff9850639c7c862dad4"><code>fb2a56c868</code></a>] Update bindgen requirement from 0.56.0 to 0.57.0 (dependabot-preview[bot])</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/a8a0b1aabf9d86c09022574ce010ff5d9682ba05"><code>a8a0b1aabf</code></a>] Create Dependabot config file (dependabot-preview[bot])</li>
+</ul>
+<h2 id="2021-03-26-version-011"><a class="header" href="#2021-03-26-version-011">2021-03-26, Version 0.1.1</a></h2>
+<h3 id="commits-14"><a class="header" href="#commits-14">Commits</a></h3>
+<ul>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/e9d73e4912f1cac2cf5fe010f640557aa33242ed"><code>e9d73e4912</code></a>] Fix crate name in README.md (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/28deef7d04f9b64259064115f9ff899e3a0dcea8"><code>28deef7d04</code></a>] update README (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/ef79a446c1a02825a998b57bfba28ed157ea15bd"><code>ef79a446c1</code></a>] Bump version to 0.1.1 (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/d3c31fa0fcae306baaa0b62d5403af896f52e4c4"><code>d3c31fa0fc</code></a>] Merge pull request #30 from molpopgen/fix_warnings (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/bedfa02f7616a430f6a90f686dc5845ff58d1c5e"><code>bedfa02f76</code></a>] Merge pull request #29 from molpopgen/metadata_docs (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/f6f3304d755a42704c1ab5af9d870d6552a2efc8"><code>f6f3304d75</code></a>] Remove Drop constraint on TskitType. (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/d8873a794163edaef7b14cf36e1691cf38f9ff69"><code>d8873a7941</code></a>] Quick fix regarding documenting metadata.  Closes #25 (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/4518db4946dfa314ac66c2a533c76e0926e5dd27"><code>4518db4946</code></a>] Merge pull request #28 from molpopgen/update_to_tskit_0_3_5 (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/80893566ed2445be93b8c377f0bf7a83a0d4a250"><code>80893566ed</code></a>] Update C files to tskit 0.3.5 (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/e81aad0bf6d7fc245f148923ee2bd46af01cd458"><code>e81aad0bf6</code></a>] Merge pull request #27 from molpopgen/fix_example_file_names (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/dbaf304b3823f5343e09900cdf2170edc46a9cdf"><code>dbaf304b38</code></a>] Fix swapped example file names. Fixes #26 (molpopogen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/30c34c2023ba83df7066a6bc714dd3fc2ac3848e"><code>30c34c2023</code></a>] Merge pull request #23 from molpopgen/rename_crate (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/e01b3e530e3952c67a5e40d67de3a1c72cbc16e1"><code>e01b3e530e</code></a>] rename crate to tskit (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/a7a69ad31dd5c11a016656a1f4125e345ac5113d"><code>a7a69ad31d</code></a>] Merge pull request #20 from molpopgen/metadata (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/54ac4312a111d542f16ca8757c8045909b345ea1"><code>54ac4312a1</code></a>] clippy and fmt (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/a1aea5cd95dace535e815c22a22b1062664a5c98"><code>a1aea5cd95</code></a>] add examples of metadata round trips (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/7352ca95b5708143270c90c1079f528788819eb4"><code>7352ca95b5</code></a>] Update table operations to metadata API. (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/275074da309646f48100c275863324f59034ad64"><code>275074da30</code></a>] Add metadata trait and API. (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/d89dcd19dd11fa73e0d046755d08abf2f9b2f8b6"><code>d89dcd19dd</code></a>] Merge pull request #18 from molpopgen/tskit_wrapper_trait (Kevin R. Thornton)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/3445af368d8ef5cddd9eadda23063a88ec1f45df"><code>3445af368d</code></a>] TableCollection uses new trait. (molpopgen)</li>
+<li>[<a href="https://github.com/molpopgen/tskit_rust/commit/93c43aa2c70707132610e9a7cad311ca65adf7e3"><code>93c43aa2c7</code></a>] Add trait to define what it means to wrap a tskit type. (molpopgen)</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="prelude.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="migration_guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="prelude.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="migration_guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

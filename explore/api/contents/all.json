@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-08-09T11:33:40.378038Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-08-09T11:33:40.378038Z",
+      "mimetype": null,
+      "name": "data",
+      "path": "data",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-08-09T11:33:40.379038Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-08-09T11:32:19.121469Z",
+      "mimetype": null,
+      "name": "tskit.ipynb",
+      "path": "tskit.ipynb",
+      "size": 14190,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2025-08-09T11:33:40.379038Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-08-09T11:33:40.379038Z",
+  "mimetype": null,
+  "name": "",
+  "path": "",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}
