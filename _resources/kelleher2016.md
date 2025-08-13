@@ -3,7 +3,8 @@ type: paper
 doi: 10.1371/journal.pcbi.1004842
 timestamp: 2016-04-04
 ---
-This is where it all started. Here we introduce the
+This is where the tree sequence data structure
+was first described. Here we introduce the
 [msprime](/software/msprime.html) coalescent simulator and
 the core algorithms and data structures that would later
 be separated out into [tskit](software/tskit.html).
