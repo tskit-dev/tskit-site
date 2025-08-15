@@ -20,7 +20,8 @@ citation_url: https://tskit.dev/tsinfer/docs/stable/CITATION.html
 citation_md: https://raw.githubusercontent.com/tskit-dev/tsinfer/refs/heads/main/CITATION.md
 
 ---
-``Tsinfer`` is a Python package to infer a tree sequence from large
-quantities of phased DNA sequence data, for example in a VCF file
-(see the [tutorial](https://tsinfer.readthedocs.io/en/latest/tutorial.html#reading-a-vcf)
+``Tsinfer`` is a Python package to infer an ARG in tree sequence format
+from large quantities of phased DNA sequence data in
+[VCF Zarr](https://github.com/sgkit-dev/vcf-zarr-spec/blob/main/vcf_zarr_spec.md) format
+(see the [usage documentation](https://tskit.dev/tsinfer/docs/stable/usage.html#data-example)
 for how to convert data from a VCF into a suitable input format).
