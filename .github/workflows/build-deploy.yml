@@ -500,8 +500,6 @@ jobs:
           venv-latest/bin/activate
           export PATH=$PWD/SLiM/Stable:$PATH
           cd docs
-          # A sphinx-book-theme breaking change needs this
-          sed -i '/html_theme_options:/a\ \ \ \ \ navigation_with_keys: False' _config.yml
           
           # don't re-generate these which require tricky prerequisites (inkscape, xmlstarlet)
           touch _static/{pedigree0.svg,pedigree1.svg,pedigree2.svg,pedigree_recapitate.svg,pedigree_simplify.svg,pedigree_mutate.svg}
