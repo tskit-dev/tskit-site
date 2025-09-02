@@ -1,0 +1,144 @@
+name: Build documentation
+
+on:
+  workflow_call:
+
+jobs:
+  cancel-superseded:
+    name: Cancel superseded
+    runs-on: ubuntu-24.04
+    steps:
+        - name: Cancel Previous Runs
+          uses: styfle/cancel-workflow-action@0.12.1
+          with:
+            access_token: ${{ github.token }}
+
+  build-docs:
+    name: Build ${{ matrix.package }} ${{ matrix.version }} docs
+    needs: cancel-superseded
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [msprime, tsinfer, tskit, tstrait, tscompare, tsbrowse, pyslim, tsdate, tszip]
+        version: [latest, stable]
+        include:
+          - package: msprime
+            cache-version: v11
+            additional-setup: sudo apt-get install -y libgsl0-dev
+            make-command: make
+            
+          - package: tsinfer
+            cache-version: v13
+            additional-setup: sudo apt-get install -y tabix
+            make-command: make
+            
+          - package: tskit
+            cache-version: v16
+            additional-setup: sudo apt-get install -y libgsl0-dev doxygen
+            requirements-path: python/requirements/CI-docs/requirements.txt
+            make-command: make -C python
+            
+          - package: tstrait
+            cache-version: v4
+            
+          - package: tscompare
+            cache-version: v1
+            requirements-path: requirements/CI-docs-pip/requirements.txt
+            
+          - package: tsbrowse
+            cache-version: v2
+            requirements-path: requirements.txt
+            additional-setup: source venv/bin/activate && playwright install
+            
+          - package: pyslim
+            cache-version: v6
+            additional-setup: |
+              sudo apt-get install -y inkscape
+              git clone https://github.com/messerlab/SLiM.git
+              mkdir -p SLiM/Release
+              cd SLiM/Release
+              cmake -D CMAKE_POLICY_VERSION_MINIMUM=3.5 -D CMAKE_BUILD_TYPE=Release ..
+              make -j 2
+              sudo make install
+            
+          - package: tsdate
+            cache-version: v8
+            requirements-path: docs/requirements.txt
+            
+          - package: tszip
+            cache-version: v2
+            requirements-path: requirements/CI-docs.txt
+            
+    steps:
+      - uses: actions/checkout@v4.2.2
+        name: Checkout ${{ matrix.package }}
+        with:
+          ref: ${{ matrix.version == 'latest' && 'main' || '' }}
+          repository: tskit-dev/${{ matrix.package }}
+          submodules: true
+          fetch-depth: 0
+
+      - name: Checkout stable tag
+        if: matrix.version == 'stable'
+        run: |
+          git fetch --tags --recurse-submodules=no
+          git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
+          git submodule update --init --recursive
+
+      - name: Get commit SHA1 for cache
+        run: git rev-parse HEAD > SHA1
+
+      - uses: actions/cache@v4.2.2
+        id: docs-cache
+        name: Docs cache
+        with:
+          path: dist
+          key: ${{ matrix.package }}-${{ matrix.version }}-docs-v3-${{ matrix.cache-version }}-${{ hashFiles('SHA1') }}
+
+      - uses: actions/setup-python@v5.4.0
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        name: Setup Python
+        with:
+          python-version: '3.11'
+
+      - name: Build virtualenv
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: python -m venv venv
+
+      - name: Install deps
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          source venv/bin/activate
+          pip install -r ${{ matrix.requirements-path || 'requirements/CI-docs/requirements.txt' }}
+
+      - name: Additional setup
+        if: steps.docs-cache.outputs.cache-hit != 'true' && matrix.additional-setup
+        run: ${{ matrix.additional-setup }}
+
+      - name: Build C module
+        if: steps.docs-cache.outputs.cache-hit != 'true' && matrix.make-command
+        run: |
+          source venv/bin/activate
+          ${{ matrix.make-command }}
+
+      - name: Build Docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          source venv/bin/activate
+          cd docs
+          make dist
+          git checkout .
+
+      - name: Copy docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p dist/${{ matrix.package }}/docs
+          cp -r docs/_build/html dist/${{ matrix.package }}/docs/${{ matrix.version }}
+
+      - name: Upload docs
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: ${{ matrix.package }}-${{ matrix.version }}-docs
+          path: dist
+

@@ -1,0 +1,100 @@
+name: Deploy site
+
+on:
+  repository_dispatch:
+  schedule:
+    - cron: '29 11 * * *'
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Deploy 🚀 (if on main branch)
+    needs:
+      - build-core
+      - build-docs
+      - build-extras
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+      
+      - name: Download core site
+        uses: actions/download-artifact@v4.2.0
+        with:
+          name: core-site
+          path: site
+
+      - name: Download all docs
+        uses: actions/download-artifact@v4.2.0
+        with:
+          pattern: "*-docs"
+          path: site
+          merge-multiple: true
+
+      - name: Download tutorials
+        uses: actions/download-artifact@v4.2.0
+        with:
+          name: tutorials
+          path: site/tutorials
+
+      - name: Download rust tutorial
+        uses: actions/download-artifact@v4.2.0
+        with:
+          name: rust-tutorials
+          path: site/tutorials/rust
+      
+      - name: Download tskit-explore
+        uses: actions/download-artifact@v4.2.0
+        with:
+          name: tskit-explore
+          path: site/explore
+
+      - name: Pages config and tweaks
+        run: |
+          touch site/.nojekyll
+          echo "tskit.dev" > site/CNAME
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/msprime/docs/stable\" />" > site/msprime/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tsinfer/docs/stable\" />" > site/tsinfer/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tskit/docs/stable\" />" > site/tskit/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/pyslim/docs/stable\" />" > site/pyslim/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tstrait/docs/stable\" />" > site/tstrait/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tscompare/docs/stable\" />" > site/tscompare/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tsbrowse/docs/stable\" />" > site/tsbrowse/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tsdate/docs/stable\" />" > site/tsdate/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tszip/docs/latest\" />" > site/tszip/docs/index.html
+
+      - name: Inject analytics code
+        run: |
+          # Find all HTML files and inject analytics code before closing </head> tag
+          find site -type f \( -name "*.html" -o -name "*.htm" \) -exec sed -i 's|</head>|<script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>\n</head>|' {} \;
+
+      - name: List site contents
+        run: |
+          ls -R
+
+      - name: Upload site (for PR inspection)
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: site
+          path: .
+
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@v4.7.3
+        with:
+          token: ${{ secrets.ADMINBOT_TOKEN }}
+          branch: gh-pages
+          folder: site
+          single-commit: true
+
+  # These are the other workflow jobs that this deployment depends on
+  build-core:
+    uses: ./.github/workflows/build-core.yml
+
+  build-docs:
+    uses: ./.github/workflows/build-docs.yml
+
+  build-extras:
+    uses: ./.github/workflows/build-extras.yml
