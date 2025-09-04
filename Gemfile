@@ -45,3 +45,6 @@ gem "hash-joiner"
 gem "open-uri-cached"
 gem "httparty"
 gem 'jekyll-redirect-from'
+
+# Fix for Ruby 3.0+ compatibility
+gem "rexml"
