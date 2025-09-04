@@ -1,0 +1,100 @@
+// Ecosystem Status Table Component
+
+.ecosystem-status {
+  
+  &__table {
+    background-color: #f8f9fa;
+    
+    th, td {
+      padding: 12px !important;
+    }
+    
+    th {
+      &.center,
+      &.ecosystem-status__header--center {
+        text-align: center;
+      }
+    }
+    
+    td {
+      &.center,
+      &.ecosystem-status__cell--center {
+        text-align: center;
+      }
+    }
+  }
+  
+  &__unreleased-commits {
+    &--high {
+      color: var(--bs-danger) !important;
+      font-weight: bold;
+    }
+    
+    &--moderate {
+      color: var(--bs-warning) !important;
+      font-weight: bold;
+    }
+    
+    &--low {
+      color: var(--bs-info) !important;
+      font-weight: bold;
+    }
+    
+    &--none {
+      color: var(--bs-success) !important;
+      font-weight: bold;
+    }
+  }
+  
+  &__pr-count {
+    &--high {
+      color: var(--bs-warning) !important;
+      font-weight: bold;
+    }
+    
+    &--moderate {
+      color: var(--bs-info) !important;
+      font-weight: bold;
+    }
+    
+    &--none {
+      color: var(--bs-success) !important;
+      font-weight: bold;
+    }
+  }
+  
+  &__ci-status {
+    &--success {
+      color: var(--bs-success) !important;
+    }
+    
+    &--failure {
+      color: var(--bs-danger) !important;
+    }
+    
+    &--pending {
+      color: var(--bs-warning) !important;
+    }
+    
+    &--unknown {
+      color: var(--bs-secondary) !important;
+    }
+  }
+  
+  &__time-indicator {
+    &--recent {
+      color: var(--bs-success) !important;
+      font-weight: bold;
+    }
+    
+    &--moderate {
+      color: var(--bs-info) !important;
+      font-weight: bold;
+    }
+    
+    &--old {
+      color: var(--bs-warning) !important;
+      font-weight: bold;
+    }
+  }
+}

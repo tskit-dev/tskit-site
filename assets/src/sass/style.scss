@@ -40,7 +40,7 @@
 //@import "~bootstrap/scss/popover";
 //@import "~bootstrap/scss/progress";
 //@import "~bootstrap/scss/spinners";
-//@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/tables";
 //@import "~bootstrap/scss/toasts";
 //@import "~bootstrap/scss/tooltip";
 @import "~bootstrap/scss/transitions";
@@ -61,6 +61,7 @@
 @import "components/call-to-action";
 @import "components/card";
 @import "components/code";
+@import "components/ecosystem-status";
 @import "components/footer";
 @import "components/forms";
 @import "components/header";
