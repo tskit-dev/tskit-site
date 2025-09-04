@@ -1,0 +1,176 @@
+---
+layout: page
+title: Ecosystem Status
+permalink: /ecosystem-status/
+---
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <p class="lead">Status overview for all tskit ecosystem repositories. This page helps maintainers identify what needs attention.</p>
+            <div class="table-responsive ecosystem-status">
+                <table class="table table-striped ecosystem-status__table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Package</th>
+                            <th>Latest Release</th>
+                            <th>PyPI</th>
+                            <th class="ecosystem-status__header--center">Unreleased Commits</th>
+                            <th class="ecosystem-status__header--center">CI Status</th>
+                            <th class="ecosystem-status__header--center">Open PRs</th>
+                            <th>Last PR Merge</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% assign sorted_software = site.software | sort: 'priority' %}
+                        {% for software in sorted_software %}
+                            {% assign status = site.data.ecosystem_status[software.name] %}
+                            {% if status.gh_org == "tskit-dev" %}
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <a href="{{ status.repo_url }}" class="text-decoration-none">
+                                            {{ software.title }}
+                                        </a>
+                                    </strong>
+                                </td>
+                                
+                                <!-- Latest Release -->
+                                <td>
+                                    {% if status.latest_release %}
+                                        <a href="{{ status.latest_release.html_url }}" class="text-decoration-none">
+                                            <strong>{{ status.latest_release.tag_name }}</strong>
+                                        </a>
+                                        <br>
+                                        <small class="text-muted">
+                                            {% assign release_date = status.latest_release.published_at | date: "%s" %}
+                                            {% assign now = "now" | date: "%s" %}
+                                            {% assign days_ago = now | minus: release_date | divided_by: 86400 %}
+                                            {% if days_ago > 365 %}
+                                                <span class="ecosystem-status__time-indicator--old">{{ days_ago | divided_by: 365 }}+ years ago</span>
+                                            {% elsif days_ago > 90 %}
+                                                <span class="ecosystem-status__time-indicator--moderate">{{ days_ago }} days ago</span>
+                                            {% else %}
+                                                <span class="ecosystem-status__time-indicator--recent">{{ days_ago }} days ago</span>
+                                            {% endif %}
+                                        </small>
+                                    {% else %}
+                                        <span class="text-muted">No releases</span>
+                                    {% endif %}
+                                </td>
+                                
+                                <!-- PyPI -->
+                                <td>
+                                    {% if status.pypi_info and software.python_package %}
+                                        <a href="https://pypi.org/project/{{ software.python_package }}/" class="text-decoration-none">
+                                            <strong>{{ status.pypi_info.info.version }}</strong>
+                                        </a>
+                                    {% elsif software.python_package %}
+                                        <a href="https://pypi.org/project/{{ software.python_package }}/" class="text-muted text-decoration-none">
+                                            PyPI Error
+                                        </a>
+                                    {% else %}
+                                        <span class="text-muted">N/A</span>
+                                    {% endif %}
+                                </td>
+                                
+                                <!-- Unreleased Commits -->
+                                <td class="ecosystem-status__cell--center">
+                                    {% if status.commits_since_release %}
+                                        {% if status.commits_since_release > 100 %}
+                                            <span class="ecosystem-status__unreleased-commits--high">{{ status.commits_since_release }}</span>
+                                        {% elsif status.commits_since_release > 50 %}
+                                            <span class="ecosystem-status__unreleased-commits--moderate">{{ status.commits_since_release }}</span>
+                                        {% elsif status.commits_since_release > 15 %}
+                                            <span class="ecosystem-status__unreleased-commits--low">{{ status.commits_since_release }}</span>
+                                        {% else %}
+                                            <span class="ecosystem-status__unreleased-commits--none">0</span>
+                                        {% endif %}
+                                    {% else %}
+                                        <span class="text-muted">-</span>
+                                    {% endif %}
+                                </td>
+                                
+                                <!-- CI Status -->
+                                <td class="ecosystem-status__cell--center">
+                                    {% if status.ci_status %}
+                                        <a href="{{ status.repo_url }}/actions" class="text-decoration-none">
+                                            {% if status.ci_status.state == "success" %}
+                                                <span class="ecosystem-status__ci-status--success">✓</span>
+                                            {% elsif status.ci_status.state == "failure" %}
+                                                <span class="ecosystem-status__ci-status--failure">✗</span>
+                                            {% elsif status.ci_status.state == "pending" %}
+                                                <span class="ecosystem-status__ci-status--pending">⋯</span>
+                                            {% else %}
+                                                <span class="ecosystem-status__ci-status--unknown">?</span>
+                                            {% endif %}
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ status.repo_url }}/actions" class="text-decoration-none">
+                                            <span class="ecosystem-status__ci-status--unknown">?</span>
+                                        </a>
+                                    {% endif %}
+                                </td>
+                                
+                                <!-- Open PRs -->
+                                <td class="ecosystem-status__cell--center">
+                                    <a href="{{ status.repo_url }}/pulls" class="text-decoration-none">
+                                        {% if status.open_pr_count > 10 %}
+                                            <span class="ecosystem-status__pr-count--high">{{ status.open_pr_count }}</span>
+                                        {% elsif status.open_pr_count > 5 %}
+                                            <span class="ecosystem-status__pr-count--moderate">{{ status.open_pr_count }}</span>
+                                        {% else %}
+                                            <span class="ecosystem-status__pr-count--none">0</span>
+                                        {% endif %}
+                                    </a>
+                                </td>
+                                
+                                <!-- Last PR Merge -->
+                                <td>
+                                    {% if status.last_merged_pr and status.last_merged_pr.merged_at %}
+                                        <a href="{{ status.last_merged_pr.html_url }}" class="text-decoration-none text-muted">
+                                            {% assign merge_date = status.last_merged_pr.merged_at | date: "%s" %}
+                                            {% assign now = "now" | date: "%s" %}
+                                            {% assign days_ago = now | minus: merge_date | divided_by: 86400 %}
+                                            <span class="text-muted">{{ days_ago }} days ago</span>                                            
+                                        </a>
+                                    {% else %}
+                                        <span class="text-muted">No recent merges</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h5>Status Legend</h5>
+                    <ul class="list-unstyled">
+                        <li><span class="text-success">✓</span> CI passing</li>
+                        <li><span class="text-danger">✗</span> CI failing</li>
+                        <li><span class="text-warning">⋯</span> CI pending</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5>Color Coding</h5>
+                    <ul class="list-unstyled">
+                        <li><strong class="text-success">Green</strong> Good status</li>
+                        <li><strong class="text-info">Blue</strong> Moderate activity</li>
+                        <li><strong class="text-warning">Orange</strong> Needs attention</li>
+                        <li><strong class="text-danger">Red</strong> High priority</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p class="text-muted mt-3">
+                <small>
+                    Last updated: {{ site.time | date: "%Y-%m-%d %H:%M UTC" }} | 
+                    <a href="https://github.com/tskit-dev/tskit-site/issues/new" class="text-muted">Report issues</a>
+                </small>
+            </p>
+        </div>
+    </div>
+</div>
