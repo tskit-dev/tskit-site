@@ -29,7 +29,7 @@ jobs:
       - name: Set up Ruby 2.7
         uses: ruby/setup-ruby@v1.227.0
         with:
-          ruby-version: '2.7'
+          ruby-version: '3.1'
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
       - uses: actions/setup-node@v4.3.0
