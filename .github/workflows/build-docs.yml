@@ -49,7 +49,7 @@ jobs:
           - package: tsbrowse
             cache-version: v2
             requirements-path: requirements.txt
-            additional-setup: source venv/bin/activate && playwright install
+            additional-setup: uv run --no-sync playwright install
             
           - package: pyslim
             cache-version: v6
@@ -66,9 +66,11 @@ jobs:
             cache-version: v8
             requirements-path: docs/requirements.txt
             
+            
           - package: tszip
             cache-version: v2
             requirements-path: requirements/CI-docs.txt
+            
             
     steps:
       - uses: actions/checkout@v4.2.2
@@ -94,23 +96,31 @@ jobs:
         name: Docs cache
         with:
           path: dist
-          key: ${{ matrix.package }}-${{ matrix.version }}-docs-v3-${{ matrix.cache-version }}-${{ hashFiles('SHA1') }}
+          key: ${{ matrix.package }}-${{ matrix.version }}-docs-v4-${{ matrix.cache-version }}-${{ hashFiles('SHA1') }}
 
-      - uses: actions/setup-python@v5.4.0
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        name: Setup Python
+      - name: Install uv and set the python version
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: '3.11'
-
-      - name: Build virtualenv
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: python -m venv venv
+          python-version: 3.11
+          version: "0.8.15"
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
-          source venv/bin/activate
-          pip install -r ${{ matrix.requirements-path || 'requirements/CI-docs/requirements.txt' }}
+          uv venv
+          # These can be removed after everything has had a release
+          if [ -f "${{ matrix.requirements-path }}" ]; then
+            uv pip install -r ${{ matrix.requirements-path }}
+          elif [ -f requirements/CI-docs/requirements.txt ]; then
+            uv pip install -r requirements/CI-docs/requirements.txt
+          elif [ -f pyproject.toml ]; then
+            uv pip install -r pyproject.toml --extra docs
+          elif [ -f python/pyproject.toml ]; then
+            uv pip install -r python/pyproject.toml --extra docs
+          else
+            echo "No requirements found"
+            exit 1
+          fi
 
       - name: Additional setup
         if: steps.docs-cache.outputs.cache-hit != 'true' && matrix.additional-setup
@@ -119,13 +129,13 @@ jobs:
       - name: Build C module
         if: steps.docs-cache.outputs.cache-hit != 'true' && matrix.make-command
         run: |
-          source venv/bin/activate
+          source .venv/bin/activate
           ${{ matrix.make-command }}
 
       - name: Build Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
-          source venv/bin/activate
+          source .venv/bin/activate
           cd docs
           make dist
           git checkout .
