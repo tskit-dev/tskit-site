@@ -8,6 +8,7 @@ publication: https://doi.org/10.1038/s41588-019-0483-y
 logo: https://raw.githubusercontent.com/tskit-dev/administrative/main/logos/svg/tsinfer/Tskit_tsinfer_logo_on_black_no_background.eps.svg
 category: infer
 python_package: tsinfer
+conda_package: tsinfer
 priority: 3
 code_snippet: |2
   sample_data = tsinfer.load(

@@ -31,6 +31,7 @@ module Jekyll
         repo_name = software.data['name']
         gh_org = software.data['gh_org']
         python_package = software.data['python_package']
+        conda_package = software.data['conda_package']
         
         next unless gh_org && repo_name
         
@@ -103,11 +104,18 @@ module Jekyll
           if python_package
             pypi_info = fetch_pypi_info(python_package)
           end
+
+          # Get conda info if conda package exists
+          conda_info = nil
+          if conda_package
+            conda_info = fetch_conda_info(conda_package)
+          end
           
           repo_data = {
             'repo_name' => repo_name,
             'gh_org' => gh_org,
             'python_package' => python_package,
+            'conda_package' => conda_package,
             'repo_url' => "https://github.com/#{gh_org}/#{repo_name}",
             'latest_release' => latest_release,
             'commits_since_release' => commits_since_release,
@@ -116,6 +124,7 @@ module Jekyll
             'open_pr_count' => open_prs ? open_prs.length : 0,
             'last_merged_pr' => last_merged_pr,
             'pypi_info' => pypi_info,
+            'conda_info' => conda_info,
             'updated_at' => Time.now
           }
           
@@ -157,10 +166,10 @@ module Jekyll
       uri = URI("https://pypi.org/pypi/#{package_name}/json")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
-      
+
       request = Net::HTTP::Get.new(uri)
       response = http.request(request)
-      
+
       if response.code == '200'
         JSON.parse(response.body)
       else
@@ -168,6 +177,24 @@ module Jekyll
       end
     rescue => e
       puts "Error fetching PyPI info for #{package_name}: #{e.message}"
+      nil
+    end
+
+    def fetch_conda_info(package_name)
+      uri = URI("https://api.anaconda.org/package/conda-forge/#{package_name}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+
+      request = Net::HTTP::Get.new(uri)
+      response = http.request(request)
+
+      if response.code == '200'
+        JSON.parse(response.body)
+      else
+        nil
+      end
+    rescue => e
+      puts "Error fetching conda info for #{package_name}: #{e.message}"
       nil
     end
   end

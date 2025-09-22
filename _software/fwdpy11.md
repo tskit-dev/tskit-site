@@ -6,6 +6,7 @@ gh_org: molpopgen
 docs_url: https://molpopgen.github.io/fwdpy11
 category: simulate
 python_package: fwdpy11
+conda_package: fwdpy11
 priority: 11
 code_snippet: |2
   pop = fwdpy11.DiploidPopulation(
