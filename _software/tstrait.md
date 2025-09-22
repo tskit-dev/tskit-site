@@ -10,6 +10,7 @@ docs_url: https://tskit.dev/tstrait/docs/
 publication: https://doi.org/10.1093/bioinformatics/btae334
 category: simulate
 python_package: tstrait
+conda_package: tstrait
 priority: 13
 code_snippet: |2
   model = tstrait.trait_model(

@@ -15,6 +15,7 @@ permalink: /ecosystem-status/
                             <th>Package</th>
                             <th>Latest Release</th>
                             <th>PyPI</th>
+                            <th>Conda</th>
                             <th class="ecosystem-status__header--center">Unreleased Commits</th>
                             <th class="ecosystem-status__header--center">CI Status</th>
                             <th class="ecosystem-status__header--center">Open PRs</th>
@@ -68,6 +69,21 @@ permalink: /ecosystem-status/
                                     {% elsif software.python_package %}
                                         <a href="https://pypi.org/project/{{ software.python_package }}/" class="text-muted text-decoration-none">
                                             PyPI Error
+                                        </a>
+                                    {% else %}
+                                        <span class="text-muted">N/A</span>
+                                    {% endif %}
+                                </td>
+
+                                <!-- Conda -->
+                                <td>
+                                    {% if status.conda_info and software.conda_package %}
+                                        <a href="https://anaconda.org/conda-forge/{{ software.conda_package }}" class="text-decoration-none">
+                                            <strong>{{ status.conda_info.latest_version }}</strong>
+                                        </a>
+                                    {% elsif software.conda_package %}
+                                        <a href="https://anaconda.org/conda-forge/{{ software.conda_package }}" class="text-muted text-decoration-none">
+                                            Conda Error
                                         </a>
                                     {% else %}
                                         <span class="text-muted">N/A</span>
