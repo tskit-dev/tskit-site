@@ -7,7 +7,6 @@ docs_url: https://tskit.dev/tsdate/docs/stable/
 publication: https://doi.org/10.1126/science.abi8264
 category: infer
 python_package: tsdate
-conda_package: tsdate
 logo: https://raw.githubusercontent.com/tskit-dev/administrative/main/logos/svg/tsdate/Tskit_tsdate_logo_on_black_no_background.eps.svg
 priority: 4
 code_snippet: |2
