@@ -1,6 +1,7 @@
 name: Deploy site
 
 on:
+  workflow_dispatch:
   repository_dispatch:
   schedule:
     - cron: '29 11 * * *'
