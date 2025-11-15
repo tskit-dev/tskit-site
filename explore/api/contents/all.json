@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-11-15T11:31:28.442606Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-15T11:30:10.932611Z",
+      "mimetype": null,
+      "name": "sc2ts.ipynb",
+      "path": "sc2ts.ipynb",
+      "size": 44638,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-11-15T11:31:28.375607Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-15T11:31:28.375607Z",
+      "mimetype": null,
+      "name": "data",
+      "path": "data",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-11-15T11:31:28.442606Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-15T11:30:10.932611Z",
+      "mimetype": null,
+      "name": "tskit.ipynb",
+      "path": "tskit.ipynb",
+      "size": 14190,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2025-11-15T11:31:28.442606Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-11-15T11:31:28.442606Z",
+  "mimetype": null,
+  "name": "",
+  "path": "",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}
