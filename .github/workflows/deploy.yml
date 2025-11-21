@@ -65,6 +65,7 @@ jobs:
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tsbrowse/docs/stable\" />" > site/tsbrowse/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tsdate/docs/stable\" />" > site/tsdate/docs/index.html
           echo "<meta http-equiv=\"Refresh\" content=\"0; url=/tszip/docs/latest\" />" > site/tszip/docs/index.html
+          echo "<meta http-equiv=\"Refresh\" content=\"0; url=/sc2ts/docs/stable\" />" > site/sc2ts/docs/index.html
 
       - name: Inject analytics code
         run: |
