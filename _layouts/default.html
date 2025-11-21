@@ -27,9 +27,9 @@
     <meta content="{{ page.desription }}" name="description">
     <meta content="{{ page.description }}" property="og:description">
     <meta content="{{ page.description }}" property="twitter:description">
-    {% if page.logo %}}
-        <meta content="{{page.logo}}" property="og:image">
-        <meta content="{{page.logo}}" property="twitter:image">
+    {% if page.logo %}
+        <meta content="{{ page.logo | relative_url }}" property="og:image">
+        <meta content="{{ page.logo | relative_url }}" property="twitter:image">
     {% else %}
         <meta content="https://i.imgur.com/I9PBjvU.png" property="og:image">
         <meta content="https://i.imgur.com/I9PBjvU.png" property="twitter:image">
@@ -63,4 +63,3 @@
 
 </body>
 </html>
-

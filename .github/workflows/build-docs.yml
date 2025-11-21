@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [msprime, tsinfer, tskit, tstrait, tscompare, tsbrowse, pyslim, tsdate, tszip]
+        package: [msprime, tsinfer, tskit, tstrait, tscompare, tsbrowse, pyslim, tsdate, tszip, sc2ts]
         version: [latest, stable]
         include:
           - package: msprime
@@ -71,6 +71,10 @@ jobs:
           - package: tszip
             cache-version: v2
             requirements-path: requirements/CI-docs.txt
+
+          - package: sc2ts
+            cache-version: v1
+            allow-pre-stable: true
             
             
     steps:
@@ -86,8 +90,29 @@ jobs:
         if: matrix.version == 'stable'
         run: |
           git fetch --tags --recurse-submodules=no
-          git checkout `git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1`
+          # Choose a stable tag; optionally allow pre-releases via matrix.allow-pre-stable.
+          if [ "${{ matrix.allow-pre-stable }}" = "true" ]; then
+            tag=$(git tag --list --sort=creatordate | tail -n1)
+          else
+            tag=$(git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1)
+            if [ -z "$tag" ]; then
+              tag=$(git tag --list --sort=creatordate | tail -n1)
+            fi
+          fi
+          echo "CHECKOUT_TAG=$tag"
+          git checkout "$tag"
           git submodule update --init --recursive
+
+      - name: Show ref/sha/tag
+        run: |
+          echo "package=${{ matrix.package }}"
+          echo "version=${{ matrix.version }}"
+          echo "GITHUB_REF=${GITHUB_REF}"
+          echo "GITHUB_SHA=${GITHUB_SHA}"
+          echo "HEAD=$(git rev-parse HEAD)"
+          echo "DESCRIBE=$(git describe --tags --always --dirty || true)"
+          echo "Latest tags:"
+          git tag --list --sort=creatordate | tail -n5
 
       - name: Get commit SHA1 for cache
         run: git rev-parse HEAD > SHA1
@@ -152,4 +177,3 @@ jobs:
         with:
           name: ${{ matrix.package }}-${{ matrix.version }}-docs
           path: dist
-

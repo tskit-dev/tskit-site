@@ -2,7 +2,7 @@
     <h5 class="card__heading card__heading--type-2">
         <a href="{{ app.url | relative_url}}" style="color: white">
             {% if app.logo %}
-                <img class="card__heading__logo" src="{{ app.logo }}"/>
+                <img class="card__heading__logo" src="{{ app.logo | relative_url }}"/>
                 <span class="visually-hidden">
                     {{ app.title }}
                 </span>
@@ -75,4 +75,3 @@
 <!--        <span class="card__tag">Phylogenetics</span>-->
 <!--    </div>-->
 </div>
-
