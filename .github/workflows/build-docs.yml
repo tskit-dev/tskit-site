@@ -163,7 +163,13 @@ jobs:
         run: |
           source .venv/bin/activate
           cd docs
-          make dist
+          if [ "${{ matrix.package }}" = "sc2ts" ]; then
+            SC2TS_VERSION=$(git describe --tags --dirty --always)
+            echo "Using SC2TS_VERSION=${SC2TS_VERSION}"
+            make dist SC2TS_VERSION=${SC2TS_VERSION}
+          else
+            make dist
+          fi
           git checkout .
 
       - name: Copy docs
