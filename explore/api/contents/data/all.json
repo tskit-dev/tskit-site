@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-11-22T11:30:43.162390Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-22T11:29:26.193588Z",
+      "mimetype": null,
+      "name": "demo.arg",
+      "path": "data/demo.arg",
+      "size": 382004,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-11-22T11:30:43.184390Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-22T11:29:26.236588Z",
+      "mimetype": null,
+      "name": "sc2ts_viridian_v1.2.trees.tsz",
+      "path": "data/sc2ts_viridian_v1.2.trees.tsz",
+      "size": 33246340,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-11-22T11:30:43.163390Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-11-22T11:30:43.163390Z",
+  "mimetype": null,
+  "name": "data",
+  "path": "data",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}
