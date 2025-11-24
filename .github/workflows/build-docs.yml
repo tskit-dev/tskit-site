@@ -73,7 +73,7 @@ jobs:
             requirements-path: requirements/CI-docs.txt
 
           - package: sc2ts
-            cache-version: v1
+            cache-version: v2
             allow-pre-stable: true
             
             
@@ -161,12 +161,15 @@ jobs:
       - name: Build Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
-          source .venv/bin/activate
+          VENV_DIR="$(pwd)/.venv"
           cd docs
           if [ "${{ matrix.package }}" = "sc2ts" ]; then
             SC2TS_VERSION=$(git describe --tags --dirty --always)
             echo "Using SC2TS_VERSION=${SC2TS_VERSION}"
-            make dist SC2TS_VERSION=${SC2TS_VERSION}
+            # Ensure sc2ts is importable for version stamping
+            uv pip install -e ..
+            uv run --no-sync python -c "import sc2ts; print('sc2ts.__version__:', getattr(sc2ts, '__version__', '<missing>'))"
+            PATH="$VENV_DIR/bin:$PATH" make dist SC2TS_VERSION=${SC2TS_VERSION}
           else
             make dist
           fi
