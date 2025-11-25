@@ -34,9 +34,9 @@ jobs:
             make-command: make
             
           - package: tskit
-            cache-version: v16
+            cache-version: v17
             additional-setup: sudo apt-get install -y libgsl0-dev doxygen
-            requirements-path: python/requirements/CI-docs/requirements.txt
+            allow-pre-stable: true
             make-command: make -C python
             
           - package: tstrait
