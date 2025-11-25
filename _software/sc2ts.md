@@ -12,7 +12,7 @@ priority: 5
 code_snippet: |2
   import tszip, sc2ts
 
-  ts = tszip.load("sc2ts_viridian_v1.2.trees")
+  ts = tszip.load("sc2ts_viridian_v1.2.trees.tsz")
   df_node = sc2ts.node_data(ts)
 redirect_from:
   - /sc2ts/
