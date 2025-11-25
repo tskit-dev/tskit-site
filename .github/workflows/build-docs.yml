@@ -37,22 +37,23 @@ jobs:
             cache-version: v17
             additional-setup: sudo apt-get install -y libgsl0-dev doxygen
             allow-pre-stable: true
+            subdir: python
             make-command: make -C python
             
           - package: tstrait
-            cache-version: v4
+            cache-version: v5
             
           - package: tscompare
-            cache-version: v1
+            cache-version: v2
             requirements-path: requirements/CI-docs-pip/requirements.txt
             
           - package: tsbrowse
-            cache-version: v2
+            cache-version: v3
             requirements-path: requirements.txt
             additional-setup: uv run --no-sync playwright install
             
           - package: pyslim
-            cache-version: v6
+            cache-version: v7
             additional-setup: |
               sudo apt-get update
               sudo apt-get install -y inkscape
@@ -64,16 +65,16 @@ jobs:
               sudo make install
             
           - package: tsdate
-            cache-version: v8
+            cache-version: v9
             requirements-path: docs/requirements.txt
             
             
           - package: tszip
-            cache-version: v2
+            cache-version: v3
             requirements-path: requirements/CI-docs.txt
 
           - package: sc2ts
-            cache-version: v2
+            cache-version: v3
             allow-pre-stable: true
             
             
@@ -161,18 +162,14 @@ jobs:
       - name: Build Docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
-          VENV_DIR="$(pwd)/.venv"
-          cd docs
-          if [ "${{ matrix.package }}" = "sc2ts" ]; then
-            SC2TS_VERSION=$(git describe --tags --dirty --always)
-            echo "Using SC2TS_VERSION=${SC2TS_VERSION}"
-            # Ensure sc2ts is importable for version stamping
-            uv pip install -e ..
-            uv run --no-sync python -c "import sc2ts; print('sc2ts.__version__:', getattr(sc2ts, '__version__', '<missing>'))"
-            PATH="$VENV_DIR/bin:$PATH" make dist SC2TS_VERSION=${SC2TS_VERSION}
-          else
-            make dist
+          source .venv/bin/activate
+          cd ${{ matrix.subdir || '.' }}
+          uv pip install -e .
+          if ${{ matrix.subdir || 'false' }}; then
+            cd ..
           fi
+          cd docs
+          make dist
           git checkout .
 
       - name: Copy docs
