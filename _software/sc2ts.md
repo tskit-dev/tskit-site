@@ -10,9 +10,10 @@ python_package: sc2ts
 logo: /assets/sc2ts.png
 priority: 5
 code_snippet: |2
-  import sc2ts
-  ts = sc2ts.load_tree_sequence("viridian_data.sc2ts.zarr")
-  sc2ts.describe(ts)
+  import tszip, sc2ts
+
+  ts = tszip.load("sc2ts_viridian_v1.2.trees")
+  df_node = sc2ts.node_data(ts)
 redirect_from:
   - /sc2ts/
 ---
