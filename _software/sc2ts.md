@@ -4,7 +4,7 @@ title: sc2ts
 name: sc2ts
 gh_org: tskit-dev
 docs_url: https://tskit.dev/sc2ts/docs/
-publication: https://www.biorxiv.org/content/10.1101/2023.06.08.544212v2
+publication: https://www.biorxiv.org/content/10.1101/2023.06.08.544212v3
 category: infer
 python_package: sc2ts
 logo: /assets/sc2ts.png
