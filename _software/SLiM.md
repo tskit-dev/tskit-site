@@ -6,7 +6,7 @@ gh_org: MesserLab
 homepage: https://messerlab.org/slim/
 docs_url: http://benhaller.com/slim/SLiM_Manual.pdf
 publication: https://doi.org/10.1093/molbev/msy228
-logo: https://i.imgur.com/x54xJoK.jpg
+logo: https://github.com/MesserLab/SLiM/blob/master/QtSLiM/icons/AppIcon64.svg
 priority: 10
 force_show_title: true
 category: simulate
