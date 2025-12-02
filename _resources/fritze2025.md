@@ -8,3 +8,5 @@ ancestral recombination graph (ARG) are important, shows how
 to infer them, and discusses why this can make tree sequence
 encodings of ARGs more efficient. The functionality is
 implemented in the _tskit_ `ts.extend_haplotypes()` method.
+The paper also describes haplotype-aware methods to compare
+tree sequences, implemented in the _tscompare_ library.
