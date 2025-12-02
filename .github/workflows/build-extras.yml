@@ -57,14 +57,43 @@ jobs:
         with:
           ref: main
           repository: tskit-dev/tskit-explore
+
+      - name: Get commit SHA1 for cache
+        run: git rev-parse HEAD > SHA1
+
+      - uses: actions/cache@v4.2.2
+        id: tskit-explore-cache
+        name: tskit-explore cache
+        with:
+          path: dist
+          key: tskit-explore-v1-${{ hashFiles('SHA1') }}
+
+      - name: Setup Miniconda (for Pyodide build)
+        if: steps.tskit-explore-cache.outputs.cache-hit != 'true'
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          auto-activate-base: false
+          miniforge-variant: Miniforge3
+          miniforge-version: latest
+      - name: Setup Rust toolchain
+        if: steps.tskit-explore-cache.outputs.cache-hit != 'true'
+        uses: dtolnay/rust-toolchain@stable
       - name: Setup Python
+        if: steps.tskit-explore-cache.outputs.cache-hit != 'true'
         uses: actions/setup-python@v5.4.0
         with:
           python-version: '3.11'
       - name: Install the dependencies
+        if: steps.tskit-explore-cache.outputs.cache-hit != 'true'
         run: |
           python -m pip install -r requirements.txt
+      - name: Build Pyodide world
+        if: steps.tskit-explore-cache.outputs.cache-hit != 'true'
+        run: |
+          ./build_pyodide_world.sh
       - name: Build the JupyterLite site
+        if: steps.tskit-explore-cache.outputs.cache-hit != 'true'
         run: |
           ./build.sh
       - name: Upload artifact
