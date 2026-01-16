@@ -16,6 +16,7 @@ code_snippet: |2
   python -m tsbrowse serve example.tsbrowse
 redirect_from:
   - /tsbrowse/
+citation_url: https://doi.org/10.1093/bioinformatics/btaf393
 ---
 
 tsbrowse is a Python package that creates a webapp for exploration of the data model
