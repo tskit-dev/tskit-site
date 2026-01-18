@@ -15,7 +15,7 @@ permalink: /news/
                          </div>
                     </div>
                     <div class="row">
-                        {% assign news = site.news | sort: "timestamp" | reverse %}
+                        {% assign news = site.news | sort_by_timestamp %}
                         {% for b in news %}
                         <div class="col-lg-4">
                             <!-- START: card -->
