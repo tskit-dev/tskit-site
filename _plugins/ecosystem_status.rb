@@ -45,8 +45,8 @@ module Jekyll
           releases = fetch_github_api("https://api.github.com/repos/#{gh_org}/#{repo_name}/releases", headers)
           latest_release = releases.first if releases && !releases.empty?
           
-          # Get commit info for main branch
-          commits = fetch_github_api("https://api.github.com/repos/#{gh_org}/#{repo_name}/commits?sha=main&per_page=1", headers)
+          # Get commit info for default branch
+          commits = fetch_github_api("https://api.github.com/repos/#{gh_org}/#{repo_name}/commits?per_page=1", headers)
           latest_commit = commits.first if commits && !commits.empty?
           
           # Get PR info
