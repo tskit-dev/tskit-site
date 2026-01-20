@@ -40,13 +40,14 @@ module Jekyll
         begin
           # Get repository info
           repo_info = fetch_github_api("https://api.github.com/repos/#{gh_org}/#{repo_name}", headers)
+          default_branch = repo_info&.dig('default_branch') || 'main'
           
           # Get releases
           releases = fetch_github_api("https://api.github.com/repos/#{gh_org}/#{repo_name}/releases", headers)
           latest_release = releases.first if releases && !releases.empty?
           
           # Get commit info for default branch
-          commits = fetch_github_api("https://api.github.com/repos/#{gh_org}/#{repo_name}/commits?per_page=1", headers)
+          commits = fetch_github_api("https://api.github.com/repos/#{gh_org}/#{repo_name}/commits?sha=#{default_branch}&per_page=1", headers)
           latest_commit = commits.first if commits && !commits.empty?
           
           # Get PR info
@@ -95,7 +96,7 @@ module Jekyll
           commits_since_release = 0
           if latest_release && latest_commit
             release_commit_sha = latest_release['target_commitish'] || 'main'
-            comparison = fetch_github_api("https://api.github.com/repos/#{gh_org}/#{repo_name}/compare/#{latest_release['tag_name']}...main", headers)
+            comparison = fetch_github_api("https://api.github.com/repos/#{gh_org}/#{repo_name}/compare/#{latest_release['tag_name']}...#{default_branch}", headers)
             commits_since_release = comparison['ahead_by'] if comparison
           end
           
