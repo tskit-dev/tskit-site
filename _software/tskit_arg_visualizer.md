@@ -9,6 +9,7 @@ logo: https://raw.githubusercontent.com/kitchensjn/tskit_arg_visualizer/refs/hea
 category: analyse
 python_package: tskit_arg_visualizer
 priority: 17
+force_show_title: true
 code_snippet: |2
   d3arg = tskit_arg_visualizer.D3ARG.from_ts(ts)
   d3arg.draw()
