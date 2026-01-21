@@ -10,6 +10,7 @@ docs_url: https://tskit.dev/pyslim/docs/stable
 category: analyse
 python_package: pyslim
 conda_package: pyslim
+publication: https://doi.org/10.1101/2025.09.30.679676
 priority: 12
 code_snippet: |2
   rts = pyslim.recapitate(
@@ -18,7 +19,7 @@ code_snippet: |2
   )
 redirect_from:
   - /pyslim/
-citation_url: https://zenodo.org/records/8205346
+citation_url: https://doi.org/10.1101/2025.09.30.679676
 ---
 
 pyslim is a small python package to help analyse and manipulate tree sequences
