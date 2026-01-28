@@ -17,6 +17,12 @@ code_snippet: |2
       initializeMutationType(
           "m1", 0.5, "e", 0.001
       );
+      initializeGenomicElementType(
+          "g1", m1, 1.0
+      );
+      initializeGenomicElement(
+          g1, 0, 999999
+      );
       initializeRecombinationRate(1e-8);
   }
   1 early() { sim.addSubpop("p1", 500); }
