@@ -1,0 +1,869 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python API &#8212; sc2ts manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api';</script>
+    <link rel="icon" href="_static/sc2ts.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Development" href="development.html" />
+    <link rel="prev" title="Command line interface" href="cli.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/sc2ts.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/sc2ts.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 1.0.2.dev2</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arg_analysis.html">ARG analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alignments_analysis.html">Alignments analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Python API</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Misc</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/api.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python API</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arg-analysis">ARG analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.node_data"><code class="docutils literal notranslate"><span class="pre">node_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.mutation_data"><code class="docutils literal notranslate"><span class="pre">mutation_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-and-metadata-analysis">Alignment and metadata analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset"><code class="docutils literal notranslate"><span class="pre">Dataset</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.alignment"><code class="docutils literal notranslate"><span class="pre">Dataset.alignment</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.metadata"><code class="docutils literal notranslate"><span class="pre">Dataset.metadata</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.metadata_dataframe"><code class="docutils literal notranslate"><span class="pre">Dataset.metadata_dataframe()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.sample_id"><code class="docutils literal notranslate"><span class="pre">Dataset.sample_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.num_samples"><code class="docutils literal notranslate"><span class="pre">Dataset.num_samples</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.num_variants"><code class="docutils literal notranslate"><span class="pre">Dataset.num_variants</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.variants"><code class="docutils literal notranslate"><span class="pre">Dataset.variants()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.write_fasta"><code class="docutils literal notranslate"><span class="pre">Dataset.write_fasta()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Variant"><code class="docutils literal notranslate"><span class="pre">Variant</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.decode_alleles"><code class="docutils literal notranslate"><span class="pre">decode_alleles()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.mask_ambiguous"><code class="docutils literal notranslate"><span class="pre">mask_ambiguous()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.mask_flanking_deletions"><code class="docutils literal notranslate"><span class="pre">mask_flanking_deletions()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-constants-and-helpers">Core constants and helpers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.IUPAC_ALLELES"><code class="docutils literal notranslate"><span class="pre">IUPAC_ALLELES</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.decode_flags"><code class="docutils literal notranslate"><span class="pre">decode_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.flags_summary"><code class="docutils literal notranslate"><span class="pre">flags_summary()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="python-api">
+<span id="sec-python-api"></span><h1>Python API<a class="headerlink" href="#python-api" title="Link to this heading">#</a></h1>
+<p>This page documents the public Python API exposed by <code class="docutils literal notranslate"><span class="pre">sc2ts</span></code>.
+Inference is driven via the command line interface (see the
+<a class="reference internal" href="cli.html#sc2ts-sec-cli"><span class="std std-ref">CLI documentation</span></a>); the functions and classes
+listed here are intended for working with tree sequences and datasets
+that have already been generated.</p>
+<section id="arg-analysis">
+<h2>ARG analysis<a class="headerlink" href="#arg-analysis" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sc2ts.node_data" title="sc2ts.node_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">node_data</span></code></a>(ts[, inheritance_stats])</p></td>
+<td><p>Return a dataframe of per-node statistics for a sc2ts tree sequence.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sc2ts.mutation_data" title="sc2ts.mutation_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mutation_data</span></code></a>(ts[, inheritance_stats, ...])</p></td>
+<td><p>Return a dataframe of per-mutation statistics for a sc2ts tree sequence.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="sc2ts.node_data">
+<span class="sig-prename descclassname"><span class="pre">sc2ts.</span></span><span class="sig-name descname"><span class="pre">node_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inheritance_stats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sc2ts/stats.html#node_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sc2ts.node_data" title="Link to this definition">#</a></dt>
+<dd><p>Return a dataframe of per-node statistics for a sc2ts tree sequence.</p>
+<p>The input <code class="docutils literal notranslate"><span class="pre">ts</span></code> must be the output of the <code class="docutils literal notranslate"><span class="pre">sc2ts</span> <span class="pre">minimise-metadata</span></code>
+CLI command (debug metadata from raw inference runs is not supported).
+Each row in the returned <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> corresponds to a node
+ID and includes basic metadata, flags and mutation counts, with optional
+inheritance statistics.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Computing inheritance_stats requires numba, which is not installed
+in the minimal version of sc2ts for portability reasons. You will
+need to install the full “inference” build of sc2ts, or install
+numba manually to access this feature.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ts</strong> (<a class="reference external" href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence" title="(in Project name not set)"><em>tskit.TreeSequence</em></a>) – Tree sequence produced by the
+<code class="docutils literal notranslate"><span class="pre">sc2ts</span> <span class="pre">minimise-metadata</span></code> CLI command.</p></li>
+<li><p><strong>inheritance_stats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, include additional statistics
+summarising the inheritance patterns of each node. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dataframe of per-node statistics</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)">pandas.DataFrame</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sc2ts.mutation_data">
+<span class="sig-prename descclassname"><span class="pre">sc2ts.</span></span><span class="sig-name descname"><span class="pre">mutation_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inheritance_stats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parsimony_stats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sc2ts/stats.html#mutation_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sc2ts.mutation_data" title="Link to this definition">#</a></dt>
+<dd><p>Return a dataframe of per-mutation statistics for a sc2ts tree sequence.</p>
+<p>The input <code class="docutils literal notranslate"><span class="pre">ts</span></code> must be the output of the <code class="docutils literal notranslate"><span class="pre">sc2ts</span> <span class="pre">minimise-metadata</span></code>
+CLI command. Each row in the returned <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>
+corresponds to a mutation ID and includes positional information, states,
+and optional inheritance and parsimony statistics.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Computing inheritance_stats requires numba, which is not installed
+in the minimal version of sc2ts for portability reasons. You will
+need to install the full “inference” build of sc2ts, or install
+numba manually to access this feature.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ts</strong> (<a class="reference external" href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence" title="(in Project name not set)"><em>tskit.TreeSequence</em></a>) – Tree sequence produced by the
+<code class="docutils literal notranslate"><span class="pre">sc2ts</span> <span class="pre">minimise-metadata</span></code> CLI command.</p></li>
+<li><p><strong>inheritance_stats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, include descendant and
+inheritor counts for each mutation. Defaults to False.</p></li>
+<li><p><strong>parsimony_stats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, compute additional parsimony-based
+diagnostics such as flagging immediate reversions. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataframe of per-mutation statistics</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)">pandas.DataFrame</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="alignment-and-metadata-analysis">
+<h2>Alignment and metadata analysis<a class="headerlink" href="#alignment-and-metadata-analysis" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sc2ts.Dataset" title="sc2ts.Dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code></a>(path[, chunk_cache_size, date_field])</p></td>
+<td><p>Open a sc2ts VCF Zarr dataset for convenient access to alignments and metadata.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sc2ts.decode_alleles" title="sc2ts.decode_alleles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decode_alleles</span></code></a>(a)</p></td>
+<td><p>Decode an array of integer-encoded alleles into their IUPAC string values returned as a numpy array.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sc2ts.mask_ambiguous" title="sc2ts.mask_ambiguous"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mask_ambiguous</span></code></a>(a)</p></td>
+<td><p>Mask all ambiguous and non-standard alleles in an encoded alignment array.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sc2ts.mask_flanking_deletions" title="sc2ts.mask_flanking_deletions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mask_flanking_deletions</span></code></a>(a)</p></td>
+<td><p>Mask sites flanking the first and last non-deletion allele in an alignment.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="sc2ts.Dataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sc2ts.</span></span><span class="sig-name descname"><span class="pre">Dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_cache_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sc2ts/dataset.html#Dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sc2ts.Dataset" title="Link to this definition">#</a></dt>
+<dd><p>Open a sc2ts VCF Zarr dataset for convenient access to alignments and metadata.</p>
+<p>The dataset is opened read-only from <code class="docutils literal notranslate"><span class="pre">path</span></code>, which may be either a
+directory store or a consolidated <code class="docutils literal notranslate"><span class="pre">.zip</span></code> file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Path to a directory or <code class="docutils literal notranslate"><span class="pre">.zip</span></code> Zarr store.</p></li>
+<li><p><strong>chunk_cache_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Maximum number of chunks to cache for
+alignments and metadata. Defaults to 1.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="sc2ts.Dataset.alignment">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">alignment</span></span><a class="headerlink" href="#sc2ts.Dataset.alignment" title="Link to this definition">#</a></dt>
+<dd><p>Efficient mapping of sample ID strings to integer encoded alignment data.</p>
+<p>The returned object is dictionary-like implemening the Mapping protocol.
+Access to the underlying Zarr store is mediated by a chunk cache, so that
+chunks are not repeatedly decompressed.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sc2ts.Dataset.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#sc2ts.Dataset.metadata" title="Link to this definition">#</a></dt>
+<dd><p>Efficient mapping of sample ID strings to metadata dictionaries.</p>
+<p>The returned object is dictionary-like implemening the Mapping protocol.
+Access to the underlying Zarr store is mediated by a chunk cache, so that
+chunks are not repeatedly decompressed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sc2ts.Dataset.metadata_dataframe">
+<span class="sig-name descname"><span class="pre">metadata_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sc2ts/dataset.html#Dataset.metadata_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sc2ts.Dataset.metadata_dataframe" title="Link to this definition">#</a></dt>
+<dd><p>Returns the metadata in this dataset as a Pandas dataframe,
+indexed by sample_id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fields</strong> – List of metadata fields to include; if <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+all fields are used.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Pandas dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sc2ts.Dataset.sample_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sample_id</span></span><a class="headerlink" href="#sc2ts.Dataset.sample_id" title="Link to this definition">#</a></dt>
+<dd><p>The sample IDs as a numpy string array.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sc2ts.Dataset.num_samples">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_samples</span></span><a class="headerlink" href="#sc2ts.Dataset.num_samples" title="Link to this definition">#</a></dt>
+<dd><p>Return the number of samples in this dataset.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sc2ts.Dataset.num_variants">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_variants</span></span><a class="headerlink" href="#sc2ts.Dataset.num_variants" title="Link to this definition">#</a></dt>
+<dd><p>Return the number of variants in this dataset. Note that this does not mean that
+there’s necessarily variation at each site; the terminology is borrowed from
+VCF Zarr.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sc2ts.Dataset.variants">
+<span class="sig-name descname"><span class="pre">variants</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sc2ts/dataset.html#Dataset.variants"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sc2ts.Dataset.variants" title="Link to this definition">#</a></dt>
+<dd><p>Iterate over variants at the specified positions for the given samples.</p>
+<p>Yields <a class="reference internal" href="#sc2ts.Variant" title="sc2ts.Variant"><code class="xref py py-class docutils literal notranslate"><span class="pre">Variant</span></code></a> objects containing the genomic position, encoded
+genotypes, and allele labels for each requested site.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample_id</strong> – Iterable of sample IDs to include; if <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+all samples are used.</p></li>
+<li><p><strong>position</strong> – Iterable of genomic positions to extract; if
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, all variant positions are used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Generator over Variant records for the requested sites.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.14)">collections.abc.Iterator</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sc2ts.Dataset.write_fasta">
+<span class="sig-name descname"><span class="pre">write_fasta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sc2ts/dataset.html#Dataset.write_fasta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sc2ts.Dataset.write_fasta" title="Link to this definition">#</a></dt>
+<dd><p>Writes the alignment data in FASTA format to the specified file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sc2ts.Variant">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sc2ts.</span></span><span class="sig-name descname"><span class="pre">Variant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genotypes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alleles</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sc2ts/dataset.html#Variant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sc2ts.Variant" title="Link to this definition">#</a></dt>
+<dd><p>Represents a single variant, including the genomic position and the integer encoded
+genotypes.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sc2ts.decode_alleles">
+<span class="sig-prename descclassname"><span class="pre">sc2ts.</span></span><span class="sig-name descname"><span class="pre">decode_alleles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sc2ts/dataset.html#decode_alleles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sc2ts.decode_alleles" title="Link to this definition">#</a></dt>
+<dd><p>Decode an array of integer-encoded alleles into their IUPAC string values
+returned as a numpy array.</p>
+<p>The input should use the encoding defined by <code class="docutils literal notranslate"><span class="pre">core.IUPAC_ALLELES</span></code>,
+with <code class="docutils literal notranslate"><span class="pre">-1</span></code> representing missing data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – Integer-encoded alignment array.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Array of single-character IUPAC allele codes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sc2ts.mask_ambiguous">
+<span class="sig-prename descclassname"><span class="pre">sc2ts.</span></span><span class="sig-name descname"><span class="pre">mask_ambiguous</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sc2ts/dataset.html#mask_ambiguous"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sc2ts.mask_ambiguous" title="Link to this definition">#</a></dt>
+<dd><p>Mask all ambiguous and non-standard alleles in an encoded alignment array.</p>
+<p>Values corresponding to ambiguous IUPAC codes (and other values beyond the
+deletion code) are replaced with <code class="docutils literal notranslate"><span class="pre">-1</span></code> in a copy of <code class="docutils literal notranslate"><span class="pre">a</span></code>, leaving the
+original array unchanged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – Integer-encoded alignment array.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Copy of <code class="docutils literal notranslate"><span class="pre">a</span></code> with ambiguous alleles replaced by <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sc2ts.mask_flanking_deletions">
+<span class="sig-prename descclassname"><span class="pre">sc2ts.</span></span><span class="sig-name descname"><span class="pre">mask_flanking_deletions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sc2ts/dataset.html#mask_flanking_deletions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sc2ts.mask_flanking_deletions" title="Link to this definition">#</a></dt>
+<dd><p>Mask sites flanking the first and last non-deletion allele in an alignment.</p>
+<p>Positions before the first non-deletion and after the last non-deletion
+in the encoded alignment are set to <code class="docutils literal notranslate"><span class="pre">-1</span></code> in a copy of <code class="docutils literal notranslate"><span class="pre">a</span></code>. If the
+alignment consists entirely of deletions, all sites are masked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – Integer-encoded alignment array.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Copy of <code class="docutils literal notranslate"><span class="pre">a</span></code> with flanking sites masked to <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="core-constants-and-helpers">
+<h2>Core constants and helpers<a class="headerlink" href="#core-constants-and-helpers" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sc2ts.decode_flags" title="sc2ts.decode_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decode_flags</span></code></a>(f)</p></td>
+<td><p>Return the list of FlagValue records set in the given flag mask.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sc2ts.flags_summary" title="sc2ts.flags_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flags_summary</span></code></a>(f)</p></td>
+<td><p>Return a compact string summarising the flags set in the given mask.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py data">
+<dt class="sig sig-object py" id="sc2ts.IUPAC_ALLELES">
+<span class="sig-prename descclassname"><span class="pre">sc2ts.</span></span><span class="sig-name descname"><span class="pre">IUPAC_ALLELES</span></span><a class="headerlink" href="#sc2ts.IUPAC_ALLELES" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sc2ts.decode_flags">
+<span class="sig-prename descclassname"><span class="pre">sc2ts.</span></span><span class="sig-name descname"><span class="pre">decode_flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sc2ts/core.html#decode_flags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sc2ts.decode_flags" title="Link to this definition">#</a></dt>
+<dd><p>Return the list of FlagValue records set in the given flag mask.</p>
+<p>The input <code class="docutils literal notranslate"><span class="pre">f</span></code> is interpreted as a bitmask of tskit and sc2ts-specific
+node flags. Each returned FlagValue describes a single flag,
+including its integer value, short code, long name, and text description.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Integer bitmask of node flags to decode.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of flag descriptors corresponding to the bits set in <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sc2ts.flags_summary">
+<span class="sig-prename descclassname"><span class="pre">sc2ts.</span></span><span class="sig-name descname"><span class="pre">flags_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sc2ts/core.html#flags_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sc2ts.flags_summary" title="Link to this definition">#</a></dt>
+<dd><p>Return a compact string summarising the flags set in the given mask.</p>
+<p>Each character in the returned string corresponds to a known flag; set
+flags are shown using their short code and unset flags as <code class="docutils literal notranslate"><span class="pre">&quot;_&quot;</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Integer bitmask of node flags to summarise.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Summary string showing short codes for set flags.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cli.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Command line interface</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="development.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Development</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arg-analysis">ARG analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.node_data"><code class="docutils literal notranslate"><span class="pre">node_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.mutation_data"><code class="docutils literal notranslate"><span class="pre">mutation_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-and-metadata-analysis">Alignment and metadata analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset"><code class="docutils literal notranslate"><span class="pre">Dataset</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.alignment"><code class="docutils literal notranslate"><span class="pre">Dataset.alignment</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.metadata"><code class="docutils literal notranslate"><span class="pre">Dataset.metadata</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.metadata_dataframe"><code class="docutils literal notranslate"><span class="pre">Dataset.metadata_dataframe()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.sample_id"><code class="docutils literal notranslate"><span class="pre">Dataset.sample_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.num_samples"><code class="docutils literal notranslate"><span class="pre">Dataset.num_samples</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.num_variants"><code class="docutils literal notranslate"><span class="pre">Dataset.num_variants</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.variants"><code class="docutils literal notranslate"><span class="pre">Dataset.variants()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Dataset.write_fasta"><code class="docutils literal notranslate"><span class="pre">Dataset.write_fasta()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.Variant"><code class="docutils literal notranslate"><span class="pre">Variant</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.decode_alleles"><code class="docutils literal notranslate"><span class="pre">decode_alleles()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.mask_ambiguous"><code class="docutils literal notranslate"><span class="pre">mask_ambiguous()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.mask_flanking_deletions"><code class="docutils literal notranslate"><span class="pre">mask_flanking_deletions()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-constants-and-helpers">Core constants and helpers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.IUPAC_ALLELES"><code class="docutils literal notranslate"><span class="pre">IUPAC_ALLELES</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.decode_flags"><code class="docutils literal notranslate"><span class="pre">decode_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts.flags_summary"><code class="docutils literal notranslate"><span class="pre">flags_summary()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By sc2ts developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

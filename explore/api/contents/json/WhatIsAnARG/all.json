@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-01-21T22:25:25.743159Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-01-21T22:25:25.743159Z",
+      "mimetype": null,
+      "name": "Workbook2",
+      "path": "json/WhatIsAnARG/Workbook2",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-01-21T22:25:25.733159Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-01-21T22:25:25.733159Z",
+      "mimetype": null,
+      "name": "Workbook1",
+      "path": "json/WhatIsAnARG/Workbook1",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    }
+  ],
+  "created": "2026-01-21T22:25:25.734159Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-01-21T22:25:25.734159Z",
+  "mimetype": null,
+  "name": "WhatIsAnARG",
+  "path": "json/WhatIsAnARG",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

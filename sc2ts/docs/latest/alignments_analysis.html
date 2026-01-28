@@ -1,0 +1,1362 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Alignments analysis &#8212; sc2ts manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'alignments_analysis';</script>
+    <link rel="icon" href="_static/sc2ts.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Command line interface" href="cli.html" />
+    <link rel="prev" title="ARG analysis" href="arg_analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/sc2ts.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/sc2ts.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 1.0.2.dev2</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arg_analysis.html">ARG analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Alignments analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Misc</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/alignments_analysis.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Alignments analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-and-getting-information">Loading and getting information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-per-sample-information">Accessing per-sample information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-data-encoding">Alignment data encoding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-data">Missing data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-by-variant">Accessing by variant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-metadata-analysis">Bulk metadata analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-fasta-output">Getting FASTA output</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="alignments-analysis">
+<span id="sec-alignments-analysis"></span><h1>Alignments analysis<a class="headerlink" href="#alignments-analysis" title="Link to this heading">#</a></h1>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<p>Download the first 1000 samples of the Viridian dataset (450K):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">tskit</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">sc2ts</span><span class="o">/</span><span class="n">refs</span><span class="o">/</span><span class="n">heads</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">viridian_mafft_subset_1000_v1</span><span class="o">.</span><span class="n">vcz</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+<p>We’ll use this small subset as an example throughout.</p>
+</section>
+<section id="loading-and-getting-information">
+<h2>Loading and getting information<a class="headerlink" href="#loading-and-getting-information" title="Link to this heading">#</a></h2>
+<p>To load up a dataset, we use the <a class="reference internal" href="api.html#sc2ts.Dataset" title="sc2ts.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> constructor:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sc2ts</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">sc2ts</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="s2">&quot;viridian_mafft_subset_1000_v1.vcz.zip&quot;</span><span class="p">)</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>Dataset at viridian_mafft_subset_1000_v1.vcz.zip with 1000 samples, 29903 variants, and 30 metadata fields. See ds.metadata.field_descriptors() for a description of the fields.</p>
+</div>
+</div>
+<p>When we return the dataset object from a notebook cell (as here) it prints
+out a summary of the contents. Here, we’re working with a small subset
+of the Viridian dataset consisting of the first 1000 samples at the 29903
+sites in the SARS-CoV-2 genome.</p>
+<p>The basic information is also available in the <a class="reference internal" href="api.html#sc2ts.Dataset.num_samples" title="sc2ts.Dataset.num_samples"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Dataset.num_samples</span></code></a>
+and <a class="reference internal" href="api.html#sc2ts.Dataset.num_variants" title="sc2ts.Dataset.num_variants"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Dataset.num_variants</span></code></a> attributes.</p>
+<p>To get information on the metadata fields that are present, we can use</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">field_descriptors</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dtype</th>
+      <th>description</th>
+    </tr>
+    <tr>
+      <th>field</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Artic_primer_version</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Collection_date</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Date_tree</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Date_tree_order</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Experiment</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>First_created</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Genbank_N</th>
+      <td>int16</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Genbank_accession</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Genbank_other_runs</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Genbank_pangolin</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Genbank_scorpio</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Genbank_tree_name</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>In_Viridian_tree</th>
+      <td>bool</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>In_intersection</th>
+      <td>bool</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>In_may_2024_preprint</th>
+      <td>bool</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Platform</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Region</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Run_count</th>
+      <td>int8</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Sample</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Study</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Viridian_N</th>
+      <td>int8</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Viridian_amplicon_scheme</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Viridian_cons_het</th>
+      <td>int8</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Viridian_cons_len</th>
+      <td>int16</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Viridian_pangolin</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Viridian_pangolin_1.29</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Viridian_result</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Viridian_scorpio</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Viridian_scorpio_1.29</th>
+      <td>object</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">description</span></code> column is currently empty because of a bug in the
+data ingest pipeline for the Virian data. Later versions will include
+this information so that the dataset is self-describing.
+See <a class="reference external" href="https://github.com/tskit-dev/sc2ts/issues/579">GitHub issue</a>.</p>
+</div>
+</section>
+<section id="accessing-per-sample-information">
+<h2>Accessing per-sample information<a class="headerlink" href="#accessing-per-sample-information" title="Link to this heading">#</a></h2>
+<p>The easiest way to get information about a single sample is through the
+the <code class="docutils literal notranslate"><span class="pre">.metadata</span></code> and <code class="docutils literal notranslate"><span class="pre">.haplotypes</span></code> interfaces. First, let’s get
+the sample IDs for the first 10 samples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">sample_id</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;SRR11772659&#39;, &#39;SRR11597132&#39;, &#39;SRR12162233&#39;, &#39;SRR12162234&#39;,
+       &#39;SRR11597217&#39;, &#39;SRR11597146&#39;, &#39;SRR11597216&#39;, &#39;SRR11597213&#39;,
+       &#39;SRR11494763&#39;, &#39;SRR11593364&#39;], dtype=&#39;&lt;U11&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, we can get the metadata for a given sample as a dictionary using
+the <a class="reference internal" href="api.html#sc2ts.Dataset.metadata" title="sc2ts.Dataset.metadata"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Dataset.metadata</span></code></a> interface:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;SRR11597146&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Artic_primer_version&#39;: &#39;.&#39;,
+ &#39;Collection_date&#39;: &#39;2020-02-07&#39;,
+ &#39;Country&#39;: &#39;China&#39;,
+ &#39;Date_tree&#39;: &#39;2020-02-07&#39;,
+ &#39;Date_tree_order&#39;: &#39;Date&#39;,
+ &#39;Experiment&#39;: &#39;SRX8164032&#39;,
+ &#39;First_created&#39;: &#39;2020-05-14&#39;,
+ &#39;Genbank_N&#39;: -1,
+ &#39;Genbank_accession&#39;: &#39;.&#39;,
+ &#39;Genbank_other_runs&#39;: &#39;.&#39;,
+ &#39;Genbank_pangolin&#39;: &#39;.&#39;,
+ &#39;Genbank_scorpio&#39;: &#39;.&#39;,
+ &#39;Genbank_tree_name&#39;: &#39;.&#39;,
+ &#39;In_Viridian_tree&#39;: True,
+ &#39;In_intersection&#39;: False,
+ &#39;In_may_2024_preprint&#39;: True,
+ &#39;Platform&#39;: &#39;ILLUMINA&#39;,
+ &#39;Region&#39;: &#39;Shanghai&#39;,
+ &#39;Run_count&#39;: 1,
+ &#39;Sample&#39;: &#39;SAMN14678656&#39;,
+ &#39;Study&#39;: &#39;PRJNA627662&#39;,
+ &#39;Viridian_N&#39;: 0,
+ &#39;Viridian_amplicon_scheme&#39;: &#39;COVID-ARTIC-V3&#39;,
+ &#39;Viridian_cons_het&#39;: 0,
+ &#39;Viridian_cons_len&#39;: 29836,
+ &#39;Viridian_pangolin&#39;: &#39;A&#39;,
+ &#39;Viridian_pangolin_1.29&#39;: &#39;A&#39;,
+ &#39;Viridian_result&#39;: &#39;PASS&#39;,
+ &#39;Viridian_scorpio&#39;: &#39;.&#39;,
+ &#39;Viridian_scorpio_1.29&#39;: &#39;.&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similarly, we can get the integer encoded alignment for a sample using
+the <a class="reference internal" href="api.html#sc2ts.Dataset.alignment" title="sc2ts.Dataset.alignment"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Dataset.alignment</span></code></a> interface:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">alignment</span><span class="p">[</span><span class="s2">&quot;SRR11597146&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4, 4, 4, ..., 4, 4, 4], shape=(29903,), dtype=int8)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the section <a class="reference internal" href="#sec-alignments-analysis-data-encoding"><span class="std std-ref">Alignment data encoding</span></a> for
+details on the integer encoding for alignment data used here.</p>
+</div>
+<p>Both the <code class="docutils literal notranslate"><span class="pre">.metadata</span></code> and <code class="docutils literal notranslate"><span class="pre">.aligments</span></code> interfaces are <strong>cached</strong>
+(avoiding repeated decompression of the same underlying Zarr chunks)
+and support iteration, and so provide an efficient way of accessing
+data in bulk. For example, here we compute the mean number of
+gap (“-”) characters per sample:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">GAP</span> <span class="o">=</span> <span class="n">sc2ts</span><span class="o">.</span><span class="n">IUPAC_ALLELES</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+
+<span class="n">gap_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">num_samples</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">alignment</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+    <span class="n">gap_count</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">GAP</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">gap_count</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(83.12)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The arrays returned by the <code class="docutils literal notranslate"><span class="pre">alignment</span></code> interface are <strong>zero based</strong> and you
+must compensate to use <strong>one-based</strong> coordinates.</p>
+</div>
+<p>If you want to access
+specific slices of the array based on <strong>one-based</strong> coordinates, it’s important
+to take the zero-based nature of this into account. Suppose we wanted to
+access the first 10 bases of Spike for a given sample. The first
+base of Spike is 21563 in standard one-based coordinates. While we could do
+some arithmetic to compensate, the simplest way to translate is to simply
+prepend some value to the alignment array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ds</span><span class="o">.</span><span class="n">alignment</span><span class="p">[</span><span class="s2">&quot;SRR11597146&quot;</span><span class="p">])</span>
+<span class="n">spike_start</span> <span class="o">=</span> <span class="mi">21_563</span>
+<span class="n">a</span><span class="p">[</span><span class="n">spike_start</span><span class="p">:</span> <span class="n">spike_start</span> <span class="o">+</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 3, 2, 3, 3, 3, 2, 3, 3, 3])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="alignment-data-encoding">
+<span id="sec-alignments-analysis-data-encoding"></span><h2>Alignment data encoding<a class="headerlink" href="#alignment-data-encoding" title="Link to this heading">#</a></h2>
+<p>A key element of processing data efficiently in <a class="reference external" href="https://tskit.dev">tskit</a> and VCF
+Zarr is to use numpy
+arrays of integers to represent allelic states, instead of the classical
+approach of using strings. In sc2ts, alleles are given fixed integer
+representations, such that A=0, C=1, G=2, and T=3. So, to represent the DNA
+string “AACTG” we would use the numpy array [0, 0, 1, 3, 2] instead. This has
+many advantages and makes it much easier to write efficient code.</p>
+<p>The drawback of this is that it’s not as easy to inspect and debug, and we must
+always be aware of the translation required.</p>
+<p>Sc2ts provides some utilities for doing this. The easiest way to get the string
+values is to use <a class="reference internal" href="api.html#sc2ts.decode_alleles" title="sc2ts.decode_alleles"><code class="xref py py-func docutils literal notranslate"><span class="pre">decode_alleles()</span></code></a> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">sc2ts</span><span class="o">.</span><span class="n">decode_alleles</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">alignment</span><span class="p">[</span><span class="s2">&quot;SRR11597146&quot;</span><span class="p">])</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;-&#39;, &#39;-&#39;, &#39;-&#39;, ..., &#39;-&#39;, &#39;-&#39;, &#39;-&#39;], shape=(29903,), dtype=&#39;&lt;U1&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is a numpy string array, which can still be processed quite efficiently.
+However, it is best to stay in native integer encoding where possible, as it
+is much more efficient.</p>
+<p>Sc2ts uses the <a class="reference external" href="https://www.bioinformatics.org/sms/iupac.html">IUPAC</a>
+uncertainty codes to encode ambiguous bases, and the <a class="reference internal" href="api.html#sc2ts.IUPAC_ALLELES" title="sc2ts.IUPAC_ALLELES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sc2ts.IUPAC_ALLELES</span></code></a>
+variable stores the mapping from these values to their integer indexes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc2ts</span><span class="o">.</span><span class="n">IUPAC_ALLELES</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ACGT-RYSWKMBDHV.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, “A” corresponds to 0, “-” to 4 and so on.</p>
+<section id="missing-data">
+<h3>Missing data<a class="headerlink" href="#missing-data" title="Link to this heading">#</a></h3>
+<p>Missing data is an important element of the data model. Usually, missing data is
+encoded as an “N” character in the alignments. Howevever, there is no “N”
+in the <code class="docutils literal notranslate"><span class="pre">IUPAC_ALLELES</span></code> list above. This is because missing data is handled specially
+in VCF Zarr by mapping to the reserved <code class="docutils literal notranslate"><span class="pre">-1</span></code> value. Missing data can therefore be flagged
+easily and handled correctly by downstream utilities.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is important to take this into account when translating the integer encoded data into
+strings, because -1 is interpreted as the last element of the list in Python. Please
+use the <a class="reference internal" href="api.html#sc2ts.decode_alleles" title="sc2ts.decode_alleles"><code class="xref py py-func docutils literal notranslate"><span class="pre">decode_alleles()</span></code></a> function to avoid this tripwire.</p>
+</div>
+</section>
+</section>
+<section id="accessing-by-variant">
+<h2>Accessing by variant<a class="headerlink" href="#accessing-by-variant" title="Link to this heading">#</a></h2>
+<p>A unique feature of the VCF Zarr encoding used here is that we can efficiently access
+the alignment data by sample <strong>and</strong> by site. The best way to access data by site
+is to use the <a class="reference internal" href="api.html#sc2ts.Dataset.variants" title="sc2ts.Dataset.variants"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Dataset.variants()</span></code></a> method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a class="reference internal" href="api.html#sc2ts.Dataset.variants" title="sc2ts.Dataset.variants"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Dataset.variants()</span></code></a> method is deliberately designed to follow the semantics
+of the corresponding <a class="reference external" href="https://tskit.dev">tskit</a> function
+(<a class="reference external" href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.variants" title="(in Project name not set)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tskit.TreeSequence.variants()</span></code></a>), enabling straightforward joint analysis of the
+ARG and alignments.</p>
+</div>
+<p>Here we use this interface to count the number of samples that carry the gap characters
+at each site along the genome:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GAP</span> <span class="o">=</span> <span class="n">sc2ts</span><span class="o">.</span><span class="n">IUPAC_ALLELES</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+
+<span class="n">gap_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">num_variants</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">variants</span><span class="p">()):</span>
+    <span class="n">gap_count</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">genotypes</span> <span class="o">==</span> <span class="n">GAP</span><span class="p">)</span>
+
+<span class="n">gap_count</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1000., 1000., 1000., ..., 1000., 1000., 1000.], shape=(29903,))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, we can see that all 1000 samples in our small subset have flanking deletions called.</p>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">position</span></code> argument to supply a list of (<strong>one-based</strong>) site positions
+of interest:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spike_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">21_563</span><span class="p">,</span> <span class="mi">25_385</span><span class="p">)</span>
+<span class="n">gap_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">spike_pos</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">variants</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="n">spike_pos</span><span class="p">)):</span>
+    <span class="n">gap_count</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">genotypes</span> <span class="o">==</span> <span class="n">GAP</span><span class="p">)</span>
+
+<span class="n">gap_count</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, ..., 0, 0, 0], shape=(3822,))
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also use the <code class="docutils literal notranslate"><span class="pre">sample_id</span></code> argument to specify subsets of samples.</p>
+</section>
+<section id="bulk-metadata-analysis">
+<h2>Bulk metadata analysis<a class="headerlink" href="#bulk-metadata-analysis" title="Link to this heading">#</a></h2>
+<p>Accessing the metadata row-by-row using the <code class="docutils literal notranslate"><span class="pre">.metadata</span></code> mapping above is
+inefficient when we want to look at large numbers of samples. In this case,
+it is much more convenient to export the metadata to a Pandas dataframe
+using the <a class="reference internal" href="api.html#sc2ts.Dataset.metadata_dataframe" title="sc2ts.Dataset.metadata_dataframe"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Dataset.metadata_dataframe()</span></code></a> and then work with this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">metadata_dataframe</span><span class="p">()</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Artic_primer_version</th>
+      <th>Collection_date</th>
+      <th>Country</th>
+      <th>Date_tree</th>
+      <th>Date_tree_order</th>
+      <th>Experiment</th>
+      <th>First_created</th>
+      <th>Genbank_N</th>
+      <th>Genbank_accession</th>
+      <th>Genbank_other_runs</th>
+      <th>...</th>
+      <th>Study</th>
+      <th>Viridian_N</th>
+      <th>Viridian_amplicon_scheme</th>
+      <th>Viridian_cons_het</th>
+      <th>Viridian_cons_len</th>
+      <th>Viridian_pangolin</th>
+      <th>Viridian_pangolin_1.29</th>
+      <th>Viridian_result</th>
+      <th>Viridian_scorpio</th>
+      <th>Viridian_scorpio_1.29</th>
+    </tr>
+    <tr>
+      <th>sample_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SRR11772659</th>
+      <td>.</td>
+      <td>2020-01-19</td>
+      <td>USA</td>
+      <td>2020-01-19</td>
+      <td>Date</td>
+      <td>SRX8325850</td>
+      <td>2020-05-13</td>
+      <td>-1</td>
+      <td>.</td>
+      <td>.</td>
+      <td>...</td>
+      <td>PRJNA631042</td>
+      <td>0</td>
+      <td>COVID-ARTIC-V3</td>
+      <td>0</td>
+      <td>29836</td>
+      <td>A</td>
+      <td>A</td>
+      <td>PASS</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <th>SRR11597132</th>
+      <td>.</td>
+      <td>2020-01-29</td>
+      <td>China</td>
+      <td>2020-01-29</td>
+      <td>Date</td>
+      <td>SRX8164046</td>
+      <td>2020-05-14</td>
+      <td>-1</td>
+      <td>.</td>
+      <td>.</td>
+      <td>...</td>
+      <td>PRJNA627662</td>
+      <td>0</td>
+      <td>COVID-ARTIC-V3</td>
+      <td>0</td>
+      <td>29836</td>
+      <td>A</td>
+      <td>A</td>
+      <td>PASS</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <th>SRR12162233</th>
+      <td>.</td>
+      <td>2020-01-30</td>
+      <td>Australia</td>
+      <td>2020-01-30</td>
+      <td>Date</td>
+      <td>SRX8677805</td>
+      <td>2020-07-08</td>
+      <td>0</td>
+      <td>MT745748.1</td>
+      <td>.</td>
+      <td>...</td>
+      <td>PRJNA613958</td>
+      <td>0</td>
+      <td>COVID-ARTIC-V3</td>
+      <td>0</td>
+      <td>29810</td>
+      <td>B.1</td>
+      <td>B.1</td>
+      <td>PASS</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <th>SRR12162234</th>
+      <td>.</td>
+      <td>2020-01-30</td>
+      <td>Australia</td>
+      <td>2020-01-30</td>
+      <td>Date</td>
+      <td>SRX8677804</td>
+      <td>2020-07-08</td>
+      <td>0</td>
+      <td>MT745747.1</td>
+      <td>.</td>
+      <td>...</td>
+      <td>PRJNA613958</td>
+      <td>0</td>
+      <td>COVID-ARTIC-V3</td>
+      <td>0</td>
+      <td>29813</td>
+      <td>B.1</td>
+      <td>B.1</td>
+      <td>PASS</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <th>SRR11597217</th>
+      <td>.</td>
+      <td>2020-02-02</td>
+      <td>China</td>
+      <td>2020-02-02</td>
+      <td>Date</td>
+      <td>SRX8163961</td>
+      <td>2020-05-14</td>
+      <td>-1</td>
+      <td>.</td>
+      <td>.</td>
+      <td>...</td>
+      <td>PRJNA627662</td>
+      <td>0</td>
+      <td>COVID-ARTIC-V3</td>
+      <td>0</td>
+      <td>29836</td>
+      <td>A</td>
+      <td>A</td>
+      <td>PASS</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>SRR15360104</th>
+      <td>.</td>
+      <td>2020-03-26</td>
+      <td>Canada</td>
+      <td>2020-03-26</td>
+      <td>Date</td>
+      <td>SRX11662617</td>
+      <td>2021-08-25</td>
+      <td>-1</td>
+      <td>.</td>
+      <td>.</td>
+      <td>...</td>
+      <td>PRJNA686074</td>
+      <td>0</td>
+      <td>COVID-ARTIC-V3</td>
+      <td>0</td>
+      <td>29806</td>
+      <td>B.1</td>
+      <td>B.1</td>
+      <td>PASS</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <th>SRR15360105</th>
+      <td>.</td>
+      <td>2020-03-26</td>
+      <td>Canada</td>
+      <td>2020-03-26</td>
+      <td>Date</td>
+      <td>SRX11662616</td>
+      <td>2021-08-25</td>
+      <td>-1</td>
+      <td>.</td>
+      <td>.</td>
+      <td>...</td>
+      <td>PRJNA686074</td>
+      <td>0</td>
+      <td>COVID-ARTIC-V3</td>
+      <td>0</td>
+      <td>29814</td>
+      <td>B.1</td>
+      <td>B.1</td>
+      <td>PASS</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <th>SRR15360106</th>
+      <td>.</td>
+      <td>2020-03-26</td>
+      <td>Canada</td>
+      <td>2020-03-26</td>
+      <td>Date</td>
+      <td>SRX11662615</td>
+      <td>2021-08-25</td>
+      <td>-1</td>
+      <td>.</td>
+      <td>.</td>
+      <td>...</td>
+      <td>PRJNA686074</td>
+      <td>0</td>
+      <td>COVID-ARTIC-V3</td>
+      <td>0</td>
+      <td>29802</td>
+      <td>B.1</td>
+      <td>B.1</td>
+      <td>PASS</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <th>SRR15360107</th>
+      <td>.</td>
+      <td>2020-03-26</td>
+      <td>Canada</td>
+      <td>2020-03-26</td>
+      <td>Date</td>
+      <td>SRX11662614</td>
+      <td>2021-08-25</td>
+      <td>-1</td>
+      <td>.</td>
+      <td>.</td>
+      <td>...</td>
+      <td>PRJNA686074</td>
+      <td>0</td>
+      <td>COVID-ARTIC-V3</td>
+      <td>0</td>
+      <td>29804</td>
+      <td>B.1</td>
+      <td>B.1</td>
+      <td>PASS</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <th>SRR15360108</th>
+      <td>.</td>
+      <td>2020-03-26</td>
+      <td>Canada</td>
+      <td>2020-03-26</td>
+      <td>Date</td>
+      <td>SRX11662613</td>
+      <td>2021-08-25</td>
+      <td>-1</td>
+      <td>.</td>
+      <td>.</td>
+      <td>...</td>
+      <td>PRJNA686074</td>
+      <td>0</td>
+      <td>COVID-ARTIC-V3</td>
+      <td>0</td>
+      <td>29804</td>
+      <td>B.1</td>
+      <td>B.1</td>
+      <td>PASS</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+  </tbody>
+</table>
+<p>1000 rows × 30 columns</p>
+</div></div></div>
+</div>
+<p>Then, suppose we want to find all samples from the USA:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usa_samples</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Country&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;USA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">usa_samples</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;SRR11772659&#39;, &#39;SRR15711221&#39;, &#39;SRR15711223&#39;, &#39;SRR15711209&#39;,
+       &#39;SRR15711211&#39;, &#39;SRR15711216&#39;, &#39;SRR15711220&#39;, &#39;SRR15711272&#39;,
+       &#39;SRR15711496&#39;, &#39;SRR15711497&#39;,
+       ...
+       &#39;SRR21662690&#39;, &#39;SRR21662697&#39;, &#39;SRR21662701&#39;, &#39;SRR21662707&#39;,
+       &#39;SRR21662709&#39;, &#39;SRR21662710&#39;, &#39;SRR21662718&#39;, &#39;SRR21662720&#39;,
+       &#39;SRR12351701&#39;, &#39;SRR12447462&#39;],
+      dtype=&#39;str&#39;, name=&#39;sample_id&#39;, length=199)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>For performance reasons it’s a good idea to use the <code class="docutils literal notranslate"><span class="pre">fields</span></code> parameter to
+<a class="reference internal" href="api.html#sc2ts.Dataset.metadata_dataframe" title="sc2ts.Dataset.metadata_dataframe"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Dataset.metadata_dataframe()</span></code></a> to limit the amount of metadata decoded
+to what you actually need.</p>
+</div>
+</section>
+<section id="getting-fasta-output">
+<h2>Getting FASTA output<a class="headerlink" href="#getting-fasta-output" title="Link to this heading">#</a></h2>
+<p>Getting FASTA output is straightforward using the <a class="reference internal" href="api.html#sc2ts.Dataset.write_fasta" title="sc2ts.Dataset.write_fasta"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Dataset.write_fasta()</span></code></a>
+method. Here, we use the <code class="docutils literal notranslate"><span class="pre">sample_id</span></code> argument to write the FASTA aligments
+of the USA samples found in the last example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/tmp/usa.fa&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">write_fasta</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">sample_id</span><span class="o">=</span><span class="n">usa_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="arg_analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ARG analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cli.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Command line interface</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-and-getting-information">Loading and getting information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-per-sample-information">Accessing per-sample information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-data-encoding">Alignment data encoding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-data">Missing data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-by-variant">Accessing by variant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-metadata-analysis">Bulk metadata analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-fasta-output">Getting FASTA output</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By sc2ts developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
