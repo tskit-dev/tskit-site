@@ -1,0 +1,629 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tstrait.simulate_effect_size &#8212; Tstrait manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/tstrait/simulate_effect_size';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">tstrait<br/>
+version undefined
+</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction to tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick-start.html">Quick start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../effect-size.html">Trait simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genetic.html">Genetic value</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../environment.html">Environmental noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../multi-trait.html">Multi-trait simulation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extras</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../citation.html">Citing tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://tskit.dev/community/">Community</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for tstrait.simulate_effect_size</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tstrait</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">_check_instance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">_check_int</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">_check_val</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_FreqResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Data class that contains simulated effect size and allele frequency.</span>
+
+<span class="sd">    :ivar beta_array: Numpy array that includes simulated effect size.</span>
+<span class="sd">    :vartype beta_array: numpy.array</span>
+<span class="sd">    :ivar allele_freq: Allele frequency of each causal mutation.</span>
+<span class="sd">    :vartype allele_freq: numpy.array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">beta_array</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">allele_freq</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_TraitSimulator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulator class to select causal alleles and simulate effect sizes of causal</span>
+<span class="sd">    mutations.</span>
+
+<span class="sd">    :param ts: Tree sequence data with mutation.</span>
+<span class="sd">    :type ts: tskit.TreeSequence</span>
+<span class="sd">    :param causal_sites: List of causal site IDs.</span>
+<span class="sd">    :type causal_sites: list</span>
+<span class="sd">    :param model: Trait model that will be used to simulate effect sizes.</span>
+<span class="sd">    :type model: TraitModel</span>
+<span class="sd">    :param alpha: Parameter that determines the degree of the frequency dependence model.</span>
+<span class="sd">    :type alpha: float</span>
+<span class="sd">    :param rng: Generator object that will be used to generate random numbers.</span>
+<span class="sd">    :type rng: numpy.random.Generator</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">causal_sites</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">ts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">causal_sites</span> <span class="o">=</span> <span class="n">causal_sites</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span> <span class="o">=</span> <span class="n">rng</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_choose_causal_allele</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Randomly chooses a causal allele by choosing a causal mutation at random.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">causal_allele</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">site</span><span class="p">(</span><span class="n">site_id</span><span class="p">)</span><span class="o">.</span><span class="n">mutations</span><span class="p">)</span><span class="o">.</span><span class="n">derived_state</span>
+
+        <span class="k">return</span> <span class="n">causal_allele</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_obtain_allele_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">site</span><span class="p">,</span> <span class="n">causal_allele</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtain number of samples with the `causal_allele` in a tree. Input is the tree</span>
+<span class="sd">        sequence site (`ts.site(ID)`) instead of site ID, as obtaining `ts.site(ID)` can</span>
+<span class="sd">        be time consuming.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">site</span><span class="o">.</span><span class="n">ancestral_state</span> <span class="o">==</span> <span class="n">causal_allele</span><span class="p">:</span>
+            <span class="n">counts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_samples</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">counts</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">site</span><span class="o">.</span><span class="n">mutations</span><span class="p">:</span>
+            <span class="n">current_state</span> <span class="o">=</span> <span class="n">site</span><span class="o">.</span><span class="n">ancestral_state</span>
+            <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">parent</span> <span class="o">!=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">:</span>
+                <span class="n">current_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">mutation</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span><span class="o">.</span><span class="n">derived_state</span>
+            <span class="c1"># Silent mutations do nothing</span>
+            <span class="k">if</span> <span class="n">current_state</span> <span class="o">!=</span> <span class="n">m</span><span class="o">.</span><span class="n">derived_state</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">derived_state</span> <span class="o">==</span> <span class="n">causal_allele</span><span class="p">:</span>
+                    <span class="n">counts</span> <span class="o">+=</span> <span class="n">tree</span><span class="o">.</span><span class="n">num_samples</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">current_state</span> <span class="o">==</span> <span class="n">causal_allele</span><span class="p">:</span>
+                    <span class="n">counts</span> <span class="o">-=</span> <span class="n">tree</span><span class="o">.</span><span class="n">num_samples</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">counts</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_frequency_multiplier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">allele_freq</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the frequency dependence constant [2p(1-p)]^alpha by using</span>
+<span class="sd">        the allele_freq input.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">allele_freq</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">allele_freq</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">const</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">const</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">allele_freq</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">allele_freq</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">const</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_freq_dep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id_array</span><span class="p">,</span> <span class="n">causal_allele_array</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtains the frequency dependent constant [2p(1-p)]^alpha for each site ID.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">Tree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
+        <span class="n">num_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_samples</span>
+        <span class="n">freq_dep_array</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">allele_freq_array</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">causal_allele</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">site_id_array</span><span class="p">,</span> <span class="n">causal_allele_array</span><span class="p">):</span>
+            <span class="n">site</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">site</span><span class="p">(</span><span class="n">site_id</span><span class="p">)</span>
+            <span class="n">tree</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">site</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+            <span class="n">freq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obtain_allele_count</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">site</span><span class="p">,</span> <span class="n">causal_allele</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_samples</span>
+            <span class="n">freq_dep_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frequency_multiplier</span><span class="p">(</span><span class="n">freq</span><span class="p">))</span>
+            <span class="n">allele_freq_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">_FreqResult</span><span class="p">(</span><span class="n">beta_array</span><span class="o">=</span><span class="n">freq_dep_array</span><span class="p">,</span> <span class="n">allele_freq</span><span class="o">=</span><span class="n">allele_freq_array</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sim_beta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id_array</span><span class="p">,</span> <span class="n">causal_allele_array</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Simulates effect size by using the model given in the `model` input. If `alpha`</span>
+<span class="sd">        is non-zero, frequency dependence architecture is used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">beta_array_non_freq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_sim_effect_size</span><span class="p">(</span>
+            <span class="n">num_causal</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">causal_sites</span><span class="p">),</span> <span class="n">rng</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rng</span>
+        <span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_dep</span><span class="p">(</span><span class="n">site_id_array</span><span class="p">,</span> <span class="n">causal_allele_array</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">beta_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">beta_array</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">beta_array_non_freq</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method runs a simulation based on the input parameters. This method randomly</span>
+<span class="sd">        chooses causal sites and the corresponding causal allele based on the</span>
+<span class="sd">        `num_causal` input. Afterwards, effect size of each causal site is simulated</span>
+<span class="sd">        based on the trait model given by the `model` input. If `alpha` is non-zero,</span>
+<span class="sd">        frequency dependence architecture is used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">causal_allele_array</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">site_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">causal_sites</span><span class="p">:</span>
+            <span class="n">causal_allele_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_choose_causal_allele</span><span class="p">(</span><span class="n">site_id</span><span class="p">))</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sim_beta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">causal_sites</span><span class="p">,</span> <span class="n">causal_allele_array</span><span class="p">)</span>
+
+        <span class="n">num_trait</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">num_trait</span>
+
+        <span class="n">position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">sites_position</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">causal_sites</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">position</span><span class="p">),</span> <span class="n">position</span><span class="p">):</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="n">position</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+        <span class="n">trait_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;position&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">num_trait</span><span class="p">),</span>
+                <span class="s2">&quot;site_id&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">causal_sites</span><span class="p">,</span> <span class="n">num_trait</span><span class="p">),</span>
+                <span class="s2">&quot;effect_size&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">beta_array</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;causal_allele&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">causal_allele_array</span><span class="p">,</span> <span class="n">num_trait</span><span class="p">),</span>
+                <span class="s2">&quot;allele_freq&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">allele_freq</span><span class="p">,</span> <span class="n">num_trait</span><span class="p">),</span>
+                <span class="s2">&quot;trait_id&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_trait</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">causal_sites</span><span class="p">)),</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">trait_df</span>
+
+
+<div class="viewcode-block" id="sim_trait">
+<a class="viewcode-back" href="../../api.html#tstrait.sim_trait">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sim_trait</span><span class="p">(</span>
+    <span class="n">ts</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">num_causal</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">causal_sites</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulates traits.</span>
+
+<span class="sd">    :param ts: The tree sequence data that will be used in the quantitative trait</span>
+<span class="sd">        simulation.</span>
+<span class="sd">    :type ts: tskit.TreeSequence</span>
+<span class="sd">    :param model: Trait model that will be used to simulate effect sizes.</span>
+<span class="sd">    :type model: tstrait.TraitModel</span>
+<span class="sd">    :param num_causal: Number of causal sites that will be randomly selected.</span>
+<span class="sd">        If both `num_causal` and `causal_sites` are None, number of causal sites</span>
+<span class="sd">        will be 1.</span>
+<span class="sd">    :type num_causal: int</span>
+<span class="sd">    :param causal_sites: List of site IDs that have causal allele. If None,</span>
+<span class="sd">        causal site IDs will be chosen randomly according to `num_causal`.</span>
+<span class="sd">    :type causal_sites: list</span>
+<span class="sd">    :param alpha: Parameter that determines the degree of the frequency</span>
+<span class="sd">        dependence model. Please see :ref:`frequency_dependence` for details on how</span>
+<span class="sd">        this parameter influences effect size simulation. If None, alpha will be 0.</span>
+<span class="sd">    :type alpha: float</span>
+<span class="sd">    :param random_seed: Random seed of simulation. If None, simulation will be</span>
+<span class="sd">        conducted randomly.</span>
+<span class="sd">    :type random_seed: int</span>
+<span class="sd">    :returns: Trait dataframe that includes simulated effect sizes.</span>
+<span class="sd">    :rtype: pandas.DataFrame</span>
+<span class="sd">    :raises ValueError: If the number of mutations in `ts` is smaller than `num_causal`.</span>
+<span class="sd">    :raises ValueError: If both `num_causal` and `causal_sites` are specified.</span>
+<span class="sd">    :raises ValueError: If there are repeated values in `causal_sites`.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        :func:`trait_model` Return a trait model, which can be used as `model` input.</span>
+
+<span class="sd">        :func:`genetic_value` The trait dataframe output can be used as an input</span>
+<span class="sd">        to obtain genetic values.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The simulation output is given as a :py:class:`pandas.DataFrame` and contains the</span>
+<span class="sd">        following columns:</span>
+
+<span class="sd">            * **position**: Position of sites that have causal allele in genome</span>
+<span class="sd">              coordinates.</span>
+<span class="sd">            * **site_id**: Site IDs that have causal allele. The output dataframe</span>
+<span class="sd">              has sorted site IDs.</span>
+<span class="sd">            * **effect_size**: Simulated effect size of causal allele.</span>
+<span class="sd">            * **causal_allele**: Causal allele.</span>
+<span class="sd">            * **allele_freq**: Allele frequency of causal allele. It is described</span>
+<span class="sd">              in detail in :ref:`trait_frequency_dependence`.</span>
+<span class="sd">            * **trait_id**: Trait ID.</span>
+
+<span class="sd">    .. rubric:: Examples</span>
+
+<span class="sd">    See :ref:`sim_trait` for worked examples.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">_check_instance</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="s2">&quot;ts&quot;</span><span class="p">,</span> <span class="n">tskit</span><span class="o">.</span><span class="n">TreeSequence</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">_check_instance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">TraitModel</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">num_causal</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">causal_sites</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot specify both num_causal and causal_sites&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">num_causal</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">causal_sites</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">num_causal</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">causal_sites</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">causal_sites</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">causal_sites</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">causal_sites</span><span class="p">)</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">causal_sites</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;There must not be repeated values in causal_sites&quot;</span><span class="p">)</span>
+
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">random_seed</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">num_causal</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">num_causal</span> <span class="o">=</span> <span class="n">_check_int</span><span class="p">(</span><span class="n">num_causal</span><span class="p">,</span> <span class="s2">&quot;num_causal&quot;</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">num_sites</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">num_sites</span>
+        <span class="k">if</span> <span class="n">num_sites</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No mutation in the tree sequence input&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">num_causal</span> <span class="o">&gt;</span> <span class="n">num_sites</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;num_causal must be an integer not greater than the number of &quot;</span>
+                <span class="s2">&quot;sites in ts&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">causal_sites</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_sites</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_causal</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">causal_sites</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">alpha</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">alpha</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">_check_val</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="s2">&quot;alpha&quot;</span><span class="p">)</span>
+
+    <span class="n">simulator</span> <span class="o">=</span> <span class="n">_TraitSimulator</span><span class="p">(</span>
+        <span class="n">ts</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span>
+        <span class="n">causal_sites</span><span class="o">=</span><span class="n">causal_sites</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+        <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">trait_df</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">_run</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">trait_df</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

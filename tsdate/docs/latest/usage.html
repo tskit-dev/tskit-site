@@ -1,0 +1,863 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Usage &#8212; Tsdate manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'usage';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Methods" href="methods.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/tsdate_logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/tsdate_logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 0.2.5</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Usage</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real-data.html">Real data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="popsize.html">Population size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="historical_samples.html">Historical (Ancient) Samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="priors.html">More on priors (old)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">APIs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="python-api.html">Python API</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command line interface</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/usage.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Usage</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickstart">Quickstart</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferred-topologies">Inferred topologies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results-and-posteriors">Results and posteriors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timescale-adjustment">Timescale adjustment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-and-run-time">Memory and run time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-use">CLI use</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="usage">
+<span id="sec-usage"></span><h1>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h1>
+<p>We’ll first generate a few example “undated” tree sequences:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">msprime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">stdpopsim</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tsinfer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+
+<span class="c1"># Use msprime to create a simulated tree sequence with mutations, for demonstration</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">Ne</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_ancestry</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="n">Ne</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_mutations</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">discrete_genome</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># Remove time information</span>
+<span class="n">tables</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">dump_tables</span><span class="p">()</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">flags</span> <span class="o">&amp;</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NODE_IS_SAMPLE</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">mutations</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_mutations</span><span class="p">,</span> <span class="n">tskit</span><span class="o">.</span><span class="n">UNKNOWN_TIME</span><span class="p">)</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">time_units</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">TIME_UNITS_UNCALIBRATED</span>
+<span class="n">sim_ts</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+
+<span class="c1"># Use stdpopsim to create simulated genomes for inference</span>
+<span class="n">species</span> <span class="o">=</span> <span class="n">stdpopsim</span><span class="o">.</span><span class="n">get_species</span><span class="p">(</span><span class="s2">&quot;HomSap&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">species</span><span class="o">.</span><span class="n">get_demographic_model</span><span class="p">(</span><span class="s2">&quot;AmericanAdmixture_4B18&quot;</span><span class="p">)</span>
+<span class="n">contig</span> <span class="o">=</span> <span class="n">species</span><span class="o">.</span><span class="n">get_contig</span><span class="p">(</span><span class="s2">&quot;chr1&quot;</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">1e7</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1.1e7</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mutation_rate</span><span class="p">)</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;AFR&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;EUR&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;ASIA&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;ADMIX&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="c1"># Create DNA sequences, stored in the tsinfer SampleData format</span>
+<span class="n">stdpopsim_ts</span> <span class="o">=</span> <span class="n">stdpopsim</span><span class="o">.</span><span class="n">get_engine</span><span class="p">(</span><span class="s2">&quot;msprime&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">contig</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">sample_data</span> <span class="o">=</span> <span class="n">tsinfer</span><span class="o">.</span><span class="n">SampleData</span><span class="o">.</span><span class="n">from_tree_sequence</span><span class="p">(</span><span class="n">stdpopsim_ts</span><span class="p">)</span>
+<span class="n">inf_ts</span> <span class="o">=</span> <span class="n">tsinfer</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="n">sample_data</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;* Simulated `sim_ts` (</span><span class="si">{</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="si">}</span><span class="s2"> genomes from a popn of </span><span class="si">{</span><span class="n">Ne</span><span class="si">}</span><span class="s2"> diploids, mut_rate=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s2"> /bp/gen)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;* Inferred `inf_ts` using tsinfer (</span><span class="si">{</span><span class="n">stdpopsim_ts</span><span class="o">.</span><span class="n">num_samples</span><span class="si">}</span><span class="s2"> samples of human </span><span class="si">{</span><span class="n">contig</span><span class="o">.</span><span class="n">origin</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* Simulated `sim_ts` (20 genomes from a popn of 100 diploids, mut_rate=1e-06 /bp/gen)
+* Inferred `inf_ts` using tsinfer (40 samples of human chr1:10000000-11000000)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="quickstart">
+<span id="sec-usage-basic-example"></span><h2>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading">#</a></h2>
+<p>Given a known genetic genealogy in the form of a tree sequence, <em>tsdate</em> simply
+re-estimates the node times based on the mutations on each edge. Usage is as
+simple as calling the <a class="reference internal" href="python-api.html#tsdate.date" title="tsdate.date"><code class="xref py py-func docutils literal notranslate"><span class="pre">date()</span></code></a> function with an
+estimated per base pair per generation mutation rate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tsdate</span>
+<span class="c1"># Running `tsdate` is usually a single function call, as follows:</span>
+<span class="n">mu_per_bp_per_generation</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="n">redated_ts</span> <span class="o">=</span> <span class="n">tsdate</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">sim_ts</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="n">mu_per_bp_per_generation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This simple example has no recombination, infinite sites mutation,
+a high mutation rate, and a known genealogy, so we would expect that the node times
+as estimated by <em>tsdate</em> from the mutations would be very close to the actual node times,
+as indeed they seem to be:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_real_vs_tsdate_times</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ts_x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ts_y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_variance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">):</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">line_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">delta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">line_pts</span><span class="p">,</span> <span class="n">line_pts</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">y_variance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">delta</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">delta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># variance is of a gamma distribution. The sample nodes have zero mean, so ignore those divisions</span>
+        <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">invalid</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="n">y_variance</span> <span class="o">/</span> <span class="n">y</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="n">scale</span>
+            <span class="n">lower</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">gamma</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+            <span class="n">upper</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">gamma</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span>
+            <span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">])</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">delta</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">delta</span><span class="p">,</span> <span class="n">err</span> <span class="o">+</span> <span class="n">delta</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">ecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">mec</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Real time&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="n">ts_x</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="sa">f</span><span class="s1">&#39; (</span><span class="si">{</span><span class="n">ts_x</span><span class="o">.</span><span class="n">time_units</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Estimated time from tsdate&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="n">ts_y</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="sa">f</span><span class="s1">&#39; (</span><span class="si">{</span><span class="n">ts_y</span><span class="o">.</span><span class="n">time_units</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plot_real_vs_tsdate_times</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">,</span> <span class="n">redated_ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ts</span><span class="p">,</span> <span class="n">redated_ts</span><span class="p">)</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">n</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;mn&quot;</span><span class="p">],</span> <span class="n">n</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;vr&quot;</span><span class="p">]]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">redated_ts</span><span class="o">.</span><span class="n">nodes</span><span class="p">()])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">plot_real_vs_tsdate_times</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ts</span><span class="p">,</span> <span class="n">redated_ts</span><span class="p">,</span> <span class="n">y_variance</span><span class="o">=</span><span class="n">var</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/8f19fba59441899d9594e177e4f5abffc03a52f9c11b5816b95ad35e72c9050d.png" src="_images/8f19fba59441899d9594e177e4f5abffc03a52f9c11b5816b95ad35e72c9050d.png" />
+</div>
+</div>
+<p>The left hand plot shows the redated tree sequence node times. The right hand plot is
+essentially identical but with 95% confidence intervals (technically, it shows the
+unconstrained <a class="reference internal" href="#sec-usage-posterior"><span class="std std-ref">posterior node times</span></a>, with confidence intervals
+based on the <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">gamma distribution</a>
+fitted by the default <em>tsdate</em> <a class="reference internal" href="methods.html#sec-methods"><span class="std std-ref">method</span></a>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default time is assumed to be measured in “generations”, but this can be changed by
+using the <code class="docutils literal notranslate"><span class="pre">time_units</span></code> parameter: see the <a class="reference internal" href="#sec-usage-timescale"><span class="std std-ref">Timescale adjustment</span></a> section.</p>
+</div>
+</section>
+<section id="inferred-topologies">
+<span id="sec-usage-inferred-example"></span><h2>Inferred topologies<a class="headerlink" href="#inferred-topologies" title="Link to this heading">#</a></h2>
+<p>A more typical use-case is where the genealogy has been inferred from DNA sequence data,
+for example by <a class="reference external" href="https://tskit.dev/tsinfer/docs/stable/introduction.html#sec-introduction" title="(in Project name not set)"><span class="xref std std-ref">tsinfer</span></a> or
+<a class="reference external" href="https://myersgroup.github.io/relate/">Relate</a>. Below we will demonstrate with <code class="docutils literal notranslate"><span class="pre">tsinfer</span></code>
+output based on DNA sequences generated by a more realistic simulation.</p>
+<p>With real data, especially from <code class="docutils literal notranslate"><span class="pre">tsinfer</span></code> you may want to <a class="reference internal" href="python-api.html#tsdate.preprocess_ts" title="tsdate.preprocess_ts"><code class="xref py py-func docutils literal notranslate"><span class="pre">preprocess</span></code></a>
+the tree sequence before dating. This removes regions with no variable sites,
+also simplifies to remove locally unary portions of nodes, and splits disjoint nodes
+into separate datable nodes (see the
+<a class="reference internal" href="real-data.html#sec-real-data-preprocessing"><span class="std std-ref">Preprocessing</span></a> section for more details)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tsdate</span>
+<span class="n">simplified_ts</span> <span class="o">=</span> <span class="n">tsdate</span><span class="o">.</span><span class="n">preprocess_ts</span><span class="p">(</span>
+    <span class="n">inf_ts</span><span class="p">,</span>
+    <span class="n">remove_telomeres</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># Simulated example, so no flanking regions / telomeres exist</span>
+<span class="p">)</span>
+<span class="n">dated_ts</span> <span class="o">=</span> <span class="n">tsdate</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">simplified_ts</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mutation_rate</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;Dated `inf_ts` (inferred from </span><span class="si">{</span><span class="n">inf_ts</span><span class="o">.</span><span class="n">num_sites</span><span class="si">}</span><span class="s2"> variants under the </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;stdpopsim model, mutation rate = </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">mutation_rate</span><span class="si">}</span><span class="s2"> /bp/gen)&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dated `inf_ts` (inferred from 3861 variants under the AmericanAdmixture_4B18 stdpopsim model, mutation rate = 2.36e-08 /bp/gen)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In simulated data you may not have missing data regions, and you may be able to
+pass <code class="docutils literal notranslate"><span class="pre">erase_flanks=False</span></code> to the <code class="docutils literal notranslate"><span class="pre">preprocess_ts</span></code> function.</p>
+</div>
+<p>The inference in this case is much more noisy (as illustrated using the original
+and inferred times of the node under each mutation):</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If there are multiple mutations at a site, we simply pick the first one</span>
+
+<span class="n">plot_real_vs_tsdate_times</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">mutations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stdpopsim_ts</span><span class="o">.</span><span class="n">sites</span><span class="p">()],</span>
+    <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">mutations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;mn&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">dated_ts</span><span class="o">.</span><span class="n">sites</span><span class="p">()],</span>
+    <span class="n">delta</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/c7c049f970557a0d84436e522899e0f52ab7f6556cbc1919bb8b940721eadb1b.png" src="_images/c7c049f970557a0d84436e522899e0f52ab7f6556cbc1919bb8b940721eadb1b.png" />
+</div>
+</div>
+<p>Note that if a bifurcating topology in the original genealogies has been collapsed
+into a <em>polytomy</em> (multifurcation) in the inferred version, then the default node
+times output by <em>tsdate</em> correspond to the time of the oldest bifurcating node.
+If you wish to consider diversity or coalescence over time, you should therefore
+consider explicitly setting the <code class="docutils literal notranslate"><span class="pre">match_segregating_sites</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">True</span></code>
+(see the <a class="reference internal" href="real-data.html#sec-real-data-rescaling"><span class="std std-ref">Rescaling details</span></a> section).</p>
+</section>
+<section id="results-and-posteriors">
+<span id="sec-usage-posterior"></span><h2>Results and posteriors<a class="headerlink" href="#results-and-posteriors" title="Link to this heading">#</a></h2>
+<p>The default output of <em>tsdate</em> is a new, dated tree sequence,
+created with node times set to the (constrained) posterior mean time for each node,
+and mutation times set halfway between the time of the node above and
+the time of the node below the mutation.</p>
+<p>However, these tree-sequence time arrays do not capture all the information
+about the distribution of times. They do not contain information about the
+variance in the time estimates, and if necessary, mean times are <em>constrained</em>
+to create a valid tree sequence (i.e. if the mean time of a child node is
+older than the mean time of all of its parents, a small value, <span class="math notranslate nohighlight">\(\epsilon\)</span>, is added
+to the parent time to ensure a valid tree sequence).</p>
+<p>For this reason, there are two ways to get variances and unconstrained dates when
+running <em>tsdate</em>:</p>
+<ol class="arabic simple">
+<li><p>The nodes and mutations in the tree sequence will usually contain
+<a class="reference external" href="https://tskit.dev/tskit/docs/stable/metadata.html#sec-metadata" title="(in Project name not set)"><span>Metadata</span></a> specifying mean time and its variance.
+These metadata values (currently saved as <code class="docutils literal notranslate"><span class="pre">mn</span></code> and <code class="docutils literal notranslate"><span class="pre">vr</span></code>) are not constrained by
+the topology of the tree sequence, and should be used in preference
+e.g. to <code class="docutils literal notranslate"><span class="pre">nodes_time</span></code> and <code class="docutils literal notranslate"><span class="pre">mutations_time</span></code> when evaluating the accuracy of <em>tsdate</em>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">return_fit</span></code> parameter can be used when calling <a class="reference internal" href="python-api.html#tsdate.date" title="tsdate.date"><code class="xref py py-func docutils literal notranslate"><span class="pre">tsdate.date()</span></code></a>, which
+then returns both the dated tree sequence and a fit object. This object can then be
+queried for the unconstrained posterior distributions using e.g. <code class="docutils literal notranslate"><span class="pre">.node_posteriors()</span></code>
+which can be read in to a <a class="reference external" href="https://pandas.pydata.org">pandas</a> dataframe, as below:</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="n">redated_ts</span><span class="p">,</span> <span class="n">fit</span> <span class="o">=</span> <span class="n">tsdate</span><span class="o">.</span><span class="n">date</span><span class="p">(</span>
+    <span class="n">sim_ts</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">return_fit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">posteriors_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">node_posteriors</span><span class="p">())</span>  <span class="c1"># mutation_posteriors() also available</span>
+<span class="n">posteriors_df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>  <span class="c1"># Show the dataframe</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>variance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>34</th>
+      <td>77.573465</td>
+      <td>26.359205</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>105.464187</td>
+      <td>30.020537</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>141.468529</td>
+      <td>52.913873</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>215.321172</td>
+      <td>56.009024</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>263.365664</td>
+      <td>69.361473</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="timescale-adjustment">
+<span id="sec-usage-timescale"></span><h3>Timescale adjustment<a class="headerlink" href="#timescale-adjustment" title="Link to this heading">#</a></h3>
+<p>The default <em>tsdate</em> timescale is “generations”. Changing this can be as simple as
+providing a <code class="docutils literal notranslate"><span class="pre">time_units</span></code> argument:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu_per_bp_per_gen</span> <span class="o">=</span> <span class="mf">1e-8</span>  <span class="c1"># per generation</span>
+<span class="n">ts_generations</span> <span class="o">=</span> <span class="n">tsdate</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="n">mu_per_bp_per_gen</span><span class="p">)</span>
+
+<span class="n">mu_per_bp_per_year</span> <span class="o">=</span> <span class="mf">3.4e-10</span>  <span class="c1"># Human generation time ~ 29 years</span>
+<span class="n">ts_years</span> <span class="o">=</span> <span class="n">tsdate</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="n">mu_per_bp_per_year</span><span class="p">,</span> <span class="n">time_units</span><span class="o">=</span><span class="s2">&quot;years&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, if you are specifying a node-specific prior, e.g. because you are using a
+discrete-time method, you will also need to change the scale of the prior. In particular,
+if you are setting the prior using the <code class="docutils literal notranslate"><span class="pre">population_size</span></code> argument, you will also need to
+modify that by multiplying it by the generation time. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ne</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Diploid population size</span>
+<span class="n">mu_per_bp_per_gen</span> <span class="o">=</span> <span class="mf">1e-8</span>  <span class="c1"># per generation</span>
+<span class="n">ts_generations</span> <span class="o">=</span> <span class="n">tsdate</span><span class="o">.</span><span class="n">inside_outside</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="n">mu_per_bp_per_gen</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="n">Ne</span><span class="p">)</span>
+
+<span class="c1"># To infer dates in years, adjust both the rates and the population size:</span>
+<span class="n">generation_time</span> <span class="o">=</span> <span class="mi">29</span>  <span class="c1"># Years</span>
+<span class="n">mu_per_bp_per_year</span> <span class="o">=</span> <span class="n">mu_per_bp_per_gen</span> <span class="o">/</span> <span class="n">generation_time</span>
+<span class="n">ts_years</span> <span class="o">=</span> <span class="n">tsdate</span><span class="o">.</span><span class="n">inside_outside</span><span class="p">(</span>
+    <span class="n">ts</span><span class="p">,</span>
+    <span class="n">mutation_rate</span><span class="o">=</span><span class="n">mu_per_bp_per_year</span><span class="p">,</span>
+    <span class="n">population_size</span><span class="o">=</span><span class="n">Ne</span> <span class="o">*</span> <span class="n">generation_time</span><span class="p">,</span>
+    <span class="n">time_units</span><span class="o">=</span><span class="s2">&quot;years&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Check that the inferred node times are identical, just on different scales</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">ts_generations</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">,</span> <span class="n">ts_years</span><span class="o">.</span><span class="n">nodes_time</span> <span class="o">/</span> <span class="n">generation_time</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="memory-and-run-time">
+<span id="sec-usage-memory-time"></span><h2>Memory and run time<a class="headerlink" href="#memory-and-run-time" title="Link to this heading">#</a></h2>
+<p><em>Tsdate</em> can be run on most modern computers. Using the default <code class="docutils literal notranslate"><span class="pre">variational_gamma</span></code>
+<a class="reference internal" href="methods.html#sec-methods"><span class="std std-ref">method</span></a>, large tree sequences of millions or
+tens of millions of edges take tens of minutes and gigabytes of RAM (e.g. 10 GB / 50 mins
+on a 2024-era Apple M2 laptop for a tree sequence of 65 million edges covering
+81 megabases of 2.85 million samples of human chromosome 17 from
+<span id="id1">Anderson-Trocmé <em>et al.</em> [<a class="reference internal" href="bibliography.html#id7" title="Luke Anderson-Trocmé, Dominic Nelson, Shadi Zabad, Alex Diaz-Papkovich, Ivan Kryukov, Nikolas Baya, Mathilde Touvier, Ben Jeffery, Christian Dina, Hélène Vézina, Jerome Kelleher, and Simon Gravel. On the genes, genealogies, and geographies of Quebec. Science, 380:849-855, 2023. doi:10.1126/science.add5300.">2023</a>]</span>).</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/c44c200fcc45c7bcad30ea4b0141dc856b96d98fec335916a8fca962213575b4.svg" src="_images/c44c200fcc45c7bcad30ea4b0141dc856b96d98fec335916a8fca962213575b4.svg" />
+</div>
+</div>
+<p>Running the dating algorithm is linear in the number of edges in the tree sequence.
+This makes <em>tsdate</em> usable even for vary large tree sequences (e.g. millions of samples).
+For large instances, if you are running <em>tsdate</em> interactively, it can be useful to
+specify the <code class="docutils literal notranslate"><span class="pre">progress</span></code> option to display a progress bar telling you how long
+different stages of dating will take.</p>
+<p>As the time taken to date a tree sequence using <em>tsdate</em> is only a fraction of that
+required to infer the initial tree sequence, the core <em>tsdate</em> algorithm
+has not been parallelised to allow running on many CPU cores.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Extensive use of just-in-time compilation via <a class="reference external" href="https://numba.pydata.org">numba</a>
+means that it can take tens of seconds to load the <em>tsdate</em> module into python.
+See <a class="reference internal" href="installation.html#sec-installation-testing"><span class="std std-ref">here</span></a> for a workaround if this is causing you problems.</p>
+</div>
+</section>
+<section id="cli-use">
+<h2>CLI use<a class="headerlink" href="#cli-use" title="Link to this heading">#</a></h2>
+<p>Computationally-intensive uses of <em>tsdate</em> are likely to involve
+running the program non-interactively, e.g. as part of an
+automated pipeline. In this case, it may be useful to use the
+command-line interface. See <a class="reference internal" href="cli.html#sec-cli"><span class="std std-ref">Command line interface</span></a> for more details.</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="installation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Installation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="methods.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Methods</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickstart">Quickstart</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferred-topologies">Inferred topologies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results-and-posteriors">Results and posteriors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timescale-adjustment">Timescale adjustment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-and-run-time">Memory and run time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-use">CLI use</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

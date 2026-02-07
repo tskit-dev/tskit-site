@@ -1,0 +1,1385 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data export &#8212; Tskit manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/bespoke.css?v=00f581dd" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'export';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python API" href="python-api.html" />
+    <link rel="prev" title="Identity by descent" href="ibd.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 1.0.2.dev1</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="provenance.html">Provenance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stats.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topological-analysis.html">Topological analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ibd.html">Identity by descent</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data export</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python-api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba.html">Numba Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-api.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-formats.html">File formats</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">For developers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelogs.html">Changelogs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing tskit</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/edit/main/docs/export.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/issues/new?title=Issue%20on%20page%20%2Fexport.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/export.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data export</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variant-call-format">Variant Call Format</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology">Terminology</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compressed-output">Compressed output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masking-output">Masking output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-gt-values">Constructing GT values</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#without-individuals">Without individuals</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#with-individuals">With individuals</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-names">Individual names</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exporting-to-plink">Exporting to plink</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-coordinates">Modifying coordinates</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="data-export">
+<span id="sec-export"></span><h1>Data export<a class="headerlink" href="#data-export" title="Link to this heading">#</a></h1>
+<section id="variant-call-format">
+<span id="sec-export-vcf"></span><h2>Variant Call Format<a class="headerlink" href="#variant-call-format" title="Link to this heading">#</a></h2>
+<p>Tskit supports exporting data to the standard
+<a class="reference external" href="http://samtools.github.io/hts-specs/VCFv4.3.pdf">Variant Call Format</a>
+via the <code class="docutils literal notranslate"><span class="pre">tskit</span> <span class="pre">vcf</span></code> <a class="reference internal" href="cli.html#sec-cli"><span class="std std-ref">command line interface</span></a> command
+and the <a class="reference internal" href="python-api.html#tskit.TreeSequence.write_vcf" title="tskit.TreeSequence.write_vcf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.write_vcf()</span></code></a> method in the <a class="reference internal" href="python-api.html#sec-python-api"><span class="std std-ref">Python API</span></a>.
+Conversion is quite efficient, with tskit producing VCF data at several
+hundred megabytes per second (for large files), which is usually as fast as
+it can be written to storage or consumed by programs in a pipeline.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If we have a tree sequence file the
+<a class="reference internal" href="cli.html#sec-cli"><span class="std std-ref">command line interface</span></a> is often the most
+convenient way to convert to VCF:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tskit<span class="w"> </span>vcf<span class="w"> </span>example.trees<span class="w"> </span>&gt;<span class="w"> </span>example.vcf
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="#sec-export-vcf-compression"><span class="std std-ref">Compressed output</span></a> section for information
+on how to compress the VCF output.</p>
+</div>
+<p>For tree sequences produced by recent versions of programs such as
+<code class="docutils literal notranslate"><span class="pre">msprime</span></code>, <code class="docutils literal notranslate"><span class="pre">SLiM</span></code>, <code class="docutils literal notranslate"><span class="pre">fwdpy11</span></code> or <code class="docutils literal notranslate"><span class="pre">tsinfer</span></code>, VCF output will
+“do the right thing” and no further arguments are needed.
+For example, here we simulate 3 diploid individuals
+with mutations using <code class="docutils literal notranslate"><span class="pre">msprime</span></code>, and convert to VCF.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">msprime</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_ancestry</span><span class="p">(</span>
+    <span class="n">samples</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ploidy</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_mutations</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">write_vcf</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>##fileformat=VCFv4.2
+##source=tskit 1.0.2.dev1
+##FILTER=&lt;ID=PASS,Description=&quot;All filters passed&quot;&gt;
+##contig=&lt;ID=1,length=10&gt;
+##FORMAT=&lt;ID=GT,Number=1,Type=String,Description=&quot;Genotype&quot;&gt;
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	tsk_0	tsk_1	tsk_2
+1	2	0	A	T,G	.	PASS	.	GT	0|0	0|0	2|2
+1	3	1	C	T	.	PASS	.	GT	0|0	0|1	0|0
+1	4	2	G	C	.	PASS	.	GT	1|0	1|1	0|0
+1	6	3	C	T	.	PASS	.	GT	1|0	1|1	0|0
+1	9	4	A	C	.	PASS	.	GT	0|0	1|0	0|0
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the output VCF we have 3 diploid samples
+(see the <a class="reference internal" href="#sec-export-vcf-terminology"><span class="std std-ref">Terminology</span></a> section)
+corresponding to samples specified in the ancestry simulation
+with IDs <code class="docutils literal notranslate"><span class="pre">tsk_0</span></code>, <code class="docutils literal notranslate"><span class="pre">tsk_1</span></code> and <code class="docutils literal notranslate"><span class="pre">tsk_2</span></code>
+(see the <a class="reference internal" href="#sec-export-vcf-individual-names"><span class="std std-ref">Individual names</span></a>
+section for how to override these default labels).
+We then have a line for every row
+in the <a class="reference internal" href="data-model.html#sec-site-table-definition"><span class="std std-ref">site table</span></a>, and
+the data is derived directly from the <a class="reference internal" href="python-api.html#tskit.TreeSequence.variants" title="tskit.TreeSequence.variants"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.variants()</span></code></a>
+method; e.g.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">ts</span><span class="o">.</span><span class="n">variants</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">alleles</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">genotypes</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0	0	(&#39;A&#39;, &#39;T&#39;, &#39;G&#39;)	[0 0 0 0 2 2]
+3.0	1	(&#39;C&#39;, &#39;T&#39;)	[0 0 0 1 0 0]
+4.0	2	(&#39;G&#39;, &#39;C&#39;)	[1 0 1 1 0 0]
+6.0	3	(&#39;C&#39;, &#39;T&#39;)	[1 0 1 1 0 0]
+9.0	4	(&#39;A&#39;, &#39;C&#39;)	[0 0 1 0 0 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see the <code class="docutils literal notranslate"><span class="pre">POS</span></code> value is equal to the site’s position
+(see the <a class="reference internal" href="#sec-export-vcf-modifying-coordinates"><span class="std std-ref">Modifying coordinates</span></a> for information
+on how we deal with continuous coordinates), the <code class="docutils literal notranslate"><span class="pre">ID</span></code> value
+is the site’s ID, and the <code class="docutils literal notranslate"><span class="pre">REF</span></code> and <code class="docutils literal notranslate"><span class="pre">ALT</span></code> values
+are derived from the variant’s <code class="docutils literal notranslate"><span class="pre">alleles</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">GT</span></code> values for the three diploid individuals are derived from the
+variant’s genotypes (see the <a class="reference internal" href="#sec-export-vcf-terminology"><span class="std std-ref">Terminology</span></a> section).
+For this simulation, the diploid individuals correspond to
+adjacent sample nodes in order, and we can see there is a direct
+correspondence between the phased <code class="docutils literal notranslate"><span class="pre">GT</span></code> values and variant’s genotypes.
+See the <a class="reference internal" href="#sec-export-vcf-constructing-gt"><span class="std std-ref">Constructing GT values</span></a> section for
+more information on how this done in general and for options
+to control the VCF sample and <code class="docutils literal notranslate"><span class="pre">GT</span></code> values.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In these examples we write the VCF data to <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code> so that we can see
+the output. Usually, however, you’d write to a file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.vcf&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">vcf_file</span><span class="p">:</span>
+    <span class="n">ts</span><span class="o">.</span><span class="n">write_vcf</span><span class="p">(</span><span class="n">vcf_file</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the <a class="reference internal" href="#sec-export-vcf-compression"><span class="std std-ref">Compressed output</span></a> section for information
+on how to compress the output or convert to BCF.</p>
+</div>
+</div>
+<section id="terminology">
+<span id="sec-export-vcf-terminology"></span><h3>Terminology<a class="headerlink" href="#terminology" title="Link to this heading">#</a></h3>
+<p>There are some mismatches between the terminology for tskit and VCF.
+In VCF a “sample” is a multiploid individual, but in tskit a sample
+refers to a single <strong>node</strong> (monoploid genome), and an individual
+consists of one or more nodes (e.g., two nodes for a diploid).
+Similarly, in VCF a “genotype” refers to the observed allelic state
+for a sample <strong>individual</strong> at a particular site,
+whereas in tskit a genotype is the observed allelic state
+for a <strong>node</strong> (see <a class="reference internal" href="python-api.html#tskit.Variant.genotypes" title="tskit.Variant.genotypes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Variant.genotypes</span></code></a>).</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the <a class="reference internal" href="glossary.html#sec-glossary"><span class="std std-ref">Glossary</span></a> for more details on tskit’s data model
+and terminology.</p>
+</div>
+</section>
+<section id="compressed-output">
+<span id="sec-export-vcf-compression"></span><h3>Compressed output<a class="headerlink" href="#compressed-output" title="Link to this heading">#</a></h3>
+<p>The simplest way to compress the VCF output is to use the
+<code class="docutils literal notranslate"><span class="pre">tskit</span> <span class="pre">vcf</span></code> <a class="reference internal" href="cli.html#sec-cli"><span class="std std-ref">command line interface</span></a>
+and pipe the output to <code class="docutils literal notranslate"><span class="pre">bgzip</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tskit<span class="w"> </span>vcf<span class="w"> </span>example.trees<span class="w"> </span><span class="p">|</span><span class="w"> </span>bgzip<span class="w"> </span>-c<span class="w"> </span>&gt;<span class="w"> </span>example.vcf.gz
+</pre></div>
+</div>
+<p>A general way to convert VCF data to various formats is to pipe the text
+produced by <code class="docutils literal notranslate"><span class="pre">tskit</span></code> into <code class="docutils literal notranslate"><span class="pre">bcftools</span></code> using the command
+line interface:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tskit<span class="w"> </span>vcf<span class="w"> </span>example.trees<span class="w"> </span><span class="p">|</span><span class="w"> </span>bcftools<span class="w"> </span>view<span class="w"> </span>-O<span class="w"> </span>b<span class="w"> </span>&gt;<span class="w"> </span>example.bcf
+</pre></div>
+</div>
+<p>If you need more control over the form of the output (or want to work
+directly in Python), the following recipe has the same effect:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+
+<span class="n">read_fd</span><span class="p">,</span> <span class="n">write_fd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pipe</span><span class="p">()</span>
+<span class="n">write_pipe</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">fdopen</span><span class="p">(</span><span class="n">write_fd</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.bcf&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">bcf_file</span><span class="p">:</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;bcftools&quot;</span><span class="p">,</span> <span class="s2">&quot;view&quot;</span><span class="p">,</span> <span class="s2">&quot;-O&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span> <span class="n">stdin</span><span class="o">=</span><span class="n">read_fd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">bcf_file</span>
+    <span class="p">)</span>
+    <span class="n">ts</span><span class="o">.</span><span class="n">write_vcf</span><span class="p">(</span><span class="n">write_pipe</span><span class="p">)</span>
+    <span class="n">write_pipe</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">read_fd</span><span class="p">)</span>
+    <span class="n">proc</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">proc</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;bcftools failed with status:&quot;</span><span class="p">,</span> <span class="n">proc</span><span class="o">.</span><span class="n">returncode</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The VCF output can also be compressed using the <a class="reference external" href="https://docs.python.org/3/library/gzip.html#module-gzip" title="(in Python v3.14)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code></a> Python module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gzip</span>
+
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;output.vcf.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;wt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">ts</span><span class="o">.</span><span class="n">write_vcf</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, this gzipped VCF won’t be fully compatible with downstream tools
+such as tabix, which usually require the VCF to use the specialised bgzip format.</p>
+</section>
+<section id="masking-output">
+<span id="sec-export-vcf-masking-output"></span><h3>Masking output<a class="headerlink" href="#masking-output" title="Link to this heading">#</a></h3>
+<p>The <a class="reference internal" href="python-api.html#tskit.TreeSequence.write_vcf" title="tskit.TreeSequence.write_vcf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.write_vcf()</span></code></a> method provides the
+<code class="docutils literal notranslate"><span class="pre">site_mask</span></code> and <code class="docutils literal notranslate"><span class="pre">sample_mask</span></code> arguments to
+omit or mark parts of the output as missing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_ancestry</span><span class="p">(</span>
+    <span class="n">samples</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ploidy</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_mutations</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">sites</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <div>
+            <style scoped="">
+                .tskit-table tbody tr th:only-of-type {vertical-align: middle;}
+                .tskit-table tbody tr th {vertical-align: top;}
+                .tskit-table tbody td {text-align: right;padding: 0.5em 0.5em;}
+                .tskit-table tbody th {padding: 0.5em 0.5em;}
+            </style>
+            <table border="1" class="tskit-table">
+                <thead>
+                    <tr>
+                        <th>id</th><th>position</th><th>ancestral_state</th><th>metadata</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0</td><td>2</td><td>A</td><td></td></tr>
+<tr><td>1</td><td>3</td><td>C</td><td></td></tr>
+<tr><td>2</td><td>4</td><td>G</td><td></td></tr>
+<tr><td>3</td><td>6</td><td>C</td><td></td></tr>
+<tr><td>4</td><td>9</td><td>A</td><td></td></tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">sample_mask</span></code> argument provides a general way to mask out
+parts of the output, which can be helpful when simulating missing
+data. In this (contrived) example, we create a sample mask function
+that marks one genotype missing in each variant in a regular
+pattern:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sample_mask</span><span class="p">(</span><span class="n">variant</span><span class="p">):</span>
+    <span class="n">sample_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_samples</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">sample_mask</span><span class="p">[</span><span class="n">variant</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">id</span> <span class="o">%</span> <span class="n">ts</span><span class="o">.</span><span class="n">num_samples</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">sample_mask</span>
+
+
+<span class="n">ts</span><span class="o">.</span><span class="n">write_vcf</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">sample_mask</span><span class="o">=</span><span class="n">sample_mask</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="constructing-gt-values">
+<span id="sec-export-vcf-constructing-gt"></span><h3>Constructing GT values<a class="headerlink" href="#constructing-gt-values" title="Link to this heading">#</a></h3>
+<p>The core elements of the tskit
+<a class="reference internal" href="data-model.html#sec-data-model"><span class="std std-ref">data model</span></a>
+are <a class="reference internal" href="data-model.html#sec-node-table-definition"><span class="std std-ref">nodes</span></a>,
+<a class="reference internal" href="data-model.html#sec-node-table-definition"><span class="std std-ref">edges</span></a>,
+<a class="reference internal" href="data-model.html#sec-site-table-definition"><span class="std std-ref">sites</span></a> and
+<a class="reference internal" href="data-model.html#sec-mutation-table-definition"><span class="std std-ref">mutations</span></a>.
+These four tables allow us to completely describe the
+genetic ancestry of a set of sampled monoploid
+genomes and their genetic variation.
+The <a class="reference internal" href="data-model.html#sec-individual-table-definition"><span class="std std-ref">individual table</span></a>
+defines a set of individual <em>organisms</em>, and it can
+be used to define the inheritance relationships between
+then (the pedigree). An individual may be associated
+with one or more nodes, and these nodes may or
+may not be samples (see the <a class="reference internal" href="glossary.html#sec-glossary"><span class="std std-ref">Glossary</span></a>
+for clarification of these terms).
+Thus, there is some complexity in how the per-individual GT values
+are generated, which we explain in this section.</p>
+<section id="without-individuals">
+<h4>Without individuals<a class="headerlink" href="#without-individuals" title="Link to this heading">#</a></h4>
+<p>We start with an example in which there are no individuals
+defined (which was the default in msprime before version 1.0):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+<span class="n">tables</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">Tree</span><span class="o">.</span><span class="n">generate_balanced</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">span</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">tree_sequence</span><span class="o">.</span><span class="n">dump_tables</span><span class="p">()</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">sites</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">ancestral_state</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">mutations</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">site</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">derived_state</span><span class="o">=</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">draw_svg</span><span class="p">())</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">write_vcf</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/23c63a0b5f86220de1f6b8199f5db399035f64cc6400411c78ce9f79bda8fafe.svg" src="_images/23c63a0b5f86220de1f6b8199f5db399035f64cc6400411c78ce9f79bda8fafe.svg" />
+<div class="output text_html">
+        <div>
+            <style>
+                .tskit-table thead tr th {text-align: left;padding: 0.5em 0.5em;}
+                .tskit-table tbody tr td {padding: 0.5em 0.5em;}
+                .tskit-table tbody tr td:first-of-type {text-align: left;}
+                .tskit-details-label {vertical-align: top; padding-right:5px;}
+                .tskit-table-set {display: inline-flex;flex-wrap: wrap;margin: -12px 0 0 -12px;width: calc(100% + 12px);}
+                .tskit-table-set-table {margin: 12px 0 0 12px;}
+                details {display: inline-block;}
+                summary {cursor: pointer; outline: 0; display: list-item;}
+            </style>
+            <div class="tskit-table-set">
+                <div class="tskit-table-set-table">
+                    <table class="tskit-table">
+                        <thead>
+                            <tr>
+                                <th style="padding:0;line-height:21px;">
+                                    <img style="height: 32px;display: inline-block;padding: 3px 5px 3px 0;" src="https://raw.githubusercontent.com/tskit-dev/administrative/main/tskit_logo.svg"/>
+                                    <a target="_blank" href="https://tskit.dev/tskit/docs/latest/python-api.html#the-treesequence-class"> Tree Sequence </a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Trees</td><td>1</td></tr>
+                            <tr><td>Sequence Length</td><td>10</td></tr>
+                            <tr><td>Time Units</td><td>unknown</td></tr>
+                            <tr><td>Sample Nodes</td><td>4</td></tr>
+                            <tr><td>Total Size</td><td>1.1 KiB</td></tr>
+                            <tr>
+                                <td>Metadata</td><td style="text-align: left;">No Metadata</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tskit-table-set-table">
+                    <table class="tskit-table">
+                        <thead>
+                            <tr>
+                                <th style="line-height:21px;">Table</th>
+                                <th>Rows</th>
+                                <th>Size</th>
+                                <th>Has Metadata</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+            <tr>
+                <td>Edges</td>
+                <td>6</td>
+                <td>200 Bytes</td>
+                <td style="text-align: center;">
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Individuals</td>
+                <td>0</td>
+                <td>24 Bytes</td>
+                <td style="text-align: center;">
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Migrations</td>
+                <td>0</td>
+                <td>8 Bytes</td>
+                <td style="text-align: center;">
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Mutations</td>
+                <td>1</td>
+                <td>53 Bytes</td>
+                <td style="text-align: center;">
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Nodes</td>
+                <td>7</td>
+                <td>204 Bytes</td>
+                <td style="text-align: center;">
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Populations</td>
+                <td>0</td>
+                <td>8 Bytes</td>
+                <td style="text-align: center;">
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Provenances</td>
+                <td>1</td>
+                <td>514 Bytes</td>
+                <td style="text-align: center;">
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Sites</td>
+                <td>1</td>
+                <td>41 Bytes</td>
+                <td style="text-align: center;">
+                    
+                </td>
+            </tr>
+        
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tskit-table-set-table">
+                    <table class="tskit-table">
+                        <thead>
+                            <tr>
+                                <th>Provenance Timestamp</th>
+                                <th>Software Name</th>
+                                <th>Version</th>
+                                <th>Command</th>
+                                <th>Full record</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                <tr>
+                    <td>07 February, 2026 at 11:41:02 AM</td>
+                    <td>tskit</td>
+                    <td>1.0.2.dev1</td>
+                    <td>generate_balanced</td>
+                    <td>
+                        <details>
+                            <summary>Details</summary>
+                            
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    schema_version: 1.0.0<br/>
+            <div>
+                <span class="tskit-details-label">software:</span>
+                <details >
+                    <summary>dict</summary>
+                    name: tskit<br/>version: 1.0.2.dev1<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">parameters:</span>
+                <details >
+                    <summary>dict</summary>
+                    command: generate_balanced<br/>TODO: add parameters<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">environment:</span>
+                <details >
+                    <summary>dict</summary>
+                    
+            <div>
+                <span class="tskit-details-label">os:</span>
+                <details >
+                    <summary>dict</summary>
+                    system: Linux<br/>node: runnervmwffz4<br/>release: 6.11.0-1018-azure<br/>version: #18~24.04.1-Ubuntu SMP Sat Jun<br/>28 04:46:03 UTC 2025<br/>machine: x86_64<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">python:</span>
+                <details >
+                    <summary>dict</summary>
+                    implementation: CPython<br/>version: 3.11.13<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">libraries:</span>
+                <details >
+                    <summary>dict</summary>
+                    
+            <div>
+                <span class="tskit-details-label">kastore:</span>
+                <details >
+                    <summary>dict</summary>
+                    version: 2.1.1<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            
+                        </details>
+                    </td>
+                </tr>
+            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="margin-top: 1em; font-size: 0.8em; text-align: center;">
+                To cite this software, please consult the citation manual: <a href="https://tskit.dev/citation/" target="_blank">https://tskit.dev/citation/</a>
+            </div>
+        </div>
+    </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>##fileformat=VCFv4.2
+##source=tskit 1.0.2.dev1
+##FILTER=&lt;ID=PASS,Description=&quot;All filters passed&quot;&gt;
+##contig=&lt;ID=1,length=10&gt;
+##FORMAT=&lt;ID=GT,Number=1,Type=String,Description=&quot;Genotype&quot;&gt;
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	tsk_0	tsk_1	tsk_2	tsk_3
+1	3	0	A	T	.	PASS	.	GT	1	0	0	0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we define a tree sequence consisting of a single tree, which
+has a variant site at position 3 and a mutation over node 0.
+There is no information about individuals in this tree sequence,
+and so we assume that each of the nodes corresponds to a single
+haploid individual.</p>
+<p>Users of msprime simulations would often be interested in producing
+VCFs for diploid organisms. Because of the assumptions made
+by these simulations, this means arbitrarily combining the sample
+nodes into pairs. This is what the <code class="docutils literal notranslate"><span class="pre">ploidy</span></code> option does:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span><span class="o">.</span><span class="n">write_vcf</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">ploidy</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>##fileformat=VCFv4.2
+##source=tskit 1.0.2.dev1
+##FILTER=&lt;ID=PASS,Description=&quot;All filters passed&quot;&gt;
+##contig=&lt;ID=1,length=10&gt;
+##FORMAT=&lt;ID=GT,Number=1,Type=String,Description=&quot;Genotype&quot;&gt;
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	tsk_0	tsk_1
+1	3	0	A	T	.	PASS	.	GT	1|0	0|0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, the <code class="docutils literal notranslate"><span class="pre">GT</span></code> values for the (synthetic) diploid individual <code class="docutils literal notranslate"><span class="pre">tsk_0</span></code>
+are generated by combining nodes 0 and 1, and <code class="docutils literal notranslate"><span class="pre">tsk_1</span></code>
+by combining nodes 2 and 3.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Software packages modelling multiploid individuals are encouraged to
+use the individual table to make their assumptions explicit. Recent
+versions of simulators and inference methods should all do this,
+and so the <code class="docutils literal notranslate"><span class="pre">ploidy</span></code> argument is really only intended to support
+legacy code. It is therefore an error to supply a value for <code class="docutils literal notranslate"><span class="pre">ploidy</span></code>
+when individual information is present in a tree sequence.</p>
+</div>
+</section>
+<section id="with-individuals">
+<h4>With individuals<a class="headerlink" href="#with-individuals" title="Link to this heading">#</a></h4>
+<p>Extending the example in the previous section, we add some individual data
+defining a pair of diploid sibs and their parents.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We set the nodes for (e.g.) individual 2 to [1, 3] here to illustrate
+that nodes for a given individual are not necessarily contiguous.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">node_individual</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">individual</span>
+<span class="n">node_individual</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">node_individual</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">individual</span> <span class="o">=</span> <span class="n">node_individual</span>
+<span class="n">display</span><span class="p">(</span><span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">write_vcf</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <div>
+            <style scoped="">
+                .tskit-table tbody tr th:only-of-type {vertical-align: middle;}
+                .tskit-table tbody tr th {vertical-align: top;}
+                .tskit-table tbody td {text-align: right;padding: 0.5em 0.5em;}
+                .tskit-table tbody th {padding: 0.5em 0.5em;}
+            </style>
+            <table border="1" class="tskit-table">
+                <thead>
+                    <tr>
+                        <th>id</th><th>flags</th><th>location</th><th>parents</th><th>metadata</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0</td><td>0</td><td></td><td>-1, -1</td><td></td></tr>
+<tr><td>1</td><td>0</td><td></td><td>-1, -1</td><td></td></tr>
+<tr><td>2</td><td>0</td><td></td><td>0, 1</td><td></td></tr>
+<tr><td>3</td><td>0</td><td></td><td>0, 1</td><td></td></tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div><div class="output text_html">
+        <div>
+            <style scoped="">
+                .tskit-table tbody tr th:only-of-type {vertical-align: middle;}
+                .tskit-table tbody tr th {vertical-align: top;}
+                .tskit-table tbody td {text-align: right;padding: 0.5em 0.5em;}
+                .tskit-table tbody th {padding: 0.5em 0.5em;}
+            </style>
+            <table border="1" class="tskit-table">
+                <thead>
+                    <tr>
+                        <th>id</th><th>time</th><th>flags</th><th>population</th><th>individual</th><th>metadata</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0</td><td>0</td><td>1</td><td>-1</td><td>3</td><td></td></tr>
+<tr><td>1</td><td>0</td><td>1</td><td>-1</td><td>2</td><td></td></tr>
+<tr><td>2</td><td>0</td><td>1</td><td>-1</td><td>3</td><td></td></tr>
+<tr><td>3</td><td>0</td><td>1</td><td>-1</td><td>2</td><td></td></tr>
+<tr><td>4</td><td>1</td><td>0</td><td>-1</td><td>-1</td><td></td></tr>
+<tr><td>5</td><td>1</td><td>0</td><td>-1</td><td>-1</td><td></td></tr>
+<tr><td>6</td><td>2</td><td>0</td><td>-1</td><td>-1</td><td></td></tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>##fileformat=VCFv4.2
+##source=tskit 1.0.2.dev1
+##FILTER=&lt;ID=PASS,Description=&quot;All filters passed&quot;&gt;
+##contig=&lt;ID=1,length=10&gt;
+##FORMAT=&lt;ID=GT,Number=1,Type=String,Description=&quot;Genotype&quot;&gt;
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	tsk_2	tsk_3
+1	3	0	A	T	.	PASS	.	GT	0|0	1|0
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this model we have four individuals defined, but only
+individuals 2 and 3 are associated with nodes (more specifically,
+<strong>sample</strong> nodes). Thus, we output <strong>two</strong> VCF sample individuals
+composed of the linked nodes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that the labels are <code class="docutils literal notranslate"><span class="pre">tsk_0</span></code> and <code class="docutils literal notranslate"><span class="pre">tsk_1</span></code> even though
+the individual IDs are 2 and 3. See the
+<a class="reference internal" href="#sec-export-vcf-individual-names"><span class="std std-ref">Individual names</span></a> section for how to change the
+these default labels.</p>
+</div>
+<p>If some individuals have no associated nodes, they are omitted from the
+VCF output. By default, only nodes that are marked as samples contribute
+to the VCF genotypes; to include non-sample nodes as well (e.g., internal
+nodes that have been marked as individuals), set
+<code class="docutils literal notranslate"><span class="pre">include_non_sample_nodes=True</span></code> when calling :meth:<code class="docutils literal notranslate"><span class="pre">TreeSequence.write_vcf</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>At present, :meth:<code class="docutils literal notranslate"><span class="pre">TreeSequence.write_vcf</span></code> only supports sites with up to
+9 distinct alleles; attempting to write a site with more than 9 alleles
+will result in a :class:<code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="individual-names">
+<span id="sec-export-vcf-individual-names"></span><h3>Individual names<a class="headerlink" href="#individual-names" title="Link to this heading">#</a></h3>
+<p>By default the VCF samples are given the labels <code class="docutils literal notranslate"><span class="pre">tsk_0</span></code>, <code class="docutils literal notranslate"><span class="pre">tsk_1</span></code>,
+…, <code class="docutils literal notranslate"><span class="pre">tsk_{N</span> <span class="pre">-</span> <span class="pre">1}</span></code>, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of individuals to
+be output (see the <a class="reference internal" href="#sec-export-vcf-constructing-gt"><span class="std std-ref">Constructing GT values</span></a> section).</p>
+<p>We can change this default labelling using the <code class="docutils literal notranslate"><span class="pre">individual_names</span></code>
+argument::</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">msprime</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_ancestry</span><span class="p">(</span>
+    <span class="n">samples</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ploidy</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_mutations</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">write_vcf</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">individual_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>##fileformat=VCFv4.2
+##source=tskit 1.0.2.dev1
+##FILTER=&lt;ID=PASS,Description=&quot;All filters passed&quot;&gt;
+##contig=&lt;ID=1,length=10&gt;
+##FORMAT=&lt;ID=GT,Number=1,Type=String,Description=&quot;Genotype&quot;&gt;
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	A	B	C
+1	2	0	A	T,G	.	PASS	.	GT	0|0	0|0	2|2
+1	3	1	C	T	.	PASS	.	GT	0|0	0|1	0|0
+1	4	2	G	C	.	PASS	.	GT	1|0	1|1	0|0
+1	6	3	C	T	.	PASS	.	GT	1|0	1|1	0|0
+1	9	4	A	C	.	PASS	.	GT	0|0	1|0	0|0
+</pre></div>
+</div>
+</div>
+</div>
+<section id="exporting-to-plink">
+<h4>Exporting to plink<a class="headerlink" href="#exporting-to-plink" title="Link to this heading">#</a></h4>
+<p>The default VCF sample IDs produced by <code class="docutils literal notranslate"><span class="pre">tskit</span></code> do not work well
+with plink because it parses the individual
+IDs based on a particular format, and does not allow <code class="docutils literal notranslate"><span class="pre">0</span></code> as a valid
+identifier. We get an error like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span><span class="p">:</span> <span class="n">Sample</span> <span class="n">ID</span> <span class="n">ends</span> <span class="k">with</span> <span class="s2">&quot;_0&quot;</span><span class="p">,</span> <span class="n">which</span> <span class="n">induces</span> <span class="n">an</span> <span class="n">invalid</span> <span class="n">IID</span> <span class="n">of</span> <span class="s1">&#39;0`.</span>
+</pre></div>
+</div>
+<p>This can be fixed by using the <code class="docutils literal notranslate"><span class="pre">individual_names</span></code> argument
+to set the names to anything where the first name doesn’t end with <code class="docutils literal notranslate"><span class="pre">_0</span></code>.
+An example implementation for diploid individuals is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_dip_indv</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_samples</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">indv_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;tsk_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">indv&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dip_indv</span><span class="p">)]</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.vcf&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">vcf_file</span><span class="p">:</span>
+    <span class="n">ts</span><span class="o">.</span><span class="n">write_vcf</span><span class="p">(</span><span class="n">vcf_file</span><span class="p">,</span> <span class="n">individual_names</span><span class="o">=</span><span class="n">indv_names</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Adding a second <code class="docutils literal notranslate"><span class="pre">_</span></code> (eg: <code class="docutils literal notranslate"><span class="pre">tsk_0_indv</span></code>) is not recommended as
+<code class="docutils literal notranslate"><span class="pre">plink</span></code> uses <code class="docutils literal notranslate"><span class="pre">_</span></code> as the default separator for separating family
+id and individual id, and two underscores will throw an error.</p>
+</section>
+</section>
+<section id="modifying-coordinates">
+<span id="sec-export-vcf-modifying-coordinates"></span><h3>Modifying coordinates<a class="headerlink" href="#modifying-coordinates" title="Link to this heading">#</a></h3>
+<p>Tree sequence site positions can be floating point values, whereas VCF
+requires positive integers. The <code class="docutils literal notranslate"><span class="pre">position_transform</span></code> argument
+controls how tskit maps coordinates into VCF. Translating non-integer
+positions necessarily loses precision; by default we round to the nearest
+integer, so multiple sites may share the same output position.
+Furthermore, tskit’s coordinate system starts at zero,
+whereas the VCF standard requires positions to be positive,
+and so a site at position 0 is not valid in the VCF standard.
+Because VCF parsers differ, we do <strong>not</strong> do anything to account for this.</p>
+<p>The simplest resolution of this discrepancy in convention between tskit and VCF
+positions is deal with any site at position 0 as a special case (for instance,
+by discarding or ignoring it).
+A different interpretation of this difference between tskit’s position
+and VCF’s POS field
+is that they are different coordinate systems: tskit coordinates are
+“distance to the right of the left end of the chromosome”,
+while VCF coordinates are “which number site, counting from the left end
+of the chromosome and starting at one”.
+Under this interpretation, the solution is to supply an explicit
+<code class="docutils literal notranslate"><span class="pre">position_transform</span></code> that adds 1 to the coordinate when outputting
+to VCF (or, using the <code class="docutils literal notranslate"><span class="pre">&quot;legacy&quot;</span></code> option described below). However, this can
+easily lead to off-by-one errors converting between the coordinate systems,
+so should only be used if you really are using 0-based coordinates for your
+tree sequence.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Most VCF tools cannot deal with a POS value of 0. If your tree
+sequence contains a site with position 0, this will likely cause an error.</p>
+</div>
+<p>Internally, the coordinates used in the VCF output are obtained by applying
+the <code class="docutils literal notranslate"><span class="pre">position_transform</span></code> function to the array of site positions (and, for
+the contig length, to the tree sequence :attr:<code class="docutils literal notranslate"><span class="pre">.TreeSequence.sequence_length</span></code>).
+This function must return a one-dimensional array of the same length as its
+input; otherwise a :class:<code class="docutils literal notranslate"><span class="pre">ValueError</span></code> is raised. In addition to accepting a
+callable, tskit also supports the string value <code class="docutils literal notranslate"><span class="pre">&quot;legacy&quot;</span></code> here, which
+selects the pre-0.2.0 behaviour used by the original VCF exporter:
+positions are rounded to the nearest integer, starting at 1, and are forced
+to be strictly increasing by incrementing ties.</p>
+<p>The VCF specification does not allow positions to be 0. By default, if any
+transformed position is 0, :meth:<code class="docutils literal notranslate"><span class="pre">TreeSequence.write_vcf</span></code> will raise a
+:class:<code class="docutils literal notranslate"><span class="pre">ValueError</span></code>. If you wish to retain these records you can either:</p>
+<ul class="simple">
+<li><p>set <code class="docutils literal notranslate"><span class="pre">allow_position_zero=True</span></code> to write such sites anyway;</p></li>
+<li><p>mask the offending sites using the <code class="docutils literal notranslate"><span class="pre">site_mask</span></code> argument; or</p></li>
+<li><p>choose a <code class="docutils literal notranslate"><span class="pre">position_transform</span></code> that maps 0 to a valid positive position.</p></li>
+</ul>
+<p>For example, to shift all coordinates by 1, we could define:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">one_based_positions</span><span class="p">(</span><span class="n">positions</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">]</span>
+
+<span class="n">ts</span><span class="o">.</span><span class="n">write_vcf</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">position_transform</span><span class="o">=</span><span class="n">one_based_positions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>##fileformat=VCFv4.2
+##source=tskit 1.0.2.dev1
+##FILTER=&lt;ID=PASS,Description=&quot;All filters passed&quot;&gt;
+##contig=&lt;ID=1,length=11&gt;
+##FORMAT=&lt;ID=GT,Number=1,Type=String,Description=&quot;Genotype&quot;&gt;
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	tsk_0	tsk_1	tsk_2
+1	3	0	A	T,G	.	PASS	.	GT	0|0	0|0	2|2
+1	4	1	C	T	.	PASS	.	GT	0|0	0|1	0|0
+1	5	2	G	C	.	PASS	.	GT	1|0	1|1	0|0
+1	7	3	C	T	.	PASS	.	GT	1|0	1|1	0|0
+1	10	4	A	C	.	PASS	.	GT	0|0	1|0	0|0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The msprime 0.x legacy API simulates using continuous coordinates. It may
+be simpler to update your code to use the msprime 1.0 API (which uses
+discrete coordinates by default) than to work out how to transform
+coordinates in a way that is suitable for your application.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ibd.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Identity by descent</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="python-api.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python API</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variant-call-format">Variant Call Format</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology">Terminology</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compressed-output">Compressed output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masking-output">Masking output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-gt-values">Constructing GT values</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#without-individuals">Without individuals</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#with-individuals">With individuals</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-names">Individual names</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exporting-to-plink">Exporting to plink</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-coordinates">Modifying coordinates</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

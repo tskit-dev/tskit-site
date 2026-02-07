@@ -1,0 +1,1070 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Identity by descent &#8212; Tskit manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/bespoke.css?v=00f581dd" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ibd';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data export" href="export.html" />
+    <link rel="prev" title="Topological analysis" href="topological-analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 1.0.2.dev1</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="provenance.html">Provenance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stats.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topological-analysis.html">Topological analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Identity by descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Data export</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python-api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba.html">Numba Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-api.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-formats.html">File formats</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">For developers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelogs.html">Changelogs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing tskit</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/edit/main/docs/ibd.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/issues/new?title=Issue%20on%20page%20%2Fibd.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ibd.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Identity by descent</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures">Data structures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controlling-the-sample-sets">Controlling the sample sets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ibd-within-a-sample-set">IBD within a sample set</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ibd-between-sample-sets">IBD between sample sets</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constraints-on-the-segments">Constraints on the segments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-the-pathwise-definition-of-ibd-segments">More on the “pathwise” definition of IBD segments</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sec-identity">
+<span id="identity-by-descent"></span><h1>Identity by descent<a class="headerlink" href="#sec-identity" title="Link to this heading">#</a></h1>
+<p>The <a class="reference internal" href="python-api.html#tskit.TreeSequence.ibd_segments" title="tskit.TreeSequence.ibd_segments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.ibd_segments()</span></code></a> method allows us to compute
+segments of identity by descent along a tree sequence.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This documentation page is preliminary</p>
+</div>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<p>Let’s take a simple tree sequence to illustrate the <a class="reference internal" href="python-api.html#tskit.TreeSequence.ibd_segments" title="tskit.TreeSequence.ibd_segments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.ibd_segments()</span></code></a>
+method and associated <a class="reference internal" href="python-api.html#sec-python-api-reference-identity"><span class="std std-ref">Identity classes</span></a>:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVG</span>
+
+<span class="n">nodes</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">    id      is_sample   time</span>
+<span class="sd">    0       1           0</span>
+<span class="sd">    1       1           0</span>
+<span class="sd">    2       1           0</span>
+<span class="sd">    3       0           1</span>
+<span class="sd">    4       0           2</span>
+<span class="sd">    5       0           3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">    left    right   parent  child</span>
+<span class="sd">    2     10     3       0</span>
+<span class="sd">    2     10     3       2</span>
+<span class="sd">    0     10     4       1</span>
+<span class="sd">    0     2      4       2</span>
+<span class="sd">    2     10     4       3</span>
+<span class="sd">    0     2      5       0</span>
+<span class="sd">    0     2      5       4</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">load_text</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span><span class="o">=</span><span class="n">edges</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">SVG</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">draw_svg</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/24af6631dd776d9262962d8dc80efa13acec3802e3251022437c807374ced7ee.svg" src="_images/24af6631dd776d9262962d8dc80efa13acec3802e3251022437c807374ced7ee.svg" />
+</div>
+</div>
+<section id="definition">
+<h3>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h3>
+<p>A pair of nodes <code class="docutils literal notranslate"><span class="pre">(u,</span> <span class="pre">v)</span></code> has an IBD segment with a left and right
+coordinate <code class="docutils literal notranslate"><span class="pre">[left,</span> <span class="pre">right)</span></code> and ancestral node <code class="docutils literal notranslate"><span class="pre">a</span></code> iff the most
+recent common ancestor of the segment <code class="docutils literal notranslate"><span class="pre">[left,</span> <span class="pre">right)</span></code> in nodes <code class="docutils literal notranslate"><span class="pre">u</span></code>
+and <code class="docutils literal notranslate"><span class="pre">v</span></code> is <code class="docutils literal notranslate"><span class="pre">a</span></code>, and the segment has been inherited along the same
+genealogical path (ie. it has not been broken by recombination). The
+definition of a “genealogical path” used here is
+the sequence of edges, rather than nodes.
+So, for instance, if <code class="docutils literal notranslate"><span class="pre">u</span></code> inherits a segment <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">z)</span></code> from <code class="docutils literal notranslate"><span class="pre">a</span></code>,
+but that inheritance is represented by two edges,
+one spanning <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">y)</span></code> and the other spanning <code class="docutils literal notranslate"><span class="pre">[y,</span> <span class="pre">z)</span></code>,
+then this represents two genealogical paths,
+and any IBD segments would be split at <code class="docutils literal notranslate"><span class="pre">y</span></code>.
+In other words, the method assumes that the end
+of an edge represents a recombination,
+an assumption that may not reflect how the tree sequence
+is used – see below for more discussion.</p>
+<p>This definition is purely genealogical: it depends only on the tree
+sequence topology and node times, and does not inspect allelic
+states or mutations. In particular, if we compute the MRCA of <code class="docutils literal notranslate"><span class="pre">(u,</span> <span class="pre">v)</span></code>
+in each tree along the sequence, then (up to the additional refinement
+by genealogical path) the IBD segments are those
+that share the same ancestor and paths to that
+ancestor. Intervals in which <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> lie in different roots
+have no MRCA and therefore do not contribute IBD segments.</p>
+<p>Consider the IBD segments that we get from our example tree sequence:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segments</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ibd_segments</span><span class="p">(</span><span class="n">store_segments</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">pair</span><span class="p">,</span> <span class="n">segment_list</span> <span class="ow">in</span> <span class="n">segments</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">segment_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.int32(0), np.int32(1)) [IdentitySegment(left=2.0, right=10.0, node=4), IdentitySegment(left=0.0, right=2.0, node=5)]
+(np.int32(0), np.int32(2)) [IdentitySegment(left=2.0, right=10.0, node=3), IdentitySegment(left=0.0, right=2.0, node=5)]
+(np.int32(1), np.int32(2)) [IdentitySegment(left=0.0, right=2.0, node=4), IdentitySegment(left=2.0, right=10.0, node=4)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each of the sample pairs (0, 1), (0, 2) and (1, 2) is associated with
+two IBD segments, representing the different paths from these sample
+pairs to their common ancestor. Note in particular that (1, 2) has
+<strong>two</strong> IBD segments rather than one: even though the MRCA is
+4 in both cases, the paths from the samples to the MRCA are different
+in the left and right trees.</p>
+</section>
+<section id="data-structures">
+<h3>Data structures<a class="headerlink" href="#data-structures" title="Link to this heading">#</a></h3>
+<p>The result of calling <a class="reference internal" href="python-api.html#tskit.TreeSequence.ibd_segments" title="tskit.TreeSequence.ibd_segments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.ibd_segments()</span></code></a> is an
+<a class="reference internal" href="python-api.html#tskit.IdentitySegments" title="tskit.IdentitySegments"><code class="xref py py-class docutils literal notranslate"><span class="pre">IdentitySegments</span></code></a> class:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segments</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ibd_segments</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">segments</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>╔════════════════════╗
+║IdentitySegments    ║
+╠══════════════╤═════╣
+║Parameters:   │     ║
+║max_time      │  inf║
+║min_span      │    0║
+║store_pairs   │False║
+║store_segments│False║
+║Results:      │     ║
+║num_segments  │    6║
+║total_span    │ 30.0║
+╚══════════════╧═════╝
+</pre></div>
+</div>
+</div>
+</div>
+<p>By default this class only stores the high-level summaries of the
+IBD segments discovered. As we can see in this example, we have a
+total of six segments and
+the total span (i.e., the sum lengths of the genomic intervals spanned
+by IBD segments) is 30. In this default mode the object does not
+store information about individual sample pairs, and methods that
+inspect per-pair information (such as indexing with <code class="docutils literal notranslate"><span class="pre">[(a,</span> <span class="pre">b)]</span></code> or
+iterating over the mapping) will raise an
+<code class="docutils literal notranslate"><span class="pre">IdentityPairsNotStoredError</span></code>.</p>
+<p>If required, we can get more detailed information about particular
+segment pairs and the actual segments using the <code class="docutils literal notranslate"><span class="pre">store_pairs</span></code>
+and <code class="docutils literal notranslate"><span class="pre">store_segments</span></code> arguments.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only use the <code class="docutils literal notranslate"><span class="pre">store_pairs</span></code> and <code class="docutils literal notranslate"><span class="pre">store_segments</span></code> arguments if you
+really need this information! The number of IBD segments can be
+very large and storing them all requires a lot of memory. It is
+also much faster to just compute the overall summaries, without
+needing to store the actual lists.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segments</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ibd_segments</span><span class="p">(</span><span class="n">store_pairs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">pair</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">segments</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="s2">&quot;::&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.int32(0), np.int32(1)) :: IdentitySegmentList(num_segments=2, total_span=10.0)
+(np.int32(0), np.int32(2)) :: IdentitySegmentList(num_segments=2, total_span=10.0)
+(np.int32(1), np.int32(2)) :: IdentitySegmentList(num_segments=2, total_span=10.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can see the more detailed breakdown of how the identity segments
+are distributed among the sample pairs. The <a class="reference internal" href="python-api.html#tskit.IdentitySegments" title="tskit.IdentitySegments"><code class="xref py py-class docutils literal notranslate"><span class="pre">IdentitySegments</span></code></a>
+class behaves like a dictionary, such that <code class="docutils literal notranslate"><span class="pre">segments[(a,</span> <span class="pre">b)]</span></code> will return
+the <a class="reference internal" href="python-api.html#tskit.IdentitySegmentList" title="tskit.IdentitySegmentList"><code class="xref py py-class docutils literal notranslate"><span class="pre">IdentitySegmentList</span></code></a> instance for that pair of samples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seglist</span> <span class="o">=</span> <span class="n">segments</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seglist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IdentitySegmentList(num_segments=2, total_span=10.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we want to access the detailed information about the actual
+identity segments, we must use the <code class="docutils literal notranslate"><span class="pre">store_segments</span></code> argument:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segments</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ibd_segments</span><span class="p">(</span><span class="n">store_pairs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">store_segments</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">segments</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IdentitySegmentList([IdentitySegment(left=2.0, right=10.0, node=4), IdentitySegment(left=0.0, right=2.0, node=5)])
+</pre></div>
+</div>
+</div>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">store_segments=True</span></code>, the <a class="reference internal" href="python-api.html#tskit.IdentitySegmentList" title="tskit.IdentitySegmentList"><code class="xref py py-class docutils literal notranslate"><span class="pre">IdentitySegmentList</span></code></a> behaves
+like a Python list, where each element is an instance of
+<a class="reference internal" href="python-api.html#tskit.IdentitySegment" title="tskit.IdentitySegment"><code class="xref py py-class docutils literal notranslate"><span class="pre">IdentitySegment</span></code></a>. When only <code class="docutils literal notranslate"><span class="pre">store_pairs=True</span></code> is specified,
+the number of segments and their total span are still available, but
+attempting to iterate over the list or access the per-segment arrays
+will raise an <code class="docutils literal notranslate"><span class="pre">IdentitySegmentsNotStoredError</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The order of segments in an <a class="reference internal" href="python-api.html#tskit.IdentitySegmentList" title="tskit.IdentitySegmentList"><code class="xref py py-class docutils literal notranslate"><span class="pre">IdentitySegmentList</span></code></a>
+is arbitrary, and may change in future versions.</p>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>More examples using the other bits of the IdentitySegments
+API here</p>
+</div>
+</section>
+<section id="controlling-the-sample-sets">
+<h3>Controlling the sample sets<a class="headerlink" href="#controlling-the-sample-sets" title="Link to this heading">#</a></h3>
+<p>By default we get the IBD segments between all pairs of
+<a class="reference internal" href="glossary.html#sec-data-model-definitions-sample"><span class="std std-ref">sample</span></a> nodes.</p>
+<section id="ibd-within-a-sample-set">
+<h4>IBD within a sample set<a class="headerlink" href="#ibd-within-a-sample-set" title="Link to this heading">#</a></h4>
+<p>We can reduce this to pairs within a specific set using the
+<code class="docutils literal notranslate"><span class="pre">within</span></code> argument:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segments</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ibd_segments</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">store_pairs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">segments</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(np.int32(0), np.int32(2))]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we have restricted attention to the samples with node IDs 0 and 2,
+so only the pair <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">2)</span></code> appears in the result. In general:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">within</span></code> should be a one-dimensional array-like of node IDs
+(typically sample nodes). All unordered pairs from this set are
+considered.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">within</span></code> is omitted (the default), all nodes flagged as samples
+in the node table are used.</p></li>
+</ul>
+</section>
+<section id="ibd-between-sample-sets">
+<h4>IBD between sample sets<a class="headerlink" href="#ibd-between-sample-sets" title="Link to this heading">#</a></h4>
+<p>We can also compute IBD <strong>between</strong> sample sets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segments</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ibd_segments</span><span class="p">(</span><span class="n">between</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="n">store_pairs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">segments</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(np.int32(0), np.int32(2)), (np.int32(1), np.int32(2))]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example we have two sample sets, <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code> and <code class="docutils literal notranslate"><span class="pre">[2]</span></code>, so the
+identity segments are computed only for pairs in which one sample lies
+in the first set and the other lies in the second. More generally:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">between</span></code> should be a list of non-overlapping lists of node IDs.</p></li>
+<li><p>All pairs <code class="docutils literal notranslate"><span class="pre">(u,</span> <span class="pre">v)</span></code> are considered such that <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> belong
+to different sample sets.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">within</span></code> and <code class="docutils literal notranslate"><span class="pre">between</span></code> arguments are mutually exclusive: passing
+both at the same time raises a :class:<code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the <a class="reference internal" href="python-api.html#tskit.TreeSequence.ibd_segments" title="tskit.TreeSequence.ibd_segments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.ibd_segments()</span></code></a> documentation for
+more details.</p>
+</div>
+</section>
+</section>
+<section id="constraints-on-the-segments">
+<h3>Constraints on the segments<a class="headerlink" href="#constraints-on-the-segments" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">max_time</span></code> and <code class="docutils literal notranslate"><span class="pre">min_span</span></code> arguments allow us to constrain the
+segments that we consider.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">max_time</span></code> argument specifies an upper bound on the time of the
+common ancestor node: only IBD segments whose MRCA node has a time
+no greater than <code class="docutils literal notranslate"><span class="pre">max_time</span></code> are returned.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">min_span</span></code> argument filters by genomic length: only segments with
+span strictly greater than <code class="docutils literal notranslate"><span class="pre">min_span</span></code> are included.</p>
+<p>For example, working with <code class="docutils literal notranslate"><span class="pre">ts2</span></code> as the following tree sequence:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+
+<span class="n">nodes</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">    id      is_sample   time</span>
+<span class="sd">    0       1           0</span>
+<span class="sd">    1       1           0</span>
+<span class="sd">    2       0           1</span>
+<span class="sd">    3       0           3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">    left    right   parent  child</span>
+<span class="sd">    0      4     2       0,1</span>
+<span class="sd">    4     10     3       0,1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+<span class="n">ts2</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">load_text</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span><span class="o">=</span><span class="n">edges</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">SVG</span><span class="p">(</span><span class="n">ts2</span><span class="o">.</span><span class="n">draw_svg</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/f5f597edfe840cdb11f03d33452730d493eb85bbba7572bdbb88cfa71593787d.svg" src="_images/f5f597edfe840cdb11f03d33452730d493eb85bbba7572bdbb88cfa71593787d.svg" />
+</div>
+</div>
+<p>There are two segments:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segments</span> <span class="o">=</span> <span class="n">ts2</span><span class="o">.</span><span class="n">ibd_segments</span><span class="p">(</span><span class="n">store_segments</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;all segments:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">segments</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>all segments: IdentitySegmentList(num_segments=2, total_span=10.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>… but only the left-hand one is more recent than 2 time units ago:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segments_recent</span> <span class="o">=</span> <span class="n">ts2</span><span class="o">.</span><span class="n">ibd_segments</span><span class="p">(</span><span class="n">max_time</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">store_segments</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max_time=1.2:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">segments_recent</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>max_time=1.2: IdentitySegmentList(num_segments=1, total_span=4.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>… and only the right-hand one is longer than 5 units.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segments_long</span> <span class="o">=</span> <span class="n">ts2</span><span class="o">.</span><span class="n">ibd_segments</span><span class="p">(</span><span class="n">min_span</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">store_segments</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;min_span=0.5:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">segments_long</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>min_span=0.5: IdentitySegmentList(num_segments=1, total_span=6.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>So: the full result contains two IBD segments for the single sample
+pair, one inherited via ancestor 2 over <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">4)</span></code> and one via
+ancestor 3 over <code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">10)</span></code>. The <code class="docutils literal notranslate"><span class="pre">max_time</span></code> constraint removes the
+segment inherited from the older ancestor (time 3), while the
+<code class="docutils literal notranslate"><span class="pre">min_span</span></code> constraint keeps only the longer of the two segments.</p>
+</section>
+<section id="more-on-the-pathwise-definition-of-ibd-segments">
+<h3>More on the “pathwise” definition of IBD segments<a class="headerlink" href="#more-on-the-pathwise-definition-of-ibd-segments" title="Link to this heading">#</a></h3>
+<p>We said above that the definition of IBD used by
+<a class="reference internal" href="python-api.html#tskit.TreeSequence.ibd_segments" title="tskit.TreeSequence.ibd_segments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.ibd_segments()</span></code></a> says that a given segment
+must be inherited from the MRCA along a single genealogical path,
+and that “genealogical paths” are defined <em>edgewise</em>.
+This can lead to surprising consequences.</p>
+<p>Returning to our example above:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SVG</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">draw_svg</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/24af6631dd776d9262962d8dc80efa13acec3802e3251022437c807374ced7ee.svg" src="_images/24af6631dd776d9262962d8dc80efa13acec3802e3251022437c807374ced7ee.svg" />
+</div>
+</div>
+<p>there are two IBD segments between <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">2</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segments</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ibd_segments</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">store_pairs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">pair</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">segments</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="s2">&quot;::&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.int32(1), np.int32(2)) :: IdentitySegmentList(num_segments=2, total_span=10.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This might be surprising, because the MRCA of <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">2</span></code>
+is node <code class="docutils literal notranslate"><span class="pre">4</span></code> over the entire sequence.
+In fact, some definitions of IBD segments
+would have this as a single segment,
+because the MRCA does not change,
+even if there are distinct genealogical paths.</p>
+<p>The reason this is split into two segments
+is because the path from <code class="docutils literal notranslate"><span class="pre">4</span></code> to <code class="docutils literal notranslate"><span class="pre">2</span></code> changes:
+on the left-hand segment <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">2)</span></code>, the node <code class="docutils literal notranslate"><span class="pre">2</span></code>
+inherits from node <code class="docutils literal notranslate"><span class="pre">4</span></code>
+via node <code class="docutils literal notranslate"><span class="pre">3</span></code>, while on the right-hand segment <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">10)</span></code>
+it inherits from node <code class="docutils literal notranslate"><span class="pre">4</span></code> directly.
+The tree sequence doesn’t say directly whether node <code class="docutils literal notranslate"><span class="pre">2</span></code>
+also inherits from node <code class="docutils literal notranslate"><span class="pre">3</span></code> on the right-hand segment,
+so whether or not this should be one IBD segment or two
+depends on our interpretation
+of what’s stored in the tree sequence.
+As discussed in
+<a class="reference external" href="https://doi.org/10.1093/genetics/iyaf198">Fritze et al</a>,
+most tree sequence simulators (at time of writing)
+will produce this tree sequence even if node <code class="docutils literal notranslate"><span class="pre">2</span></code>
+does in fact inherit from <code class="docutils literal notranslate"><span class="pre">3</span></code> over the entire sequence.
+Using <a class="reference internal" href="python-api.html#tskit.TreeSequence.extend_haplotypes" title="tskit.TreeSequence.extend_haplotypes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.extend_haplotypes()</span></code></a> will
+“put the unary nodes back”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ets</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">extend_haplotypes</span><span class="p">()</span>
+<span class="n">SVG</span><span class="p">(</span><span class="n">ets</span><span class="o">.</span><span class="n">draw_svg</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a4274c2cfe6fba8422401063668992b75f5332489c8a986131ea265a0efd85ec.svg" src="_images/a4274c2cfe6fba8422401063668992b75f5332489c8a986131ea265a0efd85ec.svg" />
+</div>
+</div>
+<p>and once this is done, there is only a single IBD segment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segments</span> <span class="o">=</span> <span class="n">ets</span><span class="o">.</span><span class="n">ibd_segments</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">store_pairs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">pair</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">segments</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="s2">&quot;::&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.int32(1), np.int32(2)) :: IdentitySegmentList(num_segments=1, total_span=10.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, extending haplotypes may produce IBD segments
+more in line with theory, if the desired definition if IBD
+is the “pathwise” definition.
+However, this will also probably introduce erroneous
+portions of IBD segments,
+so caution is needed.
+Another approach would be to merge adjacent segments of IBD
+that have the same MRCA.</p>
+<p>Summarizing this section –
+there is a confusing array of possible definitions
+of what it means to be “an IBD segment”;
+and these may be extracted from a tree sequence
+in subtly different ways.
+How much of a problem is this?
+The answer depends on the precise situation,
+but it seems likely that in practice,
+differences due to definition are small
+relative to errors due to tree sequence inference.
+Indeed, empirical haplotype-matching methods
+for identifying IBD segments can differ substantially
+depending on the values of various hyperparameters.
+More work is needed to develop a complete picture.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="topological-analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Topological analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="export.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data export</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures">Data structures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controlling-the-sample-sets">Controlling the sample sets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ibd-within-a-sample-set">IBD within a sample set</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ibd-between-sample-sets">IBD between sample sets</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constraints-on-the-segments">Constraints on the segments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-the-pathwise-definition-of-ibd-segments">More on the “pathwise” definition of IBD segments</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

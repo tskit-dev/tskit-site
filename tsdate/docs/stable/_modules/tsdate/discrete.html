@@ -1,0 +1,1212 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tsdate.discrete &#8212; Tsdate manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/tsdate/discrete';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tsdate_logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../../_static/tsdate_logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 0.2.5</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../usage.html">Usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../real-data.html">Real data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../popsize.html">Population size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../historical_samples.html">Historical (Ancient) Samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../priors.html">More on priors (old)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../api.html">APIs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python-api.html">Python API</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../cli.html">Command line interface</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CHANGELOG.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for tsdate.discrete</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Classes used for discete time algorithms (inside-outside and outsize_maximization)</span>
+<span class="c1"># Note that these methods are no longer the default method used by tsdate</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">multiprocessing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.auto</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.accelerate</span><span class="w"> </span><span class="kn">import</span> <span class="n">numba_jit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.node_time_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">LIN_GRID</span><span class="p">,</span> <span class="n">LOG_GRID</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Likelihoods</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to store and process likelihoods. Likelihoods for edges are stored as a</span>
+<span class="sd">    flattened lower triangular matrix of all the possible delta t&#39;s. This class also</span>
+<span class="sd">    provides methods for accessing this lower triangular matrix, multiplying it, etc.</span>
+
+<span class="sd">    If ``standardize`` is true, routines will operate to standardize the likelihoods</span>
+<span class="sd">    such that their maximum is one (in linear space) or zero (in log space)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">probability_space</span> <span class="o">=</span> <span class="n">LIN_GRID</span>
+    <span class="n">identity_constant</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">null_constant</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ts</span><span class="p">,</span>
+        <span class="n">timepoints</span><span class="p">,</span>
+        <span class="n">mutation_rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">recombination_rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">eps</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">fixed_node_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">standardize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">ts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timepoints</span> <span class="o">=</span> <span class="n">timepoints</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fixednodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">())</span> <span class="k">if</span> <span class="n">fixed_node_set</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">fixed_node_set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mut_rate</span> <span class="o">=</span> <span class="n">mutation_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rec_rate</span> <span class="o">=</span> <span class="n">recombination_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">standardize</span> <span class="o">=</span> <span class="n">standardize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">timepoints</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tri_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ll_mut</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mut_edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mut_edges</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="n">progress</span>
+        <span class="c1"># Need to set eps properly in the 2 lines below, to account for values in the</span>
+        <span class="c1"># same timeslice</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timediff_lower_tri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">timepoints</span><span class="p">[</span><span class="n">time_index</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">timepoints</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">time_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">eps</span>
+                <span class="k">for</span> <span class="n">time_index</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timepoints</span><span class="p">))</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timediff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timepoints</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">timepoints</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">eps</span>
+
+        <span class="c1"># The mut_ll contains unpacked (1D) lower triangular matrices. We need to</span>
+        <span class="c1"># index this by row and by column index.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_indices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span><span class="p">):</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">row_indices</span><span class="o">.</span><span class="n">append</span><span class="p">((((</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">t</span><span class="p">)[</span><span class="n">t</span><span class="p">:])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_indices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">running_sum</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># use this to find the index of the last element of</span>
+        <span class="c1"># each column in order to appropriately sum the vv by columns.</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span><span class="p">):</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">running_sum</span><span class="p">,</span> <span class="n">running_sum</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">running_sum</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">col_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+        <span class="c1"># These are used for transforming an array of grid_size into one of tri_size</span>
+        <span class="c1"># By repeating elements over rows to form an upper or a lower triangular matrix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">to_lower_tri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">time_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">time_idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span><span class="p">)]</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">to_upper_tri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">time_idx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">time_idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_mut_edges</span><span class="p">(</span><span class="n">ts</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the number of mutations on each edge in the tree sequence.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mut_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_edges</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ts</span><span class="o">.</span><span class="n">mutations</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">edge</span> <span class="o">!=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">:</span>
+                <span class="n">mut_edges</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">edge</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">mut_edges</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_lik</span><span class="p">(</span><span class="n">muts</span><span class="p">,</span> <span class="n">span</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The likelihood of an edge given a number of mutations, as set of time deltas (dt)</span>
+<span class="sd">        and a span. This is a static function to allow parallelization</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ll</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">muts</span><span class="p">,</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">mutation_rate</span> <span class="o">*</span> <span class="n">span</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">standardize</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ll</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ll</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ll</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_lik_wrapper</span><span class="p">(</span><span class="n">muts_span</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A wrapper to allow this _lik to be called by pool.imap_unordered, returning the</span>
+<span class="sd">        mutation and span values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">muts_span</span><span class="p">,</span> <span class="n">Likelihoods</span><span class="o">.</span><span class="n">_lik</span><span class="p">(</span>
+            <span class="n">muts_span</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">muts_span</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="n">standardize</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">precalculate_mutation_likelihoods</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unique_method</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        We precalculate these because the pmf function is slow, but can be trivially</span>
+<span class="sd">        parallelised. We store the likelihoods in a cache because they only depend on</span>
+<span class="sd">        the number of mutations and the span, so can potentially be reused.</span>
+
+<span class="sd">        However, we don&#39;t bother storing the likelihood for edges above a *fixed* node,</span>
+<span class="sd">        because (a) these are only used once per node and (b) sample edges are often</span>
+<span class="sd">        long, and hence their span will be unique. This also allows us to deal easily</span>
+<span class="sd">        with fixed nodes at explicit times (rather than in time slices)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mut_rate</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">&quot;Cannot calculate mutation likelihoods with no mutation_rate set&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">unique_method</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unfixed_likelihood_cache</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="p">(</span><span class="n">muts</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">span</span><span class="p">):</span> <span class="kc">None</span>
+                <span class="k">for</span> <span class="n">muts</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mut_edges</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+                <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">child</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixednodes</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fixed_nodes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fixednodes</span><span class="p">))</span>
+            <span class="n">keys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">records</span><span class="o">.</span><span class="n">fromarrays</span><span class="p">(</span>
+                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mut_edges</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_right</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_left</span><span class="p">),</span>
+                    <span class="n">names</span><span class="o">=</span><span class="s2">&quot;muts,span&quot;</span><span class="p">,</span>
+                <span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">,</span> <span class="n">fixed_nodes</span><span class="p">))]</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">unique_method</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unfixed_likelihood_cache</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">({</span><span class="nb">tuple</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">})</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unfixed_likelihood_cache</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">t</span><span class="p">):</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">num_threads</span><span class="p">:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>  <span class="c1"># Set constant values for params for static _lik</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_lik_wrapper</span><span class="p">,</span>
+                <span class="n">dt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timediff_lower_tri</span><span class="p">,</span>
+                <span class="n">mutation_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mut_rate</span><span class="p">,</span>
+                <span class="n">standardize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">standardize</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">num_threads</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># Useful for testing</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">unfixed_likelihood_cache</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
+                    <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">progress</span><span class="p">,</span>
+                    <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Precalculating Likelihoods&quot;</span><span class="p">,</span>
+                <span class="p">):</span>
+                    <span class="n">returned_key</span><span class="p">,</span> <span class="n">likelihoods</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">unfixed_likelihood_cache</span><span class="p">[</span><span class="n">returned_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">likelihoods</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">tqdm</span><span class="p">(</span>
+                    <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unfixed_likelihood_cache</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+                    <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">progress</span><span class="p">,</span>
+                    <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Precalculating Likelihoods&quot;</span><span class="p">,</span>
+                <span class="p">)</span> <span class="k">as</span> <span class="n">prog_bar</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">num_threads</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">pmf</span> <span class="ow">in</span> <span class="n">pool</span><span class="o">.</span><span class="n">imap_unordered</span><span class="p">(</span>
+                            <span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">unfixed_likelihood_cache</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+                        <span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">unfixed_likelihood_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">pmf</span>
+                            <span class="n">prog_bar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">muts</span><span class="p">,</span> <span class="n">span</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unfixed_likelihood_cache</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
+                <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">progress</span><span class="p">,</span>
+                <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Precalculating Likelihoods&quot;</span><span class="p">,</span>
+            <span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unfixed_likelihood_cache</span><span class="p">[</span><span class="n">muts</span><span class="p">,</span> <span class="n">span</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lik</span><span class="p">(</span>
+                    <span class="n">muts</span><span class="p">,</span>
+                    <span class="n">span</span><span class="p">,</span>
+                    <span class="n">dt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timediff_lower_tri</span><span class="p">,</span>
+                    <span class="n">mutation_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mut_rate</span><span class="p">,</span>
+                    <span class="n">standardize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">standardize</span><span class="p">,</span>
+                <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_mut_lik_fixed_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the mutation likelihoods for an edge whose child is at a</span>
+<span class="sd">        fixed time, but whose parent may take any of the time slices in the timepoints</span>
+<span class="sd">        that are equal to or older than the child age. This is not cached, as it is</span>
+<span class="sd">        likely to be unique for each edge</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">edge</span><span class="o">.</span><span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixednodes</span><span class="p">,</span> <span class="p">(</span>
+            <span class="s2">&quot;Wrongly called fixed node function on non-fixed node&quot;</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">mut_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span>
+            <span class="s2">&quot;Cannot calculate mutation likelihoods with no mutation_rate set&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">mutations_on_edge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mut_edges</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
+        <span class="n">child_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">child</span><span class="p">)</span><span class="o">.</span><span class="n">time</span>
+        <span class="k">assert</span> <span class="n">child_time</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="c1"># Temporary hack - we should really take a more precise likelihood</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lik</span><span class="p">(</span>
+            <span class="n">mutations_on_edge</span><span class="p">,</span>
+            <span class="n">edge</span><span class="o">.</span><span class="n">span</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timediff</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mut_rate</span><span class="p">,</span>
+            <span class="n">standardize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">standardize</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_mut_lik_lower_tri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the cached mutation likelihoods for an edge with non-fixed parent and child</span>
+<span class="sd">        nodes, returning values for all the possible time differences between timepoints</span>
+<span class="sd">        These values are returned as a flattened lower triangular matrix, the</span>
+<span class="sd">        form required in the inside algorithm.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Debugging asserts - should probably remove eventually</span>
+        <span class="k">assert</span> <span class="n">edge</span><span class="o">.</span><span class="n">child</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixednodes</span><span class="p">,</span> <span class="p">(</span>
+            <span class="s2">&quot;Wrongly called lower_tri function on fixed node&quot;</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;unfixed_likelihood_cache&quot;</span><span class="p">),</span> <span class="p">(</span>
+            <span class="s2">&quot;Must call `precalculate_mutation_likelihoods()` before getting likelihoods&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">mutations_on_edge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mut_edges</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">unfixed_likelihood_cache</span><span class="p">[</span><span class="n">mutations_on_edge</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">span</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_mut_lik_upper_tri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Same as :meth:`get_mut_lik_lower_tri`, but the returned array is ordered as</span>
+<span class="sd">        flattened upper triangular matrix (suitable for the outside algorithm), rather</span>
+<span class="sd">        than a lower triangular one</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mut_lik_lower_tri</span><span class="p">(</span><span class="n">edge</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">row_indices</span><span class="p">)]</span>
+
+    <span class="c1"># The following functions don&#39;t access the likelihoods directly, but allow</span>
+    <span class="c1"># other input arrays of length grid_size to be repeated in such a way that they can</span>
+    <span class="c1"># be directly multiplied by the unpacked lower triangular matrix, or arrays of length</span>
+    <span class="c1"># of the number of cells in the lower triangular matrix to be summed (e.g. by row)</span>
+    <span class="c1"># to give a shorter array of length grid_size</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_lower_tri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_array</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Repeat the input array row-wise to make a flattened lower triangular matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span>
+        <span class="k">return</span> <span class="n">input_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">to_lower_tri</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">rowsum_lower_tri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_array</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Describe the reduceat trickery here. Presumably the opposite of make_lower_tri</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">tri_size</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">reduceat</span><span class="p">(</span><span class="n">input_array</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_upper_tri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_array</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Repeat the input array row-wise to make a flattened upper triangular matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span>
+        <span class="k">return</span> <span class="n">input_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">to_upper_tri</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">rowsum_upper_tri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_array</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Describe the reduceat trickery here. Presumably the opposite of make_upper_tri</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">tri_size</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">reduceat</span><span class="p">(</span><span class="n">input_array</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_indices</span><span class="p">)</span>
+
+    <span class="c1"># Mutation &amp; recombination algorithms on a tree sequence</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_breaks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Number of known breakpoints, only used in recombination likelihood calc</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">get_sequence_length</span><span class="p">())</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lik_1</span><span class="p">,</span> <span class="n">lik_2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lik_1</span> <span class="o">*</span> <span class="n">lik_2</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lik_1</span><span class="p">,</span> <span class="n">lik_2</span><span class="p">,</span> <span class="n">div_0_null</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the ratio of lik_1 to lik_2. In linear space, this divides lik_1 by lik_2</span>
+<span class="sd">        If div_0_null==True, then 0/0 is set to the null_constant</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="n">lik_1</span> <span class="o">/</span> <span class="n">lik_2</span>
+        <span class="k">if</span> <span class="n">div_0_null</span><span class="p">:</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">ret</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">null_constant</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">marginalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lik</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the sum of likelihoods</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">lik</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_recombination_lik</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="c1"># Needs to return a lower tri *or* flattened array depending on `fixed`</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s2">&quot;Using the recombination clock is not currently supported&quot;</span>
+            <span class="s2">&quot;. See https://github.com/awohns/tsdate/issues/5 for details&quot;</span>
+        <span class="p">)</span>
+        <span class="c1"># return (</span>
+        <span class="c1">#     np.power(prev_state, self.n_breaks(edge)) *</span>
+        <span class="c1">#     np.exp(-(prev_state * self.rec_rate * edge.span * 2)))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+        <span class="n">liks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">identity_constant</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rec_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">liks</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recombination_lik</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mut_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">liks</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mut_lik_lower_tri</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rowsum_lower_tri</span><span class="p">(</span><span class="n">arr</span> <span class="o">*</span> <span class="n">liks</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_outside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+        <span class="n">liks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">identity_constant</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rec_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">liks</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recombination_lik</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mut_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">liks</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mut_lik_upper_tri</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rowsum_upper_tri</span><span class="p">(</span><span class="n">arr</span> <span class="o">*</span> <span class="n">liks</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_fixed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+        <span class="n">liks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">identity_constant</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rec_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">liks</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recombination_lik</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mut_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">liks</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mut_lik_fixed_node</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">arr</span> <span class="o">*</span> <span class="n">liks</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">scale_geometric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fraction</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">**</span><span class="n">fraction</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LogLikelihoods</span><span class="p">(</span><span class="n">Likelihoods</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identical to the Likelihoods class but stores and returns log likelihoods</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">probability_space</span> <span class="o">=</span> <span class="n">LOG_GRID</span>
+    <span class="n">identity_constant</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">null_constant</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Uses an alternative to logsumexp, useful for large grid sizes, see</span>
+<span class="sd">    http://www.nowozin.net/sebastian/blog/streaming-log-sum-exp-computation.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@numba_jit</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">logsumexp</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">alpha</span><span class="p">:</span>
+                    <span class="n">r</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">r</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">alpha</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+                    <span class="n">r</span> <span class="o">+=</span> <span class="mf">1.0</span>
+                    <span class="n">alpha</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_lik</span><span class="p">(</span><span class="n">muts</span><span class="p">,</span> <span class="n">span</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The likelihood of an edge given a number of mutations, as set of time deltas (dt)</span>
+<span class="sd">        and a span. This is a static function to allow parallelization</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ll</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">logpmf</span><span class="p">(</span><span class="n">muts</span><span class="p">,</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">mutation_rate</span> <span class="o">*</span> <span class="n">span</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">standardize</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ll</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ll</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ll</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_lik_wrapper</span><span class="p">(</span><span class="n">muts_span</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Needs redefining to refer to the LogLikelihoods class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">muts_span</span><span class="p">,</span> <span class="n">LogLikelihoods</span><span class="o">.</span><span class="n">_lik</span><span class="p">(</span>
+            <span class="n">muts_span</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">muts_span</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="n">standardize</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">rowsum_lower_tri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_array</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The function below is equivalent to (but numba makes it faster than)</span>
+<span class="sd">        np.logaddexp.reduceat(input_array, self.row_indices[0])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">tri_size</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="n">i_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logsumexp</span><span class="p">(</span><span class="n">input_array</span><span class="p">[</span><span class="n">i_start</span><span class="p">:</span><span class="n">i</span><span class="p">]))</span>
+            <span class="n">i_start</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logsumexp</span><span class="p">(</span><span class="n">input_array</span><span class="p">[</span><span class="n">i</span><span class="p">:]))</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">rowsum_upper_tri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_array</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The function below is equivalent to (but numba makes it faster than)</span>
+<span class="sd">        np.logaddexp.reduceat(input_array, self.col_indices)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">tri_size</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="n">i_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logsumexp</span><span class="p">(</span><span class="n">input_array</span><span class="p">[</span><span class="n">i_start</span><span class="p">:</span><span class="n">i</span><span class="p">]))</span>
+            <span class="n">i_start</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logsumexp</span><span class="p">(</span><span class="n">input_array</span><span class="p">[</span><span class="n">i</span><span class="p">:]))</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_recombination_loglik</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="c1"># Needs to return a lower tri *or* flattened array depending on `fixed`</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s2">&quot;Using the recombination clock is not currently supported&quot;</span>
+            <span class="s2">&quot;. See https://github.com/awohns/tsdate/issues/5 for details&quot;</span>
+        <span class="p">)</span>
+        <span class="c1"># return (</span>
+        <span class="c1">#     np.power(prev_state, self.n_breaks(edge)) *</span>
+        <span class="c1">#     np.exp(-(prev_state * self.rec_rate * edge.span * 2)))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loglik_1</span><span class="p">,</span> <span class="n">loglik_2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">loglik_1</span> <span class="o">+</span> <span class="n">loglik_2</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loglik_1</span><span class="p">,</span> <span class="n">loglik_2</span><span class="p">,</span> <span class="n">div_0_null</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        In log space, likelihood ratio is loglik_1 - loglik_2</span>
+<span class="sd">        If div_0_null==True, then if either is -inf it returns -inf (the null_constant)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="n">loglik_1</span> <span class="o">-</span> <span class="n">loglik_2</span>
+        <span class="k">if</span> <span class="n">div_0_null</span><span class="p">:</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">ret</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">null_constant</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">marginalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loglik</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the logged sum of likelihoods</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">logsumexp</span><span class="p">(</span><span class="n">loglik</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+        <span class="n">log_liks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">identity_constant</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rec_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">log_liks</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recombination_loglik</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mut_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">log_liks</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mut_lik_lower_tri</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rowsum_lower_tri</span><span class="p">(</span><span class="n">arr</span> <span class="o">+</span> <span class="n">log_liks</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_outside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+        <span class="n">log_liks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">identity_constant</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rec_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">log_liks</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recombination_loglik</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mut_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">log_liks</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mut_lik_upper_tri</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rowsum_upper_tri</span><span class="p">(</span><span class="n">arr</span> <span class="o">+</span> <span class="n">log_liks</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_fixed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+        <span class="n">log_liks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">identity_constant</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rec_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">log_liks</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recombination_loglik</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mut_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">log_liks</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mut_lik_fixed_node</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">arr</span> <span class="o">+</span> <span class="n">log_liks</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">scale_geometric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fraction</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">fraction</span> <span class="o">*</span> <span class="n">value</span>
+
+
+<div class="viewcode-block" id="BeliefPropagation">
+<a class="viewcode-back" href="../../python-api.html#tsdate.discrete.BeliefPropagation">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BeliefPropagation</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class that encapsulates running exact belief propagation models,</span>
+<span class="sd">    in particular the discrete-time inside and outside algorithms.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">priors</span><span class="p">,</span> <span class="n">lik</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">lik</span><span class="o">.</span><span class="n">fixednodes</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">priors</span><span class="o">.</span><span class="n">nonfixed_nodes</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">lik</span><span class="o">.</span><span class="n">fixednodes</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">priors</span><span class="o">.</span><span class="n">nonfixed_nodes</span><span class="p">)</span> <span class="o">!=</span> <span class="n">lik</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span>
+        <span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The prior and likelihood objects disagree on which nodes are fixed&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">lik</span><span class="o">.</span><span class="n">timepoints</span><span class="p">,</span> <span class="n">priors</span><span class="o">.</span><span class="n">timepoints</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The prior and likelihood objects disagree on the timepoints used&quot;</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">priors</span> <span class="o">=</span> <span class="n">priors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nonfixed_nodes</span> <span class="o">=</span> <span class="n">priors</span><span class="o">.</span><span class="n">nonfixed_nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lik</span> <span class="o">=</span> <span class="n">lik</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">lik</span><span class="o">.</span><span class="n">ts</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fixednodes</span> <span class="o">=</span> <span class="n">lik</span><span class="o">.</span><span class="n">fixednodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="n">progress</span>
+        <span class="c1"># If necessary, convert priors to log space</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">priors</span><span class="o">.</span><span class="n">force_probability_space</span><span class="p">(</span><span class="n">lik</span><span class="o">.</span><span class="n">probability_space</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">spans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">,</span>
+            <span class="n">weights</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_right</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_left</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spans</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spans</span><span class="p">)))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root_spans</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">trees</span><span class="p">(</span><span class="n">root_threshold</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">tree</span><span class="o">.</span><span class="n">has_single_root</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">root_spans</span><span class="p">[</span><span class="n">tree</span><span class="o">.</span><span class="n">root</span><span class="p">]</span> <span class="o">+=</span> <span class="n">tree</span><span class="o">.</span><span class="n">span</span>
+        <span class="c1"># Add on the spans when this is a root</span>
+        <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">span_when_root</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_spans</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spans</span><span class="p">[</span><span class="n">root</span><span class="p">]</span> <span class="o">+=</span> <span class="n">span_when_root</span>
+
+    <span class="c1"># === Grouped edge iterators ===</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">edges_by_parent_asc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grouped</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="c1"># Return an itertools.groupby object of edges grouped by parent in ascending</span>
+        <span class="c1"># order of the time of the parent. As tree sequence properties guarantee that</span>
+        <span class="c1"># edges are listed in nondecreasing order of parent time</span>
+        <span class="c1"># (https://tskit.readthedocs.io/en/latest/data-model.html#edge-requirements)</span>
+        <span class="c1"># we can simply use the standard edge order</span>
+        <span class="k">if</span> <span class="n">grouped</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges</span><span class="p">(),</span> <span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;parent&quot;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">edges_by_child_desc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grouped</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="c1"># Return an itertools.groupby object of edges grouped by child in descending</span>
+        <span class="c1"># order of the time of the child.</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">lexsort</span><span class="p">(</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">])</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">grouped</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;child&quot;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">it</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">edges_by_child_then_parent_desc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grouped</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="c1"># Return an itertools.groupby object of edges grouped by child in descending</span>
+        <span class="c1"># order of the time of the child, then by descending order of age of child</span>
+        <span class="n">wtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="s2">&quot;child_age&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="o">.</span><span class="n">dtype</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;child_node&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="o">.</span><span class="n">dtype</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;parent_age&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="o">.</span><span class="n">dtype</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_edges</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wtype</span><span class="p">)</span>
+        <span class="n">w</span><span class="p">[</span><span class="s2">&quot;child_age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">]</span>
+        <span class="n">w</span><span class="p">[</span><span class="s2">&quot;child_node&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span>
+        <span class="n">w</span><span class="p">[</span><span class="s2">&quot;parent_age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_parent</span><span class="p">]</span>
+        <span class="n">sorted_child_parent</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;child_age&quot;</span><span class="p">,</span> <span class="s2">&quot;child_node&quot;</span><span class="p">,</span> <span class="s2">&quot;parent_age&quot;</span><span class="p">))</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">grouped</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">sorted_child_parent</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;child&quot;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sorted_child_parent</span>
+
+    <span class="c1"># === MAIN ALGORITHMS ===</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">inside_pass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache_inside</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># Use dynamic programming to find approximate posterior to sample from</span>
+        <span class="k">if</span> <span class="n">progress</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">progress</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">progress</span>
+        <span class="n">inside</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">priors</span><span class="o">.</span><span class="n">clone_with_new_data</span><span class="p">(</span>  <span class="c1"># store inside matrix values</span>
+            <span class="n">grid_data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">fixed_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">identity_constant</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">cache_inside</span><span class="p">:</span>
+            <span class="n">g_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_edges</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">grid_size</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">identity_constant</span>
+            <span class="p">)</span>
+        <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">standardize</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">,</span> <span class="p">(</span>
+            <span class="s2">&quot;Marginal likelihood requires unstandardized mutation likelihoods&quot;</span>
+        <span class="p">)</span>
+        <span class="n">marginal_lik</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">identity_constant</span>
+        <span class="c1"># Iterate through the nodes via groupby on parent node</span>
+        <span class="k">for</span> <span class="n">parent</span><span class="p">,</span> <span class="n">edges</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edges_by_parent_asc</span><span class="p">(),</span>
+            <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Inside&quot;</span><span class="p">,</span>
+            <span class="n">total</span><span class="o">=</span><span class="n">inside</span><span class="o">.</span><span class="n">num_nonfixed</span><span class="p">,</span>
+            <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">progress</span><span class="p">,</span>
+        <span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            for each node, find the conditional prob of age at every time</span>
+<span class="sd">            in time grid</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">parent</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixednodes</span><span class="p">:</span>
+                <span class="k">continue</span>  <span class="c1"># there is no hidden state for this parent - it&#39;s fixed</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">priors</span><span class="p">[</span><span class="n">parent</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+                <span class="n">spanfrac</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">span</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">spans</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">child</span><span class="p">]</span>
+                <span class="c1"># Calculate vals for each edge</span>
+                <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixednodes</span><span class="p">:</span>
+                    <span class="c1"># NB: geometric scaling works exactly when all nodes fixed in graph</span>
+                    <span class="c1"># but is an approximation when times are unknown.</span>
+                    <span class="n">daughter_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">scale_geometric</span><span class="p">(</span><span class="n">spanfrac</span><span class="p">,</span> <span class="n">inside</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">child</span><span class="p">])</span>
+                    <span class="n">edge_lik</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">get_fixed</span><span class="p">(</span><span class="n">daughter_val</span><span class="p">,</span> <span class="n">edge</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">inside_values</span> <span class="o">=</span> <span class="n">inside</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">child</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">inside_values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">inside_values</span><span class="p">)):</span>
+                        <span class="c1"># Child appears fixed, or we have not visited it. Either our</span>
+                        <span class="c1"># edge order is wrong (bug) or we have hit a dangling node</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="s2">&quot;The input tree sequence includes &quot;</span>
+                            <span class="s2">&quot;dangling nodes: please simplify it&quot;</span>
+                        <span class="p">)</span>
+                    <span class="n">daughter_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">scale_geometric</span><span class="p">(</span>
+                        <span class="n">spanfrac</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">make_lower_tri</span><span class="p">(</span><span class="n">inside</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">child</span><span class="p">])</span>
+                    <span class="p">)</span>
+                    <span class="n">edge_lik</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">get_inside</span><span class="p">(</span><span class="n">daughter_val</span><span class="p">,</span> <span class="n">edge</span><span class="p">)</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">edge_lik</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">cache_inside</span><span class="p">:</span>
+                    <span class="n">g_i</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_lik</span>
+            <span class="n">denominator</span><span class="p">[</span><span class="n">parent</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">if</span> <span class="n">standardize</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">identity_constant</span>
+            <span class="p">)</span>
+            <span class="n">inside</span><span class="p">[</span><span class="n">parent</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">denominator</span><span class="p">[</span><span class="n">parent</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">standardize</span><span class="p">:</span>
+                <span class="n">marginal_lik</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">marginal_lik</span><span class="p">,</span> <span class="n">denominator</span><span class="p">[</span><span class="n">parent</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">cache_inside</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">g_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">g_i</span><span class="p">,</span> <span class="n">denominator</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
+        <span class="c1"># Keep the results in this object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inside</span> <span class="o">=</span> <span class="n">inside</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">denominator</span> <span class="o">=</span> <span class="n">denominator</span>
+        <span class="c1"># Calculate marginal likelihood</span>
+        <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">span_when_root</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_spans</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">spanfrac</span> <span class="o">=</span> <span class="n">span_when_root</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">spans</span><span class="p">[</span><span class="n">root</span><span class="p">]</span>
+            <span class="n">root_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">scale_geometric</span><span class="p">(</span><span class="n">spanfrac</span><span class="p">,</span> <span class="n">inside</span><span class="p">[</span><span class="n">root</span><span class="p">])</span>
+            <span class="n">marginal_lik</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">marginal_lik</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">marginalize</span><span class="p">(</span><span class="n">root_val</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">marginal_lik</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">outside_pass</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">standardize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">ignore_oldest_root</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">progress</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="c1"># Computes the full posterior distribution on nodes, returning the</span>
+        <span class="c1"># posterior values. These are *not* probabilities, as they do not sum to one:</span>
+        <span class="c1"># to convert to probabilities, call posterior.to_probabilities()</span>
+        <span class="c1">#</span>
+        <span class="c1"># Standardizing *during* the outside process may be necessary if there is</span>
+        <span class="c1"># overflow, but means that we cannot check the total functional value at each node</span>
+        <span class="c1">#</span>
+        <span class="c1"># Ignoring the oldest root may also be necessary when the oldest root node</span>
+        <span class="c1"># causes numerical stability issues.</span>
+        <span class="k">if</span> <span class="n">progress</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">progress</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">progress</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;inside&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;You have not yet run the inside algorithm&quot;</span><span class="p">)</span>
+
+        <span class="n">outside</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inside</span><span class="o">.</span><span class="n">clone_with_new_data</span><span class="p">(</span><span class="n">grid_data</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">probability_space</span><span class="o">=</span><span class="n">LIN_GRID</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">span_when_root</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_spans</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">outside</span><span class="p">[</span><span class="n">root</span><span class="p">]</span> <span class="o">=</span> <span class="n">span_when_root</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">spans</span><span class="p">[</span><span class="n">root</span><span class="p">]</span>
+        <span class="n">outside</span><span class="o">.</span><span class="n">force_probability_space</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inside</span><span class="o">.</span><span class="n">probability_space</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">child</span><span class="p">,</span> <span class="n">edges</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edges_by_child_desc</span><span class="p">(),</span>
+            <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Outside&quot;</span><span class="p">,</span>
+            <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">)),</span>
+            <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">progress</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="k">if</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixednodes</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">grid_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">identity_constant</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">ignore_oldest_root</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">parent</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">parent</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixednodes</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                        <span class="s2">&quot;Fixed nodes cannot currently be parents in the TS&quot;</span>
+                    <span class="p">)</span>
+                <span class="c1"># Geometric scaling works exactly for all nodes fixed in graph</span>
+                <span class="c1"># but is an approximation when times are unknown.</span>
+                <span class="n">spanfrac</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">span</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">spans</span><span class="p">[</span><span class="n">child</span><span class="p">]</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">inside_div_gi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">inside</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">parent</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">g_i</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">id</span><span class="p">],</span> <span class="n">div_0_null</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">)</span>
+                <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>  <span class="c1"># we haven&#39;t cached g_i so we recalculate</span>
+                    <span class="n">daughter_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">scale_geometric</span><span class="p">(</span>
+                        <span class="n">spanfrac</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">make_lower_tri</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inside</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">child</span><span class="p">])</span>
+                    <span class="p">)</span>
+                    <span class="n">edge_lik</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">get_inside</span><span class="p">(</span><span class="n">daughter_val</span><span class="p">,</span> <span class="n">edge</span><span class="p">)</span>
+                    <span class="n">cur_g_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">edge_lik</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">denominator</span><span class="p">[</span><span class="n">child</span><span class="p">])</span>
+                    <span class="n">inside_div_gi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">inside</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">parent</span><span class="p">],</span> <span class="n">cur_g_i</span><span class="p">,</span> <span class="n">div_0_null</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">)</span>
+                <span class="n">parent_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">scale_geometric</span><span class="p">(</span>
+                    <span class="n">spanfrac</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">make_upper_tri</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">outside</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">parent</span><span class="p">],</span> <span class="n">inside_div_gi</span><span class="p">)</span>
+                    <span class="p">),</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">standardize</span><span class="p">:</span>
+                    <span class="n">parent_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">parent_val</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">parent_val</span><span class="p">))</span>
+                <span class="n">edge_lik</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">get_outside</span><span class="p">(</span><span class="n">parent_val</span><span class="p">,</span> <span class="n">edge</span><span class="p">)</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">edge_lik</span><span class="p">)</span>
+
+            <span class="c1"># vv[0] = 0  # Seems a hack: internal nodes should be allowed at time 0</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">denominator</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">child</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">null_constant</span>
+            <span class="n">outside</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">denominator</span><span class="p">[</span><span class="n">child</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">standardize</span><span class="p">:</span>
+                <span class="n">outside</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outside</span> <span class="o">=</span> <span class="n">outside</span>  <span class="c1"># useful to access for testing purposes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">posterior_grid</span> <span class="o">=</span> <span class="n">outside</span><span class="o">.</span><span class="n">clone_with_new_data</span><span class="p">(</span>
+            <span class="n">grid_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inside</span><span class="o">.</span><span class="n">grid_data</span><span class="p">,</span> <span class="n">outside</span><span class="o">.</span><span class="n">grid_data</span><span class="p">),</span>
+            <span class="n">fixed_data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+        <span class="p">)</span>  <span class="c1"># NB: we should never use the posterior for a fixed node</span>
+
+<div class="viewcode-block" id="BeliefPropagation.node_posteriors">
+<a class="viewcode-back" href="../../python-api.html#tsdate.discrete.BeliefPropagation.node_posteriors">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">node_posteriors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the distribution of posterior node times as a structured array. The</span>
+<span class="sd">        returned value can be e.g. read into ``pandas.DataFrame`` for further analysis.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            The ``outside_maximization`` method does not provide node time posteriors.</span>
+
+<span class="sd">        :return: The distribution of posterior node times as a structured array with</span>
+<span class="sd">            columns as timepoints. Row ``i`` corresponds to the probabilities of</span>
+<span class="sd">            node ``i`` lying at each timepoint. Nodes with fixed times are set to</span>
+<span class="sd">            ``np.nan`` for the entire row.</span>
+<span class="sd">        :rtype: numpy.ndarray</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">posterior_grid</span><span class="o">.</span><span class="n">node_probability_array</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Cannot get posteriors without running the outside algorithm&quot;</span>
+            <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">outside_maximization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">progress</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">progress</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">progress</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;inside&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;You have not yet run the inside algorithm&quot;</span><span class="p">)</span>
+
+        <span class="n">maximized_node_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">probability_space</span> <span class="o">==</span> <span class="n">LOG_GRID</span><span class="p">:</span>
+            <span class="n">poisson</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">logpmf</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">probability_space</span> <span class="o">==</span> <span class="n">LIN_GRID</span><span class="p">:</span>
+            <span class="n">poisson</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span>
+
+        <span class="n">mut_edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">mut_edges</span>
+        <span class="n">mrcas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mrcas</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixednodes</span><span class="p">:</span>
+                <span class="n">maximized_node_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inside</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">child</span><span class="p">,</span> <span class="n">edges</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edges_by_child_then_parent_desc</span><span class="p">(),</span>
+            <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Maximization&quot;</span><span class="p">,</span>
+            <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">)),</span>
+            <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">progress</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="k">if</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixednodes</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">for</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">edges</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">edge_index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">youngest_par_index</span> <span class="o">=</span> <span class="n">maximized_node_times</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">parent</span><span class="p">]</span>
+                    <span class="n">parent_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">timepoints</span><span class="p">[</span><span class="n">maximized_node_times</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">parent</span><span class="p">]]</span>
+                    <span class="n">ll_mut</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span>
+                        <span class="n">mut_edges</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">id</span><span class="p">],</span>
+                        <span class="p">(</span>
+                            <span class="n">parent_time</span>
+                            <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">timepoints</span><span class="p">[:</span> <span class="n">youngest_par_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                            <span class="o">+</span> <span class="n">eps</span>
+                        <span class="p">)</span>
+                        <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">mut_rate</span>
+                        <span class="o">*</span> <span class="n">edge</span><span class="o">.</span><span class="n">span</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">ll_mut</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ll_mut</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">cur_parent_index</span> <span class="o">=</span> <span class="n">maximized_node_times</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">parent</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">cur_parent_index</span> <span class="o">&lt;</span> <span class="n">youngest_par_index</span><span class="p">:</span>
+                        <span class="n">youngest_par_index</span> <span class="o">=</span> <span class="n">cur_parent_index</span>
+                    <span class="n">parent_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">timepoints</span><span class="p">[</span><span class="n">maximized_node_times</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">parent</span><span class="p">]]</span>
+                    <span class="n">ll_mut</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span>
+                        <span class="n">mut_edges</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">id</span><span class="p">],</span>
+                        <span class="p">(</span>
+                            <span class="n">parent_time</span>
+                            <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">timepoints</span><span class="p">[:</span> <span class="n">youngest_par_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                            <span class="o">+</span> <span class="n">eps</span>
+                        <span class="p">)</span>
+                        <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">mut_rate</span>
+                        <span class="o">*</span> <span class="n">edge</span><span class="o">.</span><span class="n">span</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="n">result</span><span class="p">[:</span> <span class="n">youngest_par_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span>
+                            <span class="n">ll_mut</span><span class="p">[:</span> <span class="n">youngest_par_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                            <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ll_mut</span><span class="p">[:</span> <span class="n">youngest_par_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]),</span>
+                        <span class="p">),</span>
+                        <span class="n">result</span><span class="p">[:</span> <span class="n">youngest_par_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                    <span class="p">)</span>
+            <span class="n">inside_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inside</span><span class="p">[</span><span class="n">child</span><span class="p">][:</span> <span class="p">(</span><span class="n">youngest_par_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+            <span class="n">maximized_node_times</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">result</span><span class="p">[:</span> <span class="n">youngest_par_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">inside_val</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="c1"># The outside_maximization method does not provide a full posterior but</span>
+        <span class="c1"># simply the means of the posterior distributions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">posterior_mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lik</span><span class="o">.</span><span class="n">timepoints</span><span class="p">[</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">maximized_node_times</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
+        <span class="p">]</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

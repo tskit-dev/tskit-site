@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Methods &#8212; Tsdate manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"7bbc3303e79f40658eef712f8045dac1": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "290ac909a7bf4b6998f6aef84e1f392f": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "a65b3b9223a145ac97f773066af834ca": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_7bbc3303e79f40658eef712f8045dac1", "max": 25.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_290ac909a7bf4b6998f6aef84e1f392f", "tabbable": null, "tooltip": null, "value": 25.0}}, "d3826ffbcd95482b9b18fce9a1238f18": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "bea025ff5f8f46bfba0ee0622764aa21": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "ecf5a359b36a4383ad33e8a9e8e9c52d": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_d3826ffbcd95482b9b18fce9a1238f18", "placeholder": "\u200b", "style": "IPY_MODEL_bea025ff5f8f46bfba0ee0622764aa21", "tabbable": null, "tooltip": null, "value": "Expectation\u2007Propagation:\u2007100%"}}, "423fcb92632c43dc87b91bbeee57a92a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "7f321aa28c234c5ba084b85a755ad34f": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "1bfadfff3d1943bc8266d7bc7d752235": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_423fcb92632c43dc87b91bbeee57a92a", "placeholder": "\u200b", "style": "IPY_MODEL_7f321aa28c234c5ba084b85a755ad34f", "tabbable": null, "tooltip": null, "value": "\u200725/25\u2007[00:00&lt;00:00,\u20072542.56it/s]"}}, "cb40c4f62aa047648ae7f3b29b327f7d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a08c5031e3974fe3910d1411215b6dec": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_ecf5a359b36a4383ad33e8a9e8e9c52d", "IPY_MODEL_a65b3b9223a145ac97f773066af834ca", "IPY_MODEL_1bfadfff3d1943bc8266d7bc7d752235"], "layout": "IPY_MODEL_cb40c4f62aa047648ae7f3b29b327f7d", "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'methods';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Real data" href="real-data.html" />
+    <link rel="prev" title="Usage" href="usage.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/tsdate_logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/tsdate_logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 0.2.5</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="usage.html">Usage</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real-data.html">Real data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="popsize.html">Population size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="historical_samples.html">Historical (Ancient) Samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="priors.html">More on priors (old)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">APIs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="python-api.html">Python API</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command line interface</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/methods.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Methods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-time">Continuous-time</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variational-gamma-method">The variational gamma method</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-propagation">Expectation propagation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rescaling">Rescaling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time">Discrete-time</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inside-outside-vs-maximization">Inside Outside vs Maximization</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="methods">
+<span id="sec-methods"></span><h1>Methods<a class="headerlink" href="#methods" title="Link to this heading">#</a></h1>
+<p>The methods available for <em>tsdate</em> inference can be divided into
+<em>continuous-time</em> and <em>discrete-time</em>  approaches.
+Both approaches iteratively propagate information between nodes to
+construct an approximation of the marginal posterior distribution for the
+age of each node, given the mutational information in the tree sequence.
+Discrete-time approaches approximate the posterior across a grid of discrete
+timepoints (e.g. assign a probability to each node being at each timepoint),
+and propagate exact information about the probability of each node being in
+these states (“belief propagation”). Continuous-time approaches approximate
+the posterior by a continuous univariate distribution (e.g. a gamma distribution),
+and propagate summaries of these probabilities between nodes (“expectation
+propagation”).</p>
+<p>In tests, we find that the continuous-time <a class="reference internal" href="python-api.html#tsdate.variational_gamma" title="tsdate.variational_gamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">variational_gamma()</span></code></a> approach is the
+most accurate.  The discrete-time <a class="reference internal" href="python-api.html#tsdate.inside_outside" title="tsdate.inside_outside"><code class="xref py py-func docutils literal notranslate"><span class="pre">inside_outside()</span></code></a> approach is slightly less
+accurate, especially for older times, but can be more numerically robust
+and also allows each node to have an arbitrary (discretised) probability distribution.
+The discrete-time <a class="reference internal" href="python-api.html#tsdate.maximization" title="tsdate.maximization"><code class="xref py py-func docutils literal notranslate"><span class="pre">maximization()</span></code></a> approach is always stable but is the least
+accurate.</p>
+<p>Changing the method is very simple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tsdate</span>
+
+<span class="n">input_ts</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/basic_example.trees&quot;</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tsdate</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">input_ts</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;inside_outside&quot;</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively each method can be called directly as a separate function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">tsdate</span><span class="o">.</span><span class="n">inside_outside</span><span class="p">(</span><span class="n">input_ts</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The available method names and functions are also available via the
+<a class="reference internal" href="python-api.html#tsdate.core.estimation_methods" title="tsdate.core.estimation_methods"><code class="xref py py-data docutils literal notranslate"><span class="pre">tsdate.core.estimation_methods</span></code></a> variable.</p>
+<section id="continuous-time">
+<span id="sec-methods-continuous-time"></span><h2>Continuous-time<a class="headerlink" href="#continuous-time" title="Link to this heading">#</a></h2>
+<p>The only continuous-time algorithm currently implemented is
+<a class="reference internal" href="python-api.html#tsdate.variational_gamma" title="tsdate.variational_gamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">variational_gamma()</span></code></a>.</p>
+<dl class="simple myst">
+<dt>Pros</dt><dd><p>Time estimates are precise, and not affected by choice of timepoints.</p>
+</dd>
+<dd><p>No need to define (possibly arbitrary) timegrid, and no quadratic scaling
+with number of timepoints</p>
+</dd>
+<dd><p>Old nodes do not suffer from time-discretisation issues caused by forcing
+bounds on the oldest times</p>
+</dd>
+<dd><p>Iterative updating properly accounts for cycles in the genealogy</p>
+</dd>
+<dd><p>No need to specify node-specific priors; a mixture “prior” (fit by
+expectation-maximization) is used to regularise the roots, and the prior
+on non-root nodes is only informed via their connection to roots. This
+means that the posterior node dates are not strongly influenced by any
+prior model such as the coalescent, and should therefore be robust to
+changes in underlying demography or selection.</p>
+</dd>
+<dd><p>Can account for variable population sizes using rescaling</p>
+</dd>
+<dt>Cons</dt><dd><p>Assumes posterior times can be reasonably modelled by gamma distributions
+(e.g. they are not bimodal)</p>
+</dd>
+<dd><p>The “expectation propagation” algorithm used to fit the posterior requires
+multiple rounds of iteration until convergence.</p>
+</dd>
+<dd><p>Numerical stability issues are more common (but often indicate pathological
+of otherwise problematic tree sequences)</p>
+</dd>
+</dl>
+<section id="the-variational-gamma-method">
+<span id="sec-methods-continuous-time-vgamma"></span><h3>The variational gamma method<a class="headerlink" href="#the-variational-gamma-method" title="Link to this heading">#</a></h3>
+<p>The <a class="reference internal" href="python-api.html#tsdate.variational_gamma" title="tsdate.variational_gamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">variational_gamma()</span></code></a> method approximates times by fitting separate gamma
+distributions for each node, in a similar spirit to <span id="id1">Schweiger and Durbin [<a class="reference internal" href="bibliography.html#id5" title="Regev Schweiger and Richard Durbin. Ultra-fast genome-wide inference of pairwise coalescence times. Genome research, 33:1023-1031, 2023. doi:10.1101/gr.277665.123.">2023</a>]</span>.
+The directed graph that represents the genealogy can (in its undirected form) contain
+cycles, so a technique called
+<a class="reference external" href="https://en.wikipedia.org/wiki/Expectation_propagation">expectation propagation</a>
+(EP) is used, in which local estimates to each gamma distribution are iteratively
+refined until they converge to a stable solution.  This comes under a class of
+approaches sometimes known as “loopy belief propagation”.</p>
+<section id="expectation-propagation">
+<span id="sec-methods-expectation-propagation"></span><h4>Expectation propagation<a class="headerlink" href="#expectation-propagation" title="Link to this heading">#</a></h4>
+<p>We are in the process of writing a formal description of the algorithm, but in
+summary, this approach uses an expectation propagation (“message passing”)
+approach to update the gamma distribution for each node based on the ages of connected
+nodes and the mutations on connected edges. Updates take the form of moment matching
+against an iteratively refined approximation to the posterior, which makes this method
+very fast.</p>
+<p>The iterative expectation propagation should converge to a fixed
+point that approximately minimizes Kullback-Leibler divergence between the true posterior
+distribution and the approximation <span id="id2">[<a class="reference internal" href="bibliography.html#id4" title="Thomas P. Minka. Expectation propagation for approximate Bayesian inference. In Proceedings of the Seventeenth Conference on Uncertainty in Artificial Intelligence, UAI'01, 362–369. San Francisco, CA, USA, 2001. Morgan Kaufmann Publishers Inc. doi:10.48550/arXiv.1301.2294.">Minka, 2001</a>]</span>.
+At the moment a relatively large number of iterations are used (which testing indicates is
+more than enough, but which can be also changed by using the <code class="docutils literal notranslate"><span class="pre">max_iterations</span></code> parameter);
+however, convergence is not formally checked.
+A stopping criterion will be implemented in future releases.</p>
+<p>Progress through iterations can be output using the progress bar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">tsdate</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">input_ts</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "a08c5031e3974fe3910d1411215b6dec"}</script></div>
+</div>
+</section>
+<section id="rescaling">
+<h4>Rescaling<a class="headerlink" href="#rescaling" title="Link to this heading">#</a></h4>
+<p>By default, the <a class="reference internal" href="python-api.html#tsdate.variational_gamma" title="tsdate.variational_gamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">variational_gamma()</span></code></a> method adds an extra <em>rescaling</em>
+step at the end of all rounds of expectation propagation. This is based on an
+algorithm introduced by the ARG inference software
+<a class="reference external" href="https://github.com/popgenmethods/SINGER">SINGER</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id8" title="Yun Deng, Rasmus Nielsen, and Yun S. Song. Robust and accurate Bayesian inference of genome-wide genealogies for large samples. bioRxiv, 2024. doi:10.1101/2024.03.16.585351.">Deng <em>et al.</em>, 2024</a>]</span>.
+Basically, time is broken up into a number of intervals, and times within
+intervals are simultaneously scaled to improve the fit of the dates to
+the specified mutation rate. Rescaling can help account for variable population
+sizes over time, and can be tuned by adjusting a number of parameters: see
+<a class="reference internal" href="real-data.html#sec-real-data-rescaling"><span class="std std-ref">Rescaling details</span></a> for more information.</p>
+</section>
+</section>
+</section>
+<section id="discrete-time">
+<span id="sec-methods-discrete-time"></span><h2>Discrete-time<a class="headerlink" href="#discrete-time" title="Link to this heading">#</a></h2>
+<p>The two available discrete-time algorithms are the <a class="reference internal" href="python-api.html#tsdate.inside_outside" title="tsdate.inside_outside"><code class="xref py py-func docutils literal notranslate"><span class="pre">inside_outside()</span></code></a>
+and <a class="reference internal" href="python-api.html#tsdate.maximization" title="tsdate.maximization"><code class="xref py py-func docutils literal notranslate"><span class="pre">maximization()</span></code></a> methods.
+For historical reasons, these approaches use an informative (node-specific) prior,
+the <a class="reference internal" href="priors.html#sec-priors-conditional-coalescent"><span class="std std-ref">conditional coalescent prior</span></a>,
+which means that you either need to provide them with an estimated effective
+population size, or a <a class="reference internal" href="priors.html#sec-priors"><span class="std std-ref">priors</span></a> object. Future improvements may
+allow Empirical Bayes priors to be set in discrete time methods, and coalescent priors
+to be set in continuous time methods.</p>
+<p>The <em>tsdate</em> discrete time methods have the following advantages and disadvantages:</p>
+<dl class="simple myst">
+<dt>Pros</dt><dd><p>Methods allow any shape for the distributions of times</p>
+</dd>
+<dd><p>Currently require just a single upwards and downward pass through the edges</p>
+</dd>
+<dt>Cons</dt><dd><p>Choice of grid timepoints is somewhat arbitrary (but reasonable defaults are picked
+based on the conditional coalescent)</p>
+</dd>
+<dd><p>Inferred times are imprecise due to discretization: a denser timegrid can increase
+precision, but also increases computational cost (quadratic with number of timepoints)</p>
+</dd>
+<dd><p>In particular, the oldest/youngest nodes can suffer from poor dating, as time into the past
+is an unbounded value, but a single oldest/youngest timepoint must be chosen.</p>
+</dd>
+<dd><p>Currently, discrete-time methods use a conditional coalescent prior, and so are more
+inaccurate where data deviates from patterns expected from the neutral coalescent.
+Moreover, we have found that weighting coalescent priors by node span introduces
+extra bias in the prior, due to a correlation between span and age.</p>
+</dd>
+</dl>
+<section id="inside-outside-vs-maximization">
+<h3>Inside Outside vs Maximization<a class="headerlink" href="#inside-outside-vs-maximization" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">inside_outside</span></code> approach has been shown to perform better empirically
+than the <code class="docutils literal notranslate"><span class="pre">maximization</span></code> approach, but in theory it does not properly account for cycles in
+the underlying genealogical network when updating posterior probabilities
+(a potential solution would be to implement a “loopy belief propagation” algorithm
+as in the continuous-time <a class="reference internal" href="#sec-methods-continuous-time-vgamma"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">variational_gamma</span></code></span></a>
+method, above). Occasionally the <code class="docutils literal notranslate"><span class="pre">inside_outside</span></code> method also
+has issues with numerical stability, although this is commonly indicative
+of pathological combinations of tree sequence topology and mutation patterns.
+Problems like this are often caused by long regions of the genome that
+have no mapped mutations (e.g. in the centromere), which can be removed by
+<a class="reference internal" href="real-data.html#sec-real-data-preprocessing"><span class="std std-ref">preprocessing</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">maximization</span></code> approach is slightly less accurate empirically,
+and will not return true posteriors, but is theoretically robust and
+additionally is always numerically stable.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="usage.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Usage</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="real-data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Real data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-time">Continuous-time</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variational-gamma-method">The variational gamma method</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-propagation">Expectation propagation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rescaling">Rescaling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time">Discrete-time</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inside-outside-vs-maximization">Inside Outside vs Maximization</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
