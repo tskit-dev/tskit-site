@@ -15,9 +15,15 @@ permalink: /learn/
                 <div class="hero__content wysiwyg">
                     <p>
                         A <em>succinct tree sequence</em>, or tree sequence for short, represents the relationships
-                        between a set of DNA sequences. Tree sequences can be used to store genetic data
-                        efficiently, and enable powerful analysis of millions of whole genomes at a time. They
-                        can be created by simulation or by inferring relationships from genetic variation.
+                        between a set of DNA sequences (also known as an
+                        <a href="{{ 'tutorials/args.html' | relative_url }}">ARG</a>). Tree sequences can be used to
+                        store genetic data efficiently, and enable powerful analysis of millions of whole genomes
+                        at a time. They can be created by simulation or by inferring relationships from genetic
+                        variation.
+                    </p>
+                    <p>
+                        For a fully functional taster of what tree sequences are and how they work, try our
+                        <a href="{{ '/explore/lab/?path=tskit.ipynb' | relative_url }}"> interactive workbook</a>. 
                     </p>
                 </div>
             </div>
@@ -44,8 +50,8 @@ permalink: /learn/
                         A full record of genetic ancestry
                     </h4>
                     <p class="card__text">
-                        A tree sequence concisely captures the full history of a set of genomes by sharing
-                        common branches between adjacent genetic trees
+                        A tree sequence, or ancestral recombination graph (ARG), concisely captures the genealogical history
+                        of a set of genomes by representing the branches shared among adjacent local trees along the genome.
                     </p>
                     <span class="list__item__link link link--type-1">
                                 <span class="link__text">
@@ -80,7 +86,7 @@ permalink: /learn/
                         An efficient analysis framework
                     </h4>
                     <p class="card__text">
-                        Many of the analyses we perform on DNA data can be expressed naturally as operations on
+                        Many of the analyses performed on DNA data can be expressed naturally as operations on
                         the ancestral trees, leading to highly efficient algorithms
                     </p>
                     <span class="list__item__link link link--type-1">
