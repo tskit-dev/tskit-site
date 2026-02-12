@@ -3,12 +3,7 @@ layout: page
 title: Governance
 permalink: /governance/
 ---
-<section class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-                <div class="wysiwyg" markdown="1">
-
+{% capture governance_content %}
 # Abstract
 
 The purpose of this document is to formalize the governance process used by the
@@ -90,7 +85,14 @@ Where possible decisions and discussions of the steering council should be docum
 tskit uses a "consensus-seeking" process for making decisions. The group tries to
 find a resolution that has no open objections among maintainers and the TSC. All
 are expected to distinguish between fundamental objections to a proposal and minor perceived flaws that they can live with and not hold up the decision-making process for the latter. If no option can be found without objections, the decision is escalated to the TSC, which will use consensus to come to a resolution. In the unlikely event that consensus cannot be reached within the TSC, the proposal will move forward if it has the support of a simple majority of the TSC.
+{% endcapture %}
 
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="wysiwyg">
+                    {{ governance_content | markdownify }}
                 </div>
             </div>
         </div>
