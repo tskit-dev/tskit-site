@@ -1,0 +1,834 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tszip.compression &#8212; Tszip manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/tszip/compression';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">tszip<br/>
+version 0.3.0
+</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli.html">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python-api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for tszip.compression</h1><div class="highlight"><pre>
+<span></span><span class="c1"># MIT License</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2019-2026 Tskit Developers</span>
+<span class="c1">#</span>
+<span class="c1"># Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="c1"># of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1"># in the Software without restriction, including without limitation the rights</span>
+<span class="c1"># to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="c1"># copies of the Software, and to permit persons to whom the Software is</span>
+<span class="c1"># furnished to do so, subject to the following conditions:</span>
+<span class="c1">#</span>
+<span class="c1"># The above copyright notice and this permission notice shall be included in all</span>
+<span class="c1"># copies or substantial portions of the Software.</span>
+<span class="c1">#</span>
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="c1"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="c1"># AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="c1"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="c1"># SOFTWARE.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Compression utilities for tskit tree sequences.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">contextlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numbers</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">humanize</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numcodecs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zarr</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">compat</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">exceptions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">provenance</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">FORMAT_NAME</span> <span class="o">=</span> <span class="s2">&quot;tszip&quot;</span>
+<span class="n">FORMAT_VERSION</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># ~8 million elements, giving 32MiB chunks to be compressed</span>
+<span class="c1"># for most columns</span>
+<span class="n">DEFAULT_CHUNK_SIZE</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="mi">20</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">minimal_dtype</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the smallest dtype that can be used to represent the values in the</span>
+<span class="sd">    specified array. If the array is not one of the integer types, the dtype of the</span>
+<span class="sd">    array itself is returned directly.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dtype</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">dtype</span>
+    <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dtype</span>
+    <span class="k">if</span> <span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;u&quot;</span><span class="p">:</span>
+        <span class="n">maxval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="n">dtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">dtypes</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">maxval</span> <span class="o">&lt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">:</span>
+                <span class="k">break</span>
+    <span class="k">elif</span> <span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;i&quot;</span><span class="p">:</span>
+        <span class="n">minval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="n">maxval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="n">dtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">dtypes</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">min</span> <span class="o">&lt;=</span> <span class="n">minval</span> <span class="ow">and</span> <span class="n">maxval</span> <span class="o">&lt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">:</span>
+                <span class="k">break</span>
+    <span class="k">return</span> <span class="n">dtype</span>
+
+
+<div class="viewcode-block" id="compress">
+<a class="viewcode-back" href="../../python-api.html#tszip.compress">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compress</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">variants_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compresses the specified tree sequence and writes it to the specified path</span>
+<span class="sd">    or file-like object. By default, fully lossless compression is used so that</span>
+<span class="sd">    tree sequences are identical before and after compression. By specifying</span>
+<span class="sd">    the ``variants_only`` option, a lossy compression can be used, which</span>
+<span class="sd">    discards any information that is not needed to represent the variants</span>
+<span class="sd">    (which are stored losslessly).</span>
+
+<span class="sd">    :param tskit.TreeSequence ts: The input tree sequence.</span>
+<span class="sd">    :param str destination: The string, :class:`pathlib.Path` or file-like object</span>
+<span class="sd">        we should write the compressed file to.</span>
+<span class="sd">    :param bool variants_only: If True, discard all information not necessary</span>
+<span class="sd">        to represent the variants in the input file.</span>
+<span class="sd">    :param int chunk_size: The number of array elements per chunk in the</span>
+<span class="sd">        Zarr encoding. Defaults to 8_388_608, resulting in</span>
+<span class="sd">        each encoded chunk of 4-byte integer data being 32MiB.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">destination</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">destination</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+        <span class="n">is_path</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">destdir</span> <span class="o">=</span> <span class="n">destination</span><span class="o">.</span><span class="n">parent</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="n">is_path</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">destdir</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="n">destdir</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;.tszip_work_&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tmpdir</span><span class="p">:</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">,</span> <span class="s2">&quot;tmp.trees.tgz&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Writing to temporary file </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">compat</span><span class="o">.</span><span class="n">create_zip_store</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">store</span><span class="p">:</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="n">compat</span><span class="o">.</span><span class="n">create_zarr_group</span><span class="p">(</span><span class="n">store</span><span class="o">=</span><span class="n">store</span><span class="p">)</span>
+            <span class="n">compress_zarr</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">variants_only</span><span class="o">=</span><span class="n">variants_only</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">is_path</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">destination</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wrote </span><span class="si">{</span><span class="n">destination</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Assume that destination is a file-like object open in &quot;wb&quot; mode.</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">source</span><span class="p">:</span>
+                <span class="n">read_chunk_size</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span>  <span class="c1"># 1MiB</span>
+                <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="n">read_chunk_size</span><span class="p">),</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+                    <span class="n">destination</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="decompress">
+<a class="viewcode-back" href="../../python-api.html#tszip.decompress">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">decompress</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decompresses the tszip compressed file and returns a tskit tree sequence</span>
+<span class="sd">    instance.</span>
+
+<span class="sd">    :param str path: The location of the tszip compressed file to load.</span>
+<span class="sd">    :rtype: tskit.TreeSequence</span>
+<span class="sd">    :return: A :class:`tskit.TreeSequence` instance corresponding to the</span>
+<span class="sd">        the specified file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">load_zarr</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">root</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">decompress_zarr</span><span class="p">(</span><span class="n">root</span><span class="p">)</span></div>
+
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Column</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A single column that is stored in the compressed output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">,</span> <span class="n">delta_filter</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">array</span> <span class="o">=</span> <span class="n">array</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delta_filter</span> <span class="o">=</span> <span class="n">delta_filter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chunks</span> <span class="o">=</span> <span class="p">(</span><span class="n">chunk_size</span><span class="p">,)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">compress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">compressor</span><span class="p">):</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">dtype</span> <span class="o">=</span> <span class="n">minimal_dtype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">)</span>
+        <span class="n">filters</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_filter</span><span class="p">:</span>
+            <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span><span class="n">numcodecs</span><span class="o">.</span><span class="n">Delta</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)]</span>
+        <span class="n">compressed_array</span> <span class="o">=</span> <span class="n">compat</span><span class="o">.</span><span class="n">create_empty_array</span><span class="p">(</span>
+            <span class="n">root</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+            <span class="n">chunks</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">chunks</span><span class="p">,</span>
+            <span class="n">filters</span><span class="o">=</span><span class="n">filters</span><span class="p">,</span>
+            <span class="n">compressor</span><span class="o">=</span><span class="n">compressor</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">compressed_array</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">compressed_array</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">nbytes_stored</span> <span class="o">=</span> <span class="n">compat</span><span class="o">.</span><span class="n">get_nbytes_stored</span><span class="p">(</span><span class="n">compressed_array</span><span class="p">)</span>
+            <span class="n">ratio</span> <span class="o">=</span> <span class="n">compressed_array</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">/</span> <span class="n">nbytes_stored</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: output=</span><span class="si">{}</span><span class="s2"> compression=</span><span class="si">{:.1f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">humanize</span><span class="o">.</span><span class="n">naturalsize</span><span class="p">(</span>
+                    <span class="n">compat</span><span class="o">.</span><span class="n">get_nbytes_stored</span><span class="p">(</span><span class="n">compressed_array</span><span class="p">),</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span>
+                <span class="p">),</span>
+                <span class="n">ratio</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compress_zarr</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">variants_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">chunk_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">chunk_size</span> <span class="o">=</span> <span class="n">DEFAULT_CHUNK_SIZE</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Integral</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Chunk size must be an integer&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">chunk_size</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Storage chunk size must be &gt;= 1&quot;</span><span class="p">)</span>
+    <span class="n">chunk_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">)</span>  <span class="c1"># Avoid issues with JSON serialisation</span>
+
+    <span class="n">provenance_dict</span> <span class="o">=</span> <span class="n">provenance</span><span class="o">.</span><span class="n">get_provenance_dict</span><span class="p">(</span>
+        <span class="p">{</span><span class="s2">&quot;variants_only&quot;</span><span class="p">:</span> <span class="n">variants_only</span><span class="p">,</span> <span class="s2">&quot;chunk_size&quot;</span><span class="p">:</span> <span class="n">chunk_size</span><span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">variants_only</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Using lossy variants-only compression&quot;</span><span class="p">)</span>
+        <span class="c1"># Reduce to site topology. Note that we will remove</span>
+        <span class="c1"># any sites, individuals and populations here that have no references.</span>
+        <span class="n">ts</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">reduce_to_site_topology</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">tables</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">tables</span>
+
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+        <span class="c1"># When using a zipfile in Zarr we get some harmless warnings. See</span>
+        <span class="c1"># https://zarr.readthedocs.io/en/stable/api/storage.html#zarr.storage.ZipStore</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;format_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FORMAT_NAME</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;format_version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FORMAT_VERSION</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;sequence_length&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">sequence_length</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;provenance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">provenance_dict</span>
+
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">tables</span><span class="o">.</span><span class="n">asdict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">sub_key</span><span class="p">,</span> <span class="n">sub_value</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">columns</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">sub_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sub_value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">columns</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">if</span> <span class="n">variants_only</span><span class="p">:</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">columns</span><span class="p">[</span><span class="s2">&quot;node/time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
+
+    <span class="c1"># Encoding array is a tuple so must be converted</span>
+    <span class="n">columns</span><span class="p">[</span><span class="s2">&quot;encoding_version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">columns</span><span class="p">[</span><span class="s2">&quot;encoding_version&quot;</span><span class="p">])</span>
+
+    <span class="c1"># Sequence length is stored as an attr for compatibility with older versions of tszip</span>
+    <span class="k">del</span> <span class="n">columns</span><span class="p">[</span><span class="s2">&quot;sequence_length&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Schemas, metadata and units need to be converted to arrays</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;metadata_schema&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="s2">&quot;time_units&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;reference_sequence/data&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;reference_sequence/url&quot;</span><span class="p">,</span>
+        <span class="p">]:</span>
+            <span class="n">columns</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">columns</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">):</span>
+            <span class="n">columns</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">columns</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+    <span class="c1"># Some columns benefit from being quantised</span>
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">],</span>
+                <span class="n">tables</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">left</span><span class="p">,</span>
+                <span class="n">tables</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">right</span><span class="p">,</span>
+                <span class="n">tables</span><span class="o">.</span><span class="n">sites</span><span class="o">.</span><span class="n">position</span><span class="p">,</span>
+                <span class="n">tables</span><span class="o">.</span><span class="n">migrations</span><span class="o">.</span><span class="n">left</span><span class="p">,</span>
+                <span class="n">tables</span><span class="o">.</span><span class="n">migrations</span><span class="o">.</span><span class="n">right</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">columns</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">coordinates</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">&quot;edges/left&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;edges/right&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;migrations/left&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;migrations/right&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sites/position&quot;</span><span class="p">,</span>
+    <span class="p">]:</span>
+        <span class="n">columns</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">columns</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+
+    <span class="c1"># Some columns benefit from additional options</span>
+    <span class="n">delta_filter_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edges/parent&quot;</span><span class="p">,</span> <span class="s2">&quot;sites/position&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Note: we&#39;re not providing any options to set this here because Blosc+Zstd seems to</span>
+    <span class="c1"># have a clear advantage in compression performance and speed. There is very little</span>
+    <span class="c1"># difference between compression level 6 and 9, and it&#39;s extremely fast in any case</span>
+    <span class="c1"># so there&#39;s no point in adding complexity. The shuffle filter in particular makes</span>
+    <span class="c1"># big difference.</span>
+    <span class="n">compressor</span> <span class="o">=</span> <span class="n">numcodecs</span><span class="o">.</span><span class="n">Blosc</span><span class="p">(</span>
+        <span class="n">cname</span><span class="o">=</span><span class="s2">&quot;zstd&quot;</span><span class="p">,</span> <span class="n">clevel</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">numcodecs</span><span class="o">.</span><span class="n">Blosc</span><span class="o">.</span><span class="n">SHUFFLE</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">columns</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">col</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">data</span><span class="p">,</span>
+            <span class="n">chunk_size</span><span class="p">,</span>
+            <span class="n">delta_filter</span><span class="o">=</span><span class="s2">&quot;_offset&quot;</span> <span class="ow">in</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">delta_filter_cols</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">col</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">compressor</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_format</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">format_name</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;format_name&quot;</span><span class="p">]</span>
+        <span class="n">format_version</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;format_version&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">ke</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">FileFormatError</span><span class="p">(</span><span class="s2">&quot;Incorrect file format&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ke</span>
+    <span class="k">if</span> <span class="n">format_name</span> <span class="o">!=</span> <span class="n">FORMAT_NAME</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">FileFormatError</span><span class="p">(</span>
+            <span class="s2">&quot;Incorrect file format: expected &#39;</span><span class="si">{}</span><span class="s2">&#39; got &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">FORMAT_NAME</span><span class="p">,</span> <span class="n">format_name</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">format_version</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">FORMAT_VERSION</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">FileFormatError</span><span class="p">(</span>
+            <span class="s2">&quot;Format version </span><span class="si">{}</span><span class="s2"> too old. Current version = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">format_version</span><span class="p">,</span> <span class="n">FORMAT_VERSION</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">format_version</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">FORMAT_VERSION</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">FileFormatError</span><span class="p">(</span>
+            <span class="s2">&quot;Format version </span><span class="si">{}</span><span class="s2"> too new. Current version = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">format_version</span><span class="p">,</span> <span class="n">FORMAT_VERSION</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+
+<span class="nd">@contextlib</span><span class="o">.</span><span class="n">contextmanager</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_zarr</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">store</span> <span class="o">=</span> <span class="n">compat</span><span class="o">.</span><span class="n">create_zip_store</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">compat</span><span class="o">.</span><span class="n">create_zarr_group</span><span class="p">(</span><span class="n">store</span><span class="o">=</span><span class="n">store</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">BadZipFile</span> <span class="k">as</span> <span class="n">bzf</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">FileFormatError</span><span class="p">(</span><span class="s2">&quot;File is not in tszip format&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">bzf</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">check_format</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">root</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="s2">&quot;close&quot;</span><span class="p">):</span>
+            <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_convert_string_field</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">array</span><span class="p">[:]</span>
+    <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_string_field</span><span class="p">(</span><span class="n">group_name</span><span class="p">,</span> <span class="n">array_name</span><span class="p">):</span>
+    <span class="n">string_fields</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;time_units&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;reference_sequence&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;reference_sequence&quot;</span><span class="p">,</span> <span class="s2">&quot;url&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="n">array_name</span> <span class="o">==</span> <span class="s2">&quot;metadata_schema&quot;</span> <span class="ow">or</span> <span class="p">(</span><span class="n">group_name</span><span class="p">,</span> <span class="n">array_name</span><span class="p">)</span> <span class="ow">in</span> <span class="n">string_fields</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_metadata_field</span><span class="p">(</span><span class="n">group_name</span><span class="p">,</span> <span class="n">array_name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">group_name</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;reference_sequence&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">array_name</span> <span class="o">==</span> <span class="s2">&quot;metadata&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_convert_metadata_field</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+    <span class="c1"># Handle backward compatibility: &lt;=0.2.5 versions stored metadata as int8</span>
+    <span class="c1"># which can have negative values outside the valid byte range (0-255)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">array</span><span class="p">[:]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">decompress_zarr</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][:]</span>
+    <span class="n">dict_repr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sequence_length&quot;</span><span class="p">:</span> <span class="n">root</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;sequence_length&quot;</span><span class="p">]}</span>
+
+    <span class="n">quantised_arrays</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;edges&quot;</span><span class="p">,</span> <span class="s2">&quot;left&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;edges&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;migrations&quot;</span><span class="p">,</span> <span class="s2">&quot;left&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;migrations&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;sites&quot;</span><span class="p">,</span> <span class="s2">&quot;position&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">group_name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">groups</span><span class="p">():</span>
+        <span class="n">group_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">array_name</span><span class="p">,</span> <span class="n">array</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">arrays</span><span class="p">():</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">group_name</span><span class="p">,</span> <span class="n">array_name</span><span class="p">)</span> <span class="ow">in</span> <span class="n">quantised_arrays</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="n">array</span><span class="p">[:]]</span>
+            <span class="k">elif</span> <span class="n">_is_string_field</span><span class="p">(</span><span class="n">group_name</span><span class="p">,</span> <span class="n">array_name</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">_convert_string_field</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">_is_metadata_field</span><span class="p">(</span><span class="n">group_name</span><span class="p">,</span> <span class="n">array_name</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">_convert_metadata_field</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Otherwise, pass the zarr array through directly to</span>
+                <span class="c1"># tskit which will convert to appropriate numpy array</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">array</span>
+            <span class="n">group_dict</span><span class="p">[</span><span class="n">array_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">dict_repr</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_dict</span>
+
+    <span class="k">for</span> <span class="n">array_name</span><span class="p">,</span> <span class="n">array</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">arrays</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">array_name</span> <span class="o">==</span> <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">_is_string_field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">array_name</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">_convert_string_field</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">_is_metadata_field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">array_name</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">_convert_metadata_field</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">array</span>
+        <span class="n">dict_repr</span><span class="p">[</span><span class="n">array_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">return</span> <span class="n">tskit</span><span class="o">.</span><span class="n">TableCollection</span><span class="o">.</span><span class="n">fromdict</span><span class="p">(</span><span class="n">dict_repr</span><span class="p">)</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">print_summary</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">arrays</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">visitor</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">zarr</span><span class="o">.</span><span class="n">Array</span><span class="p">):</span>
+            <span class="n">arrays</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">load_zarr</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">root</span><span class="p">:</span>
+        <span class="n">compat</span><span class="o">.</span><span class="n">visit_arrays</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">visitor</span><span class="p">)</span>
+
+    <span class="n">arrays</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">compat</span><span class="o">.</span><span class="n">get_nbytes_stored</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">max_name_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">array</span> <span class="ow">in</span> <span class="n">arrays</span><span class="p">)</span>
+    <span class="n">storeds</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">humanize</span><span class="o">.</span><span class="n">naturalsize</span><span class="p">(</span><span class="n">compat</span><span class="o">.</span><span class="n">get_nbytes_stored</span><span class="p">(</span><span class="n">array</span><span class="p">),</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">array</span> <span class="ow">in</span> <span class="n">arrays</span>
+    <span class="p">]</span>
+    <span class="n">max_stored_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">storeds</span><span class="p">)</span>
+    <span class="n">actuals</span> <span class="o">=</span> <span class="p">[</span><span class="n">humanize</span><span class="o">.</span><span class="n">naturalsize</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">array</span> <span class="ow">in</span> <span class="n">arrays</span><span class="p">]</span>
+    <span class="n">max_actual_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">actuals</span><span class="p">)</span>
+
+    <span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;File: </span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">path</span><span class="p">,</span> <span class="n">humanize</span><span class="o">.</span><span class="n">naturalsize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;format_version:&quot;</span><span class="p">,</span> <span class="n">root</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;format_version&quot;</span><span class="p">])</span>
+        <span class="n">prov</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;provenance&quot;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;provenance: &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">prov</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;{:&lt;</span><span class="si">{}</span><span class="s2">} {:&lt;</span><span class="si">{}</span><span class="s2">}</span><span class="se">\t</span><span class="s2">{:&lt;</span><span class="si">{}</span><span class="s2">}</span><span class="se">\t</span><span class="si">{}</span><span class="s2">&quot;</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="n">max_name_len</span><span class="p">,</span>
+        <span class="s2">&quot;stored&quot;</span><span class="p">,</span>
+        <span class="n">max_stored_len</span><span class="p">,</span>
+        <span class="s2">&quot;actual&quot;</span><span class="p">,</span>
+        <span class="n">max_actual_len</span><span class="p">,</span>
+        <span class="s2">&quot;ratio&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">array</span><span class="p">,</span> <span class="n">stored</span><span class="p">,</span> <span class="n">actual</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">arrays</span><span class="p">,</span> <span class="n">storeds</span><span class="p">,</span> <span class="n">actuals</span><span class="p">):</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ratio</span> <span class="o">=</span> <span class="n">compat</span><span class="o">.</span><span class="n">get_nbytes_stored</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="o">/</span> <span class="n">array</span><span class="o">.</span><span class="n">nbytes</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">array</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">max_name_len</span><span class="p">,</span>
+            <span class="n">stored</span><span class="p">,</span>
+            <span class="n">max_stored_len</span><span class="p">,</span>
+            <span class="n">actual</span><span class="p">,</span>
+            <span class="n">max_actual_len</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ratio</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">info</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="load">
+<a class="viewcode-back" href="../../python-api.html#tszip.load">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Open a tszip or normal tskit file. This is a convenience function that</span>
+<span class="sd">    determines if the file needs to be decompressed or not, returning</span>
+<span class="sd">    the tree sequence instance in either case.</span>
+
+<span class="sd">    :param str path: The location of the tszip compressed file or</span>
+<span class="sd">        standard tskit file to load.</span>
+<span class="sd">    :rtype: tskit.TreeSequence</span>
+<span class="sd">    :return: A :class:`tskit.TreeSequence` instance corresponding to</span>
+<span class="sd">        the specified file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="c1"># Determine if the file is a zip file, this seems more robust than</span>
+    <span class="c1"># checking the file extension, or depending on exceptions. Note that</span>
+    <span class="c1"># `is_zipfile` not only checks the header but also the EOCD record at</span>
+    <span class="c1"># then end of the file. This means we read the file twice, but as</span>
+    <span class="c1"># tree sequences are usually less than a few GB this should not</span>
+    <span class="c1"># be a problem.</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">is_zip</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">is_zipfile</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_zip</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">decompress</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Open everything else with tskit. We could check for a</span>
+        <span class="c1"># kastore header here, but this way we get all the normal</span>
+        <span class="c1"># tskit exceptions on error</span>
+        <span class="k">return</span> <span class="n">tskit</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

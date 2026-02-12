@@ -1,0 +1,981 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Command line interface &#8212; sc2ts manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cli';</script>
+    <link rel="icon" href="_static/sc2ts.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python API" href="api.html" />
+    <link rel="prev" title="Alignments analysis" href="alignments_analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/sc2ts.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/sc2ts.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 1.0.1</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arg_analysis.html">ARG analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alignments_analysis.html">Alignments analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Misc</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/cli.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Command line interface</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-high-level-commands">Order of high-level commands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-reference">CLI reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-import">Data import</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-import-alignments">sc2ts import-alignments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-import-metadata">sc2ts import-metadata</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inference">Inference</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-infer">sc2ts infer</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspection">Inspection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-info-dataset">sc2ts info-dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-info-matches">sc2ts info-matches</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-postprocess">sc2ts postprocess</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-map-parsimony">sc2ts map-parsimony</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-minimise-metadata">sc2ts minimise-metadata</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#miscellaneous">Miscellaneous</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-run-hmm">sc2ts run-hmm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="command-line-interface">
+<span id="sc2ts-sec-cli"></span><h1>Command line interface<a class="headerlink" href="#command-line-interface" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">sc2ts</span></code> package provides a command line interface for running
+inference and working with sc2ts datasets. After installation, the
+<code class="docutils literal notranslate"><span class="pre">sc2ts</span></code> entry point should be available</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sc2ts --help
+</pre></div>
+</div>
+<p>You can also invoke the CLI via the module::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m sc2ts --help
+</pre></div>
+</div>
+<section id="order-of-high-level-commands">
+<h2>Order of high-level commands<a class="headerlink" href="#order-of-high-level-commands" title="Link to this heading">#</a></h2>
+<p>In a typical end-to-end workflow, the main subcommands are used in the
+following order:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">import-alignments</span></code> and <code class="docutils literal notranslate"><span class="pre">import-metadata</span></code> to build a VCF Zarr
+dataset from raw alignments and metadata.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">infer</span></code> to run primary inference over the dataset and produce a
+series of tree sequence files and a match database.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">postprocess</span></code> to apply housekeeping steps and incorporate exact
+matches, outputting a cleaned ARG.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">minimise-metadata</span></code> to generate an analysis-ready ARG with compact
+metadata suitable for use with the Python analysis APIs.</p></li>
+</ol>
+</section>
+<section id="cli-reference">
+<h2>CLI reference<a class="headerlink" href="#cli-reference" title="Link to this heading">#</a></h2>
+<section id="data-import">
+<h3>Data import<a class="headerlink" href="#data-import" title="Link to this heading">#</a></h3>
+<section id="sc2ts-import-alignments">
+<span id="cmd-sc2ts-import-alignments"></span><h4>sc2ts import-alignments<a class="headerlink" href="#sc2ts-import-alignments" title="Link to this heading">#</a></h4>
+<p>Import the alignments from all FASTAS into the dataset</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sc2ts<span class="w"> </span>import-alignments<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>DATASET<span class="w"> </span><span class="o">[</span>FASTAS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-import-alignments-i">
+<span id="cmdoption-sc2ts-import-alignments-initialise"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--initialise</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-import-alignments-i" title="Link to this definition">#</a></dt>
+<dd><p>If true, initialise a new dataset. WARNING! This will erase an existing store</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-import-alignments-progress">
+<span id="cmdoption-sc2ts-import-alignments-no-progress"></span><span class="sig-name descname"><span class="pre">--progress</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-progress</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-import-alignments-progress" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-import-alignments-v">
+<span id="cmdoption-sc2ts-import-alignments-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-import-alignments-v" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-import-alignments-arg-DATASET">
+<span class="sig-name descname"><span class="pre">DATASET</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-import-alignments-arg-DATASET" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-import-alignments-arg-FASTAS">
+<span class="sig-name descname"><span class="pre">FASTAS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-import-alignments-arg-FASTAS" title="Link to this definition">#</a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+
+</section>
+<section id="sc2ts-import-metadata">
+<span id="cmd-sc2ts-import-metadata"></span><h4>sc2ts import-metadata<a class="headerlink" href="#sc2ts-import-metadata" title="Link to this heading">#</a></h4>
+<p>Import a CSV/TSV metadata file into the dataset.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sc2ts<span class="w"> </span>import-metadata<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>DATASET<span class="w"> </span>METADATA
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-import-metadata-field-descriptions">
+<span class="sig-name descname"><span class="pre">--field-descriptions</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;field_descriptions&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-import-metadata-field-descriptions" title="Link to this definition">#</a></dt>
+<dd><p>JSON formatted file of field descriptions</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-import-metadata-viridian">
+<span class="sig-name descname"><span class="pre">--viridian</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-import-metadata-viridian" title="Link to this definition">#</a></dt>
+<dd><p>Do some preprocessing appropriate for the Viridian metadata (Available at <a class="reference external" href="https://figshare.com/ndownloader/files/49694808">https://figshare.com/ndownloader/files/49694808</a>)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-import-metadata-v">
+<span id="cmdoption-sc2ts-import-metadata-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-import-metadata-v" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-import-metadata-arg-DATASET">
+<span class="sig-name descname"><span class="pre">DATASET</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-import-metadata-arg-DATASET" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-import-metadata-arg-METADATA">
+<span class="sig-name descname"><span class="pre">METADATA</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-import-metadata-arg-METADATA" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="inference">
+<h3>Inference<a class="headerlink" href="#inference" title="Link to this heading">#</a></h3>
+<section id="sc2ts-infer">
+<span id="cmd-sc2ts-infer"></span><h4>sc2ts infer<a class="headerlink" href="#sc2ts-infer" title="Link to this heading">#</a></h4>
+<p>Run the full inference pipeline based on values in the config file.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sc2ts<span class="w"> </span>infer<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>CONFIG_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-infer-start">
+<span class="sig-name descname"><span class="pre">--start</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;start&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-infer-start" title="Link to this definition">#</a></dt>
+<dd><p>Start inference at this date (inclusive).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-infer-stop">
+<span class="sig-name descname"><span class="pre">--stop</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;stop&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-infer-stop" title="Link to this definition">#</a></dt>
+<dd><p>Stop and exit at this date (non-inclusive)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-infer-f">
+<span id="cmdoption-sc2ts-infer-force"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--force</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-infer-f" title="Link to this definition">#</a></dt>
+<dd><p>Force destructive updates to Match DB</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-infer-arg-CONFIG_FILE">
+<span class="sig-name descname"><span class="pre">CONFIG_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-infer-arg-CONFIG_FILE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="inspection">
+<h3>Inspection<a class="headerlink" href="#inspection" title="Link to this heading">#</a></h3>
+<section id="sc2ts-info-dataset">
+<span id="cmd-sc2ts-info-dataset"></span><h4>sc2ts info-dataset<a class="headerlink" href="#sc2ts-info-dataset" title="Link to this heading">#</a></h4>
+<p>Information about a sc2ts Zarr dataset</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sc2ts<span class="w"> </span>info-dataset<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>DATASET
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-info-dataset-v">
+<span id="cmdoption-sc2ts-info-dataset-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-info-dataset-v" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-info-dataset-z">
+<span id="cmdoption-sc2ts-info-dataset-zarr-details"></span><span class="sig-name descname"><span class="pre">-z</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--zarr-details</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-info-dataset-z" title="Link to this definition">#</a></dt>
+<dd><p>Show detailed zarr information</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-info-dataset-arg-DATASET">
+<span class="sig-name descname"><span class="pre">DATASET</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-info-dataset-arg-DATASET" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="sc2ts-info-matches">
+<span id="cmd-sc2ts-info-matches"></span><h4>sc2ts info-matches<a class="headerlink" href="#sc2ts-info-matches" title="Link to this heading">#</a></h4>
+<p>Information about matches in the MatchDB</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sc2ts<span class="w"> </span>info-matches<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>MATCH_DB
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-info-matches-A">
+<span id="cmdoption-sc2ts-info-matches-all-matches"></span><span class="sig-name descname"><span class="pre">-A</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--all-matches</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-info-matches-A" title="Link to this definition">#</a></dt>
+<dd><p>Export information about all matches</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-info-matches-v">
+<span id="cmdoption-sc2ts-info-matches-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-info-matches-v" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-info-matches-arg-MATCH_DB">
+<span class="sig-name descname"><span class="pre">MATCH_DB</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-info-matches-arg-MATCH_DB" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="postprocessing">
+<h3>Postprocessing<a class="headerlink" href="#postprocessing" title="Link to this heading">#</a></h3>
+<section id="sc2ts-postprocess">
+<span id="cmd-sc2ts-postprocess"></span><h4>sc2ts postprocess<a class="headerlink" href="#sc2ts-postprocess" title="Link to this heading">#</a></h4>
+<p>Perform final postprocessing steps to the specified ARG.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sc2ts<span class="w"> </span>postprocess<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>TS_IN<span class="w"> </span>TS_OUT
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-postprocess-match-db">
+<span class="sig-name descname"><span class="pre">--match-db</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;match_db&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-postprocess-match-db" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-postprocess-progress">
+<span id="cmdoption-sc2ts-postprocess-no-progress"></span><span class="sig-name descname"><span class="pre">--progress</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-progress</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-postprocess-progress" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-postprocess-v">
+<span id="cmdoption-sc2ts-postprocess-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-postprocess-v" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-postprocess-l">
+<span id="cmdoption-sc2ts-postprocess-log-file"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--log-file</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;log_file&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-postprocess-l" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-postprocess-arg-TS_IN">
+<span class="sig-name descname"><span class="pre">TS_IN</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-postprocess-arg-TS_IN" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-postprocess-arg-TS_OUT">
+<span class="sig-name descname"><span class="pre">TS_OUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-postprocess-arg-TS_OUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="sc2ts-map-parsimony">
+<span id="cmd-sc2ts-map-parsimony"></span><h4>sc2ts map-parsimony<a class="headerlink" href="#sc2ts-map-parsimony" title="Link to this heading">#</a></h4>
+<p>Map variation at the specified set of sites to the ARG using parsimony.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sc2ts<span class="w"> </span>map-parsimony<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>DATASET<span class="w"> </span>TS_IN<span class="w"> </span>TS_OUT
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-map-parsimony-sites">
+<span class="sig-name descname"><span class="pre">--sites</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;sites&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-map-parsimony-sites" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-map-parsimony-report">
+<span class="sig-name descname"><span class="pre">--report</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;report&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-map-parsimony-report" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-map-parsimony-progress">
+<span id="cmdoption-sc2ts-map-parsimony-no-progress"></span><span class="sig-name descname"><span class="pre">--progress</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-progress</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-map-parsimony-progress" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-map-parsimony-v">
+<span id="cmdoption-sc2ts-map-parsimony-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-map-parsimony-v" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-map-parsimony-l">
+<span id="cmdoption-sc2ts-map-parsimony-log-file"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--log-file</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;log_file&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-map-parsimony-l" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-map-parsimony-arg-DATASET">
+<span class="sig-name descname"><span class="pre">DATASET</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-map-parsimony-arg-DATASET" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-map-parsimony-arg-TS_IN">
+<span class="sig-name descname"><span class="pre">TS_IN</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-map-parsimony-arg-TS_IN" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-map-parsimony-arg-TS_OUT">
+<span class="sig-name descname"><span class="pre">TS_OUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-map-parsimony-arg-TS_OUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="sc2ts-minimise-metadata">
+<span id="cmd-sc2ts-minimise-metadata"></span><h4>sc2ts minimise-metadata<a class="headerlink" href="#sc2ts-minimise-metadata" title="Link to this heading">#</a></h4>
+<p>Generate the final “analysis” version of the ARG by dropping all
+metadata other the specified fields, and recoding the minimal information
+using the struct codec.</p>
+<p>By default we only remap the “strain” metadata field to “sample_id”. If
+other fields are required, these can be provided with the
+-m [old metadata name] [new metadata name], e.g</p>
+<p>python -m sc2ts minimise-metadata -m strain sample_id -m Viridian_pangolin pango</p>
+<p>The -m option can be provided as many times as we like, but it’s important
+to note that the strain/sample ID mapping <em>must</em> be provided if so.</p>
+<p>Currently only supports string fields</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sc2ts<span class="w"> </span>minimise-metadata<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>TS_IN<span class="w"> </span>TS_OUT
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-minimise-metadata-m">
+<span id="cmdoption-sc2ts-minimise-metadata-field-mapping"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--field-mapping</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;field_mapping&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-minimise-metadata-m" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-minimise-metadata-progress">
+<span id="cmdoption-sc2ts-minimise-metadata-no-progress"></span><span class="sig-name descname"><span class="pre">--progress</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-progress</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-minimise-metadata-progress" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-minimise-metadata-drop-vestigial-root">
+<span id="cmdoption-sc2ts-minimise-metadata-no-drop-vestigial-root"></span><span class="sig-name descname"><span class="pre">--drop-vestigial-root</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-drop-vestigial-root</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-minimise-metadata-drop-vestigial-root" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-minimise-metadata-v">
+<span id="cmdoption-sc2ts-minimise-metadata-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-minimise-metadata-v" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-minimise-metadata-l">
+<span id="cmdoption-sc2ts-minimise-metadata-log-file"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--log-file</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;log_file&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-minimise-metadata-l" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-minimise-metadata-arg-TS_IN">
+<span class="sig-name descname"><span class="pre">TS_IN</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-minimise-metadata-arg-TS_IN" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-minimise-metadata-arg-TS_OUT">
+<span class="sig-name descname"><span class="pre">TS_OUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-minimise-metadata-arg-TS_OUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="miscellaneous">
+<h3>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Link to this heading">#</a></h3>
+<!-- ```{eval-rst} -->
+<!-- .. _cmd-sc2ts-validate: -->
+<!-- .. click:: sc2ts.cli:validate -->
+<!--    :prog: sc2ts validate -->
+<!-- ``` -->
+<section id="sc2ts-run-hmm">
+<span id="cmd-sc2ts-run-hmm"></span><h4>sc2ts run-hmm<a class="headerlink" href="#sc2ts-run-hmm" title="Link to this heading">#</a></h4>
+<p>Run matches for a specified set of strains, outputing details to stdout as JSON.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sc2ts<span class="w"> </span>run-hmm<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>DATASET<span class="w"> </span>TS_PATH<span class="w"> </span><span class="o">[</span>STRAINS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-run-hmm-k">
+<span id="cmdoption-sc2ts-run-hmm-num-mismatches"></span><span class="sig-name descname"><span class="pre">-k</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--num-mismatches</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;num_mismatches&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-run-hmm-k" title="Link to this definition">#</a></dt>
+<dd><p>Number of mismatches to accept in favour of recombination</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-run-hmm-deletions-as-missing">
+<span id="cmdoption-sc2ts-run-hmm-no-deletions-as-missing"></span><span class="sig-name descname"><span class="pre">--deletions-as-missing</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-deletions-as-missing</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-run-hmm-deletions-as-missing" title="Link to this definition">#</a></dt>
+<dd><p>Treat all deletions as missing data when matching haplotypes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-run-hmm-mismatch-threshold">
+<span class="sig-name descname"><span class="pre">--mismatch-threshold</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;mismatch_threshold&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-run-hmm-mismatch-threshold" title="Link to this definition">#</a></dt>
+<dd><p>Set the HMM likelihood threshold to this number of mutations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">100</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-run-hmm-direction">
+<span class="sig-name descname"><span class="pre">--direction</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;direction&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-run-hmm-direction" title="Link to this definition">#</a></dt>
+<dd><p>Direction to run HMM in</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options<span class="colon">:</span></dt>
+<dd class="field-odd"><p>forward | reverse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-run-hmm-num-threads">
+<span class="sig-name descname"><span class="pre">--num-threads</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;num_threads&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-run-hmm-num-threads" title="Link to this definition">#</a></dt>
+<dd><p>Number of match threads (default to one)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-run-hmm-progress">
+<span id="cmdoption-sc2ts-run-hmm-no-progress"></span><span class="sig-name descname"><span class="pre">--progress</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-progress</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-run-hmm-progress" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-run-hmm-v">
+<span id="cmdoption-sc2ts-run-hmm-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-run-hmm-v" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-run-hmm-l">
+<span id="cmdoption-sc2ts-run-hmm-log-file"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--log-file</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;log_file&gt;</span></span><a class="headerlink" href="#cmdoption-sc2ts-run-hmm-l" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-run-hmm-arg-DATASET">
+<span class="sig-name descname"><span class="pre">DATASET</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-run-hmm-arg-DATASET" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-run-hmm-arg-TS_PATH">
+<span class="sig-name descname"><span class="pre">TS_PATH</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-run-hmm-arg-TS_PATH" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc2ts-run-hmm-arg-STRAINS">
+<span class="sig-name descname"><span class="pre">STRAINS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc2ts-run-hmm-arg-STRAINS" title="Link to this definition">#</a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="alignments_analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Alignments analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="api.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python API</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-high-level-commands">Order of high-level commands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-reference">CLI reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-import">Data import</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-import-alignments">sc2ts import-alignments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-import-metadata">sc2ts import-metadata</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inference">Inference</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-infer">sc2ts infer</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspection">Inspection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-info-dataset">sc2ts info-dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-info-matches">sc2ts info-matches</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-postprocess">sc2ts postprocess</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-map-parsimony">sc2ts map-parsimony</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-minimise-metadata">sc2ts minimise-metadata</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#miscellaneous">Miscellaneous</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sc2ts-run-hmm">sc2ts run-hmm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By sc2ts developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

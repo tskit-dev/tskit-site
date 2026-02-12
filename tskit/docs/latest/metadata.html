@@ -1,0 +1,1722 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Metadata &#8212; Tskit manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/bespoke.css?v=00f581dd" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'metadata';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Provenance" href="provenance.html" />
+    <link rel="prev" title="Data model" href="data-model.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 1.0.2.dev1</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-model.html">Data model</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="provenance.html">Provenance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stats.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topological-analysis.html">Topological analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ibd.html">Identity by descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Data export</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python-api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba.html">Numba Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-api.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-formats.html">File formats</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">For developers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelogs.html">Changelogs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing tskit</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/edit/main/docs/metadata.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/issues/new?title=Issue%20on%20page%20%2Fmetadata.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/metadata.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Metadata</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level">Top level</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-sequence">Reference sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">Tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defaults">Defaults</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codecs">Codecs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#json"><code class="docutils literal notranslate"><span class="pre">json</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struct"><code class="docutils literal notranslate"><span class="pre">struct</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binaryformat">binaryFormat</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#numeric-and-boolean-types">Numeric and boolean types</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#strings">Strings</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#padding-bytes">Padding bytes</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#union-typed-metadata">Union typed metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-examples">Schema examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struct-codec">Struct codec</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-metadata-api-overview">Python Metadata API Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-array-metadata">Structured array metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-metaschema">Full metaschema</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="metadata">
+<span id="sec-metadata"></span><h1>Metadata<a class="headerlink" href="#metadata" title="Link to this heading">#</a></h1>
+<p>The tree-sequence and all the entities within it (nodes, mutations, edges,  etc.) can
+have metadata associated with them. This is intended for storing and passing on
+information that tskit itself does not use or interpret, for example information derived
+from a VCF INFO field, or administrative information (such as unique identifiers)
+relating to samples and populations. Note that provenance information about how a tree
+sequence was created should not be stored in metadata, instead the provenance mechanisms
+in tskit should be used (see <a class="reference internal" href="provenance.html#sec-provenance"><span class="std std-ref">Provenance</span></a>).</p>
+<p>The metadata for each entity (e.g. row in a table) is described by a schema for each
+entity type (e.g. table). The schemas allow the tskit Python API to encode and decode
+metadata automatically and, most importantly, tells downstream users and tools how to
+decode and interpret the metadata. For example, the <code class="docutils literal notranslate"><span class="pre">msprime</span></code> schema for populations
+requires both a <code class="docutils literal notranslate"><span class="pre">name</span></code> and a <code class="docutils literal notranslate"><span class="pre">description</span></code> for each defined population: these names and
+descriptions can assist downstream users in understanding and using <code class="docutils literal notranslate"><span class="pre">msprime</span></code> tree
+sequences. It is best practice to populate such metadata fields if your files will be
+used by any third party, or if you wish to remember what the rows refer to some time
+after making the file!</p>
+<p>Technically, schemas describe what information is stored in each metadata record, and
+how it is to be encoded, plus some optional rules about the types and ranges of data
+that can be stored. Every node’s metadata follows the node schema, every mutation’s
+metadata the mutation schema, and so on. Most users of tree-sequence files will not
+need to modify the schemas: typically, as in the example of <code class="docutils literal notranslate"><span class="pre">msprime</span></code> above, schemas are
+defined by the software which created the tree-sequence file. The exact metadata stored
+depends on the use case; it is also possible for subsequent processes to add or modify
+the schemas, if they wish to add to or modify the types (or encoding) of the metadata.</p>
+<p>The metadata schemas are in the form of a
+<a class="reference external" href="http://json-schema.org/">JSON Schema</a> (a good guide to JSON Schema is at
+<a class="reference external" href="https://json-schema.org/understanding-json-schema/">Understanding JSON Schema</a>). The
+schema must specify an object with properties,
+the keys and types of those properties are specified along with optional
+long-form names, descriptions and validations such as min/max or regex matching for
+strings, see the <a class="reference internal" href="#sec-metadata-schema-examples"><span class="std std-ref">Schema examples</span></a> below.</p>
+<p>As a convenience the simplest, permissive JSON schema is available as
+<a class="reference internal" href="python-api.html#tskit.MetadataSchema.permissive_json" title="tskit.MetadataSchema.permissive_json"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MetadataSchema.permissive_json()</span></code></a>.</p>
+<p>The <a class="reference external" href="https://tskit.dev/tutorials/metadata.html#sec-tutorial-metadata" title="(in Project name not set)"><span>Working with Metadata</span></a> Tutorial shows how to use schemas and access metadata
+in the tskit Python API.</p>
+<p>Note that the C API simply provides byte-array binary access to the metadata,
+leaving the encoding and decoding to the user. The same can be achieved with the Python
+API, see <a class="reference external" href="https://tskit.dev/tutorials/metadata.html#sec-tutorial-metadata-binary" title="(in Project name not set)"><span>Binary metadata</span></a>.</p>
+<section id="examples">
+<span id="sec-metadata-examples"></span><h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<p>In this section we give some examples of how to define metadata
+schemas and how to add metadata to various parts of a tree sequence
+using the Python API. For simplicity, these initial examples use the JSON codec
+(see <a class="reference internal" href="#sec-metadata-codecs"><span class="std std-ref">Codecs</span></a>).</p>
+<section id="top-level">
+<span id="sec-metadata-examples-top-level"></span><h3>Top level<a class="headerlink" href="#top-level" title="Link to this heading">#</a></h3>
+<p>Top level metadata is associated with the tree sequence as a whole, rather than
+any specific table. This is used, for example, by programs such as
+<a class="reference external" href="https://github.com/MesserLab/SLiM">SLiM</a> to store information about the sort of
+model that was used to generate the tree sequence (but note that detailed information
+used to recreate the tree sequence is better stored in <a class="reference internal" href="provenance.html#sec-provenance"><span class="std std-ref">Provenance</span></a>).</p>
+<p>Here’s an example of adding your own top-level metadata to a tree sequence:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+<span class="c1"># Define some top-level metadata you might want to add to a tree sequence</span>
+<span class="n">top_level_metadata</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;taxonomy&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;species&quot;</span><span class="p">:</span> <span class="s2">&quot;Arabidopsis lyrata&quot;</span><span class="p">,</span> <span class="s2">&quot;subspecies&quot;</span><span class="p">:</span> <span class="s2">&quot;petraea&quot;</span><span class="p">},</span>
+    <span class="s2">&quot;generation_time&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Generate a simple tree sequence of one random tree.</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">Tree</span><span class="o">.</span><span class="n">generate_random_binary</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">branch_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">tree_sequence</span>
+
+<span class="c1"># To edit a tree sequence, first dump it to tables.</span>
+<span class="n">tables</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">dump_tables</span><span class="p">()</span>
+
+<span class="c1"># Set the metadata schema for the top-level metadata</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">metadata_schema</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">MetadataSchema</span><span class="o">.</span><span class="n">permissive_json</span><span class="p">()</span>  <span class="c1"># simplest schema</span>
+<span class="c1"># Set the metadata itself</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">top_level_metadata</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;The tree sequence is of&quot;</span><span class="p">,</span>
+    <span class="n">ts</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;taxonomy&quot;</span><span class="p">][</span><span class="s2">&quot;species&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;subsp.&quot;</span><span class="p">,</span>
+    <span class="n">ts</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;taxonomy&quot;</span><span class="p">][</span><span class="s2">&quot;subspecies&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The tree sequence is of Arabidopsis lyrata subsp. petraea
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case, the species and subspecies name are self-explanatory, but
+the interpretation of the <code class="docutils literal notranslate"><span class="pre">generation_time</span></code> field is less clear. Setting
+a more precise schema will help other users of your tree sequence:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;codec&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;generation_time&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Generation time in years&quot;</span><span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;additionalProperties&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># optional: True by default anyway</span>
+<span class="p">}</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">metadata_schema</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">MetadataSchema</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">top_level_metadata</span>  <span class="c1"># put the metadata back in</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;generation_time&#39;: 2, &#39;taxonomy&#39;: {&#39;species&#39;: &#39;Arabidopsis lyrata&#39;, &#39;subspecies&#39;: &#39;petraea&#39;}}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the schema here only describes the <code class="docutils literal notranslate"><span class="pre">generation_time</span></code> field. The
+metadata also contains additional fields (such as the species) that are
+not in the schema; this is allowed because <code class="docutils literal notranslate"><span class="pre">additionalProperties</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>
+(assumed by default in the <a class="reference internal" href="#sec-metadata-codecs-json"><span class="std std-ref">json</span></a> codec, but shown
+above for clarity).</p>
+<p>Explicitly specified fields are <em>validated</em> on input, helping to avoid errors.
+For example, setting the generation time to a string will now raise an error:</p>
+<div class="cell tag_raises-exception tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tables</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;generation_time&quot;</span><span class="p">:</span> <span class="s2">&quot;two of your earth years&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValidationError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="nn">File ~/work/tskit-site/tskit-site/python/tskit/metadata.py:858,</span> in <span class="ni">MetadataSchema.validate_and_encode_row</span><span class="nt">(self, row)</span>
+<span class="g g-Whitespace">    </span><span class="mi">857</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">858</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_validate_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span> <span class="k">except</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ValidationError</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
+
+<span class="nn">File ~/work/tskit-site/tskit-site/.venv/lib/python3.11/site-packages/jsonschema/validators.py:450,</span> in <span class="ni">create.&lt;locals&gt;.Validator.validate</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span> <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_errors</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">450</span>     <span class="k">raise</span> <span class="n">error</span>
+
+<span class="ne">ValidationError</span>: &#39;two of your earth years&#39; is not of type &#39;number&#39;
+
+<span class="n">Failed</span> <span class="n">validating</span> <span class="s1">&#39;type&#39;</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="s1">&#39;generation_time&#39;</span><span class="p">]:</span>
+    <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;Generation time in years&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;number&#39;</span><span class="p">)])</span>
+
+<span class="n">On</span> <span class="n">instance</span><span class="p">[</span><span class="s1">&#39;generation_time&#39;</span><span class="p">]:</span>
+    <span class="s1">&#39;two of your earth years&#39;</span>
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">MetadataValidationError</span><span class="g g-Whitespace">                   </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">tables</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;generation_time&quot;</span><span class="p">:</span> <span class="s2">&quot;two of your earth years&quot;</span><span class="p">}</span>
+
+<span class="nn">File ~/work/tskit-site/tskit-site/python/tskit/metadata.py:1021,</span> in <span class="ni">MetadataProvider.metadata</span><span class="nt">(self, metadata)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1019</span> <span class="nd">@metadata</span><span class="o">.</span><span class="n">setter</span>
+<span class="g g-Whitespace">   </span><span class="mi">1020</span> <span class="k">def</span><span class="w"> </span><span class="nf">metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1021</span>     <span class="n">encoded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_schema</span><span class="o">.</span><span class="n">validate_and_encode_row</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_ll_object</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">encoded</span>
+
+<span class="nn">File ~/work/tskit-site/tskit-site/python/tskit/metadata.py:860,</span> in <span class="ni">MetadataSchema.validate_and_encode_row</span><span class="nt">(self, row)</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="k">except</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ValidationError</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">860</span>         <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">MetadataValidationError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ve</span><span class="p">))</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ve</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+<span class="ne">MetadataValidationError</span>: &#39;two of your earth years&#39; is not of type &#39;number&#39;
+
+<span class="n">Failed</span> <span class="n">validating</span> <span class="s1">&#39;type&#39;</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="s1">&#39;generation_time&#39;</span><span class="p">]:</span>
+    <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;Generation time in years&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;number&#39;</span><span class="p">)])</span>
+
+<span class="n">On</span> <span class="n">instance</span><span class="p">[</span><span class="s1">&#39;generation_time&#39;</span><span class="p">]:</span>
+    <span class="s1">&#39;two of your earth years&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although we have stored the generation time in metadata, the
+time <em>units</em> of a tree sequence should be stored in the
+<a class="reference internal" href="python-api.html#tskit.TreeSequence.time_units" title="tskit.TreeSequence.time_units"><code class="xref py py-attr docutils literal notranslate"><span class="pre">time_units</span></code></a> attribute, not in
+metadata. For example, we could set <code class="docutils literal notranslate"><span class="pre">tables.time_units</span> <span class="pre">=</span> <span class="pre">&quot;generations&quot;</span></code>.</p>
+</div>
+</section>
+<section id="reference-sequence">
+<span id="sec-metadata-examples-reference-sequence"></span><h3>Reference sequence<a class="headerlink" href="#reference-sequence" title="Link to this heading">#</a></h3>
+<p>Often a genome will be associated with a
+reference sequence for that species. In this case, we might want to
+store not just the species name, but also e.g. the build version of
+the reference sequence, and possibly the reference sequence itself.
+There is built-in support for this in tskit, via the
+<a class="reference internal" href="python-api.html#tskit.ReferenceSequence.metadata" title="tskit.ReferenceSequence.metadata"><code class="xref py py-attr docutils literal notranslate"><span class="pre">metadata</span></code></a> and
+<a class="reference internal" href="python-api.html#tskit.ReferenceSequence.metadata_schema" title="tskit.ReferenceSequence.metadata_schema"><code class="xref py py-attr docutils literal notranslate"><span class="pre">metadata_schema</span></code></a> properties
+of the <a class="reference internal" href="python-api.html#tskit.TreeSequence.reference_sequence" title="tskit.TreeSequence.reference_sequence"><code class="xref py py-attr docutils literal notranslate"><span class="pre">TreeSequence.reference_sequence</span></code></a> attribute
+(see the <a class="reference internal" href="data-model.html#sec-data-model-reference-sequence"><span class="std std-ref">Reference sequence</span></a> documentation).</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Add examples of reference sequence metadata when the API becomes less
+preliminary. This should
+include an example where we declare (or better, use on we define
+in the library) a standard metadata schema for a species, which
+defines and documents accession numbers, genome builds, etc. e.g.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tables</span><span class="o">.</span><span class="n">reference_sequence</span><span class="o">.</span><span class="n">metadata_schema</span> <span class="o">=</span> <span class="n">standard_schema</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">reference_sequence</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="tables">
+<span id="sec-metadata-examples-tables"></span><h3>Tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h3>
+<p>Each table in a tree sequence (apart from the provenance table)
+can have its own metadata, and associated metadata schema.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">metadata_schema</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">MetadataSchema</span><span class="o">.</span><span class="n">permissive_json</span><span class="p">()</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Accession ID&quot;</span><span class="p">:</span> <span class="s2">&quot;ABC123&quot;</span><span class="p">})</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">           &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Individual(id=0,
+           flags=0,
+           location=array([],
+           dtype=float64),
+           parents=array([],
+           dtype=int32),
+           nodes=array([],
+           dtype=int32),
+           metadata={&#39;Accession ID&#39;: &#39;ABC123&#39;})
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, we might want something more descriptive than the default
+<a class="reference internal" href="python-api.html#tskit.MetadataSchema.permissive_json" title="tskit.MetadataSchema.permissive_json"><code class="xref py py-meth docutils literal notranslate"><span class="pre">permissive_json()</span></code></a>. schema. We could create
+a new schema, or modify the existing one. Modification is useful
+if a nontrivial schema has been set already, for example in the
+<a class="reference external" href="https://tskit.dev/msprime/docs/stable/demography.html#sec-demography-populations-metadata" title="(in Project name not set)"><span class="xref std std-ref">case of populations</span></a>
+when the tree sequence has been generated by
+<a class="reference external" href="https://tskit.dev/msprime/docs/stable/api.html#msprime.sim_ancestry" title="(in Project name not set)"><code class="docutils literal notranslate"><span class="pre">msprime.sim_ancestry()</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modify an existing schema</span>
+<span class="n">schema_as_python_dict</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">metadata_schema</span><span class="o">.</span><span class="n">schema</span>
+<span class="k">if</span> <span class="s2">&quot;properties&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">schema_as_python_dict</span><span class="p">:</span>
+    <span class="n">schema_as_python_dict</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">schema_as_python_dict</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;Accession ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;An accession ID for this individual&quot;</span><span class="p">}</span>
+
+<span class="c1"># Optional: require an accession id to be specified for all individuals</span>
+<span class="k">if</span> <span class="s2">&quot;required&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">schema_as_python_dict</span><span class="p">:</span>
+    <span class="n">schema_as_python_dict</span><span class="p">[</span><span class="s2">&quot;required&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">schema_as_python_dict</span><span class="p">[</span><span class="s2">&quot;required&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Accession ID&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set the schema back on the table</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">metadata_schema</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">MetadataSchema</span><span class="p">(</span><span class="n">schema_as_python_dict</span><span class="p">)</span>
+
+<span class="c1"># Put all the metadata back in, using validate_and_encode_row to validate it</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">packset_metadata</span><span class="p">([</span>
+    <span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">metadata_schema</span><span class="o">.</span><span class="n">validate_and_encode_row</span><span class="p">(</span><span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">tables</span><span class="o">.</span><span class="n">individuals</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New schema:&quot;</span><span class="p">,</span> <span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">metadata_schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New schema: tskit.MetadataSchema(
+{&#39;codec&#39;: &#39;json&#39;,
+ &#39;properties&#39;: OrderedDict([(&#39;Accession ID&#39;,
+                             OrderedDict([(&#39;description&#39;,
+                                           &#39;An accession ID for this &#39;
+                                           &#39;individual&#39;),
+                                          (&#39;type&#39;, &#39;string&#39;)]))]),
+ &#39;required&#39;: [&#39;Accession ID&#39;]}
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="defaults">
+<h3>Defaults<a class="headerlink" href="#defaults" title="Link to this heading">#</a></h3>
+<p>Since we specified that the <code class="docutils literal notranslate"><span class="pre">accession_id</span></code> property was required in the
+example above, the user <em>always</em> has to provide it, otherwise it will
+fail to validate:</p>
+<div class="cell tag_raises-exception tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Comment&quot;</span><span class="p">:</span> <span class="s2">&quot;This has no accession ID&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValidationError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="nn">File ~/work/tskit-site/tskit-site/python/tskit/metadata.py:858,</span> in <span class="ni">MetadataSchema.validate_and_encode_row</span><span class="nt">(self, row)</span>
+<span class="g g-Whitespace">    </span><span class="mi">857</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">858</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_validate_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span> <span class="k">except</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ValidationError</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
+
+<span class="nn">File ~/work/tskit-site/tskit-site/.venv/lib/python3.11/site-packages/jsonschema/validators.py:450,</span> in <span class="ni">create.&lt;locals&gt;.Validator.validate</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span> <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_errors</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">450</span>     <span class="k">raise</span> <span class="n">error</span>
+
+<span class="ne">ValidationError</span>: &#39;Accession ID&#39; is a required property
+
+<span class="n">Failed</span> <span class="n">validating</span> <span class="s1">&#39;required&#39;</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">:</span>
+    <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;codec&#39;</span><span class="p">,</span> <span class="s1">&#39;json&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;properties&#39;</span><span class="p">,</span>
+                  <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;Accession ID&#39;</span><span class="p">,</span>
+                                <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;An accession ID for this &#39;</span>
+                                              <span class="s1">&#39;individual&#39;</span><span class="p">),</span>
+                                             <span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)]))])),</span>
+                 <span class="p">(</span><span class="s1">&#39;required&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Accession ID&#39;</span><span class="p">])])</span>
+
+<span class="n">On</span> <span class="n">instance</span><span class="p">:</span>
+    <span class="p">{</span><span class="s1">&#39;Comment&#39;</span><span class="p">:</span> <span class="s1">&#39;This has no accession ID&#39;</span><span class="p">}</span>
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">MetadataValidationError</span><span class="g g-Whitespace">                   </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Comment&quot;</span><span class="p">:</span> <span class="s2">&quot;This has no accession ID&quot;</span><span class="p">})</span>
+
+<span class="nn">File ~/work/tskit-site/tskit-site/python/tskit/tables.py:1266,</span> in <span class="ni">IndividualTable.add_row</span><span class="nt">(self, flags, location, parents, metadata)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1264</span> <span class="k">if</span> <span class="n">metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1265</span>     <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_schema</span><span class="o">.</span><span class="n">empty_value</span>
+<span class="ne">-&gt; </span><span class="mi">1266</span> <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_schema</span><span class="o">.</span><span class="n">validate_and_encode_row</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1267</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1268</span>     <span class="n">flags</span><span class="o">=</span><span class="n">flags</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="n">parents</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span>
+<span class="g g-Whitespace">   </span><span class="mi">1269</span> <span class="p">)</span>
+
+<span class="nn">File ~/work/tskit-site/tskit-site/python/tskit/metadata.py:860,</span> in <span class="ni">MetadataSchema.validate_and_encode_row</span><span class="nt">(self, row)</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="k">except</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ValidationError</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">860</span>         <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">MetadataValidationError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ve</span><span class="p">))</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ve</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+<span class="ne">MetadataValidationError</span>: &#39;Accession ID&#39; is a required property
+
+<span class="n">Failed</span> <span class="n">validating</span> <span class="s1">&#39;required&#39;</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">:</span>
+    <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;codec&#39;</span><span class="p">,</span> <span class="s1">&#39;json&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;properties&#39;</span><span class="p">,</span>
+                  <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;Accession ID&#39;</span><span class="p">,</span>
+                                <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;An accession ID for this &#39;</span>
+                                              <span class="s1">&#39;individual&#39;</span><span class="p">),</span>
+                                             <span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)]))])),</span>
+                 <span class="p">(</span><span class="s1">&#39;required&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Accession ID&#39;</span><span class="p">])])</span>
+
+<span class="n">On</span> <span class="n">instance</span><span class="p">:</span>
+    <span class="p">{</span><span class="s1">&#39;Comment&#39;</span><span class="p">:</span> <span class="s1">&#39;This has no accession ID&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, rather than require a user-specified value, we can provide a
+default, which will be returned if the field is absent. In this case the property
+should not be marked as <code class="docutils literal notranslate"><span class="pre">required</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_schema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;codec&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;Accession ID&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;An accession ID for this individual&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="s2">&quot;N/A&quot;</span><span class="p">,</span>  <span class="c1"># Default if this property is absent</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Accession ID&quot;</span><span class="p">:</span> <span class="s2">&quot;N/A&quot;</span><span class="p">},</span>  <span class="c1"># Default if no metadata in this row</span>
+<span class="p">}</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">metadata_schema</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">MetadataSchema</span><span class="p">(</span><span class="n">new_schema</span><span class="p">)</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">packset_metadata</span><span class="p">([</span>
+    <span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">metadata_schema</span><span class="o">.</span><span class="n">validate_and_encode_row</span><span class="p">(</span><span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">tables</span><span class="o">.</span><span class="n">individuals</span>
+<span class="p">])</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Comment&quot;</span><span class="p">:</span> <span class="s2">&quot;This has no accession ID&quot;</span><span class="p">})</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Newly added individual:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">           &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Newly added individual:
+Individual(id=1,
+           flags=0,
+           location=array([],
+           dtype=float64),
+           parents=array([],
+           dtype=int32),
+           nodes=array([],
+           dtype=int32),
+           metadata={&#39;Accession ID&#39;: &#39;N/A&#39;,
+           &#39;Comment&#39;: &#39;This has no accession ID&#39;})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the <a class="reference internal" href="#sec-metadata-codecs-json"><span class="std std-ref">json</span></a> codec, defaults can only
+be set for the shallowest level of the metadata object.</p>
+</div>
+</section>
+</section>
+<section id="codecs">
+<span id="sec-metadata-codecs"></span><h2>Codecs<a class="headerlink" href="#codecs" title="Link to this heading">#</a></h2>
+<p>The underlying metadata is in raw binary (see
+<a class="reference internal" href="data-model.html#sec-metadata-definition"><span class="std std-ref">data model</span></a>) and so it
+must be encoded and decoded. The C API does not do this, but the Python API will
+use the schema to decode the metadata to Python objects.
+The encoding for doing this is specified in the top-level schema property <code class="docutils literal notranslate"><span class="pre">codec</span></code>.
+Currently the Python API supports the <code class="docutils literal notranslate"><span class="pre">json</span></code> codec which encodes metadata as
+<a class="reference external" href="https://www.json.org/json-en.html">JSON</a>, and the <code class="docutils literal notranslate"><span class="pre">struct</span></code> codec which encodes
+metadata in an efficient schema-defined binary format using <a class="reference external" href="https://docs.python.org/3/library/struct.html#struct.pack" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">struct.pack()</span></code></a> .</p>
+<section id="json">
+<span id="sec-metadata-codecs-json"></span><h3><code class="docutils literal notranslate"><span class="pre">json</span></code><a class="headerlink" href="#json" title="Link to this heading">#</a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">json</span></code> is specified as the <code class="docutils literal notranslate"><span class="pre">codec</span></code> in the schema the metadata is encoded in
+the human readable <a class="reference external" href="https://www.json.org/json-en.html">JSON</a> format. As this format
+is human readable and encodes numbers as text it uses more bytes than the <code class="docutils literal notranslate"><span class="pre">struct</span></code>
+format. However it is simpler to configure as it doesn’t require any format specifier
+for each type in the schema. Tskit deviates from standard JSON in that
+empty metadata is interpreted as an empty object. This is to allow setting of a schema
+to a table with out the need to modify all existing empty rows.</p>
+</section>
+<section id="struct">
+<span id="sec-metadata-codecs-struct"></span><h3><code class="docutils literal notranslate"><span class="pre">struct</span></code><a class="headerlink" href="#struct" title="Link to this heading">#</a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">struct</span></code> is specifed as the <code class="docutils literal notranslate"><span class="pre">codec</span></code> in the schema the metadata is encoded
+using <a class="reference external" href="https://docs.python.org/3/library/struct.html#struct.pack" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">struct.pack()</span></code></a> which results in a compact binary representation which
+is much smaller and generally faster to encode/decode than JSON.</p>
+<p>This codec places extra restrictions on the schema:</p>
+<ol class="arabic">
+<li><p>Each property must have a <code class="docutils literal notranslate"><span class="pre">binaryFormat</span></code>
+This sets the binary encoding used for the property.</p></li>
+<li><p>All metadata objects must have fixed properties.
+This means that additional properties not listed in the schema are disallowed. Any
+property that does not have a <code class="docutils literal notranslate"><span class="pre">default</span></code> specified in the schema must be present.
+Default values will be encoded.</p></li>
+<li><p>Arrays must be lists of homogeneous objects.
+For example, this is not valid:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">}]}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Types must be singular and not unions.
+For example, this is not valid:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="s2">&quot;string&quot;</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p>One exception is that the top-level can be a union of <code class="docutils literal notranslate"><span class="pre">object</span></code> and <code class="docutils literal notranslate"><span class="pre">null</span></code> to
+support the case where some rows do not have metadata.</p>
+</li>
+<li><p>The order that properties are encoded is by default alphabetically by name.
+The order can be overridden by setting an optional numerical <code class="docutils literal notranslate"><span class="pre">index</span></code> on each
+property. This is due to objects being unordered in JSON and Python <code class="docutils literal notranslate"><span class="pre">dicts</span></code>.</p></li>
+</ol>
+<section id="binaryformat">
+<h4>binaryFormat<a class="headerlink" href="#binaryformat" title="Link to this heading">#</a></h4>
+<p>To determine the binary encoding of each property in the metadata the <code class="docutils literal notranslate"><span class="pre">binaryFormat</span></code> key is used.
+This describes the encoding for each property using <code class="docutils literal notranslate"><span class="pre">struct</span></code>
+<a class="reference external" href="https://docs.python.org/3/library/struct.html#format-characters">format characters</a>.
+For example an unsigned 8-byte integer can be specified with::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="s2">&quot;binaryFormat&quot;</span><span class="p">:</span><span class="s2">&quot;Q&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>And a length 10 string with::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="s2">&quot;binaryFormat&quot;</span><span class="p">:</span><span class="s2">&quot;10p&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Some of the text below is copied from
+<a class="reference external" href="https://docs.python.org/3/library/struct.html">the python docs</a>.</p>
+<section id="numeric-and-boolean-types">
+<h5>Numeric and boolean types<a class="headerlink" href="#numeric-and-boolean-types" title="Link to this heading">#</a></h5>
+<p>The supported numeric and boolean types are:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Format</p></th>
+<th class="head"><p>C Type</p></th>
+<th class="head"><p>Python type</p></th>
+<th class="head"><p>Numpy type</p></th>
+<th class="head"><p>Size in bytes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">?</span></code></p></td>
+<td><p><em>_Bool</em></p></td>
+<td><p>bool</p></td>
+<td><p>bool</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">b</span></code></p></td>
+<td><p><em>signed char</em></p></td>
+<td><p>integer</p></td>
+<td><p>int8</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">B</span></code></p></td>
+<td><p><em>unsigned char</em></p></td>
+<td><p>integer</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">h</span></code></p></td>
+<td><p><em>short</em></p></td>
+<td><p>integer</p></td>
+<td><p>int16</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">H</span></code></p></td>
+<td><p><em>unsigned short</em></p></td>
+<td><p>integer</p></td>
+<td><p>uint16</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">i</span></code></p></td>
+<td><p><em>int</em></p></td>
+<td><p>integer</p></td>
+<td><p>int32</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">I</span></code></p></td>
+<td><p><em>unsigned int</em></p></td>
+<td><p>integer</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">l</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">long</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>int32</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">L</span></code></p></td>
+<td><p><em>unsigned long</em></p></td>
+<td><p>integer</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">q</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">long</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>int64</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Q</span></code></p></td>
+<td><p><em>unsigned long long</em></p></td>
+<td><p>integer</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></td>
+<td><p><em>float</em></p></td>
+<td><p>float</p></td>
+<td><p>float32</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d</span></code></p></td>
+<td><p><em>double</em></p></td>
+<td><p>float</p></td>
+<td><p>float64</p></td>
+<td><p>8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When attempting to pack a non-integer using any of the integer conversion
+codes, if the non-integer has a <code class="docutils literal notranslate"><span class="pre">__index__</span></code> method then that method is
+called to convert the argument to an integer before packing.</p>
+<p>For the <code class="docutils literal notranslate"><span class="pre">'f'</span></code> and <code class="docutils literal notranslate"><span class="pre">'d'</span></code> conversion codes, the packed
+representation uses the IEEE 754 binary32 or binary64 format (for
+<code class="docutils literal notranslate"><span class="pre">'f'</span></code> or <code class="docutils literal notranslate"><span class="pre">'d'</span></code> respectively), regardless of the floating-point
+format used by the platform.</p>
+<p>Note that endian-ness cannot be specified and is fixed at little endian.</p>
+<p>When encoding a value using one of the integer formats (<code class="docutils literal notranslate"><span class="pre">'b'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'B'</span></code>, <code class="docutils literal notranslate"><span class="pre">'h'</span></code>, <code class="docutils literal notranslate"><span class="pre">'H'</span></code>, <code class="docutils literal notranslate"><span class="pre">'i'</span></code>, <code class="docutils literal notranslate"><span class="pre">'I'</span></code>, <code class="docutils literal notranslate"><span class="pre">'l'</span></code>, <code class="docutils literal notranslate"><span class="pre">'L'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'q'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Q'</span></code>), if the value is outside the valid range for that format
+then <a class="reference external" href="https://docs.python.org/3/library/struct.html#struct.error" title="(in Python v3.14)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">struct.error</span></code></a> is raised.</p>
+<p>For the <code class="docutils literal notranslate"><span class="pre">'?'</span></code> format character, the decoded value will be either <code class="docutils literal notranslate"><span class="pre">True</span></code> or
+<code class="docutils literal notranslate"><span class="pre">False</span></code>. When encoding, the truth value of the input is used.</p>
+</section>
+<section id="strings">
+<h5>Strings<a class="headerlink" href="#strings" title="Link to this heading">#</a></h5>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Format</p></th>
+<th class="head"><p>C Type</p></th>
+<th class="head"><p>Python type</p></th>
+<th class="head"><p>Size in bytes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td><p>pad byte</p></td>
+<td><p>no value</p></td>
+<td><p>as specified</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c</span></code></p></td>
+<td><p><em>char</em></p></td>
+<td><p>string of length 1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">s</span></code></p></td>
+<td><p><em>char[]</em></p></td>
+<td><p>string</p></td>
+<td><p>as specified</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">p</span></code></p></td>
+<td><p><em>char[]</em></p></td>
+<td><p>string</p></td>
+<td><p>as specified</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For the <code class="docutils literal notranslate"><span class="pre">'s'</span></code> format character, the number prefixed is interpreted as the length in
+bytes, for example,
+<code class="docutils literal notranslate"><span class="pre">'10s'</span></code> means a single 10-byte string. For packing, the string is
+truncated or padded with null bytes as appropriate to make it fit. For
+unpacking, the resulting bytes object always has exactly the specified number
+of bytes, unless <code class="docutils literal notranslate"><span class="pre">nullTerminated</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, in which case it ends at the first
+<code class="docutils literal notranslate"><span class="pre">null</span></code>. As a special case, <code class="docutils literal notranslate"><span class="pre">'0s'</span></code> means a single, empty string.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">'p'</span></code> format character encodes a “Pascal string”, meaning a short
+variable-length string stored in a fixed number of bytes, given by the count.
+The first byte stored is the length of the string, or 255, whichever is
+smaller.  The bytes of the string follow.  If the string to encode is too long
+(longer than the count minus 1), only the leading
+<code class="docutils literal notranslate"><span class="pre">count-1</span></code> bytes of the string are stored.  If the string is shorter than
+<code class="docutils literal notranslate"><span class="pre">count-1</span></code>, it is padded with null bytes so that exactly count bytes in all
+are used.  Note that strings specified with this format cannot be longer than 255.</p>
+<p>Strings that are longer than the specified length will be silently truncated,
+note that the length is in bytes, not characters.</p>
+<p>The string encoding can be set with <code class="docutils literal notranslate"><span class="pre">stringEncoding</span></code> which defaults to <code class="docutils literal notranslate"><span class="pre">utf-8</span></code>.
+A list of possible encodings is
+<a class="reference external" href="https://docs.python.org/3.7/library/codecs.html#standard-encodings">here</a>.</p>
+<p>For most cases, where there are no <code class="docutils literal notranslate"><span class="pre">null</span></code> characters in the metadata
+<code class="docutils literal notranslate"><span class="pre">{&quot;type&quot;:&quot;string&quot;,</span> <span class="pre">&quot;binaryFormat&quot;:</span> <span class="pre">&quot;1024s&quot;,</span> <span class="pre">&quot;nullTerminated&quot;:</span> <span class="pre">True}</span></code> is a good option
+with the size set to that appropriate for the strings to be encoded.</p>
+</section>
+<section id="padding-bytes">
+<h5>Padding bytes<a class="headerlink" href="#padding-bytes" title="Link to this heading">#</a></h5>
+<p>Unused padding bytes (for compatibility) can be added with a schema entry like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;null&quot;</span><span class="p">,</span> <span class="s2">&quot;binaryFormat&quot;</span><span class="p">:</span><span class="s2">&quot;5x&quot;</span><span class="p">}</span> <span class="c1"># 5 padding bytes</span>
+</pre></div>
+</div>
+</section>
+<section id="arrays">
+<h5>Arrays<a class="headerlink" href="#arrays" title="Link to this heading">#</a></h5>
+<p>The codec stores the length of the array before the array data. The format used for the
+length of the array can be chosen with <code class="docutils literal notranslate"><span class="pre">arrayLengthFormat</span></code> which must be one
+of <code class="docutils literal notranslate"><span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">H</span></code>, <code class="docutils literal notranslate"><span class="pre">I</span></code>, <code class="docutils literal notranslate"><span class="pre">L</span></code> or <code class="docutils literal notranslate"><span class="pre">Q</span></code> which have the same meaning as in the numeric
+types above. <code class="docutils literal notranslate"><span class="pre">L</span></code> is the default. As an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="s2">&quot;binaryFormat&quot;</span><span class="p">:</span><span class="s2">&quot;h&quot;</span><span class="p">}},</span> <span class="s2">&quot;arrayLengthFormat&quot;</span><span class="p">:</span><span class="s2">&quot;B&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Will result in an array of 2 byte integers, prepended by a single-byte array-length.</p>
+<p>For arrays with a known fixed size, you can specify the <code class="docutils literal notranslate"><span class="pre">length</span></code> property instead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span> <span class="s2">&quot;length&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="s2">&quot;binaryFormat&quot;</span><span class="p">:</span><span class="s2">&quot;i&quot;</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>This creates a fixed-length array of exactly 3 integers, without storing the array length in the encoded data.
+Fixed-length arrays are more space-efficient since they don’t need to store the length prefix.</p>
+<p>When using fixed-length arrays:</p>
+<ol class="arabic simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">arrayLengthFormat</span></code> property should not be specified</p></li>
+<li><p>Arrays provided for encoding must match the specified length exactly</p></li>
+</ol>
+<p>For dealing with legacy encodings that do not store the
+length of the array, setting <code class="docutils literal notranslate"><span class="pre">noLengthEncodingExhaustBuffer</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code> will read
+elements of the array until the metadata buffer is exhausted. As such an array
+with this option must be the last type in the encoded struct.</p>
+</section>
+<section id="union-typed-metadata">
+<h5>Union typed metadata<a class="headerlink" href="#union-typed-metadata" title="Link to this heading">#</a></h5>
+<p>As a special case under the <code class="docutils literal notranslate"><span class="pre">struct</span></code> codec, the top-level type of metadata can be a
+union of <code class="docutils literal notranslate"><span class="pre">object</span></code> and <code class="docutils literal notranslate"><span class="pre">null</span></code>. Set <code class="docutils literal notranslate"><span class="pre">&quot;type&quot;:</span> <span class="pre">[&quot;object&quot;,</span> <span class="pre">&quot;null&quot;]</span></code>. Properties should
+be defined as normal, and will be ignored if the metadata is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="schema-examples">
+<span id="sec-metadata-schema-examples"></span><h2>Schema examples<a class="headerlink" href="#schema-examples" title="Link to this heading">#</a></h2>
+<section id="struct-codec">
+<h3>Struct codec<a class="headerlink" href="#struct-codec" title="Link to this heading">#</a></h3>
+<p>As an example here is a schema using the <code class="docutils literal notranslate"><span class="pre">struct</span></code> codec which could apply, for example,
+to the individuals in a tree sequence:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">complex_struct_schema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;codec&quot;</span><span class="p">:</span> <span class="s2">&quot;struct&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;accession_number&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">,</span> <span class="s2">&quot;binaryFormat&quot;</span><span class="p">:</span> <span class="s2">&quot;i&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;collection_date&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Date of sample collection in ISO format&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;binaryFormat&quot;</span><span class="p">:</span> <span class="s2">&quot;10p&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pattern&quot;</span><span class="p">:</span> <span class="s2">&quot;^([1-9][0-9]</span><span class="si">{3}</span><span class="s2">)-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])?$&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;phenotype&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Phenotypic measurements on this individual&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Height in metres, or NaN if unknown&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;binaryFormat&quot;</span><span class="p">:</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;NaN&quot;</span><span class="p">),</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Age in years at time of sampling, or -1 if unknown&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;binaryFormat&quot;</span><span class="p">:</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;accession_number&quot;</span><span class="p">,</span> <span class="s2">&quot;collection_date&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;additionalProperties&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Demonstrate use</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">metadata_schema</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">MetadataSchema</span><span class="p">(</span><span class="n">complex_struct_schema</span><span class="p">)</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span>
+    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;accession_number&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;collection_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2011-02-11&quot;</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This schema states that the metadata for each row of the table is an object consisting
+of three properties. Property <code class="docutils literal notranslate"><span class="pre">accession_number</span></code> is a number (stored as a 4-byte int).
+Property <code class="docutils literal notranslate"><span class="pre">collection_date</span></code> is a string which must satisfy a regex, which checks it is
+a valid <a class="reference external" href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO8601</a> date. Property
+<code class="docutils literal notranslate"><span class="pre">phenotype</span></code> is itself an object consisting of the properties <code class="docutils literal notranslate"><span class="pre">height</span></code> (a single precision
+floating point number) and age (a 2 byte signed integer).
+Because this is a struct codec, and neither of the the first two properties have a
+default set, they must be marked as “required” (in the JSON codec if no default is given,
+unspecified properties will simply be missing in the returned metadata dictionary).
+Also because this is a struct codec, <code class="docutils literal notranslate"><span class="pre">additionalProperties</span></code> must be set to False. This
+is assumed by default in the struct codec, but has been shown above for clarity.</p>
+</section>
+</section>
+<section id="python-metadata-api-overview">
+<span id="sec-metadata-api-overview"></span><h2>Python Metadata API Overview<a class="headerlink" href="#python-metadata-api-overview" title="Link to this heading">#</a></h2>
+<p>Schemas are represented in the Python API by the <a class="reference internal" href="python-api.html#tskit.MetadataSchema" title="tskit.MetadataSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">tskit.MetadataSchema</span></code></a>
+class which can be assigned to, and retrieved from, tables via their <code class="docutils literal notranslate"><span class="pre">metadata_schema</span></code>
+attribute (e.g. <a class="reference internal" href="python-api.html#tskit.IndividualTable.metadata_schema" title="tskit.IndividualTable.metadata_schema"><code class="xref py py-attr docutils literal notranslate"><span class="pre">tskit.IndividualTable.metadata_schema</span></code></a>). The schemas
+for all tables can be retrieved from a <a class="reference internal" href="python-api.html#tskit.TreeSequence" title="tskit.TreeSequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">tskit.TreeSequence</span></code></a> by the
+<a class="reference internal" href="python-api.html#tskit.TreeSequence.table_metadata_schemas" title="tskit.TreeSequence.table_metadata_schemas"><code class="xref py py-attr docutils literal notranslate"><span class="pre">tskit.TreeSequence.table_metadata_schemas</span></code></a> attribute.</p>
+<p>The top-level tree sequence metadata schema is set via
+<a class="reference internal" href="python-api.html#tskit.TableCollection.metadata_schema" title="tskit.TableCollection.metadata_schema"><code class="xref py py-attr docutils literal notranslate"><span class="pre">tskit.TableCollection.metadata_schema</span></code></a> and can be accessed via
+<a class="reference internal" href="python-api.html#tskit.TreeSequence.metadata_schema" title="tskit.TreeSequence.metadata_schema"><code class="xref py py-attr docutils literal notranslate"><span class="pre">tskit.TreeSequence.metadata_schema</span></code></a>.</p>
+<p>Each table’s <code class="docutils literal notranslate"><span class="pre">add_row</span></code> method (e.g. <a class="reference internal" href="python-api.html#tskit.IndividualTable.add_row" title="tskit.IndividualTable.add_row"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tskit.IndividualTable.add_row()</span></code></a>) will
+validate and encode the metadata using the schema. This encoding will also happen when
+tree sequence metadata is set (e.g. <code class="docutils literal notranslate"><span class="pre">table_collection.metadata</span> <span class="pre">=</span> <span class="pre">{...}</span></code>.</p>
+<p>Metadata will be lazily decoded if accessed via
+<code class="docutils literal notranslate"><span class="pre">tables.individuals[0].metadata</span></code>.  <code class="docutils literal notranslate"><span class="pre">tree_sequence.individual(0).metadata</span></code> or
+<code class="docutils literal notranslate"><span class="pre">tree_sequence.metadata</span></code></p>
+<p>In the interests of efficiency the bulk methods of <code class="docutils literal notranslate"><span class="pre">set_columns</span></code>
+(e.g. <a class="reference internal" href="python-api.html#tskit.IndividualTable.set_columns" title="tskit.IndividualTable.set_columns"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tskit.IndividualTable.set_columns()</span></code></a>)
+and <code class="docutils literal notranslate"><span class="pre">append_columns</span></code> (e.g. <a class="reference internal" href="python-api.html#tskit.IndividualTable.append_columns" title="tskit.IndividualTable.append_columns"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tskit.IndividualTable.append_columns()</span></code></a>) do not
+validate or encode metadata. See <a class="reference external" href="https://tskit.dev/tutorials/metadata.html#sec-tutorial-metadata-bulk" title="(in Project name not set)"><span>Metadata for bulk table methods</span></a> for how to prepare
+metadata for these methods.</p>
+<p>Metadata processing can be disabled and raw bytes stored/retrieved. See
+<a class="reference external" href="https://tskit.dev/tutorials/metadata.html#sec-tutorial-metadata-binary" title="(in Project name not set)"><span>Binary metadata</span></a>.</p>
+</section>
+<section id="structured-array-metadata">
+<span id="sec-structured-array-metadata"></span><h2>Structured array metadata<a class="headerlink" href="#structured-array-metadata" title="Link to this heading">#</a></h2>
+<p>If the <code class="docutils literal notranslate"><span class="pre">struct</span></code> codec is used for metadata then the metadata can be very efficiently
+accessed via a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> <a class="reference external" href="https://numpy.org/doc/stable/user/basics.rec.html">structured array</a> via the <code class="docutils literal notranslate"><span class="pre">ts.X_metadata</span></code> property, e.g. <a class="reference internal" href="python-api.html#tskit.TreeSequence.individuals_metadata" title="tskit.TreeSequence.individuals_metadata"><code class="xref py py-attr docutils literal notranslate"><span class="pre">TreeSequence.individuals_metadata</span></code></a>. The codec must meet the following requirements for this to work:</p>
+<ol class="arabic simple">
+<li><p>The metadata for a given object must be of a fixed size. This means that
+variable length arrays are not permitted, such that the <code class="docutils literal notranslate"><span class="pre">length</span></code> property
+must be set for all arrays.</p></li>
+<li><p>Each object for a given table must be present, i.e. at the top-level
+the metadata must be an <code class="docutils literal notranslate"><span class="pre">object</span></code> and not a union of <code class="docutils literal notranslate"><span class="pre">object</span></code> and <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p></li>
+<li><p>Strings must use the <code class="docutils literal notranslate"><span class="pre">s</span></code> format character, as the <code class="docutils literal notranslate"><span class="pre">p</span></code> pascal string format
+is not supported by <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p></li>
+</ol>
+<p>As an example, let’s make a tree sequence with a large amount of metadata:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">msprime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_ancestry</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">recombination_rate</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_mutations</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">tables</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">dump_tables</span><span class="p">()</span>
+<span class="n">muts</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">mutations</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">mutations</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">MetadataSchema</span><span class="p">({</span>
+             <span class="s2">&quot;codec&quot;</span><span class="p">:</span> <span class="s2">&quot;struct&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                 <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">,</span> <span class="s2">&quot;binaryFormat&quot;</span><span class="p">:</span> <span class="s2">&quot;i&quot;</span><span class="p">},</span>
+                 <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="s2">&quot;binaryFormat&quot;</span><span class="p">:</span> <span class="s2">&quot;15s&quot;</span><span class="p">},</span>
+                 <span class="p">},</span>
+             <span class="p">},</span>
+<span class="p">)</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">mutations</span><span class="o">.</span><span class="n">metadata_schema</span> <span class="o">=</span> <span class="n">schema</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">muts</span><span class="p">):</span>
+             <span class="n">tables</span><span class="o">.</span><span class="n">mutations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+                 <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="n">i</span><span class="p">,</span>
+                 <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;name_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+             <span class="p">}))</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tree sequence with </span><span class="si">{</span><span class="n">ts</span><span class="o">.</span><span class="n">num_mutations</span><span class="si">}</span><span class="s2"> mutations&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tree sequence with 650984 mutations
+</pre></div>
+</div>
+</div>
+</div>
+<p>Accessing the metadata row-by-row is slow:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> [m.metadata for m in ts.mutations()]
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.69 s ± 6.94 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>But accessing via the structured array is fast:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> md = ts.mutations_metadata
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.91 μs ± 12.5 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Arrays of a specific key are easily accessed by item.It is also trivial to create a pandas dataframe from the metadata:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_metadata</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">][:</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_metadata</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 1 2 3 4]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   id       name
+0   0  b&#39;name_0&#39;
+1   1  b&#39;name_1&#39;
+2   2  b&#39;name_2&#39;
+3   3  b&#39;name_3&#39;
+4   4  b&#39;name_4&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="full-metaschema">
+<span id="sec-metadata-schema-schema"></span><h2>Full metaschema<a class="headerlink" href="#full-metaschema" title="Link to this heading">#</a></h2>
+<p>The schema for metadata schemas is formally defined using
+<a class="reference external" href="http://json-schema.org/">JSON Schema</a> and given in full here. Any schema passed to
+<a class="reference internal" href="python-api.html#tskit.MetadataSchema" title="tskit.MetadataSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">tskit.MetadataSchema</span></code></a> is validated against this metaschema.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;$id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://json-schema.org/draft-07/schema#&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://json-schema.org/draft-07/schema#&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;codec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;definitions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;nonNegativeInteger&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;nonNegativeIntegerDefault0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;allOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeInteger&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;root&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://json-schema.org/draft-07/schema#&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://json-schema.org/draft-07/schema#&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;definitions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;nonNegativeInteger&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;nonNegativeIntegerDefault0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;allOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeInteger&quot;</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;schemaArray&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;minItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;simpleTypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;array&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;null&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;stringArray&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">          </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;uniqueItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;$id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uri-reference&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uri-reference&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uri&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;additionalItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;allOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/schemaArray&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;anyOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/schemaArray&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;const&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;contains&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;contentEncoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;contentMediaType&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;definitions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;anyOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">              </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/stringArray&quot;</span><span class="p">},</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;else&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;examples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;exclusiveMaximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;exclusiveMinimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;if&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;anyOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/schemaArray&quot;</span><span class="p">},</span>
+<span class="w">          </span><span class="p">],</span>
+<span class="w">          </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;maxItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeInteger&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;maxLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeInteger&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;maxProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeInteger&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;minItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeIntegerDefault0&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;minLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeIntegerDefault0&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;minProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeIntegerDefault0&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;multipleOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;exclusiveMinimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;not&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;oneOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/schemaArray&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;pattern&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;regex&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;patternProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">          </span><span class="nt">&quot;propertyNames&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;regex&quot;</span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;propertyNames&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;readOnly&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/stringArray&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;then&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">]},</span>
+<span class="w">        </span><span class="nt">&quot;uniqueItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Core schema meta-schema&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;schemaArray&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;minItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;simpleTypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;array&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;null&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;stringArray&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;uniqueItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;$id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uri-reference&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uri-reference&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uri&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;additionalItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;allOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/schemaArray&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;anyOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/schemaArray&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;const&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;contains&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;contentEncoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;contentMediaType&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;definitions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;anyOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/stringArray&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;else&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;examples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;exclusiveMaximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;exclusiveMinimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;if&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;anyOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/schemaArray&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;maxItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeInteger&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;maxLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeInteger&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;maxProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeInteger&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;minItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeIntegerDefault0&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;minLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeIntegerDefault0&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;minProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/nonNegativeIntegerDefault0&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;multipleOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;exclusiveMinimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;not&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;oneOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/schemaArray&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;pattern&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;regex&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;patternProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">      </span><span class="nt">&quot;propertyNames&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;regex&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;null&quot;</span><span class="p">]]},</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;propertyNames&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;readOnly&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/stringArray&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;then&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/root&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;anyOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/simpleTypes&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/simpleTypes&quot;</span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;minItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;uniqueItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;uniqueItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;codec&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Core schema meta-schema&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="data-model.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data model</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="provenance.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Provenance</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level">Top level</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-sequence">Reference sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">Tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defaults">Defaults</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codecs">Codecs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#json"><code class="docutils literal notranslate"><span class="pre">json</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struct"><code class="docutils literal notranslate"><span class="pre">struct</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binaryformat">binaryFormat</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#numeric-and-boolean-types">Numeric and boolean types</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#strings">Strings</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#padding-bytes">Padding bytes</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#union-typed-metadata">Union typed metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-examples">Schema examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struct-codec">Struct codec</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-metadata-api-overview">Python Metadata API Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-array-metadata">Structured array metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-metaschema">Full metaschema</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

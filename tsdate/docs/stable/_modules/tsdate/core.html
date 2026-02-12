@@ -1,0 +1,1386 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tsdate.core &#8212; Tsdate manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/tsdate/core';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tsdate_logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../../_static/tsdate_logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 0.2.5</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../usage.html">Usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../real-data.html">Real data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../popsize.html">Population size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../historical_samples.html">Historical (Ancient) Samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../priors.html">More on priors (old)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../api.html">APIs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python-api.html">Python API</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../cli.html">Command line interface</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CHANGELOG.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for tsdate.core</h1><div class="highlight"><pre>
+<span></span><span class="c1"># MIT License</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2021-24 Tskit Developers</span>
+<span class="c1"># Copyright (c) 2020-21 University of Oxford</span>
+<span class="c1">#</span>
+<span class="c1"># Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="c1"># of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1"># in the Software without restriction, including without limitation the rights</span>
+<span class="c1"># to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="c1"># copies of the Software, and to permit persons to whom the Software is</span>
+<span class="c1"># furnished to do so, subject to the following conditions:</span>
+<span class="c1">#</span>
+<span class="c1"># The above copyright notice and this permission notice shall be included in</span>
+<span class="c1"># all copies or substantial portions of the Software.</span>
+<span class="c1">#</span>
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="c1"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="c1"># AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="c1"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="c1"># SOFTWARE.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Infer the age of nodes from mutational data, conditional on a tree sequence topology.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>  <span class="c1"># DEBUG</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">demography</span><span class="p">,</span> <span class="n">discrete</span><span class="p">,</span> <span class="n">prior</span><span class="p">,</span> <span class="n">provenance</span><span class="p">,</span> <span class="n">schemas</span><span class="p">,</span> <span class="n">util</span><span class="p">,</span> <span class="n">variational</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.node_time_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">LIN_GRID</span><span class="p">,</span> <span class="n">LOG_GRID</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">FORMAT_NAME</span> <span class="o">=</span> <span class="s2">&quot;tsdate&quot;</span>
+<span class="n">DEFAULT_CONSTRAINT_ITERATIONS</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># only used with internal samples</span>
+<span class="n">DEFAULT_RESCALING_INTERVALS</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">DEFAULT_RESCALING_ITERATIONS</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">DEFAULT_MAX_ITERATIONS</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">DEFAULT_EPSILON</span> <span class="o">=</span> <span class="mf">1e-8</span>
+<span class="n">DEFAULT_MIN_BRANCH_LENGTH</span> <span class="o">=</span> <span class="mf">1e-8</span>
+
+
+<span class="c1"># Classes for each method</span>
+<span class="n">Results</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span>
+    <span class="s2">&quot;Results&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;posterior_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;posterior_var&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mutation_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mutation_var&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mutation_lik&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mutation_node&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fit_object&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">EstimationMethod</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class to hold the various estimation methods. Override prior_grid_func_name with</span>
+<span class="sd">    something like &quot;parameter_grid&quot; or &quot;prior_grid&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">prior_grid_func_name</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">():</span>
+        <span class="c1"># Subclasses should override to return a return a Results object</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s2">&quot;Base class &#39;EstimationMethod&#39; not intended for direct use&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ts</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">mutation_rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">population_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">recombination_rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">time_units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">priors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_likelihood</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_fit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">allow_unary</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">record_provenance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">constr_iterations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">min_branch_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">set_metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">progress</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="c1"># deprecated params</span>
+        <span class="n">return_posteriors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="c1"># Set up all the generic params described in the tsdate.date function, and define</span>
+        <span class="c1"># priors if not passed-in already</span>
+        <span class="k">if</span> <span class="n">return_posteriors</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s1">&#39;The &quot;return_posteriors&quot; parameter has been deprecated. Either use the &#39;</span>
+                <span class="s2">&quot;posterior values encoded in node metadata or set ``return_fit=True`` &quot;</span>
+                <span class="s2">&quot;then access `fit.node_posteriors()` to obtain a transposed version &quot;</span>
+                <span class="s2">&quot;of the matrix previously returned when ``return_posteriors=True.``&quot;</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">ts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutation_rate</span> <span class="o">=</span> <span class="n">mutation_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recombination_rate</span> <span class="o">=</span> <span class="n">recombination_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">return_fit</span> <span class="o">=</span> <span class="n">return_fit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">return_likelihood</span> <span class="o">=</span> <span class="n">return_likelihood</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_metadata</span> <span class="o">=</span> <span class="n">set_metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pbar</span> <span class="o">=</span> <span class="n">progress</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_units</span> <span class="o">=</span> <span class="s2">&quot;generations&quot;</span> <span class="k">if</span> <span class="n">time_units</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">time_units</span>
+        <span class="k">if</span> <span class="n">record_provenance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">record_provenance</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">recombination_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s2">&quot;Using the recombination clock is not currently supported&quot;</span>
+                <span class="s2">&quot;. See https://github.com/awohns/tsdate/issues/5 for details&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">Ne</span> <span class="o">=</span> <span class="n">population_size</span>  <span class="c1"># shorthand</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ne</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">Ne</span> <span class="o">=</span> <span class="n">demography</span><span class="o">.</span><span class="n">PopulationSizeHistory</span><span class="p">(</span><span class="o">**</span><span class="n">Ne</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">provenance_params</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">record_provenance</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">provenance_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">mutation_rate</span><span class="o">=</span><span class="n">mutation_rate</span><span class="p">,</span>
+                <span class="n">recombination_rate</span><span class="o">=</span><span class="n">recombination_rate</span><span class="p">,</span>
+                <span class="n">time_units</span><span class="o">=</span><span class="n">time_units</span><span class="p">,</span>
+                <span class="n">progress</span><span class="o">=</span><span class="n">progress</span><span class="p">,</span>
+                <span class="c1"># demography.PopulationSizeHistory provides as_dict() for saving</span>
+                <span class="n">population_size</span><span class="o">=</span><span class="n">Ne</span><span class="o">.</span><span class="n">as_dict</span><span class="p">()</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">Ne</span><span class="p">,</span> <span class="s2">&quot;as_dict&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">Ne</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">constr_iterations</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">unique_sample_ages</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">())])</span>
+            <span class="k">if</span> <span class="n">unique_sample_ages</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># if there are internal samples, then using least squares</span>
+                <span class="c1"># before forcing the constraint will reduce error</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">constr_iterations</span> <span class="o">=</span> <span class="n">DEFAULT_CONSTRAINT_ITERATIONS</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">constr_iterations</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">constr_iterations</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">constr_iterations</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Number of constrained least squares iterations must be a &quot;</span>
+                    <span class="s2">&quot;non-negative integer&quot;</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">constr_iterations</span> <span class="o">=</span> <span class="n">constr_iterations</span>
+
+        <span class="k">if</span> <span class="n">min_branch_length</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">min_branch_length</span> <span class="o">=</span> <span class="n">DEFAULT_MIN_BRANCH_LENGTH</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">min_branch_length</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Minimum branch length must be positive&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">min_branch_length</span> <span class="o">=</span> <span class="n">min_branch_length</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">allow_unary</span> <span class="o">=</span> <span class="kc">False</span> <span class="k">if</span> <span class="n">allow_unary</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">allow_unary</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior_grid_func_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">priors</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Priors are not used for method </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">Ne</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Population size is not used for method </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">priors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">Ne</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">&quot;Must specify population size if priors are not already &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;built using tsdate.build_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prior_grid_func_name</span><span class="si">}</span><span class="s2">()&quot;</span>
+                    <span class="p">)</span>
+                <span class="n">mk_prior</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior_grid_func_name</span><span class="p">)</span>
+                <span class="c1"># Default to not creating approximate priors unless ts has</span>
+                <span class="c1"># greater than DEFAULT_APPROX_PRIOR_SIZE samples</span>
+                <span class="n">approx</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">num_samples</span> <span class="o">&gt;</span> <span class="n">prior</span><span class="o">.</span><span class="n">DEFAULT_APPROX_PRIOR_SIZE</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">priors</span> <span class="o">=</span> <span class="n">mk_prior</span><span class="p">(</span>
+                    <span class="n">ts</span><span class="p">,</span>
+                    <span class="n">Ne</span><span class="p">,</span>
+                    <span class="n">approximate_priors</span><span class="o">=</span><span class="n">approx</span><span class="p">,</span>
+                    <span class="n">allow_unary</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allow_unary</span><span class="p">,</span>
+                    <span class="n">progress</span><span class="o">=</span><span class="n">progress</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Using user-specified priors&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">Ne</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">&quot;Cannot specify population size if specifying priors &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;from tsdate.build_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prior_grid_func_name</span><span class="si">}</span><span class="s2">()&quot;</span>
+                    <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">priors</span> <span class="o">=</span> <span class="n">priors</span>
+
+        <span class="c1"># TODO: this isn&#39;t needed except for mutations_edge in constrain_mutations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges_mutations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutations_edge</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">mutation_span_array</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fixed_nodes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">()))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_modified_ts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+        <span class="c1"># Return a new ts based on the existing one, but with the various</span>
+        <span class="c1"># time-related information correctly set.</span>
+        <span class="n">ts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span>
+        <span class="n">node_mean_t</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">posterior_mean</span>
+        <span class="n">node_var_t</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">posterior_var</span>
+        <span class="n">mut_mean_t</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">mutation_mean</span>
+        <span class="n">mut_var_t</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">mutation_var</span>
+        <span class="n">mut_node</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">mutation_node</span>
+        <span class="n">tables</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">dump_tables</span><span class="p">()</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">nodes</span>
+        <span class="n">mutations</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">mutations</span>
+        <span class="n">tables</span><span class="o">.</span><span class="n">time_units</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_units</span>
+
+        <span class="c1"># Add posterior mean and variance to node/mutation metadata</span>
+        <span class="n">meta_timing</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_time_metadata</span><span class="p">(</span>
+            <span class="n">nodes</span><span class="p">,</span> <span class="n">node_mean_t</span><span class="p">,</span> <span class="n">node_var_t</span><span class="p">,</span> <span class="n">schemas</span><span class="o">.</span><span class="n">default_node_schema</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_time_metadata</span><span class="p">(</span>
+            <span class="n">mutations</span><span class="p">,</span> <span class="n">mut_mean_t</span><span class="p">,</span> <span class="n">mut_var_t</span><span class="p">,</span> <span class="n">schemas</span><span class="o">.</span><span class="n">default_mutation_schema</span>
+        <span class="p">)</span>
+        <span class="n">meta_timing</span> <span class="o">-=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Inserted node and mutation metadata in </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">meta_timing</span><span class="p">)</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Constrain node ages for positive branch lengths</span>
+        <span class="n">constr_timing</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">nodes</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">constrain_ages</span><span class="p">(</span>
+            <span class="n">ts</span><span class="p">,</span> <span class="n">node_mean_t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_branch_length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">constr_iterations</span>
+        <span class="p">)</span>
+        <span class="n">constr_timing</span> <span class="o">-=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Constrained node ages in </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">constr_timing</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+        <span class="c1"># Possibly change mutation nodes if phasing singletons</span>
+        <span class="n">mutations</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">mut_node</span>
+        <span class="c1"># Deal with mutations. These may have had nodes switched by singleton phasing</span>
+        <span class="c1"># We zap both time and parents, which means any mutations on the same edge</span>
+        <span class="c1"># at the same site will be ordered using the original mutation order (which</span>
+        <span class="c1"># we assume to be correct, as we have just dumped the tables from a valid TS)</span>
+        <span class="n">mutations</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">mutations</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">tskit</span><span class="o">.</span><span class="n">UNKNOWN_TIME</span><span class="p">)</span>
+        <span class="n">mutations</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">mutations</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">)</span>
+
+        <span class="n">tables</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>  <span class="c1"># need to sort before computing parents and times</span>
+        <span class="n">tables</span><span class="o">.</span><span class="n">build_index</span><span class="p">()</span>
+        <span class="c1"># If mutation nodes have been switched, we may need to recalculate parents</span>
+        <span class="n">tables</span><span class="o">.</span><span class="n">compute_mutation_parents</span><span class="p">()</span>
+        <span class="n">tables</span><span class="o">.</span><span class="n">compute_mutation_times</span><span class="p">()</span>
+        <span class="n">num_root_muts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mutations</span><span class="o">.</span><span class="n">time</span> <span class="o">==</span> <span class="n">nodes</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="n">mutations</span><span class="o">.</span><span class="n">node</span><span class="p">])</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Set ages of </span><span class="si">{</span><span class="n">num_root_muts</span><span class="si">}</span><span class="s2"> nonsegregating mutations to root times.&quot;</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">provenance_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Note that the time recorded in provenance excludes numba compilation time</span>
+            <span class="n">provenance</span><span class="o">.</span><span class="n">record_provenance</span><span class="p">(</span>
+                <span class="n">tables</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">provenance_params</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_time_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">default_schema</span><span class="p">):</span>
+        <span class="c1"># Try to set metadata: if we fail, clear metadata, reset schema, and try again</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_time_md_array</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">):</span>
+            <span class="c1"># Return an array of metadata dicts, or raise an error if</span>
+            <span class="c1"># schema is None or metadata is not valid</span>
+            <span class="n">schema</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">metadata_schema</span>
+            <span class="k">if</span> <span class="n">schema</span><span class="o">.</span><span class="n">schema</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">tskit</span><span class="o">.</span><span class="n">MetadataEncodingError</span><span class="p">(</span><span class="s2">&quot;No schema set&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">md_iter</span> <span class="o">=</span> <span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">metadata</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">table</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">md_iter</span> <span class="o">=</span> <span class="p">({}</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">num_rows</span><span class="p">))</span>  <span class="c1"># no decoding needed</span>
+            <span class="n">metadata_array</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">metadata_dict</span><span class="p">,</span> <span class="n">mn</span><span class="p">,</span> <span class="n">vr</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">md_iter</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">):</span>
+                <span class="n">metadata_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(((</span><span class="s2">&quot;mn&quot;</span><span class="p">,</span> <span class="n">mn</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;vr&quot;</span><span class="p">,</span> <span class="n">vr</span><span class="p">)))</span>
+                <span class="n">metadata_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">schema</span><span class="o">.</span><span class="n">validate_and_encode_row</span><span class="p">(</span><span class="n">metadata_dict</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">metadata_array</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_metadata</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">or</span> <span class="n">var</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>  <span class="c1"># no md to set (e.g. outside maximization method)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">var</span><span class="p">)</span> <span class="o">==</span> <span class="n">table</span><span class="o">.</span><span class="n">num_rows</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">table</span><span class="o">.</span><span class="n">packset_metadata</span><span class="p">(</span><span class="n">_time_md_array</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">))</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">tskit</span><span class="o">.</span><span class="n">MetadataEncodingError</span><span class="p">,</span> <span class="n">tskit</span><span class="o">.</span><span class="n">MetadataValidationError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">table_name</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">table</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">table</span><span class="o">.</span><span class="n">metadata_schema</span><span class="o">.</span><span class="n">schema</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_metadata</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Could not set time metadata on </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;(force this by specifying `set_metadata=True`): </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                    <span class="k">return</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Clearing metadata from </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="n">table</span><span class="o">.</span><span class="n">drop_metadata</span><span class="p">()</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Setting metadata schema on </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">table</span><span class="o">.</span><span class="n">metadata_schema</span> <span class="o">=</span> <span class="n">default_schema</span>
+            <span class="n">table</span><span class="o">.</span><span class="n">packset_metadata</span><span class="p">(</span><span class="n">_time_md_array</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+        <span class="c1"># Construct the tree sequence to return and add other stuff we might want to</span>
+        <span class="c1"># return. pst_cols is a dict to be appended to the output posterior dict</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_modified_ts</span><span class="p">(</span><span class="n">result</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_fit</span><span class="p">:</span>
+            <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fit_object</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_likelihood</span><span class="p">:</span>
+            <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">mutation_lik</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">ret</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_fixed_nodes_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># TODO: modify to allow non-contemporary samples. If these have priors specified</span>
+        <span class="c1"># they should work fine with these algorithms.</span>
+        <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span><span class="o">.</span><span class="n">time</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Samples must all be at time 0&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">())</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DiscreteTimeMethod</span><span class="p">(</span><span class="n">EstimationMethod</span><span class="p">):</span>
+    <span class="n">prior_grid_func_name</span> <span class="o">=</span> <span class="s2">&quot;prior_grid&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mean_var</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">posterior</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mean and variance of node age given an atomic time discretization. Fixed</span>
+<span class="sd">        nodes will be given a mean of their exact time in the tree sequence, and</span>
+<span class="sd">        zero variance. This is a static method for ease of testing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mn_post</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>  <span class="c1"># Fill with NaNs so we detect when</span>
+        <span class="n">va_post</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>  <span class="c1"># there&#39;s been an error</span>
+
+        <span class="n">is_fixed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">posterior</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="n">is_fixed</span><span class="p">[</span><span class="n">posterior</span><span class="o">.</span><span class="n">nonfixed_nodes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">mn_post</span><span class="p">[</span><span class="n">is_fixed</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">[</span><span class="n">is_fixed</span><span class="p">]</span>
+        <span class="n">va_post</span><span class="p">[</span><span class="n">is_fixed</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">posterior</span><span class="o">.</span><span class="n">nonfixed_nodes</span><span class="p">:</span>
+            <span class="n">probs</span> <span class="o">=</span> <span class="n">posterior</span><span class="p">[</span><span class="n">u</span><span class="p">]</span>
+            <span class="n">times</span> <span class="o">=</span> <span class="n">posterior</span><span class="o">.</span><span class="n">timepoints</span>
+            <span class="n">mn_post</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">probs</span> <span class="o">*</span> <span class="n">times</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
+            <span class="n">va_post</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(((</span><span class="n">mn_post</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">times</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">probs</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">probs</span><span class="p">)))</span>
+
+        <span class="k">return</span> <span class="n">mn_post</span><span class="p">,</span> <span class="n">va_post</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">main_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probability_space</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">num_threads</span><span class="p">):</span>
+        <span class="c1"># Algorithm class is shared by inside-outside &amp; outside-maximization methods</span>
+        <span class="k">if</span> <span class="n">probability_space</span> <span class="o">==</span> <span class="n">LIN_GRID</span><span class="p">:</span>
+            <span class="n">liklhd</span> <span class="o">=</span> <span class="n">discrete</span><span class="o">.</span><span class="n">Likelihoods</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">priors</span><span class="o">.</span><span class="n">timepoints</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">mutation_rate</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recombination_rate</span><span class="p">,</span>
+                <span class="n">eps</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span>
+                <span class="n">fixed_node_set</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_fixed_nodes_set</span><span class="p">(),</span>
+                <span class="n">progress</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pbar</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">probability_space</span> <span class="o">==</span> <span class="n">LOG_GRID</span><span class="p">:</span>
+            <span class="n">liklhd</span> <span class="o">=</span> <span class="n">discrete</span><span class="o">.</span><span class="n">LogLikelihoods</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">priors</span><span class="o">.</span><span class="n">timepoints</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">mutation_rate</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recombination_rate</span><span class="p">,</span>
+                <span class="n">eps</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span>
+                <span class="n">fixed_node_set</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_fixed_nodes_set</span><span class="p">(),</span>
+                <span class="n">progress</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pbar</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid discrete probability space: </span><span class="si">{</span><span class="n">probability_space</span><span class="si">}</span><span class="s2">. Must be &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;one of </span><span class="si">{</span><span class="n">LIN_GRID</span><span class="si">}</span><span class="s2"> or </span><span class="si">{</span><span class="n">LOG_GRID</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">liklhd</span><span class="o">.</span><span class="n">precalculate_mutation_likelihoods</span><span class="p">(</span><span class="n">num_threads</span><span class="o">=</span><span class="n">num_threads</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">discrete</span><span class="o">.</span><span class="n">BeliefPropagation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">priors</span><span class="p">,</span> <span class="n">liklhd</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pbar</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InsideOutsideMethod</span><span class="p">(</span><span class="n">DiscreteTimeMethod</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;inside_outside&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">eps</span><span class="p">,</span>
+        <span class="n">outside_standardize</span><span class="p">,</span>
+        <span class="n">ignore_oldest_root</span><span class="p">,</span>
+        <span class="n">probability_space</span><span class="p">,</span>
+        <span class="n">num_threads</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">cache_inside</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_rate</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">recombination_rate</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_trees</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                    <span class="s2">&quot;Specifying no mutation or recombination rate implies dating using &quot;</span>
+                    <span class="s2">&quot;the topology-only clock. This produces biased results under &quot;</span>
+                    <span class="s2">&quot;recombination (https://github.com/tskit-dev/tsdate/issues/292). &quot;</span>
+                    <span class="s2">&quot;The topology-only clock has therefore been deprecated for tree &quot;</span>
+                    <span class="s2">&quot;sequences representing more than one tree.&quot;</span>
+                <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">provenance_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">provenance_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;self&quot;</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="n">fit_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_algorithm</span><span class="p">(</span><span class="n">probability_space</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">num_threads</span><span class="p">)</span>
+        <span class="n">marginal_likl</span> <span class="o">=</span> <span class="n">fit_obj</span><span class="o">.</span><span class="n">inside_pass</span><span class="p">(</span><span class="n">cache_inside</span><span class="o">=</span><span class="n">cache_inside</span><span class="p">)</span>
+        <span class="n">fit_obj</span><span class="o">.</span><span class="n">outside_pass</span><span class="p">(</span>
+            <span class="n">standardize</span><span class="o">=</span><span class="n">outside_standardize</span><span class="p">,</span> <span class="n">ignore_oldest_root</span><span class="o">=</span><span class="n">ignore_oldest_root</span>
+        <span class="p">)</span>
+        <span class="c1"># Turn the posterior into probabilities</span>
+        <span class="n">fit_obj</span><span class="o">.</span><span class="n">posterior_grid</span><span class="o">.</span><span class="n">standardize</span><span class="p">()</span>  <span class="c1"># Just to ensure no floating point issues</span>
+        <span class="n">fit_obj</span><span class="o">.</span><span class="n">posterior_grid</span><span class="o">.</span><span class="n">force_probability_space</span><span class="p">(</span><span class="n">LIN_GRID</span><span class="p">)</span>
+        <span class="n">fit_obj</span><span class="o">.</span><span class="n">posterior_grid</span><span class="o">.</span><span class="n">to_probabilities</span><span class="p">()</span>
+
+        <span class="n">posterior_mean</span><span class="p">,</span> <span class="n">posterior_var</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean_var</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="p">,</span> <span class="n">fit_obj</span><span class="o">.</span><span class="n">posterior_grid</span><span class="p">)</span>
+        <span class="n">mut_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_node</span>
+        <span class="k">return</span> <span class="n">Results</span><span class="p">(</span>
+            <span class="n">posterior_mean</span><span class="p">,</span>
+            <span class="n">posterior_var</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="n">marginal_likl</span><span class="p">,</span>
+            <span class="n">mut_node</span><span class="p">,</span>
+            <span class="n">fit_obj</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MaximizationMethod</span><span class="p">(</span><span class="n">DiscreteTimeMethod</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;maximization&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">eps</span><span class="p">,</span>
+        <span class="n">probability_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">num_threads</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">cache_inside</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_rate</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">recombination_rate</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Outside maximization method requires mutation rate&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">provenance_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">provenance_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;self&quot;</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="n">fit_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_algorithm</span><span class="p">(</span><span class="n">probability_space</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">num_threads</span><span class="p">)</span>
+        <span class="n">marginal_likl</span> <span class="o">=</span> <span class="n">fit_obj</span><span class="o">.</span><span class="n">inside_pass</span><span class="p">(</span><span class="n">cache_inside</span><span class="o">=</span><span class="n">cache_inside</span><span class="p">)</span>
+        <span class="n">fit_obj</span><span class="o">.</span><span class="n">outside_maximization</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">)</span>
+        <span class="n">mut_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_node</span>
+        <span class="k">return</span> <span class="n">Results</span><span class="p">(</span>
+            <span class="n">fit_obj</span><span class="o">.</span><span class="n">posterior_mean</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="n">marginal_likl</span><span class="p">,</span>
+            <span class="n">mut_node</span><span class="p">,</span>
+            <span class="n">fit_obj</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">VariationalGammaMethod</span><span class="p">(</span><span class="n">EstimationMethod</span><span class="p">):</span>
+    <span class="n">prior_grid_func_name</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;variational_gamma&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">max_iterations</span><span class="p">,</span>
+        <span class="n">max_shape</span><span class="p">,</span>
+        <span class="n">rescaling_intervals</span><span class="p">,</span>
+        <span class="n">rescaling_iterations</span><span class="p">,</span>
+        <span class="n">match_segregating_sites</span><span class="p">,</span>
+        <span class="n">regularise_roots</span><span class="p">,</span>
+        <span class="n">singletons_phased</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">provenance_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">provenance_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;self&quot;</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">max_iterations</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Maximum number of EP iterations must be greater than 0&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_rate</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Variational gamma method requires mutation rate&quot;</span><span class="p">)</span>
+
+        <span class="n">fit_obj</span> <span class="o">=</span> <span class="n">variational</span><span class="o">.</span><span class="n">ExpectationPropagation</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="p">,</span>
+            <span class="n">mutation_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mutation_rate</span><span class="p">,</span>
+            <span class="n">allow_unary</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allow_unary</span><span class="p">,</span>
+            <span class="n">singletons_phased</span><span class="o">=</span><span class="n">singletons_phased</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">fit_obj</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span>
+            <span class="n">ep_iterations</span><span class="o">=</span><span class="n">max_iterations</span><span class="p">,</span>
+            <span class="n">max_shape</span><span class="o">=</span><span class="n">max_shape</span><span class="p">,</span>
+            <span class="n">rescale_intervals</span><span class="o">=</span><span class="n">rescaling_intervals</span><span class="p">,</span>
+            <span class="n">rescale_iterations</span><span class="o">=</span><span class="n">rescaling_iterations</span><span class="p">,</span>
+            <span class="n">regularise</span><span class="o">=</span><span class="n">regularise_roots</span><span class="p">,</span>
+            <span class="n">rescale_segsites</span><span class="o">=</span><span class="n">match_segregating_sites</span><span class="p">,</span>
+            <span class="n">progress</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pbar</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">marginal_likl</span> <span class="o">=</span> <span class="n">fit_obj</span><span class="o">.</span><span class="n">marginal_likelihood</span><span class="p">()</span>
+        <span class="n">node_mn</span><span class="p">,</span> <span class="n">node_va</span> <span class="o">=</span> <span class="n">fit_obj</span><span class="o">.</span><span class="n">node_moments</span><span class="p">()</span>
+        <span class="n">mutation_mn</span><span class="p">,</span> <span class="n">mutation_va</span> <span class="o">=</span> <span class="n">fit_obj</span><span class="o">.</span><span class="n">mutation_moments</span><span class="p">()</span>
+        <span class="n">mutation_node</span> <span class="o">=</span> <span class="n">fit_obj</span><span class="o">.</span><span class="n">mutation_mapping</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">Results</span><span class="p">(</span>
+            <span class="n">node_mn</span><span class="p">,</span>
+            <span class="n">node_va</span><span class="p">,</span>
+            <span class="n">mutation_mn</span><span class="p">,</span>
+            <span class="n">mutation_va</span><span class="p">,</span>
+            <span class="n">marginal_likl</span><span class="p">,</span>
+            <span class="n">mutation_node</span><span class="p">,</span>
+            <span class="n">fit_obj</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+<div class="viewcode-block" id="maximization">
+<a class="viewcode-back" href="../../python-api.html#tsdate.maximization">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">maximization</span><span class="p">(</span>
+    <span class="n">tree_sequence</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">mutation_rate</span><span class="p">,</span>
+    <span class="n">population_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">priors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">eps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">num_threads</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">probability_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># below deliberately undocumented</span>
+    <span class="n">cache_inside</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">Ne</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># Other params documented in `.date()`</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    maximization(tree_sequence, *, mutation_rate, population_size=None, priors=None,\</span>
+<span class="sd">        eps=None, num_threads=None, probability_space=None, **kwargs)</span>
+
+<span class="sd">    Infer dates for nodes in a genealogical graph using the &quot;outside maximization&quot;</span>
+<span class="sd">    algorithm. This approximates the marginal posterior distribution of a node&#39;s</span>
+<span class="sd">    age using an atomic discretization of time (e.g. point masses at particular</span>
+<span class="sd">    timepoints).</span>
+
+<span class="sd">    This estimation method comprises a single &quot;inside&quot; step followed by an</span>
+<span class="sd">    &quot;outside maximization&quot; step. The inside step passes backwards in time from the</span>
+<span class="sd">    samples to the roots of the graph,taking account of the distributions of times of</span>
+<span class="sd">    each node&#39;s child (and if a ``mutation_rate`` is given, the the number of mutations</span>
+<span class="sd">    on each edge). The outside maximization step passes forwards in time from the roots,</span>
+<span class="sd">    updating each node&#39;s time on the basis of the most likely timepoint for</span>
+<span class="sd">    each parent of that node. This provides a reasonable point estimate for node times,</span>
+<span class="sd">    but does not generate a true posterior time distribution.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">      new_ts = tsdate.maximization(ts, mutation_rate=1e-8, population_size=1e4)</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The prior parameters for each node-to-be-dated take the form of probabilities</span>
+<span class="sd">        for each node at a set of discrete timepoints. If the ``priors`` parameter is</span>
+<span class="sd">        used, it must specify an object constructed using :func:`build_prior_grid`</span>
+<span class="sd">        (this can be used to define the number and position of the timepoints).</span>
+<span class="sd">        If ``priors`` is not used, ``population_size`` must be provided,</span>
+<span class="sd">        which is used to create a default prior derived from the conditional coalescent</span>
+<span class="sd">        (tilted according to population size and weighted by the genomic</span>
+<span class="sd">        span over which a node has a given number of descendant samples). This default</span>
+<span class="sd">        prior assumes the nodes to be dated are all the non-sample nodes in the input</span>
+<span class="sd">        tree sequence, and that they are contemporaneous.</span>
+
+<span class="sd">    :param ~tskit.TreeSequence tree_sequence: The input tree sequence to be dated.</span>
+<span class="sd">    :param float mutation_rate: The estimated mutation rate per unit of genome per</span>
+<span class="sd">        unit time. If provided, the dating algorithm will use a mutation rate clock to</span>
+<span class="sd">        help estimate node dates. Default: ``None``</span>
+<span class="sd">    :param float or ~demography.PopulationSizeHistory population_size: The estimated</span>
+<span class="sd">        (diploid) effective population size used to construct the (default) conditional</span>
+<span class="sd">        coalescent prior. For a population with constant size, this can be given as a</span>
+<span class="sd">        single value (for example, as commonly estimated by the observed genetic</span>
+<span class="sd">        diversity of the sample divided by four-times the expected mutation rate).</span>
+<span class="sd">        Alternatively, for a population with time-varying size, this can be given</span>
+<span class="sd">        directly as a :class:`~demography.PopulationSizeHistory` object or a parameter</span>
+<span class="sd">        dictionary passed to initialise a :class:`~demography.PopulationSizeHistory`</span>
+<span class="sd">        object. The ``population_size`` parameter is only used when ``priors`` is</span>
+<span class="sd">        ``None``. Conversely, if ``priors`` is not ``None``, no ``population_size``</span>
+<span class="sd">        value should be specified.</span>
+<span class="sd">    :param tsdate.node_time_class.NodeTimeValues priors: NodeTimeValues object containing</span>
+<span class="sd">        the prior parameters for each node-to-be-dated. Note that different estimation</span>
+<span class="sd">        methods may require different types of prior, as described in the documentation</span>
+<span class="sd">        for each estimation method.</span>
+<span class="sd">    :param float eps: The error factor in time difference calculations. Default: None,</span>
+<span class="sd">        treated as 1e-8.</span>
+<span class="sd">    :param int num_threads: The number of threads to use when precalculating likelihoods.</span>
+<span class="sd">        A simpler unthreaded algorithm is used unless this is &gt;= 1. Default: None</span>
+<span class="sd">    :param string probability_space: Should the internal algorithm save</span>
+<span class="sd">        probabilities in &quot;logarithmic&quot; (slower, less liable to to overflow) or</span>
+<span class="sd">        &quot;linear&quot; space (fast, may overflow). Default: None treated as&quot;logarithmic&quot;</span>
+<span class="sd">    :param \\**kwargs: Other keyword arguments as described in the :func:`date` wrapper</span>
+<span class="sd">        function, notably ``mutation_rate``, and ``population_size`` or ``priors``.</span>
+<span class="sd">        Further arguments include ``time_units``, ``progress``, ``allow_unary`` and</span>
+<span class="sd">        ``record_provenance``.  The additional arguments ``return_fit`` and</span>
+<span class="sd">        ``return_likelihood`` can be used to return additional information (see below).</span>
+<span class="sd">    :return:</span>
+<span class="sd">        - **ts** (:class:`~tskit.TreeSequence`) -- a copy of the input tree sequence with</span>
+<span class="sd">          updated node times based on the posterior mean, corrected where necessary to</span>
+<span class="sd">          ensure that parents are strictly older than all their children by an amount</span>
+<span class="sd">          given by the ``min_branch_length`` parameter.</span>
+<span class="sd">        - **marginal_likelihood** (:py:class:`float`) -- (Only returned if</span>
+<span class="sd">          ``return_likelihood`` is ``True``) The marginal likelihood of</span>
+<span class="sd">          the mutation data given the inferred node times.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">Ne</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">population_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Only provide one of Ne (deprecated) or population_size&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">population_size</span> <span class="o">=</span> <span class="n">Ne</span>
+    <span class="k">if</span> <span class="n">eps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">DEFAULT_EPSILON</span>
+    <span class="k">if</span> <span class="n">probability_space</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">probability_space</span> <span class="o">=</span> <span class="n">LOG_GRID</span>
+
+    <span class="n">dating_method</span> <span class="o">=</span> <span class="n">MaximizationMethod</span><span class="p">(</span>
+        <span class="n">tree_sequence</span><span class="p">,</span>
+        <span class="n">mutation_rate</span><span class="o">=</span><span class="n">mutation_rate</span><span class="p">,</span>
+        <span class="n">population_size</span><span class="o">=</span><span class="n">population_size</span><span class="p">,</span>
+        <span class="n">priors</span><span class="o">=</span><span class="n">priors</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">dating_method</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span>
+        <span class="n">num_threads</span><span class="o">=</span><span class="n">num_threads</span><span class="p">,</span>
+        <span class="n">cache_inside</span><span class="o">=</span><span class="n">cache_inside</span><span class="p">,</span>
+        <span class="n">probability_space</span><span class="o">=</span><span class="n">probability_space</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">dating_method</span><span class="o">.</span><span class="n">parse_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="inside_outside">
+<a class="viewcode-back" href="../../python-api.html#tsdate.inside_outside">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">inside_outside</span><span class="p">(</span>
+    <span class="n">tree_sequence</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">mutation_rate</span><span class="p">,</span>
+    <span class="n">population_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">priors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">eps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">num_threads</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">outside_standardize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_oldest_root</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">probability_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># below deliberately undocumented</span>
+    <span class="n">cache_inside</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="c1"># Deprecated params</span>
+    <span class="n">Ne</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># Other params documented in `.date()`</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    inside_outside(tree_sequence, *, mutation_rate, population_size=None, priors=None,\</span>
+<span class="sd">        eps=None, num_threads=None, outside_standardize=None, ignore_oldest_root=None,\</span>
+<span class="sd">        probability_space=None, **kwargs)</span>
+
+<span class="sd">    Infer dates for nodes in a genealogical graph using the &quot;inside outside&quot; algorithm.</span>
+<span class="sd">    This approximates the marginal posterior distribution of a node&#39;s age using an</span>
+<span class="sd">    atomic discretization of time (e.g. point masses at particular timepoints).</span>
+
+<span class="sd">    Currently, this estimation method comprises a single &quot;inside&quot; followed by a similar</span>
+<span class="sd">    &quot;outside&quot; step. The inside step passes backwards in time from the samples to the</span>
+<span class="sd">    roots of the graph,taking account of the distributions of times of each node&#39;s child</span>
+<span class="sd">    (and if a ``mutation_rate`` is given, the the number of mutations on each edge).</span>
+<span class="sd">    The outside step passes forwards in time from the roots, incorporating the time</span>
+<span class="sd">    distributions for each node&#39;s parents. If there are (undirected) cycles in the</span>
+<span class="sd">    underlying graph, this method does not provide a theoretically exact estimate</span>
+<span class="sd">    of the marginal posterior distribution of node ages, but in practice it</span>
+<span class="sd">    results in an accurate approximation.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">      new_ts = tsdate.inside_outside(ts, mutation_rate=1e-8, population_size=1e4)</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The prior parameters for each node-to-be-dated take the form of probabilities</span>
+<span class="sd">        for each node at a set of discrete timepoints. If the ``priors`` parameter is</span>
+<span class="sd">        used, it must specify an object constructed using :func:`build_prior_grid`</span>
+<span class="sd">        (this can be used to define the number and position of the timepoints).</span>
+<span class="sd">        If ``priors`` is not used, ``population_size`` must be provided,</span>
+<span class="sd">        which is used to create a default prior derived from the conditional coalescent</span>
+<span class="sd">        (tilted according to population size and weighted by the genomic</span>
+<span class="sd">        span over which a node has a given number of descendant samples). This default</span>
+<span class="sd">        prior assumes the nodes to be dated are all the non-sample nodes in the input</span>
+<span class="sd">        tree sequence, and that they are contemporaneous.</span>
+
+<span class="sd">    :param ~tskit.TreeSequence tree_sequence: The input tree sequence to be dated.</span>
+<span class="sd">    :param float mutation_rate: The estimated mutation rate per unit of genome per</span>
+<span class="sd">        unit time. If provided, the dating algorithm will use a mutation rate clock to</span>
+<span class="sd">        help estimate node dates. Default: ``None``</span>
+<span class="sd">    :param float or ~demography.PopulationSizeHistory population_size: The estimated</span>
+<span class="sd">        (diploid) effective population size used to construct the (default) conditional</span>
+<span class="sd">        coalescent prior. For a population with constant size, this can be given as a</span>
+<span class="sd">        single value (for example, as commonly estimated by the observed genetic</span>
+<span class="sd">        diversity of the sample divided by four-times the expected mutation rate).</span>
+<span class="sd">        Alternatively, for a population with time-varying size, this can be given</span>
+<span class="sd">        directly as a :class:`~demography.PopulationSizeHistory` object or a parameter</span>
+<span class="sd">        dictionary passed to initialise a :class:`~demography.PopulationSizeHistory`</span>
+<span class="sd">        object. The ``population_size`` parameter is only used when ``priors`` is</span>
+<span class="sd">        ``None``. Conversely, if ``priors`` is not ``None``, no ``population_size``</span>
+<span class="sd">        value should be specified.</span>
+<span class="sd">    :param tsdate.node_time_class.NodeTimeValues priors: NodeTimeValues object containing</span>
+<span class="sd">        the prior parameters for each node-to-be-dated. Note that different estimation</span>
+<span class="sd">        methods may require different types of prior, as described in the documentation</span>
+<span class="sd">        for each estimation method.</span>
+<span class="sd">    :param float eps: The error factor in time difference calculations. Default: None,</span>
+<span class="sd">        treated as 1e-8.</span>
+<span class="sd">    :param int num_threads: The number of threads to use when precalculating likelihoods.</span>
+<span class="sd">        A simpler unthreaded algorithm is used unless this is &gt;= 1. Default: None</span>
+<span class="sd">    :param bool outside_standardize: Should the likelihoods be standardized during the</span>
+<span class="sd">        outside step? This can help to avoid numerical under/overflow. Using</span>
+<span class="sd">        unstandardized values is mostly useful for testing (e.g. to obtain, in the</span>
+<span class="sd">        outside step, the total functional value for each node).</span>
+<span class="sd">        Default: None, treated as True.</span>
+<span class="sd">    :param bool ignore_oldest_root: Should the oldest root in the tree sequence be</span>
+<span class="sd">        ignored in the outside algorithm (if ``&quot;inside_outside&quot;`` is used as the method).</span>
+<span class="sd">        Ignoring outside root can provide greater stability when dating tree sequences</span>
+<span class="sd">        inferred from real data, in particular if all local trees are assumed to coalesce</span>
+<span class="sd">        in a single &quot;grand MRCA&quot;, as in older versions of ``tsinfer``.</span>
+<span class="sd">        Default: None, treated as False.</span>
+<span class="sd">    :param string probability_space: Should the internal algorithm save</span>
+<span class="sd">        probabilities in &quot;logarithmic&quot; (slower, less liable to to overflow) or</span>
+<span class="sd">        &quot;linear&quot; space (fast, may overflow). Default: &quot;logarithmic&quot;</span>
+<span class="sd">    :param \\**kwargs: Other keyword arguments as described in the :func:`date` wrapper</span>
+<span class="sd">        function, notably ``mutation_rate``, and ``population_size`` or ``priors``.</span>
+<span class="sd">        Further arguments include ``time_units``, ``progress``, ``allow_unary`` and</span>
+<span class="sd">        ``record_provenance``. The additional arguments ``return_fit`` and</span>
+<span class="sd">        ``return_likelihood`` can be used to return additional information (see below).</span>
+<span class="sd">    :return:</span>
+<span class="sd">        - **ts** (:class:`~tskit.TreeSequence`) -- a copy of the input tree sequence with</span>
+<span class="sd">          updated node times based on the posterior mean, corrected where necessary to</span>
+<span class="sd">          ensure that parents are strictly older than all their children by an amount</span>
+<span class="sd">          given by the ``min_branch_length`` parameter.</span>
+<span class="sd">        - **fit** (:class:`~discrete.BeliefPropagation`) -- (Only returned if</span>
+<span class="sd">          ``return_fit`` is ``True``) The underlying object used to run the dating</span>
+<span class="sd">          inference. This can then be queried e.g. using</span>
+<span class="sd">          :meth:`~discrete.BeliefPropagation.node_posteriors()`</span>
+<span class="sd">        - **marginal_likelihood** (:py:class:`float`) -- (Only returned if</span>
+<span class="sd">          ``return_likelihood`` is ``True``) The marginal likelihood of</span>
+<span class="sd">          the mutation data given the inferred node times.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">Ne</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">population_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Only provide one of Ne (deprecated) or population_size&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">population_size</span> <span class="o">=</span> <span class="n">Ne</span>
+    <span class="k">if</span> <span class="n">eps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">DEFAULT_EPSILON</span>
+    <span class="k">if</span> <span class="n">probability_space</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">probability_space</span> <span class="o">=</span> <span class="n">LOG_GRID</span>
+    <span class="k">if</span> <span class="n">outside_standardize</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">outside_standardize</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">ignore_oldest_root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ignore_oldest_root</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">dating_method</span> <span class="o">=</span> <span class="n">InsideOutsideMethod</span><span class="p">(</span>
+        <span class="n">tree_sequence</span><span class="p">,</span>
+        <span class="n">mutation_rate</span><span class="o">=</span><span class="n">mutation_rate</span><span class="p">,</span>
+        <span class="n">population_size</span><span class="o">=</span><span class="n">population_size</span><span class="p">,</span>
+        <span class="n">priors</span><span class="o">=</span><span class="n">priors</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">dating_method</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span>
+        <span class="n">num_threads</span><span class="o">=</span><span class="n">num_threads</span><span class="p">,</span>
+        <span class="n">outside_standardize</span><span class="o">=</span><span class="n">outside_standardize</span><span class="p">,</span>
+        <span class="n">ignore_oldest_root</span><span class="o">=</span><span class="n">ignore_oldest_root</span><span class="p">,</span>
+        <span class="n">cache_inside</span><span class="o">=</span><span class="n">cache_inside</span><span class="p">,</span>
+        <span class="n">probability_space</span><span class="o">=</span><span class="n">probability_space</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">dating_method</span><span class="o">.</span><span class="n">parse_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="variational_gamma">
+<a class="viewcode-back" href="../../python-api.html#tsdate.variational_gamma">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">variational_gamma</span><span class="p">(</span>
+    <span class="n">tree_sequence</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">mutation_rate</span><span class="p">,</span>
+    <span class="n">max_iterations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">rescaling_intervals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">rescaling_iterations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">match_segregating_sites</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># deliberately undocumented parameters below. We may eventually document these</span>
+    <span class="n">max_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">regularise_roots</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">singletons_phased</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># deprecated parameters</span>
+    <span class="n">eps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    variational_gamma(tree_sequence, *, mutation_rate, max_iterations=None,\</span>
+<span class="sd">            rescaling_intervals=None, rescaling_iterations=None,\</span>
+<span class="sd">            match_segregating_sites=None, **kwargs)</span>
+
+<span class="sd">    Infer dates for nodes in a tree sequence using expectation propagation,</span>
+<span class="sd">    which approximates the marginal posterior distribution of a given node&#39;s</span>
+<span class="sd">    age with a gamma distribution. Convergence to the correct posterior moments</span>
+<span class="sd">    is obtained by updating the distributions for node dates using several rounds</span>
+<span class="sd">    of iteration. For example:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">      new_ts = tsdate.variational_gamma(ts, mutation_rate=1e-8, max_iterations=10)</span>
+
+<span class="sd">    A piecewise-constant uniform distribution is used as a prior for each</span>
+<span class="sd">    node, that is updated via expectation maximization in each iteration.</span>
+<span class="sd">    Node-specific priors are not currently supported.</span>
+
+<span class="sd">    :param ~tskit.TreeSequence tree_sequence: The input tree sequence to be dated.</span>
+<span class="sd">    :param float mutation_rate: The estimated mutation rate per unit of genome per</span>
+<span class="sd">        unit time.</span>
+<span class="sd">    :param int max_iterations: The number of iterations used in the expectation</span>
+<span class="sd">        propagation algorithm. Default: None, treated as 25.</span>
+<span class="sd">    :param float rescaling_intervals: For time rescaling, the number of time</span>
+<span class="sd">        intervals within which to estimate a rescaling parameter. Setting this to zero</span>
+<span class="sd">        means that rescaling is not performed. Default ``None``, treated as 1000.</span>
+<span class="sd">    :param float rescaling_iterations: The number of iterations for time rescaling.</span>
+<span class="sd">        Setting this to zero means that rescaling is not performed. Default</span>
+<span class="sd">        ``None``, treated as 5.</span>
+<span class="sd">    :param bool match_segregating_sites: If ``True``, then time is rescaled</span>
+<span class="sd">        such that branch- and site-mode segregating sites are approximately equal.</span>
+<span class="sd">        If ``False``, time is rescaled such that branch- and site-mode root-to-leaf</span>
+<span class="sd">        length are approximately equal, which gives unbiased estimates when there</span>
+<span class="sd">        are polytomies. Default ``False``.</span>
+<span class="sd">    :param \\**kwargs: Other keyword arguments as described in the :func:`date` wrapper</span>
+<span class="sd">        function, including ``time_units``, ``progress``, ``allow_unary`` and</span>
+<span class="sd">        ``record_provenance``. The arguments ``return_fit`` and ``return_likelihood``</span>
+<span class="sd">        can be used to return additional information (see below).</span>
+<span class="sd">    :return:</span>
+<span class="sd">        - **ts** (:class:`~tskit.TreeSequence`) -- a copy of the input tree sequence with</span>
+<span class="sd">          updated node times based on the posterior mean, corrected where necessary to</span>
+<span class="sd">          ensure that parents are strictly older than all their children by an amount</span>
+<span class="sd">          given by the ``min_branch_length`` parameter.</span>
+<span class="sd">        - **fit** (:class:`~variational.ExpectationPropagation`) -- (Only returned</span>
+<span class="sd">          if ``return_fit`` is ``True``). The underlying object used to run the dating</span>
+<span class="sd">          inference. This can then be queried e.g. using</span>
+<span class="sd">          :meth:`~variational.ExpectationPropagation.node_posteriors()`</span>
+<span class="sd">        - **marginal_likelihood** (:py:class:`float`) -- (Only returned if</span>
+<span class="sd">          ``return_likelihood`` is ``True``) The marginal likelihood of</span>
+<span class="sd">          the mutation data given the inferred node times. Not currently</span>
+<span class="sd">          implemented for this method (set to ``None``)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">max_iterations</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">max_iterations</span> <span class="o">=</span> <span class="n">DEFAULT_MAX_ITERATIONS</span>
+    <span class="k">if</span> <span class="n">max_shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># The maximum value for the shape parameter in the variational posteriors.</span>
+        <span class="c1"># Equivalent to the maximum precision (inverse variance) on a logarithmic scale.</span>
+        <span class="n">max_shape</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="k">if</span> <span class="n">rescaling_intervals</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rescaling_intervals</span> <span class="o">=</span> <span class="n">DEFAULT_RESCALING_INTERVALS</span>
+    <span class="k">if</span> <span class="n">rescaling_iterations</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rescaling_iterations</span> <span class="o">=</span> <span class="n">DEFAULT_RESCALING_ITERATIONS</span>
+    <span class="k">if</span> <span class="n">match_segregating_sites</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">match_segregating_sites</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">regularise_roots</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">regularise_roots</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">singletons_phased</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">singletons_phased</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">eps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;The `eps` parameter has been disambiguated and is no longer used &quot;</span>
+            <span class="s2">&quot;for the variational gamma algorithm; use `min_branch_length` instead&quot;</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">tree_sequence</span><span class="o">.</span><span class="n">num_mutations</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;No mutations present: these are required for the variational_gamma method&quot;</span>
+        <span class="p">)</span>
+    <span class="n">dating_method</span> <span class="o">=</span> <span class="n">VariationalGammaMethod</span><span class="p">(</span>
+        <span class="n">tree_sequence</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="n">mutation_rate</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">dating_method</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">max_iterations</span><span class="o">=</span><span class="n">max_iterations</span><span class="p">,</span>
+        <span class="n">max_shape</span><span class="o">=</span><span class="n">max_shape</span><span class="p">,</span>
+        <span class="n">rescaling_intervals</span><span class="o">=</span><span class="n">rescaling_intervals</span><span class="p">,</span>
+        <span class="n">rescaling_iterations</span><span class="o">=</span><span class="n">rescaling_iterations</span><span class="p">,</span>
+        <span class="n">match_segregating_sites</span><span class="o">=</span><span class="n">match_segregating_sites</span><span class="p">,</span>
+        <span class="n">regularise_roots</span><span class="o">=</span><span class="n">regularise_roots</span><span class="p">,</span>
+        <span class="n">singletons_phased</span><span class="o">=</span><span class="n">singletons_phased</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">dating_method</span><span class="o">.</span><span class="n">parse_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+
+
+<span class="n">estimation_methods</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;variational_gamma&quot;</span><span class="p">:</span> <span class="n">variational_gamma</span><span class="p">,</span>
+    <span class="s2">&quot;inside_outside&quot;</span><span class="p">:</span> <span class="n">inside_outside</span><span class="p">,</span>
+    <span class="s2">&quot;maximization&quot;</span><span class="p">:</span> <span class="n">maximization</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The names of available estimation methods, each mapped to a function to carry</span>
+<span class="sd">out the appropriate method. Names can be passed as strings to the</span>
+<span class="sd">:func:`~tsdate.date` function, or each named function can be called directly:</span>
+
+<span class="sd">* :func:`tsdate.variational_gamma`: variational approximation, empirically most accurate.</span>
+<span class="sd">* :func:`tsdate.inside_outside`: empirically better, theoretically problematic.</span>
+<span class="sd">* :func:`tsdate.maximization`: worse empirically, especially with gamma approximated</span>
+<span class="sd">  priors, but theoretically robust</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="date">
+<a class="viewcode-back" href="../../python-api.html#tsdate.date">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">date</span><span class="p">(</span>
+    <span class="n">tree_sequence</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">mutation_rate</span><span class="p">,</span>
+    <span class="n">recombination_rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">time_units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">constr_iterations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">min_branch_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">set_metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">return_fit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">return_likelihood</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">allow_unary</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">progress</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">record_provenance</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="c1"># Other kwargs documented in the functions for each specific estimation-method</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Infer dates for nodes in a genealogical graph (or :ref:`ARG&lt;tutorials:sec_args&gt;`)</span>
+<span class="sd">    stored in the :ref:`succinct tree sequence&lt;tskit:sec_introduction&gt;` format.</span>
+<span class="sd">    New times are assigned to nodes using the estimation algorithm specified by</span>
+<span class="sd">    ``method`` (see note below). A ``mutation_rate`` must be given (the recombination_rate</span>
+<span class="sd">    parameter, implementing a recombination clock, is unsupported at this</span>
+<span class="sd">    time). Times associated with mutations and times associated</span>
+<span class="sd">    with non-fixed (non-sample) nodes are overwritten. For example:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">      mu = 1e-8</span>
+<span class="sd">      new_ts = tsdate.date(ts, mutation_rate=mu)</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        This is a wrapper for the named functions that are listed in</span>
+<span class="sd">        :data:`~tsdate.core.estimation_methods`. Details and specific parameters for</span>
+<span class="sd">        each estimation method are given in the documentation for those functions.</span>
+
+<span class="sd">    :param ~tskit.TreeSequence tree_sequence: The input tree sequence to be dated (for</span>
+<span class="sd">        example one with :data:`uncalibrated&lt;tskit.TIME_UNITS_UNCALIBRATED&gt;` node times).</span>
+<span class="sd">    :param float mutation_rate: The estimated mutation rate per unit of genome per</span>
+<span class="sd">        unit time (see individual methods)</span>
+<span class="sd">    :param float recombination_rate: The estimated recombination rate per unit of genome</span>
+<span class="sd">        per unit time. If provided, the dating algorithm will use a recombination rate</span>
+<span class="sd">        clock to help estimate node dates. Default: ``None`` (not currently implemented)</span>
+<span class="sd">    :param str time_units: The time units used by the ``mutation_rate`` and</span>
+<span class="sd">        ``recombination_rate`` values, and stored in the ``time_units`` attribute of the</span>
+<span class="sd">        output tree sequence. If the conditional coalescent prior is used,</span>
+<span class="sd">        then this is also applies to the value of ``population_size``, which in</span>
+<span class="sd">        standard coalescent theory is measured in generations. Therefore if you</span>
+<span class="sd">        wish to use mutation and recombination rates measured in (say) years,</span>
+<span class="sd">        and are using the conditional coalescent prior, the ``population_size``</span>
+<span class="sd">        value which you provide must be scaled by multiplying by the number of</span>
+<span class="sd">        years per generation. If ``None`` (default), assume ``&quot;generations&quot;``.</span>
+<span class="sd">    :param string method: What estimation method to use. See</span>
+<span class="sd">        :data:`~tsdate.core.estimation_methods` for possible values.</span>
+<span class="sd">        If ``None`` (default) the &quot;variational_gamma&quot; method is currently chosen.</span>
+<span class="sd">    :param int constr_iterations: The maximum number of constrained least</span>
+<span class="sd">        squares iterations to use prior to forcing positive branch lengths.</span>
+<span class="sd">        Default: None, treated as 0.</span>
+<span class="sd">    :param float min_branch_length: The minimum distance separating parent and</span>
+<span class="sd">        child ages in the returned tree sequence. Default: None, treated as 1e-8</span>
+<span class="sd">    :param bool set_metadata: Should unconstrained times be stored in table metadata,</span>
+<span class="sd">        in the form of ``&quot;mn&quot;`` (mean) and ``&quot;vr&quot;`` (variance) fields? If ``False``,</span>
+<span class="sd">        do not store metadata.  If ``True``, force metadata to be set (if no schema</span>
+<span class="sd">        is set or the schema is incompatible, clear existing metadata in the relevant</span>
+<span class="sd">        tables and set a new schema). If ``None`` (default), only set metadata if</span>
+<span class="sd">        the existing schema allows (this may overwrite existing ``&quot;mn&quot;`` and ``&quot;vr&quot;``</span>
+<span class="sd">        fields) or if existing metadata is empty, otherwise issue a warning.</span>
+<span class="sd">    :param bool return_fit: If ``True``, instead of just a dated tree sequence,</span>
+<span class="sd">        return a tuple of ``(dated_ts, fit)``. Default: None, treated as False.</span>
+<span class="sd">    :param bool return_likelihood: If ``True``, return the log marginal likelihood</span>
+<span class="sd">        from the inside algorithm in addition to the dated tree sequence. If</span>
+<span class="sd">        ``return_fit`` is also ``True``, then the marginal likelihood</span>
+<span class="sd">        will be the last element of the tuple. Default: None, treated as False.</span>
+<span class="sd">    :param bool allow_unary: Allow nodes that are &quot;locally unary&quot; (i.e. have only</span>
+<span class="sd">        one child in one or more local trees). Default: None, treated as False.</span>
+<span class="sd">    :param bool progress: Show a progress bar. Default: None, treated as False.</span>
+<span class="sd">    :param bool record_provenance: Should the tsdate command be appended to the</span>
+<span class="sd">        provenence information in the returned tree sequence?</span>
+<span class="sd">        Default: None, treated as True.</span>
+<span class="sd">    :param \\**kwargs: Other keyword arguments specific to the</span>
+<span class="sd">        :data:`estimation method&lt;tsdate.core.estimation_methods&gt;` used. These are</span>
+<span class="sd">        documented in those specific functions.</span>
+<span class="sd">    :return:</span>
+<span class="sd">        A copy of the input tree sequence but with updated node times, or (if</span>
+<span class="sd">        ``return_fit`` or ``return_likelihood`` is True) a tuple of that</span>
+<span class="sd">        tree sequence plus a fit object and/or the</span>
+<span class="sd">        marginal likelihood given the mutations on the tree sequence.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Only the .date() wrapper needs to consider the deprecated &quot;Ne&quot; param</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;variational_gamma&quot;</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">estimation_methods</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;method must be one of </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">estimation_methods</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">estimation_methods</span><span class="p">[</span><span class="n">method</span><span class="p">](</span>
+        <span class="n">tree_sequence</span><span class="p">,</span>
+        <span class="n">mutation_rate</span><span class="o">=</span><span class="n">mutation_rate</span><span class="p">,</span>
+        <span class="n">recombination_rate</span><span class="o">=</span><span class="n">recombination_rate</span><span class="p">,</span>
+        <span class="n">time_units</span><span class="o">=</span><span class="n">time_units</span><span class="p">,</span>
+        <span class="n">progress</span><span class="o">=</span><span class="n">progress</span><span class="p">,</span>
+        <span class="n">constr_iterations</span><span class="o">=</span><span class="n">constr_iterations</span><span class="p">,</span>
+        <span class="n">min_branch_length</span><span class="o">=</span><span class="n">min_branch_length</span><span class="p">,</span>
+        <span class="n">return_fit</span><span class="o">=</span><span class="n">return_fit</span><span class="p">,</span>
+        <span class="n">return_likelihood</span><span class="o">=</span><span class="n">return_likelihood</span><span class="p">,</span>
+        <span class="n">allow_unary</span><span class="o">=</span><span class="n">allow_unary</span><span class="p">,</span>
+        <span class="n">set_metadata</span><span class="o">=</span><span class="n">set_metadata</span><span class="p">,</span>
+        <span class="n">record_provenance</span><span class="o">=</span><span class="n">record_provenance</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

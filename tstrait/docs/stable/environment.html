@@ -1,0 +1,867 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Environmental noise &#8212; Tstrait manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'environment';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Multi-trait simulation" href="multi-trait.html" />
+    <link rel="prev" title="Genetic value" href="genetic.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">tstrait<br/>
+version undefined
+</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction to tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation framework</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="effect-size.html">Trait simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genetic.html">Genetic value</a></li>
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Environmental noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-trait.html">Multi-trait simulation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extras</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://tskit.dev/community/">Community</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/environment.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Environmental noise</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environmental-noise-simulation">Environmental noise simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe-requirements">Dataframe requirements</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#columns">Columns</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-requirement">Data requirement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-defined-environmental-noise">User-defined environmental noise</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-from-the-output-of-genetic-value">Simulating from the output of <code class="xref py py-func docutils literal notranslate"><span class="pre">genetic_value()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-h2-to-be-1">Setting <code class="docutils literal notranslate"><span class="pre">h2</span></code> to be 1</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="environmental-noise">
+<span id="environment-noise"></span><h1>Environmental noise<a class="headerlink" href="#environmental-noise" title="Link to this heading">#</a></h1>
+<p>This page describes how environmental noise is simulated in tstrait. Please refer to
+<a class="reference internal" href="effect-size.html#phenotype-model"><span class="std std-ref">Phenotype Model</span></a> for mathematical details on the phenotype model.</p>
+<p><strong>Learning Objectives</strong></p>
+<p>After this effect size page, you will be able to:</p>
+<ul class="simple">
+<li><p>Understand how to simulate environmental noise in tstrati</p></li>
+<li><p>Understand how to use the user’s defined distribution to simulate environmental noise</p></li>
+</ul>
+<section id="environmental-noise-simulation">
+<h2>Environmental noise simulation<a class="headerlink" href="#environmental-noise-simulation" title="Link to this heading">#</a></h2>
+<p>Environmental noise can be simulated by using <a class="reference internal" href="api.html#tstrait.sim_env" title="tstrait.sim_env"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_env()</span></code></a>. The required inputs are</p>
+<dl class="simple myst">
+<dt>genetic_df</dt><dd><p>Genetic value dataframe. Please see <a class="reference internal" href="#req-genetic-df"><span class="std std-ref">Dataframe requirements</span></a> for requirements.</p>
+</dd>
+<dt>h2</dt><dd><p>Narrow-sense heritability.</p>
+</dd>
+</dl>
+<section id="dataframe-requirements">
+<span id="req-genetic-df"></span><h3>Dataframe requirements<a class="headerlink" href="#dataframe-requirements" title="Link to this heading">#</a></h3>
+<p>The simplest way to simulate environmental noise is by using the genetic value dataframe
+output of <a class="reference internal" href="api.html#tstrait.genetic_value" title="tstrait.genetic_value"><code class="xref py py-func docutils literal notranslate"><span class="pre">genetic_value()</span></code></a>. If you would like to define your own genetic value
+dataframe, there are some requirements that you must follow.</p>
+<section id="columns">
+<h4>Columns<a class="headerlink" href="#columns" title="Link to this heading">#</a></h4>
+<p>The following columns must be included in <code class="docutils literal notranslate"><span class="pre">genetic_df</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>trait_id</strong>: Trait ID. This will be used in multi-trait simulation.</p></li>
+<li><p><strong>individual_id</strong>: Individual ID.</p></li>
+<li><p><strong>genetic_value</strong>: Simulated genetic value.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="data-requirement">
+<h4>Data requirement<a class="headerlink" href="#data-requirement" title="Link to this heading">#</a></h4>
+<p>Trait IDs in <strong>trait_id</strong> column must start from 0 and be consecutive. If you are simulating
+a single trait, you should be using an array that is filled with zeros.</p>
+</section>
+</section>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<p>We will be showing an example of environmental noise simulating by using a simulated tree
+sequence data with 10,000 individuals. The narrow-sense heritability is set to be 0.3.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://tskit.dev/msprime/docs/stable/intro.html#sec-intro" title="(in Project name not set)"><span>Introduction</span></a> for simulating whole genome in tree sequence data.</p></li>
+<li><p><a class="reference internal" href="effect-size.html#sim-trait-doc"><span class="std std-ref">Trait simulation</span></a> for simulating trait dataframe in tstrait.</p></li>
+<li><p><a class="reference internal" href="genetic.html#genetic-value-doc"><span class="std std-ref">Genetic value</span></a> for simulating the genetic value dataframe in tstrait.</p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">msprime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tstrait</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_ancestry</span><span class="p">(</span>
+    <span class="n">samples</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
+    <span class="n">recombination_rate</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span>
+    <span class="n">sequence_length</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">,</span>
+    <span class="n">population_size</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
+    <span class="n">random_seed</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="o">.</span><span class="n">sim_mutations</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">trait_model</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">trait_df</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">sim_trait</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">num_causal</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">genetic_df</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">trait_df</span><span class="p">)</span>
+
+<span class="n">phenotype_df</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">sim_env</span><span class="p">(</span><span class="n">genetic_df</span><span class="p">,</span> <span class="n">h2</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">phenotype_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>trait_id</th>
+      <th>individual_id</th>
+      <th>genetic_value</th>
+      <th>environmental_noise</th>
+      <th>phenotype</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>15.628757</td>
+      <td>-12.099555</td>
+      <td>3.529202</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>9.790460</td>
+      <td>-19.981950</td>
+      <td>-10.191491</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>2</td>
+      <td>26.421206</td>
+      <td>-3.747284</td>
+      <td>22.673922</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>3</td>
+      <td>11.717086</td>
+      <td>6.343685</td>
+      <td>18.060771</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>4</td>
+      <td>2.442051</td>
+      <td>17.140689</td>
+      <td>19.582740</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The resulting dataframe has the following columns:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>trait_id</strong>: Trait ID.</p></li>
+<li><p><strong>individual_id</strong>: Individual ID inside the tree sequence input.</p></li>
+<li><p><strong>genetic_value</strong>: Simulated genetic values.</p></li>
+<li><p><strong>environmental_noise</strong>: Simulated environmental noise.</p></li>
+<li><p><strong>phenotype</strong>: Simulated phenotype.</p></li>
+</ul>
+</div></blockquote>
+<p>The distribution of simulated environmental noise is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">phenotype_df</span><span class="p">[</span><span class="s2">&quot;environmental_noise&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Environmental Noise&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b7f8a4970e8d64511b1dbdd6fe65949524f339570210f6c7ba326065f187a784.png" src="_images/b7f8a4970e8d64511b1dbdd6fe65949524f339570210f6c7ba326065f187a784.png" />
+</div>
+</div>
+<p>The simulated environmental noise is following a normal distribution as expected.</p>
+</section>
+<section id="user-defined-environmental-noise">
+<h2>User-defined environmental noise<a class="headerlink" href="#user-defined-environmental-noise" title="Link to this heading">#</a></h2>
+<p>It would be possible for the user to define their own environmental noise, and
+there are several options available for the user.</p>
+<section id="simulating-from-the-output-of-genetic-value">
+<h3>Simulating from the output of <a class="reference internal" href="api.html#tstrait.genetic_value" title="tstrait.genetic_value"><code class="xref py py-func docutils literal notranslate"><span class="pre">genetic_value()</span></code></a><a class="headerlink" href="#simulating-from-the-output-of-genetic-value" title="Link to this heading">#</a></h3>
+<p>The output of <a class="reference internal" href="api.html#tstrait.genetic_value" title="tstrait.genetic_value"><code class="xref py py-func docutils literal notranslate"><span class="pre">genetic_value()</span></code></a> only includes relevant information regarding
+genetic values, and it doesn’t simulate environmental noise. For example, if the
+user wants to simulate environmental noise from a normal distribution with mean 0
+and variance 1, it would be possible to run the following code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">genetic_df</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">trait_df</span><span class="p">)</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">env_noise</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">genetic_df</span><span class="p">))</span>
+<span class="n">genetic_df</span><span class="p">[</span><span class="s2">&quot;environmental_noise&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">env_noise</span>
+<span class="n">genetic_df</span><span class="p">[</span><span class="s2">&quot;phenotype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">genetic_df</span><span class="p">[</span><span class="s2">&quot;environmental_noise&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">genetic_df</span><span class="p">[</span><span class="s2">&quot;genetic_value&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">genetic_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>trait_id</th>
+      <th>individual_id</th>
+      <th>genetic_value</th>
+      <th>environmental_noise</th>
+      <th>phenotype</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>15.628757</td>
+      <td>0.486381</td>
+      <td>16.115138</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>9.790460</td>
+      <td>-0.477392</td>
+      <td>9.313068</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>2</td>
+      <td>26.421206</td>
+      <td>0.669340</td>
+      <td>27.090546</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>3</td>
+      <td>11.717086</td>
+      <td>-1.387295</td>
+      <td>10.329791</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>4</td>
+      <td>2.442051</td>
+      <td>1.665888</td>
+      <td>4.107940</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We will be drawing random samples from a normal distribuion by using
+<a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.normal.html#numpy.random.Generator.normal" title="(in NumPy v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.random.Generator.normal()</span></code></a>.</p>
+</section>
+<section id="setting-h2-to-be-1">
+<h3>Setting <code class="docutils literal notranslate"><span class="pre">h2</span></code> to be 1<a class="headerlink" href="#setting-h2-to-be-1" title="Link to this heading">#</a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">h2</span></code> is set to be 1 in <a class="reference internal" href="api.html#tstrait.sim_phenotype" title="tstrait.sim_phenotype"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_phenotype()</span></code></a> or <a class="reference internal" href="api.html#tstrait.sim_env" title="tstrait.sim_env"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_env()</span></code></a>, the
+environmental noise will be a vector of zeros. After obtaining the output, the user
+can define their own environmental noise.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_result</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">sim_phenotype</span><span class="p">(</span>
+    <span class="n">ts</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span> <span class="n">num_causal</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">h2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="n">sim_result</span><span class="o">.</span><span class="n">phenotype</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>trait_id</th>
+      <th>individual_id</th>
+      <th>genetic_value</th>
+      <th>environmental_noise</th>
+      <th>phenotype</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>-4.772837</td>
+      <td>0.0</td>
+      <td>-4.772837</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>-4.604359</td>
+      <td>0.0</td>
+      <td>-4.604359</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>2</td>
+      <td>0.534293</td>
+      <td>0.0</td>
+      <td>0.534293</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>3</td>
+      <td>2.972380</td>
+      <td>0.0</td>
+      <td>2.972380</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>4</td>
+      <td>-1.384315</td>
+      <td>0.0</td>
+      <td>-1.384315</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We see that all values in the <code class="docutils literal notranslate"><span class="pre">environmental_noise</span></code> column are zero.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="genetic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Genetic value</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="multi-trait.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Multi-trait simulation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environmental-noise-simulation">Environmental noise simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe-requirements">Dataframe requirements</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#columns">Columns</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-requirement">Data requirement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-defined-environmental-noise">User-defined environmental noise</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-from-the-output-of-genetic-value">Simulating from the output of <code class="xref py py-func docutils literal notranslate"><span class="pre">genetic_value()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-h2-to-be-1">Setting <code class="docutils literal notranslate"><span class="pre">h2</span></code> to be 1</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

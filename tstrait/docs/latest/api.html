@@ -1,0 +1,1405 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>API Reference &#8212; Tstrait manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Citing tstrait" href="citation.html" />
+    <link rel="prev" title="Multi-trait simulation" href="multi-trait.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">tstrait<br/>
+version undefined
+</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction to tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="effect-size.html">Trait simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genetic.html">Genetic value</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environmental noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-trait.html">Multi-trait simulation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">API Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extras</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://tskit.dev/community/">Community</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/api.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>API Reference</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-functions">Simulation functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-size-distributions">Effect size distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing-functions">Postprocessing functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result-data-classes">Result data classes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-documentation">Reference documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Simulation functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.sim_phenotype"><code class="docutils literal notranslate"><span class="pre">sim_phenotype()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.sim_trait"><code class="docutils literal notranslate"><span class="pre">sim_trait()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.genetic_value"><code class="docutils literal notranslate"><span class="pre">genetic_value()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.sim_env"><code class="docutils literal notranslate"><span class="pre">sim_env()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Effect size distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.trait_model"><code class="docutils literal notranslate"><span class="pre">trait_model()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModel"><code class="docutils literal notranslate"><span class="pre">TraitModel</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModelNormal"><code class="docutils literal notranslate"><span class="pre">TraitModelNormal</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModelT"><code class="docutils literal notranslate"><span class="pre">TraitModelT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModelFixed"><code class="docutils literal notranslate"><span class="pre">TraitModelFixed</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModelExponential"><code class="docutils literal notranslate"><span class="pre">TraitModelExponential</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModelGamma"><code class="docutils literal notranslate"><span class="pre">TraitModelGamma</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModelMultivariateNormal"><code class="docutils literal notranslate"><span class="pre">TraitModelMultivariateNormal</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Postprocessing functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.normalise_phenotypes"><code class="docutils literal notranslate"><span class="pre">normalise_phenotypes()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.normalise_genetic_value"><code class="docutils literal notranslate"><span class="pre">normalise_genetic_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Result data classes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.PhenotypeResult"><code class="docutils literal notranslate"><span class="pre">PhenotypeResult</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="api-reference">
+<span id="reference"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h1>
+<p>This page provides a detailed explanation of all public tstrait objects and functions.</p>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<section id="simulation-functions">
+<h3>Simulation functions<a class="headerlink" href="#simulation-functions" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tstrait.sim_phenotype" title="tstrait.sim_phenotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_phenotype</span></code></a>(ts, model, *[, num_causal, ...])</p></td>
+<td><p>Simulate quantitative traits.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#tstrait.sim_trait" title="tstrait.sim_trait"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_trait</span></code></a>(ts, model, *[, num_causal, ...])</p></td>
+<td><p>Simulates traits.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tstrait.genetic_value" title="tstrait.genetic_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">genetic_value</span></code></a>(ts, trait_df)</p></td>
+<td><p>Obtains genetic value from a trait dataframe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#tstrait.sim_env" title="tstrait.sim_env"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_env</span></code></a>(genetic_df, *[, h2, random_seed])</p></td>
+<td><p>Simulates environmental noise.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="effect-size-distributions">
+<span id="effect-size-distribution"></span><h3>Effect size distributions<a class="headerlink" href="#effect-size-distributions" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trait_model</span></code></a>(distribution, **kwargs)</p></td>
+<td><p>Return a trait model corresponding to the specified model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#tstrait.TraitModel" title="tstrait.TraitModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TraitModel</span></code></a>(name)</p></td>
+<td><p>Superclass of the trait model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tstrait.TraitModelNormal" title="tstrait.TraitModelNormal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TraitModelNormal</span></code></a>(mean, var)</p></td>
+<td><p>Normal distribution trait model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#tstrait.TraitModelT" title="tstrait.TraitModelT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TraitModelT</span></code></a>(mean, var, df)</p></td>
+<td><p>Student's t distribution trait model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tstrait.TraitModelFixed" title="tstrait.TraitModelFixed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TraitModelFixed</span></code></a>(value[, random_sign])</p></td>
+<td><p>Fixed value trait model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#tstrait.TraitModelExponential" title="tstrait.TraitModelExponential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TraitModelExponential</span></code></a>(scale[, random_sign])</p></td>
+<td><p>Exponential distribution trait model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tstrait.TraitModelGamma" title="tstrait.TraitModelGamma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TraitModelGamma</span></code></a>(shape, scale[, random_sign])</p></td>
+<td><p>Gamma distribution trait model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#tstrait.TraitModelMultivariateNormal" title="tstrait.TraitModelMultivariateNormal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TraitModelMultivariateNormal</span></code></a>(mean, cov)</p></td>
+<td><p>Multivariate normal distribution trait model.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="postprocessing-functions">
+<h3>Postprocessing functions<a class="headerlink" href="#postprocessing-functions" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tstrait.normalise_phenotypes" title="tstrait.normalise_phenotypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalise_phenotypes</span></code></a>(phenotype_df[, mean, ...])</p></td>
+<td><p>Normalise phenotype dataframe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#tstrait.normalise_genetic_value" title="tstrait.normalise_genetic_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalise_genetic_value</span></code></a>(genetic_df[, mean, ...])</p></td>
+<td><p>Normalise genetic value dataframe.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="result-data-classes">
+<h3>Result data classes<a class="headerlink" href="#result-data-classes" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tstrait.PhenotypeResult" title="tstrait.PhenotypeResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PhenotypeResult</span></code></a>(trait, phenotype)</p></td>
+<td><p>Dataclass that contains effect size dataframe and phenotype dataframe.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="reference-documentation">
+<h2>Reference documentation<a class="headerlink" href="#reference-documentation" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Simulation functions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="tstrait.sim_phenotype">
+<span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">sim_phenotype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_causal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">causal_sites</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/simulate_phenotype.html#sim_phenotype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.sim_phenotype" title="Link to this definition">#</a></dt>
+<dd><p>Simulate quantitative traits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ts</strong> (<a class="reference external" href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence" title="(in Project name not set)"><em>tskit.TreeSequence</em></a>) – The tree sequence data that will be used in the quantitative trait
+simulation.</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="#tstrait.TraitModel" title="tstrait.TraitModel"><em>tstrait.TraitModel</em></a>) – Trait model that will be used to simulate effect sizes.</p></li>
+<li><p><strong>num_causal</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of causal sites. If None, number of causal sites will be 1.</p></li>
+<li><p><strong>causal_sites</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of site IDs that have causal allele. If None,
+causal site IDs will be chosen randomly according to num_causal.</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Parameter that determines the degree of the frequency
+dependence model. Please see <span class="xref std std-ref">frequency_dependence</span> for details on how
+this parameter influences effect size simulation. If None, alpha will be 0.</p></li>
+<li><p><strong>h2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array-like</em>) – Narrow-sense heritability. When it is 1, environmental noise will
+be a vector of zeros. If <cite>h2</cite> is array-like, the dimension of <cite>h2</cite> must match
+the number of traits to be simulated. If None, h2 will be 1.</p></li>
+<li><p><strong>random_seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Random seed of simulation. If None, simulation will be
+conducted randomly.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataclass object that includes phenotype and trait dataframe.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tstrait.PhenotypeResult" title="tstrait.PhenotypeResult">PhenotypeResult</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If the number of mutations in <cite>ts</cite> is smaller than <cite>num_causal</cite>.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If <cite>h2</cite> &lt;= 0 or <cite>h2</cite> &gt; 1</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> Returns a trait model, which can be used as <cite>model</cite> input.</p>
+<p><a class="reference internal" href="#tstrait.PhenotypeResult" title="tstrait.PhenotypeResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhenotypeResult</span></code></a> Dataclass object that will be used as an output.</p>
+<p><a class="reference internal" href="#tstrait.sim_trait" title="tstrait.sim_trait"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_trait()</span></code></a> Used to simulate a trait dataframe.</p>
+<p><a class="reference internal" href="#tstrait.genetic_value" title="tstrait.genetic_value"><code class="xref py py-func docutils literal notranslate"><span class="pre">genetic_value()</span></code></a> Used to determine genetic value of individuals.</p>
+<p><a class="reference internal" href="#tstrait.sim_env" title="tstrait.sim_env"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_env()</span></code></a> Used to simulate environmental noise.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The simulation outputs of traits and phenotypes are given as a
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>.</p>
+<p>The trait dataframe can be extracted by using <code class="docutils literal notranslate"><span class="pre">.trait</span></code> in the
+resulting object and contains the following columns:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>position</strong>: Position of sites that have causal allele in genome
+coordinates.</p></li>
+<li><p><strong>site_id</strong>: Site IDs that have causal allele.</p></li>
+<li><p><strong>effect_size</strong>: Simulated effect size of causal allele.</p></li>
+<li><p><strong>causal_allele</strong>: Causal allele.</p></li>
+<li><p><strong>allele_freq</strong>: Allele frequency of causal allele. It is described
+in detail in <a class="reference internal" href="effect-size.html#trait-frequency-dependence"><span class="std std-ref">Frequency Dependence</span></a>.</p></li>
+<li><p><strong>trait_id</strong>: Trait ID.</p></li>
+</ul>
+</div></blockquote>
+<p>The phenotype dataframe can be extracted by using <code class="docutils literal notranslate"><span class="pre">.phenotype</span></code> in the
+resulting object and contains the following columns:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>trait_id</strong>: Trait ID.</p></li>
+<li><p><strong>individual_id</strong>: Individual ID inside the tree sequence input.</p></li>
+<li><p><strong>genetic_value</strong>: Simulated genetic values.</p></li>
+<li><p><strong>environmental_noise</strong>: Simulated environmental noise.</p></li>
+<li><p><strong>phenotype</strong>: Simulated phenotype.</p></li>
+</ul>
+</div></blockquote>
+<p>Please refer to <a class="reference internal" href="effect-size.html#phenotype-model"><span class="std std-ref">Phenotype Model</span></a> for mathematical details of the phenotypic
+model.</p>
+</div>
+<p class="rubric">Examples</p>
+<p>See <a class="reference internal" href="quick-start.html#quickstart"><span class="std std-ref">Quick start</span></a> for worked examples.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tstrait.sim_trait">
+<span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">sim_trait</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_causal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">causal_sites</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/simulate_effect_size.html#sim_trait"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.sim_trait" title="Link to this definition">#</a></dt>
+<dd><p>Simulates traits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ts</strong> (<a class="reference external" href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence" title="(in Project name not set)"><em>tskit.TreeSequence</em></a>) – The tree sequence data that will be used in the quantitative trait
+simulation.</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="#tstrait.TraitModel" title="tstrait.TraitModel"><em>tstrait.TraitModel</em></a>) – Trait model that will be used to simulate effect sizes.</p></li>
+<li><p><strong>num_causal</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of causal sites that will be randomly selected.
+If both <cite>num_causal</cite> and <cite>causal_sites</cite> are None, number of causal sites
+will be 1.</p></li>
+<li><p><strong>causal_sites</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of site IDs that have causal allele. If None,
+causal site IDs will be chosen randomly according to <cite>num_causal</cite>.</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Parameter that determines the degree of the frequency
+dependence model. Please see <span class="xref std std-ref">frequency_dependence</span> for details on how
+this parameter influences effect size simulation. If None, alpha will be 0.</p></li>
+<li><p><strong>random_seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Random seed of simulation. If None, simulation will be
+conducted randomly.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Trait dataframe that includes simulated effect sizes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)">pandas.DataFrame</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If the number of mutations in <cite>ts</cite> is smaller than <cite>num_causal</cite>.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If both <cite>num_causal</cite> and <cite>causal_sites</cite> are specified.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If there are repeated values in <cite>causal_sites</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> Return a trait model, which can be used as <cite>model</cite> input.</p>
+<p><a class="reference internal" href="#tstrait.genetic_value" title="tstrait.genetic_value"><code class="xref py py-func docutils literal notranslate"><span class="pre">genetic_value()</span></code></a> The trait dataframe output can be used as an input
+to obtain genetic values.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The simulation output is given as a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> and contains the
+following columns:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>position</strong>: Position of sites that have causal allele in genome
+coordinates.</p></li>
+<li><p><strong>site_id</strong>: Site IDs that have causal allele. The output dataframe
+has sorted site IDs.</p></li>
+<li><p><strong>effect_size</strong>: Simulated effect size of causal allele.</p></li>
+<li><p><strong>causal_allele</strong>: Causal allele.</p></li>
+<li><p><strong>allele_freq</strong>: Allele frequency of causal allele. It is described
+in detail in <a class="reference internal" href="effect-size.html#trait-frequency-dependence"><span class="std std-ref">Frequency Dependence</span></a>.</p></li>
+<li><p><strong>trait_id</strong>: Trait ID.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<p class="rubric">Examples</p>
+<p>See <span class="xref std std-ref">sim_trait</span> for worked examples.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tstrait.genetic_value">
+<span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">genetic_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trait_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/genetic_value.html#genetic_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.genetic_value" title="Link to this definition">#</a></dt>
+<dd><p>Obtains genetic value from a trait dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ts</strong> (<a class="reference external" href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence" title="(in Project name not set)"><em>tskit.TreeSequence</em></a>) – The tree sequence data that will be used in the quantitative trait
+simulation.</p></li>
+<li><p><strong>trait_df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><em>pandas.DataFrame</em></a>) – Trait dataframe.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Pandas dataframe that includes genetic value of individuals in the
+tree sequence.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)">pandas.DataFrame</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> Return a trait model, which can be used as <cite>model</cite> input.</p>
+<p><a class="reference internal" href="#tstrait.sim_trait" title="tstrait.sim_trait"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_trait()</span></code></a> Return a trait dataframe, which can be used as a
+<cite>trait_df</cite> input.</p>
+<p><a class="reference internal" href="#tstrait.sim_env" title="tstrait.sim_env"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_env()</span></code></a> Genetic value dataframe output can be used as an input
+to simulate environmental noise.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <cite>trait_df</cite> input has some requirements that will be noted below.</p>
+<ol class="arabic simple">
+<li><p>Columns</p></li>
+</ol>
+<p>The following columns must be included in <cite>trait_df</cite>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>site_id</strong>: Site IDs that have causal allele.</p></li>
+<li><p><strong>effect_size</strong>: Simulated effect size of causal allele.</p></li>
+<li><p><strong>causal_allele</strong>: Causal allele.</p></li>
+<li><p><strong>trait_id</strong>: Trait ID.</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p>Data requirements</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Site IDs in <strong>site_id</strong> column must be sorted in an ascending order. Please
+refer to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html#pandas.DataFrame.sort_values" title="(in pandas v3.0.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.DataFrame.sort_values()</span></code></a> for details on sorting
+values in a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>.</p></li>
+<li><p>Trait IDs in <strong>trait_id</strong> column must start from zero and be consecutive.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p>The genetic value dataframe contains the following columns:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>trait_id</strong>: Trait ID.</p></li>
+<li><p><strong>individual_id</strong>: Individual ID inside the tree sequence input.</p></li>
+<li><p><strong>genetic_value</strong>: Genetic values that are obtained from the trait
+dataframe.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<p class="rubric">Examples</p>
+<p>See <span class="xref std std-ref">genetic_value</span> for worked examples.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tstrait.sim_env">
+<span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">sim_env</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genetic_df</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/simulate_environment.html#sim_env"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.sim_env" title="Link to this definition">#</a></dt>
+<dd><p>Simulates environmental noise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>genetic_df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><em>pandas.DataFrame</em></a>) – Genetic value dataframe.</p></li>
+<li><p><strong>h2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array-like</em>) – Narrow-sense heritability. When it is 1, environmental noise will
+be a vector of zeros. If <cite>h2</cite> is array-like, the dimension of <cite>h2</cite> must match
+the number of traits to be simulated. If None, h2 will be 1.</p></li>
+<li><p><strong>random_seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Random seed of simulation. If None, simulation will be
+conducted randomly.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataframe with simulated environmental noise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)">pandas.DataFrame</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If <cite>h2</cite> &lt;= 0 or <cite>h2</cite> &gt; 1</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_genetic()</span></code> Return a dataclass with genetic value dataframe,
+which can be used as <cite>genetic_df</cite> input.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <cite>genetic_df</cite> input has some requirements that will be noted below.</p>
+<ol class="arabic simple">
+<li><p>Columns</p></li>
+</ol>
+<p>The following columns must be included in <cite>genetic_df</cite>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>trait_id</strong>: Trait ID.</p></li>
+<li><p><strong>individual_id</strong>: Individual ID inside the tree sequence input.</p></li>
+<li><p><strong>genetic_value</strong>: Simulated genetic values.</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Data requirement</p></li>
+</ol>
+<p>Trait IDs in <strong>trait_id</strong> column must start from 0 and be consecutive.</p>
+<p>The dataframe output has the following columns:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>trait_id</strong>: Trait ID.</p></li>
+<li><p><strong>individual_id</strong>: Individual ID inside the tree sequence input.</p></li>
+<li><p><strong>genetic_value</strong>: Simulated genetic values.</p></li>
+<li><p><strong>environmental_noise</strong>: Simulated environmental noise.</p></li>
+<li><p><strong>phenotype</strong>: Simulated phenotype.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<p class="rubric">Examples</p>
+<p>See <a class="reference internal" href="environment.html#environment-noise"><span class="std std-ref">Environmental noise</span></a> for worked examples.</p>
+</dd></dl>
+
+</section>
+<section id="id2">
+<h3>Effect size distributions<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="tstrait.trait_model">
+<span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">trait_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distribution</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/trait_model.html#trait_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.trait_model" title="Link to this definition">#</a></dt>
+<dd><p>Return a trait model corresponding to the specified model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – <p>String describing the trait model. The list of
+supported distributions are:</p>
+<ul>
+<li><p>”normal”: Normal distribution</p></li>
+<li><p>”t”: Student’s t distribution</p></li>
+<li><p>”fixed”: Fixed value</p></li>
+<li><p>”exponential”: Exponential distribution</p></li>
+<li><p>”gamma”: Gamma distribution</p></li>
+<li><p>”multi_normal”: Multivariate normal distribution</p></li>
+</ul>
+</p></li>
+<li><p><strong>kwargs</strong> – These parameters will be used to specify the trait model.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Trait model that specifies the distribution of effect size
+simulation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tstrait.TraitModel" title="tstrait.TraitModel">TraitModel</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#tstrait.TraitModelNormal" title="tstrait.TraitModelNormal"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraitModelNormal</span></code></a> Return a normal distribution trait model.</p>
+<p><a class="reference internal" href="#tstrait.TraitModelT" title="tstrait.TraitModelT"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraitModelT</span></code></a> Return a Student’s t-distribution trait model.</p>
+<p><a class="reference internal" href="#tstrait.TraitModelFixed" title="tstrait.TraitModelFixed"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraitModelFixed</span></code></a> Return a fixed value trait model.</p>
+<p><a class="reference internal" href="#tstrait.TraitModelExponential" title="tstrait.TraitModelExponential"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraitModelExponential</span></code></a> Return an exponential distribution trait model.</p>
+<p><a class="reference internal" href="#tstrait.TraitModelGamma" title="tstrait.TraitModelGamma"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraitModelGamma</span></code></a> Return a gamma distribution trait model.</p>
+<p><a class="reference internal" href="#tstrait.TraitModelMultivariateNormal" title="tstrait.TraitModelMultivariateNormal"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraitModelMultivariateNormal</span></code></a> Return a multivariate normal
+distribution trait model.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please reference <span class="xref std std-ref">effect_size</span> for details on the effect size
+simulation. Multivariate normal distribution trait model is used in
+multi-trait simulation, which is described in <a class="reference internal" href="multi-trait.html#multi-trait"><span class="std std-ref">Multi-trait simulation</span></a>.</p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tstrait</span>
+</pre></div>
+</div>
+<p>Constructing a normal distribution trait model with mean <span class="math notranslate nohighlight">\(0\)</span> and
+variance <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tstrait</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">trait_model</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;normal&#39;</span>
+</pre></div>
+</div>
+<p>Constructing a student’s t-distribution trait model with mean <span class="math notranslate nohighlight">\(0\)</span>,
+variance <span class="math notranslate nohighlight">\(1\)</span> and degrees of freedom <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">trait_model</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;t&#39;</span>
+</pre></div>
+</div>
+<p>Constructing a fixed value trait model with value <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">trait_model</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="s2">&quot;fixed&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;fixed&#39;</span>
+</pre></div>
+</div>
+<p>Constructing an exponential distribution trait model with scale
+<span class="math notranslate nohighlight">\(1\)</span>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">trait_model</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="s2">&quot;exponential&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;exponential&#39;</span>
+</pre></div>
+</div>
+<p>Constructing an exponential distribution trait model with scale
+<span class="math notranslate nohighlight">\(1\)</span>, and enable simulation of negative values.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">trait_model</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="s2">&quot;exponential&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>                                     <span class="n">random_sign</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Constructing a gamma distribution trait model with shape <span class="math notranslate nohighlight">\(1\)</span>
+and scale <span class="math notranslate nohighlight">\(2\)</span>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">trait_model</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;gamma&#39;</span>
+</pre></div>
+</div>
+<p>Constructing a gamma distribution trait model with shape <span class="math notranslate nohighlight">\(1\)</span>,
+scale <span class="math notranslate nohighlight">\(2\)</span>, and allow simulation of negative values.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">trait_model</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>                                     <span class="n">random_sign</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;gamma&#39;</span>
+</pre></div>
+</div>
+<p>Constructing a multivariate normal distribution trait model with
+mean vector <span class="math notranslate nohighlight">\([0, 0]\)</span> and covariance matrix being an
+identity matrix.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">trait_model</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="s2">&quot;multi_normal&quot;</span><span class="p">,</span>                                     <span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">cov</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;multi_normal&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">num_trait</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tstrait.TraitModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">TraitModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/trait_model.html#TraitModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.TraitModel" title="Link to this definition">#</a></dt>
+<dd><p>Superclass of the trait model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the trait model.</p></li>
+<li><p><strong>num_trait</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of traits to be simulated.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> Construct a trait model.</p>
+<p><a class="reference internal" href="#tstrait.TraitModelNormal" title="tstrait.TraitModelNormal"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraitModelNormal</span></code></a> Return a normal distribution trait model.</p>
+<p><a class="reference internal" href="#tstrait.TraitModelT" title="tstrait.TraitModelT"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraitModelT</span></code></a> Return a Student’s t-distribution trait model.</p>
+<p><a class="reference internal" href="#tstrait.TraitModelFixed" title="tstrait.TraitModelFixed"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraitModelFixed</span></code></a> Return a fixed value trait model.</p>
+<p><a class="reference internal" href="#tstrait.TraitModelExponential" title="tstrait.TraitModelExponential"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraitModelExponential</span></code></a> Return an exponential distribution trait model.</p>
+<p><a class="reference internal" href="#tstrait.TraitModelGamma" title="tstrait.TraitModelGamma"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraitModelGamma</span></code></a> Return a gamma distribution trait model.</p>
+<p><a class="reference internal" href="#tstrait.TraitModelMultivariateNormal" title="tstrait.TraitModelMultivariateNormal"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraitModelMultivariateNormal</span></code></a> Return a multivariate normal
+distribution trait model.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is the base class for all trait models in tstrait. All trait models
+should set all parameters in their <code class="docutils literal notranslate"><span class="pre">__init__</span></code> as arguments.</p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tstrait.TraitModelNormal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">TraitModelNormal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/trait_model.html#TraitModelNormal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.TraitModelNormal" title="Link to this definition">#</a></dt>
+<dd><p>Normal distribution trait model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Mean of the simulated effect size.</p></li>
+<li><p><strong>var</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Variance of the simulated effect size. Must be non-negative.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Normal distribution trait model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tstrait.TraitModel" title="tstrait.TraitModel">TraitModel</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> Construct a trait model.</p>
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.normal.html#numpy.random.Generator.normal" title="(in NumPy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.random.Generator.normal()</span></code></a> Details on the input parameters
+and distribution.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a trait model built on top of
+<a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.normal.html#numpy.random.Generator.normal" title="(in NumPy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.random.Generator.normal()</span></code></a>, so please see its documentation
+for the details of the normal distribution simulation.</p>
+</div>
+<p class="rubric">Examples</p>
+<p>Please see the docstring example of <a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> for constructing a
+normal distribution trait model.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tstrait.TraitModelT">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">TraitModelT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/trait_model.html#TraitModelT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.TraitModelT" title="Link to this definition">#</a></dt>
+<dd><p>Student’s t distribution trait model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Mean of the simulated effect size.</p></li>
+<li><p><strong>var</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Variance of the simulated effect size. Must be &gt; 0.</p></li>
+<li><p><strong>df</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Degrees of freedom. Must be &gt; 0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Student’s t distribution trait model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tstrait.TraitModel" title="tstrait.TraitModel">TraitModel</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> Construct a trait model.</p>
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.standard_t.html#numpy.random.Generator.standard_t" title="(in NumPy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.random.Generator.standard_t()</span></code></a> Details on the input
+parameters and distribution.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a trait model built on top of
+<a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.standard_t.html#numpy.random.Generator.standard_t" title="(in NumPy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.random.Generator.standard_t()</span></code></a>, so please see its
+documentation for the details of the normal distribution simulation.</p>
+</div>
+<p class="rubric">Examples</p>
+<p>Please see the docstring example of <a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> for constructing a student’s
+t distribution trait model.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tstrait.TraitModelFixed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">TraitModelFixed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/trait_model.html#TraitModelFixed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.TraitModelFixed" title="Link to this definition">#</a></dt>
+<dd><p>Fixed value trait model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Value of the simulated effect size.</p></li>
+<li><p><strong>random_sign</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span> will be randomly
+multiplied to the simulated effect sizes, such that we can simulate constant
+value effect sizes with randomly chosen signs.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Fixed value trait model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tstrait.TraitModel" title="tstrait.TraitModel">TraitModel</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> Construct a trait model.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a trait model that gives the fixed value that is specified in
+<cite>value</cite> if <cite>random_sign</cite> is False. If it is true, this simulates effect
+sizes with randomly chosen signs.</p>
+</div>
+<p class="rubric">Examples</p>
+<p>Please see the docstring example of <a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> for constructing a
+fixed value trait model.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tstrait.TraitModelExponential">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">TraitModelExponential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/trait_model.html#TraitModelExponential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.TraitModelExponential" title="Link to this definition">#</a></dt>
+<dd><p>Exponential distribution trait model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Scale of the exponential distribution. Must be non-negative.</p></li>
+<li><p><strong>random_sign</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span> will be randomly
+multiplied to the simulated effect sizes, such that we can simulate effect
+sizes with randomly chosen signs. If False, only positive values are being
+simulated as part of the property of the exponential distribution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Exponential distribution trait model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tstrait.TraitModel" title="tstrait.TraitModel">TraitModel</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> Construct a trait model.</p>
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.exponential.html#numpy.random.Generator.exponential" title="(in NumPy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.random.Generator.exponential()</span></code></a> Details on the input
+parameters and distribution.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a trait model built on top of
+<a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.exponential.html#numpy.random.Generator.exponential" title="(in NumPy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.random.Generator.exponential()</span></code></a>, so please see its
+documentation for the details of the exponential distribution simulation.</p>
+</div>
+<p class="rubric">Examples</p>
+<p>Please see the docstring example of <a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> for constructing an
+exponential distribution trait model.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tstrait.TraitModelGamma">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">TraitModelGamma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/trait_model.html#TraitModelGamma"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.TraitModelGamma" title="Link to this definition">#</a></dt>
+<dd><p>Gamma distribution trait model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Shape of the gamma distribution. Must be non-negative.</p></li>
+<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Scale of the gamma distribution. Must be non-negative.</p></li>
+<li><p><strong>random_sign</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span> will be randomly
+multiplied to the simulated effect sizes, such that we can simulate effect
+sizes with randomly chosen signs. If False, only positive values are being
+simulated as part of the property of the gamma distribution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Gamma distribution trait model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tstrait.TraitModel" title="tstrait.TraitModel">TraitModel</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> Construct a trait model.</p>
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.gamma.html#numpy.random.Generator.gamma" title="(in NumPy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.random.Generator.gamma()</span></code></a> Details on the input parameters
+and distribution.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a trait model built on top of
+<a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.gamma.html#numpy.random.Generator.gamma" title="(in NumPy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.random.Generator.gamma()</span></code></a>, so please see its documentation
+for the details of the gamma distribution simulation.</p>
+</div>
+<p class="rubric">Examples</p>
+<p>Please see the docstring example of <a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> for constructing an
+gamma distribution trait model.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tstrait.TraitModelMultivariateNormal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">TraitModelMultivariateNormal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/trait_model.html#TraitModelMultivariateNormal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.TraitModelMultivariateNormal" title="Link to this definition">#</a></dt>
+<dd><p>Multivariate normal distribution trait model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<em>1-D array_like</em><em>, of </em><em>length N</em>) – Mean vector.</p></li>
+<li><p><strong>cov</strong> (<em>2-D array_like</em><em>, of </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>N</em><em>)</em>) – Covariance matrix. Must be symmetric and positive-semidefinite.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Multivariate normal distribution trait model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tstrait.TraitModel" title="tstrait.TraitModel">TraitModel</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> Construct a trait model.</p>
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.multivariate_normal.html#numpy.random.Generator.multivariate_normal" title="(in NumPy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.random.Generator.multivariate_normal()</span></code></a> Details on the
+input parameters and distribution.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Multivariate normal distribution simulation is used in multi-trait simulation,
+which is described in <a class="reference internal" href="multi-trait.html#multi-trait"><span class="std std-ref">Multi-trait simulation</span></a>.</p>
+<p>This is a trait model built on top of
+<a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.multivariate_normal.html#numpy.random.Generator.multivariate_normal" title="(in NumPy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.random.Generator.multivariate_normal()</span></code></a>, so please see its
+documentation for the details of the multivariate normal distribution
+simulation.</p>
+<p>The number of dimensions of mean vector and covariance matrix should match,
+and the length of the mean vector specifies the number of traits that will
+be simulated by using this model.</p>
+</div>
+<p class="rubric">Examples</p>
+<p>Please see the docstring example of <a class="reference internal" href="#tstrait.trait_model" title="tstrait.trait_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">trait_model()</span></code></a> for constructing a
+multivariate normal distribution trait model.</p>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h3>Postprocessing functions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="tstrait.normalise_phenotypes">
+<span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">normalise_phenotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phenotype_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/simulate_phenotype.html#normalise_phenotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.normalise_phenotypes" title="Link to this definition">#</a></dt>
+<dd><p>Normalise phenotype dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phenotype_df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><em>pandas.DataFrame</em></a>) – Phenotype dataframe.</p></li>
+<li><p><strong>mean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Mean of the resulting phenotype.</p></li>
+<li><p><strong>var</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Variance of the resulting phenotype.</p></li>
+<li><p><strong>ddof</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Delta degrees of freedom. The divisor used in computing the variance
+is N - ddof, where N represents the number of elements.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataframe with normalised phenotype.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)">pandas.DataFrame</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If <cite>var</cite> &lt;= 0.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following columns must be included in <cite>phenotype_df</cite>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>trait_id</strong>: Trait ID.</p></li>
+<li><p><strong>individual_id</strong>: Individual ID.</p></li>
+<li><p><strong>phenotype</strong>: Simulated phenotypes.</p></li>
+</ul>
+</div></blockquote>
+<p>The dataframe output has the following columns:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>trait_id</strong>: Trait ID inside the phenotype_df input.</p></li>
+<li><p><strong>individual_id</strong>: Individual ID inside the phenotype_df input.</p></li>
+<li><p><strong>phenotype</strong>: Normalised phenotype.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<p class="rubric">Examples</p>
+<p>See <a class="reference internal" href="quick-start.html#normalise-phenotype"><span class="std std-ref">Normalise Phenotype</span></a> section for worked examples.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tstrait.normalise_genetic_value">
+<span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">normalise_genetic_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genetic_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/genetic_value.html#normalise_genetic_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.normalise_genetic_value" title="Link to this definition">#</a></dt>
+<dd><p>Normalise genetic value dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>genetic_df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><em>pandas.DataFrame</em></a>) – Genetic value dataframe.</p></li>
+<li><p><strong>mean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Mean of the resulting genetic value.</p></li>
+<li><p><strong>var</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Variance of the resulting genetic value.</p></li>
+<li><p><strong>ddof</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Delta degrees of freedom. The divisor used in computing the variance
+is N - ddof, where N represents the number of elements.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataframe with normalised genetic value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)">pandas.DataFrame</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If <cite>var</cite> &lt;= 0.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following columns must be included in <cite>genetic_df</cite>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>trait_id</strong>: Trait ID.</p></li>
+<li><p><strong>individual_id</strong>: Individual ID inside the tree sequence input.</p></li>
+<li><p><strong>genetic_value</strong>: Simulated genetic values.</p></li>
+</ul>
+</div></blockquote>
+<p>The dataframe output has the following columns:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>trait_id</strong>: Trait ID.</p></li>
+<li><p><strong>individual_id</strong>: Individual ID inside the tree sequence input.</p></li>
+<li><p><strong>genetic_value</strong>: Normalised genetic values.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<p class="rubric">Examples</p>
+<p>See <a class="reference internal" href="genetic.html#normalise-genetic-value"><span class="std std-ref">Normalise Genetic Value</span></a> section for worked examples.</p>
+</dd></dl>
+
+</section>
+<section id="id4">
+<h3>Result data classes<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="tstrait.PhenotypeResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tstrait.</span></span><span class="sig-name descname"><span class="pre">PhenotypeResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trait</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phenotype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tstrait/simulate_phenotype.html#PhenotypeResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tstrait.PhenotypeResult" title="Link to this definition">#</a></dt>
+<dd><p>Dataclass that contains effect size dataframe and phenotype dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trait</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><em>pandas.DataFrame</em></a>) – Trait dataframe that includes simulated effect sizes.</p></li>
+<li><p><strong>phenotype</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><em>pandas.DataFrame</em></a>) – Phenotype dataframe that includes simulated phenotype.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#tstrait.sim_phenotype" title="tstrait.sim_phenotype"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_phenotype()</span></code></a> Use this dataclass as a simulation output.</p>
+</div>
+<p class="rubric">Examples</p>
+<p>See <a class="reference internal" href="quick-start.html#effect-size-output"><span class="std std-ref">Trait Dataframe</span></a> for details on extracting the trait
+dataframe, and <a class="reference internal" href="quick-start.html#phenotype-output"><span class="std std-ref">Phenotype Output</span></a> for details on extracting the
+phenotype dataframe.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="multi-trait.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Multi-trait simulation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="citation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Citing tstrait</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-functions">Simulation functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-size-distributions">Effect size distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing-functions">Postprocessing functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result-data-classes">Result data classes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-documentation">Reference documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Simulation functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.sim_phenotype"><code class="docutils literal notranslate"><span class="pre">sim_phenotype()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.sim_trait"><code class="docutils literal notranslate"><span class="pre">sim_trait()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.genetic_value"><code class="docutils literal notranslate"><span class="pre">genetic_value()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.sim_env"><code class="docutils literal notranslate"><span class="pre">sim_env()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Effect size distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.trait_model"><code class="docutils literal notranslate"><span class="pre">trait_model()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModel"><code class="docutils literal notranslate"><span class="pre">TraitModel</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModelNormal"><code class="docutils literal notranslate"><span class="pre">TraitModelNormal</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModelT"><code class="docutils literal notranslate"><span class="pre">TraitModelT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModelFixed"><code class="docutils literal notranslate"><span class="pre">TraitModelFixed</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModelExponential"><code class="docutils literal notranslate"><span class="pre">TraitModelExponential</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModelGamma"><code class="docutils literal notranslate"><span class="pre">TraitModelGamma</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.TraitModelMultivariateNormal"><code class="docutils literal notranslate"><span class="pre">TraitModelMultivariateNormal</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Postprocessing functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.normalise_phenotypes"><code class="docutils literal notranslate"><span class="pre">normalise_phenotypes()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.normalise_genetic_value"><code class="docutils literal notranslate"><span class="pre">normalise_genetic_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Result data classes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tstrait.PhenotypeResult"><code class="docutils literal notranslate"><span class="pre">PhenotypeResult</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

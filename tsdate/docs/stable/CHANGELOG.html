@@ -1,0 +1,745 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Changelog &#8212; Tsdate manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'CHANGELOG';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="References" href="bibliography.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/tsdate_logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/tsdate_logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 0.2.5</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="usage.html">Usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real-data.html">Real data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="popsize.html">Population size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="historical_samples.html">Historical (Ancient) Samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="priors.html">More on priors (old)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">APIs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="python-api.html">Python API</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command line interface</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/CHANGELOG.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Changelog</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xxxxxxxxxx">[0.2.6] - XXXXXXXXXX</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">[0.2.5] - 2026-02-03</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">[0.2.4] - 2025-09-18</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">[0.2.3] - 2025-06-07</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">[0.2.2] - 2025-03-30</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">[0.2.1] - 2024-07-31</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">[0.2.0] - 2024-06-10</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">[0.1.7] - 2024-01-11</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">[0.1.6] - 2024-01-07</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">[0.1.5] - 2022-06-07</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">[0.1.4] - 2021-06-30</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">[0.1.3] - 2021-02-15</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">[0.1.2] - 2020-02-28</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">[0.1.1] - 2020-02-25</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h1>
+<section id="xxxxxxxxxx">
+<h2>[0.2.6] - XXXXXXXXXX<a class="headerlink" href="#xxxxxxxxxx" title="Link to this heading">#</a></h2>
+</section>
+<section id="id1">
+<h2>[0.2.5] - 2026-02-03<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">eps</span></code> parameter was previously used for two things: the minimum time interval in
+likelihood calculations for the discrete-time algorithms, and the minimum allowed branch length
+when forcing positive branch lengths. The latter is now a separate parameter called
+<code class="docutils literal notranslate"><span class="pre">min_branch_length</span></code> for all algorithms, while the <code class="docutils literal notranslate"><span class="pre">eps</span></code> parameter is only used for the
+discrete time algorithms.</p></li>
+<li><p>The default <code class="docutils literal notranslate"><span class="pre">min_branch_length</span></code> and <code class="docutils literal notranslate"><span class="pre">eps</span></code> have been set to 1e-8 rather than 1e-10, to avoid
+occasional issues with floating point error.</p></li>
+<li><p>Make tsdate compatible with tskit 1.0.0.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>[0.2.4] - 2025-09-18<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Add support for Python 3.13, minimum version is now 3.10.</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>[0.2.3] - 2025-06-07<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p><strong>Breaking changes</strong></p>
+<ul class="simple">
+<li><p>All returned nodes are now forced to be at least epsilon apart, rather than
+allowing some to be the next allowable floating point number. This allows room
+for mutations. Epsilon has been changed to 1e-10 from 1e-6, to minimise the
+impact, as this has the potential to (marginally) change the dates of internal
+(fixed) sample nodes.</p></li>
+<li><p>Multiple mutations at the same site above the same node are now spaced out evenly
+in time, rather than placed at identical times.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>[0.2.2] - 2025-03-30<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p><strong>Features</strong></p>
+<ul class="simple">
+<li><p>An <code class="docutils literal notranslate"><span class="pre">allow_unary</span></code> flag (<code class="docutils literal notranslate"><span class="pre">False</span> <span class="pre">by</span> <span class="pre">default</span></code>) has been added to all methods.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">set_metadata</span></code> flag has been added so that node and mutation metadata can be
+omitted, saved (default), or overwritten even if this requires changing the schema.</p></li>
+<li><p>An environment variable <code class="docutils literal notranslate"><span class="pre">TSDATE_ENABLE_NUMBA_CACHE</span></code> can be set to cache JIT
+compiled code, speeding up loading time (useful when testing).</p></li>
+<li><p>The time taken for running <em>tsdate</em> is now recorded in the provenance data</p></li>
+<li><p>Historical samples (sample nodes with time &gt; 0) are now allowed in the
+tree sequence.</p></li>
+</ul>
+<p><strong>Documentation</strong></p>
+<ul class="simple">
+<li><p>Various fixes in documentation, including documenting returned fits.</p></li>
+</ul>
+<p><strong>Breaking changes</strong></p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">return_posteriors</span></code> argument has been removed and replaced with <code class="docutils literal notranslate"><span class="pre">return_fit</span></code>.
+An instance of one of two previously internal classes, <code class="docutils literal notranslate"><span class="pre">ExpectationPropagation</span></code>
+and <code class="docutils literal notranslate"><span class="pre">BeliefPropagation</span></code>, are now returned when <code class="docutils literal notranslate"><span class="pre">return_fit=True</span></code>, and posteriors can
+be obtained using <code class="docutils literal notranslate"><span class="pre">fit.node_posteriors()</span></code>.</p></li>
+<li><p>Topology-only dating (setting <code class="docutils literal notranslate"><span class="pre">mutation_rate=None</span></code>) has been removed for tree sequences
+of more than one tree, as tests have found that span-weighting the conditional coalescent
+causes substantial bias.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">trim_telomeres</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">tsdate.preprocess_ts()</span></code> function has been renamed
+to <code class="docutils literal notranslate"><span class="pre">erase_flanks</span></code>, to match <code class="docutils literal notranslate"><span class="pre">tinfer.preprocess()</span></code>. The previous name is kept as a
+deprecated alias.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>[0.2.1] - 2024-07-31<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p><strong>Bugfixes</strong></p>
+<ul class="simple">
+<li><p>Minor bug fixed with final step of algorithm (path rescaling).</p></li>
+</ul>
+<p><strong>Features</strong></p>
+<ul class="simple">
+<li><p>Initial support for dating with unphased (or poorly phased) singleton
+mutations via <code class="docutils literal notranslate"><span class="pre">singletons_phased=False</span></code> option. The API is preliminary and
+may change.</p></li>
+</ul>
+<p><strong>Documentation</strong></p>
+<ul class="simple">
+<li><p>Fixed description of priors for variational gamma method, which were referred
+to a ‘flat’ or improper but are actually empirical Bayes priors on root node ages,
+fit by expectation maximization.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>[0.2.0] - 2024-06-10<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p><strong>Bugfixes</strong></p>
+<ul class="simple">
+<li><p>Variational gamma uses a rescaling approach which helps considerably if e.g.
+population sizes vary over time</p></li>
+<li><p>Variational gamma does not use mutational area of branches, but average path
+length, which reduces bias in tree sequences containing polytomies</p></li>
+</ul>
+<p><strong>Breaking changes</strong></p>
+<ul class="simple">
+<li><p>The default method has been changed to <code class="docutils literal notranslate"><span class="pre">variational_gamma</span></code>.</p></li>
+<li><p>Variational gamma uses an improper (flat) prior, and therefore
+no longer needs <code class="docutils literal notranslate"><span class="pre">population_size</span></code> specifying.</p></li>
+<li><p>The standalone <code class="docutils literal notranslate"><span class="pre">preprocess_ts</span></code> function also applies the <code class="docutils literal notranslate"><span class="pre">split_disjoint_nodes</span></code>
+method, which creates extra nodes but improves dating accuracy.</p></li>
+<li><p>Json metadata for mean time and variance in the mutation and node tables is now saved
+with a suitable schema. This means <code class="docutils literal notranslate"><span class="pre">json.loads()</span></code> is no longer needed to read it.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">mutation_rate</span></code> and <code class="docutils literal notranslate"><span class="pre">population_size</span></code> parameters are now keyword-only, and
+therefore these parameter names need to be explicitly typed out.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">ignore-oldest</span></code> option has been removed from the command-line interface,
+as it is no longer very helpful with new <em>tsinfer</em> output, which has the root
+node split. The option is still accessible from the Python API.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>[0.1.7] - 2024-01-11<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p><strong>Bugfixes</strong></p>
+<ul class="simple">
+<li><p>In variational gamma, rescale messages at end of each iteration to avoid numerical
+instability.</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>[0.1.6] - 2024-01-07<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p><strong>Breaking changes</strong></p>
+<ul class="simple">
+<li><p>The standalone <code class="docutils literal notranslate"><span class="pre">preprocess_ts</span></code> function now defaults to not removing unreferenced
+individuals, populations, or sites, aiming to change the tree sequence tables as
+little as possible.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_dates</span></code> (previously undocumented) has been removed, as posteriors can be
+obtained using <code class="docutils literal notranslate"><span class="pre">return_posterior</span></code>. The <code class="docutils literal notranslate"><span class="pre">normalize</span></code> terminology previously used
+in <code class="docutils literal notranslate"><span class="pre">get_dates</span></code> is changed to <code class="docutils literal notranslate"><span class="pre">standardize</span></code> to better reflect the fact that the
+maximum (not sum) is one, and exposed via the <code class="docutils literal notranslate"><span class="pre">outside_standardize</span></code> parameter.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Ne</span></code> argument to <code class="docutils literal notranslate"><span class="pre">date</span></code> has been deprecated (although it is
+still in the API for backward compatibility).  The equivalent argument
+<code class="docutils literal notranslate"><span class="pre">population_size</span></code> should be used instead.</p></li>
+<li><p>The CLI <code class="docutils literal notranslate"><span class="pre">-verbosity</span></code> flag no longer takes a number, but uses
+<code class="docutils literal notranslate"><span class="pre">action=&quot;count&quot;</span></code>, so <code class="docutils literal notranslate"><span class="pre">-v</span></code> turns verbosity to INFO level,
+whereas <code class="docutils literal notranslate"><span class="pre">-vv</span></code> turns verbosity to DEBUG level.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">return_posteriors=True</span></code> option with <code class="docutils literal notranslate"><span class="pre">method=&quot;inside_outside&quot;</span></code>
+previously returned a dict that included keys <code class="docutils literal notranslate"><span class="pre">start_time</span></code> and <code class="docutils literal notranslate"><span class="pre">end_time</span></code>,
+giving the impression that the posterior for node age is discretized over
+time slices in this algorithm. In actuality, the posterior is discretized
+atomically over time points, so <code class="docutils literal notranslate"><span class="pre">start_time</span></code> and <code class="docutils literal notranslate"><span class="pre">end_time</span></code> have been
+replaced by a single key <code class="docutils literal notranslate"><span class="pre">time</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">return_posteriors=True</span></code> option with <code class="docutils literal notranslate"><span class="pre">method=&quot;maximization&quot;</span></code> is no
+longer accepted (previously simply returned <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p>Python 3.7 is no longer supported.</p></li>
+</ul>
+<p><strong>Features</strong></p>
+<ul class="simple">
+<li><p>A new continuous-time method, <code class="docutils literal notranslate"><span class="pre">&quot;variational_gamma&quot;</span></code> has been introduced, which
+uses an iterative expectation propagation approach. Tests show this increases
+accuracy, especially at older times. A Laplace approximation and damping are
+used to ensure numerical stability. After testing, the node priors used in this
+method are based on a global mixture prior, which can be refined during iteration.
+Future releases may switch to using this as the default method.</p></li>
+<li><p>Priors may be calculated using a piecewise-constant effective population trajectory,
+which is implemented in the <code class="docutils literal notranslate"><span class="pre">demography.PopulationSizeHistory</span></code> class. The
+<code class="docutils literal notranslate"><span class="pre">population_size</span></code> argument to <code class="docutils literal notranslate"><span class="pre">date</span></code> accepts either a single scalar effective
+population size, or a <code class="docutils literal notranslate"><span class="pre">PopulationSizeHistory</span></code> instance.</p></li>
+<li><p>Added support and wheels for Python 3.11</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">.date()</span></code> function is now a wrapper for the individual dating methods
+(accessible using <code class="docutils literal notranslate"><span class="pre">tsdate.core.dating_methods</span></code>), which can be called independently.
+(e.g. <code class="docutils literal notranslate"><span class="pre">tsdate.inside_outside(...)</span></code>). This makes it easier to document method-specific
+options. The API docs have been revised accordingly. Provenance is now saved with the
+name of the method used as the celled command, rather than <code class="docutils literal notranslate"><span class="pre">&quot;command&quot;:</span> <span class="pre">&quot;date&quot;</span></code>.</p></li>
+<li><p>Major re-write of documentation (now at
+<a class="reference external" href="https://tskit.dev/tsdate/docs/">https://tskit.dev/tsdate/docs/</a>), to use the
+standard tskit jupyterbook framework.</p></li>
+</ul>
+<p><strong>Bugfixes</strong></p>
+<ul class="simple">
+<li><p>The returned posteriors when <code class="docutils literal notranslate"><span class="pre">return_posteriors=True</span></code> now return actual
+probabilities (scaled so that they sum to one) rather than standardized
+“probabilities” whose maximum value is one.</p></li>
+<li><p>The population size is saved in provenance metadata (as a dictionary if
+it is a <code class="docutils literal notranslate"><span class="pre">PopulationSizeHistory</span></code> instance)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">preprocess_ts</span></code> always records provenance as being from the <code class="docutils literal notranslate"><span class="pre">preprocess_ts</span></code>
+command, even if no gaps are removed. The command now has a (rarely used)
+<code class="docutils literal notranslate"><span class="pre">delete_intervals</span></code> parameter, which is normally filled out and saved in provenance
+(as it was before). If no gap deletion is done, the param is saved as <code class="docutils literal notranslate"><span class="pre">[]</span></code></p></li>
+</ul>
+</section>
+<section id="id9">
+<h2>[0.1.5] - 2022-06-07<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p><strong>Features</strong></p>
+<ul class="simple">
+<li><p>Added the <code class="docutils literal notranslate"><span class="pre">time_units</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">tsdate.date</span></code>, allowing users to specify
+the time units of the dated tree sequence. Default is <code class="docutils literal notranslate"><span class="pre">&quot;generations&quot;</span></code>.</p></li>
+<li><p>Added the <code class="docutils literal notranslate"><span class="pre">return_posteriors</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">tsdate.date</span></code>. If True, the function
+returns a tuple of <code class="docutils literal notranslate"><span class="pre">(dated_ts,</span> <span class="pre">posteriors)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mutation_rate</span></code> is now a required argument in <code class="docutils literal notranslate"><span class="pre">tsdate.date</span></code> and <code class="docutils literal notranslate"><span class="pre">tsdate.get_dates</span></code></p></li>
+<li><p>tsdate returns an error if users attempt to date an unsimplified tree sequence.</p></li>
+<li><p>Updated tsdate citation information to cite the recent Science paper</p></li>
+<li><p>Built wheel on Python 3.10</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2>[0.1.4] - 2021-06-30<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p><strong>Features</strong></p>
+<ul class="simple">
+<li><p>The algorithm now operates completely in unscaled time (in units of generations) under
+the hood, which means that <code class="docutils literal notranslate"><span class="pre">tsdate.build_prior_grid</span></code> now requires the parameter
+<code class="docutils literal notranslate"><span class="pre">Ne</span></code>.</p></li>
+<li><p>Users now have access to the marginal posterior distributions on node age by running
+<code class="docutils literal notranslate"><span class="pre">tsdate.get_dates</span></code>, though this is undocumented for now.</p></li>
+</ul>
+<p><strong>Bugfixes</strong></p>
+<ul class="simple">
+<li><p>A fix to the way likelihoods are added should eliminate numerical errors that are
+sometimes encountered when dating very large tree sequences.</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2>[0.1.3] - 2021-02-15<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p><strong>Features</strong></p>
+<ul class="simple">
+<li><p>Two new methods, <code class="docutils literal notranslate"><span class="pre">tsdate.sites_time_from_ts</span></code> and <code class="docutils literal notranslate"><span class="pre">tsdate.add_sampledata_times</span></code>,
+support inference of tree sequences from non-contemporaneous samples.</p></li>
+<li><p>New tutorial on inferring tree sequences from modern and historic/ancient samples
+explains how to use these functions in conjunction with <code class="docutils literal notranslate"><span class="pre">tsinfer</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tsdate.preprocess_ts</span></code> supports dating inferred tree sequences which include large,
+uninformative stretches (i.e. centromeres and telomeres). Simply run this function
+on the tree sequence before dating it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ignore_outside</span></code> is a new parameter in the outside pass which tells <code class="docutils literal notranslate"><span class="pre">tsdate</span></code> to
+ignore edges from oldest root (these edges are often of low quality in <code class="docutils literal notranslate"><span class="pre">tsinfer</span></code>
+inferred tree sequences)</p></li>
+<li><p>Development environment is now equivalent to other <code class="docutils literal notranslate"><span class="pre">tskit-dev</span></code> projects</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2>[0.1.2] - 2020-02-28<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Improve user experience with more progress bars and logging.</p></li>
+<li><p>Slightly change traversal method in outside and outside maximization algorithms,
+this should only affect inference on inferred tree sequences with large numbers
+of nodes at the same frequency.</p></li>
+<li><p>Improve reporting of current project version</p></li>
+<li><p>Use appdirs for default caching location</p></li>
+<li><p>Prevent dating tree sequences with dangling nodes</p></li>
+</ul>
+</section>
+<section id="id13">
+<h2>[0.1.1] - 2020-02-25<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Bugfix release: resolve issue with precalculating prior values.</p></li>
+</ul>
+<p>€# [0.1.0] - 2020-02-24</p>
+<p>Early Alpha release made available via PyPI for community testing and evaluation.</p>
+<p>Please don’t use this version in published works.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bibliography.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">References</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xxxxxxxxxx">[0.2.6] - XXXXXXXXXX</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">[0.2.5] - 2026-02-03</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">[0.2.4] - 2025-09-18</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">[0.2.3] - 2025-06-07</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">[0.2.2] - 2025-03-30</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">[0.2.1] - 2024-07-31</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">[0.2.0] - 2024-06-10</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">[0.1.7] - 2024-01-11</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">[0.1.6] - 2024-01-07</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">[0.1.5] - 2022-06-07</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">[0.1.4] - 2021-06-30</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">[0.1.3] - 2021-02-15</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">[0.1.2] - 2020-02-28</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">[0.1.1] - 2020-02-25</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

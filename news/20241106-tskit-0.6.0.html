@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<!-- START: html-header -->
+<head>
+    
+    <meta charset="utf-8">
+    <meta name=”robots” content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        tskit-dev - What's new in <em>tskit</em> 0.6.0!
+    </title>
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta content="" name="description">
+    <meta content="The 0.6.0 release of tskit is a major release with significant enhancements to genetic analysis capabilities, tree visualization, and general usability." property="og:description">
+    <meta content="The 0.6.0 release of tskit is a major release with significant enhancements to genetic analysis capabilities, tree visualization, and general usability." property="twitter:description">
+    
+        <meta content="https://i.imgur.com/I9PBjvU.png" property="og:image">
+        <meta content="https://i.imgur.com/I9PBjvU.png" property="twitter:image">
+    
+
+    <meta content="tskit-dev - What's new in <em>tskit</em> 0.6.0!" property="og:title">
+    <meta content="tskit-dev - What's new in <em>tskit</em> 0.6.0!" property="twitter:title">
+    <script>
+      document.documentElement.className = 'js'
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+
+    <link rel="shortcut icon" href="/assets/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicons/site.webmanifest" crossorigin="use-credentials">
+    <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.png" color="#085167">
+    <meta name="msapplication-TileColor" content="#085167">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://use.typekit.net/uhf4ono.css">
+    <link rel="stylesheet" href="/assets/dist/css/style.min.css">
+<script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<!-- END: html-header -->
+
+<body>
+<div class="page-wrapper">
+    <!-- START: header -->
+    <header class="header">
+        <!-- START: navbar -->
+        <nav class="nav navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <!-- START: icon-logo -->
+            <svg class="icon icon--logo" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 84.8 68">
+                <style>
+                    .logo-st0 {
+                        fill: #085167
+                    }
+
+                    .logo-st1 {
+                        fill: #14e2a8
+                    }
+                </style>
+                <path class="logo-st0"
+                      d="M2 61.4v-8.2H0v-3.4h2v-5h4.8v5h5v3.4h-5v8.2c0 1.9.8 2.9 2.5 2.9.9 0 1.7-.2 2.4-.6v3.5c-1.1.5-2.4.8-3.7.8-4.2 0-6-2.8-6-6.6"></path>
+                <path class="logo-st0"
+                      d="M62.7 67.5v-3.4h1.9V53.2h-1.9v-3.4h6.8v14.3h1.9v3.4h-8.7zm1.1-23.3c-.1-1.6 1.2-2.9 2.7-3 1.6-.1 2.9 1.2 3 2.7.1 1.6-1.2 2.9-2.7 3h-.1c-1.5.1-2.8-1-2.9-2.5v-.2"></path>
+                <path class="logo-st0"
+                      d="M39.6 67.5v-3.4h1.9V45.4h-1.9V42h6.8v14.4h4l1.7-3.2h-2.5v-3.4h9.6v3.4h-2.6L53.7 58l4.2 6h2.8v3.4h-9.9V64h1.7l-2.8-4.6h-3.4V64h1.9v3.4l-8.6.1z"></path>
+                <path class="logo-st0"
+                      d="M23.4 57c4.5 1.3 6.4 2.7 6.4 5.9 0 3.3-2.5 5.1-6.4 5.1-2.6 0-4.3-.7-5.4-1.9l-.1 1.3h-3.4v-6.1h3.7c.7 1.9 2.5 3.2 4.5 3.1 1.3 0 2.3-.5 2.3-1.6s-1-1.5-1.7-1.7l-2.6-.7c-2.8-.7-6.2-1.7-6.2-6 0-3.4 2.4-5.2 6-5.2 1.8 0 3.6.6 5 1.8l.1-1.3H29v5.9h-3.7c-.4-1.7-1.9-2.9-3.6-2.9-1.3 0-2.3.5-2.3 1.7 0 1 .6 1.4 1.8 1.7l2.2.9z"></path>
+                <path class="logo-st0"
+                      d="M75 61.4v-8.2h-2v-3.4h2v-5h4.8v5h5v3.4h-5v8.2c0 1.9.8 2.9 2.5 2.9.9 0 1.7-.2 2.4-.6v3.5c-1.1.5-2.4.8-3.7.8-4.2 0-6-2.8-6-6.6"></path>
+                <path class="logo-st1" d="M75 28.8h4.8v12.5H75z"></path>
+                <path class="logo-st1" d="M41.5 28.8h4.8v9.6h-4.8z"></path>
+                <path class="logo-st1" d="M41.5 24h38.3v4.8H41.5z"></path>
+                <path class="logo-st1" d="M58.3 14.4h4.8V24h-4.8z"></path>
+                <path class="logo-st1" d="M2 14.4h4.8v26.9H2z"></path>
+                <path class="logo-st1" d="M2 9.6h61.1v4.8H2z"></path>
+                <path class="logo-st1" d="M34.6 0h4.8v9.6h-4.8z"></path>
+            </svg>
+            <!-- END: icon-logo -->
+            <span class="visually-hidden">
+                        tskit
+                    </span>
+        </a>
+        <button class="navbar-toggler collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent"
+                aria-controls="navbarContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <!-- START: menu -->
+            <ul class="navbar-nav">
+                <li class="nav__item">
+                    <a href="/genetics-research" class=" nav__item__link">Genetics research</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/learn" class=" nav__item__link">Learn</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/software" class=" nav__item__link">Software</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/news" class=" nav__item__link">News</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/citation" class=" nav__item__link">Citation</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/community" class=" nav__item__link">Community</a>
+                </li>
+            </ul>
+            <!-- END: menu -->
+        </div>
+    </div>
+</nav>
+        <!-- END: navbar -->
+
+        <!-- START: heading -->
+        
+        <!-- END: heading -->
+    </header>
+    <!-- END: header -->
+
+    <!-- START: content -->
+    <main class="page-content" id="content">
+        <!-- START: hero-type-2 -->
+<div class="hero hero--type-2">
+    <div class="container">
+        <div class="row">
+            <!-- NOTE: Different column values here than other instances of Type 2 Hero -->
+            <div class="col-md-8 col-lg-8">
+                <!-- NOTE: H1 here not H2 -->
+                <h1 class="hero__heading">
+                    What's new in <em>tskit</em> 0.6.0!
+                </h1>
+                <span class="hero__metadata">
+                    
+                        <span class="hero__metadata__heading">Ben Jeffery and Yan Wong</span>
+                        &nbsp;|&nbsp;
+                    
+                            <time class="hero__metadate__timestamp" datetime="">November 06 2024</time>
+                        </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: hero-type-2 -->
+
+<!-- START: news-content -->
+<section class="section section--general-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 blog-entry">
+                <p>The 0.6.0 release of tskit is a major release with significant enhancements to genetic
+analysis capabilities, tree visualization, and general usability.</p>
+
+<h3 id="breaking-changes">Breaking changes</h3>
+
+<p>The definition of <a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.genetic_relatedness">ts.genetic_relatedness()</a>
+and <a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.genetic_relatedness_weighted">ts.genetic_relatedness_weighted()</a>
+are changed to <em>average</em> over sample sets.
+This allows comparison between sample sets of different sizes. For example this will change the result
+by a factor of four for diploid sample sets. The default for these methods is also changed to
+<code class="language-plaintext highlighter-rouge">polarised=True</code>, but the output is unchanged for <code class="language-plaintext highlighter-rouge">centre=True</code> (the default). Thanks to 
+<a href="https://github.com/petrelharp">@petrelharp</a> and <a href="https://github.com/mmosmond">@mmosmond</a> for their work on this.</p>
+
+<h3 id="new-features">New features</h3>
+
+<h4 id="pair_coalescence-functions">Pair_coalescence functions</h4>
+
+<p>Thanks to <a href="https://github.com/nspope">@nspope</a>, <code class="language-plaintext highlighter-rouge">tskit</code> now has a number of new methods for
+calculating coalescence events and rates.
+The <a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.pair_coalescence_counts">ts.pair_coalescence_counts()</a>
+method calculates coalescence events per node or time interval, and can be used to calculate
+the CDF of coalescences over time. The inverse of the empirical CDF, allowing quantiles to be
+calculated, is given by
+<a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.pair_coalescence_quantiles">ts.pair_coalescence_quantiles()</a>. Finally, <a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.pair_coalescence_rates">ts.pair_coalescence_rates()</a>
+estimates instantaneous rates of pair coalescence within time intervals.
+These methods can be passed both <code class="language-plaintext highlighter-rouge">time_windows</code>, and <code class="language-plaintext highlighter-rouge">windows</code> that correspond to genomic
+intervals, allowing pairwise coalescence metrics to be calculated over both time and
+genomic space.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Make a model with a selective sweep in the middle of a 10Mb genome
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">L</span> <span class="o">=</span> <span class="mf">10e6</span>  <span class="c1"># 10 Mb
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">"sequence_length"</span><span class="p">:</span> <span class="n">L</span><span class="p">,</span> <span class="s">"population_size"</span><span class="p">:</span><span class="mf">1e4</span><span class="p">,</span> <span class="s">"recombination_rate"</span><span class="p">:</span> <span class="mf">1e-8</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sweep_model</span> <span class="o">=</span> <span class="n">msprime</span><span class="p">.</span><span class="n">SweepGenicSelection</span><span class="p">(</span>
+<span class="p">...</span>    <span class="n">position</span><span class="o">=</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">start_frequency</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">end_frequency</span><span class="o">=</span><span class="mf">0.9999</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="p">.</span><span class="n">sim_ancestry</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="p">[</span><span class="n">sweep_model</span><span class="p">,</span> <span class="n">msprime</span><span class="p">.</span><span class="n">StandardCoalescent</span><span class="p">()],</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">time_intervals</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">log10</span><span class="p">(</span><span class="n">ts</span><span class="p">.</span><span class="n">max_time</span><span class="p">),</span> <span class="mi">20</span><span class="p">)</span>
+<span class="c1"># time intervals need to go from 0 -&gt; infinity
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">time_intervals</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="mi">0</span><span class="p">],</span> <span class="n">time_intervals</span><span class="p">,</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">inf</span><span class="p">]))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">genome_intervals</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">ts</span><span class="p">.</span><span class="n">pair_coalescence_counts</span><span class="p">(</span><span class="n">time_windows</span><span class="o">=</span><span class="n">time_intervals</span><span class="p">,</span> <span class="n">windows</span><span class="o">=</span><span class="n">genome_intervals</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array_repr</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">max_line_width</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress_small</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+<span class="n">array</span><span class="p">([[</span> <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">0.</span>      <span class="p">,</span> <span class="p">...,</span> <span class="mf">35.51717</span> <span class="p">,</span>  <span class="mf">4.875602</span><span class="p">,</span>  <span class="mf">0.</span>      <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">0.</span>      <span class="p">,</span> <span class="p">...,</span> <span class="mf">17.337302</span><span class="p">,</span>  <span class="mf">0.167958</span><span class="p">,</span>  <span class="mf">0.</span>      <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">0.</span>      <span class="p">,</span> <span class="p">...,</span> <span class="mf">14.809552</span><span class="p">,</span>  <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">0.</span>      <span class="p">],</span>
+       <span class="p">...,</span>
+       <span class="p">[</span> <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">1.</span>      <span class="p">,</span> <span class="p">...,</span> <span class="mf">17.95416</span> <span class="p">,</span>  <span class="mf">0.00702</span> <span class="p">,</span>  <span class="mf">0.</span>      <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">1.</span>      <span class="p">,</span> <span class="p">...,</span> <span class="mf">21.790546</span><span class="p">,</span>  <span class="mf">0.645824</span><span class="p">,</span>  <span class="mf">0.</span>      <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">1.</span>      <span class="p">,</span> <span class="p">...,</span> <span class="mf">33.664214</span><span class="p">,</span>  <span class="mf">0.</span>      <span class="p">,</span>  <span class="mf">0.</span>      <span class="p">]])</span>
+</code></pre></div></div>
+
+<p>Here the number of coalescences in each block of time and genomic region have been normalised
+by dividing by the span of each window (you can specify <code class="language-plaintext highlighter-rouge">span_normalise=False</code> to change this).
+As the time windows are logarithmically spaced, to normalise by the size of the time window, use
+<a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.pair_coalescence_rates">pair_coalescence_rates</a>.
+In the example above, this clearly highlights the effect of selection at a particular point
+in the genome at a particular time:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rates</span> <span class="o">=</span> <span class="n">ts</span><span class="p">.</span><span class="n">pair_coalescence_rates</span><span class="p">(</span><span class="n">time_windows</span><span class="o">=</span><span class="n">time_intervals</span><span class="p">,</span> <span class="n">windows</span><span class="o">=</span><span class="n">genome_intervals</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">rates</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">rates</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">rates</span><span class="p">)]),</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s">'label'</span><span class="p">:</span> <span class="s">'Coalescence rate'</span><span class="p">})</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ax</span><span class="p">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">genome_intervals</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">genome_intervals</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ax</span><span class="p">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time_intervals</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">[</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">"</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">time_intervals</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ax</span><span class="p">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Genome position"</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Time"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/news/20241106-tskit-0.6.0/coalescence_rate.png" alt="Coalescence rates over time and space" /></p>
+
+<p>Specifying different sample sets to these functions allows cross-coalescence metrics to be
+calculated, which helps to reveal historical patterns of mixing between different populations.</p>
+
+<h4 id="extending-haplotypes">Extending haplotypes</h4>
+
+<p><a href="https://github.com/petrelharp">@petrelharp</a>, <a href="https://github.com/hfr1tz3">@hfr1tz3</a>, <a href="https://github.com/nspope">@nspope</a>, and <a href="https://github.com/avabamf">@avabamf</a> have put together a new method
+<a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.extend_haplotypes">ts.extend_haplotypes</a>
+that reduces the number of edges in a tree sequence by extending ancestral haplotypes.
+This makes the tree sequence smaller, while adding unary nodes.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="p">.</span><span class="n">sim_ancestry</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">recombination_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ts</span><span class="p">.</span><span class="n">num_edges</span>
+<span class="mi">41512</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ts</span><span class="p">.</span><span class="n">extend_haplotypes</span><span class="p">().</span><span class="n">num_edges</span>
+<span class="mi">40761</span>
+</code></pre></div></div>
+
+<p>See <a href="/news/20240906-arg.html">this previous news item</a> for a summary of our recent paper discussing the importance of
+unary nodes in tree sequences.</p>
+
+<h4 id="new-tree-methods">New Tree methods</h4>
+
+<p>Several new methods have been added to the <code class="language-plaintext highlighter-rouge">Tree</code> class. <a href="https://github.com/Billyzhang1229">@Billyzhang1229</a> has added both a
+<a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.Tree.distance_between">distance_between</a>
+method that calculates the total distance between two nodes in a tree, essentially adding the branch lengths separating them,
+and an <a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.Tree.rf_distance">rf_distance</a> method
+that calculates the unweighted Robinson-Foulds distance between two trees.
+<a href="https://github.com/hyanwong">@hyanwong</a> has added an
+<a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.Tree.ancestors">ancestors</a> method that returns the ancestors of a given node.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Calculate the total distance between two nodes
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">ts</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mf">547630.5</span><span class="p">).</span><span class="n">distance_between</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span><span class="mi">43</span><span class="p">)</span>
+<span class="mf">5578.6766720892065</span>
+
+<span class="c1"># Calculate the Robinson-Foulds distance between two trees
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">ts</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mf">547630.5</span><span class="p">).</span><span class="n">rf_distance</span><span class="p">(</span><span class="n">ts</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">647630</span><span class="p">))</span>
+<span class="mi">192</span>
+
+<span class="c1"># Get the ancestors of a node as an iterator
+</span><span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">ts</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mf">547630.5</span><span class="p">).</span><span class="n">ancestors</span><span class="p">(</span><span class="mi">42</span><span class="p">))</span>
+<span class="p">[</span><span class="mi">606</span><span class="p">,</span> <span class="mi">931</span><span class="p">,</span> <span class="mi">1863</span><span class="p">,</span> <span class="mi">2483</span><span class="p">,</span> <span class="mi">2570</span><span class="p">,</span> <span class="mi">2590</span><span class="p">,</span> <span class="mi">3603</span><span class="p">,</span> <span class="mi">3913</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h4 id="additional-helper-properties-and-methods">Additional helper properties and methods</h4>
+
+<p>Several quality-of-life improvements have been added. Edges now have an <code class="language-plaintext highlighter-rouge">interval</code> attribute that returns a <code class="language-plaintext highlighter-rouge">tskit.Interval</code> object thanks to <a href="https://github.com/hyanwong">@hyanwong</a> and those <code class="language-plaintext highlighter-rouge">Intervals</code> and <code class="language-plaintext highlighter-rouge">Trees</code> now have <code class="language-plaintext highlighter-rouge">mid</code> properties that return the midpoint of the interval or tree. Thanks to <a href="https://github.com/currocam">@currocam</a> for this addition. Dropping metadata from a table is now simpler with the new <code class="language-plaintext highlighter-rouge">Table.drop_metadata</code> method, thanks to <a href="https://github.com/jeromekelleher">@jeromekelleher</a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get the interval of an edge
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">ts</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="mi">42</span><span class="p">).</span><span class="n">interval</span>
+<span class="n">Interval</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">194621.0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">900640.0</span><span class="p">)</span>
+
+<span class="c1"># Get the midpoint of an interval
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">ts</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="mi">42</span><span class="p">).</span><span class="n">interval</span><span class="p">.</span><span class="n">mid</span>
+<span class="mf">547630.5</span>
+
+<span class="c1"># Drop metadata from a table
+</span><span class="n">table</span><span class="p">.</span><span class="n">drop_metadata</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><a href="https://github.com/hyanwong">@hyanwong</a> has also added a 
+<a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.Variant.states">states()</a> method to <code class="language-plaintext highlighter-rouge">Variant</code> objects.
+This returns the genotypes as an array of strings, rather than integer indexes, to aid comparison of genetic variation.
+Note that this is an inefficient way to access the genotypes, but can be useful for showing the actual alleleic states.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">next</span><span class="p">(</span><span class="n">ts</span><span class="p">.</span><span class="n">variants</span><span class="p">()).</span><span class="n">states</span><span class="p">()</span>
+<span class="n">array</span><span class="p">([</span><span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span><span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">,</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span><span class="s">'G'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">,],</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'&lt;U1'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="genetic-relatedness">Genetic relatedness</h4>
+
+<p><a href="https://github.com/jeromekelleher">@jeromekelleher</a> and <a href="https://github.com/petrelharp">@petrelharp</a> have added a
+<a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.genetic_relatedness_matrix">ts.genetic_relatedness_matrix()</a>
+method that computes the full pairwise genetic relatedness between and within pairs of sets of nodes from sample sets, and a 
+<a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.genetic_relatedness_weighted">ts.genetic_relatedness_vector()</a>
+method that computes the product of the genetic relatedness matrix and a weight vector.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">ts</span><span class="p">.</span><span class="n">genetic_relatedness_matrix</span><span class="p">(</span><span class="n">sample_sets</span><span class="o">=</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
+<span class="n">array</span><span class="p">([[</span> <span class="mf">2.37625e-05</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.37625e-05</span><span class="p">],</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span><span class="p">[</span><span class="o">-</span><span class="mf">2.37625e-05</span><span class="p">,</span> <span class="err"> </span><span class="mf">2.37625e-05</span><span class="p">]])</span>
+</code></pre></div></div>
+
+<p>More is planned for genetic relatedness metrics in future tskit versions, which should allow e.g.
+efficient calculation of PCAs.</p>
+
+<h4 id="drawing-improvements">Drawing improvements</h4>
+
+<p>Finally, the <a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.draw_svg">draw_svg()</a>
+methods now have a number of new features, via <a href="https://github.com/hyanwong">@hyanwong</a>.
+Gene annotations can now be added to the x-axis using the <code class="language-plaintext highlighter-rouge">x_regions</code> parameter, and a <code class="language-plaintext highlighter-rouge">titles</code> can be
+placed at the top of the drawing. When viewed in HTML, it is possible to specify text to appear when
+mousing over nodes or mutations using the <code class="language-plaintext highlighter-rouge">node_titles</code> and <code class="language-plaintext highlighter-rouge">mutation_titles</code> parameters:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="p">.</span><span class="n">sim_ancestry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">recombination_rate</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">genic_regions</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span> <span class="s">"Gene 1"</span><span class="p">,</span> <span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">950</span><span class="p">):</span> <span class="s">"Gene 2"</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">svg</span> <span class="o">=</span> <span class="n">ts</span><span class="p">.</span><span class="n">draw_svg</span><span class="p">(</span>
+<span class="p">...</span>    <span class="n">x_axis</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="n">max_num_trees</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">x_regions</span><span class="o">=</span><span class="n">genic_regions</span><span class="p">,</span>
+<span class="p">...</span>    <span class="n">title</span><span class="o">=</span><span class="s">"SVG tree sequence plots can now have titles!"</span><span class="p">,</span>
+<span class="p">...</span>    <span class="c1"># Hide the 3rd X tick labels, which clash with the gene regions
+</span><span class="p">...</span>    <span class="n">style</span><span class="o">=</span><span class="s">".x-axis .tick:nth-child(2) .lab, .x-axis .tick:nth-child(4) .lab {display: none}"</span><span class="p">,</span>
+<span class="p">...</span>    <span class="n">node_titles</span><span class="o">=</span><span class="p">{</span><span class="n">u</span><span class="p">:</span> <span class="sa">f</span><span class="s">"This is sample node </span><span class="si">{</span><span class="n">u</span><span class="si">}</span><span class="s">"</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">ts</span><span class="p">.</span><span class="n">samples</span><span class="p">()},</span>
+<span class="p">...</span> <span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">HTML</span><span class="p">(</span><span class="n">svg</span><span class="p">)</span>  <span class="c1"># For mouseover tooltips to appear in a Jupyter notebook, display the plot as html
+</span></code></pre></div></div>
+
+<object type="image/svg+xml" style="background-color: white" data="/assets/images/news/20241106-tskit-0.6.0/viz.svg">Browser doesn't support SVG</object>
+
+<p>The square sample nodes of the SVG drawing above should display additional text on mouseover</p>
+
+<h5 id="experimental-drawing-options">Experimental drawing options</h5>
+
+<p>For testing purposes, we have introduced experimental features which can help draw large trees.
+However, the API for this is not finalised, hence the feature is currently undocumented: feedback is welcome.
+In particular the <code class="language-plaintext highlighter-rouge">order</code> parameter of the
+<a href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.Tree.draw_svg">Tree.draw_svg()</a> method
+can now also take a (postorder) subset of nodes, allowing clades to be visually collapsed, and
+new <code class="language-plaintext highlighter-rouge">pack_untracked_polytomies</code> parameter allows large polytomies involving untracked samples to be
+summarised as a dotted line:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><img src="/assets/images/news/20241106-tskit-0.6.0/poly1.svg" alt="Normal tree" /></td>
+      <td><img src="/assets/images/news/20241106-tskit-0.6.0/poly2.svg" alt="Polytomies &quot;packed&quot;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END: news-content -->
+
+    </main>
+    <!-- END: content -->
+
+    <!-- START: footer -->
+        <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 offset-md-1">
+                <a class="footer__logo" href="./">
+                    <!-- START: icon-logo -->
+                    <svg class="icon icon--logo" xmlns="http://www.w3.org/2000/svg" x="0" y="0"
+                         viewBox="0 0 84.8 68">
+                        <style>
+                            .logo-st0 {
+                                fill: #085167
+                            }
+
+                            .logo-st1 {
+                                fill: #14e2a8
+                            }
+                        </style>
+                        <path class="logo-st0"
+                              d="M2 61.4v-8.2H0v-3.4h2v-5h4.8v5h5v3.4h-5v8.2c0 1.9.8 2.9 2.5 2.9.9 0 1.7-.2 2.4-.6v3.5c-1.1.5-2.4.8-3.7.8-4.2 0-6-2.8-6-6.6"></path>
+                        <path class="logo-st0"
+                              d="M62.7 67.5v-3.4h1.9V53.2h-1.9v-3.4h6.8v14.3h1.9v3.4h-8.7zm1.1-23.3c-.1-1.6 1.2-2.9 2.7-3 1.6-.1 2.9 1.2 3 2.7.1 1.6-1.2 2.9-2.7 3h-.1c-1.5.1-2.8-1-2.9-2.5v-.2"></path>
+                        <path class="logo-st0"
+                              d="M39.6 67.5v-3.4h1.9V45.4h-1.9V42h6.8v14.4h4l1.7-3.2h-2.5v-3.4h9.6v3.4h-2.6L53.7 58l4.2 6h2.8v3.4h-9.9V64h1.7l-2.8-4.6h-3.4V64h1.9v3.4l-8.6.1z"></path>
+                        <path class="logo-st0"
+                              d="M23.4 57c4.5 1.3 6.4 2.7 6.4 5.9 0 3.3-2.5 5.1-6.4 5.1-2.6 0-4.3-.7-5.4-1.9l-.1 1.3h-3.4v-6.1h3.7c.7 1.9 2.5 3.2 4.5 3.1 1.3 0 2.3-.5 2.3-1.6s-1-1.5-1.7-1.7l-2.6-.7c-2.8-.7-6.2-1.7-6.2-6 0-3.4 2.4-5.2 6-5.2 1.8 0 3.6.6 5 1.8l.1-1.3H29v5.9h-3.7c-.4-1.7-1.9-2.9-3.6-2.9-1.3 0-2.3.5-2.3 1.7 0 1 .6 1.4 1.8 1.7l2.2.9z"></path>
+                        <path class="logo-st0"
+                              d="M75 61.4v-8.2h-2v-3.4h2v-5h4.8v5h5v3.4h-5v8.2c0 1.9.8 2.9 2.5 2.9.9 0 1.7-.2 2.4-.6v3.5c-1.1.5-2.4.8-3.7.8-4.2 0-6-2.8-6-6.6"></path>
+                        <path class="logo-st1" d="M75 28.8h4.8v12.5H75z"></path>
+                        <path class="logo-st1" d="M41.5 28.8h4.8v9.6h-4.8z"></path>
+                        <path class="logo-st1" d="M41.5 24h38.3v4.8H41.5z"></path>
+                        <path class="logo-st1" d="M58.3 14.4h4.8V24h-4.8z"></path>
+                        <path class="logo-st1" d="M2 14.4h4.8v26.9H2z"></path>
+                        <path class="logo-st1" d="M2 9.6h61.1v4.8H2z"></path>
+                        <path class="logo-st1" d="M34.6 0h4.8v9.6h-4.8z"></path>
+                    </svg>
+                    <!-- END: icon-logo -->
+                    <span class="visually-hidden">
+                        tskit
+                    </span>
+                </a>
+            </div>
+            <div class="col">
+                <ul class="list list--unstyled">
+                    <li class="list__item">
+                        <a href="https://github.com/tskit-dev/tskit-site/issues/new/choose" class="list__item__link link link--type-1">
+                                <span class="link__text">
+                                    Report a website issue
+                                </span>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="https://github.com/tskit-dev" class="list__item__link link link--type-1">
+                                <span class="link__text">
+                                    Github
+                                </span>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="https://github.com/tskit-dev/.github/blob/main/CODE_OF_CONDUCT.md" class="list__item__link link link--type-1">
+                                <span class="link__text">
+                                    Code of conduct
+                                </span>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="/governance/" class="list__item__link link link--type-1">
+                                <span class="link__text">
+                                    Governance
+                                </span>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="https://github.com/tskit-dev/tskit-site/blob/main/LICENSE" class="list__item__link link link--type-1">
+                                <span class="link__text">
+                                    Licence
+                                </span>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="/ecosystem-status/" class="list__item__link link link--type-1">
+                                <span class="link__text">
+                                    Ecosystem Status
+                                </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- END: footer -->
+    <!-- START: global modal -->
+    <div class="modal fade"
+         id="globalModal"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="globalModalLabel"
+         aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <button class="navbar-toggler modal-close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="modal-header visually-hidden">
+                    <h5 class="modal-title" id="globalModalLabel">
+                        Modal content
+                    </h5>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END: global modal -->
+
+</div>
+
+<script src="/assets/dist/js/main.min.js"></script>
+
+</body>
+</html>

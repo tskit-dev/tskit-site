@@ -1,0 +1,1413 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tsdate.variational &#8212; Tsdate manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/tsdate/variational';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tsdate_logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../../_static/tsdate_logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 0.2.5</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../usage.html">Usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../real-data.html">Real data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../popsize.html">Population size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../historical_samples.html">Historical (Ancient) Samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../priors.html">More on priors (old)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../api.html">APIs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python-api.html">Python API</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../cli.html">Command line interface</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CHANGELOG.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for tsdate.variational</h1><div class="highlight"><pre>
+<span></span><span class="c1"># MIT License</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2021-23 Tskit Developers</span>
+<span class="c1"># Copyright (c) 2020-21 University of Oxford</span>
+<span class="c1">#</span>
+<span class="c1"># Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="c1"># of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1"># in the Software without restriction, including without limitation the rights</span>
+<span class="c1"># to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="c1"># copies of the Software, and to permit persons to whom the Software is</span>
+<span class="c1"># furnished to do so, subject to the following conditions:</span>
+<span class="c1">#</span>
+<span class="c1"># The above copyright notice and this permission notice shall be included in</span>
+<span class="c1"># all copies or substantial portions of the Software.</span>
+<span class="c1">#</span>
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="c1"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="c1"># AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="c1"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="c1"># SOFTWARE.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Expectation propagation implementation</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numba</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numba.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">void</span> <span class="k">as</span> <span class="n">_void</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.auto</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">approx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.accelerate</span><span class="w"> </span><span class="kn">import</span> <span class="n">numba_jit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.approx</span><span class="w"> </span><span class="kn">import</span> <span class="n">_b</span><span class="p">,</span> <span class="n">_b1r</span><span class="p">,</span> <span class="n">_f</span><span class="p">,</span> <span class="n">_f1r</span><span class="p">,</span> <span class="n">_f1w</span><span class="p">,</span> <span class="n">_f2r</span><span class="p">,</span> <span class="n">_f2w</span><span class="p">,</span> <span class="n">_f3w</span><span class="p">,</span> <span class="n">_i</span><span class="p">,</span> <span class="n">_i1r</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.phasing</span><span class="w"> </span><span class="kn">import</span> <span class="n">block_singletons</span><span class="p">,</span> <span class="n">reallocate_unphased</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.rescaling</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">count_mutations</span><span class="p">,</span>
+    <span class="n">mutational_timescale</span><span class="p">,</span>
+    <span class="n">piecewise_scale_point_estimate</span><span class="p">,</span>
+    <span class="n">piecewise_scale_posterior</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">contains_unary_nodes</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># columns for edge_factors</span>
+<span class="n">ROOTWARD</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># edge likelihood to parent</span>
+<span class="n">LEAFWARD</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># edge likelihood to child</span>
+
+<span class="c1"># columns for unphased_factors</span>
+<span class="n">NODEONE</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># block likelihood to first parent</span>
+<span class="n">NODETWO</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># block likelihood to second parent</span>
+
+<span class="c1"># columns for node_factors</span>
+<span class="n">MIXPRIOR</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># mixture prior to node</span>
+<span class="n">CONSTRNT</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># bounds on node ages</span>
+
+<span class="c1"># columns for constraints</span>
+<span class="n">LOWER</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># lower bound on node</span>
+<span class="n">UPPER</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># upper bound on node</span>
+
+<span class="c1"># named flags for unphased updates</span>
+<span class="n">USE_EDGE_LIKELIHOOD</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">USE_BLOCK_LIKELIHOOD</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">TINY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">tiny</span><span class="p">)</span>  <span class="c1"># DEBUG</span>
+
+<span class="c1"># dataclass for factors</span>
+<span class="n">_EPFactors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;node&quot;</span><span class="p">,</span> <span class="n">_f3w</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span> <span class="n">_f3w</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;block&quot;</span><span class="p">,</span> <span class="n">_f3w</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;scale&quot;</span><span class="p">,</span> <span class="n">_f1w</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;_p&quot;</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;_c&quot;</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;_j&quot;</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;_k&quot;</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">),</span>
+<span class="p">]</span>
+
+
+<span class="nd">@numba</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">jitclass</span><span class="p">(</span><span class="n">_EPFactors</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">EPFactors</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mutable state of the EP algorithm, that is the factors associated</span>
+<span class="sd">    with each edge likelihood / block likelihood / prior factor, that</span>
+<span class="sd">    together form the posterior.</span>
+
+<span class="sd">    Because of constraints on numba&#39;s AOT compilation of jitclass,</span>
+<span class="sd">    this is a dataclass (no intrinsic methods).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">node_constraints</span><span class="p">,</span>
+        <span class="n">edge_parents</span><span class="p">,</span>
+        <span class="n">edge_children</span><span class="p">,</span>
+        <span class="n">block_left</span><span class="p">,</span>
+        <span class="n">block_right</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">assert</span> <span class="n">edge_parents</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edge_children</span><span class="o">.</span><span class="n">size</span>
+        <span class="k">assert</span> <span class="n">block_left</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">block_right</span><span class="o">.</span><span class="n">size</span>
+        <span class="n">num_nodes</span> <span class="o">=</span> <span class="n">node_constraints</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">num_edges</span> <span class="o">=</span> <span class="n">edge_parents</span><span class="o">.</span><span class="n">size</span>
+        <span class="n">num_blocks</span> <span class="o">=</span> <span class="n">block_left</span><span class="o">.</span><span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_nodes</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_edges</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_blocks</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_c</span> <span class="o">=</span> <span class="n">edge_parents</span><span class="p">,</span> <span class="n">edge_children</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_j</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_k</span> <span class="o">=</span> <span class="n">block_left</span><span class="p">,</span> <span class="n">block_right</span>
+
+
+<span class="c1"># bypass bug in https://github.com/numba/numba/issues/7808</span>
+<span class="n">_fac</span> <span class="o">=</span> <span class="n">numba</span><span class="o">.</span><span class="n">deferred_type</span><span class="p">()</span> <span class="k">if</span> <span class="n">numba</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">DISABLE_JIT</span> \
+    <span class="k">else</span> <span class="n">EPFactors</span><span class="o">.</span><span class="n">class_type</span><span class="o">.</span><span class="n">instance_type</span>  <span class="c1"># fmt: skip</span>
+
+
+<span class="c1"># helper functions for numerical stability</span>
+<span class="nd">@numba_jit</span><span class="p">(</span><span class="n">_void</span><span class="p">(</span><span class="n">_fac</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_rescale_factors</span><span class="p">(</span><span class="n">factors</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    At each update, all factors associated with a node need to be rescaled.</span>
+<span class="sd">    This is expensive, so we keep track of the scaling in a separate vector.</span>
+<span class="sd">    As updates progress, the factors will drift upward in magnitude while</span>
+<span class="sd">    the scaling drifts downward. To avoid underflow, we may need to</span>
+<span class="sd">    cancel out the scaling.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">factors</span><span class="o">.</span><span class="n">edge</span><span class="p">[:,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">*=</span> <span class="n">factors</span><span class="o">.</span><span class="n">scale</span><span class="p">[</span><span class="n">factors</span><span class="o">.</span><span class="n">_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="n">factors</span><span class="o">.</span><span class="n">edge</span><span class="p">[:,</span> <span class="n">LEAFWARD</span><span class="p">]</span> <span class="o">*=</span> <span class="n">factors</span><span class="o">.</span><span class="n">scale</span><span class="p">[</span><span class="n">factors</span><span class="o">.</span><span class="n">_c</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="n">factors</span><span class="o">.</span><span class="n">block</span><span class="p">[:,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">*=</span> <span class="n">factors</span><span class="o">.</span><span class="n">scale</span><span class="p">[</span><span class="n">factors</span><span class="o">.</span><span class="n">_j</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="n">factors</span><span class="o">.</span><span class="n">block</span><span class="p">[:,</span> <span class="n">LEAFWARD</span><span class="p">]</span> <span class="o">*=</span> <span class="n">factors</span><span class="o">.</span><span class="n">scale</span><span class="p">[</span><span class="n">factors</span><span class="o">.</span><span class="n">_k</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="n">factors</span><span class="o">.</span><span class="n">node</span><span class="p">[:,</span> <span class="n">MIXPRIOR</span><span class="p">]</span> <span class="o">*=</span> <span class="n">factors</span><span class="o">.</span><span class="n">scale</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="n">factors</span><span class="o">.</span><span class="n">node</span><span class="p">[:,</span> <span class="n">CONSTRNT</span><span class="p">]</span> <span class="o">*=</span> <span class="n">factors</span><span class="o">.</span><span class="n">scale</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="n">factors</span><span class="o">.</span><span class="n">scale</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+
+<span class="nd">@numba_jit</span><span class="p">(</span><span class="n">_f2w</span><span class="p">(</span><span class="n">_fac</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_assemble_factors</span><span class="p">(</span><span class="n">factors</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transform factors into posteriors, intended for debugging purposes only.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">posterior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">factors</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">factors</span><span class="o">.</span><span class="n">_p</span><span class="p">,</span> <span class="n">factors</span><span class="o">.</span><span class="n">_c</span><span class="p">)):</span>
+        <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="n">factors</span><span class="o">.</span><span class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span>
+        <span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+=</span> <span class="n">factors</span><span class="o">.</span><span class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">LEAFWARD</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">factors</span><span class="o">.</span><span class="n">_j</span><span class="p">,</span> <span class="n">factors</span><span class="o">.</span><span class="n">_k</span><span class="p">)):</span>
+        <span class="n">posterior</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">factors</span><span class="o">.</span><span class="n">block</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span>
+        <span class="n">posterior</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="n">factors</span><span class="o">.</span><span class="n">block</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">LEAFWARD</span><span class="p">]</span>
+    <span class="n">posterior</span> <span class="o">+=</span> <span class="n">factors</span><span class="o">.</span><span class="n">node</span><span class="p">[:,</span> <span class="n">MIXPRIOR</span><span class="p">]</span>
+    <span class="n">posterior</span> <span class="o">+=</span> <span class="n">factors</span><span class="o">.</span><span class="n">node</span><span class="p">[:,</span> <span class="n">CONSTRNT</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">posterior</span>
+
+
+<span class="nd">@numba_jit</span><span class="p">(</span><span class="n">_f</span><span class="p">(</span><span class="n">_f1r</span><span class="p">,</span> <span class="n">_f1r</span><span class="p">,</span> <span class="n">_f</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_damp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    If `x - y` is too small, find `d` so that `x - d*y` is large enough:</span>
+
+<span class="sd">        x[0] - d*y[0] + 1 &gt;= (x[0] + 1)*s</span>
+<span class="sd">        x[1] - d*y[1] &gt;= y[1]*s</span>
+
+<span class="sd">    for `0 &lt; s &lt; 1`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">1.0</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">s</span> <span class="o">&lt;</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="k">else</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="k">else</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;</span> <span class="n">d</span> <span class="o">&lt;=</span> <span class="mf">1.0</span>
+    <span class="k">return</span> <span class="n">d</span>
+
+
+<span class="nd">@numba_jit</span><span class="p">(</span><span class="n">_f</span><span class="p">(</span><span class="n">_f1r</span><span class="p">,</span> <span class="n">_f</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_rescale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find `d` so that `d*x[0] + 1 &lt;= s[0]` or `d*x[0] + 1 &gt;= 1/s[0]`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">1.0</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">s</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="mf">1.0</span>
+
+
+<span class="c1"># main algorithm</span>
+<div class="viewcode-block" id="ExpectationPropagation">
+<a class="viewcode-back" href="../../python-api.html#tsdate.variational.ExpectationPropagation">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ExpectationPropagation</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class that encapsulates running the variational gamma approach to</span>
+<span class="sd">    tsdate fitting. This contains the Expectation propagation (EP) algorithm</span>
+<span class="sd">    to infer approximate marginal distributions for node ages.</span>
+
+<span class="sd">    The probability model has the form,</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        \prod_{i \in \mathcal{N}} f(t_i | \theta_i)</span>
+<span class="sd">        \prod_{(i,j) \in \mathcal{E}} g(y_ij | t_i - t_j)</span>
+
+<span class="sd">    where :math:`f(.)` is a prior distribution on node ages with parameters</span>
+<span class="sd">    :math:`\\theta` and :math:`g(.)` are Poisson likelihoods per edge. The</span>
+<span class="sd">    EP approximation to the posterior has the form,</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        \prod_{i \in \mathcal{N}} q(t_i | \eta_i)</span>
+<span class="sd">        \prod_{(i,j) \in \mathcal{E}} q(t_i | \gamma_{ij}) q(t_j | \kappa_{ij})</span>
+
+<span class="sd">    where :math:`q(.)` are pseudo-gamma distributions (termed &#39;factors&#39;), and</span>
+<span class="sd">    :math:`\eta, \gamma, \kappa` are variational parameters that reflect to</span>
+<span class="sd">    prior, inside (leaf-to-root), and outside (root-to-edge) information.</span>
+
+<span class="sd">    Thus, the EP approximation results in gamma-distribution marginals.  The</span>
+<span class="sd">    factors :math:`q(.)` do not need to be valid distributions (e.g. the</span>
+<span class="sd">    shape/rate parameters may be negative), as long as the marginals are valid</span>
+<span class="sd">    distributions.  For details on how the variational parameters are</span>
+<span class="sd">    optimized, see Minka (2002) &quot;Expectation Propagation for Approximate</span>
+<span class="sd">    Bayesian Inference&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@numba_jit</span><span class="p">(</span><span class="n">_void</span><span class="p">(</span><span class="n">_f2r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_valid_constraints</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="n">edges_parent</span><span class="p">,</span> <span class="n">edges_child</span><span class="p">):</span>
+        <span class="c1"># Check that upper-bound on node age is greater than maximum lower-bound</span>
+        <span class="c1"># for ages of descendants</span>
+        <span class="n">lower_max</span> <span class="o">=</span> <span class="n">constraints</span><span class="p">[:,</span> <span class="n">LOWER</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">edges_parent</span><span class="p">,</span> <span class="n">edges_child</span><span class="p">):</span>
+            <span class="n">lower_max</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">lower_max</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">lower_max</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">lower_max</span> <span class="o">&gt;</span> <span class="n">constraints</span><span class="p">[:,</span> <span class="n">UPPER</span><span class="p">]):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Node age constraints are inconsistent, some descendants have&quot;</span>
+                <span class="s2">&quot; lower bounds that exceed upper bounds of their ancestors.&quot;</span>
+            <span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_valid_inputs</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">,</span> <span class="n">allow_unary</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mutation_rate</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Mutation rate must be positive&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">allow_unary</span> <span class="ow">and</span> <span class="n">contains_unary_nodes</span><span class="p">(</span><span class="n">ts</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Tree sequence contains unary nodes, simplify first&quot;</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_valid_state</span><span class="p">(</span>
+        <span class="n">posterior</span><span class="p">,</span>
+        <span class="n">factors</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="c1"># Check that the messages sum to the posterior (debugging only)</span>
+        <span class="n">posterior_check</span> <span class="o">=</span> <span class="n">_assemble_factors</span><span class="p">(</span><span class="n">factors</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_allclose</span><span class="p">(</span><span class="n">posterior_check</span><span class="p">,</span> <span class="n">posterior</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">,</span> <span class="n">allow_unary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">singletons_phased</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize an expectation propagation algorithm for dating nodes</span>
+<span class="sd">        in a tree sequence.</span>
+
+<span class="sd">        :param ~tskit.TreeSequence ts: a tree sequence containing the partial</span>
+<span class="sd">            ordering of nodes.</span>
+<span class="sd">        :param ~float mutation_rate: the expected per-base mutation rate per</span>
+<span class="sd">            time unit.</span>
+<span class="sd">        :param ~bool allow_unary: if False, then error out if the tree sequence</span>
+<span class="sd">            contains non-sample unary nodes.</span>
+<span class="sd">        :param ~bool singletons_phased: if False, use an algorithm that</span>
+<span class="sd">            treats singleton phase as unknown.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_valid_inputs</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">,</span> <span class="n">allow_unary</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_parents</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">edges_parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_children</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span>
+
+        <span class="c1"># lower and upper bounds on node ages</span>
+        <span class="n">fixed_nodes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">[</span><span class="n">fixed_nodes</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">[</span><span class="n">fixed_nodes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_valid_constraints</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_parents</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_children</span>
+        <span class="p">)</span>
+
+        <span class="c1"># count mutations on edges</span>
+        <span class="n">count_timing</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_likelihoods</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_edges</span> <span class="o">=</span> <span class="n">count_mutations</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_likelihoods</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="n">mutation_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sizebiased_likelihoods</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">count_mutations</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">size_biased</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sizebiased_likelihoods</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="n">mutation_rate</span>
+        <span class="n">count_timing</span> <span class="o">-=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extracted mutations in </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">count_timing</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+
+        <span class="c1"># count mutations in singleton blocks</span>
+        <span class="n">phase_timing</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">individual_phased</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_individuals</span><span class="p">,</span> <span class="n">singletons_phased</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_likelihoods</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">block_edges</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_blocks</span> <span class="o">=</span> \
+            <span class="n">block_singletons</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="o">~</span><span class="n">individual_phased</span><span class="p">)</span>  <span class="c1"># fmt: skip</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_likelihoods</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="n">mutation_rate</span>
+        <span class="n">num_blocks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">block_likelihoods</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_nodes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">),</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_parents</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">block_edges</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_parents</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">block_edges</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span>
+        <span class="n">num_unphased</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mutation_blocks</span> <span class="o">!=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">)</span>
+        <span class="n">phase_timing</span> <span class="o">-=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="n">num_unphased</span><span class="si">}</span><span class="s2"> unphased singleton mutations&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Split unphased singleton edges into </span><span class="si">{</span><span class="n">num_blocks</span><span class="si">}</span><span class="s2"> blocks&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Phased singletons in </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">phase_timing</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+
+        <span class="c1"># mutable</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factors</span> <span class="o">=</span> <span class="n">EPFactors</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_parents</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_children</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_posterior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutation_posterior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">ts</span><span class="o">.</span><span class="n">num_mutations</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutation_phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_mutations</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutation_nodes</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">mutations_node</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_logconst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_edges</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_logconst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_blocks</span><span class="p">)</span>
+
+        <span class="c1"># terminal nodes</span>
+        <span class="n">has_parent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">has_child</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">has_parent</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_children</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">has_child</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_parents</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">roots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">has_child</span><span class="p">,</span> <span class="o">~</span><span class="n">has_parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leaves</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="o">~</span><span class="n">has_child</span><span class="p">,</span> <span class="n">has_parent</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="o">~</span><span class="n">has_child</span><span class="p">,</span> <span class="o">~</span><span class="n">has_parent</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Tree sequence contains disconnected nodes&quot;</span><span class="p">)</span>
+        <span class="c1"># TODO: we don&#39;t need to store all these similar vectors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unconstrained_roots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">roots</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unconstrained_roots</span><span class="p">[</span><span class="n">fixed_nodes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># edge traversal order</span>
+        <span class="n">edge_unphased</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_edges</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">edge_unphased</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">block_edges</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">edge_unphased</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">block_edges</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_edges</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)[</span><span class="o">~</span><span class="n">edge_unphased</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">edges</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_blocks</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutation_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_mutations</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@numba_jit</span><span class="p">(</span><span class="n">_void</span><span class="p">(</span><span class="n">_i1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_f2r</span><span class="p">,</span> <span class="n">_f2r</span><span class="p">,</span> <span class="n">_f2w</span><span class="p">,</span> <span class="n">_fac</span><span class="p">,</span> <span class="n">_f1w</span><span class="p">,</span> <span class="n">_f</span><span class="p">,</span> <span class="n">_f</span><span class="p">,</span> <span class="n">_b</span><span class="p">))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">propagate_likelihood</span><span class="p">(</span>
+        <span class="n">edge_order</span><span class="p">,</span>
+        <span class="n">edges_parent</span><span class="p">,</span>
+        <span class="n">edges_child</span><span class="p">,</span>
+        <span class="n">likelihoods</span><span class="p">,</span>
+        <span class="n">constraints</span><span class="p">,</span>
+        <span class="n">posterior</span><span class="p">,</span>
+        <span class="n">factors</span><span class="p">,</span>
+        <span class="n">lognorm</span><span class="p">,</span>
+        <span class="n">max_shape</span><span class="p">,</span>
+        <span class="n">min_step</span><span class="p">,</span>
+        <span class="n">unphased</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="c1"># Update approximating factors for Poisson mutation likelihoods on edges.</span>
+        <span class="c1">#</span>
+        <span class="c1"># :param numpy.ndarray edges_parent: integer array of parent ids per edge</span>
+        <span class="c1"># :param numpy.ndarray edges_child: integer array of child ids per edge</span>
+        <span class="c1"># :param numpy.ndarray likelihoods: array of dimension `[num_edges, 2]`</span>
+        <span class="c1">#     containing mutation count and mutational target size per edge.</span>
+        <span class="c1"># :param numpy.ndarray constraints: array of dimension `[num_nodes, 2]`</span>
+        <span class="c1">#     containing lower and upper bounds for each node.</span>
+        <span class="c1"># :param numpy.ndarray posterior: array of dimension `[num_nodes, 2]`</span>
+        <span class="c1">#     containing natural parameters for each node, updated in-place.</span>
+        <span class="c1"># :param EPFactors factors: object containing parent and child factors</span>
+        <span class="c1">#     (natural parameters) for each edge, updated in-place.</span>
+        <span class="c1"># :param numpy.ndarray lognorm: array of dimension `[num_edges]`</span>
+        <span class="c1">#     containing the approximate normalizing constants per edge,</span>
+        <span class="c1">#     updated in-place.</span>
+        <span class="c1"># :param float max_shape: the maximum allowed shape for node posteriors.</span>
+        <span class="c1"># :param float min_step: the minimum allowed step size in (0, 1).</span>
+        <span class="c1"># :param bool unphased: if True, edges are treated as blocks of unphased</span>
+        <span class="c1">#     singletons in contemporary individuals</span>
+
+        <span class="k">assert</span> <span class="n">constraints</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">posterior</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">assert</span> <span class="n">edges_child</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span>
+        <span class="k">assert</span> <span class="n">likelihoods</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">max_shape</span> <span class="o">&gt;=</span> <span class="mf">1.0</span>
+        <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;</span> <span class="n">min_step</span> <span class="o">&lt;</span> <span class="mf">1.0</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">cavity_damping</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_damp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">min_step</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">posterior_damping</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_rescale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">max_shape</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">leafward_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">unphased</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">sideways_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">leafward_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">rootward_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">unphased</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">sideways_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">rootward_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">gamma_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">unphased</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">unphased_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">gamma_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">twin_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">unphased</span><span class="p">,</span> <span class="s2">&quot;Invalid update&quot;</span>
+            <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">twin_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="n">fixed</span> <span class="o">=</span> <span class="n">constraints</span><span class="p">[:,</span> <span class="n">LOWER</span><span class="p">]</span> <span class="o">==</span> <span class="n">constraints</span><span class="p">[:,</span> <span class="n">UPPER</span><span class="p">]</span>
+
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">factors</span><span class="o">.</span><span class="n">scale</span>
+        <span class="n">factor</span> <span class="o">=</span> <span class="n">factors</span><span class="o">.</span><span class="n">block</span> <span class="k">if</span> <span class="n">unphased</span> <span class="k">else</span> <span class="n">factors</span><span class="o">.</span><span class="n">edge</span>
+        <span class="k">assert</span> <span class="n">factor</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">edge_order</span><span class="p">:</span>
+            <span class="n">p</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">edges_child</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">TINY</span> <span class="ow">or</span> <span class="n">scale</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">TINY</span><span class="p">:</span>
+                <span class="c1"># modifies `scale` and `factor` by reference</span>
+                <span class="n">_rescale_factors</span><span class="p">(</span><span class="n">factors</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fixed</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="ow">and</span> <span class="n">fixed</span><span class="p">[</span><span class="n">c</span><span class="p">]:</span>
+                <span class="k">continue</span>
+            <span class="k">elif</span> <span class="n">fixed</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">fixed</span><span class="p">[</span><span class="n">c</span><span class="p">]:</span>
+                <span class="c1"># in practice this should only occur if a sample is the</span>
+                <span class="c1"># ancestor of another sample</span>
+                <span class="n">child_message</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">LEAFWARD</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+                <span class="n">child_delta</span> <span class="o">=</span> <span class="n">cavity_damping</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">child_message</span><span class="p">)</span>
+                <span class="n">child_cavity</span> <span class="o">=</span> <span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">-</span> <span class="n">child_delta</span> <span class="o">*</span> <span class="n">child_message</span>
+                <span class="n">edge_likelihood</span> <span class="o">=</span> <span class="n">child_delta</span> <span class="o">*</span> <span class="n">likelihoods</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">parent_age</span> <span class="o">=</span> <span class="n">constraints</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">LOWER</span><span class="p">]</span>
+                <span class="n">lognorm</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">leafward_projection</span><span class="p">(</span>
+                    <span class="n">parent_age</span><span class="p">,</span>
+                    <span class="n">child_cavity</span><span class="p">,</span>
+                    <span class="n">edge_likelihood</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">LEAFWARD</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">child_delta</span>
+                <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">LEAFWARD</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">-</span> <span class="n">child_cavity</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+                <span class="n">child_eta</span> <span class="o">=</span> <span class="n">posterior_damping</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+                <span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">*=</span> <span class="n">child_eta</span>
+                <span class="n">scale</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">*=</span> <span class="n">child_eta</span>
+            <span class="k">elif</span> <span class="n">fixed</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">fixed</span><span class="p">[</span><span class="n">p</span><span class="p">]:</span>
+                <span class="c1"># in practice this should only occur if a sample has age</span>
+                <span class="c1"># greater than zero</span>
+                <span class="n">parent_message</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+                <span class="n">parent_delta</span> <span class="o">=</span> <span class="n">cavity_damping</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">parent_message</span><span class="p">)</span>
+                <span class="n">parent_cavity</span> <span class="o">=</span> <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-</span> <span class="n">parent_delta</span> <span class="o">*</span> <span class="n">parent_message</span>
+                <span class="n">edge_likelihood</span> <span class="o">=</span> <span class="n">parent_delta</span> <span class="o">*</span> <span class="n">likelihoods</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">child_age</span> <span class="o">=</span> <span class="n">constraints</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">LOWER</span><span class="p">]</span>
+                <span class="n">lognorm</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">rootward_projection</span><span class="p">(</span>
+                    <span class="n">child_age</span><span class="p">,</span>
+                    <span class="n">parent_cavity</span><span class="p">,</span>
+                    <span class="n">edge_likelihood</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">parent_delta</span>
+                <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-</span> <span class="n">parent_cavity</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+                <span class="n">parent_eta</span> <span class="o">=</span> <span class="n">posterior_damping</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>
+                <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">*=</span> <span class="n">parent_eta</span>
+                <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">*=</span> <span class="n">parent_eta</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="n">c</span><span class="p">:</span>  <span class="c1"># singleton block with single parent</span>
+                    <span class="n">parent_message</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+                    <span class="n">parent_delta</span> <span class="o">=</span> <span class="n">cavity_damping</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">parent_message</span><span class="p">)</span>
+                    <span class="n">parent_cavity</span> <span class="o">=</span> <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-</span> <span class="n">parent_delta</span> <span class="o">*</span> <span class="n">parent_message</span>
+                    <span class="n">edge_likelihood</span> <span class="o">=</span> <span class="n">parent_delta</span> <span class="o">*</span> <span class="n">likelihoods</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">child_age</span> <span class="o">=</span> <span class="n">constraints</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">LOWER</span><span class="p">]</span>
+                    <span class="n">lognorm</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> \
+                        <span class="n">twin_projection</span><span class="p">(</span><span class="n">parent_cavity</span><span class="p">,</span> <span class="n">edge_likelihood</span><span class="p">)</span>  <span class="c1"># fmt: skip</span>
+                    <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">parent_delta</span>
+                    <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-</span> <span class="n">parent_cavity</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+                    <span class="n">parent_eta</span> <span class="o">=</span> <span class="n">posterior_damping</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>
+                    <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">*=</span> <span class="n">parent_eta</span>
+                    <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">*=</span> <span class="n">parent_eta</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># lower-bound cavity</span>
+                    <span class="n">parent_message</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+                    <span class="n">child_message</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">LEAFWARD</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+                    <span class="n">parent_delta</span> <span class="o">=</span> <span class="n">cavity_damping</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">parent_message</span><span class="p">)</span>
+                    <span class="n">child_delta</span> <span class="o">=</span> <span class="n">cavity_damping</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">child_message</span><span class="p">)</span>
+                    <span class="n">delta</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">parent_delta</span><span class="p">,</span> <span class="n">child_delta</span><span class="p">)</span>
+
+                    <span class="n">parent_cavity</span> <span class="o">=</span> <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">parent_message</span>
+                    <span class="n">child_cavity</span> <span class="o">=</span> <span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">-</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">child_message</span>
+                    <span class="n">edge_likelihood</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">likelihoods</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+                    <span class="c1"># match moments and update factors</span>
+                    <span class="n">lognorm</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma_projection</span><span class="p">(</span>
+                        <span class="n">parent_cavity</span><span class="p">,</span>
+                        <span class="n">child_cavity</span><span class="p">,</span>
+                        <span class="n">edge_likelihood</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span>
+                    <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-</span> <span class="n">parent_cavity</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+                    <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">LEAFWARD</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span>
+                    <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">LEAFWARD</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">-</span> <span class="n">child_cavity</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+
+                    <span class="c1"># upper-bound posterior</span>
+                    <span class="n">parent_eta</span> <span class="o">=</span> <span class="n">posterior_damping</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>
+                    <span class="n">child_eta</span> <span class="o">=</span> <span class="n">posterior_damping</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+                    <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">*=</span> <span class="n">parent_eta</span>
+                    <span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">*=</span> <span class="n">child_eta</span>
+                    <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">*=</span> <span class="n">parent_eta</span>
+                    <span class="n">scale</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">*=</span> <span class="n">child_eta</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@numba_jit</span><span class="p">(</span><span class="n">_void</span><span class="p">(</span><span class="n">_b1r</span><span class="p">,</span> <span class="n">_f2w</span><span class="p">,</span> <span class="n">_fac</span><span class="p">,</span> <span class="n">_f</span><span class="p">,</span> <span class="n">_i</span><span class="p">,</span> <span class="n">_f</span><span class="p">))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">propagate_prior</span><span class="p">(</span><span class="n">free</span><span class="p">,</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">factors</span><span class="p">,</span> <span class="n">max_shape</span><span class="p">,</span> <span class="n">em_maxitt</span><span class="p">,</span> <span class="n">em_reltol</span><span class="p">):</span>
+        <span class="c1"># Update approximating factors for global prior.</span>
+        <span class="c1">#</span>
+        <span class="c1"># :param ndarray free: boolean array for if prior should be applied to node</span>
+        <span class="c1"># :param ndarray penalty: initial value for regularisation penalty</span>
+        <span class="c1"># :param ndarray posterior: rows are nodes, columns are first and</span>
+        <span class="c1">#     second natural parameters of gamma posteriors. Updated in place.</span>
+        <span class="c1"># :param EPFactors factors: object containing EP messages for nodes.</span>
+        <span class="c1">#     Updated in place.</span>
+        <span class="c1"># :param float max_shape: the maximum allowed shape for node posteriors.</span>
+        <span class="c1"># :param int em_maxitt: the maximum number of EM iterations to use when</span>
+        <span class="c1">#     fitting the regularisation.</span>
+        <span class="c1"># :param int em_reltol: the termination criterion for relative change in</span>
+        <span class="c1">#     log-likelihood.</span>
+
+        <span class="k">assert</span> <span class="n">free</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">posterior</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="n">max_shape</span> <span class="o">&gt;=</span> <span class="mf">1.0</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">posterior_damping</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_rescale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">max_shape</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">free</span><span class="p">):</span>
+            <span class="k">return</span>
+
+        <span class="n">factor</span> <span class="o">=</span> <span class="n">factors</span><span class="o">.</span><span class="n">node</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">factors</span><span class="o">.</span><span class="n">scale</span>
+        <span class="k">assert</span> <span class="n">factor</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">free</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">scale</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">free</span><span class="o">.</span><span class="n">size</span>
+
+        <span class="c1"># fit an exponential to cavity distributions for unconstrained nodes</span>
+        <span class="n">cavity</span> <span class="o">=</span> <span class="n">posterior</span> <span class="o">-</span> <span class="n">factor</span><span class="p">[:,</span> <span class="n">MIXPRIOR</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="n">shape</span><span class="p">,</span> <span class="n">rate</span> <span class="o">=</span> <span class="n">cavity</span><span class="p">[</span><span class="n">free</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cavity</span><span class="p">[</span><span class="n">free</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">penalty</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">shape</span> <span class="o">/</span> <span class="n">rate</span><span class="p">)</span>
+        <span class="n">itt</span><span class="p">,</span> <span class="n">delta</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">penalty</span><span class="p">)</span> <span class="o">*</span> <span class="n">em_reltol</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">itt</span> <span class="o">&gt;</span> <span class="n">em_maxitt</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">shape</span> <span class="o">/</span> <span class="p">(</span><span class="n">rate</span> <span class="o">+</span> <span class="n">penalty</span><span class="p">))</span> <span class="o">-</span> <span class="n">penalty</span>
+            <span class="n">penalty</span> <span class="o">+=</span> <span class="n">delta</span>
+            <span class="n">itt</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">assert</span> <span class="n">penalty</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+        <span class="c1"># update posteriors and rescale to keep shape bounded</span>
+        <span class="n">posterior</span><span class="p">[</span><span class="n">free</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">cavity</span><span class="p">[</span><span class="n">free</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">penalty</span>
+        <span class="n">factor</span><span class="p">[</span><span class="n">free</span><span class="p">,</span> <span class="n">MIXPRIOR</span><span class="p">]</span> <span class="o">=</span> \
+            <span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">free</span><span class="p">]</span> <span class="o">-</span> <span class="n">cavity</span><span class="p">[</span><span class="n">free</span><span class="p">])</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">free</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>  <span class="c1"># fmt: skip</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">free</span><span class="p">):</span>
+            <span class="n">eta</span> <span class="o">=</span> <span class="n">posterior_damping</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">posterior</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="n">eta</span>
+            <span class="n">scale</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="n">eta</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@numba_jit</span><span class="p">(</span><span class="n">_void</span><span class="p">(</span><span class="n">_i1r</span><span class="p">,</span> <span class="n">_f2w</span><span class="p">,</span> <span class="n">_f1w</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_f2r</span><span class="p">,</span> <span class="n">_f2r</span><span class="p">,</span> <span class="n">_f2r</span><span class="p">,</span> <span class="n">_fac</span><span class="p">,</span> <span class="n">_b</span><span class="p">))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">propagate_mutations</span><span class="p">(</span>
+        <span class="n">mutations_order</span><span class="p">,</span>
+        <span class="n">mutations_posterior</span><span class="p">,</span>
+        <span class="n">mutations_phase</span><span class="p">,</span>
+        <span class="n">mutations_edge</span><span class="p">,</span>
+        <span class="n">edges_parent</span><span class="p">,</span>
+        <span class="n">edges_child</span><span class="p">,</span>
+        <span class="n">likelihoods</span><span class="p">,</span>
+        <span class="n">constraints</span><span class="p">,</span>
+        <span class="n">posterior</span><span class="p">,</span>
+        <span class="n">factors</span><span class="p">,</span>
+        <span class="n">unphased</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="c1"># Calculate posteriors for mutations. (publicly undocumented)</span>
+        <span class="c1">#</span>
+        <span class="c1"># :param ndarray mutations_order: integer array giving order in</span>
+        <span class="c1">#     which to traverse mutations</span>
+        <span class="c1"># :param ndarray mutations_posterior: array of dimension `(num_mutations, 2)`</span>
+        <span class="c1">#     containing natural parameters for each mutation, modified in place</span>
+        <span class="c1"># :param ndarray mutations_phase: array of dimension `(num_mutations, )`</span>
+        <span class="c1">#     containing mutation phase, modified in place</span>
+        <span class="c1"># :param ndarray mutations_edge: integer array giving edge for each mutation</span>
+        <span class="c1"># :param ndarray edges_parent: integer array of parent ids per edge</span>
+        <span class="c1"># :param ndarray edges_child: integer array of child ids per edge</span>
+        <span class="c1"># :param ndarray likelihoods: array of dimension `[num_edges, 2]`</span>
+        <span class="c1">#     containing mutation count and mutational target size per edge.</span>
+        <span class="c1"># :param ndarray constraints: array of dimension `[num_nodes, 2]`</span>
+        <span class="c1">#     containing lower and upper bounds for each node.</span>
+        <span class="c1"># :param ndarray posterior: array of dimension `[num_nodes, 2]`</span>
+        <span class="c1">#     containing natural parameters for each node</span>
+        <span class="c1"># :param EPFactors factors: object containing</span>
+        <span class="c1">#     containing parent and child factors (natural parameters) for each edge</span>
+        <span class="c1"># :param bool unphased: if True, edges are treated as blocks of unphased</span>
+        <span class="c1">#     singletons in contemporary individuals</span>
+
+        <span class="c1"># TODO: scale should be 1.0, can we delete</span>
+        <span class="c1"># TODO: we don&#39;t seem to need to damp?</span>
+
+        <span class="c1"># TODO: assert more stuff here?</span>
+        <span class="k">assert</span> <span class="n">mutations_phase</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">mutations_edge</span><span class="o">.</span><span class="n">size</span>
+        <span class="k">assert</span> <span class="n">mutations_posterior</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">mutations_phase</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">constraints</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">posterior</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">assert</span> <span class="n">edges_child</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span>
+        <span class="k">assert</span> <span class="n">likelihoods</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">leafward_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">unphased</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">mutation_sideways_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">mutation_leafward_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">rootward_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">unphased</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">mutation_sideways_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">mutation_rootward_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">gamma_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">unphased</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">mutation_unphased_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">mutation_gamma_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">fixed_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">unphased</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">mutation_block_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">approx</span><span class="o">.</span><span class="n">mutation_edge_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="n">twin_projection</span> <span class="o">=</span> <span class="n">approx</span><span class="o">.</span><span class="n">mutation_twin_projection</span>
+
+        <span class="n">fixed</span> <span class="o">=</span> <span class="n">constraints</span><span class="p">[:,</span> <span class="n">LOWER</span><span class="p">]</span> <span class="o">==</span> <span class="n">constraints</span><span class="p">[:,</span> <span class="n">UPPER</span><span class="p">]</span>
+
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">factors</span><span class="o">.</span><span class="n">scale</span>
+        <span class="n">factor</span> <span class="o">=</span> <span class="n">factors</span><span class="o">.</span><span class="n">block</span> <span class="k">if</span> <span class="n">unphased</span> <span class="k">else</span> <span class="n">factors</span><span class="o">.</span><span class="n">edge</span>
+        <span class="k">assert</span> <span class="n">factor</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">mutations_order</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">mutations_edge</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">:</span>  <span class="c1"># skip mutations above root</span>
+                <span class="k">continue</span>
+            <span class="n">p</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">edges_child</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">fixed</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="ow">and</span> <span class="n">fixed</span><span class="p">[</span><span class="n">c</span><span class="p">]:</span>
+                <span class="n">child_age</span> <span class="o">=</span> <span class="n">constraints</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+                <span class="n">parent_age</span> <span class="o">=</span> <span class="n">constraints</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+                <span class="n">mutations_phase</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">mutations_posterior</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> \
+                    <span class="n">fixed_projection</span><span class="p">(</span><span class="n">parent_age</span><span class="p">,</span> <span class="n">child_age</span><span class="p">)</span>  <span class="c1"># fmt: skip</span>
+            <span class="k">elif</span> <span class="n">fixed</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">fixed</span><span class="p">[</span><span class="n">c</span><span class="p">]:</span>
+                <span class="n">child_message</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">LEAFWARD</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+                <span class="n">child_delta</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># hopefully we don&#39;t need to damp</span>
+                <span class="n">child_cavity</span> <span class="o">=</span> <span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">-</span> <span class="n">child_delta</span> <span class="o">*</span> <span class="n">child_message</span>
+                <span class="n">edge_likelihood</span> <span class="o">=</span> <span class="n">child_delta</span> <span class="o">*</span> <span class="n">likelihoods</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">parent_age</span> <span class="o">=</span> <span class="n">constraints</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">LOWER</span><span class="p">]</span>
+                <span class="n">mutations_phase</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">mutations_posterior</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">leafward_projection</span><span class="p">(</span>
+                    <span class="n">parent_age</span><span class="p">,</span>
+                    <span class="n">child_cavity</span><span class="p">,</span>
+                    <span class="n">edge_likelihood</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">fixed</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">fixed</span><span class="p">[</span><span class="n">p</span><span class="p">]:</span>
+                <span class="n">parent_message</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+                <span class="n">parent_delta</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># hopefully we don&#39;t need to damp</span>
+                <span class="n">parent_cavity</span> <span class="o">=</span> <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-</span> <span class="n">parent_delta</span> <span class="o">*</span> <span class="n">parent_message</span>
+                <span class="n">edge_likelihood</span> <span class="o">=</span> <span class="n">parent_delta</span> <span class="o">*</span> <span class="n">likelihoods</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">child_age</span> <span class="o">=</span> <span class="n">constraints</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">LOWER</span><span class="p">]</span>
+                <span class="n">mutations_phase</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">mutations_posterior</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">rootward_projection</span><span class="p">(</span>
+                    <span class="n">child_age</span><span class="p">,</span>
+                    <span class="n">parent_cavity</span><span class="p">,</span>
+                    <span class="n">edge_likelihood</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="n">c</span><span class="p">:</span>  <span class="c1"># singleton block with single parent</span>
+                    <span class="n">parent_message</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+                    <span class="n">parent_delta</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># hopefully we don&#39;t need to damp</span>
+                    <span class="n">parent_cavity</span> <span class="o">=</span> <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-</span> <span class="n">parent_delta</span> <span class="o">*</span> <span class="n">parent_message</span>
+                    <span class="n">edge_likelihood</span> <span class="o">=</span> <span class="n">parent_delta</span> <span class="o">*</span> <span class="n">likelihoods</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">child_age</span> <span class="o">=</span> <span class="n">constraints</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">LOWER</span><span class="p">]</span>
+                    <span class="n">mutations_phase</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">mutations_posterior</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> \
+                        <span class="n">twin_projection</span><span class="p">(</span><span class="n">parent_cavity</span><span class="p">,</span> <span class="n">edge_likelihood</span><span class="p">)</span>  <span class="c1"># fmt: skip</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">parent_message</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ROOTWARD</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+                    <span class="n">child_message</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">LEAFWARD</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+                    <span class="n">parent_delta</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># hopefully we don&#39;t need to damp</span>
+                    <span class="n">child_delta</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># hopefully we don&#39;t need to damp</span>
+                    <span class="n">delta</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">parent_delta</span><span class="p">,</span> <span class="n">child_delta</span><span class="p">)</span>
+                    <span class="n">parent_cavity</span> <span class="o">=</span> <span class="n">posterior</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">parent_message</span>
+                    <span class="n">child_cavity</span> <span class="o">=</span> <span class="n">posterior</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">-</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">child_message</span>
+                    <span class="n">edge_likelihood</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">likelihoods</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">mutations_phase</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">mutations_posterior</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma_projection</span><span class="p">(</span>
+                        <span class="n">parent_cavity</span><span class="p">,</span>
+                        <span class="n">child_cavity</span><span class="p">,</span>
+                        <span class="n">edge_likelihood</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">iterate</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">max_shape</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="n">min_step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">em_maxitt</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">em_reltol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span>
+        <span class="n">regularise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">check_valid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># for debugging</span>
+    <span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Passing through singleton blocks&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">propagate_likelihood</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_order</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_nodes</span><span class="p">[</span><span class="n">ROOTWARD</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_nodes</span><span class="p">[</span><span class="n">LEAFWARD</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_likelihoods</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_posterior</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">factors</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_logconst</span><span class="p">,</span>
+            <span class="n">max_shape</span><span class="p">,</span>
+            <span class="n">min_step</span><span class="p">,</span>
+            <span class="n">USE_BLOCK_LIKELIHOOD</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Rootward + leafward pass through edges&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">propagate_likelihood</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_order</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_parents</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_children</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_likelihoods</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_posterior</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">factors</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_logconst</span><span class="p">,</span>
+            <span class="n">max_shape</span><span class="p">,</span>
+            <span class="n">min_step</span><span class="p">,</span>
+            <span class="n">USE_EDGE_LIKELIHOOD</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">regularise</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Exponential regularization on roots&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">propagate_prior</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unconstrained_roots</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">node_posterior</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">factors</span><span class="p">,</span>
+                <span class="n">max_shape</span><span class="p">,</span>
+                <span class="n">em_maxitt</span><span class="p">,</span>
+                <span class="n">em_reltol</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Absorbing scaling term into the factors&quot;</span><span class="p">)</span>
+        <span class="n">_rescale_factors</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factors</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">check_valid</span><span class="p">:</span>  <span class="c1"># for debugging</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_valid_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_posterior</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">factors</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">rescale</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">rescale_intervals</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="n">rescale_segsites</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">rescale_iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">quantile_width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">max_shape</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="c1"># Normalise posteriors so that empirical mutation rate is constant</span>
+        <span class="n">likelihoods</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_likelihoods</span> <span class="k">if</span> <span class="n">rescale_segsites</span> \
+            <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">sizebiased_likelihoods</span>  <span class="c1"># fmt: skip</span>
+        <span class="n">reallocate_unphased</span><span class="p">(</span>  <span class="c1"># correct mutation counts for unphased singletons</span>
+            <span class="n">likelihoods</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_phase</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_blocks</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_edges</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">nodes_fixed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">mutations_fixed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mutation_posterior</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">nodes_time</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_moments</span><span class="p">()</span>
+        <span class="n">rescaled_nodes_time</span> <span class="o">=</span> <span class="n">nodes_time</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">rescale_iterations</span><span class="p">):</span>  <span class="c1"># estimate time rescaling</span>
+            <span class="n">original_breaks</span><span class="p">,</span> <span class="n">rescaled_breaks</span> <span class="o">=</span> <span class="n">mutational_timescale</span><span class="p">(</span>
+                <span class="n">rescaled_nodes_time</span><span class="p">,</span>
+                <span class="n">likelihoods</span><span class="p">,</span>
+                <span class="n">nodes_fixed</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">edge_parents</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">edge_children</span><span class="p">,</span>
+                <span class="n">rescale_intervals</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">rescaled_nodes_time</span> <span class="o">=</span> <span class="n">piecewise_scale_point_estimate</span><span class="p">(</span>
+                <span class="n">rescaled_nodes_time</span><span class="p">,</span>
+                <span class="n">nodes_fixed</span><span class="p">,</span>
+                <span class="n">original_breaks</span><span class="p">,</span>
+                <span class="n">rescaled_breaks</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">rescaled_nodes_time</span><span class="p">[</span><span class="n">nodes_fixed</span><span class="p">],</span> <span class="n">nodes_time</span><span class="p">[</span><span class="n">nodes_fixed</span><span class="p">])</span>
+        <span class="c1"># TODO: clean up</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">unique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">rescaled_nodes_time</span><span class="p">[</span><span class="o">~</span><span class="n">nodes_fixed</span><span class="p">],</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">original_breaks</span> <span class="o">=</span> <span class="n">piecewise_scale_point_estimate</span><span class="p">(</span>  <span class="c1"># recover original breakpoints</span>
+            <span class="n">rescaled_breaks</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">rescaled_breaks</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">rescaled_nodes_time</span><span class="p">[</span><span class="o">~</span><span class="n">nodes_fixed</span><span class="p">][</span><span class="n">unique</span><span class="p">]),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nodes_time</span><span class="p">[</span><span class="o">~</span><span class="n">nodes_fixed</span><span class="p">][</span><span class="n">unique</span><span class="p">]),</span>
+        <span class="p">)</span>
+        <span class="c1"># /TODO</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_posterior</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">piecewise_scale_posterior</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_posterior</span><span class="p">,</span>
+            <span class="n">nodes_fixed</span><span class="p">,</span>
+            <span class="n">original_breaks</span><span class="p">,</span>
+            <span class="n">rescaled_breaks</span><span class="p">,</span>
+            <span class="n">quantile_width</span><span class="p">,</span>
+            <span class="n">max_shape</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutation_posterior</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">piecewise_scale_posterior</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_posterior</span><span class="p">,</span>
+            <span class="n">mutations_fixed</span><span class="p">,</span>
+            <span class="n">original_breaks</span><span class="p">,</span>
+            <span class="n">rescaled_breaks</span><span class="p">,</span>
+            <span class="n">quantile_width</span><span class="p">,</span>
+            <span class="n">max_shape</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># TODO change to `date`</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">infer</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">ep_iterations</span><span class="p">,</span>
+        <span class="n">max_shape</span><span class="p">,</span>
+        <span class="n">rescale_intervals</span><span class="p">,</span>
+        <span class="n">rescale_iterations</span><span class="p">,</span>
+        <span class="n">regularise</span><span class="p">,</span>
+        <span class="n">rescale_segsites</span><span class="p">,</span>
+        <span class="n">min_step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">progress</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="c1"># Run multiple rounds of expectation propagation, and return stats</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean_edge_logconst</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Undocumented: can be used to assess convergence</span>
+        <span class="n">nodes_timing</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ep_iterations</span><span class="p">),</span>
+            <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Expectation Propagation&quot;</span><span class="p">,</span>
+            <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">progress</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span>
+                <span class="n">max_shape</span><span class="o">=</span><span class="n">max_shape</span><span class="p">,</span>
+                <span class="n">min_step</span><span class="o">=</span><span class="n">min_step</span><span class="p">,</span>
+                <span class="n">regularise</span><span class="o">=</span><span class="n">regularise</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mean_edge_logconst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_logconst</span><span class="p">))</span>
+
+        <span class="n">nodes_timing</span> <span class="o">-=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">skipped_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_logconst</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skipped </span><span class="si">{</span><span class="n">skipped_edges</span><span class="si">}</span><span class="s2"> edges with invalid factors&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calculated node posteriors in </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">nodes_timing</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+
+        <span class="n">muts_timing</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">mutations_phased</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_blocks</span> <span class="o">==</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Passing through unphased singletons&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">propagate_mutations</span><span class="p">(</span>  <span class="c1"># unphased singletons</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_order</span><span class="p">[</span><span class="o">~</span><span class="n">mutations_phased</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_posterior</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_phase</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_blocks</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_nodes</span><span class="p">[</span><span class="n">ROOTWARD</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_nodes</span><span class="p">[</span><span class="n">LEAFWARD</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_likelihoods</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_posterior</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">factors</span><span class="p">,</span>
+            <span class="n">USE_BLOCK_LIKELIHOOD</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Passing through phased mutations&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">propagate_mutations</span><span class="p">(</span>  <span class="c1"># phased mutations</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_order</span><span class="p">[</span><span class="n">mutations_phased</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_posterior</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_phase</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_edges</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_parents</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_children</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_likelihoods</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_posterior</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">factors</span><span class="p">,</span>
+            <span class="n">USE_EDGE_LIKELIHOOD</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">muts_timing</span> <span class="o">-=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">skipped_muts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mutation_posterior</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skipped </span><span class="si">{</span><span class="n">skipped_muts</span><span class="si">}</span><span class="s2"> mutations with invalid posteriors&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calculated mutation posteriors in </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">muts_timing</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+
+        <span class="n">singletons</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_blocks</span> <span class="o">!=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span>
+        <span class="n">switched_blocks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_blocks</span><span class="p">[</span><span class="n">singletons</span><span class="p">]</span>
+        <span class="n">switched_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_phase</span><span class="p">[</span><span class="n">singletons</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_edges</span><span class="p">[</span><span class="n">switched_blocks</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_edges</span><span class="p">[</span><span class="n">switched_blocks</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutation_edges</span><span class="p">[</span><span class="n">singletons</span><span class="p">]</span> <span class="o">=</span> <span class="n">switched_edges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutation_nodes</span><span class="p">[</span><span class="n">singletons</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_children</span><span class="p">[</span><span class="n">switched_edges</span><span class="p">]</span>
+        <span class="n">switched</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_phase</span> <span class="o">&lt;</span> <span class="mf">0.5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutation_phase</span><span class="p">[</span><span class="n">switched</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_phase</span><span class="p">[</span><span class="n">switched</span><span class="p">]</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Switched phase of </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">switched</span><span class="p">)</span><span class="si">}</span><span class="s2"> singletons&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">rescale_intervals</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">rescale_iterations</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rescale_timing</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rescale</span><span class="p">(</span>
+                <span class="n">rescale_intervals</span><span class="o">=</span><span class="n">rescale_intervals</span><span class="p">,</span>
+                <span class="n">rescale_iterations</span><span class="o">=</span><span class="n">rescale_iterations</span><span class="p">,</span>
+                <span class="n">rescale_segsites</span><span class="o">=</span><span class="n">rescale_segsites</span><span class="p">,</span>
+                <span class="n">max_shape</span><span class="o">=</span><span class="n">max_shape</span><span class="p">,</span>
+                <span class="n">progress</span><span class="o">=</span><span class="n">progress</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">rescale_timing</span> <span class="o">-=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Timescale rescaled in </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">rescale_timing</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">node_moments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Posterior mean and variance of node ages (equivalent to node_posteriors)</span>
+        <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_posterior</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">nodes_mn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">nodes_va</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nodes_mn</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="n">free</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_constraints</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">nodes_mn</span><span class="p">[</span><span class="n">free</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">alpha</span><span class="p">[</span><span class="n">free</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">beta</span><span class="p">[</span><span class="n">free</span><span class="p">]</span>
+        <span class="n">nodes_va</span><span class="p">[</span><span class="n">free</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes_mn</span><span class="p">[</span><span class="n">free</span><span class="p">]</span> <span class="o">/</span> <span class="n">beta</span><span class="p">[</span><span class="n">free</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">nodes_mn</span><span class="p">,</span> <span class="n">nodes_va</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">mutation_moments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Posterior mean and variance of mutation ages</span>
+        <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_posterior</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">muts_mn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">alpha</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">muts_va</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">alpha</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">free</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">muts_mn</span><span class="p">[</span><span class="n">free</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">alpha</span><span class="p">[</span><span class="n">free</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">beta</span><span class="p">[</span><span class="n">free</span><span class="p">]</span>
+        <span class="n">muts_va</span><span class="p">[</span><span class="n">free</span><span class="p">]</span> <span class="o">=</span> <span class="n">muts_mn</span><span class="p">[</span><span class="n">free</span><span class="p">]</span> <span class="o">/</span> <span class="n">beta</span><span class="p">[</span><span class="n">free</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">muts_mn</span><span class="p">,</span> <span class="n">muts_va</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">mutation_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Map from mutations to edges and subtended node, using estimated singleton</span>
+        <span class="c1"># phase (if singletons were unphased)</span>
+
+        <span class="c1"># TODO: should these be copies? Should members be readonly?</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_nodes</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">marginal_likelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Return the marginal likelihood of the data given the model</span>
+
+        <span class="c1"># TODO: implement</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="ExpectationPropagation.node_posteriors">
+<a class="viewcode-back" href="../../python-api.html#tsdate.variational.ExpectationPropagation.node_posteriors">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">node_posteriors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return parameters specifying the inferred posterior distribution of node</span>
+<span class="sd">        times which can be e.g. read into a ``pandas.DataFrame`` for further analysis.</span>
+<span class="sd">        The mean times are not strictly constrained by topology, so unlike the</span>
+<span class="sd">        ``nodes_time`` attribute of a tree sequence, the mean time of a parent node</span>
+<span class="sd">        may occasionally be less than that of one of its children.</span>
+
+<span class="sd">        :return: The distribution of posterior node times as a structured array of</span>
+<span class="sd">            mean and variance. Row ``i`` gives the mean and variance of inferred</span>
+<span class="sd">            node times for node ``i``.</span>
+<span class="sd">        :rtype: numpy.ndarray</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">node_mn</span><span class="p">,</span> <span class="n">node_va</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_moments</span><span class="p">()</span>
+        <span class="n">dtype</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">node_mn</span><span class="o">.</span><span class="n">dtype</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;variance&quot;</span><span class="p">,</span> <span class="n">node_va</span><span class="o">.</span><span class="n">dtype</span><span class="p">)]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">node_mn</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node_mn</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;variance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node_va</span>
+        <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="ExpectationPropagation.mutation_posteriors">
+<a class="viewcode-back" href="../../python-api.html#tsdate.variational.ExpectationPropagation.mutation_posteriors">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mutation_posteriors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns parameters specifying the inferred posterior distribution of mutation</span>
+<span class="sd">        times which can be e.g. read into a ``pandas.DataFrame`` for further analysis.</span>
+<span class="sd">        These are calculated as the midpoint distribution of the posterior node time</span>
+<span class="sd">        distributions of the node above and below the mutation. Note that this means</span>
+<span class="sd">        it is possible for a mean mutation time not to lie between the mean values of</span>
+<span class="sd">        its parent and child nodes.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            For unphased singletons, the posterior mutation time is integrated over</span>
+<span class="sd">            the two possible haploid genomes on which the singleton could be placed,</span>
+<span class="sd">            accounting for the relative branch lengths above each genome.</span>
+
+<span class="sd">        :return: The distribution of posterior mutation times as a structured array</span>
+<span class="sd">            of mean and variance. Row ``i`` gives the mean and variance of inferred</span>
+<span class="sd">            mutations times for mutation ``i``.</span>
+<span class="sd">        :rtype: numpy.ndarray</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mut_mn</span><span class="p">,</span> <span class="n">mut_va</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_moments</span><span class="p">()</span>
+        <span class="n">dtype</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">mut_mn</span><span class="o">.</span><span class="n">dtype</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;variance&quot;</span><span class="p">,</span> <span class="n">mut_va</span><span class="o">.</span><span class="n">dtype</span><span class="p">)]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">mut_mn</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mut_mn</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;variance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mut_va</span>
+        <span class="k">return</span> <span class="n">data</span></div>
+</div>
+
+
+
+<span class="c1"># NB: used for debugging</span>
+<span class="c1"># def date(</span>
+<span class="c1">#     ts,</span>
+<span class="c1">#     *,</span>
+<span class="c1">#     mutation_rate,</span>
+<span class="c1">#     singletons_phased=True,</span>
+<span class="c1">#     max_iterations=10,</span>
+<span class="c1">#     rescaling_intervals=1000,</span>
+<span class="c1">#     rescaling_iterations=10,</span>
+<span class="c1">#     match_segregating_sites=False,</span>
+<span class="c1">#     regularise_roots=True,</span>
+<span class="c1">#     constr_iterations=0,</span>
+<span class="c1">#     progress=True,</span>
+<span class="c1"># ):</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     Date a tree sequence with expectation propagation. Returns dated tree</span>
+<span class="c1">#     sequence and converged ExpectationPropagation object.</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#</span>
+<span class="c1">#     posterior = variational.ExpectationPropagation(</span>
+<span class="c1">#         ts,</span>
+<span class="c1">#         mutation_rate=mutation_rate,</span>
+<span class="c1">#         singletons_phased=singletons_phased,</span>
+<span class="c1">#     )</span>
+<span class="c1">#     posterior.infer(</span>
+<span class="c1">#         ep_maxitt=max_iterations,</span>
+<span class="c1">#         max_shape=max_shape,</span>
+<span class="c1">#         rescale_intervals=rescaling_intervals,</span>
+<span class="c1">#         rescale_iterations=rescaling_iterations,</span>
+<span class="c1">#         regularise=regularise_roots,</span>
+<span class="c1">#         rescale_segsites=match_segregating_sites,</span>
+<span class="c1">#         progress=progress,</span>
+<span class="c1">#     )</span>
+<span class="c1">#</span>
+<span class="c1">#     node_mn, node_va = posterior.node_moments()</span>
+<span class="c1">#     mutation_mn, mutation_va = posterior.mutation_moments()</span>
+<span class="c1">#     mutation_edge, mutation_node = posterior.mutation_mapping()</span>
+<span class="c1">#</span>
+<span class="c1">#     tables = ts.dump_tables()</span>
+<span class="c1">#     tables.nodes.time = \</span>
+<span class="c1">#        constrain_ages(ts, node_mn, constr_iterations=constr_iterations)</span>
+<span class="c1">#     tables.mutations.node = mutation_node</span>
+<span class="c1">#     tables.sort()</span>
+<span class="c1">#</span>
+<span class="c1">#     return tables.tree_sequence(), posterior</span>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

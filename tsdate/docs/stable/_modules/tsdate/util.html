@@ -1,0 +1,1170 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tsdate.util &#8212; Tsdate manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/tsdate/util';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tsdate_logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../../_static/tsdate_logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 0.2.5</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../usage.html">Usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../real-data.html">Real data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../popsize.html">Population size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../historical_samples.html">Historical (Ancient) Samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../priors.html">More on priors (old)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../api.html">APIs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python-api.html">Python API</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../cli.html">Command line interface</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CHANGELOG.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for tsdate.util</h1><div class="highlight"><pre>
+<span></span><span class="c1"># MIT License</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2020 University of Oxford</span>
+<span class="c1">#</span>
+<span class="c1"># Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="c1"># of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1"># in the Software without restriction, including without limitation the rights</span>
+<span class="c1"># to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="c1"># copies of the Software, and to permit persons to whom the Software is</span>
+<span class="c1"># furnished to do so, subject to the following conditions:</span>
+<span class="c1">#</span>
+<span class="c1"># The above copyright notice and this permission notice shall be included in</span>
+<span class="c1"># all copies or substantial portions of the Software.</span>
+<span class="c1">#</span>
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="c1"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="c1"># AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="c1"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="c1"># SOFTWARE.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Utility functions for tsdate. Many of these can be removed when tskit is updated to</span>
+<span class="sd">a more recent version which has the functionality built-in</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numba.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">UniTuple</span> <span class="k">as</span> <span class="n">_unituple</span>  <span class="c1"># NOQA: N813</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">tsdate</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">provenance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.accelerate</span><span class="w"> </span><span class="kn">import</span> <span class="n">numba_jit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.approx</span><span class="w"> </span><span class="kn">import</span> <span class="n">_b</span><span class="p">,</span> <span class="n">_b1r</span><span class="p">,</span> <span class="n">_f</span><span class="p">,</span> <span class="n">_f1r</span><span class="p">,</span> <span class="n">_f1w</span><span class="p">,</span> <span class="n">_i</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_i1w</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">reduce_to_contemporaneous</span><span class="p">(</span><span class="n">ts</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simplify the ts to only the contemporaneous samples, and return the new ts + node map</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">()</span>
+    <span class="n">contmpr_samples</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">[</span><span class="n">samples</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">ts</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span>
+        <span class="n">contmpr_samples</span><span class="p">,</span>
+        <span class="n">map_nodes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">keep_unary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">filter_populations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">filter_sites</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">record_provenance</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">filter_individuals</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="preprocess_ts">
+<a class="viewcode-back" href="../../python-api.html#tsdate.preprocess_ts">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">preprocess_ts</span><span class="p">(</span>
+    <span class="n">tree_sequence</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">minimum_gap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">erase_flanks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">delete_intervals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">split_disjoint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">filter_populations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">filter_individuals</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">filter_sites</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">record_provenance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># deprecated arguments</span>
+    <span class="n">remove_telomeres</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to prepare tree sequences for dating by modifying the tree sequence</span>
+<span class="sd">    to increase the accuracy of dating. This can involve removing data-poor regions,</span>
+<span class="sd">    removing locally-unary segments of nodes via simplification, and splitting</span>
+<span class="sd">    discontinuous nodes.</span>
+
+<span class="sd">    :param tskit.TreeSequence tree_sequence: The input tree sequence</span>
+<span class="sd">        to be preprocessed.</span>
+<span class="sd">    :param float minimum_gap: The minimum gap between sites to remove from the tree</span>
+<span class="sd">        sequence. Default: ``None`` treated as ``1000000``. Removed regions are recorded</span>
+<span class="sd">        in the provenance of the resulting tree sequence.</span>
+<span class="sd">    :param bool erase_flanks: Should all material before the first site and after the</span>
+<span class="sd">        last site be removed, regardless of the length. Default: ``None`` treated as</span>
+<span class="sd">        ``True``</span>
+<span class="sd">    :param array_like delete_intervals: A list (start, end) pairs describing the</span>
+<span class="sd">        genomic intervals (gaps) to delete. This is usually left as ``None``</span>
+<span class="sd">        (the default) in which case ``minimum_gap`` and ``erase_flanks`` are used</span>
+<span class="sd">        to determine the gaps to remove, and the calculated intervals are recorded in</span>
+<span class="sd">        the provenance of the resulting tree sequence.</span>
+<span class="sd">    :param bool split_disjoint: Run the {func}`split_disjoint_nodes` function</span>
+<span class="sd">        on the returned tree sequence, breaking any disjoint node into nodes that can</span>
+<span class="sd">        be dated separately (Default: ``None`` treated as ``True``).</span>
+<span class="sd">    :param bool filter_populations: parameter passed to the</span>
+<span class="sd">        {meth}`tskit.TreeSequence.simplify` command. Unlike calling that command</span>
+<span class="sd">        directly, this defaults to ``False``, such that all populations in the tree</span>
+<span class="sd">        sequence are kept.</span>
+<span class="sd">    :param bool filter_individuals: parameter passed to the</span>
+<span class="sd">        {meth}`tskit.TreeSequence.simplify` command. Unlike calling that command</span>
+<span class="sd">        directly, this defaults to ``False``, such</span>
+<span class="sd">        that all individuals in the tree sequence are kept.</span>
+<span class="sd">    :param bool filter_sites: parameter passed to the</span>
+<span class="sd">        {meth}`tskit.TreeSequence.simplify` command. Unlike calling that command</span>
+<span class="sd">        directly, this defaults to ``False``, such</span>
+<span class="sd">        that all sites in the tree sequence are kept.</span>
+<span class="sd">    :param bool record_provenance: If ``True``, record details of this call to</span>
+<span class="sd">        simplify in the returned tree sequence&#39;s provenance information</span>
+<span class="sd">        (Default: ``None`` treated as ``True``).</span>
+<span class="sd">    :param bool remove_telomeres: Deprecated alias for ``erase_flanks``.</span>
+<span class="sd">    :param \\**kwargs: All further keyword arguments are passed to the</span>
+<span class="sd">        {meth}`tskit.TreeSequence.simplify` command.</span>
+
+<span class="sd">    :return: A tree sequence with gaps removed.</span>
+<span class="sd">    :rtype: tskit.TreeSequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Beginning preprocessing&quot;</span><span class="p">)</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">split_disjoint</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">split_disjoint</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">record_provenance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">record_provenance</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">remove_telomeres</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">erase_flanks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">erase_flanks</span> <span class="o">=</span> <span class="n">remove_telomeres</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot specify both remove_telomeres and erase_flanks&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Minimum_gap: </span><span class="si">{</span><span class="n">minimum_gap</span><span class="si">}</span><span class="s2"> and erase_flanks: </span><span class="si">{</span><span class="n">erase_flanks</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">delete_intervals</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span>
+        <span class="n">minimum_gap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">erase_flanks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Cannot specify both delete_intervals and minimum_gap/erase_flanks&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">tables</span> <span class="o">=</span> <span class="n">tree_sequence</span><span class="o">.</span><span class="n">dump_tables</span><span class="p">()</span>
+    <span class="n">sites</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">sites</span><span class="o">.</span><span class="n">position</span><span class="p">[:]</span>
+    <span class="k">if</span> <span class="n">delete_intervals</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">minimum_gap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">minimum_gap</span> <span class="o">=</span> <span class="mi">1000000</span>
+        <span class="k">if</span> <span class="n">erase_flanks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">erase_flanks</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">tree_sequence</span><span class="o">.</span><span class="n">num_sites</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid tree sequence: no sites present&quot;</span><span class="p">)</span>
+        <span class="n">delete_intervals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">erase_flanks</span><span class="p">:</span>
+            <span class="n">first_site</span> <span class="o">=</span> <span class="n">sites</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">first_site</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">delete_intervals</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">first_site</span><span class="p">])</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="s2">&quot;REMOVING TELOMERE: Snip topology &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;from 0 to first site at </span><span class="si">{</span><span class="n">first_site</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="p">)</span>
+            <span class="n">last_site</span> <span class="o">=</span> <span class="n">sites</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">sequence_length</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">sequence_length</span>
+            <span class="k">if</span> <span class="n">last_site</span> <span class="o">&lt;</span> <span class="n">sequence_length</span><span class="p">:</span>
+                <span class="n">delete_intervals</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">last_site</span><span class="p">,</span> <span class="n">sequence_length</span><span class="p">])</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="s2">&quot;REMOVING TELOMERE: Snip topology &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;from </span><span class="si">{</span><span class="n">last_site</span><span class="si">}</span><span class="s2"> to end of sequence at </span><span class="si">{</span><span class="n">sequence_length</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="p">)</span>
+        <span class="n">gaps</span> <span class="o">=</span> <span class="n">sites</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">sites</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">threshold_gaps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">gaps</span> <span class="o">&gt;=</span> <span class="n">minimum_gap</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">gap</span> <span class="ow">in</span> <span class="n">threshold_gaps</span><span class="p">:</span>
+            <span class="n">gap_start</span> <span class="o">=</span> <span class="n">sites</span><span class="p">[</span><span class="n">gap</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">gap_end</span> <span class="o">=</span> <span class="n">sites</span><span class="p">[</span><span class="n">gap</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">gap_end</span> <span class="o">&gt;</span> <span class="n">gap_start</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Gap Size is </span><span class="si">{</span><span class="n">gap_end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">gap_start</span><span class="si">}</span><span class="s2">. Snip topology &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;from </span><span class="si">{</span><span class="n">gap_start</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">gap_end</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="p">)</span>
+                <span class="n">delete_intervals</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">gap_start</span><span class="p">,</span> <span class="n">gap_end</span><span class="p">])</span>
+        <span class="n">delete_intervals</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">delete_intervals</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">delete_intervals</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">tables</span><span class="o">.</span><span class="n">delete_intervals</span><span class="p">(</span><span class="n">delete_intervals</span><span class="p">,</span> <span class="n">simplify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">record_provenance</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">tables</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span>
+            <span class="n">filter_populations</span><span class="o">=</span><span class="n">filter_populations</span><span class="p">,</span>
+            <span class="n">filter_individuals</span><span class="o">=</span><span class="n">filter_individuals</span><span class="p">,</span>
+            <span class="n">filter_sites</span><span class="o">=</span><span class="n">filter_sites</span><span class="p">,</span>
+            <span class="n">record_provenance</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No gaps to remove&quot;</span><span class="p">)</span>
+        <span class="n">tables</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span>
+            <span class="n">filter_populations</span><span class="o">=</span><span class="n">filter_populations</span><span class="p">,</span>
+            <span class="n">filter_individuals</span><span class="o">=</span><span class="n">filter_individuals</span><span class="p">,</span>
+            <span class="n">filter_sites</span><span class="o">=</span><span class="n">filter_sites</span><span class="p">,</span>
+            <span class="n">record_provenance</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">split_disjoint</span><span class="p">:</span>
+        <span class="n">ts</span> <span class="o">=</span> <span class="n">split_disjoint_nodes</span><span class="p">(</span><span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">(),</span> <span class="n">record_provenance</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">tables</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">dump_tables</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">record_provenance</span><span class="p">:</span>
+        <span class="n">provenance</span><span class="o">.</span><span class="n">record_provenance</span><span class="p">(</span>
+            <span class="n">tables</span><span class="p">,</span>
+            <span class="s2">&quot;preprocess_ts&quot;</span><span class="p">,</span>
+            <span class="n">start_time</span><span class="o">=</span><span class="n">start_time</span><span class="p">,</span>
+            <span class="n">minimum_gap</span><span class="o">=</span><span class="n">minimum_gap</span><span class="p">,</span>
+            <span class="n">erase_flanks</span><span class="o">=</span><span class="n">erase_flanks</span><span class="p">,</span>
+            <span class="n">split_disjoint</span><span class="o">=</span><span class="n">split_disjoint</span><span class="p">,</span>
+            <span class="n">filter_populations</span><span class="o">=</span><span class="n">filter_populations</span><span class="p">,</span>
+            <span class="n">filter_individuals</span><span class="o">=</span><span class="n">filter_individuals</span><span class="p">,</span>
+            <span class="n">filter_sites</span><span class="o">=</span><span class="n">filter_sites</span><span class="p">,</span>
+            <span class="n">delete_intervals</span><span class="o">=</span><span class="n">delete_intervals</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">nodes_time_unconstrained</span><span class="p">(</span><span class="n">tree_sequence</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the unconstrained node times for every node in a tree sequence that has</span>
+<span class="sd">    been dated using ``tsdate`` with the inside-outside algorithm (these times are</span>
+<span class="sd">    stored in the node metadata). Will produce an error if the tree sequence does</span>
+<span class="sd">    not contain this information.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nodes_time</span> <span class="o">=</span> <span class="n">tree_sequence</span><span class="o">.</span><span class="n">nodes_time</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">tree_sequence</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">metadata</span>
+    <span class="n">metadata_offset</span> <span class="o">=</span> <span class="n">tree_sequence</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">metadata_offset</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">met</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tskit</span><span class="o">.</span><span class="n">unpack_bytes</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">metadata_offset</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tree_sequence</span><span class="o">.</span><span class="n">samples</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">nodes_time</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">met</span><span class="o">.</span><span class="n">decode</span><span class="p">())[</span><span class="s2">&quot;mn&quot;</span><span class="p">]</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">decoder</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Tree Sequence must be tsdated with the Inside-Outside Method.&quot;</span>
+                <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">err</span>
+    <span class="k">return</span> <span class="n">nodes_time</span>
+
+
+<div class="viewcode-block" id="sites_time_from_ts">
+<a class="viewcode-back" href="../../python-api.html#tsdate.sites_time_from_ts">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sites_time_from_ts</span><span class="p">(</span>
+    <span class="n">tree_sequence</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">unconstrained</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_selection</span><span class="o">=</span><span class="s2">&quot;child&quot;</span><span class="p">,</span> <span class="n">min_time</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an estimated &quot;time&quot; for each site. This is the estimated age of the oldest</span>
+<span class="sd">    MRCA which possesses a derived variant at that site, and is useful for performing</span>
+<span class="sd">    (re)inference of a tree sequence. It is calculated from the ages of nodes, with the</span>
+<span class="sd">    appropriate nodes identified by the position of mutations in the trees.</span>
+
+<span class="sd">    If node times in the tree sequence have been estimated by ``tsdate`` using the</span>
+<span class="sd">    inside-outside algorithm, then as well as a time in the tree sequence, nodes will</span>
+<span class="sd">    store additional time estimates that have not been explictly constrained by the</span>
+<span class="sd">    tree topology. By default, this function tries to use these &quot;unconstrained&quot; times,</span>
+<span class="sd">    although this is likely to fail (with a warning) on tree sequences that have not</span>
+<span class="sd">    been processed by ``tsdate``: in this case the standard node times can be used by</span>
+<span class="sd">    setting ``unconstrained=False``.</span>
+
+<span class="sd">    The concept of a site time is meaningless for non-variable sites, and</span>
+<span class="sd">    so the returned time for these sites is ``np.nan`` (note that this is not exactly</span>
+<span class="sd">    the same as tskit.UNKNOWN_TIME, which marks sites that could have a meaningful time</span>
+<span class="sd">    but whose time estimate is unknown).</span>
+
+<span class="sd">    :param tskit.TreeSequence tree_sequence: The input tree sequence.</span>
+<span class="sd">    :param bool unconstrained: Use estimated node times which have not been constrained</span>
+<span class="sd">        by tree topology. If ``True`` (default), this requires a tree sequence which has</span>
+<span class="sd">        been dated using the ``tsdate`` inside-outside algorithm. If this is not the</span>
+<span class="sd">        case, specify ``False`` to use the standard tree sequence node times.</span>
+<span class="sd">    :param str node_selection: Defines how site times are calculated from the age of</span>
+<span class="sd">        the upper and lower nodes that bound each mutation at the site. Options are</span>
+<span class="sd">        &quot;child&quot;, &quot;parent&quot;, &quot;arithmetic&quot; or &quot;geometric&quot;, with the following meanings</span>
+
+<span class="sd">        * ``&#39;child&#39;`` (default): the site time is the age of the oldest node</span>
+<span class="sd">          *below* each mutation at the site</span>
+<span class="sd">        * ``&#39;parent&#39;``: the site time is the age of the oldest node *above* each</span>
+<span class="sd">          mutation at the site</span>
+<span class="sd">        * ``&#39;arithmetic&#39;``: the arithmetic mean of the ages of the node above and the</span>
+<span class="sd">          node below each mutation is calculated; the site time is the oldest</span>
+<span class="sd">          of these means.</span>
+<span class="sd">        * ``&#39;geometric&#39;``: the geometric mean of the ages of the node above and the</span>
+<span class="sd">          node below each mutation is calculated; the site time is the oldest</span>
+<span class="sd">          of these means</span>
+
+<span class="sd">    :param float min_time: A site time of zero implies that no MRCA in the past</span>
+<span class="sd">        possessed the derived variant, so the variant cannot be used for inferring</span>
+<span class="sd">        relationships between the samples. To allow all variants to be potentially</span>
+<span class="sd">        available for inference, if a site time would otherwise be calculated as zero</span>
+<span class="sd">        (for example, where the ``mutation_age`` parameter is &quot;child&quot; or &quot;geometric&quot;</span>
+<span class="sd">        and all mutations at a site are associated with leaf nodes), a minimum site</span>
+<span class="sd">        greater than 0 is recommended. By default this is set to 1, which is generally</span>
+<span class="sd">        reasonable for times measured in generations or years, although it is also</span>
+<span class="sd">        fine to set this to a small epsilon value.</span>
+
+<span class="sd">    :return: Array of length tree_sequence.num_sites with estimated time of each site</span>
+<span class="sd">    :rtype: numpy.ndarray(dtype=np.float64)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tree_sequence</span><span class="o">.</span><span class="n">num_sites</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid tree sequence: no sites present&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">node_selection</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;arithmetic&quot;</span><span class="p">,</span> <span class="s2">&quot;geometric&quot;</span><span class="p">,</span> <span class="s2">&quot;child&quot;</span><span class="p">,</span> <span class="s2">&quot;parent&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;The node_selection parameter must be &quot;</span>
+            <span class="s2">&quot;&#39;child&#39;, &#39;parent&#39;, &#39;arithmetic&#39;, or &#39;geometric&#39;&quot;</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">unconstrained</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">nodes_time</span> <span class="o">=</span> <span class="n">nodes_time_unconstrained</span><span class="p">(</span><span class="n">tree_sequence</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">args</span> <span class="o">+=</span> <span class="s2">&quot;Try calling sites_time_from_ts() with unconstrained=False.&quot;</span>
+            <span class="k">raise</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nodes_time</span> <span class="o">=</span> <span class="n">tree_sequence</span><span class="o">.</span><span class="n">nodes_time</span>
+    <span class="n">sites_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">tree_sequence</span><span class="o">.</span><span class="n">num_sites</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">tree_sequence</span><span class="o">.</span><span class="n">trees</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">site</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">sites</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">mutation</span> <span class="ow">in</span> <span class="n">site</span><span class="o">.</span><span class="n">mutations</span><span class="p">:</span>
+                <span class="n">parent_node</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">parent</span><span class="p">(</span><span class="n">mutation</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">node_selection</span> <span class="o">==</span> <span class="s2">&quot;child&quot;</span> <span class="ow">or</span> <span class="n">parent_node</span> <span class="o">==</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">:</span>
+                    <span class="n">age</span> <span class="o">=</span> <span class="n">nodes_time</span><span class="p">[</span><span class="n">mutation</span><span class="o">.</span><span class="n">node</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">parent_age</span> <span class="o">=</span> <span class="n">nodes_time</span><span class="p">[</span><span class="n">parent_node</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">node_selection</span> <span class="o">==</span> <span class="s2">&quot;parent&quot;</span><span class="p">:</span>
+                        <span class="n">age</span> <span class="o">=</span> <span class="n">parent_age</span>
+                    <span class="k">elif</span> <span class="n">node_selection</span> <span class="o">==</span> <span class="s2">&quot;arithmetic&quot;</span><span class="p">:</span>
+                        <span class="n">age</span> <span class="o">=</span> <span class="p">(</span><span class="n">nodes_time</span><span class="p">[</span><span class="n">mutation</span><span class="o">.</span><span class="n">node</span><span class="p">]</span> <span class="o">+</span> <span class="n">parent_age</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="k">elif</span> <span class="n">node_selection</span> <span class="o">==</span> <span class="s2">&quot;geometric&quot;</span><span class="p">:</span>
+                        <span class="n">age</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">nodes_time</span><span class="p">[</span><span class="n">mutation</span><span class="o">.</span><span class="n">node</span><span class="p">]</span> <span class="o">*</span> <span class="n">parent_age</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">sites_time</span><span class="p">[</span><span class="n">site</span><span class="o">.</span><span class="n">id</span><span class="p">])</span> <span class="ow">or</span> <span class="n">sites_time</span><span class="p">[</span><span class="n">site</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">age</span><span class="p">:</span>
+                    <span class="n">sites_time</span><span class="p">[</span><span class="n">site</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">age</span>
+            <span class="k">if</span> <span class="n">sites_time</span><span class="p">[</span><span class="n">site</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">min_time</span><span class="p">:</span>
+                <span class="n">sites_time</span><span class="p">[</span><span class="n">site</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">min_time</span>
+    <span class="k">return</span> <span class="n">sites_time</span></div>
+
+
+
+<div class="viewcode-block" id="add_sampledata_times">
+<a class="viewcode-back" href="../../python-api.html#tsdate.add_sampledata_times">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_sampledata_times</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">sites_time</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a tsinfer.SampleData file with estimated times associated with sites.</span>
+<span class="sd">    Ensures that each site&#39;s time is at least as old as the oldest historic sample</span>
+<span class="sd">    carrying a derived allele at that site.</span>
+
+<span class="sd">    :param samples: A tsinfer SampleData object to</span>
+<span class="sd">        add site times to. Any historic individuals in this SampleData file are used to</span>
+<span class="sd">        constrain site times.</span>
+
+<span class="sd">    :return: A copy of the input sample data with site times added</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">samples</span><span class="o">.</span><span class="n">num_sites</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sites_time</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;sites_time should contain the same number of sites as the SampleData file&quot;</span>
+        <span class="p">)</span>
+    <span class="c1"># Get constraints from ancients</span>
+    <span class="n">sites_bound</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">min_site_times</span><span class="p">(</span><span class="n">individuals_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># Use maximum of constraints and estimated site times</span>
+    <span class="n">sites_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">sites_time</span><span class="p">,</span> <span class="n">sites_bound</span><span class="p">)</span>
+    <span class="n">copy</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">copy</span><span class="o">.</span><span class="n">sites_time</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">sites_time</span>
+    <span class="n">copy</span><span class="o">.</span><span class="n">finalise</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">copy</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mutation_span_array</span><span class="p">(</span><span class="n">tree_sequence</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract mutation counts and spans per edge into a two-column array&quot;&quot;&quot;</span>
+    <span class="n">mutation_spans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">tree_sequence</span><span class="o">.</span><span class="n">num_edges</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">mutation_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">tree_sequence</span><span class="o">.</span><span class="n">num_mutations</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">mut</span> <span class="ow">in</span> <span class="n">tree_sequence</span><span class="o">.</span><span class="n">mutations</span><span class="p">():</span>
+        <span class="n">mutation_edges</span><span class="p">[</span><span class="n">mut</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">mut</span><span class="o">.</span><span class="n">edge</span>
+        <span class="k">if</span> <span class="n">mut</span><span class="o">.</span><span class="n">edge</span> <span class="o">!=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">:</span>
+            <span class="n">mutation_spans</span><span class="p">[</span><span class="n">mut</span><span class="o">.</span><span class="n">edge</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">tree_sequence</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+        <span class="n">mutation_spans</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">span</span>
+    <span class="k">return</span> <span class="n">mutation_spans</span><span class="p">,</span> <span class="n">mutation_edges</span>
+
+
+<span class="c1"># Some functions for changing tskit metadata</span>
+<span class="c1"># See https://github.com/tskit-dev/tskit/discussions/2954</span>
+<span class="c1"># TODO - potentially possible to speed up using numba?</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_reorder_nodes</span><span class="p">(</span><span class="n">node_table</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">extra_md_dict</span><span class="p">):</span>
+    <span class="c1"># extra_md_dict ({rowid: new_byte_metadata}) can be used to pass metadata to replace</span>
+    <span class="c1"># the existing metadata in a row. This works by creating new rows for the metadata,</span>
+    <span class="c1"># based on the algorithm in https://github.com/tskit-dev/tskit/discussions/2954</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">node_table</span><span class="o">.</span><span class="n">metadata</span><span class="p">]</span>
+    <span class="c1"># add a list of new byte arrays, then concat</span>
+    <span class="n">md_dtype</span><span class="p">,</span> <span class="n">md_off_dtype</span> <span class="o">=</span> <span class="n">node_table</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">node_table</span><span class="o">.</span><span class="n">metadata_offset</span><span class="o">.</span><span class="n">dtype</span>
+    <span class="n">data</span> <span class="o">+=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">md_dtype</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">extra_md_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+    <span class="n">md</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Common edge case: no metadata</span>
+        <span class="n">md_off</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">order</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">md_off_dtype</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">extra_offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">md_off_dtype</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">md_off</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">node_table</span><span class="o">.</span><span class="n">metadata_offset</span><span class="p">,</span> <span class="n">extra_offsets</span><span class="p">))</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">unpack_arrays</span><span class="p">(</span><span class="n">md</span><span class="p">,</span> <span class="n">md_off</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">extra_md_dict</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># map the keys in extra_md_dict to the new row ids</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">node_table</span><span class="o">.</span><span class="n">num_rows</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">extra_md_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())}</span>
+            <span class="n">md</span><span class="p">,</span> <span class="n">md_off</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">pack_arrays</span><span class="p">([</span><span class="n">arr</span><span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">order</span><span class="p">],</span> <span class="n">md_dtype</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">md</span><span class="p">,</span> <span class="n">md_off</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">pack_arrays</span><span class="p">([</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">order</span><span class="p">],</span> <span class="n">md_dtype</span><span class="p">)</span>
+    <span class="n">node_table</span><span class="o">.</span><span class="n">set_columns</span><span class="p">(</span>
+        <span class="n">flags</span><span class="o">=</span><span class="n">node_table</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="n">order</span><span class="p">],</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">node_table</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="n">order</span><span class="p">],</span>
+        <span class="n">population</span><span class="o">=</span><span class="n">node_table</span><span class="o">.</span><span class="n">population</span><span class="p">[</span><span class="n">order</span><span class="p">],</span>
+        <span class="n">individual</span><span class="o">=</span><span class="n">node_table</span><span class="o">.</span><span class="n">individual</span><span class="p">[</span><span class="n">order</span><span class="p">],</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">,</span>
+        <span class="n">metadata_offset</span><span class="o">=</span><span class="n">md_off</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="nd">@numba_jit</span><span class="p">(</span><span class="n">_unituple</span><span class="p">(</span><span class="n">_i1w</span><span class="p">,</span> <span class="mi">4</span><span class="p">)(</span><span class="n">_i1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_f1r</span><span class="p">,</span> <span class="n">_f1r</span><span class="p">,</span> <span class="n">_b1r</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_split_disjoint_nodes</span><span class="p">(</span>
+    <span class="n">edges_parent</span><span class="p">,</span> <span class="n">edges_child</span><span class="p">,</span> <span class="n">edges_left</span><span class="p">,</span> <span class="n">edges_right</span><span class="p">,</span> <span class="n">node_excluded</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Split disconnected regions of nodes into separate nodes.</span>
+
+<span class="sd">    Returns updated edges_parent, edges_child, mutations_node, and indices indicating</span>
+<span class="sd">    from which original node the new nodes are derived.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edges_child</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edges_left</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edges_right</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">num_edges</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">num_nodes</span> <span class="o">=</span> <span class="n">node_excluded</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="c1"># For each edge, check whether parent/child is separated by a gap from the</span>
+    <span class="c1"># previous edge involving either parent/child. Label disconnected segments</span>
+    <span class="c1"># per node by integers starting at zero.</span>
+    <span class="n">edges_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">edges_left</span><span class="p">)</span>
+    <span class="c1"># TODO: is a sort really needed here?</span>
+    <span class="n">edges_segments</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_edges</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">nodes_segments</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">nodes_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">node_excluded</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">edges_order</span><span class="p">:</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="p">[</span><span class="n">e</span><span class="p">],</span> <span class="n">edges_child</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">node_excluded</span><span class="p">[</span><span class="n">n</span><span class="p">]:</span>
+                <span class="k">continue</span>
+            <span class="n">nodes_segments</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+=</span> <span class="n">edges_left</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nodes_right</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+            <span class="n">edges_segments</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes_segments</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+            <span class="n">nodes_right</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">nodes_right</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">edges_right</span><span class="p">[</span><span class="n">e</span><span class="p">])</span>
+
+    <span class="c1"># Create &quot;nodes_segments[i]&quot; supplementary nodes by copying node &quot;i&quot;.</span>
+    <span class="c1"># Store the id of the first supplement for each node in &quot;nodes_map&quot;.</span>
+    <span class="n">split_nodes</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># the nodes in the original that were split</span>
+    <span class="n">nodes_map</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes_segments</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">nodes_map</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_nodes</span>
+            <span class="n">split_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">num_nodes</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">split_nodes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">split_nodes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">nodes_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">split_nodes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">nodes_order</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">split_nodes</span><span class="p">)</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">split_nodes</span>
+
+    <span class="c1"># Relabel the nodes on each edge given &quot;nodes_map&quot;</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">edges_order</span><span class="p">:</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="p">[</span><span class="n">e</span><span class="p">],</span> <span class="n">edges_child</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">edges_segments</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">e</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">edges_segments</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">e</span><span class="p">]</span> <span class="o">+=</span> <span class="n">nodes_map</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">edges_segments</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="n">edges_parent</span><span class="p">,</span> <span class="n">edges_child</span> <span class="o">=</span> <span class="n">edges_segments</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">edges_segments</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">edges_parent</span><span class="p">,</span> <span class="n">edges_child</span><span class="p">,</span> <span class="n">nodes_order</span><span class="p">,</span> <span class="n">split_nodes</span>
+
+
+<span class="nd">@numba_jit</span><span class="p">(</span><span class="n">_i1w</span><span class="p">(</span><span class="n">_i1r</span><span class="p">,</span> <span class="n">_f1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_f1r</span><span class="p">,</span> <span class="n">_f1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_relabel_mutations_node</span><span class="p">(</span>
+    <span class="n">mutations_node</span><span class="p">,</span>
+    <span class="n">mutations_position</span><span class="p">,</span>
+    <span class="n">nodes_order</span><span class="p">,</span>
+    <span class="n">edges_parent</span><span class="p">,</span>
+    <span class="n">edges_child</span><span class="p">,</span>
+    <span class="n">edges_left</span><span class="p">,</span>
+    <span class="n">edges_right</span><span class="p">,</span>
+    <span class="n">insert_index</span><span class="p">,</span>
+    <span class="n">remove_index</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Traverse trees, maintaining a mapping between old and new node IDs in the</span>
+<span class="sd">    current tree.  Update `mutations_node` to reflect new IDs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edges_child</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edges_left</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edges_right</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">assert</span> <span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">insert_index</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">remove_index</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">assert</span> <span class="n">mutations_position</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">mutations_node</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="n">num_nodes</span> <span class="o">=</span> <span class="n">nodes_order</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">num_edges</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">num_mutations</span> <span class="o">=</span> <span class="n">mutations_position</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="n">insert_position</span> <span class="o">=</span> <span class="n">edges_left</span><span class="p">[</span><span class="n">insert_index</span><span class="p">]</span>
+    <span class="n">remove_position</span> <span class="o">=</span> <span class="n">edges_right</span><span class="p">[</span><span class="n">remove_index</span><span class="p">]</span>
+    <span class="n">sequence_length</span> <span class="o">=</span> <span class="n">remove_position</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">num_mutations</span><span class="p">,</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">nodes_map</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">sequence_length</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">num_edges</span> <span class="ow">and</span> <span class="n">remove_position</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">==</span> <span class="n">left</span><span class="p">:</span>  <span class="c1"># edges out</span>
+            <span class="n">b</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">num_edges</span> <span class="ow">and</span> <span class="n">insert_position</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">==</span> <span class="n">left</span><span class="p">:</span>  <span class="c1"># edges in</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">insert_index</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
+            <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">edges_child</span><span class="p">[</span><span class="n">e</span><span class="p">],</span> <span class="n">edges_parent</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
+            <span class="n">nodes_map</span><span class="p">[</span><span class="n">nodes_order</span><span class="p">[</span><span class="n">c</span><span class="p">]]</span> <span class="o">=</span> <span class="n">c</span>
+            <span class="n">nodes_map</span><span class="p">[</span><span class="n">nodes_order</span><span class="p">[</span><span class="n">p</span><span class="p">]]</span> <span class="o">=</span> <span class="n">p</span>
+            <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">right</span> <span class="o">=</span> <span class="n">sequence_length</span>
+        <span class="k">if</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">num_edges</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">remove_position</span><span class="p">[</span><span class="n">b</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">num_edges</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">insert_position</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">right</span>
+
+        <span class="k">while</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="n">num_mutations</span> <span class="ow">and</span> <span class="n">mutations_position</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">nodes_map</span><span class="p">[</span><span class="n">mutations_node</span><span class="p">[</span><span class="n">m</span><span class="p">]]</span> <span class="o">!=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span>
+            <span class="n">output</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes_map</span><span class="p">[</span><span class="n">mutations_node</span><span class="p">[</span><span class="n">m</span><span class="p">]]</span>
+            <span class="n">m</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">output</span>
+
+
+<div class="viewcode-block" id="split_disjoint_nodes">
+<a class="viewcode-back" href="../../python-api.html#tsdate.split_disjoint_nodes">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">split_disjoint_nodes</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">record_provenance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    For each non-sample node, split regions separated by gaps into distinct</span>
+<span class="sd">    nodes, returning a tree sequence with potentially duplicated nodes.</span>
+
+<span class="sd">    Where there are multiple disconnected regions, the leftmost one is assigned</span>
+<span class="sd">    the ID of the original node, and the remainder are assigned new node IDs.</span>
+<span class="sd">    Population, flags, individual, time, and metadata are all copied into the</span>
+<span class="sd">    new nodes. Nodes that have been split will be flagged with</span>
+<span class="sd">    ``tsdate.NODE_SPLIT_BY_PREPROCESS``. The metadata of these nodes will also be</span>
+<span class="sd">    updated with an `unsplit_node_id` field giving the node ID in the input tree</span>
+<span class="sd">    sequence to which they correspond. If this metadata cannot be set, a warning</span>
+<span class="sd">    is emitted.</span>
+
+<span class="sd">    :param bool record_provenance: If ``True``, record details of this call in the</span>
+<span class="sd">        returned tree sequence&#39;s provenance information (Default: ``None`` treated</span>
+<span class="sd">        as ``True``).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">metadata_key</span> <span class="o">=</span> <span class="s2">&quot;unsplit_node_id&quot;</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">record_provenance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">record_provenance</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">node_is_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_flags</span><span class="p">,</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NODE_IS_SAMPLE</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">edges_parent</span><span class="p">,</span> <span class="n">edges_child</span><span class="p">,</span> <span class="n">nodes_order</span><span class="p">,</span> <span class="n">split_nodes</span> <span class="o">=</span> <span class="n">_split_disjoint_nodes</span><span class="p">(</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">edges_parent</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">edges_left</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">edges_right</span><span class="p">,</span>
+        <span class="n">node_is_sample</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">mutations_node</span> <span class="o">=</span> <span class="n">_relabel_mutations_node</span><span class="p">(</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">mutations_node</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">sites_position</span><span class="p">[</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_site</span><span class="p">],</span>
+        <span class="n">nodes_order</span><span class="p">,</span>
+        <span class="n">edges_parent</span><span class="p">,</span>
+        <span class="n">edges_child</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">edges_left</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">edges_right</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">indexes_edge_insertion_order</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">indexes_edge_removal_order</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">tables</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">dump_tables</span><span class="p">()</span>
+
+    <span class="c1"># Update the nodes table (complex because we have made new nodes)</span>
+    <span class="n">flags</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">flags</span>
+    <span class="n">flags</span><span class="p">[</span><span class="n">split_nodes</span><span class="p">]</span> <span class="o">|=</span> <span class="n">tsdate</span><span class="o">.</span><span class="n">NODE_SPLIT_BY_PREPROCESS</span>
+    <span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="n">flags</span>
+    <span class="n">extra_md</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">split_nodes</span><span class="p">:</span>
+            <span class="n">md</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">.</span><span class="n">metadata</span>
+            <span class="n">md</span><span class="p">[</span><span class="n">metadata_key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+            <span class="n">extra_md</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">metadata_schema</span><span class="o">.</span><span class="n">validate_and_encode_row</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">tskit</span><span class="o">.</span><span class="n">MetadataValidationError</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not set &#39;</span><span class="si">{</span><span class="n">metadata_key</span><span class="si">}</span><span class="s2">&#39; on node metadata&quot;</span><span class="p">)</span>
+    <span class="n">_reorder_nodes</span><span class="p">(</span><span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span> <span class="n">nodes_order</span><span class="p">,</span> <span class="n">extra_md</span><span class="p">)</span>
+    <span class="c1"># Update the edges table</span>
+    <span class="n">tables</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">edges_parent</span>
+    <span class="n">tables</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">edges_child</span>
+    <span class="c1"># Update the mutations table</span>
+    <span class="n">tables</span><span class="o">.</span><span class="n">mutations</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">mutations_node</span>
+    <span class="n">tables</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="n">tables</span><span class="o">.</span><span class="n">build_index</span><span class="p">()</span>
+    <span class="n">tables</span><span class="o">.</span><span class="n">compute_mutation_parents</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span>
+        <span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="n">tables</span><span class="o">.</span><span class="n">mutations</span><span class="o">.</span><span class="n">node</span><span class="p">],</span> <span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">[</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_node</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">record_provenance</span><span class="p">:</span>
+        <span class="n">provenance</span><span class="o">.</span><span class="n">record_provenance</span><span class="p">(</span>
+            <span class="n">tables</span><span class="p">,</span>
+            <span class="s2">&quot;split_disjoint_nodes&quot;</span><span class="p">,</span>
+            <span class="n">start_time</span><span class="o">=</span><span class="n">start_time</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span></div>
+
+
+
+<span class="nd">@numba_jit</span><span class="p">(</span><span class="n">_f1w</span><span class="p">(</span><span class="n">_f1r</span><span class="p">,</span> <span class="n">_b1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_f</span><span class="p">,</span> <span class="n">_i</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_constrain_ages</span><span class="p">(</span>
+    <span class="n">nodes_time</span><span class="p">,</span> <span class="n">nodes_fixed</span><span class="p">,</span> <span class="n">edges_parent</span><span class="p">,</span> <span class="n">edges_child</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">max_iterations</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Approximate least squares solution to the positive branch length</span>
+<span class="sd">    constraint, using the method of alternating projections. Loosely based on</span>
+<span class="sd">    Dykstra&#39;s algorithm, see:</span>
+
+<span class="sd">    Dykstra RL, &quot;An algorithm for restricted least squares regression&quot;, JASA</span>
+<span class="sd">    1983</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">nodes_time</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">nodes_fixed</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">assert</span> <span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edges_child</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="n">num_edges</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">nodes_time</span> <span class="o">=</span> <span class="n">nodes_time</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">edges_cavity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_edges</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iterations</span><span class="p">):</span>  <span class="c1"># method of alternating projections</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">nodes_time</span><span class="p">[</span><span class="n">edges_parent</span><span class="p">]</span> <span class="o">-</span> <span class="n">nodes_time</span><span class="p">[</span><span class="n">edges_child</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">epsilon</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">nodes_time</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_edges</span><span class="p">):</span>
+            <span class="n">p</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="p">[</span><span class="n">e</span><span class="p">],</span> <span class="n">edges_child</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
+            <span class="n">nodes_time</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">-=</span> <span class="n">edges_cavity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">nodes_time</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-=</span> <span class="n">edges_cavity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">adjustment</span> <span class="o">=</span> <span class="n">nodes_time</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">-</span> <span class="n">nodes_time</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>  <span class="c1"># + epsilon</span>
+            <span class="n">edges_cavity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="k">if</span> <span class="n">adjustment</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="ow">not</span> <span class="p">(</span><span class="n">nodes_fixed</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="ow">and</span> <span class="n">nodes_fixed</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">nodes_fixed</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">nodes_fixed</span><span class="p">[</span><span class="n">p</span><span class="p">]:</span>
+                    <span class="n">edges_cavity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">adjustment</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="n">edges_cavity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">adjustment</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="k">elif</span> <span class="n">nodes_fixed</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">nodes_fixed</span><span class="p">[</span><span class="n">p</span><span class="p">]:</span>
+                    <span class="n">edges_cavity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">edges_cavity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">adjustment</span>
+                <span class="k">elif</span> <span class="ow">not</span> <span class="n">nodes_fixed</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="ow">and</span> <span class="n">nodes_fixed</span><span class="p">[</span><span class="n">p</span><span class="p">]:</span>
+                    <span class="n">edges_cavity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">adjustment</span>
+                    <span class="n">edges_cavity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">nodes_time</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+=</span> <span class="n">edges_cavity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">nodes_time</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="n">edges_cavity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># print(</span>
+    <span class="c1">#   &quot;min length:&quot;, np.min(nodes_time[edges_parent] - nodes_time[edges_child])</span>
+    <span class="c1"># )</span>
+
+    <span class="c1"># force remaining constraint, which can change the ages of fixed nodes</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_edges</span><span class="p">):</span>
+        <span class="n">p</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="p">[</span><span class="n">e</span><span class="p">],</span> <span class="n">edges_child</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
+        <span class="c1"># TODO: even if nodes_fixed[p], this will still change the age</span>
+        <span class="k">if</span> <span class="n">nodes_time</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+</span> <span class="n">epsilon</span> <span class="o">&gt;=</span> <span class="n">nodes_time</span><span class="p">[</span><span class="n">p</span><span class="p">]:</span>
+            <span class="n">nodes_time</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes_time</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+</span> <span class="n">epsilon</span>
+
+    <span class="k">return</span> <span class="n">nodes_time</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">constrain_ages</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">nodes_time</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_iterations</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use a hybrid approach to adjust node times such that branch lengths are</span>
+<span class="sd">    positive. The first pass iteratively solves a constrained least squares</span>
+<span class="sd">    problem that seeks to find constrained ages as close as possible to</span>
+<span class="sd">    unconstrained ages. Progress is initially fast but typically becomes quite</span>
+<span class="sd">    slow, so after a fixed number of iterations the iterative algorithm</span>
+<span class="sd">    terminates and the constraint is forced.</span>
+
+<span class="sd">    :param tskit.TreeSequence ts: The input tree sequence, with arbitrary node</span>
+<span class="sd">        times.</span>
+<span class="sd">    :param np.ndarray nodes_time: Unconstrained node ages to inject into the</span>
+<span class="sd">        tree sequence.</span>
+<span class="sd">    :param float epsilon: The minimum allowed branch length when forcing</span>
+<span class="sd">        positive branch lengths.</span>
+<span class="sd">    :param int max_iterations: The number of iterations of alternating</span>
+<span class="sd">        projections before forcing positive branch lengths.</span>
+
+<span class="sd">    :return np.ndarray: Constrained node ages</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="n">nodes_time</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span>
+    <span class="k">assert</span> <span class="n">epsilon</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="n">max_iterations</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+
+    <span class="n">nodes_fixed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_flags</span><span class="p">,</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NODE_IS_SAMPLE</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">constrained_nodes_time</span> <span class="o">=</span> <span class="n">_constrain_ages</span><span class="p">(</span>
+        <span class="n">nodes_time</span><span class="p">,</span>
+        <span class="n">nodes_fixed</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">edges_parent</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">,</span>
+        <span class="n">epsilon</span><span class="p">,</span>
+        <span class="n">max_iterations</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">modified</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">nodes_time</span><span class="p">,</span> <span class="n">constrained_nodes_time</span><span class="p">))</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Modified ages of </span><span class="si">{</span><span class="n">modified</span><span class="si">}</span><span class="s2"> nodes to satisfy constraints&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">constrained_nodes_time</span>
+
+
+<span class="nd">@numba_jit</span><span class="p">(</span><span class="n">_b</span><span class="p">(</span><span class="n">_b1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_f1r</span><span class="p">,</span> <span class="n">_f1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_i1r</span><span class="p">,</span> <span class="n">_f</span><span class="p">,</span> <span class="n">_i</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_contains_unary_nodes</span><span class="p">(</span>
+    <span class="n">nodes_mask</span><span class="p">,</span>
+    <span class="n">edges_parent</span><span class="p">,</span>
+    <span class="n">edges_left</span><span class="p">,</span>
+    <span class="n">edges_right</span><span class="p">,</span>
+    <span class="n">indexes_insert</span><span class="p">,</span>
+    <span class="n">indexes_remove</span><span class="p">,</span>
+    <span class="n">sequence_length</span><span class="p">,</span>
+    <span class="n">num_nodes</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="k">assert</span> <span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edges_left</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edges_right</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">assert</span> <span class="n">indexes_insert</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">indexes_remove</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="n">num_edges</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">nodes_children</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">position_insert</span> <span class="o">=</span> <span class="n">edges_left</span><span class="p">[</span><span class="n">indexes_insert</span><span class="p">]</span>
+    <span class="n">position_remove</span> <span class="o">=</span> <span class="n">edges_right</span><span class="p">[</span><span class="n">indexes_remove</span><span class="p">]</span>
+
+    <span class="n">left</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">num_edges</span> <span class="ow">or</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">num_edges</span><span class="p">:</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">num_edges</span> <span class="ow">and</span> <span class="n">position_remove</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">==</span> <span class="n">left</span><span class="p">:</span>  <span class="c1"># edges out</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">indexes_remove</span><span class="p">[</span><span class="n">b</span><span class="p">]</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
+            <span class="n">nodes_children</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">check</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">b</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">num_edges</span> <span class="ow">and</span> <span class="n">position_insert</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">==</span> <span class="n">left</span><span class="p">:</span>  <span class="c1"># edges in</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">indexes_insert</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
+            <span class="n">nodes_children</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">check</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">check</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">nodes_mask</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="ow">and</span> <span class="n">nodes_children</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="n">right</span> <span class="o">=</span> <span class="n">sequence_length</span>
+        <span class="k">if</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">num_edges</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">position_remove</span><span class="p">[</span><span class="n">b</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">num_edges</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">position_insert</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">right</span>
+
+    <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">contains_unary_nodes</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">skip_samples</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if any internal node in the tree sequence is unary over some portion</span>
+<span class="sd">    of its span.  If `skip_samples` is `True`, then sample nodes that are unary</span>
+<span class="sd">    and internal will be ignored.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">nodes_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">skip_samples</span><span class="p">:</span>
+        <span class="n">nodes_mask</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">())]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="n">_contains_unary_nodes</span><span class="p">(</span>
+        <span class="n">nodes_mask</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">edges_parent</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">edges_left</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">edges_right</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">indexes_edge_insertion_order</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">indexes_edge_removal_order</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">,</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">transform_coordinates_by_ratemap</span><span class="p">(</span>
+    <span class="n">ts</span><span class="p">:</span> <span class="n">tskit</span><span class="o">.</span><span class="n">TreeSequence</span><span class="p">,</span>
+    <span class="n">ratemap</span><span class="p">:</span> <span class="n">tskit</span><span class="o">.</span><span class="n">RateMap</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tskit</span><span class="o">.</span><span class="n">TreeSequence</span><span class="p">:</span>
+    <span class="c1"># Return a copy of the tree sequence in the coordinate system created by `y =</span>
+    <span class="c1"># ratemap.get_cumulative_mass(x)`. Zero-length edges in the new coordinate</span>
+    <span class="c1"># system are removed, as are any sites and mutations that fall within</span>
+    <span class="c1"># intervals with zero or NaN rates. All nodes are retained, even if they are</span>
+    <span class="c1"># disconnected in the transformed tree sequence.</span>
+    <span class="k">assert</span> <span class="n">ratemap</span><span class="o">.</span><span class="n">sequence_length</span> <span class="o">==</span> <span class="n">ts</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">,</span> <span class="s2">&quot;Ratemap has the wrong length&quot;</span>
+
+    <span class="n">tab</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">dump_tables</span><span class="p">()</span>
+    <span class="n">tab</span><span class="o">.</span><span class="n">sequence_length</span> <span class="o">=</span> <span class="n">ratemap</span><span class="o">.</span><span class="n">get_cumulative_mass</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">)</span>
+    <span class="n">tab</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">ratemap</span><span class="o">.</span><span class="n">get_cumulative_mass</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+    <span class="n">tab</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">ratemap</span><span class="o">.</span><span class="n">get_cumulative_mass</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+    <span class="n">tab</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">keep_rows</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">right</span> <span class="o">&gt;</span> <span class="n">tab</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+
+    <span class="n">site_map</span> <span class="o">=</span> <span class="n">tab</span><span class="o">.</span><span class="n">sites</span><span class="o">.</span><span class="n">keep_rows</span><span class="p">(</span><span class="n">ratemap</span><span class="o">.</span><span class="n">get_rate</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">sites</span><span class="o">.</span><span class="n">position</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">tab</span><span class="o">.</span><span class="n">sites</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">ratemap</span><span class="o">.</span><span class="n">get_cumulative_mass</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">sites</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+    <span class="n">tab</span><span class="o">.</span><span class="n">mutations</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">site_map</span><span class="p">[</span><span class="n">tab</span><span class="o">.</span><span class="n">mutations</span><span class="o">.</span><span class="n">site</span><span class="p">]</span>
+    <span class="n">tab</span><span class="o">.</span><span class="n">mutations</span><span class="o">.</span><span class="n">keep_rows</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">mutations</span><span class="o">.</span><span class="n">site</span> <span class="o">!=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">)</span>  <span class="c1"># updates parent column</span>
+
+    <span class="k">return</span> <span class="n">tab</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

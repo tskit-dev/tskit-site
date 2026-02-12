@@ -1,0 +1,896 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tstrait.trait_model &#8212; Tstrait manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/tstrait/trait_model';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">tstrait<br/>
+version undefined
+</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction to tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick-start.html">Quick start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../effect-size.html">Trait simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genetic.html">Genetic value</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../environment.html">Environmental noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../multi-trait.html">Multi-trait simulation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extras</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../citation.html">Citing tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://tskit.dev/community/">Community</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for tstrait.trait_model</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABCMeta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">abstractmethod</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.base</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_check_int</span><span class="p">,</span>
+    <span class="n">_check_val</span><span class="p">,</span>
+    <span class="n">_check_instance</span><span class="p">,</span>
+<span class="p">)</span>  <span class="c1"># noreorder</span>
+
+
+<div class="viewcode-block" id="TraitModel">
+<a class="viewcode-back" href="../../api.html#tstrait.TraitModel">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TraitModel</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Superclass of the trait model.</span>
+
+<span class="sd">    :ivar name: Name of the trait model.</span>
+<span class="sd">    :vartype name: str</span>
+<span class="sd">    :ivar num_trait: Number of traits to be simulated.</span>
+<span class="sd">    :vartype num_trait: int</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        :func:`trait_model` Construct a trait model.</span>
+
+<span class="sd">        :class:`TraitModelNormal` Return a normal distribution trait model.</span>
+
+<span class="sd">        :class:`TraitModelT` Return a Student&#39;s t-distribution trait model.</span>
+
+<span class="sd">        :class:`TraitModelFixed` Return a fixed value trait model.</span>
+
+<span class="sd">        :class:`TraitModelExponential` Return an exponential distribution trait model.</span>
+
+<span class="sd">        :class:`TraitModelGamma` Return a gamma distribution trait model.</span>
+
+<span class="sd">        :class:`TraitModelMultivariateNormal` Return a multivariate normal</span>
+<span class="sd">        distribution trait model.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        This is the base class for all trait models in tstrait. All trait models</span>
+<span class="sd">        should set all parameters in their ``__init__`` as arguments.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_trait</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+        <span class="n">num_causal</span> <span class="o">=</span> <span class="n">_check_int</span><span class="p">(</span><span class="n">num_causal</span><span class="p">,</span> <span class="s2">&quot;num_causal&quot;</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">_check_instance</span><span class="p">(</span><span class="n">rng</span><span class="p">,</span> <span class="s2">&quot;rng&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">num_causal</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sim_effect_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="TraitModelNormal">
+<a class="viewcode-back" href="../../api.html#tstrait.TraitModelNormal">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TraitModelNormal</span><span class="p">(</span><span class="n">TraitModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Normal distribution trait model.</span>
+
+<span class="sd">    :param mean: Mean of the simulated effect size.</span>
+<span class="sd">    :type mean: float</span>
+<span class="sd">    :param var: Variance of the simulated effect size. Must be non-negative.</span>
+<span class="sd">    :type var: float</span>
+<span class="sd">    :returns: Normal distribution trait model.</span>
+<span class="sd">    :rtype: TraitModel</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        :func:`trait_model` Construct a trait model.</span>
+
+<span class="sd">        :py:meth:`numpy.random.Generator.normal` Details on the input parameters</span>
+<span class="sd">        and distribution.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        This is a trait model built on top of</span>
+<span class="sd">        :py:meth:`numpy.random.Generator.normal`, so please see its documentation</span>
+<span class="sd">        for the details of the normal distribution simulation.</span>
+
+<span class="sd">    .. rubric:: Examples</span>
+
+<span class="sd">    Please see the docstring example of :func:`trait_model` for constructing a</span>
+<span class="sd">    normal distribution trait model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">var</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;normal&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sim_effect_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method simulates an effect size from a normal distribution.</span>
+
+<span class="sd">        :param num_causal: Number of causal sites</span>
+<span class="sd">        :type num_causal: int</span>
+<span class="sd">        :param rng: Random generator that will be used to simulate effect size.</span>
+<span class="sd">        :type rng: numpy.random.Generator</span>
+<span class="sd">        :returns: Simulated effect size of a causal mutation.</span>
+<span class="sd">        :rtype: float or array-like</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num_causal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_parameter</span><span class="p">(</span><span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="n">loc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
+            <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">),</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">num_causal</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">beta</span></div>
+
+
+
+<div class="viewcode-block" id="TraitModelExponential">
+<a class="viewcode-back" href="../../api.html#tstrait.TraitModelExponential">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TraitModelExponential</span><span class="p">(</span><span class="n">TraitModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exponential distribution trait model.</span>
+
+<span class="sd">    :param scale: Scale of the exponential distribution. Must be non-negative.</span>
+<span class="sd">    :type scale: float</span>
+<span class="sd">    :param random_sign: If True, :math:`1` or :math:`-1` will be randomly</span>
+<span class="sd">        multiplied to the simulated effect sizes, such that we can simulate effect</span>
+<span class="sd">        sizes with randomly chosen signs. If False, only positive values are being</span>
+<span class="sd">        simulated as part of the property of the exponential distribution.</span>
+<span class="sd">    :type random_sign: bool</span>
+<span class="sd">    :returns: Exponential distribution trait model.</span>
+<span class="sd">    :rtype: TraitModel</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        :func:`trait_model` Construct a trait model.</span>
+
+<span class="sd">        :py:meth:`numpy.random.Generator.exponential` Details on the input</span>
+<span class="sd">        parameters and distribution.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        This is a trait model built on top of</span>
+<span class="sd">        :py:meth:`numpy.random.Generator.exponential`, so please see its</span>
+<span class="sd">        documentation for the details of the exponential distribution simulation.</span>
+
+<span class="sd">    .. rubric:: Examples</span>
+
+<span class="sd">    Please see the docstring example of :func:`trait_model` for constructing an</span>
+<span class="sd">    exponential distribution trait model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">random_sign</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_sign</span> <span class="o">=</span> <span class="n">_check_instance</span><span class="p">(</span><span class="n">random_sign</span><span class="p">,</span> <span class="s2">&quot;random_sign&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;exponential&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sim_effect_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method simulates an effect size from an exponential distribution.</span>
+
+<span class="sd">        :param num_causal: Number of causal sites</span>
+<span class="sd">        :type num_causal: int</span>
+<span class="sd">        :param rng: Random generator that will be used to simulate effect size.</span>
+<span class="sd">        :type rng: numpy.random.Generator</span>
+<span class="sd">        :returns: Simulated effect size of a causal mutation.</span>
+<span class="sd">        :rtype: float or array-like</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num_causal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_parameter</span><span class="p">(</span><span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_causal</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_sign</span><span class="p">:</span>
+            <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">num_causal</span><span class="p">),</span> <span class="n">beta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">beta</span></div>
+
+
+
+<div class="viewcode-block" id="TraitModelFixed">
+<a class="viewcode-back" href="../../api.html#tstrait.TraitModelFixed">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TraitModelFixed</span><span class="p">(</span><span class="n">TraitModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fixed value trait model.</span>
+
+<span class="sd">    :param value: Value of the simulated effect size.</span>
+<span class="sd">    :type value: float</span>
+<span class="sd">    :param random_sign: If True, :math:`1` or :math:`-1` will be randomly</span>
+<span class="sd">        multiplied to the simulated effect sizes, such that we can simulate constant</span>
+<span class="sd">        value effect sizes with randomly chosen signs.</span>
+<span class="sd">    :type random_sign: bool</span>
+<span class="sd">    :returns: Fixed value trait model.</span>
+<span class="sd">    :rtype: TraitModel</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        :func:`trait_model` Construct a trait model.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        This is a trait model that gives the fixed value that is specified in</span>
+<span class="sd">        `value` if `random_sign` is False. If it is true, this simulates effect</span>
+<span class="sd">        sizes with randomly chosen signs.</span>
+
+<span class="sd">    .. rubric:: Examples</span>
+
+<span class="sd">    Please see the docstring example of :func:`trait_model` for constructing a</span>
+<span class="sd">    fixed value trait model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">random_sign</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">_check_val</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_sign</span> <span class="o">=</span> <span class="n">_check_instance</span><span class="p">(</span><span class="n">random_sign</span><span class="p">,</span> <span class="s2">&quot;random_sign&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;fixed&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sim_effect_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns an effect size from a fixed trait model.</span>
+
+<span class="sd">        :param num_causal: Number of causal sites</span>
+<span class="sd">        :type num_causal: int</span>
+<span class="sd">        :param rng: Random generator that will be used to simulate effect size.</span>
+<span class="sd">        :type rng: numpy.random.Generator</span>
+<span class="sd">        :returns: Simulated effect size of a causal mutation.</span>
+<span class="sd">        :rtype: float or array-like</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num_causal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_parameter</span><span class="p">(</span><span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">num_causal</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_sign</span><span class="p">:</span>
+            <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">num_causal</span><span class="p">),</span> <span class="n">beta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">beta</span></div>
+
+
+
+<div class="viewcode-block" id="TraitModelT">
+<a class="viewcode-back" href="../../api.html#tstrait.TraitModelT">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TraitModelT</span><span class="p">(</span><span class="n">TraitModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Student&#39;s t distribution trait model.</span>
+
+<span class="sd">    :param mean: Mean of the simulated effect size.</span>
+<span class="sd">    :type mean: float</span>
+<span class="sd">    :param var: Variance of the simulated effect size. Must be &gt; 0.</span>
+<span class="sd">    :type var: float</span>
+<span class="sd">    :param df: Degrees of freedom. Must be &gt; 0.</span>
+<span class="sd">    :type df: float</span>
+<span class="sd">    :returns: Student&#39;s t distribution trait model.</span>
+<span class="sd">    :rtype: TraitModel</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        :func:`trait_model` Construct a trait model.</span>
+
+<span class="sd">        :py:meth:`numpy.random.Generator.standard_t` Details on the input</span>
+<span class="sd">        parameters and distribution.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        This is a trait model built on top of</span>
+<span class="sd">        :py:meth:`numpy.random.Generator.standard_t`, so please see its</span>
+<span class="sd">        documentation for the details of the normal distribution simulation.</span>
+
+<span class="sd">    .. rubric:: Examples</span>
+
+<span class="sd">    Please see the docstring example of :func:`trait_model` for constructing a student&#39;s</span>
+<span class="sd">    t distribution trait model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">var</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sim_effect_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns an effect size from a t distribution.</span>
+
+<span class="sd">        :param num_causal: Number of causal sites</span>
+<span class="sd">        :type num_causal: int</span>
+<span class="sd">        :param rng: Random generator that will be used to simulate effect size.</span>
+<span class="sd">        :type rng: numpy.random.Generator</span>
+<span class="sd">        :returns: Simulated effect size of a causal mutation.</span>
+<span class="sd">        :rtype: float or array-like</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num_causal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_parameter</span><span class="p">(</span><span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_t</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_causal</span><span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span>
+        <span class="k">return</span> <span class="n">beta</span></div>
+
+
+
+<div class="viewcode-block" id="TraitModelGamma">
+<a class="viewcode-back" href="../../api.html#tstrait.TraitModelGamma">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TraitModelGamma</span><span class="p">(</span><span class="n">TraitModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gamma distribution trait model.</span>
+
+<span class="sd">    :param shape: Shape of the gamma distribution. Must be non-negative.</span>
+<span class="sd">    :type shape: float</span>
+<span class="sd">    :param scale: Scale of the gamma distribution. Must be non-negative.</span>
+<span class="sd">    :type scale: float</span>
+<span class="sd">    :param random_sign: If True, :math:`1` or :math:`-1` will be randomly</span>
+<span class="sd">        multiplied to the simulated effect sizes, such that we can simulate effect</span>
+<span class="sd">        sizes with randomly chosen signs. If False, only positive values are being</span>
+<span class="sd">        simulated as part of the property of the gamma distribution.</span>
+<span class="sd">    :type random_sign: bool</span>
+<span class="sd">    :returns: Gamma distribution trait model.</span>
+<span class="sd">    :rtype: TraitModel</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        :func:`trait_model` Construct a trait model.</span>
+
+<span class="sd">        :py:meth:`numpy.random.Generator.gamma` Details on the input parameters</span>
+<span class="sd">        and distribution.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        This is a trait model built on top of</span>
+<span class="sd">        :py:meth:`numpy.random.Generator.gamma`, so please see its documentation</span>
+<span class="sd">        for the details of the gamma distribution simulation.</span>
+
+<span class="sd">    .. rubric:: Examples</span>
+
+<span class="sd">    Please see the docstring example of :func:`trait_model` for constructing an</span>
+<span class="sd">    gamma distribution trait model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">random_sign</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_sign</span> <span class="o">=</span> <span class="n">_check_instance</span><span class="p">(</span><span class="n">random_sign</span><span class="p">,</span> <span class="s2">&quot;random_sign&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;gamma&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sim_effect_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns an effect size from a gamma distribution.</span>
+
+<span class="sd">        :param num_causal: Number of causal sites</span>
+<span class="sd">        :type num_causal: int</span>
+<span class="sd">        :param rng: Random generator that will be used to simulate effect size.</span>
+<span class="sd">        :type rng: numpy.random.Generator</span>
+<span class="sd">        :returns: Simulated effect size of a causal mutation.</span>
+<span class="sd">        :rtype: float or array-like</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num_causal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_parameter</span><span class="p">(</span><span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_causal</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_sign</span><span class="p">:</span>
+            <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">num_causal</span><span class="p">),</span> <span class="n">beta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">beta</span></div>
+
+
+
+<div class="viewcode-block" id="TraitModelMultivariateNormal">
+<a class="viewcode-back" href="../../api.html#tstrait.TraitModelMultivariateNormal">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TraitModelMultivariateNormal</span><span class="p">(</span><span class="n">TraitModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Multivariate normal distribution trait model.</span>
+
+<span class="sd">    :param mean: Mean vector.</span>
+<span class="sd">    :type mean: 1-D array_like, of length N</span>
+<span class="sd">    :param cov: Covariance matrix. Must be symmetric and positive-semidefinite.</span>
+<span class="sd">    :type cov: 2-D array_like, of shape (N, N)</span>
+<span class="sd">    :returns: Multivariate normal distribution trait model.</span>
+<span class="sd">    :rtype: TraitModel</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        :func:`trait_model` Construct a trait model.</span>
+
+<span class="sd">        :py:meth:`numpy.random.Generator.multivariate_normal` Details on the</span>
+<span class="sd">        input parameters and distribution.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        Multivariate normal distribution simulation is used in multi-trait simulation,</span>
+<span class="sd">        which is described in :ref:`multi_trait`.</span>
+
+<span class="sd">        This is a trait model built on top of</span>
+<span class="sd">        :py:meth:`numpy.random.Generator.multivariate_normal`, so please see its</span>
+<span class="sd">        documentation for the details of the multivariate normal distribution</span>
+<span class="sd">        simulation.</span>
+
+<span class="sd">        The number of dimensions of mean vector and covariance matrix should match,</span>
+<span class="sd">        and the length of the mean vector specifies the number of traits that will</span>
+<span class="sd">        be simulated by using this model.</span>
+
+<span class="sd">    .. rubric:: Examples</span>
+
+<span class="sd">    Please see the docstring example of :func:`trait_model` for constructing a</span>
+<span class="sd">    multivariate normal distribution trait model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;multi_normal&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_trait</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cov</span> <span class="o">=</span> <span class="n">cov</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sim_effect_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns an effect size from a multivariate normal distribution.</span>
+
+<span class="sd">        :param num_causal: Number of causal sites</span>
+<span class="sd">        :type num_causal: int</span>
+<span class="sd">        :param rng: Random generator that will be used to simulate effect size.</span>
+<span class="sd">        :type rng: numpy.random.Generator</span>
+<span class="sd">        :returns: Simulated effect size of a causal mutation.</span>
+<span class="sd">        :rtype: float or array-like</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num_causal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_parameter</span><span class="p">(</span><span class="n">num_causal</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cov</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_causal</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">beta</span></div>
+
+
+
+<span class="n">MODEL_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;normal&quot;</span><span class="p">:</span> <span class="n">TraitModelNormal</span><span class="p">,</span>
+    <span class="s2">&quot;exponential&quot;</span><span class="p">:</span> <span class="n">TraitModelExponential</span><span class="p">,</span>
+    <span class="s2">&quot;fixed&quot;</span><span class="p">:</span> <span class="n">TraitModelFixed</span><span class="p">,</span>
+    <span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="n">TraitModelT</span><span class="p">,</span>
+    <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="n">TraitModelGamma</span><span class="p">,</span>
+    <span class="s2">&quot;multi_normal&quot;</span><span class="p">:</span> <span class="n">TraitModelMultivariateNormal</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="trait_model">
+<a class="viewcode-back" href="../../api.html#tstrait.trait_model">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">trait_model</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a trait model corresponding to the specified model.</span>
+
+<span class="sd">    :param distribution: String describing the trait model. The list of</span>
+<span class="sd">        supported distributions are:</span>
+
+<span class="sd">        * &quot;normal&quot;: Normal distribution</span>
+<span class="sd">        * &quot;t&quot;: Student&#39;s t distribution</span>
+<span class="sd">        * &quot;fixed&quot;: Fixed value</span>
+<span class="sd">        * &quot;exponential&quot;: Exponential distribution</span>
+<span class="sd">        * &quot;gamma&quot;: Gamma distribution</span>
+<span class="sd">        * &quot;multi_normal&quot;: Multivariate normal distribution</span>
+<span class="sd">    :type distribution: str</span>
+<span class="sd">    :param kwargs: These parameters will be used to specify the trait model.</span>
+<span class="sd">    :returns: Trait model that specifies the distribution of effect size</span>
+<span class="sd">        simulation.</span>
+<span class="sd">    :rtype: TraitModel</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        :class:`TraitModelNormal` Return a normal distribution trait model.</span>
+
+<span class="sd">        :class:`TraitModelT` Return a Student&#39;s t-distribution trait model.</span>
+
+<span class="sd">        :class:`TraitModelFixed` Return a fixed value trait model.</span>
+
+<span class="sd">        :class:`TraitModelExponential` Return an exponential distribution trait model.</span>
+
+<span class="sd">        :class:`TraitModelGamma` Return a gamma distribution trait model.</span>
+
+<span class="sd">        :class:`TraitModelMultivariateNormal` Return a multivariate normal</span>
+<span class="sd">        distribution trait model.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        Please reference :ref:`effect_size` for details on the effect size</span>
+<span class="sd">        simulation. Multivariate normal distribution trait model is used in</span>
+<span class="sd">        multi-trait simulation, which is described in :ref:`multi_trait`.</span>
+
+<span class="sd">    .. rubric:: Examples</span>
+
+<span class="sd">    &gt;&gt;&gt; import tstrait</span>
+
+<span class="sd">    Constructing a normal distribution trait model with mean :math:`0` and</span>
+<span class="sd">    variance :math:`1`.</span>
+
+<span class="sd">    &gt;&gt;&gt; import tstrait</span>
+<span class="sd">    &gt;&gt;&gt; model = tstrait.trait_model(distribution=&quot;normal&quot;, mean=0, var=1)</span>
+<span class="sd">    &gt;&gt;&gt; model.name</span>
+<span class="sd">    &#39;normal&#39;</span>
+
+<span class="sd">    Constructing a student&#39;s t-distribution trait model with mean :math:`0`,</span>
+<span class="sd">    variance :math:`1` and degrees of freedom :math:`1`.</span>
+
+<span class="sd">    &gt;&gt;&gt; model = tstrait.trait_model(distribution=&quot;t&quot;, mean=0, var=1, df=1)</span>
+<span class="sd">    &gt;&gt;&gt; model.name</span>
+<span class="sd">    &#39;t&#39;</span>
+
+<span class="sd">    Constructing a fixed value trait model with value :math:`1`.</span>
+
+<span class="sd">    &gt;&gt;&gt; model = tstrait.trait_model(distribution=&quot;fixed&quot;, value=1)</span>
+<span class="sd">    &gt;&gt;&gt; model.name</span>
+<span class="sd">    &#39;fixed&#39;</span>
+
+<span class="sd">    Constructing an exponential distribution trait model with scale</span>
+<span class="sd">    :math:`1`.</span>
+
+<span class="sd">    &gt;&gt;&gt; model = tstrait.trait_model(distribution=&quot;exponential&quot;, scale=1)</span>
+<span class="sd">    &gt;&gt;&gt; model.name</span>
+<span class="sd">    &#39;exponential&#39;</span>
+
+<span class="sd">    Constructing an exponential distribution trait model with scale</span>
+<span class="sd">    :math:`1`, and enable simulation of negative values.</span>
+
+<span class="sd">    &gt;&gt;&gt; model = tstrait.trait_model(distribution=&quot;exponential&quot;, scale=1, \</span>
+<span class="sd">                                    random_sign=True)</span>
+
+<span class="sd">    Constructing a gamma distribution trait model with shape :math:`1`</span>
+<span class="sd">    and scale :math:`2`.</span>
+
+<span class="sd">    &gt;&gt;&gt; model = tstrait.trait_model(distribution=&quot;gamma&quot;, shape=1, scale=2)</span>
+<span class="sd">    &gt;&gt;&gt; model.name</span>
+<span class="sd">    &#39;gamma&#39;</span>
+
+<span class="sd">    Constructing a gamma distribution trait model with shape :math:`1`,</span>
+<span class="sd">    scale :math:`2`, and allow simulation of negative values.</span>
+
+<span class="sd">    &gt;&gt;&gt; model = tstrait.trait_model(distribution=&quot;gamma&quot;, shape=1, scale=2, \</span>
+<span class="sd">                                    random_sign=True)</span>
+<span class="sd">    &gt;&gt;&gt; model.name</span>
+<span class="sd">    &#39;gamma&#39;</span>
+
+<span class="sd">    Constructing a multivariate normal distribution trait model with</span>
+<span class="sd">    mean vector :math:`[0, 0]` and covariance matrix being an</span>
+<span class="sd">    identity matrix.</span>
+
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; model = tstrait.trait_model(distribution=&quot;multi_normal&quot;, \</span>
+<span class="sd">                                    mean=np.zeros(2), cov=np.eye(2))</span>
+<span class="sd">    &gt;&gt;&gt; model.name</span>
+<span class="sd">    &#39;multi_normal&#39;</span>
+<span class="sd">    &gt;&gt;&gt; model.num_trait</span>
+<span class="sd">    2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">distribution</span> <span class="o">=</span> <span class="n">_check_instance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="s2">&quot;distribution&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="n">lower_model</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">lower_model</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">MODEL_MAP</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Distribution &#39;</span><span class="si">{}</span><span class="s2">&#39; unknown. Choose from </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">distribution</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">MODEL_MAP</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="n">model_instance</span> <span class="o">=</span> <span class="n">MODEL_MAP</span><span class="p">[</span><span class="n">lower_model</span><span class="p">](</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model_instance</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

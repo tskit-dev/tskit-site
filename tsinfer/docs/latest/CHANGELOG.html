@@ -1,0 +1,841 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Changelog &#8212; Tsinfer manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'CHANGELOG';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Citing tsinfer" href="CITATION.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/tsinfer_logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/tsinfer_logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 0.5.1.dev22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Inference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Inference overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="large_scale.html">Large scale inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">File Formats</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="file_formats.html">File formats</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Developer documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CITATION.html">Citing tsinfer</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/CHANGELOG.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Changelog</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xx-xx">[0.5.1] - 2026-XX-XX</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">[0.5.0] - 2025-11-09</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">[0.4.1] - 2024-04-19</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">[0.4.0] - 2024-04-06</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a2-2024-09-06">[0.4.0a2] - 2024-09-06</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-2024-07-26">[0.4.0a1] - 2024-07-26</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">[0.3.3] - 2024-07-17</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">[0.3.2] - 2024-07-16</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">[0.3.1] - 2023-04-19</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">[0.3.0] - 2022-10-25</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">[0.2.3] - 2022-04-08</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">[0.2.2] - 2022-02-23</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">[0.2.1] - 2021-05-26</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">[0.2.0] - 2020-12-18</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">[0.1.4] - 2018-12-12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">[0.1.3] - 2018-11-02</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">[0.1.2] - 2018-06-18</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h1>
+<section id="xx-xx">
+<h2>[0.5.1] - 2026-XX-XX<a class="headerlink" href="#xx-xx" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Add support for Python 3.14.</p></li>
+<li><p>Require tskit &gt;= 1.0</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>[0.5.0] - 2025-11-09<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>** Changes **</p>
+<ul class="simple">
+<li><p>Internal changes to ancestor generation to improve performace. These change the inferred ancestors
+and therefore the inferred tree sequence. For details see this <a class="reference external" href="https://tskit.dev/news/20251109-tsinfer-0.5.0.html">blog post</a>.
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/1012">#1012</a>, <a class="reference external" href="https://github.com/sponsors/duncanMR">&#64;duncanMR</a>)</p></li>
+<li><p>Drop Python 3.9 support, require Python &gt;= 3.10 (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/1044">#1044</a>, <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+<li><p>Remove overzealous derived state validation in C API. (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/1059">#1059</a>, <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>[0.4.1] - 2024-04-19<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>** Changes **</p>
+<ul class="simple">
+<li><p>Optional arrays to <code class="docutils literal notranslate"><span class="pre">VariantData</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">individuals_time</span></code>) are now configured by kwargs
+to <code class="docutils literal notranslate"><span class="pre">VariantData.__init__</span></code> rather than requiring a specifically named array in the vcf zarr store.
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/1011">#1011</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/1006">#1006</a>, <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+<li><p>Building tsinfer now requires C11.
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/1053">#1053</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/1046">#1046</a>, <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>[0.4.0] - 2024-04-06<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>Changelog is relative to the last full release, 0.3.3.</p>
+<p><strong>Breaking Changes</strong></p>
+<ul class="simple">
+<li><p>tsinfer 0.4.0 infers data from on-disk or in-memory <code class="docutils literal notranslate"><span class="pre">vcf-zarr</span></code> datasets, allowing users to leverage optimized
+and parallel VCF parsing via the <code class="docutils literal notranslate"><span class="pre">bio2zarr</span></code> package. The <code class="docutils literal notranslate"><span class="pre">SampleData</span></code> file format and class are now deprecated.</p></li>
+<li><p>If a mismatch ratio is provided to the <code class="docutils literal notranslate"><span class="pre">infer</span></code> command, it only applies during the
+<code class="docutils literal notranslate"><span class="pre">match_samples</span></code> phase (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/980">#980</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/981">#981</a>, <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+</ul>
+<p><strong>Features</strong></p>
+<ul class="simple">
+<li><p>Add batch ancestor and sample matching APIs for splitting work across many independent jobs.
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/954">#954</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/917">#917</a>, <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+</ul>
+<p><strong>Performance improvements</strong></p>
+<ul class="simple">
+<li><p>Reduce memory usage when running <code class="docutils literal notranslate"><span class="pre">match_samples</span></code> against large cohorts
+containing sequences with substantial amounts of error.
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/761">#761</a>, <a class="reference external" href="https://github.com/sponsors/jeromekelleher">&#64;jeromekelleher</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">truncate_ancestors</span></code> no longer requires loading all the ancestors into RAM.
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/811">#811</a>, <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+<li><p>Increase parallelisation of <code class="docutils literal notranslate"><span class="pre">match_ancestors</span></code> by generating parallel groups from
+their implied dependency graph. (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/828">#828</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/147">#147</a>,  <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+<li><p>Reduce memory requirements of the <code class="docutils literal notranslate"><span class="pre">generate_ancestors</span></code> function by providing
+the <code class="docutils literal notranslate"><span class="pre">genotype_encoding</span></code> (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/809">#809</a>) and <code class="docutils literal notranslate"><span class="pre">mmap_temp_dir</span></code> (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/808">#808</a>) options
+(<a class="reference external" href="https://github.com/sponsors/jeromekelleher">&#64;jeromekelleher</a>).</p></li>
+</ul>
+<p><strong>Breaking Changes</strong></p>
+<ul class="simple">
+<li><p>Removed the <code class="docutils literal notranslate"><span class="pre">uuid</span></code> field from SampleData; equality is now purely based on data</p></li>
+<li><p>If a mismatch ratio is provided to the <code class="docutils literal notranslate"><span class="pre">infer</span></code> command, it only applies during the <code class="docutils literal notranslate"><span class="pre">match_samples</span></code> phase</p></li>
+<li><p>A permissive JSON schema is now set on node table metadata</p></li>
+</ul>
+<p><strong>Fixes</strong></p>
+<ul class="simple">
+<li><p>Properly account for “N” as an unknown ancestral state, and ban “” from being
+set as an ancestral state (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/963">#963</a>, <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+</ul>
+</section>
+<section id="a2-2024-09-06">
+<h2>[0.4.0a2] - 2024-09-06<a class="headerlink" href="#a2-2024-09-06" title="Link to this heading">#</a></h2>
+<p>2nd Alpha release of tsinfer 0.4.0</p>
+<p><strong>Features</strong></p>
+<ul class="simple">
+<li><p>Add batch ancestor and sample matching APIs for splitting work across many independent jobs.
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/954">#954</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/917">#917</a>, <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+</ul>
+</section>
+<section id="a1-2024-07-26">
+<h2>[0.4.0a1] - 2024-07-26<a class="headerlink" href="#a1-2024-07-26" title="Link to this heading">#</a></h2>
+<p>Alpha release of tsinfer 0.4.0</p>
+<p><strong>Features</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tsinfer</span></code> now supports inferring data from an <code class="docutils literal notranslate"><span class="pre">vcf-zarr</span></code> dataset. This allows users
+to infer from VCFs via the optimised and parallel VCF parsing in <code class="docutils literal notranslate"><span class="pre">bio2zarr</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">VariantData</span></code> class can be used to load the vcf-data and be used for inference.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vcf-zarr</span></code> <code class="docutils literal notranslate"><span class="pre">sample_ids</span></code> are inserted into individual metadata as <code class="docutils literal notranslate"><span class="pre">variant_data_sample_id</span></code>
+if this key does not already exist.</p></li>
+</ul>
+<p><strong>Breaking Changes</strong></p>
+<ul class="simple">
+<li><p>Remove the <code class="docutils literal notranslate"><span class="pre">uuid</span></code> field from SampleData. SampleData equality is now purely based
+on data. (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/748">#748</a>, <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+</ul>
+<p><strong>Performance improvements</strong></p>
+<ul class="simple">
+<li><p>Reduce memory usage when running <code class="docutils literal notranslate"><span class="pre">match_samples</span></code> against large cohorts
+containing sequences with substantial amounts of error.
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/761">#761</a>, <a class="reference external" href="https://github.com/sponsors/jeromekelleher">&#64;jeromekelleher</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">truncate_ancestors</span></code> no longer requires loading all the ancestors into RAM.
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/811">#811</a>, <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+<li><p>Reduce memory requirements of the <code class="docutils literal notranslate"><span class="pre">generate_ancestors</span></code> function by providing
+the <code class="docutils literal notranslate"><span class="pre">genotype_encoding</span></code> (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/809">#809</a>) and <code class="docutils literal notranslate"><span class="pre">mmap_temp_dir</span></code> (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/808">#808</a>) options
+(<a class="reference external" href="https://github.com/sponsors/jeromekelleher">&#64;jeromekelleher</a>).</p></li>
+<li><p>Increase parallelisation of <code class="docutils literal notranslate"><span class="pre">match_ancestors</span></code> by generating parallel groups from
+their implied dependency graph. (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/828">#828</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/147">#147</a>,  <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>[0.3.3] - 2024-07-17<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p><strong>Fixes</strong></p>
+<ul class="simple">
+<li><p>Bug fix release for numpy 2 (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/937">#937</a>).</p></li>
+</ul>
+<p><strong>Breaking Changes</strong></p>
+<ul class="simple">
+<li><p>A permissive json schema is now set on node table metadata
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/416">#416</a> <a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/931">#931</a>, <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>).</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>[0.3.2] - 2024-07-16<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p><strong>Features</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tsinfer</span></code> now supports numpy2 (and 1.XX) and python 3.12.</p></li>
+</ul>
+<p><strong>Breaking Changes</strong></p>
+<ul class="simple">
+<li><p>tsinfer now requires Python 3.9 or later</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>[0.3.1] - 2023-04-19<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Bug fix release for a bad dependency specification.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>[0.3.0] - 2022-10-25<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p><strong>Features</strong></p>
+<ul class="simple">
+<li><p>When calling <code class="docutils literal notranslate"><span class="pre">sample_data.add_site()</span></code> the ancestral state does not need to be the
+first allele (index 0): alternatively, an ancestral allele index can be given
+(and if <code class="docutils literal notranslate"><span class="pre">MISSING_DATA</span></code>, the ancestral state will be imputed). (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/718">#718</a>,
+<a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/686">#686</a> <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+<li><p>The CLI interface now allows recombination rate (or rate maps) and mismatch ratios
+to be specified (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/731">#731</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/435">#435</a> <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+<li><p>The calls to match-ancestors and match-samples via the CLI are now logged
+in the provenance entries of the output tree sequence (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/732">#732</a> and <code class="docutils literal notranslate"><span class="pre">741</span></code>,
+<a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/730">#730</a> <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+<li><p>The CLI interface allows <code class="docutils literal notranslate"><span class="pre">--no-post-process</span></code> to be specified (for details of post-
+processing, see “Breaking changes” below) (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/727">#727</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/721">#721</a> <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+<li><p>matching routines warn if no inference sites
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/685">#685</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/683">#683</a> <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+</ul>
+<p><strong>Fixes</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sample_data.subset()</span></code> now accepts a sequence_length  (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/681">#681</a>, <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verify</span></code> no longer raises error when comparing a genotype to missingness.
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/716">#716</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/625">#625</a>, <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+</ul>
+<p><strong>Breaking changes</strong>:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">simplify</span></code> parameter is now deprecated in favour of <code class="docutils literal notranslate"><span class="pre">post_process</span></code>, which
+prior to simplification, removes the “virtual-root-like” ancestor (inserted by
+tsinfer to aid the matching process) then splits the ultimate ancestor into separate
+pieces. If splitting is not required, the <code class="docutils literal notranslate"><span class="pre">post_process</span></code> step can also be called as a
+separate function with the parameter <code class="docutils literal notranslate"><span class="pre">split_ultimate=False</span></code> (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/687">#687</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/750">#750</a>,
+<a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/673">#673</a>, <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+<li><p>Post-processing by default erases tree topology that exists before the first site
+and one unit after the last site, to avoid extrapolating into regions with no data.
+This can be disabled by calling <code class="docutils literal notranslate"><span class="pre">post_process</span></code> step as a separate function with the
+parameter <code class="docutils literal notranslate"><span class="pre">erase_flanks=False</span></code> (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/720">#720</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/483">#483</a>, <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+<li><p>Inference now sets time_units on both ancestor and final tree sequences to
+tskit.TIME_UNITS_UNCALIBRATED, stopping accidental use of branch length
+calculations on the ts. (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/680">#680</a>, <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>[0.2.3] - 2022-04-08<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p><strong>Features</strong></p>
+<ul class="simple">
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">ancestor(id)</span></code> to <code class="docutils literal notranslate"><span class="pre">AncestorData</span></code> class.
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/570">#570</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/569">#569</a>, <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+</ul>
+<p><strong>Fixes</strong></p>
+<ul class="simple">
+<li><p>Mark zarr 2.11.0, 2.11.1 and 2.11.2 as incompatible due to <code class="docutils literal notranslate"><span class="pre">zarr-python</span></code>
+bugs #965 and #967.
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/643">#643</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/657">#657</a>, <a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>)</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2>[0.2.2] - 2022-02-23<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p><strong>Bugfixes</strong>:</p>
+<ul class="simple">
+<li><p>Mutations at non-inference sites are now guaranteed to be fully parsimonious.
+Previous versions required a mutation above the root when the input ancestral state
+disagreed with the ancestral state produced by the parsimony algorithm. Now fixed by
+using the new map_mutations code from tskit 0.3.7 (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/557">#557</a>, <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+</ul>
+<p><strong>New Features</strong>:</p>
+<p><strong>Breaking changes</strong>:</p>
+<ul class="simple">
+<li><p>Oldest nodes in a standard inferred tree sequence are no longer set to frequencies ~2
+and ~3 (i.e. 2 or 3 times as old as all the other nodes), but are spaced above the
+others by the mean time between unique ancestor ages (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/485">#485</a>, <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">tsinfer.SampleData.from_tree_sequence()</span></code> function now defaults to setting
+<code class="docutils literal notranslate"><span class="pre">use_sites_time</span></code> and <code class="docutils literal notranslate"><span class="pre">use_individuals_time</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code> rather than <code class="docutils literal notranslate"><span class="pre">True</span></code>
+(<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/599">#599</a>, <a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>)</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2>[0.2.1] - 2021-05-26<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>Bugfix release</p>
+<p><strong>Bugfixes</strong>:</p>
+<ul class="simple">
+<li><p>Fix a bug in the core LS matching algorithm in which the rate of recombination
+was being incorrectly computed (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/493">#493</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/514">#514</a>, <a class="reference external" href="https://github.com/sponsors/jeromekelleher">&#64;jeromekelleher</a>,
+<a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tsinfer.verify()</span></code> no longer requires that non-ancestral alleles in a SampleData
+and Tree Sequence file are in the same order (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/490">#490</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/492">#492</a>,
+<a class="reference external" href="https://github.com/sponsors/hyanwong">&#64;hyanwong</a>).</p></li>
+</ul>
+<p><strong>New Features</strong>:</p>
+<ul class="simple">
+<li><p>Inferred ancestral haplotypes may be truncated via
+<code class="docutils literal notranslate"><span class="pre">AncestorData.truncate_ancestors()</span></code> to improve performance when inferring large
+datasets (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/issues/276">#276</a>, <a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/467">#467</a>, <a class="reference external" href="https://github.com/sponsors/awohns">&#64;awohns</a>).</p></li>
+</ul>
+<p><strong>Breaking changes</strong>:</p>
+<ul class="simple">
+<li><p>tsinfer now requires Python 3.7</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2>[0.2.0] - 2020-12-18<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>Major feature release, including some incompatible file format and API updates.</p>
+<p><strong>New features</strong>:</p>
+<ul class="simple">
+<li><p>Mismatch and recombination parameters can now be specified via the
+recombination_rate and mismatch_ratio arguments in the Python API.</p></li>
+<li><p>Missing data can be accomodated in SampleData using the tskit.MISSING_DATA
+value in input genotypes. Missing data will be imputed in the output
+tree sequence.</p></li>
+<li><p>Metadata schemas for population, individual, site and tree sequence metadata
+can now we be specified in the SampleData format. These will be included
+in the final tree sequence and allow for automatic decoding of JSON metadata.</p></li>
+<li><p>Map non-inference sites onto the tree by using the tskit <code class="docutils literal notranslate"><span class="pre">map_mutations</span></code>
+parsimony method. This allows us to support sites with &gt; 2 alleles.</p></li>
+<li><p>Historical (non-contemporaneous) samples can now be accommodated in inference,
+assuming that the true dates of ancestors have been set, by using the concept
+of “proxy samples”. This is done via the new function
+<code class="docutils literal notranslate"><span class="pre">AncestorData.insert_proxy_samples()</span></code>, then setting the new
+parameter <code class="docutils literal notranslate"><span class="pre">force_sample_times=True</span></code> when matching samples.</p></li>
+<li><p>The default tree sequence returned after inference when <code class="docutils literal notranslate"><span class="pre">simplify=True</span></code> retains
+unary nodes (i.e. simplify is done with <code class="docutils literal notranslate"><span class="pre">keep_unary=True</span></code>.</p></li>
+</ul>
+<p><strong>Breaking changes</strong>:</p>
+<ul class="simple">
+<li><p>The ancestors tree sequence now contains the real alleles and not
+0/1 values as before.</p></li>
+<li><p>Times for undated sites now use frequencies (0..1), not as counts (1..num_samples),
+and are now stored as <code class="docutils literal notranslate"><span class="pre">tskit.UNKNOWN_TIME</span></code>, then calculated on the fly in the
+variants() iterator.</p></li>
+<li><p>The SampleData file no longer accepts the <code class="docutils literal notranslate"><span class="pre">inference</span></code> argument to add_site.
+This functionality has been replaced by the <code class="docutils literal notranslate"><span class="pre">exclude_positions</span></code> argument
+to the <code class="docutils literal notranslate"><span class="pre">infer</span></code> and <code class="docutils literal notranslate"><span class="pre">generate_ancestors</span></code> functions.</p></li>
+<li><p>The SampleData format is now at version 5, and older versions cannot be read.
+Users should rerun their data ingest pipelines.</p></li>
+<li><p>Users can specify variant ages, via <code class="docutils literal notranslate"><span class="pre">sample_data.add_sites(...</span> <span class="pre">,</span> <span class="pre">time=user_time)</span></code>.
+If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, this overrides the default time position of an ancestor, otherwise
+ancestors are ordered in time by using the frequency of the derived variant (#143).</p></li>
+<li><p>Change “age” to “time” to match tskit/msprime notation, and to avoid confusion
+with the age since birth of an individual (#149). Together with the 2 changes below,
+this addition bumped the file format to 3.0.</p></li>
+<li><p>Add the ability to record user-specified times for individuals, and therefore
+the samples contained in them (currently ignored during inference). Times are
+added using <code class="docutils literal notranslate"><span class="pre">sample_data.add_individual(...</span> <span class="pre">,</span> <span class="pre">time=user_time)</span></code> (#190).</p></li>
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">tsinfer.UNKNOWN_ALLELE</span></code> to <code class="docutils literal notranslate"><span class="pre">tskit.MISSING_DATA</span></code> for marking unknown regions
+of ancestral haplotypes (#188) . This also involves changing the allele storage to a
+signed int from <code class="docutils literal notranslate"><span class="pre">np.uint8</span></code> which matches the tskit v0.2 format for allele storage
+(see https://github.com/tskit-dev/tskit/issues/144).</p></li>
+</ul>
+<p><strong>Bugfixes</strong>:</p>
+<ul class="simple">
+<li><p>Individuals and populations in the SampleData file are kept in the returned tree
+sequence, even if they are not referenced by any sample. The individual and population
+ids are therefore guaranteed to stay the same between the sample data file and the
+inferred tree sequence. (<a class="reference external" href="https://github.com/tskit-dev/tsinfer/pull/348">#348</a>)</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2>[0.1.4] - 2018-12-12<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>Bugfix release.</p>
+<ul class="simple">
+<li><p>Fix issue caused by upstream changes in numcodecs (#136).</p></li>
+</ul>
+</section>
+<section id="id13">
+<h2>[0.1.3] - 2018-11-02<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>Release corresponding to code used in the preprint.</p>
+</section>
+<section id="id14">
+<h2>[0.1.2] - 2018-06-18<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<p>Minor update to take advantage of msprime 0.6.0’s Population and Individual
+objects and fix various bugs.</p>
+<p><strong>Breaking changes</strong>:</p>
+<ul class="simple">
+<li><p>Bumped SampleData file format version to 1.0 because of the addition
+of individuals and populations. Older SampleData files will not be
+readable and must be regenerated.</p></li>
+<li><p>Changed the order of the <code class="docutils literal notranslate"><span class="pre">alleles</span></code> and <code class="docutils literal notranslate"><span class="pre">genotypes</span></code> arguments to
+SampleData.add_site.</p></li>
+</ul>
+<p><strong>New features</strong>:</p>
+<ul class="simple">
+<li><p>Sample and individual metadata now handled correctly.</p></li>
+<li><p>Added –no-simplify option to CLI and simplify=True option to infer function.</p></li>
+<li><p>Better handling of missing files (raises correct exceptions).</p></li>
+<li><p>tsinfer list now presents basic information for .trees files.</p></li>
+</ul>
+<p><strong>Bug fixes</strong>:</p>
+<ul class="simple">
+<li><p>Degenerate examples with zero inference sites are now rooted (#44)</p></li>
+<li><p>Simplify=False results in tree sequence with correct sample nodes.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="CITATION.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Citing tsinfer</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xx-xx">[0.5.1] - 2026-XX-XX</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">[0.5.0] - 2025-11-09</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">[0.4.1] - 2024-04-19</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">[0.4.0] - 2024-04-06</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a2-2024-09-06">[0.4.0a2] - 2024-09-06</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-2024-07-26">[0.4.0a1] - 2024-07-26</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">[0.3.3] - 2024-07-17</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">[0.3.2] - 2024-07-16</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">[0.3.1] - 2023-04-19</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">[0.3.0] - 2022-10-25</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">[0.2.3] - 2022-04-08</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">[0.2.2] - 2022-02-23</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">[0.2.1] - 2021-05-26</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">[0.2.0] - 2020-12-18</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">[0.1.4] - 2018-12-12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">[0.1.3] - 2018-11-02</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">[0.1.2] - 2018-06-18</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2018.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

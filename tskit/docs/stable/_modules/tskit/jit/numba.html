@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tskit.jit.numba &#8212; Tskit manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bespoke.css?v=00f581dd" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/tskit/jit/numba';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../../../_static/logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 1.0.1</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../metadata.html">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../provenance.html">Provenance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../stats.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../topological-analysis.html">Topological analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibd.html">Identity by descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../export.html">Data export</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../python-api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../numba.html">Numba Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../c-api.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../file-formats.html">File formats</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">For developers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelogs.html">Changelogs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../citation.html">Citing tskit</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/issues/new?title=Issue%20on%20page%20%2F_modules/tskit/jit/numba.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for tskit.jit.numba</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numba</span>
+
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+        <span class="s2">&quot;Numba is not installed. Please install it with `pip install numba` &quot;</span>
+        <span class="s2">&quot;or `conda install numba` to use the tskit.jit.numba module.&quot;</span>
+    <span class="p">)</span>
+
+
+<span class="n">FORWARD</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1">#: Direction constant for forward tree traversal</span>
+<span class="n">REVERSE</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1">#: Direction constant for reverse tree traversal</span>
+
+<span class="c1"># Retrieve these here to avoid lookups in tight loops</span>
+<span class="n">NODE_IS_SAMPLE</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NODE_IS_SAMPLE</span>
+<span class="n">NULL</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span>
+
+<span class="n">edge_range_spec</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;stop&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;order&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">[:]),</span>
+<span class="p">]</span>
+
+<span class="n">parent_index_spec</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;edge_index&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">[:]),</span>
+    <span class="p">(</span><span class="s2">&quot;index_range&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">[:,</span> <span class="p">:]),</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="EdgeRange">
+<a class="viewcode-back" href="../../../numba.html#tskit.jit.numba.EdgeRange">[docs]</a>
+<span class="nd">@numba</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">jitclass</span><span class="p">(</span><span class="n">edge_range_spec</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">EdgeRange</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a range of edges during tree traversal.</span>
+
+<span class="sd">    This class encapsulates information about a contiguous range of edges</span>
+<span class="sd">    that are either being removed or added to step from one tree to another.</span>
+<span class="sd">    The ``start`` and ``stop`` indices, when applied to the order array,</span>
+<span class="sd">    define the ids of edges to process.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    start : int</span>
+<span class="sd">        Starting index of the edge range (inclusive).</span>
+<span class="sd">    stop : int</span>
+<span class="sd">        Stopping index of the edge range (exclusive).</span>
+<span class="sd">    order : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.int32) containing edge IDs in the order they should be processed.</span>
+<span class="sd">        The edge ids in this range are order[start:stop].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">order</span></div>
+
+
+
+<div class="viewcode-block" id="ParentIndex">
+<a class="viewcode-back" href="../../../numba.html#tskit.jit.numba.ParentIndex">[docs]</a>
+<span class="nd">@numba</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">jitclass</span><span class="p">(</span><span class="n">parent_index_spec</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ParentIndex</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple data container for parent index information.</span>
+
+<span class="sd">    This class provides access to all edges where a given node is the child.</span>
+<span class="sd">    Since edges are not sorted by child in the tskit edge table, a custom index</span>
+<span class="sd">    (edge_index) is built that sorts edge IDs by child node. `index_range`</span>
+<span class="sd">    then contains the [start, stop) range of edges for each child node in `edge_index`.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    edge_index : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.int32) of edge IDs sorted by child node and left coordinate.</span>
+<span class="sd">    index_range : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.int32, shape=(num_nodes, 2)) where each row contains the</span>
+<span class="sd">        [start, stop) range in edge_index where this node is the child.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">index_range</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_index</span> <span class="o">=</span> <span class="n">edge_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index_range</span> <span class="o">=</span> <span class="n">index_range</span></div>
+
+
+
+<div class="viewcode-block" id="TreeIndex">
+<a class="viewcode-back" href="../../../numba.html#tskit.jit.numba.TreeIndex">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TreeIndex</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Traverse trees in a numba compatible tree sequence.</span>
+
+<span class="sd">    This class provides efficient forward and backward iteration through</span>
+<span class="sd">    the trees in a tree sequence. It provides the tree interval,</span>
+<span class="sd">    edge changes to create the current tree, along with its sites and mutations.</span>
+<span class="sd">    A full pass over the trees using repeated `next` or `prev` requires O(E + M + S) time</span>
+<span class="sd">    complexity.</span>
+
+<span class="sd">    It should not be instantiated directly, but is returned by the `tree_index` method</span>
+<span class="sd">    of `NumbaTreeSequence`.</span>
+
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ts : NumbaTreeSequence</span>
+<span class="sd">        Reference to the tree sequence being traversed.</span>
+<span class="sd">    index : int</span>
+<span class="sd">        Current tree index. -1 indicates no current tree (null state).</span>
+<span class="sd">    direction : int</span>
+<span class="sd">        Traversal direction: tskit.FORWARD or tskit.REVERSE. tskit.NULL</span>
+<span class="sd">        if uninitialised.</span>
+<span class="sd">    interval : tuple</span>
+<span class="sd">        Genomic interval (left, right) covered by the current tree.</span>
+<span class="sd">    in_range : EdgeRange</span>
+<span class="sd">        Edges being added to form this current tree, relative to the last state</span>
+<span class="sd">    out_range : EdgeRange</span>
+<span class="sd">        Edges being removed to form this current tree, relative to the last state</span>
+<span class="sd">    site_range : tuple</span>
+<span class="sd">        Range of sites in the current tree (start, stop).</span>
+<span class="sd">    mutation_range : tuple</span>
+<span class="sd">        Range of mutations in the current tree (start, stop).</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; tree_index = numba_ts.tree_index()</span>
+<span class="sd">    &gt;&gt;&gt; num_edges = 0</span>
+<span class="sd">    &gt;&gt;&gt; while tree_index.next():</span>
+<span class="sd">            num_edges += (tree_index.in_range.stop - tree_index.in_range.start)</span>
+<span class="sd">            num_edges -= (tree_index.out_range.stop - tree_index.out_range.start)</span>
+<span class="sd">            print(f&quot;Tree {tree_index.index}: {num_edges} edges&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ts</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">ts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">NULL</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span> <span class="o">=</span> <span class="n">EdgeRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span> <span class="o">=</span> <span class="n">EdgeRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">site_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutation_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TreeIndex.set_null">
+<a class="viewcode-back" href="../../../numba.html#tskit.jit.numba.TreeIndex.set_null">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_null</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reset the tree index to null state.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">site_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutation_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TreeIndex.next">
+<a class="viewcode-back" href="../../../numba.html#tskit.jit.numba.TreeIndex.next">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># noqa: A003</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move to the next tree in forward direction.</span>
+
+<span class="sd">        Updates the tree index to the next tree in the sequence,</span>
+<span class="sd">        computing the edges that need to be added and removed to</span>
+<span class="sd">        transform from the previous tree to the current tree.</span>
+<span class="sd">        On the first call, this initializes the iterator and moves to tree 0.</span>
+
+<span class="sd">        :return: True if successfully moved to next tree, False if the end</span>
+<span class="sd">            of the tree sequence is reached. When False is returned, the iterator</span>
+<span class="sd">            is in null state (index=-1).</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_edges</span>
+        <span class="n">NS</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_sites</span>
+        <span class="n">NM</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_mutations</span>
+        <span class="n">breakpoints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">breakpoints</span>
+        <span class="n">left_coords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_left</span>
+        <span class="n">left_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">indexes_edge_insertion_order</span>
+        <span class="n">right_coords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_right</span>
+        <span class="n">right_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">indexes_edge_removal_order</span>
+        <span class="n">sites_position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">sites_position</span>
+        <span class="n">mutations_site</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_site</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">FORWARD</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">site_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="n">FORWARD</span><span class="p">:</span>
+            <span class="n">left_current_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">.</span><span class="n">stop</span>
+            <span class="n">right_current_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span><span class="o">.</span><span class="n">stop</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left_current_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span><span class="o">.</span><span class="n">stop</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">right_current_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">.</span><span class="n">stop</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="n">left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">j</span> <span class="o">=</span> <span class="n">right_current_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">j</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">M</span> <span class="ow">and</span> <span class="n">right_coords</span><span class="p">[</span><span class="n">right_order</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="n">left</span><span class="p">:</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">j</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">right_order</span>
+
+        <span class="n">j</span> <span class="o">=</span> <span class="n">left_current_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">j</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">M</span> <span class="ow">and</span> <span class="n">left_coords</span><span class="p">[</span><span class="n">left_order</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="n">left</span><span class="p">:</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">j</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">left_order</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">FORWARD</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_trees</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_null</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">breakpoints</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+
+            <span class="c1"># Find sites in current tree interval [left, right)</span>
+            <span class="n">old_site_left</span><span class="p">,</span> <span class="n">old_site_right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">site_range</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">old_site_right</span>
+            <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">NS</span> <span class="ow">and</span> <span class="n">sites_position</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">site_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">old_site_right</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+
+            <span class="c1"># Find mutations for sites in this interval</span>
+            <span class="n">old_mutation_left</span><span class="p">,</span> <span class="n">old_mutation_right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_range</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">old_mutation_right</span>
+            <span class="k">while</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">NM</span> <span class="ow">and</span> <span class="n">mutations_site</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">:</span>
+                <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">old_mutation_right</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span></div>
+
+
+<div class="viewcode-block" id="TreeIndex.prev">
+<a class="viewcode-back" href="../../../numba.html#tskit.jit.numba.TreeIndex.prev">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">prev</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move to the previous tree in reverse direction.</span>
+
+<span class="sd">        Updates the tree index to the previous tree in the sequence,</span>
+<span class="sd">        computing the edges that need to be added and removed to</span>
+<span class="sd">        transform from the next tree to the current tree.</span>
+<span class="sd">        On the first call, this initializes the iterator and moves to the most</span>
+<span class="sd">        rightward tree.</span>
+
+<span class="sd">        :return: True if successfully moved to previous tree, False if the beginning</span>
+<span class="sd">            of the tree sequence is reached. When False is returned, the iterator</span>
+<span class="sd">            is in null state (index=-1).</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_edges</span>
+        <span class="n">NS</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_sites</span>
+        <span class="n">NM</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_mutations</span>
+        <span class="n">breakpoints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">breakpoints</span>
+        <span class="n">right_coords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_right</span>
+        <span class="n">right_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">indexes_edge_removal_order</span>
+        <span class="n">left_coords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_left</span>
+        <span class="n">left_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">indexes_edge_insertion_order</span>
+        <span class="n">sites_position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">sites_position</span>
+        <span class="n">mutations_site</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_site</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">num_trees</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">M</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">M</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">REVERSE</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">site_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">NS</span><span class="p">,</span> <span class="n">NS</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">NM</span><span class="p">,</span> <span class="n">NM</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="n">REVERSE</span><span class="p">:</span>
+            <span class="n">left_current_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span><span class="o">.</span><span class="n">stop</span>
+            <span class="n">right_current_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">.</span><span class="n">stop</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left_current_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">.</span><span class="n">stop</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">right_current_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span><span class="o">.</span><span class="n">stop</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="n">right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">j</span> <span class="o">=</span> <span class="n">left_current_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">j</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">left_coords</span><span class="p">[</span><span class="n">left_order</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="n">right</span><span class="p">:</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">j</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">left_order</span>
+
+        <span class="n">j</span> <span class="o">=</span> <span class="n">right_current_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">j</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">right_coords</span><span class="p">[</span><span class="n">right_order</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="n">right</span><span class="p">:</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">j</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">right_order</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">REVERSE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_null</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">breakpoints</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+
+            <span class="c1"># Find sites in current tree interval [left, right) going backward</span>
+            <span class="n">old_site_left</span><span class="p">,</span> <span class="n">old_site_right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">site_range</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">old_site_left</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sites_position</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">left</span><span class="p">:</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">site_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">old_site_left</span><span class="p">)</span>
+
+            <span class="c1"># Find mutations for sites in this interval going backward</span>
+            <span class="n">old_mutation_left</span><span class="p">,</span> <span class="n">old_mutation_right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation_range</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">old_mutation_left</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">mutations_site</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">site_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">k</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">old_mutation_left</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NumbaTreeSequence">
+<a class="viewcode-back" href="../../../numba.html#tskit.jit.numba.NumbaTreeSequence">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NumbaTreeSequence</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Numba-compatible representation of a tree sequence.</span>
+
+<span class="sd">    This class provides access a tree sequence class that can be used</span>
+<span class="sd">    from within Numba &quot;njit&quot; compiled functions. :meth:`jitwrap` should</span>
+<span class="sd">    be used to JIT compile this class from a :class:`tskit.TreeSequence` object,</span>
+<span class="sd">    before it is passed to a Numba function.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    num_trees : int</span>
+<span class="sd">        Number of trees in the tree sequence.</span>
+<span class="sd">    num_nodes : int</span>
+<span class="sd">        Number of nodes in the tree sequence.</span>
+<span class="sd">    num_samples : int</span>
+<span class="sd">        Number of samples in the tree sequence.</span>
+<span class="sd">    num_edges : int</span>
+<span class="sd">        Number of edges in the tree sequence.</span>
+<span class="sd">    num_sites : int</span>
+<span class="sd">        Number of sites in the tree sequence.</span>
+<span class="sd">    num_mutations : int</span>
+<span class="sd">        Number of mutations in the tree sequence.</span>
+<span class="sd">    sequence_length : float</span>
+<span class="sd">        Total sequence length of the tree sequence.</span>
+<span class="sd">    edges_left : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.float64) of left coordinates of edges.</span>
+<span class="sd">    edges_right : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.float64) of right coordinates of edges.</span>
+<span class="sd">    edges_parent : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.int32) of parent node IDs for each edge.</span>
+<span class="sd">    edges_child : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.int32) of child node IDs for each edge.</span>
+<span class="sd">    nodes_time : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.float64) of time values for each node.</span>
+<span class="sd">    nodes_flags : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.uint32) of flag values for each node.</span>
+<span class="sd">    nodes_population : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.int32) of population IDs for each node.</span>
+<span class="sd">    nodes_individual : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.int32) of individual IDs for each node.</span>
+<span class="sd">    individuals_flags : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.uint32) of flag values for each individual.</span>
+<span class="sd">    sites_position : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.float64) of positions of sites along the sequence.</span>
+<span class="sd">    mutations_site : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.int32) of site IDs for each mutation.</span>
+<span class="sd">    mutations_node : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.int32) of node IDs for each mutation.</span>
+<span class="sd">    mutations_parent : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.int32) of parent mutation IDs.</span>
+<span class="sd">    mutations_time : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.float64) of time values for each mutation.</span>
+<span class="sd">    breakpoints : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.float64) of genomic positions where trees change.</span>
+<span class="sd">    indexes_edge_insertion_order : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.int32) specifying the order in which edges are inserted</span>
+<span class="sd">        during tree building.</span>
+<span class="sd">    indexes_edge_removal_order : numpy.ndarray</span>
+<span class="sd">        Array (dtype=np.int32) specifying the order in which edges are removed</span>
+<span class="sd">        during tree building.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">num_trees</span><span class="p">,</span>
+        <span class="n">num_nodes</span><span class="p">,</span>
+        <span class="n">num_samples</span><span class="p">,</span>
+        <span class="n">num_edges</span><span class="p">,</span>
+        <span class="n">num_sites</span><span class="p">,</span>
+        <span class="n">num_mutations</span><span class="p">,</span>
+        <span class="n">sequence_length</span><span class="p">,</span>
+        <span class="n">edges_left</span><span class="p">,</span>
+        <span class="n">edges_right</span><span class="p">,</span>
+        <span class="n">indexes_edge_insertion_order</span><span class="p">,</span>
+        <span class="n">indexes_edge_removal_order</span><span class="p">,</span>
+        <span class="n">individuals_flags</span><span class="p">,</span>
+        <span class="n">nodes_time</span><span class="p">,</span>
+        <span class="n">nodes_flags</span><span class="p">,</span>
+        <span class="n">nodes_population</span><span class="p">,</span>
+        <span class="n">nodes_individual</span><span class="p">,</span>
+        <span class="n">edges_parent</span><span class="p">,</span>
+        <span class="n">edges_child</span><span class="p">,</span>
+        <span class="n">sites_position</span><span class="p">,</span>
+        <span class="n">sites_ancestral_state</span><span class="p">,</span>
+        <span class="n">mutations_site</span><span class="p">,</span>
+        <span class="n">mutations_node</span><span class="p">,</span>
+        <span class="n">mutations_parent</span><span class="p">,</span>
+        <span class="n">mutations_time</span><span class="p">,</span>
+        <span class="n">mutations_derived_state</span><span class="p">,</span>
+        <span class="n">mutations_inherited_state</span><span class="p">,</span>
+        <span class="n">breakpoints</span><span class="p">,</span>
+        <span class="n">max_ancestral_length</span><span class="p">,</span>
+        <span class="n">max_derived_length</span><span class="p">,</span>
+        <span class="n">max_inherited_length</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_trees</span> <span class="o">=</span> <span class="n">num_trees</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_nodes</span> <span class="o">=</span> <span class="n">num_nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_samples</span> <span class="o">=</span> <span class="n">num_samples</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_edges</span> <span class="o">=</span> <span class="n">num_edges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_sites</span> <span class="o">=</span> <span class="n">num_sites</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_mutations</span> <span class="o">=</span> <span class="n">num_mutations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span> <span class="o">=</span> <span class="n">sequence_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges_left</span> <span class="o">=</span> <span class="n">edges_left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges_right</span> <span class="o">=</span> <span class="n">edges_right</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indexes_edge_insertion_order</span> <span class="o">=</span> <span class="n">indexes_edge_insertion_order</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indexes_edge_removal_order</span> <span class="o">=</span> <span class="n">indexes_edge_removal_order</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">individuals_flags</span> <span class="o">=</span> <span class="n">individuals_flags</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_time</span> <span class="o">=</span> <span class="n">nodes_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_flags</span> <span class="o">=</span> <span class="n">nodes_flags</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_population</span> <span class="o">=</span> <span class="n">nodes_population</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_individual</span> <span class="o">=</span> <span class="n">nodes_individual</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges_parent</span> <span class="o">=</span> <span class="n">edges_parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges_child</span> <span class="o">=</span> <span class="n">edges_child</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sites_position</span> <span class="o">=</span> <span class="n">sites_position</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sites_ancestral_state</span> <span class="o">=</span> <span class="n">sites_ancestral_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutations_site</span> <span class="o">=</span> <span class="n">mutations_site</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutations_node</span> <span class="o">=</span> <span class="n">mutations_node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutations_parent</span> <span class="o">=</span> <span class="n">mutations_parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutations_time</span> <span class="o">=</span> <span class="n">mutations_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutations_derived_state</span> <span class="o">=</span> <span class="n">mutations_derived_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutations_inherited_state</span> <span class="o">=</span> <span class="n">mutations_inherited_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">breakpoints</span> <span class="o">=</span> <span class="n">breakpoints</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_ancestral_length</span> <span class="o">=</span> <span class="n">max_ancestral_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_derived_length</span> <span class="o">=</span> <span class="n">max_derived_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_inherited_length</span> <span class="o">=</span> <span class="n">max_inherited_length</span>
+
+<div class="viewcode-block" id="NumbaTreeSequence.tree_index">
+<a class="viewcode-back" href="../../../numba.html#tskit.jit.numba.NumbaTreeSequence.tree_index">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tree_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a :class:`TreeIndex` for traversing this tree sequence.</span>
+
+<span class="sd">        :return: A new tree index initialized to the null tree.</span>
+<span class="sd">            Use next() or prev() to move to an actual tree.</span>
+<span class="sd">        :rtype: TreeIndex</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># This method will be overriden when the concrete JIT class TreeIndex</span>
+        <span class="c1"># is defined in `jitwrap`.</span>
+        <span class="k">return</span> <span class="n">TreeIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span></div>
+
+
+<div class="viewcode-block" id="NumbaTreeSequence.child_index">
+<a class="viewcode-back" href="../../../numba.html#tskit.jit.numba.NumbaTreeSequence.child_index">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">child_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create child index array for finding child edges of nodes. This operation</span>
+<span class="sd">        requires a linear pass over the edge table and therefore has a time</span>
+<span class="sd">        complexity of O(E).</span>
+
+<span class="sd">        :return: A numpy array (dtype=np.int32, shape=(num_nodes, 2)) where each row</span>
+<span class="sd">            contains the [start, stop) range of edges where this node is the parent.</span>
+<span class="sd">        :rtype: numpy.ndarray</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">child_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+        <span class="n">edges_parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges_parent</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_edges</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">child_range</span>
+
+        <span class="c1"># Find ranges in tskit edge ordering</span>
+        <span class="n">last_parent</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_edges</span><span class="p">):</span>
+            <span class="n">parent</span> <span class="o">=</span> <span class="n">edges_parent</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">parent</span> <span class="o">!=</span> <span class="n">last_parent</span><span class="p">:</span>
+                <span class="n">child_range</span><span class="p">[</span><span class="n">parent</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_id</span>
+            <span class="k">if</span> <span class="n">last_parent</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">child_range</span><span class="p">[</span><span class="n">last_parent</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_id</span>
+            <span class="n">last_parent</span> <span class="o">=</span> <span class="n">parent</span>
+
+        <span class="k">if</span> <span class="n">last_parent</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">child_range</span><span class="p">[</span><span class="n">last_parent</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_edges</span>
+
+        <span class="k">return</span> <span class="n">child_range</span></div>
+
+
+<div class="viewcode-block" id="NumbaTreeSequence.parent_index">
+<a class="viewcode-back" href="../../../numba.html#tskit.jit.numba.NumbaTreeSequence.parent_index">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parent_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a :class:`ParentIndex` for finding parent edges of nodes.</span>
+
+<span class="sd">        Edges within each child&#39;s group are not guaranteed to be in any</span>
+<span class="sd">        specific order. This operation uses a two-pass algorithm with</span>
+<span class="sd">        O(N + E) time complexity and O(N) auxiliary space.</span>
+
+<span class="sd">        :return: A new parent index container that can be used to</span>
+<span class="sd">            efficiently find all edges where a given node is the child.</span>
+<span class="sd">        :rtype: ParentIndex</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num_nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_nodes</span>
+        <span class="n">num_edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_edges</span>
+        <span class="n">edges_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges_child</span>
+
+        <span class="n">child_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+        <span class="n">edge_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_edges</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+        <span class="n">index_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_nodes</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">num_edges</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ParentIndex</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">index_range</span><span class="p">)</span>
+
+        <span class="c1"># Count how many children each node has</span>
+        <span class="k">for</span> <span class="n">child_node</span> <span class="ow">in</span> <span class="n">edges_child</span><span class="p">:</span>
+            <span class="n">child_counts</span><span class="p">[</span><span class="n">child_node</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># From the counts build the index ranges, we set both the start and the</span>
+        <span class="c1"># end index to the start - this lets us use the end index as a tracker</span>
+        <span class="c1"># for where we should insert the next edge for that node - when all</span>
+        <span class="c1"># edges are done these values will be the correct end values!</span>
+        <span class="n">current_start</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">):</span>
+            <span class="n">index_range</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">current_start</span>
+            <span class="n">current_start</span> <span class="o">+=</span> <span class="n">child_counts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="c1"># Now go over the edges, inserting them at the index pointed to</span>
+        <span class="c1"># by the node&#39;s current end value, then increment.</span>
+        <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_edges</span><span class="p">):</span>
+            <span class="n">child</span> <span class="o">=</span> <span class="n">edges_child</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">index_range</span><span class="p">[</span><span class="n">child</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">edge_index</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_id</span>
+            <span class="n">index_range</span><span class="p">[</span><span class="n">child</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">ParentIndex</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">index_range</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># We cache these classes to avoid repeated JIT compilation</span>
+<span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_jitwrap</span><span class="p">(</span><span class="n">max_ancestral_length</span><span class="p">,</span> <span class="n">max_derived_length</span><span class="p">,</span> <span class="n">max_inherited_length</span><span class="p">):</span>
+    <span class="c1"># We have a circular dependency in JIT compilation between NumbaTreeSequence</span>
+    <span class="c1"># and NumbaTreeIndex so we used a deferred type to break it</span>
+    <span class="n">tree_sequence_type</span> <span class="o">=</span> <span class="n">numba</span><span class="o">.</span><span class="n">deferred_type</span><span class="p">()</span>
+
+    <span class="c1"># We run this code on CI with this env var set so we can get coverage</span>
+    <span class="c1"># of the jitted functions. EdgeRange doesn&#39;t have a class_type</span>
+    <span class="c1"># in this case, so we skip the spec entirely.</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NUMBA_DISABLE_JIT&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+        <span class="n">tree_index_spec</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tree_index_spec</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;ts&quot;</span><span class="p">,</span> <span class="n">tree_sequence_type</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;interval&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">UniTuple</span><span class="p">(</span><span class="n">numba</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
+            <span class="p">(</span><span class="s2">&quot;in_range&quot;</span><span class="p">,</span> <span class="n">EdgeRange</span><span class="o">.</span><span class="n">class_type</span><span class="o">.</span><span class="n">instance_type</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;out_range&quot;</span><span class="p">,</span> <span class="n">EdgeRange</span><span class="o">.</span><span class="n">class_type</span><span class="o">.</span><span class="n">instance_type</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;site_range&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">UniTuple</span><span class="p">(</span><span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
+            <span class="p">(</span><span class="s2">&quot;mutation_range&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">UniTuple</span><span class="p">(</span><span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
+        <span class="p">]</span>
+
+    <span class="n">JittedTreeIndex</span> <span class="o">=</span> <span class="n">numba</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">jitclass</span><span class="p">(</span><span class="n">tree_index_spec</span><span class="p">)(</span><span class="n">TreeIndex</span><span class="p">)</span>
+
+    <span class="n">tree_sequence_spec</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;num_trees&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;num_nodes&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;num_samples&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;num_edges&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;num_sites&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;num_mutations&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;sequence_length&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;edges_left&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">float64</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;edges_right&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">float64</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;indexes_edge_insertion_order&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;indexes_edge_removal_order&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;individuals_flags&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">uint32</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;nodes_time&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">float64</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;nodes_flags&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">uint32</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;nodes_population&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;nodes_individual&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;edges_parent&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;edges_child&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;sites_position&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">float64</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;sites_ancestral_state&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">UnicodeCharSeq</span><span class="p">(</span><span class="n">max_ancestral_length</span><span class="p">)[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;mutations_site&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;mutations_node&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;mutations_parent&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;mutations_time&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">float64</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;mutations_derived_state&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">UnicodeCharSeq</span><span class="p">(</span><span class="n">max_derived_length</span><span class="p">)[:]),</span>
+        <span class="p">(</span>
+            <span class="s2">&quot;mutations_inherited_state&quot;</span><span class="p">,</span>
+            <span class="n">numba</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">UnicodeCharSeq</span><span class="p">(</span><span class="n">max_inherited_length</span><span class="p">)[:],</span>
+        <span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;breakpoints&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">float64</span><span class="p">[:]),</span>
+        <span class="p">(</span><span class="s2">&quot;max_ancestral_length&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;max_derived_length&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;max_inherited_length&quot;</span><span class="p">,</span> <span class="n">numba</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="c1"># The `tree_index` method on NumbaTreeSequence uses NumbaTreeIndex</span>
+    <span class="c1"># which is the uncompiled version of the class. The compiled version isn&#39;t</span>
+    <span class="c1"># known till now, so replace the method with this definition.</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">_NumbaTreeSequence</span><span class="p">(</span><span class="n">NumbaTreeSequence</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">tree_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">JittedTreeIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="n">JittedTreeSequence</span> <span class="o">=</span> <span class="n">numba</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">jitclass</span><span class="p">(</span><span class="n">tree_sequence_spec</span><span class="p">)(</span>
+        <span class="n">_NumbaTreeSequence</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Now both classes are setup we can resolve the deferred type</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NUMBA_DISABLE_JIT&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+        <span class="n">tree_sequence_type</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">JittedTreeSequence</span><span class="o">.</span><span class="n">class_type</span><span class="o">.</span><span class="n">instance_type</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">JittedTreeSequence</span>
+
+
+<div class="viewcode-block" id="jitwrap">
+<a class="viewcode-back" href="../../../numba.html#tskit.jit.numba.jitwrap">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">jitwrap</span><span class="p">(</span><span class="n">ts</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a TreeSequence to a Numba-compatible format.</span>
+
+<span class="sd">    Creates a NumbaTreeSequence object that can be used within</span>
+<span class="sd">    Numba-compiled functions.</span>
+
+<span class="sd">    :param tskit.TreeSequence ts: The tree sequence to convert.</span>
+<span class="sd">    :return: A Numba-compatible representation of the input tree sequence.</span>
+<span class="sd">        Contains all necessary data arrays and metadata for tree traversal.</span>
+<span class="sd">    :rtype: NumbaTreeSequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">max_ancestral_length</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">sites_ancestral_state</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">max_derived_length</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">mutations_derived_state</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">max_inherited_length</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">mutations_inherited_state</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">JittedTreeSequence</span> <span class="o">=</span> <span class="n">_jitwrap</span><span class="p">(</span>
+        <span class="n">max_ancestral_length</span><span class="p">,</span> <span class="n">max_derived_length</span><span class="p">,</span> <span class="n">max_inherited_length</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Create the tree sequence instance</span>
+    <span class="n">numba_ts</span> <span class="o">=</span> <span class="n">JittedTreeSequence</span><span class="p">(</span>
+        <span class="n">num_trees</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">num_trees</span><span class="p">,</span>
+        <span class="n">num_nodes</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span>
+        <span class="n">num_samples</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">num_samples</span><span class="p">,</span>
+        <span class="n">num_edges</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">num_edges</span><span class="p">,</span>
+        <span class="n">num_sites</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">num_sites</span><span class="p">,</span>
+        <span class="n">num_mutations</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">num_mutations</span><span class="p">,</span>
+        <span class="n">sequence_length</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">,</span>
+        <span class="n">edges_left</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_left</span><span class="p">,</span>
+        <span class="n">edges_right</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_right</span><span class="p">,</span>
+        <span class="n">indexes_edge_insertion_order</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">indexes_edge_insertion_order</span><span class="p">,</span>
+        <span class="n">indexes_edge_removal_order</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">indexes_edge_removal_order</span><span class="p">,</span>
+        <span class="n">individuals_flags</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">individuals_flags</span><span class="p">,</span>
+        <span class="n">nodes_time</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">,</span>
+        <span class="n">nodes_flags</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_flags</span><span class="p">,</span>
+        <span class="n">nodes_population</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_population</span><span class="p">,</span>
+        <span class="n">nodes_individual</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">nodes_individual</span><span class="p">,</span>
+        <span class="n">edges_parent</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_parent</span><span class="p">,</span>
+        <span class="n">edges_child</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">,</span>
+        <span class="n">sites_position</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">sites_position</span><span class="p">,</span>
+        <span class="n">sites_ancestral_state</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">sites_ancestral_state</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;U</span><span class="si">{</span><span class="n">max_ancestral_length</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">),</span>
+        <span class="n">mutations_site</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_site</span><span class="p">,</span>
+        <span class="n">mutations_node</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_node</span><span class="p">,</span>
+        <span class="n">mutations_parent</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_parent</span><span class="p">,</span>
+        <span class="n">mutations_time</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_time</span><span class="p">,</span>
+        <span class="n">mutations_derived_state</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_derived_state</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;U</span><span class="si">{</span><span class="n">max_derived_length</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">),</span>
+        <span class="n">mutations_inherited_state</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">mutations_inherited_state</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;U</span><span class="si">{</span><span class="n">max_inherited_length</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">),</span>
+        <span class="n">breakpoints</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">breakpoints</span><span class="p">(</span><span class="n">as_array</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">max_ancestral_length</span><span class="o">=</span><span class="n">max_ancestral_length</span><span class="p">,</span>
+        <span class="n">max_derived_length</span><span class="o">=</span><span class="n">max_derived_length</span><span class="p">,</span>
+        <span class="n">max_inherited_length</span><span class="o">=</span><span class="n">max_inherited_length</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">numba_ts</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Inference &#8212; sc2ts manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'inference';</script>
+    <link rel="icon" href="_static/sc2ts.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ARG analysis" href="arg_analysis.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/sc2ts.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/sc2ts.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 1.0.1</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arg_analysis.html">ARG analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alignments_analysis.html">Alignments analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Misc</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/inference.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Inference</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primary-inference">Primary inference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#config-file-format">Config file format</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-final-analysis-file">Generating final analysis file</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="inference">
+<span id="sec-inference"></span><h1>Inference<a class="headerlink" href="#inference" title="Link to this heading">#</a></h1>
+<p>Here we’ll run through a quick example of how to get inference running
+on a local machine using an example config file, using the Viridian data downloaded
+from Zenodo.</p>
+<p>Inference is performed using the CLI, which is composed of number of subcommands.
+See the <a class="reference internal" href="cli.html#sc2ts-sec-cli"><span class="std std-ref">Command line interface</span></a> section for more information</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<p>First, install the “inference” version of sc2ts from pypi:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">sc2ts</span><span class="p">[</span><span class="n">inference</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>This is essential! The base install of sc2ts contains the minimal
+dependencies required to access the analysis utilities outlined above.</strong></p>
+<p>Then, download the (401MB) Viridian dataset in
+<a class="reference external" href="https://doi.org/10.1093/gigascience/giaf049">VCF Zarr format</a> from
+<a class="reference external" href="https://zenodo.org/records/16314739">Zenodo</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">zenodo</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">records</span><span class="o">/</span><span class="mi">16314739</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="n">viridian_mafft_2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">14</span><span class="n">_v1</span><span class="o">.</span><span class="n">vcz</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+<p>Also, download the example configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">tskit</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">sc2ts</span><span class="o">/</span><span class="n">refs</span><span class="o">/</span><span class="n">heads</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">example_config</span><span class="o">.</span><span class="n">toml</span>
+</pre></div>
+</div>
+</section>
+<section id="primary-inference">
+<h2>Primary inference<a class="headerlink" href="#primary-inference" title="Link to this heading">#</a></h2>
+<p>Primary inference is performed using the <code class="docutils literal notranslate"><span class="pre">infer</span></code> subcommand of the CLI,
+and all parameters are specified using a toml file.</p>
+<p>The <a class="reference download internal" download="" href="_downloads/0293b64589fad799771de91c88008cea/example_config.toml"><span class="xref download myst">example config file</span></a> can be used to perform
+inference over a short period, to demonstrate how sc2ts works:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">sc2ts</span> <span class="n">infer</span> <span class="n">example_config</span><span class="o">.</span><span class="n">toml</span> <span class="o">--</span><span class="n">stop</span><span class="o">=</span><span class="mi">2020</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span>
+</pre></div>
+</div>
+<p>Once this finishes (it should take a few minutes and requires ~5GB RAM), the results of the
+inference will be in the <code class="docutils literal notranslate"><span class="pre">example_inference</span></code> directory (as specified in the
+config file) and look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tree example_inference
+example_inference
+├── ex1
+│   ├── ex1_2020-01-01.ts
+│   ├── ex1_2020-01-10.ts
+│   ├── ex1_2020-01-12.ts
+│   ├── ex1_2020-01-19.ts
+│   ├── ex1_2020-01-24.ts
+│   ├── ex1_2020-01-25.ts
+│   ├── ex1_2020-01-28.ts
+│   ├── ex1_2020-01-29.ts
+│   ├── ex1_2020-01-30.ts
+│   ├── ex1_2020-01-31.ts
+│   ├── ex1_2020-02-01.ts
+│   └── ex1_init.ts
+├── ex1.log
+└── ex1.matches.db
+</pre></div>
+</div>
+<p>Here we’ve run inference for all dates in January 2020 for which we have data, plus the 1st Feb.
+The results of inference for each day are stored in the
+<code class="docutils literal notranslate"><span class="pre">example_inference/ex1</span></code> directory as tskit files representing the ARG
+inferred up to that day. There is a lot of redundancy in keeping all these
+daily files lying around, but it is useful to be able to go back to the
+state of the ARG at a particular date and they don’t take up much space.</p>
+<p>The file <code class="docutils literal notranslate"><span class="pre">ex1.log</span></code> contains the log file. The config file set the log-level
+to 2, which is full debug output. There is a lot of useful information in there,
+and it can be very helpful when debugging, so we recommend keeping the logs.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ex1.matches.db</span></code> is the “match DB” which stores information about the
+HMM match for each sample. This is mainly used to store exact matches
+found during inference.</p>
+<p>The ARGs output during primary inference (this step here) have a lot of
+debugging metadata included (see the section on the Debug utilities below)</p>
+<p>Primary inference can be stopped and picked up again at any point using
+the <code class="docutils literal notranslate"><span class="pre">--start</span></code> option.</p>
+<!-- :::{todo} -->
+<!-- Add documentation for the toml config file -->
+<!-- ::: -->
+<section id="config-file-format">
+<h3>Config file format<a class="headerlink" href="#config-file-format" title="Link to this heading">#</a></h3>
+<p>All parameters for primary inference are specified using the <a class="reference external" href="https://toml.io/en/">toml</a>
+config file. There are documented in the example config file used here:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a path to the dataset, in VCZ format.</span>
+<span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;viridian_mafft_2024-10-14_v1.vcz.zip&quot;</span>
+<span class="c1"># The metadata field used for dates. For the Viridian dataset, this is </span>
+<span class="c1"># &quot;Date_tree&quot; (which means, &quot;date used to partition samples when building </span>
+<span class="c1"># the Viridian tree&quot;)</span>
+<span class="n">date_field</span><span class="o">=</span><span class="s2">&quot;Date_tree&quot;</span>
+
+<span class="c1"># The run_id is a prefix added to all output files. This is useful when </span>
+<span class="c1"># running lots of different parameter combinations.</span>
+<span class="n">run_id</span><span class="o">=</span><span class="s2">&quot;ex1&quot;</span>
+<span class="c1"># Configure where the result files are stored. For simplicity</span>
+<span class="c1"># we put them all in the &quot;example_inference&quot; directory.</span>
+<span class="c1"># It can be good idea to store the match_db on fast storage</span>
+<span class="c1"># as it gets updated and synced a lot, which can be slow</span>
+<span class="c1"># on shared file systems</span>
+<span class="n">results_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example_inference/&quot;</span>
+<span class="n">log_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example_inference/&quot;</span>
+<span class="n">matches_dir</span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example_inference/&quot;</span>
+<span class="c1"># This is full debug output, which is verbose (but useful!)</span>
+<span class="n">log_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+
+<span class="c1"># Dates to exclude from inference. This one is a large outlier in the </span>
+<span class="c1"># Viridian data in terms of the numbers of samples, and enriched for </span>
+<span class="c1"># incorrectly assigned dates.</span>
+<span class="n">exclude_dates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;2020-12-31&quot;</span><span class="p">]</span>
+
+<span class="c1"># The set of site positions to mask during inference (list of integers).</span>
+<span class="c1"># Real inferences will almost certainly want to mask some sites, although </span>
+<span class="c1"># it&#39;s not clear which sites exactly.</span>
+<span class="n">exclude_sites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+
+<span class="k">[extend_parameters]</span>
+<span class="c1"># The recombination penalty &quot;k&quot; parameter</span>
+<span class="n">num_mismatches</span><span class="o">=</span><span class="mi">4</span>
+<span class="c1"># Any samples with a HMM cost &lt;= to this value are included in the ARG</span>
+<span class="n">hmm_cost_threshold</span><span class="o">=</span><span class="mi">7</span>
+<span class="c1"># The maximum number of missing sites for a sample to be considered</span>
+<span class="n">max_missing_sites</span><span class="o">=</span><span class="mi">500</span>
+<span class="c1"># Do we mask deletions as missing data?</span>
+<span class="n">deletions_as_missing</span><span class="o">=</span><span class="kc">true</span>
+<span class="c1"># The maximum number of samples to consider, per day</span>
+<span class="c1"># max_daily_samples=1000</span>
+
+<span class="c1">## Various knobs for tuning retro group insertion:</span>
+
+<span class="c1"># The minimum number of samples in a retro group</span>
+<span class="n">min_group_size</span><span class="o">=</span><span class="mi">10</span>
+<span class="c1"># The minimum number of mutations shared by all samples</span>
+<span class="n">min_root_mutations</span><span class="o">=</span><span class="mi">2</span>
+<span class="c1"># The maxmimum number of recurrent mutations in the group tree</span>
+<span class="n">max_recurrent_mutations</span><span class="o">=</span><span class="mi">2</span>
+<span class="c1"># The maxmimum number of mutations per sample, overall</span>
+<span class="n">max_mutations_per_sample</span><span class="o">=</span><span class="mi">5</span>
+<span class="c1"># The size of the windown in which to consider samples for retrospective</span>
+<span class="c1"># inclusion, in days.</span>
+<span class="n">retrospective_window</span><span class="o">=</span><span class="mi">7</span>
+
+<span class="c1">## Performance parameters.</span>
+
+<span class="c1"># The number of matching threads to use. -1 means use all available cores.</span>
+<span class="c1"># Note that this will likely not make much difference until large numbers</span>
+<span class="c1"># of samples per days are involved.</span>
+<span class="n">num_threads</span><span class="o">=</span><span class="mi">-1</span>
+<span class="c1"># An approximate ceiling on the total amount of memory used (in GiB) by HMM</span>
+<span class="c1"># matching. Once the memory used goes above this value, new HMM match jobs are</span>
+<span class="c1"># held back until it goes under it again. If many memory intensive match jobs</span>
+<span class="c1"># are run at once however, this will not prevent them from exceeding this</span>
+<span class="c1"># limit.</span>
+<span class="n">memory_limit</span><span class="o">=</span><span class="mi">32</span>
+
+<span class="c1"># A list of sample IDs (strings) for unconditional inclusion (e.g., to </span>
+<span class="c1"># help seed major saltation events).</span>
+<span class="n">include_samples</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="c1"># Override specific parameter values over a time period.</span>
+<span class="k">[[override]]</span>
+<span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2020-01-01&quot;</span>
+<span class="n">stop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2020-03-01&quot;</span>
+<span class="n">parameters</span><span class="p">.</span><span class="n">max_missing_sites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="postprocessing">
+<h2>Postprocessing<a class="headerlink" href="#postprocessing" title="Link to this heading">#</a></h2>
+<p>Once we’ve finished primary inference we can run postprocessing to perform
+a few housekeeping tasks. Continuing the example above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 -m sc2ts postprocess -vv \
+    --match-db example_inference/ex1.matches.db \
+    example_inference/ex1/ex1_2020-02-01.ts     \
+    example_inference/ex1_2020-02-01_pp.ts
+</pre></div>
+</div>
+<p>Among other things, this incorporates the exact matches in the match DB
+into the final ARG.</p>
+</section>
+<section id="generating-final-analysis-file">
+<h2>Generating final analysis file<a class="headerlink" href="#generating-final-analysis-file" title="Link to this heading">#</a></h2>
+<p>To generate the final analysis-ready file (used as input to the analysis
+APIs above) we need to run <code class="docutils literal notranslate"><span class="pre">minimise-metadata</span></code>. This removes all but
+the most necessary metadata from the ARG, and recodes node metadata
+using the <a class="reference external" href="https://tskit.dev/tskit/docs/stable/metadata.html#structured-array-metadata">struct codec</a>
+for efficiency. On our example above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m sc2ts minimise-metadata \
+    -m strain sample_id \
+    -m Viridian_pangolin pango \
+    example_inference/ex1_2020-02-01_pp.ts \
+    example_inference/ex1_2020-02-01_pp_mm.ts
+</pre></div>
+</div>
+<p>This recodes the metadata in the input tree sequence such that
+the existing <code class="docutils literal notranslate"><span class="pre">strain</span></code> field is renamed to <code class="docutils literal notranslate"><span class="pre">sample_id</span></code>
+(for compatibility with VCF Zarr) and the <code class="docutils literal notranslate"><span class="pre">Viridian_pangolin</span></code>
+field (extracted from the Viridian metadata) is renamed to <code class="docutils literal notranslate"><span class="pre">pango</span></code>.</p>
+<p>We can then use the analysis APIs on this file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sc2ts</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;example_inference/ex1_2020-02-01_pp_mm.ts&quot;</span><span class="p">)</span>
+<span class="n">dfn</span> <span class="o">=</span> <span class="n">sc2ts</span><span class="o">.</span><span class="n">node_data</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dfn</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>giving something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">pango</span>         <span class="n">sample_id</span>  <span class="n">node_id</span>  <span class="n">is_sample</span>  <span class="n">is_recombinant</span>  <span class="n">num_mutations</span>       <span class="n">date</span>
+<span class="mi">0</span>         <span class="n">Vestigial_ignore</span>        <span class="mi">0</span>      <span class="kc">False</span>           <span class="kc">False</span>              <span class="mi">0</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">25</span>
+<span class="mi">1</span>          <span class="n">Wuhan</span><span class="o">/</span><span class="n">Hu</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2019</span>        <span class="mi">1</span>      <span class="kc">False</span>           <span class="kc">False</span>              <span class="mi">0</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">26</span>
+<span class="mi">2</span>      <span class="n">A</span>       <span class="n">SRR11772659</span>        <span class="mi">2</span>       <span class="kc">True</span>           <span class="kc">False</span>              <span class="mi">1</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">19</span>
+<span class="mi">3</span>      <span class="n">B</span>       <span class="n">SRR11397727</span>        <span class="mi">3</span>       <span class="kc">True</span>           <span class="kc">False</span>              <span class="mi">0</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">24</span>
+<span class="mi">4</span>      <span class="n">B</span>       <span class="n">SRR11397730</span>        <span class="mi">4</span>       <span class="kc">True</span>           <span class="kc">False</span>              <span class="mi">0</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">24</span>
+<span class="o">..</span>   <span class="o">...</span>               <span class="o">...</span>      <span class="o">...</span>        <span class="o">...</span>             <span class="o">...</span>            <span class="o">...</span>        <span class="o">...</span>
+<span class="mi">60</span>     <span class="n">A</span>       <span class="n">SRR11597177</span>       <span class="mi">60</span>       <span class="kc">True</span>           <span class="kc">False</span>              <span class="mi">0</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">30</span>
+<span class="mi">61</span>     <span class="n">A</span>       <span class="n">SRR11597197</span>       <span class="mi">61</span>       <span class="kc">True</span>           <span class="kc">False</span>              <span class="mi">0</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">30</span>
+<span class="mi">62</span>     <span class="n">B</span>       <span class="n">SRR11597144</span>       <span class="mi">62</span>       <span class="kc">True</span>           <span class="kc">False</span>              <span class="mi">0</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">01</span>
+<span class="mi">63</span>     <span class="n">B</span>       <span class="n">SRR11597148</span>       <span class="mi">63</span>       <span class="kc">True</span>           <span class="kc">False</span>              <span class="mi">0</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">01</span>
+<span class="mi">64</span>     <span class="n">B</span>       <span class="n">SRR25229386</span>       <span class="mi">64</span>       <span class="kc">True</span>           <span class="kc">False</span>              <span class="mi">0</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">01</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="installation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Installation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="arg_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ARG analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primary-inference">Primary inference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#config-file-format">Config file format</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-final-analysis-file">Generating final analysis file</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By sc2ts developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,862 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tscompare.methods &#8212; Tscompare manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/tscompare/methods';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version __TSCOMPARE_VERSION__</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Using tscompare</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CITATION.html">Citing tscompare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CHANGELOG.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for tscompare.methods</h1><div class="highlight"><pre>
+<span></span><span class="c1"># MIT License</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2025 Tskit Developers</span>
+<span class="c1">#</span>
+<span class="c1"># Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="c1"># of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1"># in the Software without restriction, including without limitation the rights</span>
+<span class="c1"># to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="c1"># copies of the Software, and to permit persons to whom the Software is</span>
+<span class="c1"># furnished to do so, subject to the following conditions:</span>
+<span class="c1">#</span>
+<span class="c1"># The above copyright notice and this permission notice shall be included in</span>
+<span class="c1"># all copies or substantial portions of the Software.</span>
+<span class="c1">#</span>
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="c1"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="c1"># AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="c1"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="c1"># SOFTWARE.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Tools for comparing node times between tree sequences with different node sets</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">product</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+        <span class="s2">&quot;compare() is deprecated and will be removed in the future; &quot;</span>
+        <span class="s2">&quot;please use haplotype_arf() instead.&quot;</span><span class="p">,</span>
+        <span class="ne">DeprecationWarning</span><span class="p">,</span>
+        <span class="n">stacklevel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">haplotype_arf</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="node_spans">
+<a class="viewcode-back" href="../../api.html#tscompare.node_spans">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">node_spans</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">include_missing</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the array of &quot;node spans&quot;, i.e., the `j`th entry gives</span>
+<span class="sd">    the total span over which node `j` is in the tree sequence.</span>
+<span class="sd">    Sample nodes that are isolated are &quot;missing data&quot;; inclusion</span>
+<span class="sd">    of these spans are controlled by `include_missing`. (If</span>
+<span class="sd">    `include_missing` is `True` then the span of each sample is</span>
+<span class="sd">    always equal to the sequence length.)</span>
+
+<span class="sd">    :param bool include_missing: Whether to include spans of nodes</span>
+<span class="sd">        on which they have missing data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">child_spans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span>
+        <span class="n">ts</span><span class="o">.</span><span class="n">edges_child</span><span class="p">,</span>
+        <span class="n">weights</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">edges_right</span> <span class="o">-</span> <span class="n">ts</span><span class="o">.</span><span class="n">edges_left</span><span class="p">,</span>
+        <span class="n">minlength</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ts</span><span class="o">.</span><span class="n">trees</span><span class="p">():</span>
+        <span class="n">span</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">span</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">roots</span><span class="p">:</span>
+            <span class="c1"># do this check to exempt &#39;missing data&#39;</span>
+            <span class="k">if</span> <span class="n">include_missing</span> <span class="ow">or</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">num_children</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="n">child_spans</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">+=</span> <span class="n">span</span>
+    <span class="k">return</span> <span class="n">child_spans</span></div>
+
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CladeMap</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An iterator across trees that maintains a mapping from a clade (a `frozenset` of</span>
+<span class="sd">    sample IDs) to a `set` of nodes. When there are unary nodes, there may be multiple</span>
+<span class="sd">    nodes associated with each clade.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ts</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nil</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>  <span class="c1"># nodes[clade] = {node ids}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_clades</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">frozenset</span><span class="p">)</span>  <span class="c1"># clades[node] = {sample ids}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_sequence</span> <span class="o">=</span> <span class="n">ts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="n">sample_lists</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+            <span class="n">clade</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">samples</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">clade</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_clades</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">clade</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prev</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_clades</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_diff</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">edge_diffs</span><span class="p">()</span>
+        <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_diff</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_propagate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">downdate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Traverse path from `edge.parent` to root, either adding or removing the</span>
+<span class="sd">        state (clade) associated with `edge.child` from the state of each</span>
+<span class="sd">        visited node. Return a set with the node ids encountered during</span>
+<span class="sd">        traversal.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">parent</span>
+        <span class="n">clade</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clades</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">child</span><span class="p">]</span>
+        <span class="k">while</span> <span class="n">node</span> <span class="o">!=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">:</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clades</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_clades</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">last</span> <span class="o">-</span> <span class="n">clade</span> <span class="k">if</span> <span class="n">downdate</span> <span class="k">else</span> <span class="n">last</span> <span class="o">|</span> <span class="n">clade</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">last</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">last</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">last</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">last</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_clades</span><span class="p">[</span><span class="n">node</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="n">nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">parent</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nodes</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># noqa: A003</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Advance to the next tree, returning the difference between trees as a</span>
+<span class="sd">        dictionary of the form `node : (last_clade, next_clade)`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>  <span class="c1"># nodes with potentially altered clades</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># diff[node] = (prev_clade, curr_clade)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_sequence</span><span class="o">.</span><span class="n">num_trees</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="c1"># Subtract clades subtended by outgoing edges</span>
+        <span class="n">edge_diff</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_diff</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">eo</span> <span class="ow">in</span> <span class="n">edge_diff</span><span class="o">.</span><span class="n">edges_out</span><span class="p">:</span>
+            <span class="n">nodes</span> <span class="o">|=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_propagate</span><span class="p">(</span><span class="n">eo</span><span class="p">,</span> <span class="n">downdate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Prune nodes that are no longer in tree</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_nil</span><span class="p">]:</span>
+            <span class="n">diff</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_prev</span><span class="p">[</span><span class="n">node</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nil</span><span class="p">)</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clades</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+        <span class="n">nodes</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_nil</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_nil</span><span class="p">]</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+        <span class="c1"># Add clades subtended by incoming edges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">ei</span> <span class="ow">in</span> <span class="n">edge_diff</span><span class="o">.</span><span class="n">edges_in</span><span class="p">:</span>
+            <span class="n">nodes</span> <span class="o">|=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_propagate</span><span class="p">(</span><span class="n">ei</span><span class="p">,</span> <span class="n">downdate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Find difference in clades between adjacent trees</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+            <span class="n">diff</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_prev</span><span class="p">[</span><span class="n">node</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clades</span><span class="p">[</span><span class="n">node</span><span class="p">])</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prev</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clades</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+                <span class="k">del</span> <span class="n">diff</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+
+        <span class="c1"># Sync previous and current states</span>
+        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">curr</span><span class="p">)</span> <span class="ow">in</span> <span class="n">diff</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">curr</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nil</span><span class="p">:</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prev</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_prev</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">curr</span>
+
+        <span class="k">return</span> <span class="n">diff</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">interval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return interval spanned by tree</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">interval</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">clades</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return set of clades in tree</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nil</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clade</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return set of nodes associated with a given clade.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">frozenset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">clade</span><span class="p">])</span> <span class="k">if</span> <span class="nb">frozenset</span><span class="p">(</span><span class="n">clade</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nil</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clade</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if a clade is present in the tree</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">clade</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span>
+
+
+<div class="viewcode-block" id="shared_node_spans">
+<a class="viewcode-back" href="../../api.html#tscompare.shared_node_spans">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">shared_node_spans</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the spans over which pairs of nodes in two tree sequences are</span>
+<span class="sd">    ancestral to identical sets of samples.</span>
+
+<span class="sd">    Returns a sparse matrix where rows correspond to nodes in `ts` and columns</span>
+<span class="sd">    correspond to nodes in `other`, and whose value is the total amount of span</span>
+<span class="sd">    over which the set of samples inheriting from the two nodes is identical.</span>
+
+<span class="sd">    The shared span of a sample node with itself includes spans over which it</span>
+<span class="sd">    has missing data.</span>
+
+<span class="sd">    :return: A sparse matrix of class `scipy.sparse.csr_matrix`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">ts</span><span class="o">.</span><span class="n">sequence_length</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Tree sequences must be of equal sequence length.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ts</span><span class="o">.</span><span class="n">num_samples</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">num_samples</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Tree sequences must have the same numbers of samples.&quot;</span><span class="p">)</span>
+
+    <span class="n">nil</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">()</span>
+
+    <span class="c1"># Initialize clade iterators</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">CladeMap</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">CladeMap</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+    <span class="c1"># Initialize buffer[clade] = (query_nodes, target_nodes, left_coord)</span>
+    <span class="n">modified</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">clades</span><span class="p">()</span> <span class="o">|</span> <span class="n">target</span><span class="o">.</span><span class="n">clades</span><span class="p">()</span>
+    <span class="n">buffer</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Build sparse matrix of matches in triplet format</span>
+    <span class="n">query_node</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">target_node</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">shared_span</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">right</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">target</span><span class="o">.</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># Flush pairs of nodes that no longer have matching clades</span>
+        <span class="k">for</span> <span class="n">clade</span> <span class="ow">in</span> <span class="n">modified</span><span class="p">:</span>  <span class="c1"># flush:</span>
+            <span class="k">if</span> <span class="n">clade</span> <span class="ow">in</span> <span class="n">buffer</span><span class="p">:</span>
+                <span class="n">n_i</span><span class="p">,</span> <span class="n">n_j</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">clade</span><span class="p">)</span>
+                <span class="n">span</span> <span class="o">=</span> <span class="n">left</span> <span class="o">-</span> <span class="n">start</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">n_i</span><span class="p">,</span> <span class="n">n_j</span><span class="p">):</span>
+                    <span class="n">query_node</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                    <span class="n">target_node</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+                    <span class="n">shared_span</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">span</span><span class="p">)</span>
+
+        <span class="c1"># Add new pairs of nodes with matching clades</span>
+        <span class="k">for</span> <span class="n">clade</span> <span class="ow">in</span> <span class="n">modified</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">clade</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">buffer</span>
+            <span class="k">if</span> <span class="n">clade</span> <span class="ow">in</span> <span class="n">query</span> <span class="ow">and</span> <span class="n">clade</span> <span class="ow">in</span> <span class="n">target</span><span class="p">:</span>
+                <span class="n">n_i</span><span class="p">,</span> <span class="n">n_j</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="n">clade</span><span class="p">],</span> <span class="n">target</span><span class="p">[</span><span class="n">clade</span><span class="p">]</span>
+                <span class="n">buffer</span><span class="p">[</span><span class="n">clade</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_i</span><span class="p">,</span> <span class="n">n_j</span><span class="p">,</span> <span class="n">left</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">right</span> <span class="o">==</span> <span class="n">ts</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="c1"># Find difference in clades with advance to next tree</span>
+        <span class="n">modified</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">clade_map</span> <span class="ow">in</span> <span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">clade_map</span><span class="o">.</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">clade_diff</span> <span class="o">=</span> <span class="n">clade_map</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">prev</span><span class="p">,</span> <span class="n">curr</span> <span class="ow">in</span> <span class="n">clade_diff</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">prev</span> <span class="o">!=</span> <span class="n">nil</span><span class="p">:</span>
+                        <span class="n">modified</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">prev</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">curr</span> <span class="o">!=</span> <span class="n">nil</span><span class="p">:</span>
+                        <span class="n">modified</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+
+    <span class="c1"># Flush final tree</span>
+    <span class="k">for</span> <span class="n">clade</span> <span class="ow">in</span> <span class="n">buffer</span><span class="p">:</span>
+        <span class="n">n_i</span><span class="p">,</span> <span class="n">n_j</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span><span class="n">clade</span><span class="p">]</span>
+        <span class="n">span</span> <span class="o">=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">start</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">n_i</span><span class="p">,</span> <span class="n">n_j</span><span class="p">):</span>
+            <span class="n">query_node</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">target_node</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+            <span class="n">shared_span</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">span</span><span class="p">)</span>
+
+    <span class="n">numer</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">shared_span</span><span class="p">,</span> <span class="p">(</span><span class="n">query_node</span><span class="p">,</span> <span class="n">target_node</span><span class="p">)),</span>
+        <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">),</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">numer</span></div>
+
+
+
+<div class="viewcode-block" id="match_node_ages">
+<a class="viewcode-back" href="../../api.html#tscompare.match_node_ages">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">match_node_ages</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        For each node in `ts`, return the age of a matched node from `other`.  Node</span>
+<span class="sd">        matching is accomplished as described in :func:`.haplotype_arf`.</span>
+
+
+<span class="sd">        Returns a tuple of three vectors of length `ts.num_nodes`, in this order:</span>
+<span class="sd">        the age of the best matching node in `other`;</span>
+<span class="sd">        the proportion of the node span in `ts` that is covered by the best match;</span>
+<span class="sd">        and the node id of the best match in `other`.</span>
+
+
+<span class="sd">    :return: A tuple of arrays of length `ts.num_nodes` containing</span>
+<span class="sd">        (time of matching node, proportion overlap, and node ID of match).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">shared_spans</span> <span class="o">=</span> <span class="n">shared_node_spans</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+    <span class="n">matched_span</span> <span class="o">=</span> <span class="n">shared_spans</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span><span class="o">.</span><span class="n">A1</span>
+    <span class="n">best_match</span> <span class="o">=</span> <span class="n">shared_spans</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span>
+    <span class="c1"># NB: if there are multiple nodes with the largest span in a row,</span>
+    <span class="c1"># argmax returns the node with the smallest integer id</span>
+    <span class="n">matched_time</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">[</span><span class="n">best_match</span><span class="p">]</span>
+
+    <span class="n">best_match</span><span class="p">[</span><span class="n">matched_span</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span>
+    <span class="n">matched_time</span><span class="p">[</span><span class="n">matched_span</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="k">return</span> <span class="n">matched_time</span><span class="p">,</span> <span class="n">matched_span</span><span class="p">,</span> <span class="n">best_match</span></div>
+
+
+
+<div class="viewcode-block" id="ARFResult">
+<a class="viewcode-back" href="../../api.html#tscompare.ARFResult">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ARFResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The result of a call to tscompare.haplotype_arf(ts, other),</span>
+<span class="sd">    returning metrics associated with the ARG Robinson-Foulds</span>
+<span class="sd">    measures of similarity and dissimilarity.</span>
+<span class="sd">    This contains:</span>
+
+<span class="sd">    `arf`:</span>
+<span class="sd">        The ARG Robinson-Foulds relative dissimilarity:</span>
+<span class="sd">        the proportion of the total span of `ts` that is *not* represented in `other`.</span>
+<span class="sd">        This is: `1 - matched_span[0] / total_span[0]`</span>
+
+<span class="sd">    `tpr`:</span>
+<span class="sd">        The &quot;true proportion represented&quot;:</span>
+<span class="sd">        the proportion of the total span of `other` that is represented in `ts`.</span>
+<span class="sd">        This is: `matched_span[1] / total_span[1]`</span>
+
+<span class="sd">    `matched_span`:</span>
+<span class="sd">        The total matched node spans between `ts` and `other`,</span>
+<span class="sd">        in order (`match`, `inverse_match`),</span>
+<span class="sd">        where `match` is the total span of `ts` that is represented in `other`,</span>
+<span class="sd">        and `inverse_match` is the total span of `other` that is represented in `ts`.</span>
+
+<span class="sd">    `total_span`:</span>
+<span class="sd">        The total of all node spans of the two tree sequences, in order (`ts`, `other`).</span>
+
+<span class="sd">    `rmse`:</span>
+<span class="sd">        The root-mean-squared error between the transformed times of the nodes in</span>
+<span class="sd">        `ts` and the transformed times of their best-matching nodes in `other`, with</span>
+<span class="sd">        the average taken weighting by span in `ts`.</span>
+
+<span class="sd">    `transform`:</span>
+<span class="sd">        The transformation function used to transform times for computing `rmse`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">arf</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">tpr</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">matched_span</span><span class="p">:</span> <span class="nb">tuple</span>
+    <span class="n">total_span</span><span class="p">:</span> <span class="nb">tuple</span>
+    <span class="n">rmse</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">transform</span><span class="p">:</span> <span class="nb">callable</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a plain text summary of the ARF result.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;Tree sequence comparison:</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">out</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;    ARF: </span><span class="si">{</span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">arf</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">out</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;    TPR: </span><span class="si">{</span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">tpr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">out</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;    matched_span: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">matched_span</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">out</span> <span class="o">+=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;    total span (ts, other): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">total_span</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">total_span</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">out</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;    time RMSE: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rmse</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+
+
+<div class="viewcode-block" id="haplotype_arf">
+<a class="viewcode-back" href="../../api.html#tscompare.haplotype_arf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">haplotype_arf</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    For two tree sequences `ts` and `other`, this method returns an object of</span>
+<span class="sd">    type :class:`.ARFResult`.  The values reported summarize the degree to</span>
+<span class="sd">    which nodes in `ts` &quot;match&quot; corresponding nodes in `other`.</span>
+
+<span class="sd">    To match nodes, for each node in `ts`, the best matching node(s) from</span>
+<span class="sd">    `other` has the longest matching span using :func:`.shared_node_spans`.</span>
+<span class="sd">    If there are multiple matches with the same longest shared span</span>
+<span class="sd">    for a single node, the best match is the match that is closest in time.</span>
+<span class="sd">    This requires that the samples are the same in both tree sequences:</span>
+<span class="sd">    in other words, if node `i` is a sample node in `ts`, then node `i` is</span>
+<span class="sd">    also a sample node in `other` (and vice-versa).</span>
+
+<span class="sd">    For each node in `other` we compute the inverse matched span</span>
+<span class="sd">    as the maximum shared span amongst all nodes in `ts` for which that</span>
+<span class="sd">    node is their best match.</span>
+
+<span class="sd">    Then, :class:`.ARFResult` contains:</span>
+
+<span class="sd">    - (`arf`)</span>
+<span class="sd">        The fraction of the total span of `ts` over which each nodes&#39;</span>
+<span class="sd">        descendant sample set does not match its&#39; best match&#39;s descendant</span>
+<span class="sd">        sample set (i.e., the total *un*-matched span divided by the total</span>
+<span class="sd">        span of `ts`).</span>
+
+<span class="sd">    - (`tpr`)</span>
+<span class="sd">        The proportion of the span in `other` that is correctly</span>
+<span class="sd">        represented in `ts` (i.e., the total inverse matching span divided</span>
+<span class="sd">        by the total span of `other`).</span>
+
+<span class="sd">    - (`matched_span`)</span>
+<span class="sd">        The total &quot;matching&quot; and &quot;inverse matching&quot; spans between `ts` and `other`.</span>
+<span class="sd">        The &quot;matching span&quot; is the total span of all nodes in `ts` over which each</span>
+<span class="sd">        node is ancestral to the same set of samples as its best match in `other`.</span>
+<span class="sd">        The &quot;inverse matching span&quot; is the total span of all nodes in `other` over</span>
+<span class="sd">        which each node is ancestral to the same set of sample as its best match in `ts`.</span>
+
+<span class="sd">    - (`total_span`)</span>
+<span class="sd">        The total node spans of `ts` and `other`.</span>
+
+<span class="sd">    - (`rmse`)</span>
+<span class="sd">        The root mean squared difference</span>
+<span class="sd">        between the transformed times of the nodes in `ts`</span>
+<span class="sd">        and transformed times of their best matching nodes in `other`,</span>
+<span class="sd">        with the average weighted by the nodes&#39; spans in `ts`.</span>
+
+<span class="sd">    The callable `transform` is used to transform times before computing</span>
+<span class="sd">    root-mean-squared error (see :class:`.ARFResult`); the default</span>
+<span class="sd">    is `log(1 + t)`.</span>
+
+<span class="sd">    :param ts: The focal tree sequence.</span>
+<span class="sd">    :param other: The tree sequence we compare to.</span>
+<span class="sd">    :param transform: A callable that can take an array of times and</span>
+<span class="sd">        return another array of numbers.</span>
+<span class="sd">    :return: The three quantities above.</span>
+<span class="sd">    :rtype: ARFResult</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">samples</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ts</span><span class="o">.</span><span class="n">num_samples</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">num_samples</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">samples</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">samples</span><span class="p">()):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Samples in `ts` and `other` must agree.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">t</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">transform</span> <span class="o">=</span> <span class="n">f</span>
+
+    <span class="n">ts_node_spans</span> <span class="o">=</span> <span class="n">node_spans</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">include_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">shared_spans</span> <span class="o">=</span> <span class="n">shared_node_spans</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">min</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">col_ind</span> <span class="o">=</span> <span class="n">shared_spans</span><span class="o">.</span><span class="n">indices</span>
+        <span class="n">row_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">shared_spans</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">repeats</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">shared_spans</span><span class="o">.</span><span class="n">indptr</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="c1"># We require that the samples are the same in both trees!</span>
+        <span class="c1"># If we did not require this, we could identify swapped samples,</span>
+        <span class="c1"># but this is out of scope (people could detect this using</span>
+        <span class="c1"># the shared spans matrix directly).</span>
+        <span class="n">is_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">is_sample</span><span class="p">[</span><span class="n">samples</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">index_not_equal</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">row_ind</span><span class="p">,</span> <span class="n">col_ind</span><span class="p">)</span>
+        <span class="n">shared_spans</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">is_sample</span><span class="p">[</span><span class="n">row_ind</span><span class="p">],</span> <span class="n">index_not_equal</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="c1"># Find all potential matches for a node based on max shared span length</span>
+        <span class="n">max_span</span> <span class="o">=</span> <span class="n">shared_spans</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="n">total_match_n1_span</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">max_span</span><span class="p">)</span>  <span class="c1"># &lt;---- one thing to output</span>
+        <span class="c1"># zero out everything that&#39;s not a row max</span>
+        <span class="n">shared_spans</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">shared_spans</span><span class="o">.</span><span class="n">data</span> <span class="o">!=</span> <span class="n">max_span</span><span class="p">[</span><span class="n">row_ind</span><span class="p">]]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="c1"># now re-sparsify the matrix: but, beware! don&#39;t do this again later.</span>
+        <span class="n">shared_spans</span><span class="o">.</span><span class="n">eliminate_zeros</span><span class="p">()</span>
+        <span class="n">col_ind</span> <span class="o">=</span> <span class="n">shared_spans</span><span class="o">.</span><span class="n">indices</span>
+        <span class="n">row_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">shared_spans</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">repeats</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">shared_spans</span><span class="o">.</span><span class="n">indptr</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="c1"># now, make a matrix with differences in transformed times</span>
+        <span class="c1"># in the places where shared_spans retains nonzero elements</span>
+        <span class="n">time_diff</span> <span class="o">=</span> <span class="n">shared_spans</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">ts_times</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">[</span><span class="n">row_ind</span><span class="p">]</span>
+        <span class="n">other_times</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">[</span><span class="n">col_ind</span><span class="p">]</span>
+        <span class="n">time_diff</span><span class="o">.</span><span class="n">data</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">transform</span><span class="p">(</span><span class="n">ts_times</span><span class="p">)</span> <span class="o">-</span> <span class="n">transform</span><span class="p">(</span><span class="n">other_times</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="c1"># &quot;explicit=True&quot; takes the min of only the entries explicitly represented</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">time_diff</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">explicit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="c1"># next, zero out also those non-best-time-match elements</span>
+        <span class="n">shared_spans</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">time_diff</span><span class="o">.</span><span class="n">data</span> <span class="o">!=</span> <span class="n">dt</span><span class="p">[</span><span class="n">row_ind</span><span class="p">]]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="c1"># and, find sum of column maxima</span>
+        <span class="n">total_match_n2_span</span> <span class="o">=</span> <span class="n">shared_spans</span><span class="o">.</span><span class="n">max</span><span class="p">(</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># &lt;--- the other thing we return</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">max_span</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">total_match_n1_span</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">total_match_n2_span</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">has_match</span> <span class="o">=</span> <span class="n">max_span</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">has_match</span><span class="p">):</span>
+        <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dt</span><span class="p">[</span><span class="n">has_match</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ts_node_spans</span><span class="p">[</span><span class="n">has_match</span><span class="p">])</span>
+            <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ts_node_spans</span><span class="p">[</span><span class="n">has_match</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="c1"># ^-- another thing to output</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="n">total_span_ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ts_node_spans</span><span class="p">)</span>
+    <span class="n">total_span_other</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">node_spans</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">include_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ARFResult</span><span class="p">(</span>
+        <span class="n">arf</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">total_match_n1_span</span> <span class="o">/</span> <span class="n">total_span_ts</span><span class="p">,</span>
+        <span class="n">tpr</span><span class="o">=</span><span class="n">total_match_n2_span</span> <span class="o">/</span> <span class="n">total_span_other</span><span class="p">,</span>
+        <span class="n">matched_span</span><span class="o">=</span><span class="p">(</span><span class="n">total_match_n1_span</span><span class="p">,</span> <span class="n">total_match_n2_span</span><span class="p">),</span>
+        <span class="n">total_span</span><span class="o">=</span><span class="p">(</span><span class="n">total_span_ts</span><span class="p">,</span> <span class="n">total_span_other</span><span class="p">),</span>
+        <span class="n">rmse</span><span class="o">=</span><span class="n">rmse</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

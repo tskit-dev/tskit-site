@@ -1,0 +1,719 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Glossary &#8212; Tskit manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/bespoke.css?v=00f581dd" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'glossary';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data model" href="data-model.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 1.0.1</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="provenance.html">Provenance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stats.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topological-analysis.html">Topological analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ibd.html">Identity by descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Data export</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python-api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba.html">Numba Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-api.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-formats.html">File formats</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">For developers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelogs.html">Changelogs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing tskit</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/edit/main/docs/glossary.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/issues/new?title=Issue%20on%20page%20%2Fglossary.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/glossary.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Glossary</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-discussion">Further discussion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nodes-genomes-or-individuals">Nodes, Genomes, or Individuals?</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="glossary">
+<span id="sec-glossary"></span><h1>Glossary<a class="headerlink" href="#glossary" title="Link to this heading">#</a></h1>
+<section id="definitions">
+<span id="sec-data-model-definitions"></span><h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h2>
+<p>Here are some definitions of some key ideas encountered in this documentation.</p>
+<dl class="simple myst" id="sec-data-model-definitions-tree">
+<dt>tree</dt><dd><p>A “gene tree”, i.e., the genealogical tree describing how a collection of
+genomes (usually at the tips of the tree) are related to each other at some
+chromosomal <a class="reference internal" href="#sec-data-model-definitions-position"><span class="std std-ref">position</span></a> or location.
+As the trees may vary depending on this location, they are also known as “local
+trees”. See <a class="reference internal" href="#sec-nodes-or-individuals"><span class="std std-ref">Nodes, Genomes, or Individuals?</span></a> for discussion of what a “genome” is.</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-tree-sequence">
+<dt>tree sequence</dt><dd><p>A “succinct tree sequence” (or tree sequence, for brevity) is an object
+that stores the genetic ancestry and mutational history of a set of
+aligned DNA sequences or genomes. The name reflects the idea that a common
+way to treat genetic ancestry is as a sequence of correlated
+<a class="reference internal" href="#sec-data-model-definitions-tree"><span class="std std-ref">trees</span></a> at different chromosomal
+<a class="reference internal" href="#sec-data-model-definitions-position"><span class="std std-ref">positions</span></a>.
+Branches that are shared between these trees are efficiently stored as a
+single <a class="reference internal" href="#sec-data-model-definitions-edge"><span class="std std-ref">edge</span></a>, and adjacent trees
+may differ by only a few such edges. These edges connect
+<a class="reference internal" href="#sec-data-model-definitions-node"><span class="std std-ref">nodes</span></a> (genomes) in
+the tree sequence, forming  a
+network or graph. Graphs of this sort are sometimes called ancestral
+recombination graphs (ARGs), hence tree sequences provide a
+flexible way to encode multiple types of ARG.</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-node">
+<dt>node</dt><dd><p>Any point in a tree can be associated with a particular genome
+in a particular ancestor, called a “node”.  Since each node represents a
+specific genome it has a unique <code class="docutils literal notranslate"><span class="pre">time</span></code>, thought of as its birth time. Nodes
+may or may not correspond to branching points, either in a local
+<a class="reference internal" href="#sec-data-model-definitions-tree"><span class="std std-ref">tree</span></a> or in the whole graph.
+However a branching point must always be associated with a node.
+See <a class="reference internal" href="#sec-nodes-or-individuals"><span class="std std-ref">Nodes, Genomes, or Individuals?</span></a> for discussion of what a “node”
+represents.</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-individual">
+<dt>individual</dt><dd><p>In certain situations we are interested in how nodes (representing
+individual homologous genomes) are grouped together into individuals
+(e.g. two nodes per diploid individual). For example, when we are working
+with polyploid samples it is useful to associate metadata with a specific
+individual rather than duplicate this information on the constituent nodes.
+See <a class="reference internal" href="#sec-nodes-or-individuals"><span class="std std-ref">Nodes, Genomes, or Individuals?</span></a> for more discussion on this point.</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-sample">
+<dt>sample</dt><dd><p>The focal nodes of a tree sequence, usually thought of as those from which
+we have obtained data. The specification of these affects various
+methods: <a class="reference internal" href="python-api.html#tskit.TreeSequence.variants" title="tskit.TreeSequence.variants"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.variants()</span></code></a> and
+<a class="reference internal" href="python-api.html#tskit.TreeSequence.haplotypes" title="tskit.TreeSequence.haplotypes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeSequence.haplotypes()</span></code></a> will output the genotypes of the samples,
+and <a class="reference internal" href="python-api.html#tskit.Tree.roots" title="tskit.Tree.roots"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Tree.roots</span></code></a> only return roots ancestral to at least one
+sample.
+(This can be checked with <a class="reference internal" href="python-api.html#tskit.Node.is_sample" title="tskit.Node.is_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_sample()</span></code></a>;
+see the <a class="reference internal" href="data-model.html#sec-node-table-definition"><span class="std std-ref">node table definitions</span></a>
+for information on how the sample
+status a node is encoded in the <code class="docutils literal notranslate"><span class="pre">flags</span></code> column.)</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-edge">
+<dt>edge</dt><dd><p>The topology of a tree sequence is defined by a set of <strong>edges</strong>. Each
+edge is a tuple <code class="docutils literal notranslate"><span class="pre">(left,</span> <span class="pre">right,</span> <span class="pre">parent,</span> <span class="pre">child)</span></code>, which records a
+parent-child relationship among a pair of nodes on the
+on the half-open interval <code class="docutils literal notranslate"><span class="pre">[left,</span> <span class="pre">right)</span></code> along the genome. The difference
+between <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code> is known as the “span” of the edge.</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-site">
+<dt>site</dt><dd><p>Tree sequences can define the mutational state of nodes as well as their
+topological relationships. A <strong>site</strong> is thought of as some
+<a class="reference internal" href="#sec-data-model-definitions-position"><span class="std std-ref">position</span></a> along
+the genome at which variation occurs. Each site is associated with
+a unique position and ancestral state.</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-mutation">
+<dt>mutation</dt><dd><p>A mutation records the change of state at a particular site ‘above’
+a particular node (more precisely, along the branch between the node
+in question and its parent). Each mutation is associated with a specific
+site (which defines the position along the genome), a node (which defines
+where it occurs within the tree at this position), and a derived state
+(which defines the mutational state inherited by all nodes in the subtree
+rooted at the focal node). In more complex situations in which we have
+back or recurrent mutations, a mutation must also specify its ‘parent’
+mutation.</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-migration">
+<dt>migration</dt><dd><p>An event at which a parent and child node were born in different populations.</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-population">
+<dt>population</dt><dd><p>A grouping of nodes, e.g., by sampling location.</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-position">
+<dt>position</dt><dd><p>A location along the genome, from 0 to the
+<a class="reference internal" href="#sec-data-model-definitions-sequence-length"><span class="std std-ref">sequence length</span></a>. In <code class="docutils literal notranslate"><span class="pre">tskit</span></code>
+positions are stored as floating-point numbers, although it is common to
+restrict positions to occur at discrete integer locations.</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-provenance">
+<dt>provenance</dt><dd><p>An entry recording the origin and history of the data encoded in a tree sequence.</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-id">
+<dt>ID</dt><dd><p>In the set of interconnected tables that we define here, we refer
+throughout to the IDs of particular entities. The ID of an
+entity (e.g., a node) is defined by the position of the corresponding
+row in the table. These positions are zero indexed. For example, if we
+refer to node with ID zero, this corresponds to the node defined by the
+first row in the node table.</p>
+</dd>
+</dl>
+<dl class="simple myst" id="sec-data-model-definitions-sequence-length">
+<dt>sequence length</dt><dd><p>This value defines the coordinate space in which the edges and site positions
+are defined. This is most often assumed to be equal to the largest
+<code class="docutils literal notranslate"><span class="pre">right</span></code> coordinate in the edge table, but there are situations in which
+we might wish to specify the sequence length explicitly.</p>
+</dd>
+</dl>
+</section>
+<section id="further-discussion">
+<h2>Further discussion<a class="headerlink" href="#further-discussion" title="Link to this heading">#</a></h2>
+<section id="nodes-genomes-or-individuals">
+<span id="sec-nodes-or-individuals"></span><h3>Nodes, Genomes, or Individuals?<a class="headerlink" href="#nodes-genomes-or-individuals" title="Link to this heading">#</a></h3>
+<p>The natural unit of biological analysis is (usually) the <em>individual</em>. However,
+many organisms we study are diploid, and so each individual contains <em>two</em>
+homologous copies of the entire genome, separately inherited from the two
+parental individuals. Since each monoploid copy of the genome is inherited separately,
+each diploid individual lies at the end of two distinct lineages, and so will
+be represented by <em>two</em> places in any given genealogical tree. This makes it
+difficult to precisely discuss tree sequences for diploids, as we have no
+simple way to refer to the bundle of chromosomes that make up the “copy of the
+genome inherited from one particular parent”. For this reason, in this
+documentation we use the non-descriptive term “node” to refer to this concept
+– and so, a diploid individual is composed of two nodes – although we use the
+term “genome” at times, for concreteness.</p>
+<p>Several properties naturally associated with individuals are in fact assigned
+to nodes in what follows: birth time and population. This is for two reasons:
+First, since coalescent simulations naturally lack a notion of polyploidy, earlier
+versions of <code class="docutils literal notranslate"><span class="pre">tskit</span></code> lacked the notion of an individual. Second, ancestral
+nodes are not naturally grouped together into individuals – we know they must have
+existed, but have no way of inferring this grouping, so in fact many nodes in
+an empirically-derived tree sequence will not be associated with individuals,
+even though their birth times might be inferred.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="quickstart.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Quickstart</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="data-model.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data model</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-discussion">Further discussion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nodes-genomes-or-individuals">Nodes, Genomes, or Individuals?</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
