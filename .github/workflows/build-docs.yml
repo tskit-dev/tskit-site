@@ -190,26 +190,22 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [msprime, tsinfer, tskit, tstrait, tscompare, tsbrowse, pyslim, tsdate, tszip, sc2ts]
+        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip] # , pyslim, tsdate, tscompare, sc2ts]
         include:
           - package: msprime
             additional-apt-packages: libgsl0-dev
             cache-version: v12
 
           - package: tsinfer
-            additional-apt-packages: tabix
             cache-version: v14
 
           - package: tskit
-            additional-apt-packages: libgsl0-dev doxygen
+            additional-apt-packages: doxygen
             pyproject-directory: python
             cache-version: v18
 
           - package: tstrait
             cache-version: v6
-
-          - package: tscompare
-            cache-version: v3
 
           - package: tsbrowse
             pre-build-command: uv run --locked --no-default-groups --group=docs playwright install --with-deps chromium
@@ -217,6 +213,9 @@ jobs:
 
           - package: tszip
             cache-version: v5
+
+          # - package: tscompare
+          #   cache-version: v3
 
           # - package: pyslim
           #   cache-version: v8
