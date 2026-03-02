@@ -9,7 +9,7 @@ python_package: kastore
 conda_package: kastore
 priority: 15
 code_snippet: |2
-    kastore ls simulation.trees
+    $ kastore ls simulation.trees
 
 redirect_from:
   - /kastore/
