@@ -201,6 +201,7 @@ jobs:
 
           - package: tskit
             additional-apt-packages: doxygen
+            pre-build-command: cd docs/doxygen && doxygen
             pyproject-directory: python
             cache-version: v18
 
