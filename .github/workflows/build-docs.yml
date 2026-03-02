@@ -21,10 +21,8 @@ jobs:
       fail-fast: false
       matrix:
         package: [msprime, tsinfer, tskit, tstrait, tscompare, tsbrowse, pyslim, tsdate, tszip, sc2ts]
-        version: [latest, stable]
-        exclude:
-          - package: tszip
-            version: latest
+        version: [stable]
+
         include:
           - package: msprime
             cache-version: v11
