@@ -22,36 +22,39 @@ jobs:
       matrix:
         package: [msprime, tsinfer, tskit, tstrait, tscompare, tsbrowse, pyslim, tsdate, tszip, sc2ts]
         version: [latest, stable]
+        exclude:
+          - package: tszip
+            version: latest
         include:
           - package: msprime
             cache-version: v11
             additional-setup: sudo apt-get install -y libgsl0-dev
             make-command: make
-            
+
           - package: tsinfer
             cache-version: v13
             additional-setup: sudo apt-get install -y tabix
             make-command: make
-            
+
           - package: tskit
             cache-version: v17
             additional-setup: sudo apt-get install -y libgsl0-dev doxygen
             allow-pre-stable: true
             subdir: python
             make-command: make -C python
-            
+
           - package: tstrait
             cache-version: v5
-            
+
           - package: tscompare
             cache-version: v2
             requirements-path: requirements/CI-docs-pip/requirements.txt
-            
+
           - package: tsbrowse
             cache-version: v3
             requirements-path: requirements.txt
             additional-setup: uv run --no-sync playwright install
-            
+
           - package: pyslim
             cache-version: v7
             additional-setup: |
@@ -63,12 +66,11 @@ jobs:
               cmake -D CMAKE_POLICY_VERSION_MINIMUM=3.5 -D CMAKE_BUILD_TYPE=Release ..
               make -j 2
               sudo make install
-            
+
           - package: tsdate
             cache-version: v9
             requirements-path: docs/requirements.txt
-            
-            
+
           - package: tszip
             cache-version: v3
             requirements-path: requirements/CI-docs.txt
@@ -76,8 +78,7 @@ jobs:
           - package: sc2ts
             cache-version: v3
             allow-pre-stable: true
-            
-            
+
     steps:
       - uses: actions/checkout@v4.2.2
         name: Checkout ${{ matrix.package }}
@@ -182,4 +183,46 @@ jobs:
         uses: actions/upload-artifact@v4.6.1
         with:
           name: ${{ matrix.package }}-${{ matrix.version }}-docs
+          path: dist
+
+  # tszip latest: first package migrated to the new standardised build.
+  # Uses the shared composite action from tskit-dev/.github.
+  # tszip stable remains in the legacy build-docs job above until verified.
+  build-docs-tszip-latest:
+    name: Build tszip latest docs
+    needs: cancel-superseded
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout tszip
+        uses: actions/checkout@v4.2.2
+        with:
+          repository: tskit-dev/tszip
+          ref: main
+          submodules: true
+          fetch-depth: 0
+
+      - name: Get commit SHA for cache key
+        run: git rev-parse HEAD > SHA1
+
+      - name: Docs cache
+        uses: actions/cache@v4.2.2
+        id: docs-cache
+        with:
+          path: dist
+          key: tszip-latest-docs-v4-${{ hashFiles('SHA1') }}
+
+      - name: Build docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        uses: tskit-dev/.github/.github/actions/build-docs@main
+
+      - name: Copy docs to dist
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p dist/tszip/docs
+          cp -r docs/_build/html dist/tszip/docs/latest
+
+      - name: Upload docs artifact
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: tszip-latest-docs
           path: dist
