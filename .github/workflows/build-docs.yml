@@ -212,20 +212,20 @@ jobs:
             cache-version: v3
 
           - package: tsbrowse
-            pre-build-command: uv run --no-default-groups --project=. playwright install
+            pre-build-command: uv run --locked --no-default-groups --group=docs playwright install --with-deps chromium
             cache-version: v4
-
-          - package: pyslim
-            cache-version: v8
-
-          - package: tsdate
-            cache-version: v10
 
           - package: tszip
             cache-version: v5
 
-          - package: sc2ts
-            cache-version: v4
+          # - package: pyslim
+          #   cache-version: v8
+
+          # - package: tsdate
+          #   cache-version: v10
+
+          # - package: sc2ts
+          #   cache-version: v4
 
     steps:
       - name: Checkout ${{ matrix.package }}
