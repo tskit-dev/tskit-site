@@ -21,37 +21,38 @@ jobs:
       fail-fast: false
       matrix:
         package: [msprime, tsinfer, tskit, tstrait, tscompare, tsbrowse, pyslim, tsdate, tszip, sc2ts]
-        version: [latest, stable]
+        version: [stable]
+
         include:
           - package: msprime
             cache-version: v11
             additional-setup: sudo apt-get install -y libgsl0-dev
             make-command: make
-            
+
           - package: tsinfer
             cache-version: v13
             additional-setup: sudo apt-get install -y tabix
             make-command: make
-            
+
           - package: tskit
             cache-version: v17
             additional-setup: sudo apt-get install -y libgsl0-dev doxygen
             allow-pre-stable: true
             subdir: python
             make-command: make -C python
-            
+
           - package: tstrait
             cache-version: v5
-            
+
           - package: tscompare
             cache-version: v2
             requirements-path: requirements/CI-docs-pip/requirements.txt
-            
+
           - package: tsbrowse
             cache-version: v3
             requirements-path: requirements.txt
             additional-setup: uv run --no-sync playwright install
-            
+
           - package: pyslim
             cache-version: v7
             additional-setup: |
@@ -63,12 +64,11 @@ jobs:
               cmake -D CMAKE_POLICY_VERSION_MINIMUM=3.5 -D CMAKE_BUILD_TYPE=Release ..
               make -j 2
               sudo make install
-            
+
           - package: tsdate
             cache-version: v9
             requirements-path: docs/requirements.txt
-            
-            
+
           - package: tszip
             cache-version: v3
             requirements-path: requirements/CI-docs.txt
@@ -76,8 +76,7 @@ jobs:
           - package: sc2ts
             cache-version: v3
             allow-pre-stable: true
-            
-            
+
     steps:
       - uses: actions/checkout@v4.2.2
         name: Checkout ${{ matrix.package }}
@@ -182,4 +181,92 @@ jobs:
         uses: actions/upload-artifact@v4.6.1
         with:
           name: ${{ matrix.package }}-${{ matrix.version }}-docs
+          path: dist
+
+  build-docs-latest:
+    name: Build ${{ matrix.package }} latest docs
+    needs: cancel-superseded
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip] # , pyslim, tsdate, tscompare, sc2ts]
+        include:
+          - package: msprime
+            additional-apt-packages: libgsl0-dev
+            cache-version: v12
+
+          - package: tsinfer
+            cache-version: v14
+
+          - package: tskit
+            additional-apt-packages: doxygen
+            pre-build-command: cd docs/doxygen && doxygen
+            pyproject-directory: python
+            cache-version: v18
+
+          - package: tstrait
+            cache-version: v6
+
+          - package: tsbrowse
+            pre-build-command: uv run --locked --no-default-groups --group=docs playwright install --with-deps chromium
+            cache-version: v4
+
+          - package: tszip
+            cache-version: v5
+
+          # - package: tscompare
+          #   cache-version: v3
+
+          # - package: pyslim
+          #   cache-version: v8
+
+          # - package: tsdate
+          #   cache-version: v10
+
+          # - package: sc2ts
+          #   cache-version: v4
+
+    steps:
+      - name: Checkout ${{ matrix.package }}
+        uses: actions/checkout@v4.2.2
+        with:
+          repository: tskit-dev/${{ matrix.package }}
+          ref: main
+          submodules: true
+          fetch-depth: 0
+
+      - name: Show ref/sha
+        run: |
+          echo "HEAD=$(git rev-parse HEAD)"
+          echo "DESCRIBE=$(git describe --tags --always --dirty || true)"
+
+      - name: Get commit SHA for cache key
+        run: git rev-parse HEAD > SHA1
+
+      - name: Docs cache
+        uses: actions/cache@v4.2.2
+        id: docs-cache
+        with:
+          path: dist
+          key: ${{ matrix.package }}-latest-docs-${{ matrix.cache-version }}-${{ hashFiles('SHA1') }}
+
+      - name: Build docs
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        uses: tskit-dev/.github/.github/actions/build-docs@main
+        with:
+          pyproject-directory: ${{ matrix.pyproject-directory || '.' }}
+          additional-apt-packages: ${{ matrix.additional-apt-packages || '' }}
+          pre-build-command: ${{ matrix.pre-build-command || '' }}
+
+      - name: Copy docs to dist
+        if: steps.docs-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p dist/${{ matrix.package }}/docs
+          cp -r docs/_build/html dist/${{ matrix.package }}/docs/latest
+
+      - name: Upload docs artifact
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: ${{ matrix.package }}-latest-docs
           path: dist
