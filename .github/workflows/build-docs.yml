@@ -190,7 +190,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip] # , pyslim, tsdate, tscompare, sc2ts]
+        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip, kastore] # , pyslim, tsdate, tscompare, sc2ts]
         include:
           - package: msprime
             additional-apt-packages: libgsl0-dev
@@ -214,6 +214,12 @@ jobs:
 
           - package: tszip
             cache-version: v5
+
+          - package: kastore
+            additional-apt-packages: doxygen
+            pyproject-directory: python
+            pre-build-command: cd docs/doxygen && doxygen
+            cache-version: v1
 
           # - package: tscompare
           #   cache-version: v3
