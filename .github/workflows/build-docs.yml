@@ -183,18 +183,63 @@ jobs:
           name: ${{ matrix.package }}-${{ matrix.version }}-docs
           path: dist
 
-  build-docs-new-framework:
-    name: Build tszip latest docs
+  build-docs-latest:
+    name: Build ${{ matrix.package }} latest docs
     needs: cancel-superseded
     runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [msprime, tsinfer, tskit, tstrait, tscompare, tsbrowse, pyslim, tsdate, tszip, sc2ts]
+        include:
+          - package: msprime
+            additional-apt-packages: libgsl0-dev
+            cache-version: v12
+
+          - package: tsinfer
+            additional-apt-packages: tabix
+            cache-version: v14
+
+          - package: tskit
+            additional-apt-packages: libgsl0-dev doxygen
+            pyproject-directory: python
+            cache-version: v18
+
+          - package: tstrait
+            cache-version: v6
+
+          - package: tscompare
+            cache-version: v3
+
+          - package: tsbrowse
+            pre-build-command: uv run --no-default-groups --project=. playwright install
+            cache-version: v4
+
+          - package: pyslim
+            cache-version: v8
+
+          - package: tsdate
+            cache-version: v10
+
+          - package: tszip
+            cache-version: v5
+
+          - package: sc2ts
+            cache-version: v4
+
     steps:
-      - name: Checkout tszip
+      - name: Checkout ${{ matrix.package }}
         uses: actions/checkout@v4.2.2
         with:
-          repository: tskit-dev/tszip
+          repository: tskit-dev/${{ matrix.package }}
           ref: main
           submodules: true
           fetch-depth: 0
+
+      - name: Show ref/sha
+        run: |
+          echo "HEAD=$(git rev-parse HEAD)"
+          echo "DESCRIBE=$(git describe --tags --always --dirty || true)"
 
       - name: Get commit SHA for cache key
         run: git rev-parse HEAD > SHA1
@@ -204,20 +249,24 @@ jobs:
         id: docs-cache
         with:
           path: dist
-          key: tszip-latest-docs-v5-${{ hashFiles('SHA1') }}
+          key: ${{ matrix.package }}-latest-docs-${{ matrix.cache-version }}-${{ hashFiles('SHA1') }}
 
       - name: Build docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
         uses: tskit-dev/.github/.github/actions/build-docs@main
+        with:
+          pyproject-directory: ${{ matrix.pyproject-directory || '.' }}
+          additional-apt-packages: ${{ matrix.additional-apt-packages || '' }}
+          pre-build-command: ${{ matrix.pre-build-command || '' }}
 
       - name: Copy docs to dist
         if: steps.docs-cache.outputs.cache-hit != 'true'
         run: |
-          mkdir -p dist/tszip/docs
-          cp -r docs/_build/html dist/tszip/docs/latest
+          mkdir -p dist/${{ matrix.package }}/docs
+          cp -r docs/_build/html dist/${{ matrix.package }}/docs/latest
 
       - name: Upload docs artifact
         uses: actions/upload-artifact@v4.6.1
         with:
-          name: tszip-latest-docs
+          name: ${{ matrix.package }}-latest-docs
           path: dist
