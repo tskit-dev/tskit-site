@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [msprime, tsinfer, tskit, tstrait, tscompare, tsbrowse, pyslim, tsdate, tszip, sc2ts]
+        package: [msprime, tsinfer, tskit, tscompare, tsbrowse, pyslim, tsdate, tszip, sc2ts]
         version: [stable]
 
         include:
@@ -40,9 +40,6 @@ jobs:
             allow-pre-stable: true
             subdir: python
             make-command: make -C python
-
-          - package: tstrait
-            cache-version: v5
 
           - package: tscompare
             cache-version: v2
@@ -228,6 +225,10 @@ jobs:
             additional-apt-packages: doxygen
             pyproject-directory: python
             pre-build-command: cd docs/doxygen && doxygen
+            cache-version: v1
+
+          - package: tstrait
+            version: stable
             cache-version: v1
 
           # - package: tscompare
