@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [tskit, tscompare, tsbrowse, pyslim, tsdate]
+        package: [tskit, tscompare, pyslim, tsdate]
         version: [stable]
 
         include:
@@ -35,11 +35,6 @@ jobs:
           - package: tscompare
             cache-version: v2
             requirements-path: requirements/CI-docs-pip/requirements.txt
-
-          - package: tsbrowse
-            cache-version: v3
-            requirements-path: requirements.txt
-            additional-setup: uv run --no-sync playwright install
 
           - package: pyslim
             cache-version: v7
@@ -244,6 +239,12 @@ jobs:
           - package: sc2ts
             version: stable
             cache-version: v4
+
+          - package: tsbrowse
+            version: stable
+            pre-build-command: uv run --locked --no-default-groups --group=docs playwright install --with-deps chromium
+            cache-version: v4
+
 
     steps:
       - name: Checkout ${{ matrix.package }}
