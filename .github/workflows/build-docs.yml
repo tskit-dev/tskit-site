@@ -187,7 +187,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip, kastore, tsompare, tsdate, sc2ts] # , pyslim
+        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip, kastore, tscompare, tsdate, sc2ts] # , pyslim
         version: [latest]
         include:
           - package: msprime
@@ -213,9 +213,17 @@ jobs:
           - package: tszip
             cache-version: v5
 
-          - package: tszip
-            version: stable
-            cache-version: v5
+          - package: tscompare
+            cache-version: v3
+
+          - package: tsdate
+            cache-version: v10
+
+          - package: sc2ts
+            cache-version: v4
+
+          - package: pyslim
+            cache-version: v8
 
           - package: kastore
             additional-apt-packages: doxygen
@@ -231,22 +239,13 @@ jobs:
             pre-build-command: cd docs/doxygen && doxygen
             cache-version: v1
 
+          - package: tszip
+            version: stable
+            cache-version: v6
+
           - package: tstrait
             version: stable
             cache-version: v1
-          
-          - package: tscompare
-            cache-version: v3
-           
-
-          # - package: pyslim
-          #   cache-version: v8
-
-          - package: tsdate
-            cache-version: v10
-
-          - package: sc2ts
-            cache-version: v4
 
     steps:
       - name: Checkout ${{ matrix.package }}
