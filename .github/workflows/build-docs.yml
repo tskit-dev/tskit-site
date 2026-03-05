@@ -224,6 +224,7 @@ jobs:
 
           - package: pyslim
             cache-version: v8
+            install-slim: true
 
           - package: kastore
             additional-apt-packages: doxygen
@@ -237,11 +238,11 @@ jobs:
             additional-apt-packages: doxygen
             pyproject-directory: python
             pre-build-command: cd docs/doxygen && doxygen
-            cache-version: v1
+            cache-version: v2
 
           - package: tszip
             version: stable
-            cache-version: v6
+            cache-version: v7
 
           - package: tstrait
             version: stable
@@ -285,11 +286,12 @@ jobs:
 
       - name: Build docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        uses: tskit-dev/.github/.github/actions/build-docs@main
+        uses: tskit-dev/.github/.github/actions/build-docs@v14
         with:
           pyproject-directory: ${{ matrix.pyproject-directory || '.' }}
           additional-apt-packages: ${{ matrix.additional-apt-packages || '' }}
           pre-build-command: ${{ matrix.pre-build-command || '' }}
+          install-slim: ${{ matrix.install-slim || 'false' }}
 
       - name: Copy docs to dist
         if: steps.docs-cache.outputs.cache-hit != 'true'
