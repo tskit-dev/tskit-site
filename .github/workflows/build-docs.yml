@@ -14,13 +14,13 @@ jobs:
             access_token: ${{ github.token }}
 
   build-docs:
-    name: Build ${{ matrix.package }} ${{ matrix.version }} docs
+    name: DEPRECATED build ${{ matrix.package }} ${{ matrix.version }} docs
     needs: cancel-superseded
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
-        package: [msprime, tsinfer, tskit, tscompare, tsbrowse, pyslim, tsdate, tszip, sc2ts]
+        package: [msprime, tsinfer, tskit, tscompare, tsbrowse, pyslim, tsdate, sc2ts]
         version: [stable]
 
         include:
@@ -65,10 +65,6 @@ jobs:
           - package: tsdate
             cache-version: v9
             requirements-path: docs/requirements.txt
-
-          - package: tszip
-            cache-version: v3
-            requirements-path: requirements/CI-docs.txt
 
           - package: sc2ts
             cache-version: v3
@@ -187,7 +183,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip, kastore] # , pyslim, tsdate, tscompare, sc2ts]
+        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip, kastore, tscompare, tsdate, sc2ts] # , pyslim
         version: [latest]
         include:
           - package: msprime
@@ -213,6 +209,19 @@ jobs:
           - package: tszip
             cache-version: v5
 
+          - package: tscompare
+            cache-version: v3
+
+          - package: tsdate
+            cache-version: v10
+
+          - package: sc2ts
+            cache-version: v4
+
+          - package: pyslim
+            cache-version: v8
+            install-slim: true
+
           - package: kastore
             additional-apt-packages: doxygen
             pyproject-directory: python
@@ -225,23 +234,15 @@ jobs:
             additional-apt-packages: doxygen
             pyproject-directory: python
             pre-build-command: cd docs/doxygen && doxygen
-            cache-version: v1
+            cache-version: v2
+
+          - package: tszip
+            version: stable
+            cache-version: v7
 
           - package: tstrait
             version: stable
             cache-version: v1
-
-          # - package: tscompare
-          #   cache-version: v3
-
-          # - package: pyslim
-          #   cache-version: v8
-
-          # - package: tsdate
-          #   cache-version: v10
-
-          # - package: sc2ts
-          #   cache-version: v4
 
     steps:
       - name: Checkout ${{ matrix.package }}
@@ -281,11 +282,12 @@ jobs:
 
       - name: Build docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        uses: tskit-dev/.github/.github/actions/build-docs@main
+        uses: tskit-dev/.github/.github/actions/build-docs@v14
         with:
           pyproject-directory: ${{ matrix.pyproject-directory || '.' }}
           additional-apt-packages: ${{ matrix.additional-apt-packages || '' }}
           pre-build-command: ${{ matrix.pre-build-command || '' }}
+          install-slim: ${{ matrix.install-slim || 'false' }}
 
       - name: Copy docs to dist
         if: steps.docs-cache.outputs.cache-hit != 'true'
