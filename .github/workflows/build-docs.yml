@@ -20,19 +20,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [msprime, tsinfer, tskit, tscompare, tsbrowse, pyslim, tsdate, sc2ts]
+        package: [tskit, tscompare, tsbrowse, pyslim, tsdate]
         version: [stable]
 
         include:
-          - package: msprime
-            cache-version: v11
-            additional-setup: sudo apt-get install -y libgsl0-dev
-            make-command: make
-
-          - package: tsinfer
-            cache-version: v13
-            additional-setup: sudo apt-get install -y tabix
-            make-command: make
 
           - package: tskit
             cache-version: v17
@@ -66,9 +57,6 @@ jobs:
             cache-version: v9
             requirements-path: docs/requirements.txt
 
-          - package: sc2ts
-            cache-version: v3
-            allow-pre-stable: true
 
     steps:
       - uses: actions/checkout@v4.2.2
@@ -243,6 +231,19 @@ jobs:
           - package: tstrait
             version: stable
             cache-version: v1
+
+          - package: msprime
+            version: stable
+            additional-apt-packages: libgsl0-dev
+            cache-version: v12
+
+          - package: tsinfer
+            version: stable
+            cache-version: v14
+
+          - package: sc2ts
+            version: stable
+            cache-version: v4
 
     steps:
       - name: Checkout ${{ matrix.package }}
