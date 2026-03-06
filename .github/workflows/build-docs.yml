@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [tskit, tscompare, pyslim, tsdate]
+        package: [tskit, tscompare, pyslim]
         version: [stable]
 
         include:
@@ -47,10 +47,6 @@ jobs:
               cmake -D CMAKE_POLICY_VERSION_MINIMUM=3.5 -D CMAKE_BUILD_TYPE=Release ..
               make -j 2
               sudo make install
-
-          - package: tsdate
-            cache-version: v9
-            requirements-path: docs/requirements.txt
 
 
     steps:
@@ -245,6 +241,9 @@ jobs:
             pre-build-command: uv run --locked --no-default-groups --group=docs playwright install --with-deps chromium
             cache-version: v4
 
+          - package: tsdate
+            version: stable
+            cache-version: v10
 
     steps:
       - name: Checkout ${{ matrix.package }}
