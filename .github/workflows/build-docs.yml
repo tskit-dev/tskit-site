@@ -63,52 +63,6 @@ jobs:
             cache-version: v8
             install-slim: true
 
-          # # Stable builds: add an explicit entry per package as it is migrated.
-          # # Add "stable" to the list above when done and delete this section
-          # - package: kastore
-          #   version: stable
-          #   additional-apt-packages: doxygen
-          #   pyproject-directory: python
-          #   pre-build-command: cd docs/doxygen && doxygen
-          #   cache-version: v2
-
-          # - package: tszip
-          #   version: stable
-          #   cache-version: v7
-
-          # - package: tstrait
-          #   version: stable
-          #   cache-version: v1
-
-          # - package: msprime
-          #   version: stable
-          #   additional-apt-packages: libgsl0-dev
-          #   cache-version: v12
-
-          # - package: tsinfer
-          #   version: stable
-          #   cache-version: v14
-
-          # - package: sc2ts
-          #   version: stable
-          #   cache-version: v4
-
-          # - package: tsbrowse
-          #   version: stable
-          #   pre-build-command: uv run --locked --no-default-groups --group=docs playwright install --with-deps chromium
-          #   cache-version: v4
-
-          # - package: tsdate
-          #   version: stable
-          #   cache-version: v10
-
-          # - package: tskit
-          #   version: stable
-          #   additional-apt-packages: doxygen
-          #   pre-build-command: cd docs/doxygen && doxygen
-          #   pyproject-directory: python
-          #   cache-version: v18
-
     steps:
       - name: Checkout ${{ matrix.package }}
         uses: actions/checkout@v4.2.2
