@@ -14,149 +14,14 @@ jobs:
             access_token: ${{ github.token }}
 
   build-docs:
-    name: DEPRECATED build ${{ matrix.package }} ${{ matrix.version }} docs
-    needs: cancel-superseded
-    runs-on: ubuntu-24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        package: [tscompare, pyslim]
-        version: [stable]
-
-        include:
-
-          - package: tscompare
-            cache-version: v2
-            requirements-path: requirements/CI-docs-pip/requirements.txt
-
-          - package: pyslim
-            cache-version: v7
-            additional-setup: |
-              sudo apt-get update
-              sudo apt-get install -y inkscape
-              git clone https://github.com/messerlab/SLiM.git
-              mkdir -p SLiM/Release
-              cd SLiM/Release
-              cmake -D CMAKE_POLICY_VERSION_MINIMUM=3.5 -D CMAKE_BUILD_TYPE=Release ..
-              make -j 2
-              sudo make install
-
-
-    steps:
-      - uses: actions/checkout@v4.2.2
-        name: Checkout ${{ matrix.package }}
-        with:
-          ref: ${{ matrix.version == 'latest' && 'main' || '' }}
-          repository: tskit-dev/${{ matrix.package }}
-          submodules: true
-          fetch-depth: 0
-
-      - name: Checkout stable tag
-        if: matrix.version == 'stable'
-        run: |
-          git fetch --tags --recurse-submodules=no
-          # Choose a stable tag; optionally allow pre-releases via matrix.allow-pre-stable.
-          if [ "${{ matrix.allow-pre-stable }}" = "true" ]; then
-            tag=$(git tag --list --sort=creatordate | tail -n1)
-          else
-            tag=$(git tag --list --sort=creatordate | grep -vi "[baC]" | tail -n1)
-            if [ -z "$tag" ]; then
-              tag=$(git tag --list --sort=creatordate | tail -n1)
-            fi
-          fi
-          echo "CHECKOUT_TAG=$tag"
-          git checkout "$tag"
-          git submodule update --init --recursive
-
-      - name: Show ref/sha/tag
-        run: |
-          echo "package=${{ matrix.package }}"
-          echo "version=${{ matrix.version }}"
-          echo "GITHUB_REF=${GITHUB_REF}"
-          echo "GITHUB_SHA=${GITHUB_SHA}"
-          echo "HEAD=$(git rev-parse HEAD)"
-          echo "DESCRIBE=$(git describe --tags --always --dirty || true)"
-          echo "Latest tags:"
-          git tag --list --sort=creatordate | tail -n5
-
-      - name: Get commit SHA1 for cache
-        run: git rev-parse HEAD > SHA1
-
-      - uses: actions/cache@v4.2.2
-        id: docs-cache
-        name: Docs cache
-        with:
-          path: dist
-          key: ${{ matrix.package }}-${{ matrix.version }}-docs-v4-${{ matrix.cache-version }}-${{ hashFiles('SHA1') }}
-
-      - name: Install uv and set the python version
-        uses: astral-sh/setup-uv@v6
-        with:
-          python-version: 3.11
-          version: "0.8.15"
-
-      - name: Install deps
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: |
-          uv venv
-          # These can be removed after everything has had a release
-          if [ -f "${{ matrix.requirements-path }}" ]; then
-            uv pip install -r ${{ matrix.requirements-path }}
-          elif [ -f requirements/CI-docs/requirements.txt ]; then
-            uv pip install -r requirements/CI-docs/requirements.txt
-          elif [ -f pyproject.toml ]; then
-            uv pip install -r pyproject.toml --extra docs
-          elif [ -f python/pyproject.toml ]; then
-            uv pip install -r python/pyproject.toml --extra docs
-          else
-            echo "No requirements found"
-            exit 1
-          fi
-
-      - name: Additional setup
-        if: steps.docs-cache.outputs.cache-hit != 'true' && matrix.additional-setup
-        run: ${{ matrix.additional-setup }}
-
-      - name: Build C module
-        if: steps.docs-cache.outputs.cache-hit != 'true' && matrix.make-command
-        run: |
-          source .venv/bin/activate
-          ${{ matrix.make-command }}
-
-      - name: Build Docs
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: |
-          source .venv/bin/activate
-          cd ${{ matrix.subdir || '.' }}
-          uv pip install -e .
-          if ${{ matrix.subdir || 'false' }}; then
-            cd ..
-          fi
-          cd docs
-          make dist
-          git checkout .
-
-      - name: Copy docs
-        if: steps.docs-cache.outputs.cache-hit != 'true'
-        run: |
-          mkdir -p dist/${{ matrix.package }}/docs
-          cp -r docs/_build/html dist/${{ matrix.package }}/docs/${{ matrix.version }}
-
-      - name: Upload docs
-        uses: actions/upload-artifact@v4.6.1
-        with:
-          name: ${{ matrix.package }}-${{ matrix.version }}-docs
-          path: dist
-
-  build-docs-new:
     name: Build ${{ matrix.package }} ${{ matrix.version }} docs
     needs: cancel-superseded
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
-        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip, kastore, tscompare, tsdate, sc2ts] # , pyslim
-        version: [latest]
+        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip, kastore, tscompare, tsdate, sc2ts, pyslim]
+        version: [latest, stable]
         include:
           - package: msprime
             additional-apt-packages: libgsl0-dev
@@ -167,9 +32,13 @@ jobs:
 
           - package: tskit
             additional-apt-packages: doxygen
-            pre-build-command: cd docs/doxygen && doxygen
             pyproject-directory: python
-            cache-version: v18
+            cache-version: v1
+
+          - package: kastore
+            additional-apt-packages: doxygen
+            pyproject-directory: python
+            cache-version: v2
 
           - package: tstrait
             cache-version: v6
@@ -193,58 +62,6 @@ jobs:
           - package: pyslim
             cache-version: v8
             install-slim: true
-
-          - package: kastore
-            additional-apt-packages: doxygen
-            pyproject-directory: python
-            pre-build-command: cd docs/doxygen && doxygen
-            cache-version: v1
-
-          # Stable builds: add an explicit entry per package as it is migrated.
-          # Add "stable" to the list above when done and delete this section
-          - package: kastore
-            version: stable
-            additional-apt-packages: doxygen
-            pyproject-directory: python
-            pre-build-command: cd docs/doxygen && doxygen
-            cache-version: v2
-
-          - package: tszip
-            version: stable
-            cache-version: v7
-
-          - package: tstrait
-            version: stable
-            cache-version: v1
-
-          - package: msprime
-            version: stable
-            additional-apt-packages: libgsl0-dev
-            cache-version: v12
-
-          - package: tsinfer
-            version: stable
-            cache-version: v14
-
-          - package: sc2ts
-            version: stable
-            cache-version: v4
-
-          - package: tsbrowse
-            version: stable
-            pre-build-command: uv run --locked --no-default-groups --group=docs playwright install --with-deps chromium
-            cache-version: v4
-
-          - package: tsdate
-            version: stable
-            cache-version: v10
-
-          - package: tskit
-            version: stable
-            additional-apt-packages: doxygen
-            pre-build-command: cd docs/doxygen && doxygen
-            pyproject-directory: python
-            cache-version: v18
 
     steps:
       - name: Checkout ${{ matrix.package }}
