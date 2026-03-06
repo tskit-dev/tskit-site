@@ -93,7 +93,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           python-version: 3.11
-          version: "0.8.15"
+          version: "0.10.0"
 
       - name: Install deps
         if: steps.docs-cache.outputs.cache-hit != 'true'
@@ -284,7 +284,7 @@ jobs:
 
       - name: Build docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        uses: tskit-dev/.github/.github/actions/build-docs@v14
+        uses: tskit-dev/.github/.github/actions/build-docs@v15
         with:
           pyproject-directory: ${{ matrix.pyproject-directory || '.' }}
           additional-apt-packages: ${{ matrix.additional-apt-packages || '' }}
