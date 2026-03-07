@@ -1,0 +1,707 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Changelogs &#8212; kastore</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'changelogs';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Developer documentation" href="development.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="introduction.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">kastore 0.3.6.dev1</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python-api.html">Python API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-api.html">C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="format.html">File format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Developer documentation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Changelogs</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/kastore" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/kastore/edit/main/docs/changelogs.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/kastore/issues/new?title=Issue%20on%20page%20%2Fchangelogs.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/changelogs.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Changelogs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xx-xx">[0.3.6] - 2026-xx-xx</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">[0.3.5] - 2026-03-03</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">[0.3.3] - 2024-06-25</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">[0.3.2] - 2022-07-12</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">[0.3.1] - 2020-07-06</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">[0.3.0] - 2020-05-23</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">[0.2.2] - 2018-12-07</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">[0.2.1] - 2018-12-07</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">[0.2.0] - 2018-11-20</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">[0.1.0] - 2018-05-06</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-api">C API</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">[2.1.2] - 2026-03-03</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">[2.1.1] - 2022-03-01</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">[2.1.0] - 2022-01-25</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">[2.0.1] - 2021-11-26</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">[2.0.0] - 2020-05-23</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">[1.1.0] - 2019-03-19</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">[1.0.1] - 2019-01-24</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">[1.0.0] - 2019-01-22</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">[0.1.0] - 2018-12-07</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="changelogs">
+<span id="sec-changelogs"></span><h1>Changelogs<a class="headerlink" href="#changelogs" title="Link to this heading">#</a></h1>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
+<section id="xx-xx">
+<h3>[0.3.6] - 2026-xx-xx<a class="headerlink" href="#xx-xx" title="Link to this heading">#</a></h3>
+<p>In development</p>
+</section>
+<section id="id1">
+<h3>[0.3.5] - 2026-03-03<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Maintenance release:</p>
+<ul class="simple">
+<li><p>Require Python &gt;= 3.11, support to 3.14</p></li>
+<li><p>Drop support for numpy 1.x</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>[0.3.3] - 2024-06-25<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Maintenance release:</p>
+<ul class="simple">
+<li><p>Support for numpy 1.x and 2.x</p></li>
+<li><p>Require Python &gt;= 3.9</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>[0.3.2] - 2022-07-12<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Upgrade build system to build module. Fixes numpy version inconsistency as sdist didn’t
+specify oldest-supported-numpy. (<a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/issues/190">#190</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/pull/191">#191</a>)</p>
+</section>
+<section id="id4">
+<h3>[0.3.1] - 2020-07-06<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>Fix for packaging bug with numpy version on conda.</p>
+</section>
+<section id="id5">
+<h3>[0.3.0] - 2020-05-23<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p><strong>New features</strong></p>
+<ul class="simple">
+<li><p>Support for file-like objects in dump/load and remove
+file seeks. This allows reading from a pipes/FIFOs etc
+(<a class="reference external" href="https://github.com/sponsors/grahamgower">&#64;grahamgower</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/pull/88">#88</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">loads</span></code> and <code class="docutils literal notranslate"><span class="pre">dumps</span></code> functions that operate on
+strings (<a class="reference external" href="https://github.com/sponsors/jeromekelleher">&#64;jeromekelleher</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/pull/88">#88</a>)</p></li>
+</ul>
+<p><strong>Breaking changes</strong></p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">filename</span></code> named argument to load/dump has been changed to
+<code class="docutils literal notranslate"><span class="pre">file</span></code> to reflect the support for file objects.</p></li>
+<li><p>Minimum python version is now 3.6.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>[0.2.2] - 2018-12-07<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>Fix for packaging bug happening in setup.py bootstrap.</p>
+</section>
+<section id="id7">
+<h3>[0.2.1] - 2018-12-07<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>Update fixing various packaging and long term API issues.
+Export the 0.1.0 C API via the Python Capsule interface.</p>
+</section>
+<section id="id8">
+<h3>[0.2.0] - 2018-11-20<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>Experimental C API exported via Python Capsule interface.</p>
+</section>
+<section id="id9">
+<h3>[0.1.0] - 2018-05-06<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>Initial release. Python API only with no public documentation.</p>
+</section>
+</section>
+<section id="c-api">
+<h2>C API<a class="headerlink" href="#c-api" title="Link to this heading">#</a></h2>
+<section id="id10">
+<h3>[2.1.2] - 2026-03-03<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>Minor maintenance update.</p>
+</section>
+<section id="id11">
+<h3>[2.1.1] - 2022-03-01<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Minor bug-release and maintenance update.</p></li>
+<li><p>Fix bug where calling <cite>contains</cite> would borrow the array when <cite>KAS_BORROWS_ARRAY</cite> was set.
+(<a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/pull/189">#189</a>)</p></li>
+<li><p>Fix assertion triggered when NULL was passed along with KAS_BORROWS_ARRAY.
+(<a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/pull/185">#185</a>)</p></li>
+<li><p>Move VERSION to VERSION.txt to prevent issues on macos.
+(<a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/pull/187">#187</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/issues/186">#186</a>)</p></li>
+</ul>
+</section>
+<section id="id12">
+<h3>[2.1.0] - 2022-01-25<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Add flag <code class="docutils literal notranslate"><span class="pre">KAS_BORROWS_ARRAY</span></code> to put. When specified kastore will not copy
+or free the array, which must persist for the life of the store.
+(<a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/pull/181">#181</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/issues/180">#180</a>).</p></li>
+<li><p>Add flag <code class="docutils literal notranslate"><span class="pre">KAS_GET_TAKES_OWNERSHIP</span></code> to open. If specified all <code class="docutils literal notranslate"><span class="pre">get</span></code>
+operations will transfer ownership of the array to the caller.
+<code class="docutils literal notranslate"><span class="pre">kastore</span></code> will not <code class="docutils literal notranslate"><span class="pre">free</span></code> the array memory and this is the
+responsibility of the caller.
+(<a class="reference external" href="https://github.com/sponsors/benjeffery">&#64;benjeffery</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/pull/179">#179</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/issues/176">#176</a>)</p></li>
+</ul>
+</section>
+<section id="id13">
+<h3>[2.0.1] - 2021-11-26<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Minor bug-release and maintenance update.</p></li>
+</ul>
+<p><strong>Bug fixes</strong></p>
+<ul class="simple">
+<li><p>Fix an overflow in an internal flags value on platforms with
+16 bit int types (<a class="reference external" href="https://github.com/sponsors/jeromekelleher">&#64;jeromekelleher</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/issues/153">#153</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/pull/153">#153</a>).</p></li>
+<li><p>Fix a bug in which error conditions were not reported in append
+mode if an error occured when closing the temporary file used
+to read the data. (<a class="reference external" href="https://github.com/sponsors/jeromekelleher">&#64;jeromekelleher</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/issues/160">#160</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/pull/164">#164</a>).</p></li>
+</ul>
+</section>
+<section id="id14">
+<h3>[2.0.0] - 2020-05-23<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Major file version bumped because new fields were added to the kastore_t
+struct, leading to potential ABI breakage. No API breakage should occur.</p></li>
+</ul>
+<p><strong>New features</strong></p>
+<ul class="simple">
+<li><p>Add kastore_openf function to support FILE objects, and remove
+file seeks. This allows reading from a pipes/FIFOs, and allows
+multiple stores to read from the same stream
+(<a class="reference external" href="https://github.com/sponsors/grahamgower">&#64;grahamgower</a>, <a class="reference external" href="https://github.com/tskit-dev/kastore/pull/88">#88</a>).</p></li>
+</ul>
+</section>
+<section id="id15">
+<h3>[1.1.0] - 2019-03-19<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Add <cite>contains</cite> function</p></li>
+<li><p>Add <cite>oput</cite> variants that transfer ownership of buffer.</p></li>
+<li><p>Various documentation updates.</p></li>
+</ul>
+</section>
+<section id="id16">
+<h3>[1.0.1] - 2019-01-24<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<p>Add support for using kastore as a meson subproject.</p>
+</section>
+<section id="id17">
+<h3>[1.0.0] - 2019-01-22<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<p>Remove the dynamic C API option and add support for C++.</p>
+</section>
+<section id="id18">
+<h3>[0.1.0] - 2018-12-07<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<p>Initial release of the documented C API.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="development.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Developer documentation</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xx-xx">[0.3.6] - 2026-xx-xx</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">[0.3.5] - 2026-03-03</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">[0.3.3] - 2024-06-25</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">[0.3.2] - 2022-07-12</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">[0.3.1] - 2020-07-06</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">[0.3.0] - 2020-05-23</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">[0.2.2] - 2018-12-07</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">[0.2.1] - 2018-12-07</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">[0.2.0] - 2018-11-20</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">[0.1.0] - 2018-05-06</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-api">C API</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">[2.1.2] - 2026-03-03</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">[2.1.1] - 2022-03-01</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">[2.1.0] - 2022-01-25</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">[2.0.1] - 2021-11-26</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">[2.0.0] - 2020-05-23</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">[1.1.0] - 2019-03-19</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">[1.0.1] - 2019-01-24</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">[1.0.0] - 2019-01-22</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">[0.1.0] - 2018-12-07</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

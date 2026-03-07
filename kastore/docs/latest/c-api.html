@@ -1,0 +1,1624 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>C API Documentation &#8212; kastore</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'c-api';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="File format" href="format.html" />
+    <link rel="prev" title="Python API Documentation" href="python-api.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="introduction.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">kastore 0.3.6.dev1</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python-api.html">Python API Documentation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="format.html">File format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Developer documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelogs.html">Changelogs</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/kastore" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/kastore/edit/main/docs/c-api.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/kastore/issues/new?title=Issue%20on%20page%20%2Fc-api.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/c-api.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>C API Documentation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-program">Example program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-principles">General principles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#array-lengths">Array lengths</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level">Top level</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_t"><code class="docutils literal notranslate"><span class="pre">kastore_t</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_open"><code class="docutils literal notranslate"><span class="pre">kastore_open()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_openf"><code class="docutils literal notranslate"><span class="pre">kastore_openf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_close"><code class="docutils literal notranslate"><span class="pre">kastore_close()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kas_strerror"><code class="docutils literal notranslate"><span class="pre">kas_strerror()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contains-functions">Contains functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_contains"><code class="docutils literal notranslate"><span class="pre">kastore_contains()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_containss"><code class="docutils literal notranslate"><span class="pre">kastore_containss()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-functions">Get functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_get"><code class="docutils literal notranslate"><span class="pre">kastore_get()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets"><code class="docutils literal notranslate"><span class="pre">kastore_gets()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typed-gets">Typed gets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_int8"><code class="docutils literal notranslate"><span class="pre">kastore_gets_int8()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_uint8"><code class="docutils literal notranslate"><span class="pre">kastore_gets_uint8()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_int16"><code class="docutils literal notranslate"><span class="pre">kastore_gets_int16()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_uint16"><code class="docutils literal notranslate"><span class="pre">kastore_gets_uint16()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_int32"><code class="docutils literal notranslate"><span class="pre">kastore_gets_int32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_uint32"><code class="docutils literal notranslate"><span class="pre">kastore_gets_uint32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_int64"><code class="docutils literal notranslate"><span class="pre">kastore_gets_int64()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_uint64"><code class="docutils literal notranslate"><span class="pre">kastore_gets_uint64()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_float32"><code class="docutils literal notranslate"><span class="pre">kastore_gets_float32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_float64"><code class="docutils literal notranslate"><span class="pre">kastore_gets_float64()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-functions">Put functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_put"><code class="docutils literal notranslate"><span class="pre">kastore_put()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts"><code class="docutils literal notranslate"><span class="pre">kastore_puts()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typed-puts">Typed puts</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_int8"><code class="docutils literal notranslate"><span class="pre">kastore_puts_int8()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_uint8"><code class="docutils literal notranslate"><span class="pre">kastore_puts_uint8()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_int16"><code class="docutils literal notranslate"><span class="pre">kastore_puts_int16()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_uint16"><code class="docutils literal notranslate"><span class="pre">kastore_puts_uint16()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_int32"><code class="docutils literal notranslate"><span class="pre">kastore_puts_int32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_uint32"><code class="docutils literal notranslate"><span class="pre">kastore_puts_uint32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_int64"><code class="docutils literal notranslate"><span class="pre">kastore_puts_int64()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_uint64"><code class="docutils literal notranslate"><span class="pre">kastore_puts_uint64()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_float32"><code class="docutils literal notranslate"><span class="pre">kastore_puts_float32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_float64"><code class="docutils literal notranslate"><span class="pre">kastore_puts_float64()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#own-put-functions">Own-put functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oput"><code class="docutils literal notranslate"><span class="pre">kastore_oput()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs"><code class="docutils literal notranslate"><span class="pre">kastore_oputs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typed-oputs">Typed oputs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_int8"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_int8()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_uint8"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_uint8()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_int16"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_int16()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_uint16"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_uint16()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_int32"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_int32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_uint32"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_uint32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_int64"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_int64()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_uint64"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_uint64()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_float32"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_float32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_float64"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_float64()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constants">Constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errors">Errors</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_GENERIC"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_GENERIC</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_IO"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_IO</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_BAD_MODE"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_BAD_MODE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_NO_MEMORY"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_NO_MEMORY</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_BAD_FILE_FORMAT"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_BAD_FILE_FORMAT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_VERSION_TOO_OLD"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_VERSION_TOO_OLD</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_VERSION_TOO_NEW"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_VERSION_TOO_NEW</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_BAD_TYPE"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_BAD_TYPE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_EMPTY_KEY"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_EMPTY_KEY</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_DUPLICATE_KEY"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_DUPLICATE_KEY</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_KEY_NOT_FOUND"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_KEY_NOT_FOUND</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_ILLEGAL_OPERATION"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_ILLEGAL_OPERATION</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_TYPE_MISMATCH"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_TYPE_MISMATCH</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_EOF"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_EOF</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_BAD_FLAGS"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_BAD_FLAGS</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types">Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_INT8"><code class="docutils literal notranslate"><span class="pre">KAS_INT8</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_UINT8"><code class="docutils literal notranslate"><span class="pre">KAS_UINT8</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_INT16"><code class="docutils literal notranslate"><span class="pre">KAS_INT16</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_UINT16"><code class="docutils literal notranslate"><span class="pre">KAS_UINT16</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_INT32"><code class="docutils literal notranslate"><span class="pre">KAS_INT32</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_UINT32"><code class="docutils literal notranslate"><span class="pre">KAS_UINT32</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_INT64"><code class="docutils literal notranslate"><span class="pre">KAS_INT64</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_UINT64"><code class="docutils literal notranslate"><span class="pre">KAS_UINT64</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_FLOAT32"><code class="docutils literal notranslate"><span class="pre">KAS_FLOAT32</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_FLOAT64"><code class="docutils literal notranslate"><span class="pre">KAS_FLOAT64</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-information">Version information</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_VERSION_MAJOR"><code class="docutils literal notranslate"><span class="pre">KAS_VERSION_MAJOR</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_VERSION_MINOR"><code class="docutils literal notranslate"><span class="pre">KAS_VERSION_MINOR</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_VERSION_PATCH"><code class="docutils literal notranslate"><span class="pre">KAS_VERSION_PATCH</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_FILE_VERSION_MAJOR"><code class="docutils literal notranslate"><span class="pre">KAS_FILE_VERSION_MAJOR</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_FILE_VERSION_MINOR"><code class="docutils literal notranslate"><span class="pre">KAS_FILE_VERSION_MINOR</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#miscellaneous-functions">Miscellaneous functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kas_version_t"><code class="docutils literal notranslate"><span class="pre">kas_version_t</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kas_version_t.major"><code class="docutils literal notranslate"><span class="pre">major</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kas_version_t.minor"><code class="docutils literal notranslate"><span class="pre">minor</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kas_version_t.patch"><code class="docutils literal notranslate"><span class="pre">patch</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kas_version"><code class="docutils literal notranslate"><span class="pre">kas_version()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="c-api-documentation">
+<span id="sec-c-api"></span><h1>C API Documentation<a class="headerlink" href="#c-api-documentation" title="Link to this heading">#</a></h1>
+<p>This is the C API documentation for kastore.</p>
+<section id="example-program">
+<span id="sec-c-api-example"></span><h2>Example program<a class="headerlink" href="#example-program" title="Link to this heading">#</a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* This is a simple program to illustrate the kastore C API. With</span>
+<span class="cm"> * no arguments it writes a file &#39;example.kas&#39;. If called with</span>
+<span class="cm"> * a single command line argument, reads this file in and prints.</span>
+<span class="cm"> */</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;err.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;kastore.h&gt;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="nf">handle_kas_error</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">retval</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error at line %d: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">kas_strerror</span><span class="p">(</span><span class="n">retval</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="nf">write_example</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">path</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="n">kastore_t</span><span class="w"> </span><span class="n">store</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">a</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">b_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="n">b_length</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">b</span><span class="p">));</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">err</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Out of memory&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kastore_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">store</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;w&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">handle_kas_error</span><span class="p">(</span><span class="n">__LINE__</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="cm">/* This is the standard &#39;put&#39; where the library takes a copy of the array.</span>
+<span class="cm">     * This is the recommended approach unless working with very large arrays. */</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kastore_puts_uint32</span><span class="p">(</span><span class="o">&amp;</span><span class="n">store</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">handle_kas_error</span><span class="p">(</span><span class="n">__LINE__</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="cm">/* This is the own-put variant, where the array is inserted into the store</span>
+<span class="cm">     * and ownership of the buffer (which must be a pointer returned from</span>
+<span class="cm">     * malloc/calloc) is passed to the store. The buffer will be freed by the</span>
+<span class="cm">     * library when &#39;close&#39; is called. */</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kastore_oputs_uint32</span><span class="p">(</span><span class="o">&amp;</span><span class="n">store</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">b_length</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="cm">/* The store only takes ownership of the buffer if oputs succeeds, so</span>
+<span class="cm">         * we must free b here to avoid leaking memory in error conditions */</span>
+<span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="w">        </span><span class="n">handle_kas_error</span><span class="p">(</span><span class="n">__LINE__</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kastore_close</span><span class="p">(</span><span class="o">&amp;</span><span class="n">store</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">handle_kas_error</span><span class="p">(</span><span class="n">__LINE__</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="nf">read_example</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">path</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="n">kastore_t</span><span class="w"> </span><span class="n">store</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">array</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">array_len</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">keys</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="w"> </span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kastore_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">store</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">handle_kas_error</span><span class="p">(</span><span class="n">__LINE__</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">keys</span><span class="p">);</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kastore_gets_uint32</span><span class="p">(</span><span class="o">&amp;</span><span class="n">store</span><span class="p">,</span><span class="w"> </span><span class="n">keys</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">array_len</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">handle_kas_error</span><span class="p">(</span><span class="n">__LINE__</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;key: %s = [&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">keys</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">array_len</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">array_len</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;]</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kastore_close</span><span class="p">(</span><span class="o">&amp;</span><span class="n">store</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">handle_kas_error</span><span class="p">(</span><span class="n">__LINE__</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">write_example</span><span class="p">(</span><span class="s">&quot;example.kas&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">read_example</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="general-principles">
+<h2>General principles<a class="headerlink" href="#general-principles" title="Link to this heading">#</a></h2>
+<section id="error-handling">
+<h3>Error handling<a class="headerlink" href="#error-handling" title="Link to this heading">#</a></h3>
+<p>Functions return 0 to indicate success or an
+<a class="reference internal" href="#sec-c-api-error-codes"><span class="std std-ref">error code</span></a> to indicate a failure condition.
+Thus, the return value of all functions must be checked to ensure safety.</p>
+</section>
+<section id="array-lengths">
+<h3>Array lengths<a class="headerlink" href="#array-lengths" title="Link to this heading">#</a></h3>
+<p>The length of arrays is specified in terms of the number of elements not bytes.</p>
+</section>
+</section>
+<section id="top-level">
+<h2>Top level<a class="headerlink" href="#top-level" title="Link to this heading">#</a></h2>
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.kastore_t">
+<span class="target" id="structkastore__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_t</span></span></span><a class="headerlink" href="#c.kastore_t" title="Link to this definition">#</a><br /></dt>
+<dd><p>A file-backed store of key-array values. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_open">
+<span class="target" id="kastore_8h_1a867cb36f24d12c99a77067808304a942"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_open</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">filename</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">mode</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_open" title="Link to this definition">#</a><br /></dt>
+<dd><p>Open a store from a given file in read (“r”), write (“w”) or append (“a”) mode. </p>
+<p><p>In read mode, a store can be queried using the <a class="reference internal" href="#sec-c-api-get"><span class="std std-ref">get functions</span></a> and any attempts to write to the store will return an error.
+In write and append mode, the store can written to using the <a class="reference internal" href="#sec-c-api-put"><span class="std std-ref">put
+functions</span></a> and any attempt to read will return an error.</p>
+<p>After <a class="reference internal" href="#c.kastore_open" title="kastore_open"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_open()</span></code></a> has been called on a particular store,
+<a class="reference internal" href="#c.kastore_close" title="kastore_close"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_close()</span></code></a> must be called to avoid leaking memory. This must also
+be done when <a class="reference internal" href="#c.kastore_open" title="kastore_open"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_open()</span></code></a> returns an error.</p>
+<p>When opened in read-mode, the default is to read key/array values from file
+on demand. This is useful when a subset of the data is required and we don’t
+wish to read the entire file. If the entire file is to be read, the
+<code class="docutils literal notranslate"><span class="pre">KAS_READ_ALL</span></code> flag may be specified to improve performance.</p>
+<p><strong>Flags</strong></p>
+<dl class="simple">
+<dt>KAS_READ_ALL</dt><dd><p>If this option is specified, read the entire file at
+open time. This will give slightly better performance as the file can
+be read sequentially in a single pass.</p>
+</dd>
+<dt>KAS_GET_TAKES_OWNERSHIP</dt><dd><p>If this option is specified, all <code class="docutils literal notranslate"><span class="pre">get</span></code> operations will transfer
+ownership of the array to the caller. <code class="docutils literal notranslate"><span class="pre">kastore</span></code> will not <code class="docutils literal notranslate"><span class="pre">free</span></code>
+the array memory and this is the responsibility of the caller.
+If <code class="docutils literal notranslate"><span class="pre">get</span></code> is called on the same key multiple times, a new buffer will be
+returned each time. Note that second and subsequent <code class="docutils literal notranslate"><span class="pre">get</span></code> calls
+on a given key will result in <code class="docutils literal notranslate"><span class="pre">seek</span></code> operations even when the
+KAS_READ_ALL flag is set, and will therefore fail on unseekable
+streams.</p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – A pointer to a kastore object. </p></li>
+<li><p><strong>filename</strong> – The file path to open. </p></li>
+<li><p><strong>mode</strong> – The open mode: can be read (“r”), write (“w”) or append (“a”). </p></li>
+<li><p><strong>flags</strong> – The open flags. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return 0 on success or a negative value on failure. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_openf">
+<span class="target" id="kastore_8h_1a9ad043cd116908e52170751bdfd24978"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_openf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">mode</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_openf" title="Link to this definition">#</a><br /></dt>
+<dd><p>Open a store from a given FILE pointer. </p>
+<p><p>Behaviour, mode and flags follow that of <a class="reference internal" href="#c.kastore_open" title="kastore_open"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_open()</span></code></a>,
+except append mode is not supported.
+The <code class="docutils literal notranslate"><span class="pre">file</span></code> argument must be opened in an appropriate mode (e.g. “r”
+for a kastore in “r” mode).  Files open with other modes will result
+in KAS_ERR_IO being returned when read/write operations are attempted.</p>
+<p>The FILE will not be closed when <a class="reference internal" href="#c.kastore_close" title="kastore_close"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_close()</span></code></a> is called.
+If the KAS_READ_ALL flag is supplied, no <code class="docutils literal notranslate"><span class="pre">seek</span></code> operations will be
+performed on the FILE and so streams such as stdin, FIFOs etc are
+supported. The FILE pointer will be positioned exactly at the end
+of the kastore encoded bytes once reading is completed, and reading
+multiple stores from the same FILE sequentially is fully supported.</p>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – A pointer to a kastore object. </p></li>
+<li><p><strong>file</strong> – The FILE* to read/write the store from/to. </p></li>
+<li><p><strong>mode</strong> – The open mode: can be read (“r”) or write (“w”). </p></li>
+<li><p><strong>flags</strong> – The open flags. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return 0 on success or a negative value on failure. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_close">
+<span class="target" id="kastore_8h_1a71951a17fb8056822590acdbd4e22009"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_close</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_close" title="Link to this definition">#</a><br /></dt>
+<dd><p>Close an opened store, freeing all resources. </p>
+<p>Any store that has been opened must be closed to avoid memory leaks (including cases in which errors have occured). It is not an error to call <code class="docutils literal notranslate"><span class="pre">kastore_close</span></code> multiple times on the same object, but <code class="docutils literal notranslate"><span class="pre">kastore_open</span></code> must be called before <code class="docutils literal notranslate"><span class="pre">kastore_close</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – A pointer to a kastore object. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return 0 on success or a negative value on failure. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kas_strerror">
+<span class="target" id="kastore_8h_1a6aa563dd6a69cbd463bb4b85fbadb853"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">kas_strerror</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">err</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kas_strerror" title="Link to this definition">#</a><br /></dt>
+<dd><p>Returns a description of the specified error code. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>err</strong> – The error code. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>String describing the error code. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="contains-functions">
+<span id="sec-c-api-get"></span><h2>Contains functions<a class="headerlink" href="#contains-functions" title="Link to this heading">#</a></h2>
+<p>Contains functions provide a way to determine if a given key is in the store.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_contains">
+<span class="target" id="kastore_8h_1a1593b1363e94ea110e9b2fe2dbb49910"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_contains</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">key_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_contains" title="Link to this definition">#</a><br /></dt>
+<dd><p>Return 1 if the store contains the specified key and 0 if it does not. </p>
+<p><p>Queries the store for the specified key and returns 1 if it exists. If the
+key does not exist, 0 is returned. If an error occurs (for example, if querying
+the store while it is in write-mode), a negative value is returned.</p>
+<p>For keys that are standard NULL terminated strings, the <a class="reference internal" href="#c.kastore_containss" title="kastore_containss"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_containss()</span></code></a>
+function may be more convenient.</p>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – A pointer to a kastore object. </p></li>
+<li><p><strong>key</strong> – The key. </p></li>
+<li><p><strong>key_len</strong> – The length of the key. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return 1 if the key is present and 0 if it does not. If an error occurs, return a negative value. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_containss">
+<span class="target" id="kastore_8h_1a96106c8373b33592433e1d0a956bf087"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_containss</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_containss" title="Link to this definition">#</a><br /></dt>
+<dd><p>Return 1 if the store contains the specified NULL terminated key and 0 if it does not. </p>
+<p>Queries the store for the specified key, which must be a NULL terminated string,
+and returns 1 if it exists. If the
+key does not exist, 0 is returned. If an error occurs (for example, if querying
+the store while it is in write-mode), a negative value is returned.
+the array in the specified destination pointers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – A pointer to a kastore object. </p></li>
+<li><p><strong>key</strong> – The key. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return 1 if the key is present and 0 if it does not. If an error occurs, return a negative value. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="get-functions">
+<h2>Get functions<a class="headerlink" href="#get-functions" title="Link to this heading">#</a></h2>
+<p>Get functions provide the interface for querying a store. The most general interface
+is <a class="reference internal" href="#c.kastore_get" title="kastore_get"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_get()</span></code></a>, but it is usually more convenient to use one of the
+<a class="reference internal" href="#sec-c-api-typed-get"><span class="std std-ref">typed get functions</span></a>.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_get">
+<span class="target" id="kastore_8h_1a5ab3c8f98f8dab99f181555c2ad8da10"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_get</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">key_len</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_get" title="Link to this definition">#</a><br /></dt>
+<dd><p>Get the array for the specified key. </p>
+<p><p>Queries the store for the specified key and stores pointers to the memory for
+the corresponding array, the number of elements in this array and the type of
+the array in the specified destination pointers. This is the most general form
+of <code class="docutils literal notranslate"><span class="pre">get</span></code> query in kastore, as non NULL-terminated strings can be used as
+keys and the resulting array is returned in a generic pointer. When standard C
+strings are used as keys and the type of the array is known, it is more
+convenient to use the <a class="reference internal" href="#sec-c-api-typed-get"><span class="std std-ref">typed variants</span></a> of this function.</p>
+<p>The returned array points to memory that is internally managed by the store
+and must not be freed or modified. The pointer is guaranteed to be valid
+until <a class="reference internal" href="#c.kastore_close" title="kastore_close"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_close()</span></code></a> is called.</p>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – A pointer to a kastore object. </p></li>
+<li><p><strong>key</strong> – The key. </p></li>
+<li><p><strong>key_len</strong> – The length of the key. </p></li>
+<li><p><strong>array</strong> – The destination pointer for the array. </p></li>
+<li><p><strong>array_len</strong> – The destination pointer for the number of elements in the array. </p></li>
+<li><p><strong>type</strong> – The destination pointer for the type code of the array. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return 0 on success or a negative value on failure. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_gets">
+<span class="target" id="kastore_8h_1a48e22a52c42db3ae5b9ff254fe1a9379"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_gets</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_gets" title="Link to this definition">#</a><br /></dt>
+<dd><p>Get the array for the specified NULL-terminated key. </p>
+<p>As for <a class="reference internal" href="#c.kastore_get" title="kastore_get"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_get()</span></code></a> except the key is a NULL-terminated string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – A pointer to a kastore object. </p></li>
+<li><p><strong>key</strong> – The key. </p></li>
+<li><p><strong>array</strong> – The destination pointer for the array. </p></li>
+<li><p><strong>array_len</strong> – The destination pointer for the number of elements in the array. </p></li>
+<li><p><strong>type</strong> – The destination pointer for the type code of the array. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return 0 on success or a negative value on failure. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="typed-gets">
+<span id="sec-c-api-typed-get"></span><h3>Typed gets<a class="headerlink" href="#typed-gets" title="Link to this heading">#</a></h3>
+<p>The functions listed here provide a convenient short-cut for accessing arrays
+where the key is a standard NULL terminated C string and the type of the
+array is known in advance.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_gets_int8">
+<span class="target" id="group___t_y_p_e_d___g_e_t_s___g_r_o_u_p_1ga9924e272d872fec58890ed8e284cb588"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_gets_int8</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_gets_int8" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_gets_uint8">
+<span class="target" id="group___t_y_p_e_d___g_e_t_s___g_r_o_u_p_1ga86e864e43ec249832e779def4adc3d40"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_gets_uint8</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_gets_uint8" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_gets_int16">
+<span class="target" id="group___t_y_p_e_d___g_e_t_s___g_r_o_u_p_1gab80c3d682c877e451ac999b6622bf824"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_gets_int16</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_gets_int16" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_gets_uint16">
+<span class="target" id="group___t_y_p_e_d___g_e_t_s___g_r_o_u_p_1gaa90edbd8684c10c069df5b8913b2de71"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_gets_uint16</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_gets_uint16" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_gets_int32">
+<span class="target" id="group___t_y_p_e_d___g_e_t_s___g_r_o_u_p_1ga0ccf439a7596d39d0d422a7c4a2d796e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_gets_int32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_gets_int32" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_gets_uint32">
+<span class="target" id="group___t_y_p_e_d___g_e_t_s___g_r_o_u_p_1gaac3b969d5da701e282959b5f54d69da6"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_gets_uint32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_gets_uint32" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_gets_int64">
+<span class="target" id="group___t_y_p_e_d___g_e_t_s___g_r_o_u_p_1ga8fcebec88455370f2da5d0bfda857ba8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_gets_int64</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_gets_int64" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_gets_uint64">
+<span class="target" id="group___t_y_p_e_d___g_e_t_s___g_r_o_u_p_1gae7303a2eaae3abe2ccf8c8485eb49d1e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_gets_uint64</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_gets_uint64" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_gets_float32">
+<span class="target" id="group___t_y_p_e_d___g_e_t_s___g_r_o_u_p_1gae9af4c00df0155d0341c6ba1988e5993"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_gets_float32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_gets_float32" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_gets_float64">
+<span class="target" id="group___t_y_p_e_d___g_e_t_s___g_r_o_u_p_1gacc8a3fde096f6b3648b168513acedd4a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_gets_float64</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_gets_float64" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+<section id="put-functions">
+<span id="sec-c-api-put"></span><h2>Put functions<a class="headerlink" href="#put-functions" title="Link to this heading">#</a></h2>
+<p>Put functions provide the interface for inserting data into store. The most
+general interface is <a class="reference internal" href="#c.kastore_put" title="kastore_put"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_put()</span></code></a> which allows keys to be arbitrary
+bytes, but it is usually more convenient to use one of the <a class="reference internal" href="#sec-c-api-typed-put"><span class="std std-ref">typed put
+functions</span></a>.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_put">
+<span class="target" id="kastore_8h_1a432f433af46dded8ff7fa060fe6c5102"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_put</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">key_len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_put" title="Link to this definition">#</a><br /></dt>
+<dd><p>Insert the specified key-array pair into the store. </p>
+<p>A key with the specified length is inserted into the store and associated with
+an array of the specified type and number of elements. The contents of the
+specified key and array are copied unless the KAS_BORROWS_ARRAY flag is specified.
+If KAS_BORROWS_ARRAY is specified the array buffer must persist until the
+kastore is closed.
+Keys can be any sequence of bytes but must be at least one byte long and be
+unique. There is no restriction on the contents of arrays. This is the most
+general form of <code class="docutils literal notranslate"><span class="pre">put</span></code> operation in kastore; when the type of the array
+is known and the keys are standard C strings, it is usually more convenient
+to use the <a class="reference internal" href="#sec-c-api-typed-put"><span class="std std-ref">typed variants</span></a> of this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – A pointer to a kastore object. </p></li>
+<li><p><strong>key</strong> – The key. </p></li>
+<li><p><strong>key_len</strong> – The length of the key. </p></li>
+<li><p><strong>array</strong> – The array. </p></li>
+<li><p><strong>array_len</strong> – The number of elements in the array. </p></li>
+<li><p><strong>type</strong> – The type of the array. </p></li>
+<li><p><strong>flags</strong> – The insertion flags, only KAS_BORROWS_ARRAY or 0 is a valid. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return 0 on success or a negative value on failure. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_puts">
+<span class="target" id="kastore_8h_1a8fca2a4b5bc7eb8873cff642baf1b6c5"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_puts</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_puts" title="Link to this definition">#</a><br /></dt>
+<dd><p>Insert the specified NULL terminated key and array pair into the store. </p>
+<p>As for <a class="reference internal" href="#c.kastore_put" title="kastore_put"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_put()</span></code></a> except the key must be NULL-terminated C string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – A pointer to a kastore object. </p></li>
+<li><p><strong>key</strong> – The key. </p></li>
+<li><p><strong>array</strong> – The array. </p></li>
+<li><p><strong>array_len</strong> – The number of elements in the array. </p></li>
+<li><p><strong>type</strong> – The type of the array. </p></li>
+<li><p><strong>flags</strong> – The insertion flags, only KAS_BORROWS_ARRAY or 0 is a valid. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return 0 on success or a negative value on failure. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="typed-puts">
+<span id="sec-c-api-typed-put"></span><h3>Typed puts<a class="headerlink" href="#typed-puts" title="Link to this heading">#</a></h3>
+<p>The functions listed here provide a convenient short-cut for inserting
+key-array pairs where the key is a standard NULL terminated C string and the
+type of the array is known in advance.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_puts_int8">
+<span class="target" id="group___t_y_p_e_d___p_u_t_s___g_r_o_u_p_1ga0a43962f743b6b34db646e77a4e2af05"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_puts_int8</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_puts_int8" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_puts_uint8">
+<span class="target" id="group___t_y_p_e_d___p_u_t_s___g_r_o_u_p_1ga1f5019c93a06a0b8b85af4009f8e1760"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_puts_uint8</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_puts_uint8" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_puts_int16">
+<span class="target" id="group___t_y_p_e_d___p_u_t_s___g_r_o_u_p_1ga77462cdc9a6bc472c6fd548e7a45eeb4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_puts_int16</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_puts_int16" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_puts_uint16">
+<span class="target" id="group___t_y_p_e_d___p_u_t_s___g_r_o_u_p_1gae83b913c379b1b55ea61138c2efae13e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_puts_uint16</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_puts_uint16" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_puts_int32">
+<span class="target" id="group___t_y_p_e_d___p_u_t_s___g_r_o_u_p_1gac3cd89b8cef2dc681e937607fb348e12"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_puts_int32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_puts_int32" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_puts_uint32">
+<span class="target" id="group___t_y_p_e_d___p_u_t_s___g_r_o_u_p_1gac933dc24faced42b739c84a8647c85d3"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_puts_uint32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_puts_uint32" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_puts_int64">
+<span class="target" id="group___t_y_p_e_d___p_u_t_s___g_r_o_u_p_1ga6c89218c3bfb7f3695669b01a3ef77ad"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_puts_int64</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_puts_int64" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_puts_uint64">
+<span class="target" id="group___t_y_p_e_d___p_u_t_s___g_r_o_u_p_1ga468fcaccf4290bdd28697220ee4a2b64"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_puts_uint64</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_puts_uint64" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_puts_float32">
+<span class="target" id="group___t_y_p_e_d___p_u_t_s___g_r_o_u_p_1gabab4fcd92b06de3d06fe378cad186861"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_puts_float32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_puts_float32" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_puts_float64">
+<span class="target" id="group___t_y_p_e_d___p_u_t_s___g_r_o_u_p_1ga18f4ee11e0ff505e10b6b138a5d16fd9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_puts_float64</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_puts_float64" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+<section id="own-put-functions">
+<span id="sec-c-api-oput"></span><h2>Own-put functions<a class="headerlink" href="#own-put-functions" title="Link to this heading">#</a></h2>
+<p>The ‘own-put’ functions are almost identical to the standard ‘put’ functions,
+but transfer ownership of the array buffer from the caller to the store. This
+is useful, for example, when client code wishes to write a large array to the
+store and wants of avoid the overhead of keeping a separate copy of this buffer
+in the store. By calling <a class="reference internal" href="#c.kastore_oput" title="kastore_oput"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_oput()</span></code></a>, the user can put the key-array
+pair into the store and transfer responsibility for freeing the malloced
+array buffer to the store. See the <a class="reference internal" href="#sec-c-api-example"><span class="std std-ref">Example program</span></a> for an illustration.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_oput">
+<span class="target" id="kastore_8h_1abf6394a945548c5392edff7eee28ce59"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_oput</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">key_len</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_oput" title="Link to this definition">#</a><br /></dt>
+<dd><p>Insert the specified key-array pair into the store, transferring ownership of the malloced array buffer to the store (own-put). </p>
+<p><p>A key with the specified length is inserted into the store and associated with
+an array of the specified type and number of elements. The contents of the
+specified key is copied, but the array buffer is taken directly and freed when
+the store is closed. The array buffer must be a pointer returned by <code class="docutils literal notranslate"><span class="pre">malloc</span></code>
+or <code class="docutils literal notranslate"><span class="pre">calloc</span></code>. Ownership of the buffer is not taken unless the function returns
+successfully.</p>
+<p>Apart from taking ownership of the array buffer, the semantics of this
+function are identical to <a class="reference internal" href="#c.kastore_put" title="kastore_put"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_put()</span></code></a>.</p>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – A pointer to a kastore object. </p></li>
+<li><p><strong>key</strong> – The key. </p></li>
+<li><p><strong>key_len</strong> – The length of the key. </p></li>
+<li><p><strong>array</strong> – The array. Must be a pointer returned by malloc/calloc. </p></li>
+<li><p><strong>array_len</strong> – The number of elements in the array. </p></li>
+<li><p><strong>type</strong> – The type of the array. </p></li>
+<li><p><strong>flags</strong> – The insertion flags. Currently unused. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return 0 on success or a negative value on failure. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_oputs">
+<span class="target" id="kastore_8h_1ad05ec02c53a7e20bd1a397ba4013fcfb"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_oputs</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_oputs" title="Link to this definition">#</a><br /></dt>
+<dd><p>Insert the specified NULL terminated key and array pair into the store, transferring ownership of the malloced array buffer to the store (own-put). </p>
+<p>As for <a class="reference internal" href="#c.kastore_oput" title="kastore_oput"><code class="xref c c-func docutils literal notranslate"><span class="pre">kastore_oput()</span></code></a> except the key must be NULL-terminated C string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – A pointer to a kastore object. </p></li>
+<li><p><strong>key</strong> – The key. </p></li>
+<li><p><strong>array</strong> – The array. Must be a pointer returned by malloc/calloc. </p></li>
+<li><p><strong>array_len</strong> – The number of elements in the array. </p></li>
+<li><p><strong>type</strong> – The type of the array. </p></li>
+<li><p><strong>flags</strong> – The insertion flags. Currently unused. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return 0 on success or a negative value on failure. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="typed-oputs">
+<span id="sec-c-api-typed-oput"></span><h3>Typed oputs<a class="headerlink" href="#typed-oputs" title="Link to this heading">#</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_oputs_int8">
+<span class="target" id="group___t_y_p_e_d___o_p_u_t_s___g_r_o_u_p_1gae9a884fc86e0d750ac6d91df6c5e04fc"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_oputs_int8</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_oputs_int8" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_oputs_uint8">
+<span class="target" id="group___t_y_p_e_d___o_p_u_t_s___g_r_o_u_p_1gaba0153c18e1eb4e39ffc91bd6f32434a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_oputs_uint8</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_oputs_uint8" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_oputs_int16">
+<span class="target" id="group___t_y_p_e_d___o_p_u_t_s___g_r_o_u_p_1ga8807091807b41a737b55445f786cdbe9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_oputs_int16</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_oputs_int16" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_oputs_uint16">
+<span class="target" id="group___t_y_p_e_d___o_p_u_t_s___g_r_o_u_p_1gab8cc6d332e8ccb89f861464673e65483"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_oputs_uint16</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_oputs_uint16" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_oputs_int32">
+<span class="target" id="group___t_y_p_e_d___o_p_u_t_s___g_r_o_u_p_1ga50d67a4d1cf9123e601205d4e9ea137b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_oputs_int32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_oputs_int32" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_oputs_uint32">
+<span class="target" id="group___t_y_p_e_d___o_p_u_t_s___g_r_o_u_p_1ga4d6c659068f47575221125aab700cd7d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_oputs_uint32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_oputs_uint32" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_oputs_int64">
+<span class="target" id="group___t_y_p_e_d___o_p_u_t_s___g_r_o_u_p_1ga2d8f02107438b1f33aa777926f33f390"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_oputs_int64</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_oputs_int64" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_oputs_uint64">
+<span class="target" id="group___t_y_p_e_d___o_p_u_t_s___g_r_o_u_p_1gab9e3eecec75619f87e1a51de480bfaa3"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_oputs_uint64</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_oputs_uint64" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_oputs_float32">
+<span class="target" id="group___t_y_p_e_d___o_p_u_t_s___g_r_o_u_p_1ga6aa211d2b665ed88cc1ba7b0a95e2e32"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_oputs_float32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_oputs_float32" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kastore_oputs_float64">
+<span class="target" id="group___t_y_p_e_d___o_p_u_t_s___g_r_o_u_p_1ga1f7281e39f2c4645ceb980af54182ac1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kastore_oputs_float64</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.kastore_t" title="kastore_t"><span class="n"><span class="pre">kastore_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">array_len</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kastore_oputs_float64" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">#</a></h2>
+<section id="errors">
+<span id="sec-c-api-error-codes"></span><h3>Errors<a class="headerlink" href="#errors" title="Link to this heading">#</a></h3>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_GENERIC">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1ga82c01844bb1b0a206280baba0c17ee44"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_GENERIC</span></span></span> <span class="pre">-1</span><a class="headerlink" href="#c.KAS_ERR_GENERIC" title="Link to this definition">#</a><br /></dt>
+<dd><p>Generic error thrown when no other message can be generated. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_IO">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1gaf1fdafa18099707e22b487cd0b607199"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_IO</span></span></span> <span class="pre">-2</span><a class="headerlink" href="#c.KAS_ERR_IO" title="Link to this definition">#</a><br /></dt>
+<dd><p>An error occured during IO. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_BAD_MODE">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1gad6b753d3f3092b5e8e5498062e54b319"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_BAD_MODE</span></span></span> <span class="pre">-3</span><a class="headerlink" href="#c.KAS_ERR_BAD_MODE" title="Link to this definition">#</a><br /></dt>
+<dd><p>An unrecognised mode string was passed to open(). </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_NO_MEMORY">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1ga33c2ba831990299115b1196a8f76038f"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_NO_MEMORY</span></span></span> <span class="pre">-4</span><a class="headerlink" href="#c.KAS_ERR_NO_MEMORY" title="Link to this definition">#</a><br /></dt>
+<dd><p>Out-of-memory condition. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_BAD_FILE_FORMAT">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1gad5eff6c8f8952355c85fc26698390ff3"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_BAD_FILE_FORMAT</span></span></span> <span class="pre">-5</span><a class="headerlink" href="#c.KAS_ERR_BAD_FILE_FORMAT" title="Link to this definition">#</a><br /></dt>
+<dd><p>Attempt to read an unknown file format. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_VERSION_TOO_OLD">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1gabfae819391e9cd55a0cdf38f86228ade"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_VERSION_TOO_OLD</span></span></span> <span class="pre">-6</span><a class="headerlink" href="#c.KAS_ERR_VERSION_TOO_OLD" title="Link to this definition">#</a><br /></dt>
+<dd><p>The file is in kastore format, but the version is too old for this version of the library to read. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_VERSION_TOO_NEW">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1gaad2005464eec68393273b5822522e5e3"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_VERSION_TOO_NEW</span></span></span> <span class="pre">-7</span><a class="headerlink" href="#c.KAS_ERR_VERSION_TOO_NEW" title="Link to this definition">#</a><br /></dt>
+<dd><p>The file is in kastore format, but the version is too new for this version of the library to read. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_BAD_TYPE">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1ga13f6b268859ba976a311eee3ac89ef3e"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_BAD_TYPE</span></span></span> <span class="pre">-8</span><a class="headerlink" href="#c.KAS_ERR_BAD_TYPE" title="Link to this definition">#</a><br /></dt>
+<dd><p>An unknown type key was specified. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_EMPTY_KEY">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1ga4f3c0001eec2affa64e92b9567225e64"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_EMPTY_KEY</span></span></span> <span class="pre">-9</span><a class="headerlink" href="#c.KAS_ERR_EMPTY_KEY" title="Link to this definition">#</a><br /></dt>
+<dd><p>A zero-length key was specified. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_DUPLICATE_KEY">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1ga5fbd5ded7abc4ca2838499f33849e759"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_DUPLICATE_KEY</span></span></span> <span class="pre">-10</span><a class="headerlink" href="#c.KAS_ERR_DUPLICATE_KEY" title="Link to this definition">#</a><br /></dt>
+<dd><p>A duplicate key was specified. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_KEY_NOT_FOUND">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1gac68878daf7041c143db2cd3a37c66ef9"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_KEY_NOT_FOUND</span></span></span> <span class="pre">-11</span><a class="headerlink" href="#c.KAS_ERR_KEY_NOT_FOUND" title="Link to this definition">#</a><br /></dt>
+<dd><p>The requested key does not exist in the store. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_ILLEGAL_OPERATION">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1gaed8f39cae1cf1e2e31c8af2d82042642"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_ILLEGAL_OPERATION</span></span></span> <span class="pre">-12</span><a class="headerlink" href="#c.KAS_ERR_ILLEGAL_OPERATION" title="Link to this definition">#</a><br /></dt>
+<dd><p>The requestion function cannot be called in the current mode. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_TYPE_MISMATCH">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1ga262880fbebd96fc43f43ec48f04dd24d"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_TYPE_MISMATCH</span></span></span> <span class="pre">-13</span><a class="headerlink" href="#c.KAS_ERR_TYPE_MISMATCH" title="Link to this definition">#</a><br /></dt>
+<dd><p>The requested type does not match the type of the stored values. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_EOF">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1gaebefc91b46ae590a681248e66958abd6"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_EOF</span></span></span> <span class="pre">-14</span><a class="headerlink" href="#c.KAS_ERR_EOF" title="Link to this definition">#</a><br /></dt>
+<dd><p>End of file was reached while reading data. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_ERR_BAD_FLAGS">
+<span class="target" id="group___e_r_r_o_r___g_r_o_u_p_1ga77a3c228b5f8601fdd0feddd2f7a57b0"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_ERR_BAD_FLAGS</span></span></span> <span class="pre">-15</span><a class="headerlink" href="#c.KAS_ERR_BAD_FLAGS" title="Link to this definition">#</a><br /></dt>
+<dd><p>Unknown flags were provided to open. </p>
+</dd></dl>
+
+</section>
+<section id="types">
+<h3>Types<a class="headerlink" href="#types" title="Link to this heading">#</a></h3>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_INT8">
+<span class="target" id="group___t_y_p_e___g_r_o_u_p_1gaf65f35a342115e585732859e817d436b"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_INT8</span></span></span> <span class="pre">0</span><a class="headerlink" href="#c.KAS_INT8" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_UINT8">
+<span class="target" id="group___t_y_p_e___g_r_o_u_p_1gaf1d411591fcd398d525721607148a957"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_UINT8</span></span></span> <span class="pre">1</span><a class="headerlink" href="#c.KAS_UINT8" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_INT16">
+<span class="target" id="group___t_y_p_e___g_r_o_u_p_1ga5d352bdc65e5e5c1a46fa06e58b5934b"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_INT16</span></span></span> <span class="pre">2</span><a class="headerlink" href="#c.KAS_INT16" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_UINT16">
+<span class="target" id="group___t_y_p_e___g_r_o_u_p_1ga09945d92e54e0aaa7ae38379dd6316b8"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_UINT16</span></span></span> <span class="pre">3</span><a class="headerlink" href="#c.KAS_UINT16" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_INT32">
+<span class="target" id="group___t_y_p_e___g_r_o_u_p_1ga4394afac0920271f0e4821f586dcfb24"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_INT32</span></span></span> <span class="pre">4</span><a class="headerlink" href="#c.KAS_INT32" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_UINT32">
+<span class="target" id="group___t_y_p_e___g_r_o_u_p_1ga90dc3a062e5f0506303c8a26a8a82e75"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_UINT32</span></span></span> <span class="pre">5</span><a class="headerlink" href="#c.KAS_UINT32" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_INT64">
+<span class="target" id="group___t_y_p_e___g_r_o_u_p_1ga40e783de73dc5909d0677f178f9f6fe8"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_INT64</span></span></span> <span class="pre">6</span><a class="headerlink" href="#c.KAS_INT64" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_UINT64">
+<span class="target" id="group___t_y_p_e___g_r_o_u_p_1ga88b5003b8528f3527e1a7d56fb74603d"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_UINT64</span></span></span> <span class="pre">7</span><a class="headerlink" href="#c.KAS_UINT64" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_FLOAT32">
+<span class="target" id="group___t_y_p_e___g_r_o_u_p_1ga8622ab8e104d0a1177d1b9ba9557f0cd"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_FLOAT32</span></span></span> <span class="pre">8</span><a class="headerlink" href="#c.KAS_FLOAT32" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_FLOAT64">
+<span class="target" id="group___t_y_p_e___g_r_o_u_p_1ga9abeb4e03a97b9ebd97d7f6182e2ef86"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_FLOAT64</span></span></span> <span class="pre">9</span><a class="headerlink" href="#c.KAS_FLOAT64" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="version-information">
+<h3>Version information<a class="headerlink" href="#version-information" title="Link to this heading">#</a></h3>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_VERSION_MAJOR">
+<span class="target" id="group___a_p_i___v_e_r_s_i_o_n___g_r_o_u_p_1gaa1c1c248284b59cee08e995a340f1a3d"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_VERSION_MAJOR</span></span></span> <span class="pre">2</span><a class="headerlink" href="#c.KAS_VERSION_MAJOR" title="Link to this definition">#</a><br /></dt>
+<dd><p>The library major version. Incremented when breaking changes to the API or ABI are introduced. This includes any changes to the signatures of functions and the sizes and types of externally visible structs. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_VERSION_MINOR">
+<span class="target" id="group___a_p_i___v_e_r_s_i_o_n___g_r_o_u_p_1ga36805324af00bf6452c8c9246305b361"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_VERSION_MINOR</span></span></span> <span class="pre">1</span><a class="headerlink" href="#c.KAS_VERSION_MINOR" title="Link to this definition">#</a><br /></dt>
+<dd><p>The library minor version. Incremented when non-breaking backward-compatible changes to the API or ABI are introduced, i.e., the addition of a new function. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_VERSION_PATCH">
+<span class="target" id="group___a_p_i___v_e_r_s_i_o_n___g_r_o_u_p_1ga9f129f8055ddaf77af530718ab054a72"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_VERSION_PATCH</span></span></span> <span class="pre">2</span><a class="headerlink" href="#c.KAS_VERSION_PATCH" title="Link to this definition">#</a><br /></dt>
+<dd><p>The library patch version. Incremented when any changes not relevant to the to the API or ABI are introduced, i.e., internal refactors of bugfixes. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_FILE_VERSION_MAJOR">
+<span class="target" id="group___f_i_l_e___v_e_r_s_i_o_n___g_r_o_u_p_1ga36028090ffa5fa629b46970e3b4e536c"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_FILE_VERSION_MAJOR</span></span></span> <span class="pre">1</span><a class="headerlink" href="#c.KAS_FILE_VERSION_MAJOR" title="Link to this definition">#</a><br /></dt>
+<dd><p>The file version major number. Incremented when any breaking changes are made to the file format. </p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.KAS_FILE_VERSION_MINOR">
+<span class="target" id="group___f_i_l_e___v_e_r_s_i_o_n___g_r_o_u_p_1ga45498de39152f95f6eadcd510bfcb58c"></span><span class="sig-name descname"><span class="n"><span class="pre">KAS_FILE_VERSION_MINOR</span></span></span> <span class="pre">0</span><a class="headerlink" href="#c.KAS_FILE_VERSION_MINOR" title="Link to this definition">#</a><br /></dt>
+<dd><p>The file version minor number. Incremented when non-breaking backward-compatible changes are made to the file format. </p>
+</dd></dl>
+
+</section>
+</section>
+<section id="miscellaneous-functions">
+<h2>Miscellaneous functions<a class="headerlink" href="#miscellaneous-functions" title="Link to this heading">#</a></h2>
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.kas_version_t">
+<span class="target" id="structkas__version__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kas_version_t</span></span></span><a class="headerlink" href="#c.kas_version_t" title="Link to this definition">#</a><br /></dt>
+<dd><p>Library version information. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.kas_version_t.major">
+<span class="target" id="structkas__version__t_1ac8947941479c38403a09c14a60b03f01"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">major</span></span></span><a class="headerlink" href="#c.kas_version_t.major" title="Link to this definition">#</a><br /></dt>
+<dd><p>The major version number. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.kas_version_t.minor">
+<span class="target" id="structkas__version__t_1aec7b96885baf2e6f10efbdef9d935a0b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">minor</span></span></span><a class="headerlink" href="#c.kas_version_t.minor" title="Link to this definition">#</a><br /></dt>
+<dd><p>The minor version number. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.kas_version_t.patch">
+<span class="target" id="structkas__version__t_1a48843924eb2b9ecec5a10291d3588966"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">patch</span></span></span><a class="headerlink" href="#c.kas_version_t.patch" title="Link to this definition">#</a><br /></dt>
+<dd><p>The patch version number. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.kas_version">
+<span class="target" id="kastore_8h_1a34722e34629dcdcc5295c1eb070e4573"></span><a class="reference internal" href="#c.kas_version_t" title="kas_version_t"><span class="n"><span class="pre">kas_version_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kas_version</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.kas_version" title="Link to this definition">#</a><br /></dt>
+<dd><p>Returns the API version. </p>
+<p>The API follows the <a class="reference external" href="https://semver.org/">semver convention</a>, where the
+major, minor and patch numbers have specific meanings. The versioning
+scheme here also takes into account ABI compatability.</p>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="python-api.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Python API Documentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="format.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">File format</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-program">Example program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-principles">General principles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#array-lengths">Array lengths</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level">Top level</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_t"><code class="docutils literal notranslate"><span class="pre">kastore_t</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_open"><code class="docutils literal notranslate"><span class="pre">kastore_open()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_openf"><code class="docutils literal notranslate"><span class="pre">kastore_openf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_close"><code class="docutils literal notranslate"><span class="pre">kastore_close()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kas_strerror"><code class="docutils literal notranslate"><span class="pre">kas_strerror()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contains-functions">Contains functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_contains"><code class="docutils literal notranslate"><span class="pre">kastore_contains()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_containss"><code class="docutils literal notranslate"><span class="pre">kastore_containss()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-functions">Get functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_get"><code class="docutils literal notranslate"><span class="pre">kastore_get()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets"><code class="docutils literal notranslate"><span class="pre">kastore_gets()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typed-gets">Typed gets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_int8"><code class="docutils literal notranslate"><span class="pre">kastore_gets_int8()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_uint8"><code class="docutils literal notranslate"><span class="pre">kastore_gets_uint8()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_int16"><code class="docutils literal notranslate"><span class="pre">kastore_gets_int16()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_uint16"><code class="docutils literal notranslate"><span class="pre">kastore_gets_uint16()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_int32"><code class="docutils literal notranslate"><span class="pre">kastore_gets_int32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_uint32"><code class="docutils literal notranslate"><span class="pre">kastore_gets_uint32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_int64"><code class="docutils literal notranslate"><span class="pre">kastore_gets_int64()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_uint64"><code class="docutils literal notranslate"><span class="pre">kastore_gets_uint64()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_float32"><code class="docutils literal notranslate"><span class="pre">kastore_gets_float32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_gets_float64"><code class="docutils literal notranslate"><span class="pre">kastore_gets_float64()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-functions">Put functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_put"><code class="docutils literal notranslate"><span class="pre">kastore_put()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts"><code class="docutils literal notranslate"><span class="pre">kastore_puts()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typed-puts">Typed puts</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_int8"><code class="docutils literal notranslate"><span class="pre">kastore_puts_int8()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_uint8"><code class="docutils literal notranslate"><span class="pre">kastore_puts_uint8()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_int16"><code class="docutils literal notranslate"><span class="pre">kastore_puts_int16()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_uint16"><code class="docutils literal notranslate"><span class="pre">kastore_puts_uint16()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_int32"><code class="docutils literal notranslate"><span class="pre">kastore_puts_int32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_uint32"><code class="docutils literal notranslate"><span class="pre">kastore_puts_uint32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_int64"><code class="docutils literal notranslate"><span class="pre">kastore_puts_int64()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_uint64"><code class="docutils literal notranslate"><span class="pre">kastore_puts_uint64()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_float32"><code class="docutils literal notranslate"><span class="pre">kastore_puts_float32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_puts_float64"><code class="docutils literal notranslate"><span class="pre">kastore_puts_float64()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#own-put-functions">Own-put functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oput"><code class="docutils literal notranslate"><span class="pre">kastore_oput()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs"><code class="docutils literal notranslate"><span class="pre">kastore_oputs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typed-oputs">Typed oputs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_int8"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_int8()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_uint8"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_uint8()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_int16"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_int16()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_uint16"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_uint16()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_int32"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_int32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_uint32"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_uint32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_int64"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_int64()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_uint64"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_uint64()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_float32"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_float32()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kastore_oputs_float64"><code class="docutils literal notranslate"><span class="pre">kastore_oputs_float64()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constants">Constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errors">Errors</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_GENERIC"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_GENERIC</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_IO"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_IO</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_BAD_MODE"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_BAD_MODE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_NO_MEMORY"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_NO_MEMORY</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_BAD_FILE_FORMAT"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_BAD_FILE_FORMAT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_VERSION_TOO_OLD"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_VERSION_TOO_OLD</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_VERSION_TOO_NEW"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_VERSION_TOO_NEW</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_BAD_TYPE"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_BAD_TYPE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_EMPTY_KEY"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_EMPTY_KEY</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_DUPLICATE_KEY"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_DUPLICATE_KEY</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_KEY_NOT_FOUND"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_KEY_NOT_FOUND</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_ILLEGAL_OPERATION"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_ILLEGAL_OPERATION</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_TYPE_MISMATCH"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_TYPE_MISMATCH</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_EOF"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_EOF</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_ERR_BAD_FLAGS"><code class="docutils literal notranslate"><span class="pre">KAS_ERR_BAD_FLAGS</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types">Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_INT8"><code class="docutils literal notranslate"><span class="pre">KAS_INT8</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_UINT8"><code class="docutils literal notranslate"><span class="pre">KAS_UINT8</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_INT16"><code class="docutils literal notranslate"><span class="pre">KAS_INT16</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_UINT16"><code class="docutils literal notranslate"><span class="pre">KAS_UINT16</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_INT32"><code class="docutils literal notranslate"><span class="pre">KAS_INT32</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_UINT32"><code class="docutils literal notranslate"><span class="pre">KAS_UINT32</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_INT64"><code class="docutils literal notranslate"><span class="pre">KAS_INT64</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_UINT64"><code class="docutils literal notranslate"><span class="pre">KAS_UINT64</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_FLOAT32"><code class="docutils literal notranslate"><span class="pre">KAS_FLOAT32</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_FLOAT64"><code class="docutils literal notranslate"><span class="pre">KAS_FLOAT64</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-information">Version information</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_VERSION_MAJOR"><code class="docutils literal notranslate"><span class="pre">KAS_VERSION_MAJOR</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_VERSION_MINOR"><code class="docutils literal notranslate"><span class="pre">KAS_VERSION_MINOR</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_VERSION_PATCH"><code class="docutils literal notranslate"><span class="pre">KAS_VERSION_PATCH</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_FILE_VERSION_MAJOR"><code class="docutils literal notranslate"><span class="pre">KAS_FILE_VERSION_MAJOR</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KAS_FILE_VERSION_MINOR"><code class="docutils literal notranslate"><span class="pre">KAS_FILE_VERSION_MINOR</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#miscellaneous-functions">Miscellaneous functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kas_version_t"><code class="docutils literal notranslate"><span class="pre">kas_version_t</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kas_version_t.major"><code class="docutils literal notranslate"><span class="pre">major</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kas_version_t.minor"><code class="docutils literal notranslate"><span class="pre">minor</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kas_version_t.patch"><code class="docutils literal notranslate"><span class="pre">patch</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.kas_version"><code class="docutils literal notranslate"><span class="pre">kas_version()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
