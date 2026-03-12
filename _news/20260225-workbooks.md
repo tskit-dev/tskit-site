@@ -3,7 +3,7 @@ layout: news
 title: New interactive workbooks
 description: | 
   A set of interactive online workbooks are available at 
-  [https://tskit.dev/explore](https://tskit.dev/explore).
+  https://tskit.dev/explore.
 image: https://jupyterlite.readthedocs.io/en/stable/_static/wordmark-dark.svg
 timestamp: 2026-02-25
 author: Yan Wong
