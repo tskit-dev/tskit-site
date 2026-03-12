@@ -13,7 +13,7 @@ bundle install
 
 ## Building the site
 To build the site you will need a github auth token (for API requests, no permissions are
-needed on the token)
+needed on the token; the token must have a lifetime of a year or less)
 `GITHUB_TOKEN=YOUR_TOKEN_HERE grunt dev`
 
 ## Data sources
