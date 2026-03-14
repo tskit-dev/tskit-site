@@ -1,0 +1,1659 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Development &#8212; Tskit manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/bespoke.css?v=00f581dd" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'development';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelogs" href="changelogs.html" />
+    <link rel="prev" title="File formats" href="file-formats.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Version 1.0.2</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="provenance.html">Provenance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stats.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topological-analysis.html">Topological analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ibd.html">Identity by descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Data export</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python-api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba.html">Numba Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-api.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-formats.html">File formats</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">For developers</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelogs.html">Changelogs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing tskit</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/edit/main/docs/development.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/issues/new?title=Issue%20on%20page%20%2Fdevelopment.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/development.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Development</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#repo-administration">Repo administration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">Project structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">Environment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-workflow">Git workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-someone-else-s-pull-request">Checking out someone else’s pull request</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lint-checks-prek">Lint checks (prek)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#small-edits">Small edits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#significant-edits">Significant edits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markup-languages">Markup languages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-reference">API Reference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-referencing">Cross referencing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-library">Python library</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Getting started</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layout">Layout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-style">Code style</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tests">Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#packaging">Packaging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfacing-with-low-level-module">Interfacing with low-level module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-interface">Command line interface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-development-versions">Installing development versions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-library">C Library</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sec-development-c-requirements">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sec-development-c-code-style">Code style</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building">Building</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-flags">Compile flags</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests">Unit Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-coverage-reports">Viewing coverage reports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coding-conventions">Coding conventions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error handling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-assertions">Using assertions</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#type-conventions">Type conventions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-c-interface">Python C Interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compiling-and-debugging">Compiling and debugging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-memory-leaks">Testing for memory leaks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-integration-tests">Continuous Integration tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-development">Best Practices for Development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prek-is-blocking-me">prek is blocking me!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prek-reports-unexpected-failures">prek reports unexpected failures</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmarking">Benchmarking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-benchmarks">Running benchmarks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-new-benchmark">Adding a new benchmark</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-version-support">Python version support</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#releasing-a-new-version">Releasing a new version</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="development">
+<span id="sec-development"></span><h1>Development<a class="headerlink" href="#development" title="Link to this heading">#</a></h1>
+<p>If you would like to add some features to <code class="docutils literal notranslate"><span class="pre">tskit</span></code>, this
+documentation should help you get set up and contributing.
+Please help us to improve the documentation by either
+opening an <a class="reference external" href="http://github.com/tskit-dev/tskit/issues">issue</a> or
+<a class="reference external" href="http://github.com/tskit-dev/tskit/pulls">pull request</a> if you
+see any problems.</p>
+<p>The tskit-dev team strives to create a welcoming and open environment for
+contributors; please see our
+<a class="reference external" href="https://github.com/tskit-dev/.github/blob/main/CODE_OF_CONDUCT.md">code of conduct</a> for
+details. We wish our code and documentation to be
+<a class="reference external" href="https://chromium.googlesource.com/chromium/src/+/master/styleguide/inclusive_code.md">inclusive</a>
+and in particular to be gender and racially neutral.</p>
+<section id="repo-administration">
+<span id="sec-development-repo-admin"></span><h2>Repo administration<a class="headerlink" href="#repo-administration" title="Link to this heading">#</a></h2>
+<p>tskit is one of several packages in the tskit-dev ecosystem. Shared conventions
+for CI workflows, dependency management, repository layout, and releases are
+documented in the
+<a class="reference external" href="https://github.com/tskit-dev/.github/blob/main/repo_administration.md">repo administration guide</a>
+in the <code class="docutils literal notranslate"><span class="pre">tskit-dev/.github</span></code> repository. Maintainers should read that document
+before making changes to CI configuration, dependency groups, or the release process.</p>
+</section>
+<section id="project-structure">
+<span id="sec-development-structure"></span><h2>Project structure<a class="headerlink" href="#project-structure" title="Link to this heading">#</a></h2>
+<p>Tskit is a multi-language project, which is reflected in the directory
+structure:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">python</span></code> directory contains the Python library and command line interface,
+which is what most contributors are likely to be interested in. Please
+see the <a class="reference internal" href="#sec-development-python"><span class="std std-ref">Python library</span></a> section for details. The
+low-level <a class="reference internal" href="#sec-development-python-c"><span class="std std-ref">Python C Interface</span></a> is also defined here.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">c</span></code> directory contains the high-performance C library code. Please
+see the <a class="reference internal" href="#sec-development-c"><span class="std std-ref">C Library</span></a> for details on how to contribute.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory contains the source for this documentation,
+which covers both the Python and C APIs. Please see the <a class="reference internal" href="#sec-development-documentation"><span class="std std-ref">Documentation</span></a>
+for details.</p></li>
+</ul>
+<p>The remaining files in the root directory of the project are for
+controlling <a class="reference internal" href="#sec-development-continuous-integration"><span class="std std-ref">Continuous Integration tests</span></a> providers
+and other administrative purposes.</p>
+<p>Please see the <a class="reference internal" href="#sec-development-best-practices"><span class="std std-ref">Best Practices for Development</span></a> section for
+an overview of how to contribute a new feature to <code class="docutils literal notranslate"><span class="pre">tskit</span></code>.</p>
+</section>
+<section id="getting-started">
+<span id="sec-development-getting-started"></span><h2>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<section id="requirements">
+<span id="sec-development-getting-started-requirements"></span><h3>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h3>
+<p>To develop the Python code you will need a working C compiler and a
+and some build utilities. Additionally, the doxygen package
+is required for building the C API documentation.
+On Debian/Ubuntu we can install these with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>doxygen
+</pre></div>
+</div>
+<p>All Python development is managed using <a class="reference external" href="https://docs.astral.sh/uv/">uv</a>.
+It is not strictly necessary to use uv in order to make small changes, but
+the development workflows of all tskit-dev packages are organised around
+using uv, and therefore we strongly recommend using it. Uv is straightforward
+to install, and not invasive (existing Python installations can be completely
+isolated if you don’t use features like <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">tool</span></code> etc which update your
+$HOME/.local/bin). Uv manages an isolated local environment per project
+and allows us to deterministically pin package versions and easily switch
+between Python versions, so that CI environments can be replicated exactly
+locally.</p>
+<p>The packages needed for development are specified as dependency groups
+in <code class="docutils literal notranslate"><span class="pre">python/pyproject.toml</span></code> and managed with <a class="reference external" href="https://docs.astral.sh/uv/">uv</a>.
+Install all development dependencies using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>sync
+</pre></div>
+</div>
+<p>The lock file lives at <code class="docutils literal notranslate"><span class="pre">python/uv.lock</span></code> and must be kept up to date. Run
+<code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">lock</span></code> after any change to the dependencies in <code class="docutils literal notranslate"><span class="pre">python/pyproject.toml</span></code>.</p>
+<p>A few extra dependencies are required if you wish to work on the
+<a class="reference internal" href="#sec-development-c-requirements"><span class="std std-ref">C library</span></a>.</p>
+</section>
+<section id="environment">
+<span id="sec-development-getting-started-environment"></span><h3>Environment<a class="headerlink" href="#environment" title="Link to this heading">#</a></h3>
+<p>To get a local git development environment, please follow these steps:</p>
+<ul>
+<li><p>Make a fork of the tskit repo on <a class="reference external" href="http://github.com/tskit-dev/tskit">GitHub</a></p></li>
+<li><p>Clone your fork into a local directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:YOUR_GITHUB_USERNAME/tskit.git
+</pre></div>
+</div>
+</li>
+<li><p>Install the <a class="reference internal" href="#sec-development-workflow-prek"><span class="std std-ref">Lint checks (prek)</span></a> pre-commit hook:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>prek<span class="w"> </span>install
+</pre></div>
+</div>
+</li>
+</ul>
+<p>See the <a class="reference internal" href="#sec-development-workflow-git"><span class="std std-ref">Git workflow</span></a> section for detailed information
+on the recommended way to use git and GitHub.</p>
+</section>
+</section>
+<section id="workflow">
+<span id="sec-development-workflow"></span><h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h2>
+<section id="git-workflow">
+<span id="sec-development-workflow-git"></span><h3>Git workflow<a class="headerlink" href="#git-workflow" title="Link to this heading">#</a></h3>
+<p>If you would like to make an addition/fix to tskit, then follow the steps below
+to get things set up.
+If you would just like to review someone else’s proposed changes
+(either to the code or to the docs), then
+skip to <a class="reference internal" href="#sec-development-workflow-anothers-commit"><span class="std std-ref">Checking out someone else’s pull request</span></a>.</p>
+<ol class="arabic" start="0">
+<li><p>Open an <a class="reference external" href="http://github.com/tskit-dev/tskit/issues">issue</a> with your proposed
+functionality/fix. If adding or changing the public API close thought should be given to
+names and signatures of proposed functions. If consensus is reached that your
+proposed addition should be added to the codebase, proceed!</p></li>
+<li><p>Make your own <a class="reference external" href="https://help.github.com/articles/fork-a-repo/">fork</a>
+of the <code class="docutils literal notranslate"><span class="pre">tskit</span></code> repository on GitHub, and
+<a class="reference external" href="https://help.github.com/articles/cloning-a-repository/">clone</a>
+a local copy as detailed in <a class="reference internal" href="#sec-development-getting-started-environment"><span class="std std-ref">Environment</span></a>.</p></li>
+<li><p>Make sure that your local repository has been configured with an
+<a class="reference external" href="https://help.github.com/articles/configuring-a-remote-for-a-fork/">upstream remote</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/tskit-dev/tskit.git
+</pre></div>
+</div>
+</li>
+<li><p>Create a “topic branch” to work on. One reliable way to do it
+is to follow this recipe:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>fetch<span class="w"> </span>upstream
+$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>upstream/main
+$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>topic_branch_name
+</pre></div>
+</div>
+</li>
+<li><p>Write your code following the outline in <a class="reference internal" href="#sec-development-best-practices"><span class="std std-ref">Best Practices for Development</span></a>.
+As you work on your topic branch you can add commits to it. Once you’re
+ready to share this, you can then open a
+<a class="reference external" href="https://help.github.com/articles/about-pull-requests/">pull request (PR)</a>. This can be done at any
+time! You don’t have to have code that is completely functional and tested to get
+feedback. Use the drop-down button to create a “draft PR” to indicate that it’s not
+done, and explain in the comments what feedback you need and/or what you think needs
+to be done.</p></li>
+<li><p>As you code it is best to
+<a class="reference external" href="https://stdpopsim.readthedocs.io/en/latest/development.html#rebasing">rebase</a> your
+work onto the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch periodically (e.g. once a week) to keep up with changes.
+If you merge <code class="docutils literal notranslate"><span class="pre">main</span></code> via <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">main</span></code>
+it will create a much more complex rebase when your code is finally ready to be
+incorporated into the main branch, so should be avoided.</p></li>
+<li><p>Once you’re done coding add content to the tutorial and other documentation pages if
+appropriate.</p></li>
+<li><p>Update the change logs at <code class="docutils literal notranslate"><span class="pre">python/CHANGELOG.rst</span></code> and <code class="docutils literal notranslate"><span class="pre">c/CHANGELOG.rst</span></code>, taking care
+to document any breaking changes separately in a “breaking changes” section.</p></li>
+<li><p>Push your changes to your topic branch and either open the PR or, if you
+opened a draft PR above change it to a non-draft PR by clicking “Ready to
+Review”.</p></li>
+<li><p>The tskit community will review the code, asking you to make changes where appropriate.
+This usually takes at least two rounds of review.</p></li>
+<li><p>Once the review process is complete, squash the commits to the minimal set of changes -
+usually one or two commits. Please follow
+<a class="reference external" href="https://stdpopsim.readthedocs.io/en/stable/development.html#rebasing">this guide</a> for
+step-by-step instructions on rebasing and squashing commits.</p></li>
+<li><p>Your PR will be merged, time to celebrate! 🎉🍾</p></li>
+</ol>
+</section>
+<section id="checking-out-someone-else-s-pull-request">
+<span id="sec-development-workflow-anothers-commit"></span><h3>Checking out someone else’s pull request<a class="headerlink" href="#checking-out-someone-else-s-pull-request" title="Link to this heading">#</a></h3>
+<p>Sometimes you want to just check out someone else’s pull request,
+for the purpose of trying it out and giving them feedback.
+To do this, you first need your own local version of the git repository,
+so you should first do steps 1 and 2 above.
+(Strictly speaking, you don’t need a fork on github
+if you don’t plan to edit, but it won’t hurt.)
+Continuing from there, let’s say you want to check out the current
+state of the code on <a class="reference external" href="https://github.com/tskit-dev/tskit/pull/854">pull request #854</a>.
+(So, below you should replace <code class="docutils literal notranslate"><span class="pre">854</span></code> with the number of the pull request
+that you actually want to investigate.)
+Then, continuing from above:</p>
+<ol class="arabic" start="3">
+<li><p>Fetch the pull request, and store it as a local branch.
+For instance, to name the local branch <code class="docutils literal notranslate"><span class="pre">my_pr_copy</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>fetch<span class="w"> </span>upstream<span class="w"> </span>pull/854/head:my_pr_copy
+</pre></div>
+</div>
+<p>You should probably call the branch something more descriptive,
+though. (Also note that you might need to put <code class="docutils literal notranslate"><span class="pre">origin</span></code> instead
+of <code class="docutils literal notranslate"><span class="pre">upstream</span></code> for the remote repository name: see <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code>
+for a list of possible remotes.)</p>
+</li>
+<li><p>Check out the pull request’s local branch:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>my_pr_copy
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Now, your repository will be in exactly the same state as
+that of the person who’s submitted the pull request.
+Great! Now you can test things out.</p>
+<p>To view the documentation,
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">docs</span> <span class="pre">&amp;&amp;</span> <span class="pre">make</span></code>, which should build the documentation,
+and then navigate your web browser to the <code class="docutils literal notranslate"><span class="pre">docs/_build/html/</span></code>
+subdirectory.</p>
+<p>To test out changes to the <em>code</em>, you can change to the <code class="docutils literal notranslate"><span class="pre">python/</span></code> subdirectory,
+and run <code class="docutils literal notranslate"><span class="pre">make</span></code> to compile the C code.
+If you then execute <code class="docutils literal notranslate"><span class="pre">python</span></code> from this subdirectory (and only this one!),
+it will use the modified version of the package.
+(For instance, you might want to
+open an interactive <code class="docutils literal notranslate"><span class="pre">python</span></code> shell from the <code class="docutils literal notranslate"><span class="pre">python/</span></code> subdirectory,
+or running <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">pytest</span></code> from this subdirectory.)</p>
+<p>After you’re done, you should do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>main
+</pre></div>
+</div>
+<p>to get your repository back to the “main” branch of development.
+If the pull request is changed and you want to do the same thing again,
+then first <em>delete</em> your local copy (by doing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">my_pr_copy</span></code>)
+and repeat the steps again.</p>
+</section>
+<section id="lint-checks-prek">
+<span id="sec-development-workflow-prek"></span><h3>Lint checks (prek)<a class="headerlink" href="#lint-checks-prek" title="Link to this heading">#</a></h3>
+<p>On each commit a <a class="reference external" href="https://prek.j178.dev">prek</a> hook will run checks for
+code style (see the <a class="reference internal" href="#sec-development-python-style"><span class="std std-ref">Code style</span></a> section for details)
+and other common problems.</p>
+<p>To install the hook:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>prek<span class="w"> </span>install
+</pre></div>
+</div>
+<p>To run checks manually without committing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>prek<span class="w"> </span>--all-files
+</pre></div>
+</div>
+<p>If local results differ from CI, run <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">prek</span> <span class="pre">cache</span> <span class="pre">clean</span></code> to clear the cache.
+To bypass the checks temporarily use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--no-verify</span></code>.</p>
+</section>
+</section>
+<section id="documentation">
+<span id="sec-development-documentation"></span><h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h2>
+<p>The documentation for tskit is written using
+<a class="reference external" href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> and contained in the <code class="docutils literal notranslate"><span class="pre">docs</span></code>
+directory. Narrative pages are written in
+<a class="reference external" href="https://jupyterbook.org/content/myst.html">MyST Markdown</a> and built with
+<a class="reference external" href="https://jupyterbook.org/">JupyterBook</a>, which executes embedded Python code
+cells and inserts their output before deployment. API docstrings are written in
+<a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. For the C code,
+a combination of <a class="reference external" href="http://www.doxygen.nl/">Doxygen</a> and
+<a class="reference external" href="https://breathe.readthedocs.io/en/latest/">breathe</a> generates API documentation.
+The docs are deployed automatically to the <a class="reference external" href="https://tskit.dev/">tskit.dev website</a>.</p>
+<p>Please help us to improve the documentation! You can check on the list of
+<a class="reference external" href="https://github.com/tskit-dev/tskit/issues?q=is%3Aissue+is%3Aopen+label%3Adocumentation">documentation issues</a>
+on GitHub, and help us fix any, or add issues for anything that’s wrong or missing.</p>
+<section id="small-edits">
+<h3>Small edits<a class="headerlink" href="#small-edits" title="Link to this heading">#</a></h3>
+<p>If you see a typo or some other small problem that you’d like to fix,
+this is most easily done through the GitHub UI.</p>
+<p>Mouse over the GitHub icon at the top right of the page and
+click on the “Suggest edit” button. This will bring you to a web
+editor on GitHub for the source file in question, allowing you to
+quickly fix the typo and submit a pull request with the changes.
+Fix the typo, click the “Commit changes”, add a commit message like
+“Fixed typo” and click on the green “Propose file change” button.
+Then follow the dialogues until you’ve created a new pull request
+with your changes, so that we can incorporate them.</p>
+<p>If the change you’d like to make is in the API documentation
+for a particular function, then you’ll need to find where this
+function is defined first. The simplest way to do this is
+to click the green “[source]” link next to the function. This
+will show you a HTML rendered version of the function, and the
+rest of the file that it is in. You can then navigate to this
+file on GitHub, and edit it using the same approach as above.</p>
+</section>
+<section id="significant-edits">
+<h3>Significant edits<a class="headerlink" href="#significant-edits" title="Link to this heading">#</a></h3>
+<p>When making changes more substantial than typo fixes it’s best
+to check out a local copy.
+Follow the steps in the <a class="reference internal" href="#sec-development-workflow-git"><span class="std std-ref">Git workflow</span></a> to
+get a fork of tskit, a local clone and newly checked out
+feature branch. Then follow the steps in the
+<a class="reference internal" href="#sec-development-getting-started"><span class="std std-ref">Getting started</span></a> section to get a
+working development environment.</p>
+<p>Once you are ready to make edits to the documentation,
+<code class="docutils literal notranslate"><span class="pre">cd</span></code> into the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory and run <code class="docutils literal notranslate"><span class="pre">make</span></code>.
+This should build the HTML
+documentation in <code class="docutils literal notranslate"><span class="pre">docs/_build/html/</span></code>, which you can then view in
+your browser. As you make changes, run <code class="docutils literal notranslate"><span class="pre">make</span></code> regularly and
+view the final result to see if it matches your expectations.</p>
+<p>Once you are happy with the changes, commit your updates and
+open a pull request on GitHub.</p>
+</section>
+<section id="markup-languages">
+<span id="sec-development-documentation-markup"></span><h3>Markup languages<a class="headerlink" href="#markup-languages" title="Link to this heading">#</a></h3>
+<p>Because of the mixture of API documentation and notebook content, documentation
+is written using <strong>two different markup languages</strong>:</p>
+<ul class="simple">
+<li><p><strong>MyST Markdown</strong> for all narrative pages, thematic sections, and code
+examples. This is a superset of <a class="reference external" href="https://commonmark.org">CommonMark</a> that
+enables executable Jupyter content and Sphinx cross-referencing.</p></li>
+<li><p><strong>reStructuredText (rST)</strong> for API docstrings embedded in the source code.
+These are processed by Sphinx and appear in the API reference pages.</p></li>
+</ul>
+<p>Some useful links for MyST:</p>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://jupyterbook.org/reference/cheatsheet.html">MyST cheat sheet</a></p></li>
+<li><p>The “Write Book Content” section of the <a class="reference external" href="https://jupyterbook.org/">Jupyter Book</a> docs</p></li>
+<li><p>The <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/using/syntax.html">MyST Syntax Guide</a></p></li>
+<li><p>The <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html">Sphinx domains reference</a>
+for marking up Python and C API elements</p></li>
+<li><p>The <a class="reference external" href="https://jupyterbook.org/file-types/index.html">types of source files</a>
+in the Jupyter Book docs (useful for understanding the MyST/rST mix)</p></li>
+</ul>
+<p>Some directives are only available in rST and must be wrapped in an
+<code class="docutils literal notranslate"><span class="pre">eval-rst</span></code> block within a Markdown file:</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>```{eval-rst}
+.. autoclass:: tskit.TreeSequence
+```
+</pre></div>
+</div>
+</section>
+<section id="api-reference">
+<span id="sec-development-documentation-api"></span><h3>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h3>
+<p>API reference documentation comes from
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">docstrings</a> in the source code,
+written in rST. Docstrings should be <strong>concise</strong> and <strong>precise</strong>. Examples
+should not be embedded directly in docstrings; instead, each significant
+parameter should link to the relevant section in the narrative documentation.</p>
+</section>
+<section id="examples">
+<span id="sec-development-documentation-examples"></span><h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<p>Narrative sections should provide context and worked examples using inline
+Jupyter code cells. These behave exactly like cells in a Jupyter notebook —
+the whole page is executed as one notebook during the build.</p>
+<p>Code cells are written like this:</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>```{code-cell}
+import tskit
+<span class="gh"># example code here</span>
+```
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For a page to be executed as a notebook you <strong>must</strong> have the correct
+<a class="reference external" href="https://jupyterbook.org/reference/cheatsheet.html#executable-code">YAML frontmatter</a>
+at the top of the file.</p>
+</div>
+</section>
+<section id="cross-referencing">
+<span id="sec-development-documentation-cross-referencing"></span><h3>Cross referencing<a class="headerlink" href="#cross-referencing" title="Link to this heading">#</a></h3>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">{ref}</span></code> role to link to labelled sections within the docs:</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>See the {ref}`sec_development_documentation_cross_referencing` section for details.
+</pre></div>
+</div>
+<p>Sections should be labelled hierarchically immediately above the heading:</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>(sec_development_documentation_cross_referencing)=
+<span class="gu">### Cross referencing</span>
+</pre></div>
+</div>
+<p>The label is used as link text automatically, but can be overridden:</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>See {ref}`this section &lt;sec_development_documentation_cross_referencing&gt;` for more.
+</pre></div>
+</div>
+<p>To refer to API elements, use the appropriate inline role:</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>The {class}`.TreeSequence` class, the {meth}`.TreeSequence.trees` method,
+and the {func}`.load` function.
+</pre></div>
+</div>
+<p>From an rST docstring, use the colon-prefixed equivalents:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>See <span class="na">:ref:</span><span class="nv">`sec_development_documentation_cross_referencing`</span> for details.
+The <span class="na">:meth:</span><span class="nv">`.TreeSequence.trees`</span> method returns an iterator.
+</pre></div>
+</div>
+</section>
+</section>
+<section id="python-library">
+<span id="sec-development-python"></span><h2>Python library<a class="headerlink" href="#python-library" title="Link to this heading">#</a></h2>
+<p>The Python library is defined in the <code class="docutils literal notranslate"><span class="pre">python</span></code> directory. We assume throughout
+this section that you have <code class="docutils literal notranslate"><span class="pre">cd</span></code>’d into this directory.
+The low-level C extension is built automatically as part of <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">sync</span></code>.
+Please see the <a class="reference internal" href="#sec-development-python-troubleshooting"><span class="std std-ref">Troubleshooting</span></a> section for help
+if you encounter problems with compiling or running the tests.</p>
+<section id="id1">
+<h3>Getting started<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>After you have installed the basic <a class="reference internal" href="#sec-development-getting-started-requirements"><span class="std std-ref">Requirements</span></a>
+and created a <a class="reference internal" href="#sec-development-getting-started-environment"><span class="std std-ref">development environment</span></a>,
+run <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">sync</span></code> at the repo root. This will install all dependencies and build
+the low-level <a class="reference internal" href="#sec-development-python-c"><span class="std std-ref">Python C Interface</span></a> module automatically.</p>
+<p>To make sure that your development environment is working, run some
+<a class="reference internal" href="#sec-development-python-tests"><span class="std std-ref">tests</span></a>.</p>
+</section>
+<section id="layout">
+<h3>Layout<a class="headerlink" href="#layout" title="Link to this heading">#</a></h3>
+<p>Code for the <code class="docutils literal notranslate"><span class="pre">tskit</span></code> module is in the <code class="docutils literal notranslate"><span class="pre">tskit</span></code> directory. The code is split
+into a number of modules that are roughly split by function; for example,
+code for visualisation is kept in the <code class="docutils literal notranslate"><span class="pre">tskit/drawing.py</span></code>.</p>
+<p>Test code is contained in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory. Tests are also roughly split
+by function, so that tests for the <code class="docutils literal notranslate"><span class="pre">drawing</span></code> module are in the
+<code class="docutils literal notranslate"><span class="pre">tests/test_drawing.py</span></code> file. This is not a one-to-one mapping, though.</p>
+<p>Development dependencies are specified in the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file
+and can be installed using <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">sync</span></code>.</p>
+</section>
+<section id="code-style">
+<span id="sec-development-python-style"></span><h3>Code style<a class="headerlink" href="#code-style" title="Link to this heading">#</a></h3>
+<p>Python code in tskit is formatted and linted using
+<a class="reference external" href="https://docs.astral.sh/ruff/">ruff</a>. These checks run automatically as part of
+the <a class="reference internal" href="#sec-development-workflow-prek"><span class="std std-ref">prek checks</span></a> on each commit.</p>
+<p>Ruff is quite opinionated and it gains more opinions on each version.
+We therefore pin ruff to an exact version and maintain a list of “ignore”
+classes in pyproject.toml. The version of ruff should be updated periodically
+with fixes applied or the the list ignore extended as necessary.</p>
+</section>
+<section id="tests">
+<span id="sec-development-python-tests"></span><h3>Tests<a class="headerlink" href="#tests" title="Link to this heading">#</a></h3>
+<p>The tests are defined in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory, and run using
+<a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a> from the <code class="docutils literal notranslate"><span class="pre">python</span></code> directory.
+If you want to run the tests in a particular module (say, <code class="docutils literal notranslate"><span class="pre">test_tables.py</span></code>), use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_tables.py
+</pre></div>
+</div>
+<p>To run all the tests in a particular class in this module (say, <code class="docutils literal notranslate"><span class="pre">TestNodeTable</span></code>)
+use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_tables.py::TestNodeTable
+</pre></div>
+</div>
+<p>To run a specific test case in this class (say, <code class="docutils literal notranslate"><span class="pre">test_copy</span></code>) use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_tables.py::TestNodeTable::test_copy
+</pre></div>
+</div>
+<p>You can also run tests with a keyword expression search. For example this will
+run all tests that have <code class="docutils literal notranslate"><span class="pre">TestNodeTable</span></code> but not <code class="docutils literal notranslate"><span class="pre">copy</span></code> in their name:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-k<span class="w"> </span><span class="s2">&quot;TestNodeTable and not copy&quot;</span>
+</pre></div>
+</div>
+<p>When developing your own tests, it is much quicker to run the specific tests
+that you are developing rather than rerunning large sections of the test
+suite each time.</p>
+<p>To run all of the tests, we can use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>pytest
+</pre></div>
+</div>
+<p>By default the tests are run on 4 cores, if you have more you can specify:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-n8
+</pre></div>
+</div>
+<p>A few of the tests take most of the time, we can skip the slow tests to get the test run
+under 20 seconds on an modern workstation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--skip-slow
+</pre></div>
+</div>
+<p>If you have an agent running the tests in a sandboxed environment, you may need to
+skip tests thsat require network access or FIFOs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--skip-network
+</pre></div>
+</div>
+<p>If you have a lot of failing tests it can be useful to have a shorter summary
+of the failing lines:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--tb<span class="o">=</span>line
+</pre></div>
+</div>
+<p>If you need to see the output of tests (e.g. <code class="docutils literal notranslate"><span class="pre">print</span></code> statements) then you need to use
+these flags to run a single thread and capture output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-n0<span class="w"> </span>-vs
+</pre></div>
+</div>
+<p>All new code must have high test coverage, which will be checked as part of the
+<a class="reference internal" href="#sec-development-continuous-integration"><span class="std std-ref">Continuous Integration tests</span></a>
+tests by <a class="reference external" href="https://codecov.io/gh/tskit-dev/tskit/">CodeCov</a>.
+All tests must pass for a PR to be accepted.</p>
+</section>
+<section id="packaging">
+<h3>Packaging<a class="headerlink" href="#packaging" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">tskit</span></code> Python module follows the current
+<a class="reference external" href="http://packaging.python.org">best-practices</a> advocated by the
+<a class="reference external" href="http://pypa.io/en/latest/">Python Packaging Authority</a>. The primary means of
+distribution is though <a class="reference external" href="http://pypi.python.org/pypi/tskit">PyPI</a>, which provides the
+canonical source for each release.</p>
+<p>A package for <a class="reference external" href="http://conda.io/docs/">conda</a> is also available on
+<a class="reference external" href="https://github.com/conda-forge/tskit-feedstock">conda-forge</a>.</p>
+</section>
+<section id="interfacing-with-low-level-module">
+<h3>Interfacing with low-level module<a class="headerlink" href="#interfacing-with-low-level-module" title="Link to this heading">#</a></h3>
+<p>Much of the high-level Python code only exists to provide a simpler interface to
+the low-level <a class="reference internal" href="#sec-development-python-c"><span class="std std-ref">_tskit</span></a> module.
+As such, many objects (e.g. <a class="reference internal" href="python-api.html#tskit.Tree" title="tskit.Tree"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tree</span></code></a>)
+are really just a shallow layer on top of the corresponding low-level object.
+The usual convention here is to keep a reference to the low-level object via
+a private instance variable such as <code class="docutils literal notranslate"><span class="pre">self._ll_tree</span></code>.</p>
+</section>
+<section id="command-line-interface">
+<h3>Command line interface<a class="headerlink" href="#command-line-interface" title="Link to this heading">#</a></h3>
+<p>The command line interface for <code class="docutils literal notranslate"><span class="pre">tskit</span></code> is defined in the <code class="docutils literal notranslate"><span class="pre">tskit/cli.py</span></code> file.
+The entry point <code class="docutils literal notranslate"><span class="pre">tskit_main</span></code> is declared under <code class="docutils literal notranslate"><span class="pre">[project.scripts]</span></code> in
+<code class="docutils literal notranslate"><span class="pre">python/pyproject.toml</span></code>, which makes <code class="docutils literal notranslate"><span class="pre">tskit</span></code> available as a command after
+installation.</p>
+<p>The CLI can also be run using <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">-m</span> <span class="pre">tskit</span></code> during development.</p>
+</section>
+<section id="installing-development-versions">
+<span id="sec-development-installing"></span><h3>Installing development versions<a class="headerlink" href="#installing-development-versions" title="Link to this heading">#</a></h3>
+<p>We <strong>strongly</strong> recommend that you do not install development versions of
+<code class="docutils literal notranslate"><span class="pre">tskit</span></code> and instead use versions released to PyPI and conda-forge.
+However, if you really need to be on the bleeding edge, you can use
+the following command to install:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/tskit-dev/tskit.git#subdirectory<span class="o">=</span>python
+</pre></div>
+</div>
+<p>(Because the Python package is not defined in the project root directory, using pip to
+install directly from  GitHub requires you to specify <code class="docutils literal notranslate"><span class="pre">subdirectory=python</span></code>.)</p>
+</section>
+<section id="troubleshooting">
+<span id="sec-development-python-troubleshooting"></span><h3>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">make</span></code> is giving you strange errors, or if tests are failing for
+strange reasons, try running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> in the project root
+and then rebuilding.</p></li>
+<li><p>Beware of multiple versions of the python library installed by different
+programs (e.g., pip versus installing locally from source)! In python,
+<code class="docutils literal notranslate"><span class="pre">tskit.__file__</span></code> will tell you the location of the package that is being
+used.</p></li>
+<li><p>Installation of development version is not supported in Windows. Windows
+users should try using a Linux envronment by using
+<a class="reference external" href="https://learn.microsoft.com/windows/wsl/">WSL</a>, for example.</p></li>
+</ul>
+</section>
+</section>
+<section id="c-library">
+<span id="sec-development-c"></span><h2>C Library<a class="headerlink" href="#c-library" title="Link to this heading">#</a></h2>
+<p>The Python module uses the high-performance tskit <a class="reference internal" href="c-api.html#sec-c-api"><span class="std std-ref">C API</span></a>
+behind the scenes. All C code and associated development infrastructure
+is held in the <code class="docutils literal notranslate"><span class="pre">c</span></code> directory.</p>
+<section id="sec-development-c-requirements">
+<span id="id2"></span><h3>Requirements<a class="headerlink" href="#sec-development-c-requirements" title="Link to this heading">#</a></h3>
+<p>We use the
+<a class="reference external" href="https://mesonbuild.com">meson</a> build system in conjunction with
+<a class="reference external" href="https://ninja-build.org">ninja-build</a> to compile the C code.
+Unit tests use the <a class="reference external" href="http://cunit.sourceforge.net">CUnit</a> library
+and we use <a class="reference external" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a>
+to automatically format code.
+On Debian/Ubuntu, install the system dependencies with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libcunit1-dev<span class="w"> </span>ninja-build
+</pre></div>
+</div>
+<p>Install meson using uv:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>meson
+</pre></div>
+</div>
+<p>An exact version of clang-format is required because formatting rules
+change from version to version. This is why we pin to an exact version
+of clang-format in pyproject.toml, which gets used by prek linting.
+If you wish to run clang-format yourself (e.g., within your editor)
+a straightforward way to do this is to use <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">tool</span> <span class="pre">install</span> <span class="pre">clang-format==[version]</span></code>,
+which will install to your PATH.
+However, you will need to manually keep track of what version is installed
+(<code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">tool</span> <span class="pre">list</span></code> is useful for this).</p>
+</section>
+<section id="sec-development-c-code-style">
+<span id="id3"></span><h3>Code style<a class="headerlink" href="#sec-development-c-code-style" title="Link to this heading">#</a></h3>
+<p>C code is formatted using
+<a class="reference external" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a>
+with a custom configuration. This is checked as part of the
+<a class="reference internal" href="#sec-development-workflow-prek"><span class="std std-ref">prek checks</span></a>. To manually format all files run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>prek<span class="w"> </span>--all-files
+</pre></div>
+</div>
+<p>If you are doing this in the <code class="docutils literal notranslate"><span class="pre">c</span></code> directory, use
+<code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">--project=../python</span> <span class="pre">prek</span> <span class="pre">--all-files</span></code>.</p>
+<p>If you are getting obscure errors from prek, sometimes this is caused by
+prek searching for configuration within subdirectories. To avoid this, tell
+prek where to find its config explicitly:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>prek<span class="w"> </span>--all-files<span class="w"> </span>-c<span class="w"> </span>prek.toml
+</pre></div>
+</div>
+</section>
+<section id="building">
+<h3>Building<a class="headerlink" href="#building" title="Link to this heading">#</a></h3>
+<p>We use <a class="reference external" href="https://mesonbuild.com">meson</a> and <a class="reference external" href="https://ninja-build.org">ninja-build</a> to
+compile the C code. Meson keeps all compiled binaries in a build directory (this has many advantages
+such as allowing multiple builds with different options to coexist). The build configuration
+is defined in <code class="docutils literal notranslate"><span class="pre">meson.build</span></code>. To set up the initial build
+directory, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>c
+$<span class="w"> </span>meson<span class="w"> </span>setup<span class="w"> </span>build
+</pre></div>
+</div>
+<p>To setup a debug build add <code class="docutils literal notranslate"><span class="pre">--buildtype=debug</span></code> to the above command. This will set the <code class="docutils literal notranslate"><span class="pre">TSK_TRACE_ERRORS</span></code>
+flag, which will print error messages to <code class="docutils literal notranslate"><span class="pre">stderr</span></code> when errors occur which is useful for debugging.</p>
+<p>To compile the code run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ninja<span class="w"> </span>-C<span class="w"> </span>build
+</pre></div>
+</div>
+<p>All the tests and other artefacts are in the build directory. Individual test
+suites can be run, via (e.g.) <code class="docutils literal notranslate"><span class="pre">./build/test_trees</span></code>. To run all of the tests,
+run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ninja<span class="w"> </span>-C<span class="w"> </span>build<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+<p>For vim users, the <a class="reference external" href="https://www.vim.org/scripts/script.php?script_id=5378">mesonic</a> plugin
+simplifies this process and allows code to be compiled seamlessly within the
+editor.</p>
+</section>
+<section id="compile-flags">
+<h3>Compile flags<a class="headerlink" href="#compile-flags" title="Link to this heading">#</a></h3>
+<p>If the flag <code class="docutils literal notranslate"><span class="pre">TSK_TRACE_ERRORS</span></code> is defined (by e.g. <code class="docutils literal notranslate"><span class="pre">-DTSK_TRACE_ERRORS</span></code> to gcc),
+then error messages will be printed to <code class="docutils literal notranslate"><span class="pre">stderr</span></code> when errors occur. This also allows
+breakpoints to be set in the <code class="docutils literal notranslate"><span class="pre">_tsk_trace_error</span></code> function to break on all errors.</p>
+</section>
+<section id="unit-tests">
+<h3>Unit Tests<a class="headerlink" href="#unit-tests" title="Link to this heading">#</a></h3>
+<p>The C-library has an extensive suite of unit tests written using
+<a class="reference external" href="http://cunit.sourceforge.net">CUnit</a>. These tests aim to establish that the
+low-level APIs work correctly over a variety of inputs, and particularly, that
+the tests don’t result in leaked memory or illegal memory accesses. All tests
+are run under valgrind to make sure of this as part of the
+<a class="reference internal" href="#sec-development-continuous-integration"><span class="std std-ref">Continuous Integration tests</span></a>.</p>
+<p>Tests are defined in the <code class="docutils literal notranslate"><span class="pre">tests/*.c</span></code> files. These are roughly split by
+the source files, so that the tests for functionality in the <code class="docutils literal notranslate"><span class="pre">tskit/tables.c</span></code> file
+will be tested in <code class="docutils literal notranslate"><span class="pre">tests/test_tables.c</span></code>.
+To run all the tests
+in the <code class="docutils literal notranslate"><span class="pre">test_tables</span></code> suite, run (e.g.) <code class="docutils literal notranslate"><span class="pre">./build/test_tables</span></code>.
+To just run a specific test on its own, provide
+this test name as a command line argument, e.g.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./build/test_tables<span class="w"> </span>test_node_table
+</pre></div>
+</div>
+<p>While 100% test coverage is not feasible for C code, we aim to cover all code
+that can be reached. (Some classes of error such as malloc failures
+and IO errors are difficult to simulate in C.) Code coverage statistics are
+automatically tracked using <a class="reference external" href="https://codecov.io/gh/tskit-dev/tskit/">CodeCov</a>.</p>
+</section>
+<section id="viewing-coverage-reports">
+<h3>Viewing coverage reports<a class="headerlink" href="#viewing-coverage-reports" title="Link to this heading">#</a></h3>
+<p>To generate and view coverage reports for the C tests locally:</p>
+<p>Compile with coverage enabled:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>c
+$<span class="w"> </span>meson<span class="w"> </span>build<span class="w"> </span>-D<span class="w"> </span><span class="nv">b_coverage</span><span class="o">=</span><span class="nb">true</span>
+$<span class="w"> </span>ninja<span class="w"> </span>-C<span class="w"> </span>build
+</pre></div>
+</div>
+<p>Run the tests:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ninja<span class="w"> </span>-C<span class="w"> </span>build<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+<p>Generate coverage data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+$<span class="w"> </span>find<span class="w"> </span>../tskit/*.c<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-printf<span class="w"> </span><span class="s2">&quot;%f\n&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-i<span class="w"> </span>gcov<span class="w"> </span>-pb<span class="w"> </span>libtskit.a.p/tskit_<span class="o">{}</span>.gcno<span class="w"> </span>../tskit/<span class="o">{}</span>
+</pre></div>
+</div>
+<p>The generated <code class="docutils literal notranslate"><span class="pre">.gcov</span></code> files can then be viewed directly with <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">filename.c.gcov</span></code>.
+Lines prefixed with <code class="docutils literal notranslate"><span class="pre">#####</span></code> were never executed, lines with numbers show execution counts, and lines with <code class="docutils literal notranslate"><span class="pre">-</span></code> are non-executable code.</p>
+<p><code class="docutils literal notranslate"><span class="pre">lcov</span></code> can be used to create browsable HTML coverage reports:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>lcov<span class="w">  </span><span class="c1"># if needed</span>
+$<span class="w"> </span>lcov<span class="w"> </span>--capture<span class="w"> </span>--directory<span class="w"> </span>build-gcc<span class="w"> </span>--output-file<span class="w"> </span>coverage.info
+$<span class="w"> </span>genhtml<span class="w"> </span>coverage.info<span class="w"> </span>--output-directory<span class="w"> </span>coverage_html
+$<span class="w"> </span>firefox<span class="w"> </span>coverage_html/index.html
+</pre></div>
+</div>
+</section>
+<section id="coding-conventions">
+<h3>Coding conventions<a class="headerlink" href="#coding-conventions" title="Link to this heading">#</a></h3>
+<p>The code is written using the <a class="reference external" href="https://en.wikipedia.org/wiki/C99">C99</a> standard. All
+variable declarations should be done at the start of a function, and functions
+kept short and simple where at all possible.</p>
+<p>No global or module level variables are used for production code.</p>
+<p>Function parameters should be marked as <code class="docutils literal notranslate"><span class="pre">const</span></code> where possible.
+Parameters that are used as return variables should come last.
+The common <code class="docutils literal notranslate"><span class="pre">options</span></code> parameter should be the last non-output
+parameter.</p>
+<p>Please see the <a class="reference internal" href="c-api.html#sec-c-api-overview-structure"><span class="std std-ref">API structure</span></a> section for more information
+about how the API is structured.</p>
+</section>
+<section id="error-handling">
+<h3>Error handling<a class="headerlink" href="#error-handling" title="Link to this heading">#</a></h3>
+<p>A critical element of producing reliable C programs is consistent error handling
+and checking of return values. All return values <strong>must</strong> be checked! In tskit,
+all functions (except the most trivial accessors) return an integer to indicate
+success or failure. Any negative value is an error, and must be handled accordingly.
+The following pattern is canonical:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tsk_tree_do_something</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">argument</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">goto</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// rest of function</span>
+<span class="nl">out</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Here we test the return value of <code class="docutils literal notranslate"><span class="pre">tsk_tree_do_something</span></code> and if it is non-zero,
+abort the function and return this same value from the current function. This
+is a bit like throwing an exception in higher-level languages, but discipline
+is required to ensure that the error codes are propagated back to the original
+caller correctly.</p>
+<p>Particular care must be taken in functions that allocate memory, because
+we must ensure that this memory is freed in all possible success and
+failure scenarios. The following pattern is used throughout for this purpose:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tsk_trace_error</span><span class="p">(</span><span class="n">TSK_ERR_NO_MEMORY</span><span class="p">);</span>
+<span class="w">        </span><span class="k">goto</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// rest of function</span>
+<span class="nl">out</span><span class="p">:</span>
+<span class="w">    </span><span class="n">tsk_safe_free</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>It is vital here that <code class="docutils literal notranslate"><span class="pre">x</span></code> is initialised to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> so that we are guaranteed
+correct behaviour in all cases. For this reason, the convention is to declare all
+pointer variables on a single line and to initialise them to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> as part
+of the declaration.</p>
+<p>Error codes are defined in <code class="docutils literal notranslate"><span class="pre">core.h</span></code>, and these can be translated into a
+message using <code class="docutils literal notranslate"><span class="pre">tsk_strerror(err)</span></code>.</p>
+<p>When setting error codes in the C code, please use the <code class="docutils literal notranslate"><span class="pre">tsk_trace_error</span></code> function.
+If <code class="docutils literal notranslate"><span class="pre">TSK_TRACE_ERRORS</span></code> is defined, this will print a message to stderr with the
+details of the error.</p>
+<section id="using-assertions">
+<h4>Using assertions<a class="headerlink" href="#using-assertions" title="Link to this heading">#</a></h4>
+<p>There are two different ways to express assertions in tskit code.
+The first is using the custom <code class="docutils literal notranslate"><span class="pre">tsk_bug_assert</span></code> macro, which is used to
+make inexpensive checks at key points during execution. These assertions
+are always run, regardless of the compiler settings, and should not
+contribute significantly to the overall runtime.</p>
+<p>More expensive assertions, used, for example, to check pre and post conditions
+on performance critical loops should be expressed using the standard
+<code class="docutils literal notranslate"><span class="pre">assert</span></code> macro from <code class="docutils literal notranslate"><span class="pre">assert.h</span></code>. These assertions will be checked
+during the execution of C unit tests, but will not be enabled when
+compiled into the Python C module.</p>
+</section>
+</section>
+<section id="type-conventions">
+<h3>Type conventions<a class="headerlink" href="#type-conventions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tsk_id_t</span></code> is an ID for any entity in a table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tsk_size_t</span></code> refers to any size or count values in tskit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size_t</span></code> is a standard C type and refers to the size of a memory block.
+This should only be used when computing memory block sizes for functions
+like <code class="docutils literal notranslate"><span class="pre">malloc</span></code> or passing the size of a memory buffer as a parameter.</p></li>
+<li><p>Error indicators (the return type of most functions) are <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint32_t</span></code> etc should be avoided (any that exist are a leftover from older
+code that didn’t use <code class="docutils literal notranslate"><span class="pre">tsk_size_t</span></code> etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int64_t</span></code> and <code class="docutils literal notranslate"><span class="pre">uint64_t</span></code> are sometimes useful when working with
+bitstrings (e.g. to implement a set).</p></li>
+</ul>
+</section>
+</section>
+<section id="python-c-interface">
+<span id="sec-development-python-c"></span><h2>Python C Interface<a class="headerlink" href="#python-c-interface" title="Link to this heading">#</a></h2>
+<section id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h3>
+<p>The Python C interface is defined in the <code class="docutils literal notranslate"><span class="pre">python</span></code> directory
+and written using the <a class="reference external" href="https://docs.python.org/3.6/c-api/">Python C API</a>.
+The source code for this interface is in the <code class="docutils literal notranslate"><span class="pre">_tskitmodule.c</span></code> file.
+When compiled, this produces the <code class="docutils literal notranslate"><span class="pre">_tskit</span></code> module,
+which is imported by the high-level Python code. The low-level Python module is
+not intended to be used directly by users and may change arbitrarily over time.</p>
+<p>The usual pattern in the low-level Python API is to define a Python class
+which corresponds to a given “class” in the C API. For example, we define
+a <code class="docutils literal notranslate"><span class="pre">TreeSequence</span></code> class, which is essentially a thin wrapper around the
+<code class="docutils literal notranslate"><span class="pre">tsk_tree_t</span></code> type from the C library.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">_tskitmodule.c</span></code> file follows the standard conventions given in the
+<a class="reference external" href="https://docs.python.org/3.6/extending/index.html">Python documentation</a>.</p>
+</section>
+<section id="compiling-and-debugging">
+<h3>Compiling and debugging<a class="headerlink" href="#compiling-and-debugging" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file describes the requirements for the low-level <code class="docutils literal notranslate"><span class="pre">_tskit</span></code>
+module and how it is built from source. The module is built automatically by
+<code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">sync</span></code>, but if you modify the C extension code you will need to rebuild it.
+The simplest way to do this is to run <code class="docutils literal notranslate"><span class="pre">make</span></code> in the <code class="docutils literal notranslate"><span class="pre">python</span></code> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">make</span></code> is not available, you can run the same command manually:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>setup.py<span class="w"> </span>build_ext<span class="w"> </span>--inplace
+</pre></div>
+</div>
+<p>It is sometimes useful to specify compiler flags when building the low
+level module. For example, to make a debug build you can use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nv">CFLAGS</span><span class="o">=</span><span class="s1">&#39;-Wall -O0 -g&#39;</span><span class="w"> </span>make
+</pre></div>
+</div>
+<p>If you need to track down a segfault etc, running some code through gdb can
+be very useful. For example, to run a particular test case, we can do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gdb<span class="w"> </span>python
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>run<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/test_python_c.py
+
+
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>run<span class="w">  </span>-m<span class="w"> </span>pytest<span class="w"> </span>-vs<span class="w"> </span>tests/test_tables.py::TestNodeTable::test_copy
+Starting<span class="w"> </span>program:<span class="w"> </span>/usr/bin/python3<span class="w"> </span>run<span class="w">  </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/test_tables.py::TestNodeTable::test_copy
+<span class="o">[</span>Thread<span class="w"> </span>debugging<span class="w"> </span>using<span class="w"> </span>libthread_db<span class="w"> </span>enabled<span class="o">]</span>
+Using<span class="w"> </span>host<span class="w"> </span>libthread_db<span class="w"> </span>library<span class="w"> </span><span class="s2">&quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;</span>.
+<span class="o">[</span>New<span class="w"> </span>Thread<span class="w"> </span>0x7ffff1e48700<span class="w"> </span><span class="o">(</span>LWP<span class="w"> </span><span class="m">1503</span><span class="o">)]</span>
+<span class="o">[</span>New<span class="w"> </span>Thread<span class="w"> </span>0x7fffef647700<span class="w"> </span><span class="o">(</span>LWP<span class="w"> </span><span class="m">1504</span><span class="o">)]</span>
+<span class="o">[</span>New<span class="w"> </span>Thread<span class="w"> </span>0x7fffeee46700<span class="w"> </span><span class="o">(</span>LWP<span class="w"> </span><span class="m">1505</span><span class="o">)]</span>
+<span class="o">[</span>Thread<span class="w"> </span>0x7fffeee46700<span class="w"> </span><span class="o">(</span>LWP<span class="w"> </span><span class="m">1505</span><span class="o">)</span><span class="w"> </span>exited<span class="o">]</span>
+<span class="o">[</span>Thread<span class="w"> </span>0x7fffef647700<span class="w"> </span><span class="o">(</span>LWP<span class="w"> </span><span class="m">1504</span><span class="o">)</span><span class="w"> </span>exited<span class="o">]</span>
+<span class="o">[</span>Thread<span class="w"> </span>0x7ffff1e48700<span class="w"> </span><span class="o">(</span>LWP<span class="w"> </span><span class="m">1503</span><span class="o">)</span><span class="w"> </span>exited<span class="o">]</span>
+collected<span class="w"> </span><span class="m">1</span><span class="w"> </span>item
+
+tests/test_tables.py::TestNodeTable::test_copy<span class="w"> </span>PASSED
+
+<span class="o">[</span>Inferior<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>process<span class="w"> </span><span class="m">1499</span><span class="o">)</span><span class="w"> </span>exited<span class="w"> </span>normally<span class="o">]</span>
+<span class="o">(</span>gdb<span class="o">)</span>
+</pre></div>
+</div>
+<p>Tracing problems in C code is many times more difficult when the Python C API
+is involved because of the complexity of Python’s memory management. It is
+nearly always best to start by making sure that the tskit C API part of your
+addition is thoroughly tested with valgrind before resorting to the debugger.</p>
+</section>
+<section id="testing-for-memory-leaks">
+<h3>Testing for memory leaks<a class="headerlink" href="#testing-for-memory-leaks" title="Link to this heading">#</a></h3>
+<p>The Python C API can be subtle, and it is easy to get the reference counting wrong.
+The <code class="docutils literal notranslate"><span class="pre">stress_lowlevel.py</span></code> script makes it easier to track down memory leaks
+when they do occur. The script runs the unit tests in a loop, and outputs
+memory usage statistics.</p>
+</section>
+</section>
+<section id="continuous-integration-tests">
+<span id="sec-development-continuous-integration"></span><h2>Continuous Integration tests<a class="headerlink" href="#continuous-integration-tests" title="Link to this heading">#</a></h2>
+<p>Continuous integration is handled by <a class="reference external" href="https://help.github.com/en/actions">GitHub Actions</a>.
+tskit uses shared workflows defined in the
+<a class="reference external" href="https://github.com/tskit-dev/.github">tskit-dev/.github</a> repository:</p>
+<ul class="simple">
+<li><p><strong>lint</strong> — runs prek against all files</p></li>
+<li><p><strong>python-tests</strong> — runs the pytest suite with coverage on Linux, macOS and Windows</p></li>
+<li><p><strong>python-c-tests</strong> — builds the C extension with coverage and runs low-level tests</p></li>
+<li><p><strong>c-tests</strong> — runs C unit tests under gcc, clang, and valgrind</p></li>
+<li><p><strong>docs</strong> — builds the documentation and deploys it on merge to <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
+<li><p><strong>python-packaging</strong> — validates the sdist and wheel</p></li>
+</ul>
+<p><a class="reference external" href="https://codecov.io/gh">CodeCov</a> tracks test coverage for Python and C.</p>
+</section>
+<section id="best-practices-for-development">
+<span id="sec-development-best-practices"></span><h2>Best Practices for Development<a class="headerlink" href="#best-practices-for-development" title="Link to this heading">#</a></h2>
+<p>The following is a rough guide of best practices for contributing a function to the
+tskit codebase.</p>
+<p>Note that this guide covers the most complex case of adding a new function to both
+the C and Python APIs.</p>
+<ol class="arabic simple">
+<li><p>Write your function in Python: in <code class="docutils literal notranslate"><span class="pre">python/tests/</span></code> find the test module that
+pertains to the functionality you wish to add. For instance, the kc_distance
+metric was added to
+<a class="reference external" href="https://github.com/tskit-dev/tskit/blob/main/python/tests/test_topology.py">test_topology.py</a>.
+Add a python version of your function here.</p></li>
+<li><p>Create a new class in this module to write unit tests for your function: in addition
+to making sure that your function is correct, make sure it fails on inappropriate inputs.
+This can often require judgement. For instance, <a class="reference internal" href="python-api.html#tskit.Tree.kc_distance" title="tskit.Tree.kc_distance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tree.kc_distance()</span></code></a> fails on a tree
+with multiple roots, but allows users to input parameter values that are nonsensical,
+as long as they don’t break functionality. See the
+<a class="reference external" href="https://github.com/tskit-dev/tskit/blob/4e707ea04adca256036669cd852656a08ec45590/python/tests/test_topology.py#L293">TestKCMetric</a> for example.</p></li>
+<li><p>Write your function in C: check out the <a class="reference internal" href="c-api.html#sec-c-api"><span class="std std-ref">C API</span></a> for guidance. There
+are also many examples in the
+<a class="reference external" href="https://github.com/tskit-dev/tskit/tree/main/c/tskit">c directory</a>.
+Your function will probably go in
+<a class="reference external" href="https://github.com/tskit-dev/tskit/blob/main/c/tskit/trees.c">trees.c</a>.</p></li>
+<li><p>Write a few tests for your function in C: again, write your tests in
+<a class="reference external" href="https://github.com/tskit-dev/tskit/blob/main/c/tests/test_trees.c">tskit/c/tests/test_tree.c</a>.
+The key here is code coverage, you don’t need to worry as much about covering every
+corner case, as we will proceed to link this function to the Python tests you
+wrote earlier.</p></li>
+<li><p>Create a low-level definition of your function using Python’s C API: this will
+go in <a class="reference external" href="https://github.com/tskit-dev/tskit/blob/main/python/_tskitmodule.c">_tskitmodule.c</a>.</p></li>
+<li><p>Test your low-level implementation in <a class="reference external" href="https://github.com/tskit-dev/tskit/blob/main/python/tests/test_python_c.py">tskit/python/tests/test_python_c.py
+</a>:
+again, these tests don’t need to be as comprehensive as your first python tests,
+instead, they should focus on the interface, e.g., does the function behave
+correctly on malformed inputs?</p></li>
+<li><p>Link your C function to the Python API: write a function in tskit’s Python API,
+for example the kc_distance function lives in
+<a class="reference external" href="https://github.com/tskit-dev/tskit/blob/main/python/tskit/trees.py">tskit/python/tskit/trees.py</a>.</p></li>
+<li><p>Modify your Python tests to test the new C-linked function: if you followed
+the example of other tests, you might need to only add a single line of code
+here. In this case, the tests are well factored so that we can easily compare
+the results from both the Python and C versions.</p></li>
+<li><p>Write a docstring for your function in the Python API: for instance, the kc_distance
+docstring is in
+<a class="reference external" href="https://github.com/tskit-dev/tskit/blob/main/python/tskit/trees.py">tskit/python/tskit/trees.py</a>.
+Ensure that your docstring renders correctly by building the documentation
+(see <a class="reference internal" href="#sec-development-documentation"><span class="std std-ref">Documentation</span></a>).</p></li>
+</ol>
+</section>
+<section id="id4">
+<h2>Troubleshooting<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="prek-is-blocking-me">
+<h3>prek is blocking me!<a class="headerlink" href="#prek-is-blocking-me" title="Link to this heading">#</a></h3>
+<p>The prek hook is designed to make things easier, not harder. If the checks are
+blocking you, feel free to skip them with <code class="docutils literal notranslate"><span class="pre">--no-verify</span></code> and sort it out before
+the PR is merged. There’s no shame in a broken build.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span>‘my<span class="w"> </span>changes’<span class="w"> </span>--no-verify
+</pre></div>
+</div>
+</section>
+<section id="prek-reports-unexpected-failures">
+<h3>prek reports unexpected failures<a class="headerlink" href="#prek-reports-unexpected-failures" title="Link to this heading">#</a></h3>
+<p>If prek reports failures on files you didn’t edit, try clearing the cache:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>prek<span class="w"> </span>cache<span class="w"> </span>clean
+</pre></div>
+</div>
+<p>If that doesn’t help, you can reinstall the hook:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>prek<span class="w"> </span>uninstall
+&gt;<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>prek<span class="w"> </span>install
+</pre></div>
+</div>
+</section>
+</section>
+<section id="benchmarking">
+<h2>Benchmarking<a class="headerlink" href="#benchmarking" title="Link to this heading">#</a></h2>
+<p>Tskit has a simple benchmarking tool to help keep track of performance.</p>
+<section id="running-benchmarks">
+<h3>Running benchmarks<a class="headerlink" href="#running-benchmarks" title="Link to this heading">#</a></h3>
+<p>The benchmark suite can be run with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>python/benchmark
+&gt;<span class="w"> </span>python<span class="w"> </span>run.py
+</pre></div>
+</div>
+<p>A subset of benchmarks can be run by specifying a string. For example, the following command runs all the benchmarks whose names contain “genotype”, e.g. “genotype_matrix”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>python<span class="w"> </span>run.py<span class="w"> </span>-k<span class="w"> </span>genotype
+</pre></div>
+</div>
+<p>If desired, the results of the benchmarks can be printed to STDOUT.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>python<span class="w"> </span>run.py<span class="w"> </span>-k<span class="w"> </span>genotype<span class="w"> </span>-p
+</pre></div>
+</div>
+<p>Results are written to <code class="docutils literal notranslate"><span class="pre">bench-results.json</span></code> in the same folder. Note that if any version of <code class="docutils literal notranslate"><span class="pre">tskit</span></code>
+is installed then that will be used for the benchmarking. To use the local development version of
+tskit ensure you have <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">uninstall</span> <span class="pre">tskit</span></code> before running the benchmarking. The version used is
+shown in the header of the report.</p>
+</section>
+<section id="adding-a-new-benchmark">
+<h3>Adding a new benchmark<a class="headerlink" href="#adding-a-new-benchmark" title="Link to this heading">#</a></h3>
+<p>The benchmarks are specified by the <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file in <code class="docutils literal notranslate"><span class="pre">python/benchmark</span></code>. To add a new benchmark
+add an entry to the <code class="docutils literal notranslate"><span class="pre">benchmarks</span></code> dictionary. For example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">do_my_thing({option_name})</span>
+<span class="w">    </span><span class="nt">setup</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">import a_module</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_benchmark</span><span class="w"> </span><span class="c1">#optional, the code is used by default</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">option_name</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;reticulate_splines&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;foobar&quot;</span>
+</pre></div>
+</div>
+<p>Strings are interpreted as Python f-strings, so you can use the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> dictionary to provide
+values that will be interpolated into both the <code class="docutils literal notranslate"><span class="pre">setup</span></code> and <code class="docutils literal notranslate"><span class="pre">code</span></code> strings.</p>
+<p>The suite can be run for all released versions with the <code class="docutils literal notranslate"><span class="pre">run-for-all-releases.py</span></code> script.</p>
+</section>
+</section>
+<section id="python-version-support">
+<h2>Python version support<a class="headerlink" href="#python-version-support" title="Link to this heading">#</a></h2>
+<div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">Todo</p>
+<p>Document Python version support policy (see
+<a class="reference external" href="https://github.com/tskit-dev/tskit/issues/3381">issue #3381</a>)</p>
+</div>
+<p>To add or remove support for a given Python version we need to update
+the following files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.github/workflows/tests.yml</span></code> — update the Python version matrix
+(we run two versions: oldest and newest supported).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.github/workflows/wheels.yml</span></code> — the shared <code class="docutils literal notranslate"><span class="pre">build-wheels</span></code> workflow
+picks up versions from the matrix in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> classifiers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python/pyproject.toml</span></code> — update <code class="docutils literal notranslate"><span class="pre">requires-python</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">Programming</span> <span class="pre">Language</span> <span class="pre">::</span> <span class="pre">Python</span> <span class="pre">::</span> <span class="pre">3.x</span></code> classifiers.</p></li>
+</ul>
+</section>
+<section id="releasing-a-new-version">
+<h2>Releasing a new version<a class="headerlink" href="#releasing-a-new-version" title="Link to this heading">#</a></h2>
+<p>See the <a class="reference external" href="https://github.com/tskit-dev/.github/blob/main/repo_administration.md">repo administration guide</a>
+for the release process. Tskit has both a C API release and a Python package release,
+each covered in the tskit/kastore section of that document.</p>
+<p>It is worth running the benchmarks (see above) before a Python release to check
+for any unexpected major regressions. For a major release the website
+(github repo tskit-dev/tskit-site) should be updated with a notebook of new
+features and the <code class="docutils literal notranslate"><span class="pre">bench-results.html</span></code> updated.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="file-formats.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">File formats</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="changelogs.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Changelogs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#repo-administration">Repo administration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">Project structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">Environment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-workflow">Git workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-someone-else-s-pull-request">Checking out someone else’s pull request</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lint-checks-prek">Lint checks (prek)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#small-edits">Small edits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#significant-edits">Significant edits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markup-languages">Markup languages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-reference">API Reference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-referencing">Cross referencing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-library">Python library</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Getting started</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layout">Layout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-style">Code style</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tests">Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#packaging">Packaging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfacing-with-low-level-module">Interfacing with low-level module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-interface">Command line interface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-development-versions">Installing development versions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-library">C Library</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sec-development-c-requirements">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sec-development-c-code-style">Code style</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building">Building</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-flags">Compile flags</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests">Unit Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-coverage-reports">Viewing coverage reports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coding-conventions">Coding conventions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error handling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-assertions">Using assertions</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#type-conventions">Type conventions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-c-interface">Python C Interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compiling-and-debugging">Compiling and debugging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-memory-leaks">Testing for memory leaks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-integration-tests">Continuous Integration tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-development">Best Practices for Development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prek-is-blocking-me">prek is blocking me!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prek-reports-unexpected-failures">prek reports unexpected failures</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmarking">Benchmarking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-benchmarks">Running benchmarks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-new-benchmark">Adding a new benchmark</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-version-support">Python version support</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#releasing-a-new-version">Releasing a new version</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
