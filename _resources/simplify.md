@@ -2,7 +2,7 @@
 type: tutorial
 tutorial_id: simplification
 title: Simplification
-timestamp: 2026-04-28
+timestamp: 2026-05-01
 ---
 The `simplify()` method provides several powerful and flexible ways
 to modify a tree sequence, and forms the basis of efficient forward-time
