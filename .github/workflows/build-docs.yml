@@ -44,7 +44,7 @@ jobs:
             cache-version: v6
 
           - package: tsbrowse
-            pre-build-command: uv run --locked --no-default-groups --group=docs playwright install --with-deps chromium
+            install-playwright: true
             cache-version: v4
 
           - package: tszip
@@ -101,12 +101,12 @@ jobs:
 
       - name: Build docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        uses: tskit-dev/.github/.github/actions/build-docs@v17
+        uses: tskit-dev/.github/.github/actions/build-docs@v20
         with:
           pyproject-directory: ${{ matrix.pyproject-directory || '.' }}
           additional-apt-packages: ${{ matrix.additional-apt-packages || '' }}
-          pre-build-command: ${{ matrix.pre-build-command || '' }}
           install-slim: ${{ matrix.install-slim || 'false' }}
+          install-playwright: ${{ matrix.install-playwright || 'false' }}
 
       - name: Copy docs to dist
         if: steps.docs-cache.outputs.cache-hit != 'true'
