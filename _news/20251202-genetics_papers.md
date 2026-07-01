@@ -19,7 +19,7 @@ The approach is described in Lehmann _et al._ (2025) On ARGs, pedigrees, and gen
 
 The new methods are available as
 [ts.pca()](https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.pca)
-and [ts.genetic_relatedness_vector()](https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.genetic_relatedness_vector).
+and [ts.genetic_relatedness_vector()](https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.genetic_relatedness_vector). As of June 2026, we also have a [PCA tutorial](https://tskit.dev/tutorials/PCA.html).
 
 ## Extending haplotypes
 
