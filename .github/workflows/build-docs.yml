@@ -60,7 +60,7 @@ jobs:
             cache-version: v4
 
           - package: pyslim
-            cache-version: v8
+            cache-version: v9
             install-slim: true
             install-slim-branch: multitrait
 
