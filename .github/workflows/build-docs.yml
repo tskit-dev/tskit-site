@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip, kastore, tscompare, tsdate, sc2ts, pyslim]
+        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip, kastore, tscompare, tsdate, sc2ts] # , pyslim]
         version: [latest, stable]
         include:
           - package: msprime
@@ -59,9 +59,10 @@ jobs:
           - package: sc2ts
             cache-version: v4
 
-          - package: pyslim
-            cache-version: v8
-            install-slim: true
+          # - package: pyslim
+          #   cache-version: v8
+          #   install-slim: true
+          #   install-slim-branch: multitrait
 
     steps:
       - name: Checkout ${{ matrix.package }}
@@ -101,11 +102,12 @@ jobs:
 
       - name: Build docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        uses: tskit-dev/.github/.github/actions/build-docs@v20
+        uses: tskit-dev/.github/.github/actions/build-docs@v21
         with:
           pyproject-directory: ${{ matrix.pyproject-directory || '.' }}
           additional-apt-packages: ${{ matrix.additional-apt-packages || '' }}
           install-slim: ${{ matrix.install-slim || 'false' }}
+          install-slim-branch: ${{ matrix.install-slim-branch || '' }}
           install-playwright: ${{ matrix.install-playwright || 'false' }}
 
       - name: Copy docs to dist
