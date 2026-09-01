@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip, kastore, tscompare, tsdate, sc2ts] # , pyslim]
+        package: [msprime, tsinfer, tskit, tstrait, tsbrowse, tszip, kastore, tscompare, tsdate, sc2ts, pyslim]
         version: [latest, stable]
         include:
           - package: msprime
@@ -59,10 +59,16 @@ jobs:
           - package: sc2ts
             cache-version: v4
 
-          # - package: pyslim
-          #   cache-version: v8
-          #   install-slim: true
-          #   install-slim-branch: multitrait
+          - package: pyslim
+            version: latest
+            cache-version: v9
+            install-slim: true
+            install-slim-branch: multitrait
+
+          - package: pyslim
+            version: stable
+            cache-version: v10
+            install-slim: true
 
     steps:
       - name: Checkout ${{ matrix.package }}
