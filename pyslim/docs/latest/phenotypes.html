@@ -1,0 +1,2518 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Working with traits and phenotypes &#8212; PySLiM manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'phenotypes';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Time units" href="time_units.html" />
+    <link rel="prev" title="Vignette: Parallelizing SLiM simulations in a phylogenetic tree" href="vignette_parallel_phylo.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="introduction.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyslim<br/>
+version 1.1.2.dev19
+</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Using pyslim</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignette_space.html">Vignette: A spatial simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignette_continuing.html">Vignette: Following up with more coalescent simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignette_coalescent_diversity.html">Vignette: Starting with diversity generated by coalescent simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignette_parallel_phylo.html">Vignette: Parallelizing SLiM simulations in a phylogenetic tree</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Working with traits and phenotypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time_units.html">Time units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="previous_versions.html">Migrating from previous versions of pyslim</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">pyslim reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_api.html">Python API</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/phenotypes.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Working with traits and phenotypes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trait-distributions">Trait distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mutation-effects">Mutation effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplicative-and-logistic-traits">Multiplicative and logistic traits</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="working-with-traits-and-phenotypes">
+<span id="sec-phenotypes"></span><h1>Working with traits and phenotypes<a class="headerlink" href="#working-with-traits-and-phenotypes" title="Link to this heading">#</a></h1>
+<p>An individual’s phenotype for an trait in SLiM is the result of that individual’s genetic effects,
+and both global and individual-specific “offsets”.
+SLiM records in metadata both phenotype and offset, so we can use these (by subtraction, for an additive trait)
+to determine the genetic value.
+We can also compute genetic contributions directly, which can be helpful,
+for instance, to decompose genetic variance from different parts of the genome.</p>
+<p>Let’s start off with this simulation, which has:</p>
+<ul class="simple">
+<li><p>two additive traits,</p></li>
+<li><p>with Gaussian selection on both,</p></li>
+<li><p>started away from the optimum;</p></li>
+<li><p>correlated mutational effects,</p></li>
+<li><p>and also neutral mutations.</p></li>
+</ul>
+<p>The recipe also saves the state of the population (by remembering everyone)
+every 1,000 generations. You may want to skip the details of the SLiM script
+on first reading.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">initialize</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">setSeed</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+	<span class="n">initializeTreeSeq</span><span class="p">();</span>
+	<span class="n">defineConstant</span><span class="p">(</span><span class="s2">&quot;START1&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">);</span>
+	<span class="n">defineConstant</span><span class="p">(</span><span class="s2">&quot;START2&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">);</span>
+	<span class="n">defineConstant</span><span class="p">(</span><span class="s2">&quot;OPT1&quot;</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">);</span>
+	<span class="n">defineConstant</span><span class="p">(</span><span class="s2">&quot;OPT2&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">);</span>
+	<span class="n">initializeTrait</span><span class="p">(</span><span class="s2">&quot;trait1&quot;</span><span class="p">,</span> <span class="s2">&quot;additive&quot;</span><span class="p">,</span> <span class="n">baselineOffset</span><span class="o">=</span><span class="n">START1</span><span class="p">,</span> <span class="n">individualOffsetSD</span><span class="o">=</span><span class="mf">1.0</span><span class="p">);</span>
+	<span class="n">initializeTrait</span><span class="p">(</span><span class="s2">&quot;trait2&quot;</span><span class="p">,</span> <span class="s2">&quot;additive&quot;</span><span class="p">,</span> <span class="n">baselineOffset</span><span class="o">=</span><span class="n">START2</span><span class="p">,</span> <span class="n">individualOffsetSD</span><span class="o">=</span><span class="mf">1.0</span><span class="p">);</span>
+	
+	<span class="n">initializeMutationType</span><span class="p">(</span><span class="s2">&quot;m1&quot;</span><span class="p">,</span> <span class="n">NAN</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>   <span class="o">//</span> <span class="n">neutral</span>
+	<span class="n">initializeMutationType</span><span class="p">(</span><span class="s2">&quot;m2&quot;</span><span class="p">,</span> <span class="n">NAN</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>   <span class="o">//</span> <span class="n">QTLs</span>
+	<span class="n">m2</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">;</span>
+	<span class="n">m2</span><span class="o">.</span><span class="n">logMutationData</span><span class="p">(</span><span class="n">enable</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">effectSize</span><span class="o">=</span><span class="n">T</span><span class="p">);</span>
+	<span class="n">m2</span><span class="o">.</span><span class="n">convertToSubstitution</span> <span class="o">=</span> <span class="n">F</span><span class="p">;</span> <span class="o">//</span> <span class="n">necessary</span> <span class="n">to</span> <span class="n">disentagle</span> <span class="kn">from</span><span class="w"> </span><span class="nn">baseline</span> <span class="n">offset</span>
+	
+	<span class="o">//</span> <span class="n">g1</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">neutral</span> <span class="n">region</span><span class="p">,</span> <span class="n">g2</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">QTL</span>
+	<span class="n">initializeGenomicElementType</span><span class="p">(</span><span class="s2">&quot;g1&quot;</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+	<span class="n">initializeGenomicElementType</span><span class="p">(</span><span class="s2">&quot;g2&quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">));</span>
+	
+	<span class="o">//</span> <span class="n">chromosome</span> <span class="n">of</span> <span class="n">length</span> <span class="mi">100</span> <span class="n">kb</span> <span class="k">with</span> <span class="n">two</span> <span class="n">QTL</span> <span class="n">regions</span>
+	<span class="n">initializeGenomicElement</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">39999</span><span class="p">);</span>
+	<span class="n">initializeGenomicElement</span><span class="p">(</span><span class="n">g2</span><span class="p">,</span> <span class="mi">40000</span><span class="p">,</span> <span class="mi">49999</span><span class="p">);</span>
+	<span class="n">initializeGenomicElement</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">79999</span><span class="p">);</span>
+	<span class="n">initializeGenomicElement</span><span class="p">(</span><span class="n">g2</span><span class="p">,</span> <span class="mi">80000</span><span class="p">,</span> <span class="mi">89999</span><span class="p">);</span>
+	<span class="n">initializeGenomicElement</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="mi">90000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">);</span>
+	<span class="n">initializeRecombinationRate</span><span class="p">(</span><span class="mf">1e-8</span><span class="p">);</span>
+	<span class="n">initializeMutationRate</span><span class="p">(</span><span class="mf">1e-7</span><span class="p">);</span>
+	
+	<span class="o">//</span> <span class="n">QTL</span><span class="o">-</span><span class="n">related</span> <span class="n">constants</span> <span class="n">used</span> <span class="n">below</span>
+	<span class="n">defineConstant</span><span class="p">(</span><span class="s2">&quot;QTL_mu&quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">));</span>
+	<span class="n">defineConstant</span><span class="p">(</span><span class="s2">&quot;QTL_cov&quot;</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">);</span>
+	<span class="n">defineConstant</span><span class="p">(</span><span class="s2">&quot;QTL_sigma&quot;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">QTL_cov</span><span class="p">,</span><span class="n">QTL_cov</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">nrow</span><span class="o">=</span><span class="mi">2</span><span class="p">));</span>
+	<span class="p">}</span>
+
+<span class="mi">1</span> <span class="n">late</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">sim</span><span class="o">.</span><span class="n">addSubpop</span><span class="p">(</span><span class="s2">&quot;p1&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">mutation</span><span class="p">(</span><span class="n">m2</span><span class="p">)</span> <span class="p">{</span>
+	<span class="o">//</span> <span class="n">draw</span> <span class="n">mutational</span> <span class="n">effects</span> <span class="k">for</span> <span class="n">the</span> <span class="n">new</span> <span class="n">m2</span> <span class="n">mutation</span>
+	<span class="n">effects</span> <span class="o">=</span> <span class="n">rmvnorm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">QTL_mu</span><span class="p">,</span> <span class="n">QTL_sigma</span><span class="p">);</span>
+	<span class="n">mut</span><span class="o">.</span><span class="n">setEffectSizeForTrait</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span> <span class="n">effects</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">T</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">late</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">sim</span><span class="o">.</span><span class="n">demandPhenotype</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+	
+	<span class="n">inds</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">subpopulations</span><span class="o">.</span><span class="n">individuals</span><span class="p">;</span>
+	<span class="n">effects1</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">dnorm</span><span class="p">(</span><span class="n">inds</span><span class="o">.</span><span class="n">trait1</span><span class="p">,</span> <span class="n">OPT1</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">)</span> <span class="o">*</span> <span class="mf">10.0</span><span class="p">;</span>
+	<span class="n">effects2</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">dnorm</span><span class="p">(</span><span class="n">inds</span><span class="o">.</span><span class="n">trait2</span><span class="p">,</span> <span class="n">OPT2</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">)</span> <span class="o">*</span> <span class="mf">10.0</span><span class="p">;</span>
+	<span class="n">inds</span><span class="o">.</span><span class="n">fitnessScaling</span> <span class="o">=</span> <span class="n">effects1</span> <span class="o">*</span> <span class="n">effects2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="mi">1</span><span class="p">:</span><span class="mi">1000000</span> <span class="n">late</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">cycle</span> <span class="o">%</span> <span class="mi">5000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">inds</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="n">individuals</span><span class="p">;</span>
+		<span class="n">sim</span><span class="o">.</span><span class="n">treeSeqRememberIndividuals</span><span class="p">(</span><span class="n">inds</span><span class="p">);</span>
+		<span class="o">//</span> <span class="n">keep</span> <span class="n">running</span> <span class="n">until</span> <span class="n">we</span> <span class="n">get</span> <span class="n">close</span> <span class="n">to</span> <span class="n">both</span> <span class="n">optima</span>
+		<span class="k">if</span> <span class="p">((</span><span class="nb">abs</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">inds</span><span class="o">.</span><span class="n">trait1</span><span class="p">)</span> <span class="o">-</span> <span class="n">OPT1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">inds</span><span class="o">.</span><span class="n">trait2</span><span class="p">)</span> <span class="o">-</span> <span class="n">OPT2</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">))</span> <span class="p">{</span>
+	   	<span class="n">sim</span><span class="o">.</span><span class="n">treeSeqOutput</span><span class="p">(</span><span class="s2">&quot;phenotypes.trees&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">Dictionary</span><span class="p">(</span><span class="s2">&quot;all_mutations&quot;</span><span class="p">,</span> <span class="n">m2</span><span class="o">.</span><span class="n">loggedData</span><span class="p">(</span><span class="s2">&quot;values&quot;</span><span class="p">)));</span>
+			<span class="n">sim</span><span class="o">.</span><span class="n">simulationFinished</span><span class="p">();</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="trait-distributions">
+<span id="sec-phenotypes-trait-values"></span><h2>Trait distributions<a class="headerlink" href="#trait-distributions" title="Link to this heading">#</a></h2>
+<p>First, let’s load the result of the simulation and look at trait distributions in each of the saved time points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;phenotypes.trees&quot;</span><span class="p">)</span>
+<span class="n">ts_metadata</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">metadata</span>
+<span class="n">mut_metadata</span> <span class="o">=</span> <span class="n">pyslim</span><span class="o">.</span><span class="n">mutation_metadata</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s information about the traits:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_metadata</span><span class="p">[</span><span class="s1">&#39;SLiM&#39;</span><span class="p">][</span><span class="s1">&#39;traits&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;baselineAccumulation&#39;: True,
+  &#39;baselineOffsetFromSubstitutions&#39;: 0.0,
+  &#39;baselineOffsetFromUser&#39;: -5.0,
+  &#39;directFitnessEffect&#39;: False,
+  &#39;index&#39;: 0,
+  &#39;individualOffsetMean&#39;: 0.0,
+  &#39;individualOffsetSD&#39;: 1.0,
+  &#39;name&#39;: &#39;trait1&#39;,
+  &#39;type&#39;: &#39;additive&#39;},
+ {&#39;baselineAccumulation&#39;: True,
+  &#39;baselineOffsetFromSubstitutions&#39;: 0.0,
+  &#39;baselineOffsetFromUser&#39;: 5.0,
+  &#39;directFitnessEffect&#39;: False,
+  &#39;index&#39;: 1,
+  &#39;individualOffsetMean&#39;: 0.0,
+  &#39;individualOffsetSD&#39;: 1.0,
+  &#39;name&#39;: &#39;trait2&#39;,
+  &#39;type&#39;: &#39;additive&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s the information we have about a given individual:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Individual(id=0, flags=196608, location=array([0., 0., 0.]), parents=array([-1, -1], dtype=int32), nodes=array([6364, 6365], dtype=int32), metadata={&#39;pedigree_id&#39;: 9999500, &#39;pedigree_p1&#39;: 9999327, &#39;pedigree_p2&#39;: 9999353, &#39;tag&#39;: -9223372036854775808, &#39;tagF&#39;: -1.7976931348623157e+308, &#39;age&#39;: -1, &#39;subpopulation&#39;: 1, &#39;sex&#39;: -1, &#39;tagL0_set&#39;: False, &#39;tagL0&#39;: False, &#39;tagL1_set&#39;: False, &#39;tagL1&#39;: False, &#39;tagL2_set&#39;: False, &#39;tagL2&#39;: False, &#39;tagL3_set&#39;: False, &#39;tagL3&#39;: False, &#39;tagL4_set&#39;: False, &#39;tagL4&#39;: False, &#39;per_trait&#39;: [{&#39;phenotype&#39;: 21.577773274021574, &#39;offset&#39;: 1.7817394147686432}, {&#39;phenotype&#39;: -19.403159486091294, &#39;offset&#39;: 0.5235182177661287}]})
+</pre></div>
+</div>
+</div>
+</div>
+<p>In particular, phenotype and offset values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;per_trait&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;phenotype&#39;: 21.577773274021574, &#39;offset&#39;: 1.7817394147686432},
+ {&#39;phenotype&#39;: -19.403159486091294, &#39;offset&#39;: 0.5235182177661287}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, let’s find the birth time of each individual, and see which times we have information for
+(this is simple because it’s a WF simulation):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ind_times</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">nodes_time</span><span class="p">[</span><span class="n">ts</span><span class="o">.</span><span class="n">individuals_nodes</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]]</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+<span class="n">Counter</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ind_times</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Counter({0: 500, 15000: 500, 10000: 500, 5000: 500})
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use the helpful <code class="docutils literal notranslate"><span class="pre">metadata_vector</span></code> method of table collections
+to quickly pull out the phenotype and offset vectors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ind_phenotypes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span>
+    <span class="n">ts</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">metadata_vector</span><span class="p">([</span><span class="s2">&quot;per_trait&quot;</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="s2">&quot;phenotype&quot;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">])</span>
+<span class="n">ind_offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span>
+    <span class="n">ts</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">metadata_vector</span><span class="p">([</span><span class="s2">&quot;per_trait&quot;</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="s2">&quot;offset&quot;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To prepare to make the plots
+(using <a class="reference external" href="https://plotnine.org">plotnine</a>)
+we’ll put everything in a data frame:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;pedigree_id&#39;</span> <span class="p">:</span> <span class="n">ts</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">metadata_vector</span><span class="p">(</span><span class="s2">&quot;pedigree_id&quot;</span><span class="p">),</span>
+    <span class="s1">&#39;time&#39;</span> <span class="p">:</span> <span class="n">ind_times</span><span class="p">,</span>
+    <span class="s2">&quot;phenotype1&quot;</span> <span class="p">:</span> <span class="n">ind_phenotypes</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s2">&quot;offset1&quot;</span> <span class="p">:</span> <span class="n">ind_offsets</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s2">&quot;phenotype2&quot;</span> <span class="p">:</span> <span class="n">ind_phenotypes</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s2">&quot;offset2&quot;</span> <span class="p">:</span> <span class="n">ind_offsets</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As noted before, we can get the genetic contributions
+by subtracting the individual-level offsets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;genetic_value1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;phenotype1&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;offset1&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;genetic_value2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;phenotype2&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;offset2&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, here’s phenotype distributions across these time slices</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span> <span class="n">df</span> <span class="o">&gt;&gt;</span> 
+    <span class="n">p9</span><span class="o">.</span><span class="n">ggplot</span><span class="p">(</span><span class="n">p9</span><span class="o">.</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;phenotype1&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span> <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">facet_grid</span><span class="p">(</span><span class="s2">&quot;time ~&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/1306205e958e32e5852cc2aac1a2911dc6f0409f7af4f1254b8b8e79b67847e3.png"><img alt="_images/1306205e958e32e5852cc2aac1a2911dc6f0409f7af4f1254b8b8e79b67847e3.png" src="_images/1306205e958e32e5852cc2aac1a2911dc6f0409f7af4f1254b8b8e79b67847e3.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>Here’s how the population moved through 2d phenotype space:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">&gt;&gt;</span> <span class="n">p9</span><span class="o">.</span><span class="n">ggplot</span><span class="p">(</span><span class="n">p9</span><span class="o">.</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;phenotype1&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;phenotype2&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">))</span> 
+    <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/0cbb5231c913d8251c80c8dfd6a47929981d9791e87a6a3cb24444d970b69459.png"><img alt="_images/0cbb5231c913d8251c80c8dfd6a47929981d9791e87a6a3cb24444d970b69459.png" src="_images/0cbb5231c913d8251c80c8dfd6a47929981d9791e87a6a3cb24444d970b69459.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>That’s the phenotypes; it turns out that most of that spread is actually
+“offset”, i.e., what’s usually called “environmental” noise:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">&gt;&gt;</span> <span class="n">p9</span><span class="o">.</span><span class="n">ggplot</span><span class="p">(</span><span class="n">p9</span><span class="o">.</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;genetic_value1&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;genetic_value2&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">))</span> 
+    <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/eb0a53792aa35c38cfa3d1624b6ae8116e49b9ffdb89637aab9470f8ead69651.png"><img alt="_images/eb0a53792aa35c38cfa3d1624b6ae8116e49b9ffdb89637aab9470f8ead69651.png" src="_images/eb0a53792aa35c38cfa3d1624b6ae8116e49b9ffdb89637aab9470f8ead69651.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="mutation-effects">
+<span id="sec-phenotypes-mutation-effects"></span><h2>Mutation effects<a class="headerlink" href="#mutation-effects" title="Link to this heading">#</a></h2>
+<p>Now let’s see how to use mutation information to calculate genetic values directly.
+To do this, let’s take a simpler example.
+This just has two additive traits, and mutations have independent effects on each trait.
+There are two mutation types; the first is underdominant and the second is additive
+(using the special <code class="docutils literal notranslate"><span class="pre">NAN</span></code> value for $h$ to indicate independent dominance).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">initialize</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">setSeed</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+	<span class="n">initializeTreeSeq</span><span class="p">(</span><span class="n">timeUnit</span><span class="o">=</span><span class="s2">&quot;generations&quot;</span><span class="p">);</span>
+	<span class="n">initializeTrait</span><span class="p">(</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="s2">&quot;additive&quot;</span><span class="p">,</span> <span class="n">baselineOffset</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">individualOffsetSD</span><span class="o">=</span><span class="mf">0.2</span><span class="p">);</span>
+	<span class="n">initializeTrait</span><span class="p">(</span><span class="s2">&quot;wing&quot;</span><span class="p">,</span> <span class="s2">&quot;additive&quot;</span><span class="p">,</span> <span class="n">baselineOffset</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">individualOffsetSD</span><span class="o">=</span><span class="mf">0.1</span><span class="p">);</span>
+	
+	<span class="n">initializeMutationType</span><span class="p">(</span><span class="s2">&quot;m1&quot;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">);</span> 
+	<span class="n">initializeMutationType</span><span class="p">(</span><span class="s2">&quot;m2&quot;</span><span class="p">,</span> <span class="n">NAN</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">);</span> 
+	
+	<span class="n">initializeGenomicElementType</span><span class="p">(</span><span class="s2">&quot;g1&quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">));</span>
+	
+	<span class="n">initializeGenomicElement</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9999999</span><span class="p">);</span>
+	<span class="n">initializeRecombinationRate</span><span class="p">(</span><span class="mf">1e-8</span><span class="p">);</span>
+	<span class="n">initializeMutationRate</span><span class="p">(</span><span class="mf">1e-7</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="mi">1</span> <span class="n">late</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">sim</span><span class="o">.</span><span class="n">addSubpop</span><span class="p">(</span><span class="s2">&quot;p1&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="mi">1000</span> <span class="n">late</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">sim</span><span class="o">.</span><span class="n">demandPhenotype</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+	<span class="n">sim</span><span class="o">.</span><span class="n">treeSeqOutput</span><span class="p">(</span><span class="s2">&quot;phenotypes2.trees&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;phenotypes2.trees&quot;</span><span class="p">)</span>
+<span class="n">ts_metadata</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">metadata</span>
+<span class="n">mut_metadata</span> <span class="o">=</span> <span class="n">pyslim</span><span class="o">.</span><span class="n">mutation_metadata</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example, here’s the first mutation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mut</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">mutation</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mut</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mutation(id=0, site=0, node=116, derived_state=&#39;98288&#39;, parent=-1, metadata={&#39;derived_states&#39;: [98288]}, time=16.0, edge=261, inherited_state=&#39;&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see which SLiM mutation(s) this mutation represents
+by looking at the mutation’s “derived state”,
+and pulling the information out of the mutation metadata:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mut_metadata</span><span class="p">[</span><span class="n">mut</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;derived_states&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;mutation_id&#39;: 98288,
+ &#39;mutation_type&#39;: 2,
+ &#39;subpopulation&#39;: 1,
+ &#39;slim_time&#39;: 984,
+ &#39;nucleotide&#39;: -1,
+ &#39;padding&#39;: None,
+ &#39;per_trait&#39;: [{&#39;effect_size&#39;: -0.008490736596286297,
+   &#39;dominance&#39;: nan,
+   &#39;hemizygous_dominance&#39;: 1.0},
+  {&#39;effect_size&#39;: -4.386622822494246e-05,
+   &#39;dominance&#39;: nan,
+   &#39;hemizygous_dominance&#39;: 1.0}]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, we can use the <code class="docutils literal notranslate"><span class="pre">effect_size</span></code> and <code class="docutils literal notranslate"><span class="pre">dominance</span></code>
+to calculate genetic effects (we won’t need <code class="docutils literal notranslate"><span class="pre">hemizygous</span> <span class="pre">dominance</span></code>).
+Here is a function that calculates the effect of a pair of alleles.
+The function uses the <code class="docutils literal notranslate"><span class="pre">derived_state</span></code> property (a string) rather than the
+metadata property because that’s what’s returned by <a class="reference external" href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.variants" title="(in Project name not set)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tskit.TreeSequence.variants()</span></code></a>,
+which we’d like to use next.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">additive_effect</span><span class="p">(</span><span class="n">mut_metadata</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">num_traits</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="c1"># here a and b are *string* derived states</span>
+    <span class="c1"># note this works for additive traits:</span>
+    <span class="c1"># multiplicative ones are &quot;* (1 + hs)&quot; instead of &quot;+ 2hs&quot;</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_traits</span><span class="p">,))</span>
+    <span class="n">muts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span> <span class="o">+</span> <span class="n">Counter</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">muts</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">m</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">md</span> <span class="o">=</span> <span class="n">mut_metadata</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">)][</span><span class="s1">&#39;per_trait&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">muts</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_traits</span><span class="p">):</span>
+                    <span class="n">h</span> <span class="o">=</span> <span class="n">md</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;dominance&#39;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+                        <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">md</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;effect_size&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">h</span>
+            <span class="k">if</span> <span class="n">muts</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_traits</span><span class="p">):</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">md</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;effect_size&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="c1"># for instance, a homozygote for that mutation:</span>
+<span class="n">additive_effect</span><span class="p">(</span><span class="n">mut_metadata</span><span class="p">,</span> <span class="n">mut</span><span class="o">.</span><span class="n">derived_state</span><span class="p">,</span> <span class="n">mut</span><span class="o">.</span><span class="n">derived_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.69814732e-02, -8.77324564e-05])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using this and <a class="reference external" href="https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.variants" title="(in Project name not set)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tskit.TreeSequence.variants()</span></code></a>,
+we can compute genetic values for an individual:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">additive_genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mut_metadata</span><span class="p">,</span> <span class="n">ind</span><span class="p">,</span> <span class="n">num_traits</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_traits</span><span class="p">,))</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ts</span><span class="o">.</span><span class="n">variants</span><span class="p">(</span><span class="n">samples</span><span class="o">=</span><span class="n">ind</span><span class="o">.</span><span class="n">nodes</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">alleles</span><span class="p">[</span><span class="n">g</span><span class="p">]</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">genotypes</span><span class="p">]</span>
+        <span class="n">out</span> <span class="o">+=</span> <span class="n">additive_effect</span><span class="p">(</span><span class="n">mut_metadata</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="n">additive_genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mut_metadata</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.11604283, -0.29277332])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The final component is offsets.
+To match SLiM we need to add in both the individual’s offset
+(which is stored in their metadata)
+and the global (“baseline”) offset.
+Within SLiM, the <code class="docutils literal notranslate"><span class="pre">baselineOffset</span></code> property is a sum of the value provided by the user
+on initialization of the trait, and the accumulated value of any substitutions
+(if various options do not modify this behavior; see the SLiM manual).
+Since the tree sequence does not distinguish substitutions from other mutations,
+SLiM stores these two components separately, as <code class="docutils literal notranslate"><span class="pre">baselineOffsetFromUser</span></code>
+and <code class="docutils literal notranslate"><span class="pre">baselineOffsetFromSubstitutions</span></code>. So, we just need to add in <code class="docutils literal notranslate"><span class="pre">baselineOffsetFromUser</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">additive_offset</span><span class="p">(</span><span class="n">ts_metadata</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;baselineOffsetFromUser&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ts_metadata</span><span class="p">[</span><span class="s1">&#39;SLiM&#39;</span><span class="p">][</span><span class="s1">&#39;traits&#39;</span><span class="p">]])</span>
+    <span class="n">out</span> <span class="o">+=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;offset&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;per_trait&#39;</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="n">additive_offset</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 4.83203513, -1.07860051])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can compute phenotypes, and check they match what SLiM produced.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alive</span> <span class="o">=</span> <span class="n">pyslim</span><span class="o">.</span><span class="n">individuals_alive_at</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="n">alive</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ours: </span><span class="si">{</span><span class="n">additive_genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="w"> </span><span class="n">mut_metadata</span><span class="p">,</span><span class="w"> </span><span class="n">ind</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">additive_offset</span><span class="p">(</span><span class="n">ts_metadata</span><span class="p">,</span><span class="w"> </span><span class="n">ind</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SLiM: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;phenotype&#39;</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;per_trait&#39;</span><span class="p">]])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ours: [ 4.7159923  -1.37137383]
+SLiM: [ 4.7159923  -1.37137383]
+</pre></div>
+</div>
+</div>
+</div>
+<p>That looks good! To compare we need to account for floating-point error
+(actually the numbers stored by SLiM and computed by us may differ by $10^{-10}$).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">ts</span><span class="o">.</span><span class="n">individuals</span><span class="p">():</span>
+    <span class="n">our_pheno</span> <span class="o">=</span> <span class="n">additive_genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mut_metadata</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span> <span class="o">+</span> <span class="n">additive_offset</span><span class="p">(</span><span class="n">ts_metadata</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span>
+    <span class="n">slim_pheno</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;phenotype&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;per_trait&#39;</span><span class="p">]])</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">our_pheno</span><span class="p">,</span> <span class="n">slim_pheno</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multiplicative-and-logistic-traits">
+<span id="sec-phenotypes-multiplicative-traits"></span><h2>Multiplicative and logistic traits<a class="headerlink" href="#multiplicative-and-logistic-traits" title="Link to this heading">#</a></h2>
+<p>To see how multiplicative and logistic traits work,
+we’ll change the first trait to be multiplicative
+and the second logistic:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">initialize</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">setSeed</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+	<span class="n">initializeTreeSeq</span><span class="p">(</span><span class="n">timeUnit</span><span class="o">=</span><span class="s2">&quot;generations&quot;</span><span class="p">);</span>
+	<span class="n">initializeTrait</span><span class="p">(</span><span class="s2">&quot;mult&quot;</span><span class="p">,</span> <span class="s2">&quot;multiplicative&quot;</span><span class="p">,</span> <span class="n">baselineOffset</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">individualOffsetSD</span><span class="o">=</span><span class="mf">0.1</span><span class="p">);</span>
+	<span class="n">initializeTrait</span><span class="p">(</span><span class="s2">&quot;logistic&quot;</span><span class="p">,</span> <span class="s2">&quot;logistic&quot;</span><span class="p">,</span> <span class="n">baselineOffset</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">individualOffsetSD</span><span class="o">=</span><span class="mf">0.1</span><span class="p">);</span>
+	
+	<span class="n">initializeMutationType</span><span class="p">(</span><span class="s2">&quot;m1&quot;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">);</span> 
+	<span class="n">initializeMutationType</span><span class="p">(</span><span class="s2">&quot;m2&quot;</span><span class="p">,</span> <span class="n">NAN</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">);</span> 
+	
+	<span class="n">initializeGenomicElementType</span><span class="p">(</span><span class="s2">&quot;g1&quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">));</span>
+	
+	<span class="n">initializeGenomicElement</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9999999</span><span class="p">);</span>
+	<span class="n">initializeRecombinationRate</span><span class="p">(</span><span class="mf">1e-8</span><span class="p">);</span>
+	<span class="n">initializeMutationRate</span><span class="p">(</span><span class="mf">1e-7</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="mi">1</span> <span class="n">late</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">sim</span><span class="o">.</span><span class="n">addSubpop</span><span class="p">(</span><span class="s2">&quot;p1&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="mi">1000</span> <span class="n">late</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">sim</span><span class="o">.</span><span class="n">demandPhenotype</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+	<span class="n">sim</span><span class="o">.</span><span class="n">treeSeqOutput</span><span class="p">(</span><span class="s2">&quot;phenotypes3.trees&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This produces</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;phenotypes3.trees&quot;</span><span class="p">)</span>
+<span class="n">ts_metadata</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">metadata</span>
+<span class="n">mut_metadata</span> <span class="o">=</span> <span class="n">pyslim</span><span class="o">.</span><span class="n">mutation_metadata</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+<span class="n">ts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <div>
+            <style>
+                .tskit-table thead tr th {text-align: left;padding: 0.5em 0.5em;}
+                .tskit-table tbody tr td {padding: 0.5em 0.5em;}
+                .tskit-table tbody tr td:first-of-type {text-align: left;}
+                .tskit-details-label {vertical-align: top; padding-right:5px;}
+                .tskit-table-set {display: inline-flex;flex-wrap: wrap;margin: -12px 0 0 -12px;width: calc(100% + 12px);}
+                .tskit-table-set-table {margin: 12px 0 0 12px;}
+                details {display: inline-block;}
+                summary {cursor: pointer; outline: 0; display: list-item;}
+            </style>
+            <div class="tskit-table-set">
+                <div class="tskit-table-set-table">
+                    <table class="tskit-table">
+                        <thead>
+                            <tr>
+                                <th style="padding:0;line-height:21px;">
+                                    <img style="height: 32px;display: inline-block;padding: 3px 5px 3px 0;" src="https://raw.githubusercontent.com/tskit-dev/administrative/main/tskit_logo.svg"/>
+                                    <a target="_blank" href="https://tskit.dev/tskit/docs/latest/python-api.html#the-treesequence-class"> Tree Sequence </a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Trees</td><td>141</td></tr>
+                            <tr><td>Sequence Length</td><td>10 000 000</td></tr>
+                            <tr><td>Time Units</td><td>generations</td></tr>
+                            <tr><td>Sample Nodes</td><td>100</td></tr>
+                            <tr><td>Total Size</td><td>309.2 KiB</td></tr>
+                            <tr>
+                                <td>Metadata</td><td style="text-align: left;">
+            <div>
+                <span class="tskit-details-label"></span>
+                <details open>
+                    <summary>dict</summary>
+                    
+            <div>
+                <span class="tskit-details-label">SLiM:</span>
+                <details >
+                    <summary>dict</summary>
+                    
+            <div>
+                <span class="tskit-details-label">chromosomes:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    id: 1<br/>index: 0<br/>name: A<br/>symbol: A<br/>type: A<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>cycle: 1000<br/>file_version: 1.0<br/>model_type: WF<br/>name: sim<br/>nucleotide_based: False<br/>separate_sexes: False<br/>spatial_dimensionality: <br/>spatial_periodicity: <br/>stage: late<br/>
+            <div>
+                <span class="tskit-details-label">this_chromosome:</span>
+                <details >
+                    <summary>dict</summary>
+                    id: 1<br/>index: 0<br/>name: A<br/>symbol: A<br/>type: A<br/>
+                </details>
+            </div>
+            <br/>tick: 1000<br/>
+            <div>
+                <span class="tskit-details-label">traits:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    baselineAccumulation: True<br/>baselineOffsetFromSubstitutions: 0.8944892219804647<br/>baselineOffsetFromUser: 5.0<br/>directFitnessEffect: False<br/>index: 0<br/>individualOffsetMean: 0.0<br/>individualOffsetSD: 0.1<br/>name: mult<br/>type: multiplicative<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    baselineAccumulation: True<br/>baselineOffsetFromSubstitutions: -0.21228318789871992<br/>baselineOffsetFromUser: -1.0<br/>directFitnessEffect: False<br/>index: 1<br/>individualOffsetMean: 0.0<br/>individualOffsetSD: 0.1<br/>name: logistic<br/>type: logistic<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">SLiM_mutation_list:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 15<br/>mutation_type: 1<br/>subpopulation: 1<br/>slim_time: 2<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.026010943576693535<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.003134363330900669<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 1576<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 17<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.0020196049008518457<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.009735784493386745<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 1987<br/>mutation_type: 1<br/>subpopulation: 1<br/>slim_time: 21<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.01020310539752245<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.0009580525802448392<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 837<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 10<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.009154281578958035<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.00371098006144166<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 3126<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 32<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.0012267092242836952<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.0011492078192532063<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 1703<br/>mutation_type: 1<br/>subpopulation: 1<br/>slim_time: 18<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.004852541256695986<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.002290119417011738<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 2796<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 29<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.002255016239359975<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.0017606235342100263<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 1988<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 21<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.02024916745722294<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.005838510114699602<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 3400<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 35<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.01987594924867153<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.015985509380698204<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 1313<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 15<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.00017658188880886883<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.015020333230495453<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 1190<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 13<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.014724056236445904<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.002498218324035406<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 2064<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 22<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.007496724370867014<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.0011577224358916283<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 3854<br/>mutation_type: 1<br/>subpopulation: 1<br/>slim_time: 40<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.010805635713040829<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.003640131326392293<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 869<br/>mutation_type: 1<br/>subpopulation: 1<br/>slim_time: 10<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.017547879368066788<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.0006886860937811434<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 1175<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 13<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.013079150579869747<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.005980576388537884<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 232<br/>mutation_type: 1<br/>subpopulation: 1<br/>slim_time: 4<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.0033567564096301794<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.01929246261715889<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 321<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 5<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.002490913262590766<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.011669306084513664<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 2692<br/>mutation_type: 1<br/>subpopulation: 1<br/>slim_time: 28<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.018162688240408897<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.0029179221019148827<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 4078<br/>mutation_type: 1<br/>subpopulation: 1<br/>slim_time: 42<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.017629289999604225<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.007538866717368364<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 2703<br/>mutation_type: 1<br/>subpopulation: 1<br/>slim_time: 28<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.010814151726663113<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.0027240614872425795<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 852<br/>mutation_type: 1<br/>subpopulation: 1<br/>slim_time: 10<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.00402882369235158<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.003662815084680915<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 3384<br/>mutation_type: 1<br/>subpopulation: 1<br/>slim_time: 35<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.0024172388948500156<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.0008700435282662511<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 4144<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 43<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.01489799004048109<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -4.0450362575938925e-05<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 3873<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 40<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.010952734388411045<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.0005257998127490282<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 2427<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 25<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.004659339319914579<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.01215437613427639<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 2129<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 22<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.005004825536161661<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.003335549496114254<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 5279<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 54<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.012746073305606842<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.004763415548950434<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 4016<br/>mutation_type: 1<br/>subpopulation: 1<br/>slim_time: 41<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.008188897743821144<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.005705110263079405<br/>dominance: 0.20000000298023224<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 853<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 10<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.0007417929591611028<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.007455283775925636<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    mutation_id: 5561<br/>mutation_type: 2<br/>subpopulation: 1<br/>slim_time: 57<br/>nucleotide: -1<br/>padding: None<br/>
+            <div>
+                <span class="tskit-details-label">per_trait:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: 0.0032693573739379644<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    effect_size: -0.014267022721469402<br/>dominance: nan<br/>hemizygous_dominance: 1.0<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>... and 2055 more
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tskit-table-set-table">
+                    <table class="tskit-table">
+                        <thead>
+                            <tr>
+                                <th style="line-height:21px;">Table</th>
+                                <th>Rows</th>
+                                <th>Size</th>
+                                <th>Has Metadata</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+            <tr>
+                <td>Edges</td>
+                <td>639</td>
+                <td>20.0 KiB</td>
+                <td style="text-align: center;">
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Individuals</td>
+                <td>50</td>
+                <td>11.3 KiB</td>
+                <td style="text-align: center;">
+                    ✅
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Migrations</td>
+                <td>0</td>
+                <td>8 Bytes</td>
+                <td style="text-align: center;">
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Mutations</td>
+                <td>2 085</td>
+                <td>100.3 KiB</td>
+                <td style="text-align: center;">
+                    ✅
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Nodes</td>
+                <td>285</td>
+                <td>11.9 KiB</td>
+                <td style="text-align: center;">
+                    ✅
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Populations</td>
+                <td>2</td>
+                <td>2.3 KiB</td>
+                <td style="text-align: center;">
+                    ✅
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Provenances</td>
+                <td>1</td>
+                <td>4.0 KiB</td>
+                <td style="text-align: center;">
+                    
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Sites</td>
+                <td>2 084</td>
+                <td>48.9 KiB</td>
+                <td style="text-align: center;">
+                    
+                </td>
+            </tr>
+        
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tskit-table-set-table">
+                    <table class="tskit-table">
+                        <thead>
+                            <tr>
+                                <th>Provenance Timestamp</th>
+                                <th>Software Name</th>
+                                <th>Version</th>
+                                <th>Command</th>
+                                <th>Full record</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                <tr>
+                    <td>01 September, 2026 at 03:32:34 PM</td>
+                    <td>SLiM</td>
+                    <td>5.2</td>
+                    <td>['slim', '-s', '23', 'phenotypes3.slim']</td>
+                    <td>
+                        <details>
+                            <summary>Details</summary>
+                            
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    
+            <div>
+                <span class="tskit-details-label">environment:</span>
+                <details >
+                    <summary>dict</summary>
+                    
+            <div>
+                <span class="tskit-details-label">os:</span>
+                <details >
+                    <summary>dict</summary>
+                    machine: x86_64<br/>node: runnervmgx7h7<br/>release: 6.17.0-1022-azure<br/>system: Linux<br/>version: #22-Ubuntu SMP Mon Jul 27<br/>17:24:03 UTC 2026<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">metadata:</span>
+                <details >
+                    <summary>dict</summary>
+                    
+            <div>
+                <span class="tskit-details-label">individuals:</span>
+                <details >
+                    <summary>dict</summary>
+                    
+            <div>
+                <span class="tskit-details-label">flags:</span>
+                <details >
+                    <summary>dict</summary>
+                    
+            <div>
+                <span class="tskit-details-label">16:</span>
+                <details >
+                    <summary>dict</summary>
+                    description: the individual was alive at<br/>the time the file was written<br/>name: SLIM_TSK_INDIVIDUAL_ALIVE<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">17:</span>
+                <details >
+                    <summary>dict</summary>
+                    description: the individual was requested<br/>by the user to be permanently<br/>remembered<br/>name: SLIM_TSK_INDIVIDUAL_REMEMBERED<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">18:</span>
+                <details >
+                    <summary>dict</summary>
+                    description: the individual was requested<br/>by the user to be retained<br/>only if its nodes continue to<br/>exist in the t...<br/>name: SLIM_TSK_INDIVIDUAL_RETAINED<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">19:</span>
+                <details >
+                    <summary>dict</summary>
+                    description: the individual is a recent<br/>migrant between subpopulations<br/>name: SLIM_TSK_INDIVIDUAL_MIGRATED<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">parameters:</span>
+                <details >
+                    <summary>dict</summary>
+                    
+            <div>
+                <span class="tskit-details-label">chromosomes:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    id: 1<br/>index: 0<br/>name: A<br/>symbol: A<br/>type: A<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">command:</span>
+                <details >
+                    <summary>list</summary>
+                     slim<br/> -s<br/> 23<br/> phenotypes3.slim<br/>
+                </details>
+            </div>
+            <br/>model: initialize() {<br/>setSeed(123);         initiali<br/>zeTreeSeq(timeUnit=&quot;generation<br/>s&quot;);<br/>initializeTrait(&quot;mult&quot;, &quot;...<br/>model_hash: ae381a780b14a6fc47e909cc06414c<br/>13b784be444c2578704495f828ae17<br/>f496<br/>model_type: WF<br/>nucleotide_based: False<br/>seed: 23<br/>separate_sexes: False<br/>spatial_dimensionality: <br/>spatial_periodicity: <br/>stage: late<br/>
+            <div>
+                <span class="tskit-details-label">this_chromosome:</span>
+                <details >
+                    <summary>dict</summary>
+                    id: 1<br/>index: 0<br/>name: A<br/>symbol: A<br/>type: A<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">traits:</span>
+                <details >
+                    <summary>list</summary>
+                    
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    baselineAccumulation: True<br/>baselineOffsetFromSubstitutions: 0.8944892219804647<br/>baselineOffsetFromUser: 5.0<br/>directFitnessEffect: False<br/>index: 0<br/>individualOffsetMean: 0.0<br/>individualOffsetSD: 0.1<br/>name: mult<br/>type: multiplicative<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label"></span>
+                <details >
+                    <summary>dict</summary>
+                    baselineAccumulation: True<br/>baselineOffsetFromSubstitutions: -0.21228318789871992<br/>baselineOffsetFromUser: -1.0<br/>directFitnessEffect: False<br/>index: 1<br/>individualOffsetMean: 0.0<br/>individualOffsetSD: 0.1<br/>name: logistic<br/>type: logistic<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">resources:</span>
+                <details >
+                    <summary>dict</summary>
+                    elapsed_time: 0.163518946<br/>max_memory: 18923520<br/>sys_time: 0.021899<br/>user_time: 0.143341<br/>
+                </details>
+            </div>
+            <br/>schema_version: 1.1.0<br/>
+            <div>
+                <span class="tskit-details-label">slim:</span>
+                <details >
+                    <summary>dict</summary>
+                    cycle: 1000<br/>file_version: 1.0<br/>name: sim<br/>tick: 1000<br/>
+                </details>
+            </div>
+            <br/>
+            <div>
+                <span class="tskit-details-label">software:</span>
+                <details >
+                    <summary>dict</summary>
+                    name: SLiM<br/>version: 5.2<br/>
+                </details>
+            </div>
+            <br/>
+                </details>
+            </div>
+            
+                        </details>
+                    </td>
+                </tr>
+            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="margin-top: 1em; font-size: 0.8em; text-align: center;">
+                To cite this software, please consult the citation manual: <a href="https://tskit.dev/citation/" target="_blank">https://tskit.dev/citation/</a>
+            </div>
+        </div>
+    </div></div>
+</div>
+<p>Just for the heck of it, we’ll load the information into a data frame
+row-wise instead of column-wise:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+        <span class="p">(</span>
+         <span class="n">ts</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">ind</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">time</span><span class="p">,</span>
+         <span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;per_trait&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;phenotype&#39;</span><span class="p">],</span>
+         <span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;per_trait&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;offset&#39;</span><span class="p">],</span>
+         <span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;per_trait&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;phenotype&#39;</span><span class="p">],</span>
+         <span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;per_trait&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;offset&#39;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">ts</span><span class="o">.</span><span class="n">individuals</span><span class="p">()</span>
+    <span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s2">&quot;phenotype1&quot;</span><span class="p">,</span> <span class="s2">&quot;offset1&quot;</span><span class="p">,</span> <span class="s2">&quot;phenotype2&quot;</span><span class="p">,</span> <span class="s2">&quot;offset2&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s the joint distribution of trait values.
+The first is positive (since it’s multiplicative)
+and the second between 0 and 1 (since it’s logistic).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">&gt;&gt;</span> <span class="n">p9</span><span class="o">.</span><span class="n">ggplot</span><span class="p">(</span><span class="n">p9</span><span class="o">.</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;phenotype1&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;phenotype2&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">geom_point</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/bb4d27b483b3df8b786b361309e3def0693ff10a4d86f005abbf12aaf2e28e25.png"><img alt="_images/bb4d27b483b3df8b786b361309e3def0693ff10a4d86f005abbf12aaf2e28e25.png" src="_images/bb4d27b483b3df8b786b361309e3def0693ff10a4d86f005abbf12aaf2e28e25.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>A “logistic” trait is just an additive trait that’s been put through the logistic transform,
+$x \mapsto 1/(1 + \exp(-x))$. So we can use the code above to verify:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alive</span> <span class="o">=</span> <span class="n">pyslim</span><span class="o">.</span><span class="n">individuals_alive_at</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="n">alive</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ind_pheno</span> <span class="o">=</span> <span class="n">additive_genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mut_metadata</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span> <span class="o">+</span> <span class="n">additive_offset</span><span class="p">(</span><span class="n">ts_metadata</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span>
+<span class="n">ind_pheno</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">ind_pheno</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ours: </span><span class="si">{</span><span class="n">ind_pheno</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SLiM: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;phenotype&#39;</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;per_trait&#39;</span><span class="p">]])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ours: [5.80340458 0.20239797]
+SLiM: [4.11887898 0.20239797]
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the multiplicative trait, we need some new functions.
+Following the pattern above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">multiplicative_effect</span><span class="p">(</span><span class="n">mut_metadata</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">num_traits</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="c1"># here a and b are *string* derived states</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">num_traits</span><span class="p">,))</span>
+    <span class="n">muts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span> <span class="o">+</span> <span class="n">Counter</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">muts</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">m</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">md</span> <span class="o">=</span> <span class="n">mut_metadata</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">)][</span><span class="s1">&#39;per_trait&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">muts</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_traits</span><span class="p">):</span>
+                    <span class="n">h</span> <span class="o">=</span> <span class="n">md</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;dominance&#39;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+                        <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">md</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;effect_size&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">muts</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_traits</span><span class="p">):</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">md</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;effect_size&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="c1"># for instance, a homozygote for the first mutation:</span>
+<span class="n">mut</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">mutation</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">multiplicative_effect</span><span class="p">(</span><span class="n">mut_metadata</span><span class="p">,</span> <span class="n">mut</span><span class="o">.</span><span class="n">derived_state</span><span class="p">,</span> <span class="n">mut</span><span class="o">.</span><span class="n">derived_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.99150926, 0.99995613])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Genetic values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">multiplicative_genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mut_metadata</span><span class="p">,</span> <span class="n">ind</span><span class="p">,</span> <span class="n">num_traits</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">num_traits</span><span class="p">,))</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ts</span><span class="o">.</span><span class="n">variants</span><span class="p">(</span><span class="n">samples</span><span class="o">=</span><span class="n">ind</span><span class="o">.</span><span class="n">nodes</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">alleles</span><span class="p">[</span><span class="n">g</span><span class="p">]</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">genotypes</span><span class="p">]</span>
+        <span class="n">out</span> <span class="o">*=</span> <span class="n">multiplicative_effect</span><span class="p">(</span><span class="n">mut_metadata</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="n">multiplicative_genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mut_metadata</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.89633798, 0.82445491])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Offsets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">multiplicative_offset</span><span class="p">(</span><span class="n">ts_metadata</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;baselineOffsetFromUser&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ts_metadata</span><span class="p">[</span><span class="s1">&#39;SLiM&#39;</span><span class="p">][</span><span class="s1">&#39;traits&#39;</span><span class="p">]])</span>
+    <span class="n">out</span> <span class="o">*=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;offset&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;per_trait&#39;</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="n">multiplicative_offset</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.59723703, 0.07860051])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s combine these into a function that works for this simulation.
+This is not going to be very efficient (for many reasons),
+but efficiency is not important here, since we’re just verifying that we understand
+how the <code class="docutils literal notranslate"><span class="pre">phenotype</span></code> values SLiM computes relate to what’s in the tree sequence.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">phenotype</span><span class="p">(</span><span class="n">ind</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">multiplicative_offset</span><span class="p">(</span><span class="n">ts_metadata</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span>
+    <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">additive_offset</span><span class="p">(</span><span class="n">ts_metadata</span><span class="p">,</span> <span class="n">ind</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">add</span> <span class="o">=</span> <span class="n">additive_genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mut_metadata</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span>
+    <span class="n">mult</span> <span class="o">=</span> <span class="n">multiplicative_genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">mut_metadata</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span>
+    <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="n">mult</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">add</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="n">phenotype</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.12067815, 0.20239797])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Putting this together,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alive</span> <span class="o">=</span> <span class="n">pyslim</span><span class="o">.</span><span class="n">individuals_alive_at</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="n">alive</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ours: </span><span class="si">{</span><span class="n">phenotype</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SLiM: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;phenotype&#39;</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;per_trait&#39;</span><span class="p">]])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ours: [4.12067815 0.20239797]
+SLiM: [4.11887898 0.20239797]
+</pre></div>
+</div>
+</div>
+</div>
+<p>More elegant code would pull the trait types out of top-level metadata
+and use additive or multiplicative effects accordingly, etcetera.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="vignette_parallel_phylo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Vignette: Parallelizing SLiM simulations in a phylogenetic tree</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="time_units.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Time units</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trait-distributions">Trait distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mutation-effects">Mutation effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplicative-and-logistic-traits">Multiplicative and logistic traits</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyslim.slim_tree_sequence &#8212; PySLiM manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pyslim/slim_tree_sequence';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../introduction.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyslim<br/>
+version 1.1.2.dev19
+</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Using pyslim</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vignette_space.html">Vignette: A spatial simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vignette_continuing.html">Vignette: Following up with more coalescent simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vignette_coalescent_diversity.html">Vignette: Starting with diversity generated by coalescent simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vignette_parallel_phylo.html">Vignette: Parallelizing SLiM simulations in a phylogenetic tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../phenotypes.html">Working with traits and phenotypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../time_units.html">Time units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../metadata.html">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../previous_versions.html">Migrating from previous versions of pyslim</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">pyslim reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../python_api.html">Python API</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../development.html">Development</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pyslim.slim_tree_sequence</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyslim</span><span class="w"> </span><span class="kn">import</span> <span class="n">NUCLEOTIDES</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">._version</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>  <span class="c1"># noqa F403</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;This method has been removed: use tskit.load( ) instead.&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="mutation_metadata">
+<a class="viewcode-back" href="../../python_api.html#pyslim.mutation_metadata">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mutation_metadata</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ts_metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a dictionary whose keys are the numeric SLiM IDs of mutations,</span>
+<span class="sd">    and whose values are metadata entries for those mutations.</span>
+<span class="sd">    These SLiM IDs are found in the metadata of tskit mutations:</span>
+<span class="sd">    for each mutation ``mut``, as ``mut.metadata[&quot;derived_states&quot;]``.</span>
+
+<span class="sd">    This is a simple extraction function that places the list of metadata entries</span>
+<span class="sd">    stored in ``ts.metadata[&quot;SLiM_mutation_list&quot;]`` in a dictionary</span>
+<span class="sd">    indexed by SLiM ID. It is recommended to extract this information once</span>
+<span class="sd">    and use the result in script, because calling this function many times</span>
+<span class="sd">    (or, even just referring to ``ts.metadata`` many times)</span>
+<span class="sd">    can slow down scripts considerably.</span>
+
+<span class="sd">    SLiM mutation IDs may also be present in ``mut.derived_state`` as a comma-separated</span>
+<span class="sd">    string, but accessing these from metadata is preferred because the derived</span>
+<span class="sd">    state may be changed (by {func}`.convert_alleles`).</span>
+
+<span class="sd">    :param tskit.TreeSequence ts: The tree sequence.</span>
+<span class="sd">    :param bool check: Whether to verify that all mutations are described in top-level</span>
+<span class="sd">        metadata.</span>
+<span class="sd">    :param dict ts_metadata: Optionally, the top-level metadata for ``ts``. If</span>
+<span class="sd">        this does not match the actual top-level metadata, incorrect values may result.</span>
+
+<span class="sd">    :returns dict: A dictionary of metadata entries, indexed by SLiM ID</span>
+<span class="sd">        and in sorted order by SLiM ID.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ts_metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ts_metadata</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">metadata</span>
+    <span class="c1"># Note that dictionaries preserve insertion order</span>
+    <span class="n">ml</span> <span class="o">=</span> <span class="n">ts_metadata</span><span class="p">[</span><span class="s2">&quot;SLiM_mutation_list&quot;</span><span class="p">]</span>
+    <span class="n">ml</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;mutation_id&quot;</span><span class="p">])</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">{</span><span class="n">mut</span><span class="p">[</span><span class="s2">&quot;mutation_id&quot;</span><span class="p">]:</span> <span class="n">mut</span> <span class="k">for</span> <span class="n">mut</span> <span class="ow">in</span> <span class="n">ml</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">check</span><span class="p">:</span>
+        <span class="n">ids</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span> <span class="k">for</span> <span class="n">mut</span> <span class="ow">in</span> <span class="n">ts</span><span class="o">.</span><span class="n">mutations</span><span class="p">()</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">mut</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;derived_states&quot;</span><span class="p">]}</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Top-level mutation metadata is missing &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;information for mutation ID </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: &quot;</span>
+                    <span class="s2">&quot;do you need to run &quot;</span>
+                    <span class="s2">&quot;pyslim.add_mutation_metadata(ts)?&quot;</span>
+                <span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mutation_at</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds the mutation present in the genome of ``node`` at ``position``,</span>
+<span class="sd">    returning -1 if there is no such mutation recorded in the tree</span>
+<span class="sd">    sequence.  Warning: if ``node`` is not actually in the tree sequence</span>
+<span class="sd">    (e.g., not ancestral to any samples) at ``position``, then this</span>
+<span class="sd">    function will return -1, possibly erroneously.  If `time` is provided,</span>
+<span class="sd">    returns the last mutation at ``position`` inherited by ``node`` that</span>
+<span class="sd">    occurred at or before ``time`` ago.</span>
+
+<span class="sd">    :param int node: The index of a node in the tree sequence.</span>
+<span class="sd">    :param float position: A position along the genome.</span>
+<span class="sd">    :param int time: The time ago that we want the nucleotide, or None,</span>
+<span class="sd">        in which case the ``time`` of ``node`` is used.</span>
+
+<span class="sd">    :returns: Index of the mutation in question, or -1 if none.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">position</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">position</span> <span class="o">&gt;=</span> <span class="n">ts</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Position </span><span class="si">{}</span><span class="s2"> not valid.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">position</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">node</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">node</span> <span class="o">&gt;=</span> <span class="n">ts</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Node </span><span class="si">{}</span><span class="s2"> not valid.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">time</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">site</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">site</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="n">position</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mut_nodes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># look for only mutations that occurred before `time`</span>
+        <span class="c1"># not strictly necessary if time was None</span>
+        <span class="k">for</span> <span class="n">mut</span> <span class="ow">in</span> <span class="n">site</span><span class="o">.</span><span class="n">mutations</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">mut</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;=</span> <span class="n">time</span><span class="p">:</span>
+                <span class="n">mut_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mut</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mut_nodes</span><span class="p">:</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">parent</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># do careful error checking here</span>
+            <span class="k">for</span> <span class="n">mut</span> <span class="ow">in</span> <span class="n">site</span><span class="o">.</span><span class="n">mutations</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">mut</span><span class="o">.</span><span class="n">node</span> <span class="o">==</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">mut</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;=</span> <span class="n">time</span><span class="p">:</span>
+                    <span class="c1"># BUG: this can fail if a mutation has two children</span>
+                    <span class="k">assert</span> <span class="n">out</span> <span class="o">==</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span> <span class="ow">or</span> <span class="n">out</span> <span class="o">==</span> <span class="n">mut</span><span class="o">.</span><span class="n">parent</span>
+                    <span class="n">out</span> <span class="o">=</span> <span class="n">mut</span><span class="o">.</span><span class="n">id</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">nucleotide_at</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mut_metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds the nucleotide present in the genome of ``node`` at ``position``.</span>
+<span class="sd">    Warning: if ``node`` is not actually in the tree sequence (e.g., not</span>
+<span class="sd">    ancestral to any samples) at ``position``, then this function will</span>
+<span class="sd">    return the reference sequence nucleotide, possibly erroneously.  If</span>
+<span class="sd">    `time` is provided, returns the last nucletide produced by a mutation</span>
+<span class="sd">    at ``position`` inherited by ``node`` that occurred at or before</span>
+<span class="sd">    ``time`` ago.</span>
+
+<span class="sd">    This method uses a dictionary of mutation metadata, computed by</span>
+<span class="sd">    :meth:`mut_metadata`. This step can be expensive if there are</span>
+<span class="sd">    many mutations, so this can be pre-computed and passed in as</span>
+<span class="sd">    ``mutations``. If not provided, it will be computed.</span>
+
+<span class="sd">    :param int node: The index of a node in the tree sequence.</span>
+<span class="sd">    :param float position: A position along the genome.</span>
+<span class="sd">    :param int time: The time ago that we want the nucleotide, or None,</span>
+<span class="sd">        in which case the ``time`` of ``node`` is used.</span>
+<span class="sd">    :param dict mut_metadata: If provided, a dictionary mapping</span>
+<span class="sd">        mutation ID to metadata, as returned by ``pyslim.mutation_metadata(ts)``.</span>
+
+<span class="sd">    :returns: Index of the nucleotide in ``NUCLEOTIDES`` (0=A, 1=C, 2=G, 3=T).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ts</span><span class="o">.</span><span class="n">has_reference_sequence</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;This tree sequence has no reference sequence.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mut_metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mut_metadata</span> <span class="o">=</span> <span class="n">mutation_metadata</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+    <span class="n">mut_id</span> <span class="o">=</span> <span class="n">mutation_at</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mut_id</span> <span class="o">==</span> <span class="n">tskit</span><span class="o">.</span><span class="n">NULL</span><span class="p">:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">NUCLEOTIDES</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">reference_sequence</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">position</span><span class="p">)])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mut</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">mutation</span><span class="p">(</span><span class="n">mut_id</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+            <span class="p">[(</span><span class="n">mut_metadata</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s2">&quot;slim_time&quot;</span><span class="p">],</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">mut</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;derived_states&quot;</span><span class="p">]]</span>
+        <span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">mut_metadata</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s2">&quot;nucleotide&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

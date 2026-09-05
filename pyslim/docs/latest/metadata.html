@@ -1,0 +1,876 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Metadata &#8212; PySLiM manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'metadata';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Migrating from previous versions of pyslim" href="previous_versions.html" />
+    <link rel="prev" title="Time units" href="time_units.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="introduction.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyslim<br/>
+version 1.1.2.dev19
+</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Using pyslim</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignette_space.html">Vignette: A spatial simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignette_continuing.html">Vignette: Following up with more coalescent simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignette_coalescent_diversity.html">Vignette: Starting with diversity generated by coalescent simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignette_parallel_phylo.html">Vignette: Parallelizing SLiM simulations in a phylogenetic tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phenotypes.html">Working with traits and phenotypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time_units.html">Time units</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="previous_versions.html">Migrating from previous versions of pyslim</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">pyslim reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_api.html">Python API</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/metadata.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Metadata</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-top-level-metadata">Using top-level metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-tools">Metadata tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyslim.default_slim_metadata"><code class="docutils literal notranslate"><span class="pre">default_slim_metadata()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyslim.slim_tree_sequence_metadata_schema"><code class="docutils literal notranslate"><span class="pre">slim_tree_sequence_metadata_schema()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyslim.slim_individual_metadata_schema"><code class="docutils literal notranslate"><span class="pre">slim_individual_metadata_schema()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyslim.slim_node_metadata_schema"><code class="docutils literal notranslate"><span class="pre">slim_node_metadata_schema()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyslim.set_tree_sequence_metadata"><code class="docutils literal notranslate"><span class="pre">set_tree_sequence_metadata()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyslim.set_metadata_schemas"><code class="docutils literal notranslate"><span class="pre">set_metadata_schemas()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-slim-metadata">Modifying SLiM metadata</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level-metadata">Top-level metadata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-slim-metadata-in-tables">Modifying SLiM metadata in tables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical details</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-entries">Metadata entries</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="metadata">
+<span id="sec-metadata"></span><h1>Metadata<a class="headerlink" href="#metadata" title="Link to this heading">#</a></h1>
+<section id="overview">
+<span id="sec-metdata-overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>SLiM puts SLiM-specific information into the <em>metadata</em> for the tree sequence,
+as well as for each population, individual, node and mutation.
+Here is a quick reference to what information is available:
+see the SLiM manual for the more technical writeup.
+A good way to get a generic metadata example is with <a class="reference internal" href="#pyslim.default_slim_metadata" title="pyslim.default_slim_metadata"><code class="xref py py-func docutils literal notranslate"><span class="pre">default_slim_metadata()</span></code></a>.</p>
+<p><strong>Top-level:</strong>
+If <code class="docutils literal notranslate"><span class="pre">ts</span></code> is your tree sequence, then <code class="docutils literal notranslate"><span class="pre">ts.metadata</span></code> is a dict,
+and <code class="docutils literal notranslate"><span class="pre">ts.metadata[&quot;SLiM&quot;]</span></code> contains information about the simulation:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file_version</span></code>: the version of the SLiM tree sequence file format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tick</span></code>: the value of <code class="docutils literal notranslate"><span class="pre">community.tick</span></code> within SLiM when the file was written out</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle</span></code>: the value of <code class="docutils literal notranslate"><span class="pre">sim.cycle</span></code> within SLiM when the file was written out</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model_type</span></code>: either <code class="docutils literal notranslate"><span class="pre">&quot;WF&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;nonWF&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nucleotide_based</span></code>: whether this is a nucleotide-based simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">separate_sexes</span></code>: whether the simulation has separate sexes or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spatial_dimensionality</span></code>: for instance, <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;x&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;xy&quot;</span></code> (etcetera)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spatial_periodicity</span></code>: whether space wraps around in some directions (same format as dimensionality)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stage</span></code>: the <em>stage</em> of the life cycle at which the file was written out (either <code class="docutils literal notranslate"><span class="pre">&quot;first&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;early&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;late&quot;</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: the <em>name</em> of this species in SLiM</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">this_chromosome</span></code>: contains, for the chromosome in SLiM recorded in this tree sequence</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: SLiM’s ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: the index of this chromosome in the list of chromosomes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">symbol</span></code>: the user-assigned symbol</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: specifies inheritance type, e.g., <code class="docutils literal notranslate"><span class="pre">&quot;A&quot;</span></code> for autosome</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chromosomes</span></code>: (optional) a list of all chromosomes in the simulation,
+for each containing the same information as for <code class="docutils literal notranslate"><span class="pre">this_chromosome</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">traits</span></code>: a list of information for each of the traits:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: the index of the trait in SLiM</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: the name in SLiM for the trait</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;additive&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;multiplicative&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;logistic&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baselineOffsetFromUser</span></code>: a value added to all traits</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baselineOffsetFromSubstitutions</span></code>: the total effect of all substitutions on the traits
+at the time the tree sequence was saved</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baselineAccumulation</span></code>: whether the effect of substitutions accumulate in that value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">directFitnessEffect</span></code>: whether the trait has a direct effect on fitness</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">individualOffsetMean</span></code>, <code class="docutils literal notranslate"><span class="pre">individualOffsetSD</span></code>: parameters governing the distribution of individual-level offsets
+(i.e., “environment” effects)</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Populations:</strong>
+Information about each SLiM-produced population is written to metadata.
+The format uses JSON and is extensible, so other keys may be present
+and some keys may be missing (for instance, there are no spatial bounds
+in a nonspatial simulation). The metadata may be <code class="docutils literal notranslate"><span class="pre">None</span></code> for populations
+that SLiM did not use. The keys that SLiM uses are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">slim_id</span></code>: the ID of this population in SLiM</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: the name of the population (by default, <code class="docutils literal notranslate"><span class="pre">&quot;p0&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;p1&quot;</span></code>, etcetera)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">description</span></code>: a string describing the population</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">selfing_fraction</span></code>, <code class="docutils literal notranslate"><span class="pre">female_cloning_fraction</span></code>, <code class="docutils literal notranslate"><span class="pre">male_cloning_fraction</span></code>, and <code class="docutils literal notranslate"><span class="pre">sex_ratio</span></code>: only present when applicable (e.g., in WF simulations)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bounds_x0</span></code>, <code class="docutils literal notranslate"><span class="pre">bounds_x1</span></code>, <code class="docutils literal notranslate"><span class="pre">bounds_y0</span></code>, <code class="docutils literal notranslate"><span class="pre">bounds_y1</span></code>, <code class="docutils literal notranslate"><span class="pre">bounds_z0</span></code>, and <code class="docutils literal notranslate"><span class="pre">bounds_z1</span></code>: the spatial bounds, when applicable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">migration_records</span></code>: A <em>list</em> of entries describing migration between populations in a WF model.</p></li>
+</ul>
+<p><strong>Individuals:</strong>
+Each individual produced by SLiM contains the following metadata:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pedigree_id</span></code>: the “pedigree ID”, unique within the SLiM simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pedigree_p1</span></code>, <code class="docutils literal notranslate"><span class="pre">pedigree_p2</span></code>: the pedigree IDs of the individuals’ two
+parents (they may be equal in the case of selfing, or <code class="docutils literal notranslate"><span class="pre">-1</span></code> to indicate no
+parent, in the case of the initial generation)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">age</span></code>: the <code class="docutils literal notranslate"><span class="pre">.age</span></code> property within SLiM at the time the file was written out</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subpopulation</span></code>: the subpopulation within SLiM the individual was in at the time the file was written out</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sex</span></code>: the sex of the individual (either <a class="reference internal" href="python_api.html#pyslim.INDIVIDUAL_TYPE_FEMALE" title="pyslim.INDIVIDUAL_TYPE_FEMALE"><code class="xref py py-data docutils literal notranslate"><span class="pre">INDIVIDUAL_TYPE_FEMALE</span></code></a>, <a class="reference internal" href="python_api.html#pyslim.INDIVIDUAL_TYPE_MALE" title="pyslim.INDIVIDUAL_TYPE_MALE"><code class="xref py py-data docutils literal notranslate"><span class="pre">INDIVIDUAL_TYPE_MALE</span></code></a>, or <a class="reference internal" href="python_api.html#pyslim.INDIVIDUAL_TYPE_HERMAPHRODITE" title="pyslim.INDIVIDUAL_TYPE_HERMAPHRODITE"><code class="xref py py-data docutils literal notranslate"><span class="pre">INDIVIDUAL_TYPE_HERMAPHRODITE</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: additional information; currently only recording whether the individual was a “migrant” or not (see the SLiM manual)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tag</span></code>, <code class="docutils literal notranslate"><span class="pre">tagF</span></code>: the corresponding properties in SLiM: default values returned by pyslim
+are the special values that SLiM uses to mean that the values are unset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tagL0</span></code>, <code class="docutils literal notranslate"><span class="pre">tagL0_set</span></code>, etcetera: again, the corresponding properties in SLiM;
+the purpose of <code class="docutils literal notranslate"><span class="pre">tagLX_set</span></code> is to record whether the tag has been set in the simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">per_trait</span></code>: a list of information about the trait values for this individual; these are in the same order
+as the traits listed in top-level metadata;</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">phenotype</span></code>: the trait value (which is <code class="docutils literal notranslate"><span class="pre">NAN</span></code> if the phenotype has not been calculated, or was invalidated)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: the individual’s offset (i.e., the “environmental effect”)</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Nodes:</strong>
+Each “node” produced by SLiM (i.e., “haplosome” within SLiM) has:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">slim_id</span></code>: the unique ID associated with the haplosome by SLiM</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_vacant</span></code>: records that the node is a “vacant” node (in which case it isn’t
+really there, so shouldn’t have any mutations or relationships in the tree
+sequence!) - see <a class="reference internal" href="overview.html#sec-overview-vacant-nodes"><span class="std std-ref">Vacant nodes: sex chromosomes and haploidy</span></a> for more explanation</p></li>
+</ul>
+<p><strong>Mutations:</strong>
+Prior to SLiM 6.0, mutation metadata was associated with the tskit mutation objects.
+Now, this is stored in top-level metadata, under <code class="docutils literal notranslate"><span class="pre">ts.metadata[&quot;SLiM_mutation_list&quot;]</span></code>.
+Each entry contains:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mutation_id</span></code>: the numeric ID of mutation in SLiM</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mutation_type</span></code>: the numeric ID of the <code class="docutils literal notranslate"><span class="pre">MutationType</span></code> within SLiM</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subpopulation</span></code>: the numeric ID of the subpopulation the mutation occurred in</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slim_time</span></code>: the value of <code class="docutils literal notranslate"><span class="pre">community.tick</span></code> when the mutation occurred</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nucleotide</span></code>: either <code class="docutils literal notranslate"><span class="pre">-1</span></code> if there is no associated nucleotide, or the numeric code for the nucleotide (see <a class="reference internal" href="python_api.html#pyslim.NUCLEOTIDES" title="pyslim.NUCLEOTIDES"><code class="xref py py-data docutils literal notranslate"><span class="pre">NUCLEOTIDES</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">per_trait</span></code>: a list of information in the same order as the traits in top-level metadata, recording for each:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">effect_size</span></code>: the effect on the trait of this mutation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dominance</span></code>: its dominance coefficient</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hemizygous_dominance</span></code>: its hemizygous dominance coefficient (see the SLiM manual)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">padding</span></code>: this is simply empty bytes, here for byte-alignment reasons, and is always <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+</ul>
+</section>
+<section id="using-top-level-metadata">
+<span id="sec-metadata-using-top-level"></span><h2>Using top-level metadata<a class="headerlink" href="#using-top-level-metadata" title="Link to this heading">#</a></h2>
+<p>If you are going to be using information from top-level metadata,
+it is good practice to extract the metadata as a separate python object once
+and refer to that object, since otherwise you can incur runtime penalties
+for decoding and copying the metadata every time you call <code class="docutils literal notranslate"><span class="pre">ts.metadata</span></code>.
+This can be substantial, given the amount of mutation information
+in top-level metadata.
+For instance, to subtract baseline offsets from individual’s trait values,
+we might do:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">md</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">metadata</span>
+<span class="n">traits</span> <span class="o">=</span> <span class="n">md</span><span class="p">[</span><span class="s2">&quot;SLiM&quot;</span><span class="p">][</span><span class="s2">&quot;traits&quot;</span><span class="p">]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;phenotype&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="s2">&quot;baselineOffsetFromUser&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;per_trait&#39;</span><span class="p">],</span> <span class="n">traits</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">ts</span><span class="o">.</span><span class="n">individuals</span><span class="p">()</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we instead inserted <code class="docutils literal notranslate"><span class="pre">ts.metadata[&quot;SLiM&quot;][&quot;traits&quot;]</span></code> directly into the loop,
+this would become infeasibly slow.</p>
+<p>In some more detail:
+each time python evaluates <code class="docutils literal notranslate"><span class="pre">ts.metadata</span></code> (e.g., using <code class="docutils literal notranslate"><span class="pre">ts.metadata[&quot;SLiM&quot;]</span></code>)
+a new copy of the metadata dict is decoded and returned. Furthermore, a number
+of <code class="docutils literal notranslate"><span class="pre">pyslim</span></code> functions need to look up information from metadata under the hood.
+For instance, previously it was acceptable to run
+<code class="docutils literal notranslate"><span class="pre">[pyslim.slim_time(ts,</span> <span class="pre">mut.time)</span> <span class="pre">for</span> <span class="pre">mut</span> <span class="pre">in</span> <span class="pre">ts.mutations()]</span></code>.
+However, this could now easily take hours even for moderately-sized simulations.
+There are several recommendations for how to mitigate this:</p>
+<ul class="simple">
+<li><p>If you use information from top-level metadata, make a copy of it
+and refer to that copy instead: so, <code class="docutils literal notranslate"><span class="pre">ts_metadata</span> <span class="pre">=</span> <span class="pre">ts.metadata</span></code>
+after <code class="docutils literal notranslate"><span class="pre">ts</span> <span class="pre">=</span> <span class="pre">tskit.load(...)</span></code> and then use <code class="docutils literal notranslate"><span class="pre">ts_metadata</span></code>. However,
+be careful that you use the correct metadata object corresponding
+to the correct tree sequence object!</p></li>
+<li><p>Use a single pyslim function call rather than many calls to the same one
+within a loop. For instance, run:
+<code class="docutils literal notranslate"><span class="pre">slim_times</span> <span class="pre">=</span> <span class="pre">pyslim.slim_time(ts,</span> <span class="pre">ts.mutations_time)</span></code> and extract
+slim times from this vector. Similarly, use <a class="reference internal" href="python_api.html#pyslim.nodes_vacant" title="pyslim.nodes_vacant"><code class="xref py py-func docutils literal notranslate"><span class="pre">nodes_vacant()</span></code></a>
+instead of <a class="reference internal" href="python_api.html#pyslim.node_is_vacant" title="pyslim.node_is_vacant"><code class="xref py py-func docutils literal notranslate"><span class="pre">node_is_vacant()</span></code></a>.</p></li>
+<li><p>Some pyslim methods will accept a pre-extracted metadata dictionary
+as an optional argument. If this is not provided, those methods will
+extract the metadata again. The methods that now take a <code class="docutils literal notranslate"><span class="pre">ts_metadata</span></code> argument are:
+<a class="reference internal" href="python_api.html#pyslim.individual_ages" title="pyslim.individual_ages"><code class="xref py py-func docutils literal notranslate"><span class="pre">individual_ages()</span></code></a>,
+<a class="reference internal" href="python_api.html#pyslim.individual_ages_at" title="pyslim.individual_ages_at"><code class="xref py py-func docutils literal notranslate"><span class="pre">individual_ages_at()</span></code></a>,
+<a class="reference internal" href="python_api.html#pyslim.individuals_alive_at" title="pyslim.individuals_alive_at"><code class="xref py py-func docutils literal notranslate"><span class="pre">individuals_alive_at()</span></code></a>, and
+<a class="reference internal" href="python_api.html#pyslim.slim_time" title="pyslim.slim_time"><code class="xref py py-func docutils literal notranslate"><span class="pre">slim_time()</span></code></a>.</p></li>
+</ul>
+</section>
+<section id="metadata-tools">
+<span id="sec-metadata-tools"></span><h2>Metadata tools<a class="headerlink" href="#metadata-tools" title="Link to this heading">#</a></h2>
+<p>The dictionaries describing the schema for these metadata entries
+are available in <code class="docutils literal notranslate"><span class="pre">pyslim.slim_metadata_schemas</span></code>.
+Furthermore, these methods may be useful in working with metadata:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyslim.default_slim_metadata">
+<span class="sig-prename descclassname"><span class="pre">pyslim.</span></span><span class="sig-name descname"><span class="pre">default_slim_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_chromosomes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_traits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyslim/slim_metadata.html#default_slim_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyslim.default_slim_metadata" title="Link to this definition">#</a></dt>
+<dd><p>Returns default metadata of type <code class="docutils literal notranslate"><span class="pre">name</span></code>, where <code class="docutils literal notranslate"><span class="pre">name</span></code> is one of
+“tree_sequence”, “edge”, “site”, “mutation”, “mutation_list_entry”,
+“node”, “individual”, or “population”.</p>
+<p>Additional keyword arguments may be passed in to modify the returned
+metadata dictionary: for each such key=value pair the returned dictionary
+has <cite>value</cite> (re)assigned to <cite>key</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The type of metadata requested.</p></li>
+<li><p><strong>num_chromosomes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The number of chromosomes (only relevant for “node”).</p></li>
+<li><p><strong>num_traits</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The number of traits
+(only relevant for “individual” and “mutation_list_entry”).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Rtype dict<span class="colon">:</span></dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyslim.slim_tree_sequence_metadata_schema">
+<span class="sig-prename descclassname"><span class="pre">pyslim.</span></span><span class="sig-name descname"><span class="pre">slim_tree_sequence_metadata_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_traits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyslim/slim_metadata.html#slim_tree_sequence_metadata_schema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyslim.slim_tree_sequence_metadata_schema" title="Link to this definition">#</a></dt>
+<dd><p>The top-level metadata schema depends on the number of traits, and
+{data}`.slim_metadata_schemas`
+returns the schema for a single-trait simulation. This function
+returns the correct schema for a simulation with arbitrary number of
+traits. (The resulting schemas only differ in the
+“length” of the “per_trait” property of
+<code class="docutils literal notranslate"><span class="pre">schema[&quot;properties&quot;][&quot;SLiM_mutation_list&quot;][&quot;items&quot;]</span></code>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_traits</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The number of traits in the model.</p>
+</dd>
+<dt class="field-even">Return tskit.MetadataSchema<span class="colon">:</span></dt>
+<dd class="field-even"><p>The metadata schema to be used
+in the node table.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyslim.slim_individual_metadata_schema">
+<span class="sig-prename descclassname"><span class="pre">pyslim.</span></span><span class="sig-name descname"><span class="pre">slim_individual_metadata_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_traits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyslim/slim_metadata.html#slim_individual_metadata_schema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyslim.slim_individual_metadata_schema" title="Link to this definition">#</a></dt>
+<dd><p>The individual metadata schema depends on the number of traits, and
+{data}`.slim_metadata_schemas`
+returns the schema for a single-trait simulation. This function
+returns the correct schema for a simulation with arbitrary number of
+traits. (The resulting schemas only differ in the
+“length” of the “per_trait” property.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_traits</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The number of traits in the model.</p>
+</dd>
+<dt class="field-even">Return tskit.MetadataSchema<span class="colon">:</span></dt>
+<dd class="field-even"><p>The metadata schema to be used
+in the node table.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyslim.slim_node_metadata_schema">
+<span class="sig-prename descclassname"><span class="pre">pyslim.</span></span><span class="sig-name descname"><span class="pre">slim_node_metadata_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_chromosomes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyslim/slim_metadata.html#slim_node_metadata_schema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyslim.slim_node_metadata_schema" title="Link to this definition">#</a></dt>
+<dd><p>The node metadata schema depends on the number of
+chromosomes in a multichromosome simulation, and
+{data}`.slim_metadata_schemas`
+returns the schema for a single-chromosome simulation. This function
+returns the correct schema for a simulation with arbitrary number of
+chromosomes. (The resulting schemas only differ in the
+<code class="docutils literal notranslate"><span class="pre">schema[&quot;properties&quot;][&quot;is_vacant&quot;][&quot;length&quot;]</span></code> property,
+which is set to <code class="docutils literal notranslate"><span class="pre">floor(num_chromosomes+7)/8</span></code>, as described in
+the SLiM manual.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_chromosomes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The number of chromosomes in the model.</p>
+</dd>
+<dt class="field-even">Return tskit.MetadataSchema<span class="colon">:</span></dt>
+<dd class="field-even"><p>The metadata schema to be used
+in the node table.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyslim.set_tree_sequence_metadata">
+<span class="sig-prename descclassname"><span class="pre">pyslim.</span></span><span class="sig-name descname"><span class="pre">set_tree_sequence_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tick</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_dimensionality</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_periodicity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separate_sexes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nucleotide_based</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'late'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">this_chromosome</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chromosomes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_table_schemas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SLiM_mutation_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyslim/slim_metadata.html#set_tree_sequence_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyslim.set_tree_sequence_metadata" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyslim.set_metadata_schemas">
+<span class="sig-prename descclassname"><span class="pre">pyslim.</span></span><span class="sig-name descname"><span class="pre">set_metadata_schemas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_chromosomes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_traits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyslim/slim_metadata.html#set_metadata_schemas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyslim.set_metadata_schemas" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="modifying-slim-metadata">
+<h2>Modifying SLiM metadata<a class="headerlink" href="#modifying-slim-metadata" title="Link to this heading">#</a></h2>
+<p>For more on working with metadata,
+see <a class="reference external" href="https://tskit.dev/tskit/docs/stable/metadata.html#sec-metadata" title="(in Project name not set)"><span class="xref std std-ref">tskit’s metadata documentation</span></a>.</p>
+<section id="top-level-metadata">
+<h3>Top-level metadata<a class="headerlink" href="#top-level-metadata" title="Link to this heading">#</a></h3>
+<p>The entries of the top-level metadata dict are <em>read-only</em>.
+So, although you might think that
+<code class="docutils literal notranslate"><span class="pre">tables.metadata[&quot;SLiM&quot;][&quot;model_type&quot;]</span> <span class="pre">=</span> <span class="pre">&quot;nonWF&quot;</span></code>
+would switch the model type,
+this in fact (silently) does nothing. To modify the top-level metadata,
+we must (a) work with tables (as tree sequences are immutable), and (b)
+extract the metadata dict, modify the dict, and copy it back in.
+So, the code for modifying top-level metadata is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">md</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">metadata</span>
+<span class="n">md</span><span class="p">[</span><span class="s2">&quot;SLiM&quot;</span><span class="p">][</span><span class="s2">&quot;model_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;nonWF&quot;</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">md</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Modifying the top-level metadata
+could be used to declare that an annotated msprime simulation
+is to be a spatial simulation in SLiM,
+by changing the “dimensionality” property in top-level metadata
+(and perhaps also the bounds in population metadata as well).</p>
+</section>
+<section id="modifying-slim-metadata-in-tables">
+<h3>Modifying SLiM metadata in tables<a class="headerlink" href="#modifying-slim-metadata-in-tables" title="Link to this heading">#</a></h3>
+<p>To modify the metadata that <code class="docutils literal notranslate"><span class="pre">pyslim</span></code> has introduced into
+the tree sequence produced by a coalescent simulation,
+or the metadata in a SLiM-produced tree sequence,
+we need to edit the TableCollection that forms the editable data behind the tree sequence.
+For instance, to set the ages of the individuals in the tree sequence to random numbers between 1 and 4,
+we will extract a copy of the underlying tables, clear it,
+and then iterate over the individuals in the tree sequence,
+as we go re-inserting them into the tables
+after replacing their metadata with a modified version:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tables</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">dump_tables</span><span class="p">()</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">ts</span><span class="o">.</span><span class="n">individuals</span><span class="p">():</span>
+    <span class="n">md</span> <span class="o">=</span> <span class="n">ind</span><span class="o">.</span><span class="n">metadata</span>
+    <span class="n">md</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">ind</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">mod_ts</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">tree_sequence</span><span class="p">()</span>
+
+<span class="c1"># check that it worked:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First ten ages:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">mod_ts</span><span class="o">.</span><span class="n">individual</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
+<span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">mod_ts</span><span class="o">.</span><span class="n">individuals</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">ind</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="c1"># save out the tree sequence</span>
+<span class="n">mod_ts</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s2">&quot;modified_ts.trees&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First ten ages: [3, 1, 1, 3, 4, 4, 3, 2, 2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="technical-details">
+<h2>Technical details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h2>
+<section id="metadata-entries">
+<h3>Metadata entries<a class="headerlink" href="#metadata-entries" title="Link to this heading">#</a></h3>
+<p>SLiM records additional information in the metadata columns of Individual and Node, and Mutation tables,
+and about mutations in top-level metadata,
+in a binary format using the python <code class="docutils literal notranslate"><span class="pre">struct</span></code> module.
+However, this is transparently taken care of by tskit’s metadata module,
+so the user does not have to work directly with binary information or the struct module itself.
+See <a class="reference external" href="https://tskit.dev/tskit/docs/stable/metadata.html#sec-metadata" title="(in Project name not set)"><span class="xref std std-ref">tskit’s metadata documentation</span></a>
+for details on how this works.
+Nothing besides this binary information can be stored in the metadata of these tables if the tree sequence is to be used by SLiM,
+and so when <code class="docutils literal notranslate"><span class="pre">pyslim</span></code> annotates an existing tree sequence, anything in those columns is overwritten.
+Population metadata is stored as JSON, however, which is more flexible.
+For more detailed documentation on the contents and format of the metadata, see the SLiM manual.</p>
+<p>Of particular note is that <em>nodes</em> and <em>populations</em> may have empty metadata.
+SLiM will not use the metadata of nodes that are not associated with alive individuals,
+so this can safely be omitted (and makes recapitation easier).
+And, populations not used by SLiM will have empty metadata.
+All remaining metadata are required (besides edges and sites, whose metadata is not used at all).</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="time_units.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Time units</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="previous_versions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Migrating from previous versions of pyslim</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-top-level-metadata">Using top-level metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-tools">Metadata tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyslim.default_slim_metadata"><code class="docutils literal notranslate"><span class="pre">default_slim_metadata()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyslim.slim_tree_sequence_metadata_schema"><code class="docutils literal notranslate"><span class="pre">slim_tree_sequence_metadata_schema()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyslim.slim_individual_metadata_schema"><code class="docutils literal notranslate"><span class="pre">slim_individual_metadata_schema()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyslim.slim_node_metadata_schema"><code class="docutils literal notranslate"><span class="pre">slim_node_metadata_schema()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyslim.set_tree_sequence_metadata"><code class="docutils literal notranslate"><span class="pre">set_tree_sequence_metadata()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyslim.set_metadata_schemas"><code class="docutils literal notranslate"><span class="pre">set_metadata_schemas()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-slim-metadata">Modifying SLiM metadata</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level-metadata">Top-level metadata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-slim-metadata-in-tables">Modifying SLiM metadata in tables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical details</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-entries">Metadata entries</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

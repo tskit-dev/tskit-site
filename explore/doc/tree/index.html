@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      // redirect to /lab by default
+      (function () {
+        window.location.href = window.location.href.replace(
+          /(\/|\/index.html)?(\?.*)$/,
+          '/../../lab/index.html$2'
+        );
+      }.call(this));
+    </script>
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+</html>
