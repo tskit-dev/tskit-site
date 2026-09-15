@@ -1,0 +1,897 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Individual, node, and edge genetic values &#8212; Tstrait manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'individual_node_edge';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Environmental noise" href="environment.html" />
+    <link rel="prev" title="Genetic value" href="genetic.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">tstrait<br/>
+version 0.1.3.dev19
+</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction to tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation framework</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="effect-size.html">Trait simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genetic.html">Genetic value</a></li>
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Individual, node, and edge genetic values</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environmental noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-trait.html">Multi-trait simulation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extras</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to tstrait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://tskit.dev/community/">Community</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/individual_node_edge.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Individual, node, and edge genetic values</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Individual, node, and edge genetic values</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-overview">Algorithm Overview</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="individual-node-and-edge-genetic-values">
+<span id="genetic-individual-node-edge-doc"></span><h1>Individual, node, and edge genetic values<a class="headerlink" href="#individual-node-and-edge-genetic-values" title="Link to this heading">#</a></h1>
+<p>In line with the <a class="reference external" href="https://tskit.dev/tskit/docs/stable/data-model.html#sec-data-model" title="(in Project name not set)"><span class="xref std std-ref">tree sequence data model</span></a>,
+this page describes relationships between
+individual, node, and edge genetic values,
+and underlying edge effects arising from mutations.</p>
+<p><strong>Learning Objectives</strong></p>
+<p>After this page, you will be able to:</p>
+<ul class="simple">
+<li><p>Understand how to obtain genetic values in tstrait for individuals, nodes, and edges</p></li>
+<li><p>Understand how causal-allele effects give rise to edge effects and
+the genetic values.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="algorithm-overview">
+<h1>Algorithm Overview<a class="headerlink" href="#algorithm-overview" title="Link to this heading">#</a></h1>
+<p>The tstrait algorithm for <a class="reference internal" href="genetic.html#genetic-value-doc"><span class="std std-ref">individuals’ genetic values</span></a>
+can also be used to compute node and edge genetic values,
+and there is the related concept of edge effects;
+all following the assumed <a class="reference internal" href="effect-size.html#phenotype-model"><span class="std std-ref">quantitative genetics model</span></a>.
+These quantities are related as follows:</p>
+<ul class="simple">
+<li><p><em>edge effect</em> is the sum of effects of causal alleles introduced on the edge by mutations.</p></li>
+<li><p><em>edge “genetic” value</em> is its edge effect plus a sum of edge effects ancestral to the edge.</p></li>
+<li><p><em>node “genetic” value</em> is a sum of “genetic” values of immediately ancestral edges into the node.</p></li>
+<li><p><em>individual genetic value</em> is a sum of “genetic” values of nodes of the individual.</p></li>
+</ul>
+<p>Above we have quoted the term “genetic” when referring to nodes and edges,
+because the term “genetic value” is usually used with individuals.
+Since individuals’ genetic value is a sum over the contributions of its nodes,
+the term “genetic value” applies also to nodes, and hence also to immediately ancestral edges of the nodes.</p>
+<p>More on terminology.
+Edges are also called branches or haplotypes,
+so we can call
+edge effect as branch effect or haplotype effect and
+edge genetic value as branch genetic value or haplotype genetic value.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>We will demonstrate the concepts of edge effects and
+edge, node, and individual genetic values with
+a tiny example so we can follow the calculations.
+Tree sequence for the example is shown in the following figure.
+It represents two diploid individuals and how their four genomes (nodes)
+are connected with edges to four ancestral nodes and eight mutation events.
+Mutation events and their downstream effects of allele change from ancestral state
+are denoted with a red colour.
+One node is a recombinant,
+meaning that this tree sequence has two local trees.
+We denote the first (second) local tree by shading the nodes’ first (second) region with black (white) colour.
+To help tracking IDs across the different elements of a tree sequence
+in the following text, we prepend a letter to the zero-based IDs
+(<code class="docutils literal notranslate"><span class="pre">iI</span></code> for individual I, <code class="docutils literal notranslate"><span class="pre">nN</span></code> for node N, <code class="docutils literal notranslate"><span class="pre">eE</span></code> for edge E, and <code class="docutils literal notranslate"><span class="pre">mM&#64;S</span></code> for mutation M at site S).</p>
+<figure class="align-center" id="fig-individual-node-edge-alleles">
+<a class="reference internal image-reference" href="_images/individual_node_edge_alleles.svg"><img alt="Diagram of a tree sequence with two individuals (`i0` and `i1`), eight nodes (`n0-n7`; `n0-n3` are sample nodes and `n4-n7` are ancestral nodes), eight edges (`e0-e7`; with a &quot;virtual&quot; root edge `e8`), eight mutations (`m0-m7` [each at a different site]; in red colour), and resulting node alleles across ten sites. The first (second) local tree is denoted with black (white) colour." src="_images/individual_node_edge_alleles.svg" style="width: 90%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Diagram of a tree sequence with two individuals (<code class="docutils literal notranslate"><span class="pre">i0</span></code> and <code class="docutils literal notranslate"><span class="pre">i1</span></code>), eight nodes (<code class="docutils literal notranslate"><span class="pre">n0-n7</span></code>; <code class="docutils literal notranslate"><span class="pre">n0-n3</span></code> are sample nodes and <code class="docutils literal notranslate"><span class="pre">n4-n7</span></code> are ancestral nodes), eight edges (<code class="docutils literal notranslate"><span class="pre">e0-e7</span></code>; with a “virtual” root edge <code class="docutils literal notranslate"><span class="pre">e8</span></code>), eight mutations (<code class="docutils literal notranslate"><span class="pre">m0-m7</span></code> [each at a different site]; in red colour), and resulting node alleles across ten sites. The first (second) local tree is denoted with black (white) colour.</span><a class="headerlink" href="#fig-individual-node-edge-alleles" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>We now create tables for the example and
+combined them into a tree sequence object:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tstrait</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">individuals</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">    flags location parents</span>
+<span class="sd">        0        0      -1</span>
+<span class="sd">        0        0      -1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="n">nodes</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">    id is_sample time individual</span>
+<span class="sd">     0         1    0          0</span>
+<span class="sd">     1         1    0          0</span>
+<span class="sd">     2         1    0          1</span>
+<span class="sd">     3         1    0          1</span>
+<span class="sd">     4         0    1         -1</span>
+<span class="sd">     5         0    1         -1</span>
+<span class="sd">     6         0   10         -1</span>
+<span class="sd">     7         0 1000         -1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="n">edges</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">    left right parent child</span>
+<span class="sd">       0    10      4     0</span>
+<span class="sd">       0     5      4     1</span>
+<span class="sd">       5    10      5     1</span>
+<span class="sd">       0    10      5     2</span>
+<span class="sd">       0    10      6     3</span>
+<span class="sd">       0    10      6     5</span>
+<span class="sd">       0    10      7     4</span>
+<span class="sd">       0    10      7     6</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="n">sites</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">  position ancestral_state</span>
+<span class="sd">         0               0</span>
+<span class="sd">         1               0</span>
+<span class="sd">         2               0</span>
+<span class="sd">         3               0</span>
+<span class="sd">         4               0</span>
+<span class="sd">         5               0</span>
+<span class="sd">         6               0</span>
+<span class="sd">         7               0</span>
+<span class="sd">         8               0</span>
+<span class="sd">         9               0</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="n">mutations</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">  site node time derived_state parent</span>
+<span class="sd">     0    4  750.0           1     -1</span>
+<span class="sd">     1    3    7.0           1     -1</span>
+<span class="sd">     2    1    0.5           1     -1</span>
+<span class="sd">     4    4  500.0           1     -1</span>
+<span class="sd">     6    6  600.0           1     -1</span>
+<span class="sd">     7    5    9.0           1     -1</span>
+<span class="sd">     8    3    2.0           1     -1</span>
+<span class="sd">     9    1    0.5           1     -1</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">load_text</span><span class="p">(</span><span class="n">individuals</span> <span class="o">=</span> <span class="n">individuals</span><span class="p">,</span>
+                     <span class="n">nodes</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">,</span>
+                     <span class="n">edges</span> <span class="o">=</span> <span class="n">edges</span><span class="p">,</span>
+                     <span class="n">sites</span> <span class="o">=</span> <span class="n">sites</span><span class="p">,</span>
+                     <span class="n">mutations</span> <span class="o">=</span> <span class="n">mutations</span><span class="p">,</span>
+                     <span class="n">strict</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>╔═══════════════════════╗
+║TreeSequence           ║
+╠═══════════════╤═══════╣
+║Trees          │      2║
+╟───────────────┼───────╢
+║Sequence Length│     10║
+╟───────────────┼───────╢
+║Time Units     │unknown║
+╟───────────────┼───────╢
+║Sample Nodes   │      4║
+╟───────────────┼───────╢
+║Total Size     │1.3 KiB║
+╚═══════════════╧═══════╝
+╔═══════════╤════╤═════════╤════════════╗
+║Table      │Rows│Size     │Has Metadata║
+╠═══════════╪════╪═════════╪════════════╣
+║Edges      │   8│264 Bytes│          No║
+╟───────────┼────┼─────────┼────────────╢
+║Individuals│   2│104 Bytes│          No║
+╟───────────┼────┼─────────┼────────────╢
+║Migrations │   0│  8 Bytes│          No║
+╟───────────┼────┼─────────┼────────────╢
+║Mutations  │   8│312 Bytes│          No║
+╟───────────┼────┼─────────┼────────────╢
+║Nodes      │   8│232 Bytes│          No║
+╟───────────┼────┼─────────┼────────────╢
+║Populations│   0│  8 Bytes│          No║
+╟───────────┼────┼─────────┼────────────╢
+║Provenances│   0│ 16 Bytes│          No║
+╟───────────┼────┼─────────┼────────────╢
+║Sites      │  10│266 Bytes│          No║
+╚═══════════╧════╧═════════╧════════════╝
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can inspect the tables in the tree sequence and
+IDs of its elements using:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">individuals</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">sites</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">mutations</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>╔══╤═════╤════════╤═══════╤════════╗
+║id│flags│location│parents│metadata║
+╠══╪═════╪════════╪═══════╪════════╣
+║0 │    0│     0.0│     -1│        ║
+║1 │    0│     0.0│     -1│        ║
+╚══╧═════╧════════╧═══════╧════════╝
+
+╔══╤═════╤═════╤══════════╤══════════╤════════╗
+║id│time │flags│population│individual│metadata║
+╠══╪═════╪═════╪══════════╪══════════╪════════╣
+║0 │    0│    1│        -1│         0│        ║
+║1 │    0│    1│        -1│         0│        ║
+║2 │    0│    1│        -1│         1│        ║
+║3 │    0│    1│        -1│         1│        ║
+║4 │    1│    0│        -1│        -1│        ║
+║5 │    1│    0│        -1│        -1│        ║
+║6 │   10│    0│        -1│        -1│        ║
+║7 │1,000│    0│        -1│        -1│        ║
+╚══╧═════╧═════╧══════════╧══════════╧════════╝
+
+╔══╤════╤═════╤══════╤═════╤════════╗
+║id│left│right│parent│child│metadata║
+╠══╪════╪═════╪══════╪═════╪════════╣
+║0 │   0│   10│     4│    0│        ║
+║1 │   0│    5│     4│    1│        ║
+║2 │   5│   10│     5│    1│        ║
+║3 │   0│   10│     5│    2│        ║
+║4 │   0│   10│     6│    3│        ║
+║5 │   0│   10│     6│    5│        ║
+║6 │   0│   10│     7│    4│        ║
+║7 │   0│   10│     7│    6│        ║
+╚══╧════╧═════╧══════╧═════╧════════╝
+
+╔══╤════════╤═══════════════╤════════╗
+║id│position│ancestral_state│metadata║
+╠══╪════════╪═══════════════╪════════╣
+║0 │       0│              0│        ║
+║1 │       1│              0│        ║
+║2 │       2│              0│        ║
+║3 │       3│              0│        ║
+║4 │       4│              0│        ║
+║5 │       5│              0│        ║
+║6 │       6│              0│        ║
+║7 │       7│              0│        ║
+║8 │       8│              0│        ║
+║9 │       9│              0│        ║
+╚══╧════════╧═══════════════╧════════╝
+
+╔══╤════╤════╤════════════╤═════════════╤══════╤════════╗
+║id│site│node│time        │derived_state│parent│metadata║
+╠══╪════╪════╪════════════╪═════════════╪══════╪════════╣
+║0 │   0│   4│750.00000000│            1│    -1│        ║
+║1 │   1│   3│  7.00000000│            1│    -1│        ║
+║2 │   2│   1│  0.50000000│            1│    -1│        ║
+║3 │   4│   4│500.00000000│            1│    -1│        ║
+║4 │   6│   6│600.00000000│            1│    -1│        ║
+║5 │   7│   5│  9.00000000│            1│    -1│        ║
+║6 │   8│   3│  2.00000000│            1│    -1│        ║
+║7 │   9│   1│  0.50000000│            1│    -1│        ║
+╚══╧════╧════╧════════════╧═════════════╧══════╧════════╝
+</pre></div>
+</div>
+</div>
+</div>
+<p>The resulting alleles across ten sites for the four sample nodes are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span><span class="o">.</span><span class="n">genotype_matrix</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+       [1, 0, 1, 0, 1, 0, 1, 1, 0, 1],
+       [0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
+       [0, 1, 0, 0, 0, 0, 1, 0, 1, 0]], dtype=int32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now create a data frame with trait information:
+causal site, effect, trait, and allele.
+In this example all eight polymorphic sites are causal sites.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;site_id&quot;</span><span class="p">:</span>       <span class="p">[</span>  <span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>   <span class="mi">2</span><span class="p">,</span>   <span class="mi">4</span><span class="p">,</span>   <span class="mi">6</span><span class="p">,</span>   <span class="mi">7</span><span class="p">,</span>   <span class="mi">8</span><span class="p">,</span>   <span class="mi">9</span><span class="p">],</span>
+        <span class="s2">&quot;effect_size&quot;</span><span class="p">:</span>   <span class="p">[</span>  <span class="mi">1</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>  <span class="o">-</span><span class="mi">1</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>  <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="o">-</span><span class="mi">2</span><span class="p">,</span>   <span class="mi">1</span><span class="p">],</span>
+        <span class="s2">&quot;trait_id&quot;</span><span class="p">:</span>      <span class="p">[</span>  <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;causal_allele&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">]}</span>
+<span class="n">trait_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">trait_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   site_id  effect_size  trait_id causal_allele
+0        0            1         0             1
+1        1            1         0             1
+2        2           -1         0             1
+3        4            1         0             1
+4        6           -1         0             1
+5        7           -1         0             1
+6        8           -2         0             1
+7        9            1         0             1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Combining the tree sequence and trait information
+generates the edge effects, edge genetic values, node genetic values, and
+individuals’ genetic values as shown in the figure below.
+We will now demonstrate how these values
+are generated from the tree sequence and trait information.</p>
+<figure class="align-center" id="fig-individual-node-edge-values">
+<a class="reference internal image-reference" href="_images/individual_node_edge_values.svg"><img alt="Diagram of the tree sequence with mutation effects generating edge effects (both in red colour), which in turn generate edge genetic values (in green colour), node genetic values (in blue colour), and individuals' genetic values (in purple colour)." src="_images/individual_node_edge_values.svg" style="width: 90%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Diagram of the tree sequence with mutation effects generating edge effects (both in red colour), which in turn generate edge genetic values (in green colour), node genetic values (in blue colour), and individuals’ genetic values (in purple colour).</span><a class="headerlink" href="#fig-individual-node-edge-values" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>We obtain <strong>edge effects</strong> by using the <code class="xref py py-func docutils literal notranslate"><span class="pre">edge_effect()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_effect_df</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">edge_effect</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">trait_df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">edge_effect_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   trait_id  edge_id  effect_size
+0         0        0          0.0
+1         0        1         -1.0
+2         0        2          1.0
+3         0        3          0.0
+4         0        4         -1.0
+5         0        5         -1.0
+6         0        6          2.0
+7         0        7         -1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example, on edge 6, connecting the parent node 7 and child node 4,
+mutation 0 at site 0 and mutation 3 at site 4 introduce causal alleles,
+each with effect <code class="docutils literal notranslate"><span class="pre">1</span></code> unit, so the joint edge effect is <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">1</span> <span class="pre">=</span> <span class="pre">2</span></code> units.
+Edge 0, connecting the parent node 4 and child node 0,
+has no mutations, so its edge effect is <code class="docutils literal notranslate"><span class="pre">0</span></code> units.</p>
+<p>We obtain <strong>edge genetic values</strong> by using the <code class="docutils literal notranslate"><span class="pre">level=&quot;edge&quot;</span></code> argument
+of the <a class="reference internal" href="api.html#tstrait.genetic_value" title="tstrait.genetic_value"><code class="xref py py-func docutils literal notranslate"><span class="pre">genetic_value()</span></code></a> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_value_df</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">trait_df</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">edge_value_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   trait_id  edge_id  genetic_value
+0         0        0            2.0
+1         0        1            1.0
+2         0        2           -1.0
+3         0        3           -2.0
+4         0        4           -2.0
+5         0        5           -2.0
+6         0        6            2.0
+7         0        7           -1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example, above we saw that edge 6 has an effect of <code class="docutils literal notranslate"><span class="pre">2</span></code> units and
+since the root node 7 has no causal alleles it’s genetic value is <code class="docutils literal notranslate"><span class="pre">0</span></code> units,
+so edge 6 has genetic value of <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">+</span> <span class="pre">2</span> <span class="pre">=</span> <span class="pre">2</span></code> units.
+Note that both mutations on edge 6 are in interval <code class="docutils literal notranslate"><span class="pre">[0,5)</span></code>.
+This means that when this interval is passed to node 1 via node 4,
+edge 1 inherits genetic value of <code class="docutils literal notranslate"><span class="pre">2</span></code> units,
+but it’s effect of <code class="docutils literal notranslate"><span class="pre">-1</span></code> unit changes its genetic value to <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">(-1)</span> <span class="pre">=</span> <span class="pre">1</span></code> unit.</p>
+<p>We obtain <strong>node genetic values</strong> by using the <code class="docutils literal notranslate"><span class="pre">level=&quot;node&quot;</span></code> argument
+of the <a class="reference internal" href="api.html#tstrait.genetic_value" title="tstrait.genetic_value"><code class="xref py py-func docutils literal notranslate"><span class="pre">genetic_value()</span></code></a> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">node_value_df</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">trait_df</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;node&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">node_value_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   trait_id  node_id  genetic_value
+0         0        0            2.0
+1         0        1            0.0
+2         0        2           -2.0
+3         0        3           -2.0
+4         0        4            2.0
+5         0        5           -2.0
+6         0        6           -1.0
+7         0        7            0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example, above we saw that the root node 7 has genetic value of <code class="docutils literal notranslate"><span class="pre">0</span></code> units
+and that mutations on edge 6 changed it to <code class="docutils literal notranslate"><span class="pre">2</span></code> units for node 4 and
+consequently for node 0 (since there were no causal mutations on edge 0).
+Note that node 1 is recombinant:
+it inherits
+edge 1 from node 4 over <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">5)</span></code>, with genetic value of <code class="docutils literal notranslate"><span class="pre">1</span></code> unit and
+edge 2 from node 5 over <code class="docutils literal notranslate"><span class="pre">[5,</span> <span class="pre">10)</span></code>, with genetic value of <code class="docutils literal notranslate"><span class="pre">-1</span></code> unit.
+Node 1 genetic value is therefore <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">(-1)</span> <span class="pre">=</span> <span class="pre">0</span></code> units.</p>
+<p>We obtain <strong>individual genetic values</strong> by using the <code class="docutils literal notranslate"><span class="pre">level=&quot;individual&quot;</span></code> argument
+of the <a class="reference internal" href="api.html#tstrait.genetic_value" title="tstrait.genetic_value"><code class="xref py py-func docutils literal notranslate"><span class="pre">genetic_value()</span></code></a> function, which is the default level:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">individual_value_df</span> <span class="o">=</span> <span class="n">tstrait</span><span class="o">.</span><span class="n">genetic_value</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">trait_df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">individual_value_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   trait_id  individual_id  genetic_value
+0         0              0            2.0
+1         0              1           -4.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Individual 0 has nodes 0 and 1, so its genetic value is <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">0</span> <span class="pre">=</span> <span class="pre">2</span></code> units.
+Individual 1 has nodes 2 and 3, so its genetic value is <code class="docutils literal notranslate"><span class="pre">-2</span> <span class="pre">+</span> <span class="pre">(-2)</span> <span class="pre">=</span> <span class="pre">-4</span></code> units.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="genetic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Genetic value</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="environment.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Environmental noise</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Individual, node, and edge genetic values</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-overview">Algorithm Overview</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
