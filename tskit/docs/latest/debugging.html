@@ -1,0 +1,809 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Debugging non-compliant tree sequences &#8212; Tskit manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/bespoke.css?v=00f581dd" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'debugging';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelogs" href="changelogs.html" />
+    <link rel="prev" title="Development" href="development.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Version 1.0.4.dev0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="provenance.html">Provenance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stats.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topological-analysis.html">Topological analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ibd.html">Identity by descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Data export</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python-api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba.html">Numba Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-api.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-formats.html">File formats</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">For developers</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Debugging non-compliant tree sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelogs.html">Changelogs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing tskit</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/edit/main/docs/debugging.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tskit-dev/tskit/issues/new?title=Issue%20on%20page%20%2Fdebugging.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/debugging.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Debugging non-compliant tree sequences</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="debugging-non-compliant-tree-sequences">
+<span id="sec-debugging"></span><h1>Debugging non-compliant tree sequences<a class="headerlink" href="#debugging-non-compliant-tree-sequences" title="Link to this heading">#</a></h1>
+<p>If you’re working on an application that writes out tree sequences
+(or more properly, the underlying table collections),
+you may find yourself in the situation where you’re writing out files
+that tskit cannot read because of violations of the <a class="reference internal" href="data-model.html#sec-data-model"><span class="std std-ref">Data model</span></a>.
+How to see what’s going on?</p>
+<p>First, try loading the <a class="reference internal" href="python-api.html#tskit.TableCollection" title="tskit.TableCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableCollection</span></code></a> directly (skipping
+the convert-to-tree-sequence step that involves additional validation).
+This will work if you have errors like a mutation that references a
+non-extant node, for instance.
+To do this, you simply run:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tskit</span>
+<span class="n">tables</span> <span class="o">=</span> <span class="n">tskit</span><span class="o">.</span><span class="n">TableCollection</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/basic_tree_seq.trees&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TableCollection
+
+Sequence Length: 10000.0
+Time units: generations
+Metadata: b&#39;&#39;
+
+Individuals
+╔══╤═════╤════════╤═══════╤════════╗
+║id│flags│location│parents│metadata║
+╠══╪═════╪════════╪═══════╪════════╣
+║0 │    0│        │       │        ║
+║1 │    0│        │       │        ║
+║2 │    0│        │       │        ║
+╚══╧═════╧════════╧═══════╧════════╝
+
+Nodes
+╔══╤═════╤═════╤══════════╤══════════╤════════╗
+║id│time │flags│population│individual│metadata║
+╠══╪═════╪═════╪══════════╪══════════╪════════╣
+║0 │    0│    1│         0│         0│        ║
+║1 │    0│    1│         0│         0│        ║
+║2 │    0│    1│         0│         1│        ║
+║3 │    0│    1│         0│         1│        ║
+║4 │    0│    1│         0│         2│        ║
+║5 │    0│    1│         0│         2│        ║
+║6 │  100│    0│         0│        -1│        ║
+║7 │  335│    0│         0│        -1│        ║
+║8 │  420│    0│         0│        -1│        ║
+║9 │  593│    0│         0│        -1│        ║
+║10│  853│    0│         0│        -1│        ║
+║11│  958│    0│         0│        -1│        ║
+║12│1,125│    0│         0│        -1│        ║
+║13│1,479│    0│         0│        -1│        ║
+╚══╧═════╧═════╧══════════╧══════════╧════════╝
+
+Edges
+╔══╤═════╤══════╤══════╤═════╤════════╗
+║id│left │right │parent│child│metadata║
+╠══╪═════╪══════╪══════╪═════╪════════╣
+║0 │    0│10,000│     6│    1│        ║
+║1 │    0│10,000│     6│    3│        ║
+║2 │    0│ 3,834│     7│    2│        ║
+║3 │    0│ 3,834│     7│    6│        ║
+║4 │3,834│10,000│     8│    2│        ║
+║5 │3,834│10,000│     8│    4│        ║
+║6 │  310│10,000│     9│    5│        ║
+║7 │3,834│10,000│     9│    6│        ║
+║8 │  310│ 3,834│     9│    7│        ║
+║9 │    0│ 3,834│    10│    4│        ║
+║10│    0│   310│    10│    5│        ║
+║11│3,834│ 7,977│    10│    8│        ║
+║12│  310│ 7,977│    10│    9│        ║
+║13│    0│10,000│    11│    0│        ║
+║14│7,977│10,000│    11│    9│        ║
+║15│    0│ 7,977│    11│   10│        ║
+║16│    0│   310│    12│    7│        ║
+║17│    0│   310│    12│   11│        ║
+║18│7,977│10,000│    13│    8│        ║
+║19│7,977│10,000│    13│   11│        ║
+╚══╧═════╧══════╧══════╧═════╧════════╝
+
+Sites
+╔══╤════════╤═══════════════╤════════╗
+║id│position│ancestral_state│metadata║
+╠══╪════════╪═══════════════╪════════╣
+║0 │     536│              A│        ║
+║1 │   2,447│              G│        ║
+║2 │   6,947│              C│        ║
+║3 │   7,868│              C│        ║
+║4 │   8,268│              C│        ║
+╚══╧════════╧═══════════════╧════════╝
+
+Mutations
+╔══╤════╤════╤════════════╤═════════════╤══════╤════════╗
+║id│site│node│time        │derived_state│parent│metadata║
+╠══╪════╪════╪════════════╪═════════════╪══════╪════════╣
+║0 │   0│   4│334.47624226│            G│    -1│        ║
+║1 │   1│   0│ 57.17142646│            C│    -1│        ║
+║2 │   2│   0│381.32639237│            G│    -1│        ║
+║3 │   3│   5│581.59317086│            T│    -1│        ║
+║4 │   4│   4│302.17696763│            T│    -1│        ║
+╚══╧════╧════╧════════════╧═════════════╧══════╧════════╝
+
+Migrations
+╔══╤════╤═════╤════╤══════╤════╤════╤════════╗
+║id│left│right│node│source│dest│time│metadata║
+╠══╪════╪═════╪════╪══════╪════╪════╪════════╣
+╚══╧════╧═════╧════╧══════╧════╧════╧════════╝
+
+Populations
+╔══╤════════════════════════════════════╗
+║id│metadata                            ║
+╠══╪════════════════════════════════════╣
+║0 │{&#39;description&#39;: &#39;&#39;, &#39;name&#39;: &#39;pop_0&#39;}║
+╚══╧════════════════════════════════════╝
+
+Provenances
+╔══╤═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╤══════════════════════════╗
+║id│record                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             │timestamp                 ║
+╠══╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════════════════╣
+║0 │{&quot;schema_version&quot;: &quot;1.0.0&quot;, &quot;software&quot;: {&quot;name&quot;: &quot;msprime&quot;, &quot;version&quot;: &quot;1.2.0&quot;}, &quot;parameters&quot;: {&quot;command&quot;: &quot;sim_ancestry&quot;, &quot;samples&quot;: 3, &quot;demography&quot;: null, &quot;sequence_length&quot;: 10000.0, &quot;discrete_genome&quot;: null, &quot;recombination_rate&quot;: 1e-07, &quot;gene_conversion_rate&quot;: null, &quot;gene_conversion_tract_length&quot;: null, &quot;population_size&quot;: 1000, &quot;ploidy&quot;: null, &quot;model&quot;: &quot;dtwf&quot;, &quot;initial_state&quot;: null, &quot;start_time&quot;: null, &quot;end_time&quot;: null, &quot;record_migrations&quot;: null, &quot;record_full_arg&quot;: null, &quot;num_labels&quot;: null, &quot;random_seed&quot;: 665, &quot;replicate_index&quot;: 0}, &quot;environment&quot;: {&quot;os&quot;: {&quot;system&quot;: &quot;Darwin&quot;, &quot;node&quot;: &quot;Yans-New-Air&quot;, &quot;release&quot;: &quot;20.6.0&quot;, &quot;version&quot;: &quot;Darwin Kernel Version 20.6.0: Tue Feb 22 21:10:41 PST 2022; root:xnu-7195.141.26~1/RELEASE_X86_64&quot;, &quot;machine&quot;: &quot;x86_64&quot;}, &quot;python&quot;: {&quot;implementation&quot;: &quot;CPython&quot;, &quot;version&quot;: &quot;3.9.10&quot;}, &quot;libraries&quot;: {&quot;kastore&quot;: {&quot;version&quot;: &quot;2.1.1&quot;}, &quot;tskit&quot;: {&quot;version&quot;: &quot;0.5.1&quot;}, &quot;gsl&quot;: {&quot;version&quot;: &quot;2.7&quot;}}}}│2022-07-14T21:51:11.443571║
+║1 │                                                                                                                                                                                                                                            {&quot;schema_version&quot;: &quot;1.0.0&quot;, &quot;software&quot;: {&quot;name&quot;: &quot;msprime&quot;, &quot;version&quot;: &quot;1.2.0&quot;}, &quot;parameters&quot;: {&quot;command&quot;: &quot;sim_mutations&quot;, &quot;tree_sequence&quot;: {&quot;__constant__&quot;: &quot;__current_ts__&quot;}, &quot;rate&quot;: 2e-07, &quot;model&quot;: null, &quot;start_time&quot;: null, &quot;end_time&quot;: null, &quot;discrete_genome&quot;: null, &quot;keep&quot;: null, &quot;random_seed&quot;: 123}, &quot;environment&quot;: {&quot;os&quot;: {&quot;system&quot;: &quot;Darwin&quot;, &quot;node&quot;: &quot;Yans-New-Air&quot;, &quot;release&quot;: &quot;20.6.0&quot;, &quot;version&quot;: &quot;Darwin Kernel Version 20.6.0: Tue Feb 22 21:10:41 PST 2022; root:xnu-7195.141.26~1/RELEASE_X86_64&quot;, &quot;machine&quot;: &quot;x86_64&quot;}, &quot;python&quot;: {&quot;implementation&quot;: &quot;CPython&quot;, &quot;version&quot;: &quot;3.9.10&quot;}, &quot;libraries&quot;: {&quot;kastore&quot;: {&quot;version&quot;: &quot;2.1.1&quot;}, &quot;tskit&quot;: {&quot;version&quot;: &quot;0.5.1&quot;}, &quot;gsl&quot;: {&quot;version&quot;: &quot;2.7&quot;}}}}│2022-07-14T21:51:11.445208║
+╚══╧═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╧══════════════════════════╝
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, the tables can be inspected.</p>
+<p>Sometimes the error makes it so the tables cannot even be loaded
+as a <a class="reference internal" href="python-api.html#tskit.TableCollection" title="tskit.TableCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableCollection</span></code></a>: for instance, if something went wrong
+with the <a class="reference internal" href="data-model.html#sec-encoding-ragged-columns"><span class="std std-ref">ragged columns</span></a>.
+Under the hood, data is stored on disk
+with <a class="reference external" href="https://github.com/tskit-dev/kastore">kastore</a>,
+so we can use kastore directly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">kastore</span>
+<span class="n">ka</span> <span class="o">=</span> <span class="n">kastore</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/basic_tree_seq.trees&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ka</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;kastore.store.Store object at 0x7f77c8576ff0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The kastore has (by design!) very minimal functionality:
+we can ask what <em>keys</em> it has, and retrieve the associated values.
+So, this one has these keys:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">ka</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;edges/child&#39;,
+ &#39;edges/left&#39;,
+ &#39;edges/metadata&#39;,
+ &#39;edges/metadata_offset&#39;,
+ &#39;edges/metadata_schema&#39;,
+ &#39;edges/parent&#39;,
+ &#39;edges/right&#39;,
+ &#39;format/name&#39;,
+ &#39;format/version&#39;,
+ &#39;indexes/edge_insertion_order&#39;,
+ &#39;indexes/edge_removal_order&#39;,
+ &#39;individuals/flags&#39;,
+ &#39;individuals/location&#39;,
+ &#39;individuals/location_offset&#39;,
+ &#39;individuals/metadata&#39;,
+ &#39;individuals/metadata_offset&#39;,
+ &#39;individuals/metadata_schema&#39;,
+ &#39;individuals/parents&#39;,
+ &#39;individuals/parents_offset&#39;,
+ &#39;metadata&#39;,
+ &#39;metadata_schema&#39;,
+ &#39;migrations/dest&#39;,
+ &#39;migrations/left&#39;,
+ &#39;migrations/metadata&#39;,
+ &#39;migrations/metadata_offset&#39;,
+ &#39;migrations/metadata_schema&#39;,
+ &#39;migrations/node&#39;,
+ &#39;migrations/right&#39;,
+ &#39;migrations/source&#39;,
+ &#39;migrations/time&#39;,
+ &#39;mutations/derived_state&#39;,
+ &#39;mutations/derived_state_offset&#39;,
+ &#39;mutations/metadata&#39;,
+ &#39;mutations/metadata_offset&#39;,
+ &#39;mutations/metadata_schema&#39;,
+ &#39;mutations/node&#39;,
+ &#39;mutations/parent&#39;,
+ &#39;mutations/site&#39;,
+ &#39;mutations/time&#39;,
+ &#39;nodes/flags&#39;,
+ &#39;nodes/individual&#39;,
+ &#39;nodes/metadata&#39;,
+ &#39;nodes/metadata_offset&#39;,
+ &#39;nodes/metadata_schema&#39;,
+ &#39;nodes/population&#39;,
+ &#39;nodes/time&#39;,
+ &#39;populations/metadata&#39;,
+ &#39;populations/metadata_offset&#39;,
+ &#39;populations/metadata_schema&#39;,
+ &#39;provenances/record&#39;,
+ &#39;provenances/record_offset&#39;,
+ &#39;provenances/timestamp&#39;,
+ &#39;provenances/timestamp_offset&#39;,
+ &#39;sequence_length&#39;,
+ &#39;sites/ancestral_state&#39;,
+ &#39;sites/ancestral_state_offset&#39;,
+ &#39;sites/metadata&#39;,
+ &#39;sites/metadata_offset&#39;,
+ &#39;sites/metadata_schema&#39;,
+ &#39;sites/position&#39;,
+ &#39;time_units&#39;,
+ &#39;uuid&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The names are self-explanatory.
+For instance, we can look at the array of child nodes associated with each edge:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ka</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;edges/child&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1,  3,  2,  6,  2,  4,  5,  6,  7,  4,  5,  8,  9,  0,  9, 10,  7,
+       11,  8, 11], dtype=int32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Good luck!</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="development.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Development</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="changelogs.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Changelogs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
