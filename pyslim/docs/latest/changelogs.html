@@ -1,0 +1,1037 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Changelogs &#8212; PySLiM manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'changelogs';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Development" href="development.html" />
+    <link rel="prev" title="Python API" href="python_api.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  <script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="introduction.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyslim<br/>
+version 1.2.0b2.dev1
+</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Using pyslim</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignette_space.html">Vignette: A spatial simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignette_continuing.html">Vignette: Following up with more coalescent simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignette_coalescent_diversity.html">Vignette: Starting with diversity generated by coalescent simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignette_parallel_phylo.html">Vignette: Parallelizing SLiM simulations in a phylogenetic tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traits.html">Working with traits and phenotypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time_units.html">Time units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="previous_versions.html">Migrating from previous versions of pyslim</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">pyslim reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_api.html">Python API</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Changelogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/changelogs.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Changelogs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b1-2026-09-26">[1.2.0b1] - 2026-09-26</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">[1.1.1] - 2026-03-06</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">[1.1.0] - 2025-08-16</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">[1.0.4] - 2023-08-01</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">[1.0.3] - 2023-06-21</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">[1.0.2] - 2023-06-20</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">[1.0.1] - 2022-09-23</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">[1.0] - 2022-08-12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">[0.700] - 2021-12-20</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">[0.600] - 2021-02-24</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">[0.501] - 2020-12-08</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">[0.500] - 2020-12-07</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">[0.403] - 2020-08-27</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">[0.402] - 2020-08-27</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">[0.401] - 2020-03-27</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">[0.400] - 2020-03-24</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">[0.314] - 2019-10-31</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="changelogs">
+<span id="sec-changelogs"></span><h1>Changelogs<a class="headerlink" href="#changelogs" title="Link to this heading">#</a></h1>
+<section id="b1-2026-09-26">
+<h2>[1.2.0b1] - 2026-09-26<a class="headerlink" href="#b1-2026-09-26" title="Link to this heading">#</a></h2>
+<p>This is a beta release for the upcoming 1.2.0,
+to support the beta release of SLiM v6.</p>
+<p>Major update release to support the release of SLiM v6.0. The main update to
+SLiM is support for traits, which accompanied a number of changes to metadata,
+particularly mutation metadata. For more information see
+<a class="reference external" href="https://tskit.dev/pyslim/docs/latest/previous_versions.html">https://tskit.dev/pyslim/docs/latest/previous_versions.html</a></p>
+<p><strong>Breaking changes</strong>:</p>
+<ul class="simple">
+<li><p>The release of SLiM 6.0, changes to metadata (see below) mean that accessing
+top-level metadata (e.g., <cite>ts.metadata[“SLiM”]</cite>) more than a few times in
+a script will take a long time. Scripts that previously ran quickly may take a
+prohibitively long. See the documentation for simple changes that fix the problem:
+<a class="reference external" href="https://tskit.dev/pyslim/docs/latest/previous_versions.html">https://tskit.dev/pyslim/docs/latest/previous_versions.html</a></p></li>
+<li><p>The SLiM tree sequence file version number has changed to 1.0. Use <cite>pyslim.update</cite>
+to convert your tree sequence file to this format.</p></li>
+<li><p>Metadata for SLiM’s mutations are no longer stored along with the tskit mutations,
+because mutation stacking allows each tskit mutation to be associated with more
+than one SLiM mutation. Now, metadata for each unique mutation is stored in
+top-level metadata, under <cite>ts.metadata[“SLiM_mutation_list”]</cite>. The recommended
+way to access this information is by obtaining the SLiM ID-to-metadata dict
+returned by <cite>pyslim.mutation_metadata(ts)</cite>.</p></li>
+<li><p>The SLiM mutation IDs represented by each tskit mutation should no longer be
+read in from the <cite>derived_state</cite> property, but instead from the tskit mutation’s
+metadata. (However, SLiM still writes these out in text to the <cite>derived_state</cite>
+entry as before.)</p></li>
+<li><p>Previously, <cite>msprime.sim_mutations</cite> with the <cite>msprime.SLiMMutationModel</cite>
+would record SLiM metadata along with each new mutation. However, msprime
+does not modify top-level metadata, and so the method <cite>add_mutation_metadata</cite>
+should be used after adding SLiM mutations.</p></li>
+<li><p>This is a SLiM change, but top-level metadata is now encoded using the <cite>json+struct</cite>
+codec now provided by tskit (so that the mutation metadata is not too large/slow).</p></li>
+<li><p>The top-level and individual metadata schemas now depend on the number of traits
+in the model. The methods <cite>slim_tree_sequence_metadata_schema</cite> and
+<cite>slim_individual_metadata_schema</cite> can be used to produce correct schema.</p></li>
+<li><p>Individual metadata no longer has a <cite>flags</cite> component; the one flag we did set here
+(<cite>pyslim.INDIVIDUAL_FLAG_MIGRATED</cite>) is now recorded, as <cite>pyslim.INDIVIDUAL_MIGRATED</cite>,
+in <cite>individual.flags</cite> (rather than <cite>individual.metadata[‘flags’]</cite>).</p></li>
+<li><p>The default sex ratio for populations is now 0.5 instead of 0.0.
+(<a class="reference external" href="https://github.com/tskit-dev/pyslim/issues/339">#339</a>, <a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>)</p></li>
+</ul>
+<p><strong>Bug fixes:</strong></p>
+<ul class="simple">
+<li><p><cite>pyslim.annotate</cite> now has a <cite>num_chromosomes</cite> argument. Previously it could not be
+easily used to annotate multichromosome simulations with more than 8 chromosomes.
+(It also now has a <cite>num_traits</cite> argument.)</p></li>
+<li><p>In some previous versions, converting files produced by a yet-older version of SLiM
+to the previously-current file version dropped some information from metadata:
+nucleotide values for mutations, and pedigree parent IDs for individuals. This only
+may have affected users using <cite>pyslim.convert(ts)</cite> in a previous version of pyslim
+on a tree sequence <cite>ts</cite> with SLiM file version prior to 0.9.</p></li>
+<li><p>Since verison 1.1, the value of <cite>pyslim.INDIVIDUAL_FLAG_MIGRATED</cite> has been 2,
+when in fact it should have been 1, so code using this flag to detect
+migrants would have been wrong (and should have found no migrants, ever).
+(Also, this flag is now deprecated; see above.)</p></li>
+</ul>
+<p><strong>New features</strong>:</p>
+<ul class="simple">
+<li><p>SLiM now includes in metadata information about the effects of mutations on
+quantitative traits, the values of traits for individuals, and the values of
+various “tags” defined in SLiM.</p></li>
+<li><p><cite>default_slim_metadata</cite> can now take additional arguments to modify the returned
+values.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>[1.1.1] - 2026-03-06<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Maintenance release.</p>
+<ul class="simple">
+<li><p>Improved performance on remove_vacant (<a class="reference external" href="https://github.com/tskit-dev/pyslim/issues/393">#393</a>)</p></li>
+<li><p>Require Python &gt;= 3.11</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>[1.1.0] - 2025-08-16<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Major update release to support the release of SLiM v5.0. The main update here
+is support for multiple chromosomes, which entailed a change to the
+node table metadata that records “vacancy” for chromosomes not diploid
+in a given individual. Changes are minimal if you’re simulating a single,
+diploid chromosome; for more information see
+<a class="reference external" href="https://tskit.dev/pyslim/docs/latest/previous_versions.html">https://tskit.dev/pyslim/docs/latest/previous_versions.html</a></p>
+<p><strong>Breaking changes</strong>:</p>
+<ul class="simple">
+<li><p>SLiM tree sequence file version number has changed to 0.9.</p></li>
+<li><p>This is a change in SLiM, really, but top-level SLiM metadata now requires
+a <cite>“this_chromosome”</cite> entry.</p></li>
+<li><p>Similarly, node metadata no longer has <cite>genome_type</cite> or <cite>is_null</cite>; instead
+they have <cite>is_vacant</cite>, and the chromosome type is in top-level metadata,
+under <cite>metadata[‘SLiM’][‘this_chromosome’]</cite>.</p></li>
+<li><dl class="simple">
+<dt><cite>pyslim.slim_metadata_schemas[“node”]</cite> has an appropriate metadata schema</dt><dd><p>for a single-chromosome simulation (not a breaking change), but users
+wishing to set up a multi-chromosome simulation should use instead
+<cite>pyslim.slim_node_metadata_schema</cite> (which has the appropriate value in
+<cite>[“properties”][“is_vacant”][“length”]</cite>)
+(<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/367">#367</a>).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Previously, <cite>pyslim.annotate</cite> would leave existing node and individual</dt><dd><p>metadata, even if this metadata came from a different schema. This
+could silently create garbage metadata. Now, <cite>annotate</cite> removes
+any existing metadata, and warns if this occurs
+(<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/390">#390</a>).</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>Notable changes</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><cite>pyslim.individual_parents</cite> and <cite>pyslim.has_individual_parents</cite> are no</dt><dd><p>longer needed, as this information can be more reliably extracted from
+the <cite>parents</cite> column/attribute of individuals, so they are now deprecated
+and will be removed in the future.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>New features</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><cite>pyslim.set_slim_state</cite> will adjust times and “alive” flags so</dt><dd><p>that when the tree sequence is loaded into SLiM it will have
+a specified set of individuals alive at a particular time.
+(<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/384">#384</a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Functions <cite>pyslim.node_is_vacant</cite> and <cite>pyslim.has_vacant_samples</cite></dt><dd><p>test for vacancy in the current chromosome.
+(<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/367">#367</a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><cite>pyslim.remove_vacant</cite> and <cite>pyslim.restore_vacant</cite>, respectively,</dt><dd><p>remove and restore vacant samples nodes, necessary for recapitation
+and other operations. Also, corresponding <cite>pyslim.remove_vacant_tables</cite>
+and <cite>pyslim.restore_vacant_tables</cite>.
+(<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/367">#367</a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><cite>pyslim.recapitate</cite> by default removes the sample flags on vacant nodes,</dt><dd><p>but this behavior is controlled by an argument, <cite>keep_vacant</cite>.
+(<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/367">#367</a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><cite>pyslim.set_metadata_schemas</cite> now includes a <cite>num_chromosomes</cite> argument</dt><dd><p>(<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/367">#367</a>)</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>Bugfixes</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Recapitation on tree sequences with null genomes would attempt to simulate</dt><dd><p>the history of those null genomes; this would in all but exceptional cases
+fail with an error (“not all roots are at the time expected”). Now, null
+genomes are “vacant” (see above) and <cite>recapitate</cite> removes their
+sample flags before recapitating (and optionally puts them back)
+as described in <cite>pyslim.remove_vacant</cite> (<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/367">#367</a>).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Previously, recapitation would require the roots of all trees to be</dt><dd><p>at the same time (roughly) as the ‘tick’ stored in the top-level metadata;
+however, this would not be the case if the first population was added
+later than the first tick. The requirement has therefore been removed.
+(<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/382">#382</a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The <cite>generated_nucleotides</cite> method now sets the <cite>nucleotide_based</cite> entry</dt><dd><p>in top-level metadata to True. (<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/385">#385</a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The individual flags <cite>INDIVIDUAL_ALIVE</cite>, <cite>INDIVIDUAL_REMEMBERED</cite>,</dt><dd><p>and <cite>INDIVIDUAL_RETAINED</cite> were signed integers, but the flags in the
+individual table they apply to are unsigned, so using the
+bitwise negation operator <cite>~</cite> could result in an error. Now,
+they are np.uint32 values. (<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/378">#378</a>)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h2>[1.0.4] - 2023-08-01<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p><strong>Bugfixes</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>The last bugfix introduced a small bug: recapitation on a tree sequence</dt><dd><p>whose roots are at least 100,000 ticks ago would produce an msprime error:
+“Attempt to sample a lineage from an inactive population”. Reported by
+Meaghan Clark. (<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/322">#322</a>)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h2>[1.0.3] - 2023-06-21<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p><strong>Bugfixes</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>From 1.0.1 back to 0.700, there was a bug in <cite>recapitate</cite> when using the</dt><dd><p><cite>ancestral_Ne</cite> parameter that introduced a bottleneck to diploid size Ne=1
+for each SLiM subpopulation for 1 or 2 generations <em>unless</em> either (a) it
+was a WF simulation, with calls to addSubPop() in first() or early() and
+treeSeqOutput() in late(), or (b) it was a nonWF simulation, with calls to
+addSubPop() in first() and treeSeqOutput() in early() or late(). The fix
+correctly starts the msprime population with effective size <cite>ancestral_Ne</cite>
+at the time of the roots, which might be at the value of
+<cite>ts.metadata[‘SLiM’][‘tick’]</cite>, this value minus 1, or this value minus 2.
+Furthermore, <cite>recapitate</cite> now throws an error if any roots of any trees
+are not at the same time as the others. (<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/308">#308</a>)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id5">
+<h2>[1.0.2] - 2023-06-20<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>This was a bugfix release that was pushed out without the actual bug fix.
+Please don’t use this one.</p>
+</section>
+<section id="id6">
+<h2>[1.0.1] - 2022-09-23<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Documentation of how to empirically measure generation time</dt><dd><p>and check that it is correct
+(<a class="reference external" href="https://github.com/sponsors/silastittes">&#64;silastittes</a>, <a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/301">#301</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/293">#293</a>).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Minor modifications to <cite>convert_alleles</cite> and <cite>generate_nucleotides</cite></dt><dd><p>so that they run in a reasonable amount of time
+(<a class="reference external" href="https://github.com/sponsors/petrelharp">&#64;petrelharp</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/299">#299</a>).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Addition of method to find the next SLiM mutation ID,</dt><dd><p><cite>pyslim.next_slim_id</cite> (<a class="reference external" href="https://github.com/sponsors/mufernando">&#64;mufernando</a>, <a class="reference external" href="https://github.com/tskit-dev/pyslim/pull/290">#290</a>).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id7">
+<h2>[1.0] - 2022-08-12<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p><strong>Breaking changes</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Removed <cite>SlimTreeSequence</cite> class entirely (it was previously deprecated).</dt><dd><p>All its methods are either available in <cite>tskit.TreeSequence</cite>
+or are now called by <cite>pyslim.fn(ts, …)</cite> instead of <cite>ts.fn(…)</cite>.</p>
+</dd>
+</dl>
+</li>
+<li><p>TODO: Deprecated <cite>util.unique_labels_by_group</cite>.</p></li>
+<li><dl class="simple">
+<dt>Moved some methods of <cite>SlimTreeSequence</cite> to pyslim:</dt><dd><ul>
+<li><p>instead of <cite>slim_ts.slim_time(t)</cite> do <cite>pyslim.slim_time(ts, t)</cite></p></li>
+<li><p>instead of <cite>slim_ts.individuals_alive_at(t)</cite> do <cite>pyslim.individuals_alive_at(ts, t)</cite></p></li>
+<li><p>instead of <cite>slim_ts.individuals_parents(t)</cite> do <cite>pyslim.individuals_parents(ts, t)</cite></p></li>
+<li><p>instead of <cite>slim_ts.individuals_ages(t)</cite> do <cite>pyslim.individuals_ages(ts, t)</cite></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The methods <cite>slim_ts.mutation_at( )</cite> and <cite>slim_ts.nucleotide_at( )</cite></dt><dd><p>are now methods of pyslim, whose first argument is the tree sequence.</p>
+</dd>
+</dl>
+</li>
+<li><p>In SLiM v4 “generation” has been renamed to “tick”, and so corresponding things
+in pyslim have been renamed: top-level metadata now has <cite>ts.metadata[“SLiM”][“tick”]</cite>
+instead of <cite>ts.metadata[“SLiM”][“generation”]</cite></p></li>
+<li><p>Renamed <cite>pyslim.annotate_defaults()</cite> to <cite>pyslim.annotate()</cite>, with slight
+changes in behavior: since msprime.sim_ancestry() now simulates individuals
+by default, annotation does not set up individuals: if you have a tree
+sequence without individuals (e.g., produced by msprime.simulate()) then you
+need to set up those individuals yourself.</p></li>
+<li><p>To update a tree sequence produced by an old version of SLiM to the current one,
+use <cite>pyslim.update( )</cite>. (However, note that reading it in to SLiM and
+writing it out again might be even easier.)</p></li>
+<li><p>The method <cite>pyslim.set_tree_sequence_metadata</cite> now has arguments <cite>tick</cite> and <cite>cycle</cite>
+instead of <cite>generation</cite>.</p></li>
+<li><p>Removed <cite>pyslim.make_slim_provenance_dict</cite>.</p></li>
+</ul>
+<p><strong>Other notable changes</strong>:</p>
+<ul>
+<li><dl class="simple">
+<dt>Top-level metadata now has a <cite>tick</cite> attribute that is (for now) a synonym</dt><dd><p>for <cite>generation</cite>; the latter will be deprecated at some point in the future.</p>
+</dd>
+</dl>
+</li>
+<li><p>Methods for getting time, population, and location information about individuals
+are now in tskit:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>SlimTreeSequence.individual_times</cite> is now <cite>TreeSequence.individuals_time()</cite></p></li>
+<li><p><cite>SlimTreeSequence.individual_populations</cite> is now <cite>TreeSequence.individuals_population()</cite></p></li>
+<li><p><cite>SlimTreeSequence.individual_locations</cite> is now <cite>TreeSequence.individuals_location()</cite></p></li>
+</ul>
+</div></blockquote>
+<p>However, this will be invisible to the user. In each case note the the
+location of the “s” has moved (to “individual*s* time” instead of “individual
+time*s*”), but the original version remains an undocumented alias.</p>
+</li>
+</ul>
+<p><strong>New features</strong>:</p>
+<ul class="simple">
+<li><p>Methods like <cite>pyslim.individuals_alive_at( )</cite> now deal with the new <cite>stage=”first”</cite>.</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>[0.700] - 2021-12-20<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p><strong>Breaking changes</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><cite>pyslim.recapitate</cite> is updated to use new demography features in msprime 1.0,</dt><dd><p>and differs from <cite>SlimTreeSequence.recapitate()</cite> (now deprecated). Since
+the backend is now <cite>msprime.sim_ancestry()</cite> instead of <cite>msprime.simulate()</cite>,
+the argument <cite>Ne</cite> should be replaced with <cite>ancestral_Ne</cite>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><cite>reference_sequence</cite> is now a tskit TreeSequence attribute, no longer managed</dt><dd><p>by pyslim. It is no longer mutable on tree sequences (only TableCollections),
+and previous calls to <cite>ts.reference_sequence</cite> to get the actual sequence
+should be replaced by <cite>ts.reference_sequence.data</cite>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Old-style “legacy” metadata (previously deprecated) has been removed.</dt><dd><p>See <a class="reference external" href="https://tskit.dev/pyslim/docs/previous_versions.html">the documentation</a>
+for instructions on migrating your code.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>New features</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Added <cite>pyslim.population_size( )</cite> to compute an array giving numbers of</dt><dd><p>individuals across a grid of space and time bins. ({user}giliapatterson)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id9">
+<h2>[0.600] - 2021-02-24<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p><strong>New features</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Added <cite>ts.individual_parents()</cite>, a way to get the IDs of individual’s parents</dt><dd><p>when both of them are present in the tree sequence. :user:&#64;petrelharp</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Added and documented <cite>TSK_INDIVIDUAL_RETAINED</cite> flag to reflect the additional</dt><dd><p>of “retained” individuals in SLiM v3.6. :user:&#64;hyanwong, :user:&#64;petrelharp</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>Bugfix</strong>:</p>
+<ul class="simple">
+<li><p>Modified <cite>recaptiate</cite> to not error with the current msprime 1.0 alpha release.</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2>[0.501] - 2020-12-08<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p><strong>Bugfix</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Making <cite>.slim_generation</cite> derive from the tree sequence’s top-level metadata</dt><dd><p>had the unanticipated consequence that it could not be modified, which some
+people were doing. This restores the previous behavior, but in the future,
+modifying <cite>.slim_generation</cite> on a tree sequence will be deprecated - instead,
+this should be modified in the metadata of the TableCollection.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id11">
+<h2>[0.500] - 2020-12-07<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p><strong>Breaking changes</strong>:</p>
+<ul class="simple">
+<li><p>“First generation” individuals no longer need to be retained by SLiM to recapitate,
+thanks to the “keep_input_roots” argument to simplify (new in tskit 0.3.0).
+The FIRST_GEN flag and <cite>.first_generation_individuals()</cite> methods are now deprecated,
+and if you want these to remain in the tree sequence you must explicitly Remember them.
+(However, their <em>nodes</em> will remain if necessary for recapitation.)
+If you wish to simplify an un-recapitated tree sequence you now can, but you must
+pass <cite>keep_input_roots=True</cite>. This should only cause breakages if you made explicit
+use of the first generation individuals, without explicitly Remembering them.</p></li>
+<li><p>Information about the tree sequence is now stored in <em>top-level metadata</em>,
+accessible through <cite>ts.metadata[‘SLiM’]</cite>. Previous interfaces remain: for instance,
+<cite>ts.slim_generation</cite> is now redundant with <cite>ts.metadata[‘SLiM’][‘generation’]</cite>.
+This should not cause breakages, but will cause warnings where none were previously:
+for instance, <cite>pyslim.SlimTreeSequence(msprime.mutate(ts))</cite> may throw a warning
+because <cite>msprime.mutate( )</cite> does not preserve top-level metadata, and so SLiM-relevant
+information is retrieved from provenance (as in previous file versions).</p></li>
+</ul>
+<p><strong>Notable changes</strong>:</p>
+<ul class="simple">
+<li><p>Switched to using tskit native encoding/decoding of metadata via schemas.</p></li>
+<li><p>added to conda-forge (&#64;winni2k)</p></li>
+</ul>
+<p><strong>New features</strong>:</p>
+<ul class="simple">
+<li><p>added <cite>samples_only</cite> and <cite>population</cite> arguments to <cite>ts.individuals_alive_at()</cite></p></li>
+<li><p>added the <cite>ts.slim_time()</cite> method</p></li>
+<li><p>enabled dumping the reference sequence for nucleotide models</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2>[0.403] - 2020-08-27<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>BUGFIX: if a tree had all first generation individuals removed</dt><dd><p>(e.g., if it had been simplified) then individuals_alive_at( ) failed.</p>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h2>[0.402] - 2020-08-27<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>This is a compatibility release, for the tskit 0.3.0 release.</p>
+<p><strong>New features</strong>:</p>
+<ul class="simple">
+<li><p>added has_individual_parents, a method to find individuals with all parents
+are also recorded as individuals</p></li>
+<li><dl class="simple">
+<dt>Provenance handling:</dt><dd><ul>
+<li><p>added the <cite>.slim_provenances</cite> property to return all SLiM provenance entries</p></li>
+<li><dl class="simple">
+<dt>added the <cite>slim_provenance_version</cite> and <cite>parse_provenance</cite> methods to tell if</dt><dd><p>provenance entries come from SLiM and to parse them</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>documentation for recapitation with a nonuniform map by :user:&#64;TeresaPegan</p></li>
+</ul>
+<p><strong>Bug fixes</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>fixed differential time offset for tree sequences saved out in early versus late:</dt><dd><p>prior to this, mutation_at and nucleotides_at would have been sometimes wrong if the tree sequence
+was saved out during late</p>
+</dd>
+</dl>
+</li>
+<li><p>initialises correctly to work with tskit 0.3.0</p></li>
+</ul>
+</section>
+<section id="id14">
+<h2>[0.401] - 2020-03-27<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<p><strong>Bug fixes</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>checks for the ability to simulate with a discrete recombination map</dt><dd><p>in the available version of msprime, and sets the default flat
+recombination map in recapitate appropriately</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id15">
+<h2>[0.400] - 2020-03-24<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<p><strong>New features</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>updated to take and output SLiM file version 0.4, which only differs from 0.3</dt><dd><p>in minor aspects of provenance</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id16">
+<h2>[0.314] - 2019-10-31<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<p><strong>New features</strong>:</p>
+<ul class="simple">
+<li><p>allows passing in of a recombination map to recapitate (<a class="reference external" href="https://github.com/sponsors/mufernando">&#64;mufernando</a>)</p></li>
+<li><p>added first_generation_individuals() function</p></li>
+<li><p>defined individual ages for WF ages</p></li>
+<li><p>added mutation_at() and fixed up nucleotide_at() functions</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="python_api.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Python API</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="development.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Development</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b1-2026-09-26">[1.2.0b1] - 2026-09-26</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">[1.1.1] - 2026-03-06</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">[1.1.0] - 2025-08-16</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">[1.0.4] - 2023-08-01</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">[1.0.3] - 2023-06-21</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">[1.0.2] - 2023-06-20</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">[1.0.1] - 2022-09-23</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">[1.0] - 2022-08-12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">[0.700] - 2021-12-20</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">[0.600] - 2021-02-24</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">[0.501] - 2020-12-08</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">[0.500] - 2020-12-07</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">[0.403] - 2020-08-27</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">[0.402] - 2020-08-27</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">[0.401] - 2020-03-27</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">[0.400] - 2020-03-24</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">[0.314] - 2019-10-31</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tskit Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

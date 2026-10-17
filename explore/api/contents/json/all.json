@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-06-05T22:49:24.255923Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-06-05T22:49:24.255923Z",
+      "mimetype": null,
+      "name": "WhatIsAnARG",
+      "path": "json/WhatIsAnARG",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    }
+  ],
+  "created": "2026-06-05T22:49:24.251923Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-06-05T22:49:24.251923Z",
+  "mimetype": null,
+  "name": "json",
+  "path": "json",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}
