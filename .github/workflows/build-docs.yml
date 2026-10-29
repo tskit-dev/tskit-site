@@ -108,7 +108,7 @@ jobs:
 
       - name: Build docs
         if: steps.docs-cache.outputs.cache-hit != 'true'
-        uses: tskit-dev/.github/.github/actions/build-docs@v21
+        uses: tskit-dev/.github/.github/actions/build-docs@v22
         with:
           pyproject-directory: ${{ matrix.pyproject-directory || '.' }}
           additional-apt-packages: ${{ matrix.additional-apt-packages || '' }}
