@@ -1,0 +1,77 @@
+# Changelog
+
+## [1.2.0] - 202X-XX-XX
+
+In development.
+
+Drops tsinfer dependency and uses tsls for HMM matching.
+
+- Match with the Li & Stephens HMM from the
+  [tsls](https://github.com/tskit-dev/tsls) package greatly reducing
+  the time and memory required for matching.
+
+Maintenance:
+
+- Require Python >= 3.12 and add support for Python 3.15.
+
+- Require zarr >= 3.1. Datasets are still written in Zarr format 2, so
+  existing datasets can be read and updated as before. Note that string
+  arrays accessed directly through `Dataset` mapping (e.g. `ds["sample_id"][:]`)
+  are now returned as numpy `StringDType` arrays.
+
+- Require biotite >= 2.
+
+
+## [1.1.1] - 2026-10-30
+
+Maintenance release
+
+- Pin to biotite<2, as biotite 2 is not compatible with current sc2ts code.
+
+- Fix `push_up_unary_recombinant_mutations` treating a recombinant node as
+  unary when it had one full-span child edge alongside other partial-span
+  child edges. Mutations were then pushed up onto the recombinant and
+  inherited by the other children, causing a `TSK_ERR_BAD_MUTATION_PARENT`
+  error in `postprocess`.
+
+## [1.1.0] - 2026-10-08
+
+Feature release.
+
+- Add `seed_groups`, replacing the previous `include_samples` option. It is a
+  list of seed *groups*, each a list of strain IDs that are inserted into the
+  ARG together as a single local tree. A tree is inferred over the group's
+  haplotypes, the haplotype of the group's inferred ancestor is matched against
+  the ARG, and the whole group is then attached at that placement. A group is
+  inserted on the minimum date over its members, and members with later dates
+  keep their real dates via negative ("in the future") node times. The previous
+  `include_samples` formats (bare strain IDs, or `(strain, match_date)` tuples)
+  are no longer supported.
+
+- Fix retrospective matching on a day with no new samples. The table of samples
+  already in the ARG was only rebuilt when there were samples to match, so on
+  such a day the retrospective query ran against the previous day's table and
+  could add a second copy of a sample that had just been inserted.
+
+- Add basic support for non-SARS-CoV-2 genomes via an optional reference FASTA.
+  Supply `--reference` to `import-alignments` and a `reference_fasta` key in the
+  inference config; both default to the built-in SARS-CoV-2 reference, so
+  existing workflows are unchanged. When `reference_fasta` is set, a
+  `reference_date` config key is required (the date assigned to the reference).
+  The redundant `genbank_id` reference-sequence metadata field has been dropped.
+
+## [1.0.2] - 2026-03-05
+
+Maintenance release.
+
+- Require Python >= 3.11
+
+## [1.0.1] - 2025-11-28
+
+Maintenance release.
+
+- Minor packaging update to track newly released tskit 1.0
+
+## [1.0.0] - 2025-11-23
+
+Initial stable release of sc2ts.
