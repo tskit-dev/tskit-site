@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<!-- START: html-header -->
+<head>
+    
+    <meta charset="utf-8">
+    <meta name=”robots” content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        tskit-dev - Tsinfer 0.3.0!
+    </title>
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta content="" name="description">
+    <meta content="Tsinfer 0.3.0 introduces a post-processing step that improves time
+estimation, allows alleles to be listed in any order, and exposes recombination
+and mismatch ratios to the command-line interface.
+" property="og:description">
+    <meta content="Tsinfer 0.3.0 introduces a post-processing step that improves time
+estimation, allows alleles to be listed in any order, and exposes recombination
+and mismatch ratios to the command-line interface.
+" property="twitter:description">
+    
+        <meta content="https://i.imgur.com/I9PBjvU.png" property="og:image">
+        <meta content="https://i.imgur.com/I9PBjvU.png" property="twitter:image">
+    
+
+    <meta content="tskit-dev - Tsinfer 0.3.0!" property="og:title">
+    <meta content="tskit-dev - Tsinfer 0.3.0!" property="twitter:title">
+    <script>
+      document.documentElement.className = 'js'
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+
+    <link rel="shortcut icon" href="/assets/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicons/site.webmanifest" crossorigin="use-credentials">
+    <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.png" color="#085167">
+    <meta name="msapplication-TileColor" content="#085167">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://use.typekit.net/uhf4ono.css">
+    <link rel="stylesheet" href="/assets/dist/css/style.min.css">
+<script data-goatcounter="https://tskit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<!-- END: html-header -->
+
+<body>
+<div class="page-wrapper">
+    <!-- START: header -->
+    <header class="header">
+        <!-- START: navbar -->
+        <nav class="nav navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <!-- START: icon-logo -->
+            <svg class="icon icon--logo" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 84.8 68">
+                <style>
+                    .logo-st0 {
+                        fill: #085167
+                    }
+
+                    .logo-st1 {
+                        fill: #14e2a8
+                    }
+                </style>
+                <path class="logo-st0"
+                      d="M2 61.4v-8.2H0v-3.4h2v-5h4.8v5h5v3.4h-5v8.2c0 1.9.8 2.9 2.5 2.9.9 0 1.7-.2 2.4-.6v3.5c-1.1.5-2.4.8-3.7.8-4.2 0-6-2.8-6-6.6"></path>
+                <path class="logo-st0"
+                      d="M62.7 67.5v-3.4h1.9V53.2h-1.9v-3.4h6.8v14.3h1.9v3.4h-8.7zm1.1-23.3c-.1-1.6 1.2-2.9 2.7-3 1.6-.1 2.9 1.2 3 2.7.1 1.6-1.2 2.9-2.7 3h-.1c-1.5.1-2.8-1-2.9-2.5v-.2"></path>
+                <path class="logo-st0"
+                      d="M39.6 67.5v-3.4h1.9V45.4h-1.9V42h6.8v14.4h4l1.7-3.2h-2.5v-3.4h9.6v3.4h-2.6L53.7 58l4.2 6h2.8v3.4h-9.9V64h1.7l-2.8-4.6h-3.4V64h1.9v3.4l-8.6.1z"></path>
+                <path class="logo-st0"
+                      d="M23.4 57c4.5 1.3 6.4 2.7 6.4 5.9 0 3.3-2.5 5.1-6.4 5.1-2.6 0-4.3-.7-5.4-1.9l-.1 1.3h-3.4v-6.1h3.7c.7 1.9 2.5 3.2 4.5 3.1 1.3 0 2.3-.5 2.3-1.6s-1-1.5-1.7-1.7l-2.6-.7c-2.8-.7-6.2-1.7-6.2-6 0-3.4 2.4-5.2 6-5.2 1.8 0 3.6.6 5 1.8l.1-1.3H29v5.9h-3.7c-.4-1.7-1.9-2.9-3.6-2.9-1.3 0-2.3.5-2.3 1.7 0 1 .6 1.4 1.8 1.7l2.2.9z"></path>
+                <path class="logo-st0"
+                      d="M75 61.4v-8.2h-2v-3.4h2v-5h4.8v5h5v3.4h-5v8.2c0 1.9.8 2.9 2.5 2.9.9 0 1.7-.2 2.4-.6v3.5c-1.1.5-2.4.8-3.7.8-4.2 0-6-2.8-6-6.6"></path>
+                <path class="logo-st1" d="M75 28.8h4.8v12.5H75z"></path>
+                <path class="logo-st1" d="M41.5 28.8h4.8v9.6h-4.8z"></path>
+                <path class="logo-st1" d="M41.5 24h38.3v4.8H41.5z"></path>
+                <path class="logo-st1" d="M58.3 14.4h4.8V24h-4.8z"></path>
+                <path class="logo-st1" d="M2 14.4h4.8v26.9H2z"></path>
+                <path class="logo-st1" d="M2 9.6h61.1v4.8H2z"></path>
+                <path class="logo-st1" d="M34.6 0h4.8v9.6h-4.8z"></path>
+            </svg>
+            <!-- END: icon-logo -->
+            <span class="visually-hidden">
+                        tskit
+                    </span>
+        </a>
+        <button class="navbar-toggler collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent"
+                aria-controls="navbarContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <!-- START: menu -->
+            <ul class="navbar-nav">
+                <li class="nav__item">
+                    <a href="/genetics-research" class=" nav__item__link">Genetics research</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/learn" class=" nav__item__link">Learn</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/software" class=" nav__item__link">Software</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/news" class=" nav__item__link">News</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/citation" class=" nav__item__link">Citation</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/community" class=" nav__item__link">Community</a>
+                </li>
+            </ul>
+            <!-- END: menu -->
+        </div>
+    </div>
+</nav>
+        <!-- END: navbar -->
+
+        <!-- START: heading -->
+        
+        <!-- END: heading -->
+    </header>
+    <!-- END: header -->
+
+    <!-- START: content -->
+    <main class="page-content" id="content">
+        <!-- START: hero-type-2 -->
+<div class="hero hero--type-2">
+    <div class="container">
+        <div class="row">
+            <!-- NOTE: Different column values here than other instances of Type 2 Hero -->
+            <div class="col-md-8 col-lg-8">
+                <!-- NOTE: H1 here not H2 -->
+                <h1 class="hero__heading">
+                    Tsinfer 0.3.0!
+                </h1>
+                <span class="hero__metadata">
+                    
+                        <span class="hero__metadata__heading">Yan Wong</span>
+                        &nbsp;|&nbsp;
+                    
+                            <time class="hero__metadate__timestamp" datetime="">October 25 2022</time>
+                        </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: hero-type-2 -->
+
+<!-- START: news-content -->
+<section class="section section--general-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 blog-entry">
+                <h1 id="tsinfer-03">Tsinfer 0.3</h1>
+
+<p>Tsinfer 0.3.0 introduces a change to how inferred tree sequences are post-processed,
+which results in a substantial improvement in estimating dates for the oldest nodes
+in the tree sequence when running <a href="https://tskit.dev/software/tsdate.html">tsdate</a> on
+inferred tree sequences. It also starts to lay groundwork for a more flexible system of
+inputting genetic data by allowing the genotypic allele index to be in any order, rather
+than requiring the ancestral allele to be first. Finally, changes are introduced to help
+avoid inappropriate downstream analyses (e.g. by setting time units and by
+removing topology in the flanks of the inferred tree sequence).</p>
+
+<h2 id="brief-summary-of-changes">Brief summary of changes</h2>
+
+<h3 id="1-ancestral-states-do-not-need-to-correspond-to-genotype-0-and-can-be-inferred">1. Ancestral states do not need to correspond to genotype 0 (and can be inferred)</h3>
+
+<p>When creating a tsinfer input file, instead of the ancestral state being the first allele in the list, with value 0 in the associated genotypes array, you can now specify an “ancestral_allele” index and provide the alleles in any order. We can also provide an “ancestral_allele” of -1  (<code class="language-plaintext highlighter-rouge">tskit.MISSING_DATA</code>) which tells tsinfer to places mutations at that site using parsimony, inferring a parsimonious ancestral state.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tsinfer</span>
+<span class="kn">import</span> <span class="nn">tskit</span>
+<span class="kn">from</span> <span class="nn">tskit</span> <span class="kn">import</span> <span class="n">MISSING_DATA</span>
+
+<span class="k">with</span> <span class="n">tsinfer</span><span class="p">.</span><span class="n">SampleData</span><span class="p">(</span><span class="n">sequence_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="k">as</span> <span class="n">sd</span><span class="p">:</span>
+    <span class="n">sd</span><span class="p">.</span><span class="n">add_site</span><span class="p">(</span><span class="mi">51</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s">"A"</span><span class="p">,</span> <span class="s">"T"</span><span class="p">],</span> <span class="n">ancestral_allele</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Anc allele is "T"
+</span>    <span class="n">sd</span><span class="p">.</span><span class="n">add_site</span><span class="p">(</span><span class="mi">52</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s">"G"</span><span class="p">,</span> <span class="s">"C"</span><span class="p">],</span> <span class="n">ancestral_allele</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">sd</span><span class="p">.</span><span class="n">add_site</span><span class="p">(</span><span class="mi">53</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="s">"C"</span><span class="p">,</span> <span class="s">"A"</span><span class="p">],</span> <span class="n">ancestral_allele</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">sd</span><span class="p">.</span><span class="n">add_site</span><span class="p">(</span><span class="mi">54</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s">"G"</span><span class="p">,</span> <span class="s">"C"</span><span class="p">],</span> <span class="n">ancestral_allele</span><span class="o">=</span><span class="n">MISSING_DATA</span><span class="p">)</span>
+    <span class="n">sd</span><span class="p">.</span><span class="n">add_site</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="s">"A"</span><span class="p">,</span> <span class="s">"C"</span><span class="p">],</span> <span class="n">ancestral_allele</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">sd</span><span class="p">.</span><span class="n">add_site</span><span class="p">(</span><span class="mi">56</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="s">"T"</span><span class="p">,</span> <span class="s">"G"</span><span class="p">,</span> <span class="s">"C"</span><span class="p">],</span> <span class="n">ancestral_allele</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">tsinfer</span><span class="p">.</span><span class="n">infer</span><span class="p">(</span><span class="n">sd</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Ancestral state at site at position 51 is"</span><span class="p">,</span> <span class="n">ts</span><span class="p">.</span><span class="n">site</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="mi">51</span><span class="p">).</span><span class="n">ancestral_state</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Ancestral state at site at position 54 inferred to be"</span><span class="p">,</span> <span class="n">ts</span><span class="p">.</span><span class="n">site</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="mi">54</span><span class="p">).</span><span class="n">ancestral_state</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ancestral state at site at position 51 is T
+Ancestral state at site at position 54 inferred to be C
+</code></pre></div></div>
+
+<p>Plottting the mutations on the tree also reveals which alleles are ancestral</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ts</span><span class="p">.</span><span class="n">draw_svg</span><span class="p">(</span>
+    <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span>
+    <span class="n">y_axis</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">mutation_labels</span><span class="o">=</span><span class="p">{</span><span class="n">m</span><span class="p">.</span><span class="nb">id</span><span class="p">:</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">s</span><span class="p">.</span><span class="nb">id</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">s</span><span class="p">.</span><span class="n">ancestral_state</span><span class="si">}</span><span class="s">→</span><span class="si">{</span><span class="n">m</span><span class="p">.</span><span class="n">derived_state</span><span class="si">}</span><span class="s">"</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">ts</span><span class="p">.</span><span class="n">sites</span><span class="p">()</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">s</span><span class="p">.</span><span class="n">mutations</span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/news/20221025-tsinfer-0.3.0/20221025-tsinfer-0.3.0_4_0.svg" alt="svg" /></p>
+
+<h3 id="2-inferred-tree-sequences-have-empty-regions-before-the-first-and-after-the-last-site">2. Inferred tree sequences have empty regions before the first and after the last site</h3>
+
+<p>In the plot above, the X scale goes from 51 to 57 (corresponding to the site positions 50-56). Previous versions of <code class="language-plaintext highlighter-rouge">tsinfer</code> created genalogies that spanned the
+entire genome (i.e 0..100 in this example). In tsinfer 0.3, the post-processing step (see 4. below) erases flanking regions, i.e. those before the first site position, or after the last site position plus one. By default, empty flanking regions are not plotted, but you can see them by explicitly setting the x limits to the full genome:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ts</span><span class="p">.</span><span class="n">draw_svg</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="n">x_lim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ts</span><span class="p">.</span><span class="n">sequence_length</span><span class="p">),</span> <span class="n">y_axis</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/news/20221025-tsinfer-0.3.0/20221025-tsinfer-0.3.0_6_0.svg" alt="svg" /></p>
+
+<p>Note that this change affects the number of trees reported:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">ts</span><span class="p">.</span><span class="n">num_trees</span><span class="p">,</span> <span class="s">"trees in the tree sequence"</span><span class="p">)</span>  <span class="c1"># 4, not 2, because the empty regions count as trees!
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4 trees in the tree sequence
+</code></pre></div></div>
+
+<p>You may have to adjust your code to account for the fact that the first and last trees may be empty. For instance, to plot the tMRCAs between 3 and 4 across the tree sequence, you will need something like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">ts</span><span class="p">.</span><span class="n">trees</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">tree</span><span class="p">.</span><span class="n">num_roots</span> <span class="o">!=</span> <span class="n">ts</span><span class="p">.</span><span class="n">num_samples</span><span class="p">:</span>
+        <span class="c1"># this is not an empty tree - mrca calculations will fail on an empty tree
+</span>        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"MRCA of 3 and 4 in the </span><span class="si">{</span><span class="n">tree</span><span class="p">.</span><span class="n">interval</span><span class="si">}</span><span class="s"> is at time </span><span class="si">{</span><span class="n">tree</span><span class="p">.</span><span class="n">tmrca</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MRCA of 3 and 4 in the Interval(left=51.0, right=53.0) is at time 0.4
+MRCA of 3 and 4 in the Interval(left=53.0, right=57.0) is at time 0.8999999999999999
+</code></pre></div></div>
+
+<h3 id="3-inferred-tree-sequence-time-units-are-set-to-uncalibrated">3. Inferred tree sequence time units are set to “uncalibrated”</h3>
+
+<p>In the plot above, the time scale is labelled as “uncalibrated”. This means that attmepting to calculate statistics using branch lengths will raise an error, rather than (as previously) producing a meaningless value:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Time units in the inferred tree sequence are set to '</span><span class="si">{</span><span class="n">ts</span><span class="p">.</span><span class="n">time_units</span><span class="si">}</span><span class="s">'"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Sitewise diversity ="</span><span class="p">,</span> <span class="n">ts</span><span class="p">.</span><span class="n">diversity</span><span class="p">())</span>  <span class="c1"># This is OK as it isn't calculated form branch lengths
+</span><span class="k">print</span><span class="p">(</span><span class="n">ts</span><span class="p">.</span><span class="n">diversity</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s">"branch"</span><span class="p">))</span>  <span class="c1"># This now fails
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Time units in the inferred tree sequence are set to 'uncalibrated'
+Sitewise diversity = 0.033
+
+
+
+---------------------------------------------------------------------------
+
+LibraryError                              Traceback (most recent call last)
+
+&lt;ipython-input-6-7e58b3492861&gt; in &lt;module&gt;
+      1 print(f"Time units in the inferred tree sequence are set to '{ts.time_units}'")
+      2 print("Sitewise diversity =", ts.diversity())  # This is OK as it isn;t calculated form branch lengths
+----&gt; 3 print(ts.diversity(mode="branch"))  # This now fails
+
+
+/usr/local/lib/python3.9/site-packages/tskit/trees.py in diversity(self, sample_sets, windows, mode, span_normalise)
+   7475             If there is one sample set and windows=None, a numpy scalar is returned.
+   7476         """
+-&gt; 7477         return self.__one_way_sample_set_stat(
+   7478             self._ll_tree_sequence.diversity,
+   7479             sample_sets,
+
+
+/usr/local/lib/python3.9/site-packages/tskit/trees.py in __one_way_sample_set_stat(self, ll_method, sample_sets, windows, mode, span_normalise, polarised)
+   7350 
+   7351         flattened = util.safe_np_int_cast(np.hstack(sample_sets), np.int32)
+-&gt; 7352         stat = self.__run_windowed_stat(
+   7353             windows,
+   7354             ll_method,
+
+
+/usr/local/lib/python3.9/site-packages/tskit/trees.py in __run_windowed_stat(self, windows, method, *args, **kwargs)
+   7312         strip_dim = windows is None
+   7313         windows = self.parse_windows(windows)
+-&gt; 7314         stat = method(*args, **kwargs, windows=windows)
+   7315         if strip_dim:
+   7316             stat = stat[0]
+
+
+LibraryError: Statistics using branch lengths cannot be calculated when time_units is 'uncalibrated'. (TSK_ERR_TIME_UNCALIBRATED)
+</code></pre></div></div>
+
+<h3 id="4-post-processing">4. Post processing</h3>
+
+<p>The largest change in tsinfer 0.3 is the replacement of “simplification” with a more general “post-processing” step, which tweaks the tree sequence in various ways before simplifying. In particular the new <code class="language-plaintext highlighter-rouge">tsinfer.post_process()</code> routine, which is normally called automatically as the final step of inference, does the following by default:</p>
+
+<ul>
+  <li>Removes the single ancestor that tsinfer has inserted (for technical reasons) above the “ultimate ancestor”</li>
+  <li>Cuts up the ultimate ancestral node (consisting of entirely ancestral states) into separate chunks.</li>
+  <li>Erases tree topology that exists before the first site and one unit after the last site (see 2. above)</li>
+  <li>As before, “simplifies” the tree sequence (keeping unary nodes and re-allocating node ids
+ so that the sample nodes have the same IDs as in the original sample data file)</li>
+</ul>
+
+<p>To demonstrate, here’s a simulated dataset:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">msprime</span>
+<span class="kn">import</span> <span class="nn">tsinfer</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">rho</span> <span class="o">=</span> <span class="mf">1e-7</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">rho</span>
+<span class="n">Ne</span> <span class="o">=</span> <span class="mf">5e3</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s">"simulated_data.samples"</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="p">.</span><span class="n">sim_ancestry</span><span class="p">(</span>
+    <span class="mi">10</span><span class="p">,</span>
+    <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+    <span class="n">population_size</span><span class="o">=</span><span class="n">Ne</span><span class="p">,</span>
+    <span class="n">recombination_rate</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span>
+    <span class="n">random_seed</span><span class="o">=</span><span class="mi">333</span>
+<span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">msprime</span><span class="p">.</span><span class="n">sim_mutations</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">333</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Simulated"</span><span class="p">,</span> <span class="n">ts</span><span class="p">.</span><span class="n">num_trees</span><span class="p">,</span> <span class="s">"trees"</span><span class="p">,</span> <span class="n">ts</span><span class="p">.</span><span class="n">num_sites</span><span class="p">,</span> <span class="s">"sites"</span><span class="p">)</span>
+<span class="n">sample_data</span> <span class="o">=</span> <span class="n">tsinfer</span><span class="p">.</span><span class="n">SampleData</span><span class="p">.</span><span class="n">from_tree_sequence</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Saved genetic variation to '</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s">'"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Simulated 58 trees 682 sites
+Saved genetic variation to 'simulated_data.samples'
+</code></pre></div></div>
+
+<p>Below we plot a portion of this inferred tree sequence “simplified” in the same way as in previous tsinfer versions. For clarity, the parent of the ultimate ancestor, inserted for technical reasons, is marked as “X”</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_region</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2e3</span><span class="p">,</span> <span class="mf">3e3</span><span class="p">)</span> 
+<span class="n">inferred_simplified_ts</span> <span class="o">=</span> <span class="n">tsinfer</span><span class="p">.</span><span class="n">infer</span><span class="p">(</span><span class="n">sample_data</span><span class="p">,</span> <span class="n">simplify</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Default output in tsinfer version 0.2.3"</span><span class="p">)</span>
+<span class="n">inferred_simplified_ts</span><span class="p">.</span><span class="n">simplify</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">keep_unary</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="n">draw_svg</span><span class="p">(</span>
+    <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+    <span class="n">x_lim</span><span class="o">=</span><span class="n">plot_region</span><span class="p">,</span>
+    <span class="n">node_labels</span><span class="o">=</span><span class="p">{</span><span class="mi">85</span><span class="p">:</span> <span class="s">"..."</span><span class="p">,</span> <span class="mi">89</span><span class="p">:</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">90</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">91</span><span class="p">:</span> <span class="s">"ultimate anc."</span><span class="p">,</span> <span class="mi">92</span><span class="p">:</span> <span class="s">"X"</span><span class="p">},</span>
+    <span class="n">mutation_labels</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">time_scale</span><span class="o">=</span><span class="s">"rank"</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="s">".n91 &gt; .lab, .n91 &gt; .sym {fill: green}"</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The `simplify` parameter is deprecated in favour of `post_process`
+
+
+Default output in tsinfer version 0.2.3
+</code></pre></div></div>
+
+<p><img src="/assets/images/news/20221025-tsinfer-0.3.0/20221025-tsinfer-0.3.0_16_2.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">inferred_postprocessed_ts</span> <span class="o">=</span> <span class="n">tsinfer</span><span class="p">.</span><span class="n">infer</span><span class="p">(</span><span class="n">sample_data</span><span class="p">)</span>  <span class="c1"># post-process happens by default  
+</span><span class="k">print</span><span class="p">(</span><span class="s">"New output in tsinfer version 0.3:"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">" ancestor X removed, and ultimate ancestor split into multiple nodes"</span><span class="p">)</span>
+<span class="n">matplotlib_colours</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"tab:blue"</span><span class="p">:</span> <span class="s">"#1f77b4"</span><span class="p">,</span> <span class="s">"tab:orange"</span><span class="p">:</span> <span class="s">"#ff7f0e"</span><span class="p">,</span> <span class="s">"tab:green"</span><span class="p">:</span> <span class="s">"#2ca02c"</span><span class="p">,</span> <span class="s">"tab:red"</span><span class="p">:</span> <span class="s">"#d62728"</span>
+<span class="p">}</span>
+<span class="n">mpl_vals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">matplotlib_colours</span><span class="p">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">inferred_postprocessed_ts</span><span class="p">.</span><span class="n">simplify</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">keep_unary</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="n">draw_svg</span><span class="p">(</span>
+    <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+    <span class="n">x_lim</span><span class="o">=</span><span class="p">(</span><span class="mf">2e3</span><span class="p">,</span> <span class="mf">3e3</span><span class="p">),</span>
+    <span class="n">time_scale</span><span class="o">=</span><span class="s">"rank"</span><span class="p">,</span>
+    <span class="n">node_labels</span><span class="o">=</span><span class="p">{</span><span class="mi">85</span><span class="p">:</span> <span class="s">"..."</span><span class="p">,</span> <span class="mi">89</span><span class="p">:</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">90</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">91</span><span class="p">:</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">92</span><span class="p">:</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">93</span><span class="p">:</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">94</span><span class="p">:</span> <span class="mi">94</span><span class="p">},</span>
+    <span class="n">mutation_labels</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">style</span><span class="o">=</span><span class="s">""</span><span class="p">.</span><span class="n">join</span><span class="p">([</span>
+        <span class="sa">f</span><span class="s">".n</span><span class="si">{</span><span class="n">u</span><span class="si">}</span><span class="s">&gt;.lab, .n</span><span class="si">{</span><span class="n">u</span><span class="si">}</span><span class="s">&gt;.sym"</span> <span class="o">+</span> <span class="s">"{fill: "</span> <span class="o">+</span> <span class="n">mpl_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s">"}"</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">91</span><span class="p">,</span> <span class="mi">95</span><span class="p">))</span>
+    <span class="p">]),</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New output in tsinfer version 0.3:
+ ancestor X removed, and ultimate ancestor split into multiple nodes
+</code></pre></div></div>
+
+<p><img src="/assets/images/news/20221025-tsinfer-0.3.0/20221025-tsinfer-0.3.0_17_1.svg" alt="svg" /></p>
+
+<p>The rationale for splitting the ultimate ancestor is that we expect there to be multiple ancestors representing haplotypes with entirely ancestral states. As a heuristic, the ultimate ancestor is split whenever its children change. Although it makes no difference to the inferred topology, splitting the ultimate ancestor can result in a considerable improvement in the dates of the oldest nodes when dating the tree sequence:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tsdate</span>
+<span class="n">mrcas_orig</span> <span class="o">=</span> <span class="p">[[</span><span class="n">t</span><span class="p">.</span><span class="n">interval</span><span class="p">.</span><span class="n">right</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">time</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">root</span><span class="p">)]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ts</span><span class="p">.</span><span class="n">trees</span><span class="p">()]</span>
+
+<span class="n">new_inferred_ts</span> <span class="o">=</span> <span class="n">inferred_postprocessed_ts</span><span class="p">.</span><span class="n">simplify</span><span class="p">()</span>  <span class="c1"># remove unary nodes for tsdate
+</span><span class="n">dated_postprocessed_ts</span> <span class="o">=</span> <span class="n">tsdate</span><span class="p">.</span><span class="n">date</span><span class="p">(</span><span class="n">inferred_ts</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">Ne</span><span class="o">=</span><span class="n">Ne</span><span class="p">)</span>
+<span class="n">mrcas_new_method</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="n">t</span><span class="p">.</span><span class="n">interval</span><span class="p">.</span><span class="n">right</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">time</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">root</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dated_postprocessed_ts</span><span class="p">.</span><span class="n">trees</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">t</span><span class="p">.</span><span class="n">num_roots</span> <span class="o">!=</span> <span class="n">dated_postprocessed_ts</span><span class="p">.</span><span class="n">num_samples</span>
+<span class="p">]</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">mrcas_orig</span><span class="p">).</span><span class="n">T</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">"black"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"true tMRCA"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">mrcas_new_method</span><span class="p">).</span><span class="n">T</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">"tab:green"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"tsinferred MRCA"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">yscale</span><span class="p">(</span><span class="s">"log"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/news/20221025-tsinfer-0.3.0/20221025-tsinfer-0.3.0_19_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">old_inferred_simplified_ts</span> <span class="o">=</span> <span class="n">inferred_simplified_ts</span><span class="p">.</span><span class="n">simplify</span><span class="p">()</span>  <span class="c1"># remove unary nodes
+</span><span class="n">dated_simplified_ts</span> <span class="o">=</span> <span class="n">tsdate</span><span class="p">.</span><span class="n">date</span><span class="p">(</span><span class="n">old_inferred_simplified_ts</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">Ne</span><span class="o">=</span><span class="n">Ne</span><span class="p">)</span>
+<span class="n">mrcas_old_method</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="n">t</span><span class="p">.</span><span class="n">interval</span><span class="p">.</span><span class="n">right</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">time</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">root</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dated_simplified_ts</span><span class="p">.</span><span class="n">trees</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">t</span><span class="p">.</span><span class="n">num_roots</span> <span class="o">!=</span> <span class="n">dated_simplified_ts</span><span class="p">.</span><span class="n">num_samples</span>
+<span class="p">]</span>
+
+<span class="n">mrcas_old</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="n">t</span><span class="p">.</span><span class="n">interval</span><span class="p">.</span><span class="n">right</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">time</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">root</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dated_simplified_ts</span><span class="p">.</span><span class="n">trees</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">t</span><span class="p">.</span><span class="n">num_roots</span> <span class="o">!=</span> <span class="n">dated_simplified_ts</span><span class="p">.</span><span class="n">num_samples</span>
+<span class="p">]</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">mrcas_orig</span><span class="p">).</span><span class="n">T</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">"black"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"true tMRCA"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">mrcas_old</span><span class="p">).</span><span class="n">T</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">"tab:orange"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"old tsinferred MRCA"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">yscale</span><span class="p">(</span><span class="s">"log"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/news/20221025-tsinfer-0.3.0/20221025-tsinfer-0.3.0_20_0.png" alt="png" /></p>
+
+<h3 id="5-command-line-interface-cli-improvements">5. Command line interface (CLI) improvements</h3>
+
+<p>For large inferences, we recommend running tsinfer on the command-line, e.g.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span> <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">tsinfer</span> <span class="n">generate</span><span class="o">-</span><span class="n">ancestors</span> <span class="n">simulated_data</span><span class="p">.</span><span class="n">samples</span>
+</code></pre></div></div>
+
+<p>This CLI interface now allows the mismatch ratio and recombination rate to be specified. Alternatively, the path to a recombination map in hapmap format (as read by <code class="language-plaintext highlighter-rouge">msprime.RateMap.read_hapmap</code>) can be given:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span> <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">tsinfer</span> <span class="n">infer</span> <span class="o">--</span><span class="n">recombination_rate</span><span class="o">=</span><span class="mf">0.4</span> <span class="o">--</span><span class="n">mismatch_ratio</span><span class="o">=</span><span class="mf">0.1</span> <span class="n">simulated_data</span><span class="p">.</span><span class="n">samples</span> <span class="o">-</span><span class="n">O</span> <span class="n">inferred</span><span class="p">.</span><span class="n">ts</span>
+<span class="c1"># Or python3 -m tsinfer infer --recombination_map=/path/to/hapmap --mismatch_ratio=0.1 simulated_data.samples
+</span></code></pre></div></div>
+
+<p>These parameters are saved to the provenance of the output tree sequence</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="n">inferred_ts</span> <span class="o">=</span> <span class="n">tskit</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">"inferred.ts"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">inferred_ts</span><span class="p">.</span><span class="n">provenance</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">).</span><span class="n">record</span><span class="p">)[</span><span class="s">"parameters"</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{'args': ['infer', '--recombination_rate=0.4', '--mismatch_ratio=0.1', 'simulated_data.samples', '-O', 'inferred.ts'], 'command': '/Users/yan/Documents/GitHub/tsinfer/tsinfer/__main__.py'}
+</code></pre></div></div>
+
+<h3 id="6-misc-changes">6. Misc changes</h3>
+
+<ul>
+  <li>The CLI allows <code class="language-plaintext highlighter-rouge">--no-post-process</code> to be specified when matching samples</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span> <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">tsinfer</span> <span class="n">match</span><span class="o">-</span><span class="n">ancestors</span> <span class="n">simulated_data</span><span class="p">.</span><span class="n">samples</span>
+<span class="err">!</span> <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">tsinfer</span> <span class="n">match</span><span class="o">-</span><span class="n">samples</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">post</span><span class="o">-</span><span class="n">process</span> <span class="n">simulated_data</span><span class="p">.</span><span class="n">samples</span> <span class="o">-</span><span class="n">O</span> <span class="n">simulated_no_pp</span><span class="p">.</span><span class="n">trees</span>
+</code></pre></div></div>
+
+<ul>
+  <li>If we want to post-process afterwards, there is a separate routine, <code class="language-plaintext highlighter-rouge">tsinfer.post_process()</code> which accepts extra options e.g. to avoid splitting the ultimate ancestor or erasing topology in flanking regions:</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">no_pp_ts</span> <span class="o">=</span> <span class="n">tskit</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">"simulated_no_pp.trees"</span><span class="p">)</span>
+<span class="n">pp_ts</span> <span class="o">=</span> <span class="n">tsinfer</span><span class="p">.</span><span class="n">post_process</span><span class="p">(</span><span class="n">no_pp_ts</span><span class="p">,</span> <span class="n">split_ultimate</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">erase_flanks</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>matching routines warn if no inference sites have been used:</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ancestors</span> <span class="o">=</span> <span class="n">tsinfer</span><span class="p">.</span><span class="n">generate_ancestors</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">exclude_positions</span><span class="o">=</span><span class="p">[</span><span class="n">s</span><span class="p">.</span><span class="n">position</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sd</span><span class="p">.</span><span class="n">sites</span><span class="p">()])</span>
+<span class="n">anc_ts</span> <span class="o">=</span> <span class="n">tsinfer</span><span class="p">.</span><span class="n">match_ancestors</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">ancestors</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>No sites used for inference
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">sample_data.subset()</code> now accepts a sequence_length</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">shorter_sample_data</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">.</span><span class="n">subset</span><span class="p">(</span>
+    <span class="n">sites</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">sequence_length</span><span class="o">=</span><span class="n">sample_data</span><span class="p">.</span><span class="n">sites_position</span><span class="p">[:][</span><span class="mi">101</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Original data covers "</span><span class="p">,</span> <span class="n">sample_data</span><span class="p">.</span><span class="n">sequence_length</span><span class="p">,</span> <span class="s">"bp"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Subset covers "</span><span class="p">,</span> <span class="n">shorter_sample_data</span><span class="p">.</span><span class="n">sequence_length</span><span class="p">,</span> <span class="s">"bp"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Original data covers  10000.0 bp
+Subset covers  1098.0 bp
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">verify</code> no longer raises error when comparing a genotype to missingness (see <a href="https://github.com/tskit-dev/tsinfer/issues/625">issue 625</a>)</li>
+</ul>
+
+<h1 id="feedback-etc">Feedback etc</h1>
+
+<p>Please post a discussion or an issue on the <code class="language-plaintext highlighter-rouge">tsinfer</code> <a href="https://github.com/tskit-dev/tsinfer">GitHub repository</a> if you have any problems. We hope the update to <code class="language-plaintext highlighter-rouge">tsinfer</code> version 0.3 is useful in your research.</p>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END: news-content -->
+
+    </main>
+    <!-- END: content -->
+
+    <!-- START: footer -->
+        <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 offset-md-1">
+                <a class="footer__logo" href="./">
+                    <!-- START: icon-logo -->
+                    <svg class="icon icon--logo" xmlns="http://www.w3.org/2000/svg" x="0" y="0"
+                         viewBox="0 0 84.8 68">
+                        <style>
+                            .logo-st0 {
+                                fill: #085167
+                            }
+
+                            .logo-st1 {
+                                fill: #14e2a8
+                            }
+                        </style>
+                        <path class="logo-st0"
+                              d="M2 61.4v-8.2H0v-3.4h2v-5h4.8v5h5v3.4h-5v8.2c0 1.9.8 2.9 2.5 2.9.9 0 1.7-.2 2.4-.6v3.5c-1.1.5-2.4.8-3.7.8-4.2 0-6-2.8-6-6.6"></path>
+                        <path class="logo-st0"
+                              d="M62.7 67.5v-3.4h1.9V53.2h-1.9v-3.4h6.8v14.3h1.9v3.4h-8.7zm1.1-23.3c-.1-1.6 1.2-2.9 2.7-3 1.6-.1 2.9 1.2 3 2.7.1 1.6-1.2 2.9-2.7 3h-.1c-1.5.1-2.8-1-2.9-2.5v-.2"></path>
+                        <path class="logo-st0"
+                              d="M39.6 67.5v-3.4h1.9V45.4h-1.9V42h6.8v14.4h4l1.7-3.2h-2.5v-3.4h9.6v3.4h-2.6L53.7 58l4.2 6h2.8v3.4h-9.9V64h1.7l-2.8-4.6h-3.4V64h1.9v3.4l-8.6.1z"></path>
+                        <path class="logo-st0"
+                              d="M23.4 57c4.5 1.3 6.4 2.7 6.4 5.9 0 3.3-2.5 5.1-6.4 5.1-2.6 0-4.3-.7-5.4-1.9l-.1 1.3h-3.4v-6.1h3.7c.7 1.9 2.5 3.2 4.5 3.1 1.3 0 2.3-.5 2.3-1.6s-1-1.5-1.7-1.7l-2.6-.7c-2.8-.7-6.2-1.7-6.2-6 0-3.4 2.4-5.2 6-5.2 1.8 0 3.6.6 5 1.8l.1-1.3H29v5.9h-3.7c-.4-1.7-1.9-2.9-3.6-2.9-1.3 0-2.3.5-2.3 1.7 0 1 .6 1.4 1.8 1.7l2.2.9z"></path>
+                        <path class="logo-st0"
+                              d="M75 61.4v-8.2h-2v-3.4h2v-5h4.8v5h5v3.4h-5v8.2c0 1.9.8 2.9 2.5 2.9.9 0 1.7-.2 2.4-.6v3.5c-1.1.5-2.4.8-3.7.8-4.2 0-6-2.8-6-6.6"></path>
+                        <path class="logo-st1" d="M75 28.8h4.8v12.5H75z"></path>
+                        <path class="logo-st1" d="M41.5 28.8h4.8v9.6h-4.8z"></path>
+                        <path class="logo-st1" d="M41.5 24h38.3v4.8H41.5z"></path>
+                        <path class="logo-st1" d="M58.3 14.4h4.8V24h-4.8z"></path>
+                        <path class="logo-st1" d="M2 14.4h4.8v26.9H2z"></path>
+                        <path class="logo-st1" d="M2 9.6h61.1v4.8H2z"></path>
+                        <path class="logo-st1" d="M34.6 0h4.8v9.6h-4.8z"></path>
+                    </svg>
+                    <!-- END: icon-logo -->
+                    <span class="visually-hidden">
+                        tskit
+                    </span>
+                </a>
+            </div>
+            <div class="col">
+                <ul class="list list--unstyled">
+                    <li class="list__item">
+                        <a href="https://github.com/tskit-dev/tskit-site/issues/new/choose" class="list__item__link link link--type-1">
+                                <span class="link__text">
+                                    Report a website issue
+                                </span>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="https://github.com/tskit-dev" class="list__item__link link link--type-1">
+                                <span class="link__text">
+                                    Github
+                                </span>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="https://github.com/tskit-dev/.github/blob/main/CODE_OF_CONDUCT.md" class="list__item__link link link--type-1">
+                                <span class="link__text">
+                                    Code of conduct
+                                </span>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="/governance/" class="list__item__link link link--type-1">
+                                <span class="link__text">
+                                    Governance
+                                </span>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="https://github.com/tskit-dev/tskit-site/blob/main/LICENSE" class="list__item__link link link--type-1">
+                                <span class="link__text">
+                                    Licence
+                                </span>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="/ecosystem-status/" class="list__item__link link link--type-1">
+                                <span class="link__text">
+                                    Ecosystem Status
+                                </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- END: footer -->
+    <!-- START: global modal -->
+    <div class="modal fade"
+         id="globalModal"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="globalModalLabel"
+         aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <button class="navbar-toggler modal-close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="modal-header visually-hidden">
+                    <h5 class="modal-title" id="globalModalLabel">
+                        Modal content
+                    </h5>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END: global modal -->
+
+</div>
+
+<script src="/assets/dist/js/main.min.js"></script>
+
+</body>
+</html>
